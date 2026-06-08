@@ -4,6 +4,12 @@
 > `Riot.md`; the plan in `To Do Riot.md`. This file = what we've **learned** building it.
 > Last updated: 2026-06-08 (day 0).
 
+## Working agreement — we work LIVE
+We always work against the live repo. Commit + push to `main` as we go; GitHub Pages
+auto-redeploys, so **pushing == publishing**. No batching local-only work. Deploy loop:
+edit → (if data changed) `python3 scripts/build_table.py` → `git add -A && git commit && git push`.
+Never commit `soul.md` or `data/actas/*.pdf` (gitignored). Live: https://andratwiro.github.io/riot/
+
 ## Where Reus' votes live (the gate — cleared)
 - Full plenary minutes ("actes del ple") are published as PDFs on the **AudioVideoActa
   portal**: `https://serveis.reus.cat/actes`.
