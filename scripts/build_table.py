@@ -48,6 +48,13 @@ def main():
     # table for transparency, and still reachable via the app's flagged-items view).
     cm = ROOT / "data" / "curator_marks.json"
     curator_drop = {m["id"] for m in json.loads(cm.read_text())} if cm.exists() else set()
+    # Auto-detected low-discretion PROPOSALS (scripts/detect_discretion.py). These never hide
+    # anything by themselves — they surface in-app as "proposem no votar?" for the curator to
+    # confirm (→ becomes a curator_mark → hides) or dismiss (→ curator_dismissed, stops nagging).
+    ad = ROOT / "data" / "auto_discretion.json"
+    auto_drop = {a["id"] for a in json.loads(ad.read_text()) if a.get("propose_drop")} if ad.exists() else set()
+    cd = ROOT / "data" / "curator_dismissed.json"
+    dismissed = {x for x in json.loads(cd.read_text())} if cd.exists() else set()
     # Load human-layer explanations, keyed by decision id.
     explained = {}
     for ef in RAW.glob("explained_*.json"):
@@ -70,7 +77,10 @@ def main():
                 "acta_url": sess.get("acta_url"),
                 "party_votes_canon": party_votes,
                 "contested_suggested": contested,   # PROVISIONAL — not the final `counts`
-                "curator_drop": d["id"] in curator_drop,   # flagged 'no val la pena votar'
+                "curator_drop": d["id"] in curator_drop,   # confirmed → hidden from deck
+                # auto proposed it, you haven't confirmed or dismissed yet → show suggestion in-app
+                "auto_suggest": (d["id"] in auto_drop and d["id"] not in curator_drop
+                                 and d["id"] not in dismissed),
                 # --- human layer (Phase 1; reviewed separately, never overwrites facts) ---
                 "headline": ex.get("headline"),
                 "human_body": ex.get("body"),

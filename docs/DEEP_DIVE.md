@@ -68,6 +68,29 @@ brief, deep}`) → merged into `explained_<code>.json` → `build_table.py` → 
 - **Vote results excluded from prose** (blind-vote integrity), kept as structured data.
 - We **keep** her best mechanics: total coverage, figure-typing, source+page traceability, multi-round convergence, cost-indifference on the extraction pass.
 
+## Inclusion gate — votability + discretion (auto proposes, human disposes)
+Not every votable item earns a card. An item is worth voting on only if a citizen's values
+produce a meaningful for/against. Three layers decide what reaches the deck:
+
+1. **Legal-category gate** (`scripts/taxonomy.py`) — only votable categories; drops
+   precs/preguntes/dació. Hard, automatic.
+2. **Discretion auto-detect** (`scripts/detect_discretion.py` → `data/auto_discretion.json`) —
+   PROPOSES dropping low-discretion items (mandated by higher law / pure procedure / symbolic),
+   **rescued by observed contestation** (against-share ≥ ~20% → a real values fight, keep it; a
+   'no' on a mandate is a symbolic stance, so if nobody cast it, there was no choice). Recall net.
+3. **Curator marks** (`data/curator_marks.json`) — the human flags. **Authoritative + ground truth.**
+
+**Auto suggests, you confirm (Rob's call):** auto NEVER hides anything. `build_table.py` sets
+`auto_suggest=true` on items auto proposed but **not yet confirmed or dismissed** by the human;
+the app surfaces these as "proposem no votar?" for a tap. **Confirm** → the id joins
+`curator_marks.json` → hidden from the deck. **Dismiss** → joins `data/curator_dismissed.json` →
+stops nagging, stays in the deck. Only `curator_marks.json` ever hides (`curator_drop`). The
+human's confirms/dismisses are the **training signal** that tunes the detector's markers and the
+contestation threshold — disagreements (e.g. auto firing on "removing an obligation") are the work.
+
+Validated on the first 11 human flags: the detector reproduced all 10 drops and kept the
+contested one (escombraries). Small sample — the value is the loop, not a finished classifier.
+
 ## Cost
 Extraction (Stage A+B) is the budget item — done once per item, worth doing exhaustively.
 Copy (Stage C) is cheap and re-runnable freely (reads the compact deep, not the PDFs).
