@@ -32,9 +32,7 @@
     display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--line)}
   .pa .lg img{width:100%;height:100%;object-fit:contain;padding:4px}
   .pa .lg.fb{color:#fff;font-weight:800;font-size:13px;border:0}
-  .pa .pct{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
-  .pa .nm{font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .pa .track{height:3px;border-radius:3px;background:var(--line);margin-top:3px;overflow:hidden}
+  .pa .track{height:4px;border-radius:3px;background:var(--line);margin-top:2px;overflow:hidden}
   .pa .fill{height:100%;width:0;border-radius:3px;transition:width .4s ease}
   .pa.muted{opacity:.45}
 
@@ -258,9 +256,7 @@ function renderAffinity(){
   });
   $("#affinity").innerHTML=order.map(p=>{
     const r=a[p.token],pct=r.pct;
-    return `<div class="pa ${r.comp?'':'muted'}">${logoEl(p)}
-      <div class="pct">${pct===null?'—':pct+'%'}</div>
-      <div class="nm">${p.name}</div>
+    return `<div class="pa ${r.comp?'':'muted'}" title="${esc(p.name)}">${logoEl(p)}
       <div class="track"><div class="fill" style="width:${pct||0}%;background:${p.color}"></div></div>
     </div>`;
   }).join("");
