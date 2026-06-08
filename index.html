@@ -95,6 +95,14 @@
   .card .lectura{margin-top:12px;padding:11px 12px;border-radius:10px;
     background:rgba(240,180,109,.07);border:1px solid rgba(240,180,109,.22)}
   .card .lectura strong{color:#f0b46d}
+  /* auto-discretion suggestion chip (curator only) */
+  .card .suggest{display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:8px 10px;
+    border-radius:10px;background:rgba(109,179,255,.10);border:1px solid rgba(109,179,255,.28)}
+  .card .suggest .stxt{flex:1;font-size:12.5px;color:var(--dim);font-weight:600}
+  .card .suggest button{border:0;border-radius:8px;padding:6px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+  .card .suggest .sugOk{background:var(--acc);color:#06121f}
+  .card .suggest .sugNo{background:var(--card2);color:var(--ink);border:1px solid var(--line)}
+  .card.expanded .suggest{display:none}
   .more{align-self:flex-start;margin:4px 0 0;background:none;border:0;color:var(--acc);
     font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 0}
   .card .reveal{margin-top:10px;max-height:42vh;overflow:auto}
@@ -355,10 +363,15 @@ let useOriginal = false;
 let showMap = false;
 const answers = {};
 /* curator marks + dev mode — persist across sessions in localStorage */
-const MARK_KEY="riot.marks.v1", DEV_KEY="riot.dev.v1";
+const MARK_KEY="riot.marks.v1", DEV_KEY="riot.dev.v1", DISMISS_KEY="riot.dismissed.v1";
 function loadMarks(){try{return JSON.parse(localStorage.getItem(MARK_KEY))||[];}catch(e){return [];}}
 function saveMarks(){try{localStorage.setItem(MARK_KEY,JSON.stringify(marks));}catch(e){}}
 let marks=loadMarks();
+// auto-suggest dismissals — curator said "no, this one IS worth voting"; stops the chip nagging
+function loadDismissed(){try{return JSON.parse(localStorage.getItem(DISMISS_KEY))||[];}catch(e){return [];}}
+let dismissed=loadDismissed();
+const isDismissed=id=>dismissed.includes(id);
+function dismissSuggest(id){if(!isDismissed(id)){dismissed.push(id);try{localStorage.setItem(DISMISS_KEY,JSON.stringify(dismissed));}catch(e){}}}
 let devMode=false; try{devMode=localStorage.getItem(DEV_KEY)==="1";}catch(e){}
 const isMarked=id=>marks.some(m=>m.id===id);
 const MAP_GATE = 5;          // votes required before the user is placed on the map
@@ -539,7 +552,15 @@ function renderStack(){
         </div>`
       : "";
     const headTip = useOriginal ? "" : ` title="${esc(d.title||"")}"`;
+    // auto-discretion suggestion (curator only): proposed-drop the curator hasn't confirmed/dismissed
+    const showSug = depth===0 && devMode && d.auto_suggest && !isMarked(d.id) && !isDismissed(d.id);
+    const suggest = showSug
+      ? `<div class="suggest"><span class="stxt">🤖 Proposem: no val la pena votar</span>`+
+        `<button class="sugOk" type="button">Confirma</button>`+
+        `<button class="sugNo" type="button">Ignora</button></div>`
+      : "";
     el.innerHTML=`<button class="closex" type="button" aria-label="Tanca">✕</button>
+      ${suggest}
       <span class="topic${useOriginal?" orig":""}">${topic}</span>
       <h2${headTip}>${head}</h2>
       <button class="more" type="button">Veure més ▾</button>
@@ -587,6 +608,14 @@ $("#stack").addEventListener("click",e=>{
     const avail=survey.getBoundingClientRect().bottom - card.getBoundingClientRect().top - 6;
     card.style.height=Math.max(avail,220)+"px";
     return;
+  }
+  if(e.target.closest(".sugOk")){            // confirm suggestion → mark + advance (not a vote)
+    const d=deck[idx]; toggleMark(d);
+    const top=$("#stack").lastChild; if(top)top.classList.add("gone-d");
+    setTimeout(()=>{idx++;renderStack();},230); return;
+  }
+  if(e.target.closest(".sugNo")){            // dismiss suggestion → stays votable, stop nagging
+    dismissSuggest(deck[idx].id); renderStack(); return;
   }
   const dm=e.target.closest(".deepmore");
   if(dm){
@@ -711,7 +740,7 @@ function openMarks(){
 $("#markReview").addEventListener("click",openMarks);
 $("#closeMarks").addEventListener("click",()=>$("#marksView").style.display="none");
 $("#copyMarks").addEventListener("click",()=>{
-  const txt=JSON.stringify(marks,null,2);
+  const txt=JSON.stringify(dismissed.length?{marks,dismissed}:marks,null,2);
   if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>{$("#copyMarks").textContent="✓ Copiat";setTimeout(()=>$("#copyMarks").textContent="⧉ Copia JSON",1500);});
 });
 $("#marksList").addEventListener("click",e=>{
