@@ -81,17 +81,17 @@
     font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 0}
   .card .reveal{margin-top:10px;max-height:42vh;overflow:auto}
   .card .reveal[hidden]{display:none}
-  /* expanded ("Veure més") — card takes over fullscreen with a close ✕ */
-  .card .closex{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;
-    border:1px solid var(--line);background:var(--card2);color:var(--ink);font-size:19px;line-height:1;
+  /* expanded ("Veure més") — same card; title + vote buttons swap out for the
+     full description, with a close ✕ top-right. Card keeps its size. */
+  .card .closex{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--line);background:var(--card2);color:var(--ink);font-size:18px;line-height:1;
     cursor:pointer;display:none;align-items:center;justify-content:center;z-index:3}
   .card .closex:active{transform:scale(.94)}
-  .card.expanded{position:fixed;inset:0;z-index:40;max-width:none;border:0;border-radius:0;
-    box-shadow:none;overflow:auto;
-    padding:22px 20px calc(18px + env(safe-area-inset-bottom))}
+  .card.expanded h2,
+  .card.expanded .more,
+  .card.expanded .acts{display:none}
   .card.expanded .closex{display:flex}
-  .card.expanded .more{display:none}
-  .card.expanded .reveal{max-height:none;overflow:visible}
+  .card.expanded .reveal{margin-top:14px;max-height:none;overflow:auto;flex:1 1 auto}
   .card.behind1{transform:scale(.95) translateY(14px);opacity:.6;filter:saturate(.6)}
   .card.behind2{transform:scale(.9) translateY(28px);opacity:.3;filter:saturate(.3)}
   .card.gone-r{transform:translateX(120%) rotate(8deg);opacity:0}
@@ -425,15 +425,16 @@ function finish(){
 
 function collapseCard(card){
   card.classList.remove("expanded");
+  card.style.minHeight="";
   card.querySelector(".reveal").setAttribute("hidden","");
 }
 $("#stack").addEventListener("click",e=>{
   const more=e.target.closest(".more");
   if(more){
     const card=more.closest(".card");
+    card.style.minHeight=card.offsetHeight+"px";   // hold the card's current size
     card.querySelector(".reveal").removeAttribute("hidden");
     card.classList.add("expanded");
-    card.scrollTop=0;
     return;
   }
   if(e.target.closest(".closex")){collapseCard(e.target.closest(".card"));return;}
