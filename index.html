@@ -81,6 +81,17 @@
     font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 0}
   .card .reveal{margin-top:10px;max-height:42vh;overflow:auto}
   .card .reveal[hidden]{display:none}
+  /* expanded ("Veure més") — card takes over fullscreen with a close ✕ */
+  .card .closex{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;
+    border:1px solid var(--line);background:var(--card2);color:var(--ink);font-size:19px;line-height:1;
+    cursor:pointer;display:none;align-items:center;justify-content:center;z-index:3}
+  .card .closex:active{transform:scale(.94)}
+  .card.expanded{position:fixed;inset:0;z-index:40;max-width:none;border:0;border-radius:0;
+    box-shadow:none;overflow:auto;
+    padding:22px 20px calc(18px + env(safe-area-inset-bottom))}
+  .card.expanded .closex{display:flex}
+  .card.expanded .more{display:none}
+  .card.expanded .reveal{max-height:none;overflow:visible}
   .card.behind1{transform:scale(.95) translateY(14px);opacity:.6;filter:saturate(.6)}
   .card.behind2{transform:scale(.9) translateY(28px);opacity:.3;filter:saturate(.3)}
   .card.gone-r{transform:translateX(120%) rotate(8deg);opacity:0}
@@ -384,7 +395,8 @@ function renderStack(){
         </div>`
       : "";
     const headTip = useOriginal ? "" : ` title="${esc(d.title||"")}"`;
-    el.innerHTML=`<span class="topic${useOriginal?" orig":""}">${topic}</span>
+    el.innerHTML=`<button class="closex" type="button" aria-label="Tanca">✕</button>
+      <span class="topic${useOriginal?" orig":""}">${topic}</span>
       <h2${headTip}>${head}</h2>
       <button class="more" type="button">Veure més ▾</button>
       <div class="reveal" hidden>${body}</div>
@@ -411,20 +423,27 @@ function finish(){
   $("#done").style.display="flex";
 }
 
+function collapseCard(card){
+  card.classList.remove("expanded");
+  card.querySelector(".reveal").setAttribute("hidden","");
+}
 $("#stack").addEventListener("click",e=>{
   const more=e.target.closest(".more");
   if(more){
-    const rev=more.closest(".card").querySelector(".reveal");
-    const open=rev.hasAttribute("hidden");
-    if(open){rev.removeAttribute("hidden");more.textContent="Veure menys ▴";}
-    else{rev.setAttribute("hidden","");more.textContent="Veure més ▾";}
+    const card=more.closest(".card");
+    card.querySelector(".reveal").removeAttribute("hidden");
+    card.classList.add("expanded");
+    card.scrollTop=0;
     return;
   }
+  if(e.target.closest(".closex")){collapseCard(e.target.closest(".card"));return;}
   const vb=e.target.closest(".btn[data-v]");
   if(vb)react(vb.dataset.v);
 });
 document.addEventListener("keydown",e=>{
   if($("#sheet").classList.contains("open")||$("#log").style.display==="block")return;
+  const exp=$("#stack").querySelector(".card.expanded");
+  if(exp){if(e.key==="Escape")collapseCard(exp);return;}
   if(e.key==="ArrowLeft")react("against");
   else if(e.key==="ArrowRight")react("for");
   else if(e.key==="ArrowDown")react("abstain");
