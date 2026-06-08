@@ -6,7 +6,7 @@ check whether a proxy (or a party) actually votes the way you would.
 
 This is the **Reus** instance (`riot.reus`). The engine is jurisdiction-agnostic.
 
-> 🔗 **Live:** _(GitHub Pages URL — added on first deploy)_
+> 🔗 **Live:** https://andratwiro.github.io/riot/
 
 ## What's here
 - **The site** (`index.html` + `data.js`) — a Polis-style view of real Reus city-council
