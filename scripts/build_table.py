@@ -69,7 +69,8 @@ def main():
                 # --- human layer (Phase 1; reviewed separately, never overwrites facts) ---
                 "headline": ex.get("headline"),
                 "human_body": ex.get("body"),
-                "source_brief": ex.get("brief"),   # rich nuance pulled from the acta source
+                "source_brief": ex.get("brief"),   # voiced extended summary (human dive-in)
+                "deep": ex.get("deep"),            # fact-dense dossier (AI proxy + completists)
                 "topic": ex.get("topic"),
                 "stake": ex.get("stake"),
                 "explained": bool(ex),

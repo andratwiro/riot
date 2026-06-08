@@ -82,6 +82,13 @@
   .card .brief li{margin:4px 0}
   .card .brief strong{color:#fff;font-weight:650}
   .card .stake{margin-top:10px;color:var(--dim);font-size:13px;border-left:2px solid var(--line);padding-left:10px}
+  .card .deepmore{align-self:flex-start;margin:12px 0 0;background:none;border:0;color:var(--acc);
+    font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;padding:6px 0}
+  .card .deep{margin-top:8px;padding-top:11px;border-top:1px solid var(--line);font-size:13.5px;color:#bcc3cf;line-height:1.5}
+  .card .deep p{margin:0 0 9px}
+  .card .deep ul{margin:0 0 9px;padding-left:18px}
+  .card .deep li{margin:3px 0}
+  .card .deep strong{color:#e6e9f0;font-weight:650}
   .more{align-self:flex-start;margin:4px 0 0;background:none;border:0;color:var(--acc);
     font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 0}
   .card .reveal{margin-top:10px;max-height:42vh;overflow:auto}
@@ -400,11 +407,19 @@ function renderStack(){
     el.className="card"+(depth===1?" behind1":depth===2?" behind2":"");
     const topic = useOriginal ? esc(d.organ||d.type||"Acta") : esc(d.topic||"Decisió");
     const head  = useOriginal ? esc(d.title||d.headline) : esc(d.headline);
-    const body  = useOriginal
-      ? `<div class="body rawtxt">${esc(d.raw_outcome||d.title||"")}</div>`
-      : d.source_brief
-        ? renderBrief(d.source_brief)+(d.stake?`<div class="stake">${esc(d.stake)}</div>`:"")
-        : `<div class="body">${esc(d.human_body||"")}${d.stake?`<div class="stake">${esc(d.stake)}</div>`:""}</div>`;
+    let body;
+    if(useOriginal){
+      body=`<div class="body rawtxt">${esc(d.raw_outcome||d.title||"")}</div>`;
+    } else {
+      const main = d.source_brief ? renderBrief(d.source_brief)
+                 : `<div class="body">${esc(d.human_body||"")}</div>`;
+      const stake = d.stake?`<div class="stake">${esc(d.stake)}</div>`:"";
+      const deep = d.deep
+        ? `<button class="deepmore" type="button">Anàlisi completa ▾</button>`+
+          `<div class="deep" hidden>${renderBrief(d.deep)}</div>`
+        : "";
+      body = main+stake+deep;
+    }
     const acts = depth===0
       ? `<div class="acts">
           <button class="btn a" data-v="against">En contra</button>
@@ -453,6 +468,14 @@ $("#stack").addEventListener("click",e=>{
     card.style.minHeight=card.offsetHeight+"px";   // hold the card's current size
     card.querySelector(".reveal").removeAttribute("hidden");
     card.classList.add("expanded");
+    return;
+  }
+  const dm=e.target.closest(".deepmore");
+  if(dm){
+    const blk=dm.nextElementSibling;
+    const open=blk.hasAttribute("hidden");
+    if(open){blk.removeAttribute("hidden");dm.textContent="Amaga l'anàlisi ▴";}
+    else{blk.setAttribute("hidden","");dm.textContent="Anàlisi completa ▾";}
     return;
   }
   if(e.target.closest(".closex")){collapseCard(e.target.closest(".card"));return;}
