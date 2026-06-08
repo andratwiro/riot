@@ -1,0 +1,17 @@
+# --- RIOT non-negotiables: never commit these ---
+# soul.md = Rob's private political profile (the AI proxy's only input).
+soul.md
+soul.*.md
+# (Rob's manual votes live in browser localStorage, never on disk.)
+
+# --- large / re-fetchable source binaries ---
+# The .txt extractions ARE committed; PDFs are re-fetchable via fetch_sessions.py.
+data/actas/*.pdf
+
+# --- junk ---
+.DS_Store
+__pycache__/
+*.pyc
+node_modules/
+.venv/
+*.log

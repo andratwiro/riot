@@ -1,0 +1,371 @@
+[
+  {
+    "code": "PLE_05_2026_ORD",
+    "date": "2026-05-15",
+    "detail_id": "e4c082829d2a3464019e1b1657c70722",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c082829d2a3464019e1b1657c70722",
+    "acta_download_id": null,
+    "acta_url": null,
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_04_2026_ORD",
+    "date": "2026-04-17",
+    "detail_id": "e4c082829d2a3464019d8b7ec86e020a",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c082829d2a3464019d8b7ec86e020a",
+    "acta_download_id": "e4c083829e1d1d23019e3b0ffa9b021c",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c083829e1d1d23019e3b0ffa9b021c",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_03_2026_ORD",
+    "date": "2026-03-20",
+    "detail_id": "e4c082829cba8cd6019cf78b7a7101a4",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c082829cba8cd6019cf78b7a7101a4",
+    "acta_download_id": "e4c082829d2a3464019dd886214d04a2",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c082829d2a3464019dd886214d04a2",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_2_2026_ORD",
+    "date": "2026-02-20",
+    "detail_id": "e4c08382989f3b86019c6b7a2c012852",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019c6b7a2c012852",
+    "acta_download_id": "e4c082829cba8cd6019d19e5e5bd0563",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c082829cba8cd6019d19e5e5bd0563",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_1_2026_ORD",
+    "date": "2026-01-23",
+    "detail_id": "e4c08382989f3b86019bd60fee022438",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019bd60fee022438",
+    "acta_download_id": "e4c08382989f3b86019c8e872b0b29eb",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e872b0b29eb",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_12_2025_EXTR",
+    "date": "2025-12-29",
+    "detail_id": "e4c08382989f3b86019b4710732b1d90",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019b4710732b1d90",
+    "acta_download_id": "e4c08382989f3b86019c8e86f6cb29ea",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e86f6cb29ea",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_11_2025_ORD",
+    "date": "2025-12-19",
+    "detail_id": "e4c08382989f3b86019b272628e91820",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019b272628e91820",
+    "acta_download_id": "e4c08382989f3b86019bea8102c8255b",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019bea8102c8255b",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_10_2025_ORD",
+    "date": "2025-11-21",
+    "detail_id": "e4c08382989f3b86019a962d45e012d3",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019a962d45e012d3",
+    "acta_download_id": "e4c08382989f3b86019b6a18c11c229b",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019b6a18c11c229b",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_09_2025_ORD",
+    "date": "2025-10-24",
+    "detail_id": "e4c08382989f3b86019a0112714c0974",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019a0112714c0974",
+    "acta_download_id": "e4c08382989f3b86019ac9ddfeb9165d",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019ac9ddfeb9165d",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_08_2025_ORD",
+    "date": "2025-09-19",
+    "detail_id": "e4c08382989f3b8601994d59b224026b",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b8601994d59b224026b",
+    "acta_download_id": "e4c08382989f3b86019a25650aef1043",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019a25650aef1043",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_07_2025_ORD",
+    "date": "2025-07-25",
+    "detail_id": "e4c08a82971bcf68019817b4f86d0cc6",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08a82971bcf68019817b4f86d0cc6",
+    "acta_download_id": "e4c08382989f3b8601997058b4fc05e4",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b8601997058b4fc05e4",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_06_2025_ORD",
+    "date": "2025-06-20",
+    "detail_id": "e4c08a82971bcf6801977978cfcd03f1",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08a82971bcf6801977978cfcd03f1",
+    "acta_download_id": "e4c08a82971bcf680198324159a30ec9",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08a82971bcf680198324159a30ec9",
+    "acta_is_draft": true
+  },
+  {
+    "code": "PLE_05_2025_ORD",
+    "date": "2025-05-16",
+    "detail_id": "e4c08a8296329d8b0196c48454350653",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08a8296329d8b0196c48454350653",
+    "acta_download_id": "e4c08a82971bcf680197a5c3f6150a69",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08a82971bcf680197a5c3f6150a69",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_4_2025_ORD",
+    "date": "2025-04-25",
+    "detail_id": "e4c08a8296329d8b01965c9e68fe00df",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08a8296329d8b01965c9e68fe00df",
+    "acta_download_id": null,
+    "acta_url": null,
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_03_2025_ORD",
+    "date": "2025-03-21",
+    "detail_id": "e4c081829593715f0195a523501c0079",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c081829593715f0195a523501c0079",
+    "acta_download_id": "e4c08a8296329d8b01967b3ed93f03e9",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08a8296329d8b01967b3ed93f03e9",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_02_2025_ORD",
+    "date": "2025-02-21",
+    "detail_id": "e4c0858294800e9801951900e2d80718",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0858294800e9801951900e2d80718",
+    "acta_download_id": "e4c08a8296329d8b01967b2bc9be03e8",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08a8296329d8b01967b2bc9be03e8",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_01_2025_ORD",
+    "date": "2025-01-24",
+    "detail_id": "e4c0858294800e980194891fb75d01ac",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0858294800e980194891fb75d01ac",
+    "acta_download_id": "e4c08a8295b453b10195c8458ba10207",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08a8295b453b10195c8458ba10207",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_14_2024_ORD",
+    "date": "2024-12-20",
+    "detail_id": "e4c08482934dab830193cf75197c0281",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08482934dab830193cf75197c0281",
+    "acta_download_id": "e4c0858294800e9801951924dbfc0755",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0858294800e9801951924dbfc0755",
+    "acta_is_draft": true
+  },
+  {
+    "code": "PLE_13_2024_ORD",
+    "date": "2024-11-15",
+    "detail_id": "e4c0948292fbadf501931fa0ed540356",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0948292fbadf501931fa0ed540356",
+    "acta_download_id": "e4c0858294800e98019489672d3601fc",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0858294800e98019489672d3601fc",
+    "acta_is_draft": true
+  },
+  {
+    "code": "PLE_12_2024_ORD",
+    "date": "2024-10-18",
+    "detail_id": "e4c0828291aea7be01928c056b0108d4",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0828291aea7be01928c056b0108d4",
+    "acta_download_id": null,
+    "acta_url": null,
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_11_2024_ORD",
+    "date": "2024-09-20",
+    "detail_id": "e4c0828291aea7be0191ff89d8770302",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0828291aea7be0191ff89d8770302",
+    "acta_download_id": null,
+    "acta_url": null,
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_10_2024_ORD",
+    "date": "2024-07-19",
+    "detail_id": "e4c084828f57026b0190bb663df411e7",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828f57026b0190bb663df411e7",
+    "acta_download_id": "e4c0828291aea7be0192aec6efe80bd2",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0828291aea7be0192aec6efe80bd2",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_09_2024_ORD",
+    "date": "2024-06-21",
+    "detail_id": "e4c084828f57026b01902a9c5cbe09d3",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828f57026b01902a9c5cbe09d3",
+    "acta_download_id": "e4c0828291aea7be01924266cf57060d",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0828291aea7be01924266cf57060d",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_08_2024_ORD",
+    "date": "2024-05-17",
+    "detail_id": "e4c084828f57026b018f76e76b7f0236",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828f57026b018f76e76b7f0236",
+    "acta_download_id": "e4c0828291aea7be01920f6ca0780576",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0828291aea7be01920f6ca0780576",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_07_2024_EXTR",
+    "date": "2024-05-08",
+    "detail_id": "e4c084828f57026b018f571f92b70008",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828f57026b018f571f92b70008",
+    "acta_download_id": null,
+    "acta_url": null,
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_06_2024_ORD",
+    "date": "2024-04-19",
+    "detail_id": "e4c084828b1a4192018ee6907ba330cd",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018ee6907ba330cd",
+    "acta_download_id": "e4c0838291033f760191267c6ecf0003",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0838291033f760191267c6ecf0003",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_05_2024_EXTR",
+    "date": "2024-04-15",
+    "detail_id": "e4c084828b1a4192018ebd56b5222e81",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018ebd56b5222e81",
+    "acta_download_id": "e4c084828f57026b01904f11d1b60ee5",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828f57026b01904f11d1b60ee5",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_04_2024_ORD",
+    "date": "2024-03-15",
+    "detail_id": "e4c084828b1a4192018e31cc5a1b2a25",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018e31cc5a1b2a25",
+    "acta_download_id": "e4c084828f57026b018f9680509d04af",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828f57026b018f9680509d04af",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_03_2024_EXTR",
+    "date": "2024-02-23",
+    "detail_id": "e4c084828b1a4192018dc5be4a5025ac",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018dc5be4a5025ac",
+    "acta_download_id": "e4c084828b1a4192018f19557c3033db",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828b1a4192018f19557c3033db",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_02_2024_ORD",
+    "date": "2024-02-16",
+    "detail_id": "e4c084828b1a4192018da222d931224e",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018da222d931224e",
+    "acta_download_id": "e4c084828b1a4192018f1955971d33dc",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828b1a4192018f1955971d33dc",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_1_2024_ORD",
+    "date": "2024-01-19",
+    "detail_id": "e4c084828b1a4192018d11f4e8811ce7",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018d11f4e8811ce7",
+    "acta_download_id": "e4c084828b1a4192018e32fc03a32a82",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828b1a4192018e32fc03a32a82",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_15_2023_EXTR",
+    "date": "2023-12-22",
+    "detail_id": "e4c084828b1a4192018c7dadf9871684",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018c7dadf9871684",
+    "acta_download_id": "e4c084828b1a4192018e32fc03732a81",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828b1a4192018e32fc03732a81",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_14_2023_ORD",
+    "date": "2023-12-15",
+    "detail_id": "e4c084828b1a4192018c5df11b561318",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018c5df11b561318",
+    "acta_download_id": "e4c084828b1a4192018dc0bee8fa2552",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828b1a4192018dc0bee8fa2552",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_13_2023_ORD",
+    "date": "2023-11-17",
+    "detail_id": "e4c084828b1a4192018bcda130260c91",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018bcda130260c91",
+    "acta_download_id": "e4c084828b1a4192018dc0bece642551",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828b1a4192018dc0bece642551",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_12_2023_EXTR",
+    "date": "2023-10-27",
+    "detail_id": "e4c084828b1a4192018b5c70070c053a",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018b5c70070c053a",
+    "acta_download_id": "e4c084828b1a4192018d1336311d1d69",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828b1a4192018d1336311d1d69",
+    "acta_is_draft": true
+  },
+  {
+    "code": "PLE_11_2023_ORD",
+    "date": "2023-10-20",
+    "detail_id": "e4c084828b1a4192018b3d18e1470176",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c084828b1a4192018b3d18e1470176",
+    "acta_download_id": "e4c084828b1a4192018bf6dce5101004",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828b1a4192018bf6dce5101004",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_10_2023_ORD",
+    "date": "2023-09-29",
+    "detail_id": "e4c0848289e16cc1018ad1011fc90255",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0848289e16cc1018ad1011fc90255",
+    "acta_download_id": "e4c084828b1a4192018b3db9045b0209",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c084828b1a4192018b3db9045b0209",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_9_2023_ORD",
+    "date": "2023-07-21",
+    "detail_id": "e4c0828288bda7ac018968e4a60e04b3",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0828288bda7ac018968e4a60e04b3",
+    "acta_download_id": "e4c0848289e16cc1018aefc0db4b0541",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0848289e16cc1018aefc0db4b0541",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_08_2023_EXTR",
+    "date": "2023-06-26",
+    "detail_id": "e4c0828288bda7ac0188dd9783d6002d",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0828288bda7ac0188dd9783d6002d",
+    "acta_download_id": "e4c0828288bda7ac01896932b46504f5",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0828288bda7ac01896932b46504f5",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_07_2023_EXTR",
+    "date": "2023-06-17",
+    "detail_id": "2c99808288ae4f700188b038dd080005",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/2c99808288ae4f700188b038dd080005",
+    "acta_download_id": "e4c0828288bda7ac018969375df404f6",
+    "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0828288bda7ac018969375df404f6",
+    "acta_is_draft": false
+  },
+  {
+    "code": "PLE_06_2023_EXTR",
+    "date": "2023-06-14",
+    "detail_id": "40288082880a526001888abc683d002d",
+    "detail_url": "https://serveis.reus.cat/actes/session/sessionDetail/40288082880a526001888abc683d002d",
+    "acta_download_id": null,
+    "acta_url": null,
+    "acta_is_draft": false
+  }
+]

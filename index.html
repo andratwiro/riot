@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RIOT · riot.reus — verificació de vots</title>
+<style>
+  :root{
+    --for:#1a8f4c; --against:#c8324a; --abstain:#c8860a; --muted:#8a8f98;
+    --bg:#0f1115; --card:#181b22; --line:#262a33; --ink:#e7e9ee; --dim:#9aa0ab;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  header{padding:20px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;
+         background:rgba(15,17,21,.92);backdrop-filter:blur(8px);z-index:5}
+  h1{margin:0;font-size:18px;letter-spacing:.2px}
+  h1 small{color:var(--dim);font-weight:400;font-size:13px;margin-left:8px}
+  .sub{color:var(--dim);font-size:13px;margin-top:4px}
+  .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
+  input,select{background:var(--card);border:1px solid var(--line);color:var(--ink);
+    padding:7px 10px;border-radius:8px;font-size:13px}
+  input[type=search]{min-width:240px}
+  label.chk{color:var(--dim);font-size:13px;display:flex;gap:6px;align-items:center;cursor:pointer}
+  .wrap{max-width:980px;margin:0 auto;padding:20px 24px 80px}
+  .stat{color:var(--dim);font-size:13px;margin:6px 0 16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+        padding:16px 18px;margin:0 0 14px}
+  .top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+  .title{font-weight:600;font-size:15px;margin:0}
+  .meta{color:var(--dim);font-size:12.5px;margin-top:5px;display:flex;gap:10px;flex-wrap:wrap}
+  .badge{font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap}
+  .b-app{background:rgba(26,143,76,.16);color:#5fd58c}
+  .b-rej{background:rgba(200,50,74,.16);color:#f08197}
+  .b-div{background:rgba(200,134,10,.16);color:#f0c060}
+  .b-una{background:rgba(138,143,152,.16);color:#b8bdc7}
+  .tally{display:flex;gap:14px;margin:12px 0 6px;font-size:13px}
+  .tally b{font-variant-numeric:tabular-nums}
+  .f{color:var(--for)} .a{color:var(--against)} .ab{color:var(--abstain)}
+  .parties{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .pchip{font-size:12px;padding:3px 9px;border-radius:7px;border:1px solid var(--line);
+    display:flex;gap:6px;align-items:center}
+  .dot{width:8px;height:8px;border-radius:50%}
+  .d-for{background:var(--for)} .d-against{background:var(--against)}
+  .d-abstain{background:var(--abstain)} .d-split,.d-absent{background:var(--muted)}
+  details{margin-top:10px}
+  summary{cursor:pointer;color:var(--dim);font-size:12.5px;outline:none}
+  .raw{background:#0c0e12;border:1px solid var(--line);border-radius:8px;padding:10px 12px;
+    margin-top:8px;font-size:12.5px;color:#c7ccd6;white-space:pre-wrap}
+  .cv{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px;margin-top:8px}
+  .cv span{font-size:12px;color:var(--dim)}
+  .cv .vv{font-weight:600}
+  a.src{color:#6db3ff;font-size:12.5px;text-decoration:none}
+  a.src:hover{text-decoration:underline}
+  .empty{color:var(--dim);text-align:center;padding:40px}
+</style>
+</head>
+<body>
+<header>
+  <h1>RIOT · riot.reus <small>verificació d'extracció de vots — Ple de Reus</small></h1>
+  <div class="sub" id="scope"></div>
+  <div class="controls">
+    <input type="search" id="q" placeholder="Cerca títol / partit…">
+    <select id="sess"><option value="">Totes les sessions</option></select>
+    <select id="kind">
+      <option value="">Tots els resultats</option>
+      <option value="rejected">Rebutjats</option>
+      <option value="divided">Dividits</option>
+      <option value="unanimous">Unànimes</option>
+    </select>
+    <label class="chk"><input type="checkbox" id="onlycon"> només disputats</label>
+  </div>
+</header>
+<div class="wrap">
+  <div class="stat" id="stat"></div>
+  <div id="list"></div>
+</div>
+<script src="data.js"></script>
+<script>
+const R = window.RIOT || {decisions:[]};
+const VLAB = {for:"a favor", against:"en contra", abstain:"abstenció", split:"dividit", absent:"absent"};
+const $ = s => document.querySelector(s);
+
+document.title = `RIOT · ${R.n_decisions||0} decisions`;
+$("#scope").textContent =
+  `${R.n_decisions||0} decisions extretes · ${(R.sessions_in_table||[]).length} sessions · ` +
+  `${R.note||""}`;
+
+const sess = $("#sess");
+(R.sessions_in_table||[]).sort().reverse().forEach(c=>{
+  const o=document.createElement("option");o.value=c;o.textContent=c;sess.appendChild(o);
+});
+
+function partyChip(token, vote){
+  const cls = "d-"+vote;
+  return `<span class="pchip"><span class="dot ${cls}"></span>${token} · ${VLAB[vote]||vote}</span>`;
+}
+
+function card(d){
+  const out = d.outcome==="rejected"
+      ? '<span class="badge b-rej">REBUTJAT</span>'
+      : '<span class="badge b-app">APROVAT</span>';
+  const dec = d.decided==="divided"
+      ? '<span class="badge b-div">dividit</span>'
+      : '<span class="badge b-una">unànime</span>';
+  const t = d.tally||{};
+  const pv = d.party_votes_canon || d.party_votes || {};
+  const chips = Object.entries(pv).map(([k,v])=>partyChip(k,v)).join("");
+  const cvs = (d.councillor_votes||[]).map(c=>
+      `<span>${c.name} <span class="vv ${c.vote==='for'?'f':c.vote==='against'?'a':'ab'}">·${VLAB[c.vote]||c.vote}</span></span>`).join("");
+  return `<div class="card">
+    <div class="top">
+      <div>
+        <p class="title">${d.title||"(sense títol)"}</p>
+        <div class="meta">
+          <span>${d.date||""}</span><span>${d.session_code} · punt ${d.point??"?"}</span>
+          <span>${d.type||""}${d.organ?(" · "+d.organ):""}${d.proposed_by?(" · prop.: "+d.proposed_by):""}</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:6px;flex-shrink:0">${out}${dec}</div>
+    </div>
+    <div class="tally">
+      <span class="f">a favor <b>${t.for??0}</b></span>
+      <span class="a">en contra <b>${t.against??0}</b></span>
+      <span class="ab">abstenció <b>${t.abstain??0}</b></span>
+    </div>
+    <div class="parties">${chips||'<span style="color:var(--muted);font-size:12px">(sense desglossament per nom — unànime)</span>'}</div>
+    <details><summary>verificar contra la font (text literal de l'acta + vots per regidor)</summary>
+      <div class="raw">${(d.raw_outcome||"(—)").replace(/</g,"&lt;")}</div>
+      ${cvs?`<div class="cv">${cvs}</div>`:""}
+      ${d.acta_url?`<div style="margin-top:8px"><a class="src" href="${d.acta_url}" target="_blank" rel="noopener">↗ obrir l'acta (PDF font)</a></div>`:""}
+    </details>
+  </div>`;
+}
+
+function render(){
+  const q=$("#q").value.toLowerCase().trim();
+  const fs=$("#sess").value, fk=$("#kind").value, oc=$("#onlycon").checked;
+  let rows = R.decisions.filter(d=>{
+    if(fs && d.session_code!==fs) return false;
+    if(fk==="rejected" && d.outcome!=="rejected") return false;
+    if(fk==="divided" && d.decided!=="divided") return false;
+    if(fk==="unanimous" && d.decided!=="unanimous") return false;
+    if(oc && !d.contested_suggested) return false;
+    if(q){
+      const hay=(d.title+" "+JSON.stringify(d.party_votes_canon||{})+" "+(d.proposed_by||"")).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  $("#stat").textContent = `${rows.length} decisions mostrades`;
+  $("#list").innerHTML = rows.length ? rows.map(card).join("") : '<div class="empty">cap decisió</div>';
+}
+["#q","#sess","#kind","#onlycon"].forEach(s=>$(s).addEventListener("input",render));
+render();
+</script>
+</body>
+</html>
