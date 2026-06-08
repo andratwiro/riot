@@ -51,24 +51,24 @@
     text-transform:uppercase;color:var(--acc);background:rgba(109,179,255,.12);
     padding:4px 10px;border-radius:999px}
   .card h2{font-size:23px;line-height:1.25;margin:14px 0 10px;font-weight:750}
-  .card .body{color:#d4d8e0;font-size:15px;flex:1 1 auto;overflow:auto}
+  .card .body{color:#d4d8e0;font-size:15px}
   .card .stake{margin-top:10px;color:var(--dim);font-size:13px;border-left:2px solid var(--line);padding-left:10px}
-  .card .src{margin-top:10px}
-  .card .src a{color:var(--dim);font-size:11.5px;text-decoration:none}
-  .card .src a:hover{color:var(--acc)}
+  .more{align-self:flex-start;margin:4px 0 0;background:none;border:0;color:var(--acc);
+    font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 0}
+  .card .reveal{margin-top:10px;flex:1 1 auto;overflow:auto;min-height:0}
+  .card .reveal[hidden]{display:none}
   .card.behind1{transform:scale(.95) translateY(14px);opacity:.6;filter:saturate(.6)}
   .card.behind2{transform:scale(.9) translateY(28px);opacity:.3;filter:saturate(.3)}
   .card.gone-r{transform:translateX(120%) rotate(8deg);opacity:0}
   .card.gone-l{transform:translateX(-120%) rotate(-8deg);opacity:0}
   .card.gone-d{transform:translateY(120%);opacity:0}
 
-  /* buttons */
-  .actions{display:flex;gap:10px;padding:14px 16px calc(16px + env(safe-area-inset-bottom));flex:0 0 auto}
+  /* in-card vote buttons */
+  .acts{display:flex;gap:10px;margin-top:auto;padding-top:16px;flex:0 0 auto}
   .btn{flex:1;border:0;border-radius:14px;padding:15px 8px;font-size:15px;font-weight:700;
-    cursor:pointer;color:#fff;display:flex;flex-direction:column;align-items:center;gap:3px;
+    cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;
     transition:transform .08s}
   .btn:active{transform:scale(.96)}
-  .btn small{font-weight:500;opacity:.85;font-size:11px}
   .btn.f{background:var(--for)} .btn.a{background:var(--against)} .btn.ab{background:#39404d}
 
   /* done screen */
@@ -157,11 +157,6 @@
     </div>
   </div>
 
-  <div class="actions" id="actions">
-    <button class="btn a" data-v="against">En contra<small>no hi estic d'acord</small></button>
-    <button class="btn ab" data-v="abstain">Abstenció<small>ni una ni l'altra</small></button>
-    <button class="btn f" data-v="for">A favor<small>hi estic d'acord</small></button>
-  </div>
 </div>
 
 <div id="log">
@@ -258,10 +253,18 @@ function renderStack(){
     const body  = useOriginal
       ? `<div class="body rawtxt">${esc(d.raw_outcome||d.title||"")}</div>`
       : `<div class="body">${esc(d.human_body||"")}${d.stake?`<div class="stake">${esc(d.stake)}</div>`:""}</div>`;
+    const acts = depth===0
+      ? `<div class="acts">
+          <button class="btn a" data-v="against">En contra</button>
+          <button class="btn ab" data-v="abstain">Abstenció</button>
+          <button class="btn f" data-v="for">A favor</button>
+        </div>`
+      : "";
     el.innerHTML=`<span class="topic${useOriginal?" orig":""}">${topic}</span>
       <h2>${head}</h2>
-      ${body}
-      <div class="src"><a href="${d.acta_url||'#'}" target="_blank" rel="noopener">font · ${d.session_code} · ${d.date||""} ↗</a></div>`;
+      <button class="more" type="button">Veure més ▾</button>
+      <div class="reveal" hidden>${body}</div>
+      ${acts}`;
     stack.appendChild(el);
   }
 }
@@ -274,7 +277,7 @@ function react(vote){
   setTimeout(()=>{idx++;renderStack();},230);
 }
 function finish(){
-  $("#stack").innerHTML=""; $("#actions").style.visibility="hidden"; $("#progress").textContent="";
+  $("#stack").innerHTML=""; $("#progress").textContent="";
   const a=affinity();
   const ranked=PARTIES.filter(p=>a[p.token].comp).sort((x,y)=>a[y.token].pct-a[x.token].pct);
   $("#doneSub").textContent=`Has reaccionat a ${Object.keys(answers).length} decisions.`;
@@ -283,7 +286,18 @@ function finish(){
   $("#done").style.display="flex";
 }
 
-document.querySelectorAll(".btn[data-v]").forEach(b=>b.addEventListener("click",()=>react(b.dataset.v)));
+$("#stack").addEventListener("click",e=>{
+  const more=e.target.closest(".more");
+  if(more){
+    const rev=more.closest(".card").querySelector(".reveal");
+    const open=rev.hasAttribute("hidden");
+    if(open){rev.removeAttribute("hidden");more.textContent="Veure menys ▴";}
+    else{rev.setAttribute("hidden","");more.textContent="Veure més ▾";}
+    return;
+  }
+  const vb=e.target.closest(".btn[data-v]");
+  if(vb)react(vb.dataset.v);
+});
 document.addEventListener("keydown",e=>{
   if($("#sheet").classList.contains("open")||$("#log").style.display==="block")return;
   if(e.key==="ArrowLeft")react("against");
@@ -293,7 +307,7 @@ document.addEventListener("keydown",e=>{
 $("#restart").addEventListener("click",()=>{
   deck=shuffle(R.decisions.filter(d=>d.headline)); idx=0;
   for(const k in answers)delete answers[k];
-  $("#done").style.display="none"; $("#actions").style.visibility="visible";
+  $("#done").style.display="none";
   renderAffinity(); renderStack();
 });
 
