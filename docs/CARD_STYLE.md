@@ -18,9 +18,10 @@ have not seen how the council actually voted. Your job is to make them understan
 2. **brief** (`source_brief`) — short lead paragraph + 2–4 bullets. The de-bureaucratised
    explanation: what it really is, why it's on the table, the real stake or fault line.
    Self-contained and opinionated. The first "Veure més".
-3. **deep** — the "Anàlisi completa". **Assumes the brief was just read** — adds ONLY new,
-   granular facts (€/% figures, legal articles, conditions, technical specs, the motion's full
-   demands). Neutral/factual tone. Never re-explains the item. If little to add, keep it short.
+3. **deep** — the "Anàlisi completa", in two labelled parts (see `DEEP_DIVE.md`):
+   **`deep_facts`** (neutral, cited, ≈80% of the source doc — the ONLY part the AI proxy reads)
+   and **`deep_lectura`** (analyst inference: what it enables, hidden intentions — human-facing
+   only, never fed to the proxy). Both assume the brief was read; facts never re-explain the item.
 
 ## HARD RULES (non-negotiable)
 - **NEVER state the vote result.** No tallies, no "aprovada/rebutjada/per unanimitat", no

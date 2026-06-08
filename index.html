@@ -91,6 +91,10 @@
   .card .deep ul{margin:0 0 9px;padding-left:18px}
   .card .deep li{margin:3px 0}
   .card .deep strong{color:#e6e9f0;font-weight:650}
+  /* analyst read — visually distinct from the neutral facts; human-facing inference */
+  .card .lectura{margin-top:12px;padding:11px 12px;border-radius:10px;
+    background:rgba(240,180,109,.07);border:1px solid rgba(240,180,109,.22)}
+  .card .lectura strong{color:#f0b46d}
   .more{align-self:flex-start;margin:4px 0 0;background:none;border:0;color:var(--acc);
     font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 0}
   .card .reveal{margin-top:10px;max-height:42vh;overflow:auto}
@@ -337,7 +341,7 @@
   </div>
 </div>
 
-<script src="data.js?v=fa5700d5"></script>
+<script src="data.js?v=97bed60d"></script>
 <script>
 const R = window.RIOT || {decisions:[], parties:[]};
 const PARTIES = R.parties || [];
@@ -518,9 +522,12 @@ function renderStack(){
     } else {
       const main = d.source_brief ? renderBrief(d.source_brief)
                  : `<div class="body">${esc(d.human_body||"")}</div>`;
-      const deep = d.deep
+      const dfacts = d.deep_facts || d.deep;   // neutral, cited (what the AI proxy reads)
+      const deep = dfacts
         ? `<button class="deepmore" type="button">Anàlisi completa ▾</button>`+
-          `<div class="deep" hidden>${renderBrief(d.deep)}</div>`
+          `<div class="deep" hidden>${renderBrief(dfacts)}`+
+          (d.deep_lectura?`<div class="lectura">${renderBrief(d.deep_lectura)}</div>`:"")+
+          `</div>`
         : "";
       body = main+deep;
     }
