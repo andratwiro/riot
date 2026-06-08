@@ -145,6 +145,23 @@
   .d-split,.d-absent{background:#6b7280}
   .lraw{background:#0b0d11;border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-top:9px;font-size:11.5px;color:#c2c8d2;white-space:pre-wrap}
   .lcard a.src{color:var(--acc);font-size:11.5px;text-decoration:none}
+  /* party comparison overlay */
+  #partyView{position:fixed;inset:0;background:var(--bg);z-index:20;display:none;overflow:auto;padding:0 0 40px}
+  #partyView .lh{position:sticky;top:0;background:rgba(14,16,20,.95);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+  #partyView .lwrap{max-width:760px;margin:0 auto;padding:16px 18px}
+  #pvHead{display:flex;align-items:center;gap:10px}
+  #pvHead .lg{width:30px;height:30px;border-radius:50%;margin:0;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  #pvHead .lg img{width:100%;height:100%;object-fit:contain}
+  #pvHead .lg.fb{color:#fff;font-size:10px;font-weight:700}
+  #pvHead b{font-size:15px}
+  #pvHead .pvpct{font-size:12px;color:var(--dim)}
+  .pvrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
+  .pvrow .pchip.you{border-color:var(--acc)}
+  .badge.b-agree{background:rgba(39,182,106,.16);color:#5fd58c}
+  .badge.b-disagree{background:rgba(229,72,95,.16);color:#f08197}
+  .badge.b-na{background:rgba(120,130,145,.18);color:#9aa3b0}
+  .pa{cursor:pointer}
   .muted{color:var(--dim)}
   details summary{cursor:pointer;color:var(--dim);font-size:11.5px;margin-top:8px;outline:none}
 
@@ -222,6 +239,17 @@
   </div>
 </div>
 
+<div id="partyView">
+  <div class="lh">
+    <div id="pvHead"></div>
+    <button class="gear" id="closeParty" title="Torna a les targetes">⚙</button>
+  </div>
+  <div class="lwrap">
+    <p class="muted" id="pvIntro" style="font-size:12.5px;margin-top:0"></p>
+    <div id="pvList"></div>
+  </div>
+</div>
+
 <div id="sheet" aria-hidden="true">
   <div class="sheet-back" id="sheetBack"></div>
   <div class="sheet-panel" role="dialog" aria-label="Opcions">
@@ -288,7 +316,7 @@ function renderAffinity(){
   });
   $("#affinity").innerHTML=order.map(p=>{
     const r=a[p.token],pct=r.pct;
-    return `<div class="pa ${r.comp?'':'muted'}" title="${esc(p.name)}">${logoEl(p)}
+    return `<div class="pa ${r.comp?'':'muted'}" data-token="${p.token}" title="${esc(p.name)} · toca per veure on discrepeu">${logoEl(p)}
       <div class="track"><div class="fill" style="width:${pct||0}%;background:${p.color}"></div></div>
     </div>`;
   }).join("");
@@ -489,7 +517,7 @@ $("#stack").addEventListener("click",e=>{
   if(vb)react(vb.dataset.v);
 });
 document.addEventListener("keydown",e=>{
-  if($("#sheet").classList.contains("open")||$("#log").style.display==="block")return;
+  if($("#sheet").classList.contains("open")||$("#log").style.display==="block"||$("#partyView").style.display==="block")return;
   const exp=$("#stack").querySelector(".card.expanded");
   if(exp){if(e.key==="Escape")collapseCard(exp);return;}
   if(e.key==="ArrowLeft")react("against");
@@ -519,6 +547,41 @@ function buildLog(){
       </details></div>`;
   }).join("");
 }
+function openParty(token){
+  const p=PARTIES.find(x=>x.token===token); if(!p)return;
+  const rows=[];
+  for(const id in answers){
+    const d=byId[id]; if(!d)continue;
+    const pv=(d.party_votes_canon||{})[token];
+    const comparable=(pv==="for"||pv==="against"||pv==="abstain");
+    rows.push({d,pv,uv:answers[id],comparable,agree:comparable&&pv===answers[id]});
+  }
+  // rank: discrepancies first, then party didn't vote comparably, then agreements
+  const rankOf=r=> r.comparable ? (r.agree?2:0) : 1;
+  rows.sort((a,b)=>rankOf(a)-rankOf(b));
+  const comp=rows.filter(r=>r.comparable), matches=comp.filter(r=>r.agree).length;
+  const pct=comp.length?Math.round(100*matches/comp.length):null, disagrees=comp.length-matches;
+
+  $("#pvHead").innerHTML=`${logoEl(p)}<div><b>${esc(p.name)}</b> <span class="pvpct">${
+    pct===null?"encara sense comparació":pct+"% d'acord · "+disagrees+(disagrees===1?" discrepància":" discrepàncies")}</span></div>`;
+  $("#pvIntro").textContent=rows.length
+    ? `Les ${rows.length} decisions que has votat, comparades amb ${p.name}. Primer on discrepeu.`
+    : "Encara no has reaccionat a cap decisió.";
+  $("#pvList").innerHTML=rows.map(r=>{
+    const badge=!r.comparable?`<span class="badge b-na">${VLAB[r.pv]||"sense vot"}</span>`
+      :r.agree?`<span class="badge b-agree">COINCIDIU</span>`:`<span class="badge b-disagree">DISCREPEU</span>`;
+    const pchip=`<span class="pchip"><span class="dot d-${r.pv||"absent"}"></span>${p.token} ${VLAB[r.pv]||"sense vot"}</span>`;
+    const uchip=`<span class="pchip you"><span class="dot d-${r.uv}"></span>Tu ${VLAB[r.uv]||r.uv}</span>`;
+    return `<div class="lcard">
+      <div class="lt">${esc(r.d.headline||r.d.title)}</div>
+      <div class="pvrow">${pchip}${uchip}${badge}</div>
+    </div>`;
+  }).join("");
+  $("#partyView").style.display="block";
+}
+$("#affinity").addEventListener("click",e=>{const el=e.target.closest(".pa");if(el)openParty(el.dataset.token);});
+$("#closeParty").addEventListener("click",()=>$("#partyView").style.display="none");
+
 function openSheet(){$("#sheet").classList.add("open");$("#sheet").setAttribute("aria-hidden","false");}
 function closeSheet(){$("#sheet").classList.remove("open");$("#sheet").setAttribute("aria-hidden","true");}
 function openLog(){if(!$("#logList").innerHTML)buildLog(); $("#log").style.display="block";}
@@ -533,7 +596,7 @@ function applyMapVisibility(){
   $("#map").style.display=(showMap&&COORD)?"":"none";
   if(showMap&&COORD)renderMap();
 }
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";$("#partyView").style.display="none";}});
 
 if(PARTIES.length>=3 && R.decisions.length){
   COORD=partyMap();
