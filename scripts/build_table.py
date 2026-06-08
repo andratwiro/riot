@@ -36,7 +36,7 @@ def canon(token: str) -> str:
 PARTY_META = [
     {"token": "PSC", "name": "PSC",  "color": "#e2001a", "logo": "assets/logos/PSC.svg"},
     {"token": "JxR", "name": "Junts", "color": "#00c3b2", "logo": "assets/logos/JxR.svg"},
-    {"token": "ERC", "name": "ERC",  "color": "#ffb232", "logo": "assets/logos/ERC.svg"},
+    {"token": "ERC", "name": "ERC",  "color": "#ffb232", "logo": "assets/logos/ERC_mark.svg"},
     {"token": "CUP", "name": "CUP",  "color": "#fff200", "logo": "assets/logos/CUP.png"},
     {"token": "VOX", "name": "Vox",  "color": "#63be21", "logo": "assets/logos/VOX.svg"},
     {"token": "PP",  "name": "PP",   "color": "#1a4f8b", "logo": None},
