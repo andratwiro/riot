@@ -38,6 +38,28 @@
   .pa .fill{height:100%;width:0;border-radius:3px;transition:width .4s ease}
   .pa.muted{opacity:.45}
 
+  /* opinion map (experimental) */
+  #map{position:relative;flex:0 0 auto;height:150px;margin:0 12px 8px;
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    background:radial-gradient(circle at 50% 50%,rgba(109,179,255,.06),transparent 68%),var(--card)}
+  #map .axis{position:absolute;background:var(--line);opacity:.55}
+  #map .axis.x{left:8%;right:8%;top:50%;height:1px}
+  #map .axis.y{top:8%;bottom:8%;left:50%;width:1px}
+  .mdot{position:absolute;transform:translate(-50%,-50%);
+    transition:left .55s cubic-bezier(.2,.7,.3,1),top .55s cubic-bezier(.2,.7,.3,1),opacity .4s}
+  .mdot .mc{width:26px;height:26px;border-radius:50%;background:#fff;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;border:2px solid var(--line);
+    box-shadow:0 2px 8px rgba(0,0,0,.45)}
+  .mdot .mc img{width:100%;height:100%;object-fit:contain;padding:3px}
+  .mdot .mc.fb{color:#fff;font-weight:800;font-size:9px;border:0}
+  .mdot.me{z-index:4}
+  .mdot.me .mc{width:32px;height:32px;background:var(--acc);color:#06121f;
+    border-color:#fff;font-weight:800;font-size:11px;box-shadow:0 0 0 4px rgba(109,179,255,.22),0 2px 10px rgba(0,0,0,.5)}
+  #map .maptag{position:absolute;top:6px;left:10px;font-size:9.5px;letter-spacing:.4px;
+    text-transform:uppercase;color:var(--dim);font-weight:700;z-index:5;pointer-events:none}
+  #map .maphint{position:absolute;left:0;right:0;bottom:7px;text-align:center;
+    font-size:11px;color:var(--dim);font-weight:600;z-index:5;pointer-events:none}
+
   /* survey / card stack */
   #survey{flex:1 1 auto;position:relative;padding:6px 16px 0;min-height:0}
   .progress{text-align:center;color:var(--dim);font-size:12.5px;margin-bottom:8px}
@@ -146,6 +168,8 @@
 
   <div id="affinity"></div>
 
+  <div id="map"></div>
+
   <div id="survey">
     <div class="progress" id="progress"></div>
     <div class="stack" id="stack"></div>
@@ -204,6 +228,8 @@ let deck = shuffle(R.decisions.filter(d => d.headline));
 let idx = 0;
 let useOriginal = false;
 const answers = {};
+const MAP_GATE = 5;          // votes required before the user is placed on the map
+let COORD = null, MX = {}, mapBuilt = false;
 
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function esc(s){return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
@@ -238,6 +264,103 @@ function renderAffinity(){
       <div class="track"><div class="fill" style="width:${pct||0}%;background:${p.color}"></div></div>
     </div>`;
   }).join("");
+}
+
+/* ---- opinion map (experimental) ---- */
+// Jacobi eigensolver for a symmetric matrix → {values, vectors(columns)}
+function jacobi(Ain){
+  const n=Ain.length;
+  const a=Ain.map(r=>r.slice());
+  const V=Array.from({length:n},(_,i)=>Array.from({length:n},(_,j)=>i===j?1:0));
+  for(let sweep=0;sweep<100;sweep++){
+    let off=0;
+    for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)off+=a[i][j]*a[i][j];
+    if(off<1e-12)break;
+    for(let p=0;p<n;p++)for(let q=p+1;q<n;q++){
+      if(Math.abs(a[p][q])<1e-15)continue;
+      const theta=0.5*Math.atan2(2*a[p][q],a[p][p]-a[q][q]);
+      const c=Math.cos(theta),s=Math.sin(theta);
+      for(let i=0;i<n;i++){const aip=a[i][p],aiq=a[i][q];a[i][p]=c*aip-s*aiq;a[i][q]=s*aip+c*aiq;}
+      for(let j=0;j<n;j++){const apj=a[p][j],aqj=a[q][j];a[p][j]=c*apj-s*aqj;a[q][j]=s*apj+c*aqj;}
+      for(let i=0;i<n;i++){const vip=V[i][p],viq=V[i][q];V[i][p]=c*vip-s*viq;V[i][q]=s*vip+c*viq;}
+    }
+  }
+  return {values:a.map((r,i)=>r[i]),vectors:V};
+}
+// classical MDS of parties from pairwise vote-disagreement distance
+function partyMap(){
+  const ps=PARTIES,n=ps.length;
+  const num=v=>v==="for"?1:v==="against"?-1:v==="abstain"?0:null;
+  const D2=Array.from({length:n},()=>Array(n).fill(0));
+  for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){
+    let s=0,c=0;
+    for(const d of R.decisions){
+      const pv=d.party_votes_canon||{};
+      const vi=num(pv[ps[i].token]),vj=num(pv[ps[j].token]);
+      if(vi==null||vj==null)continue;
+      s+=Math.abs(vi-vj)/2;c++;
+    }
+    const dist=c?s/c:0.5;
+    D2[i][j]=D2[j][i]=dist*dist;
+  }
+  const rm=Array(n).fill(0);let gm=0;
+  for(let i=0;i<n;i++){for(let j=0;j<n;j++)rm[i]+=D2[i][j];rm[i]/=n;gm+=rm[i];}
+  gm/=n;
+  const B=Array.from({length:n},()=>Array(n).fill(0));
+  for(let i=0;i<n;i++)for(let j=0;j<n;j++)B[i][j]=-0.5*(D2[i][j]-rm[i]-rm[j]+gm);
+  const {values,vectors}=jacobi(B);
+  const ord=values.map((_,i)=>i).sort((x,y)=>values[y]-values[x]);
+  const k1=ord[0],k2=ord[1];
+  const s1=Math.sqrt(Math.max(0,values[k1])),s2=Math.sqrt(Math.max(0,values[k2]));
+  return PARTIES.map((_,i)=>[vectors[i][k1]*s1,vectors[i][k2]*s2]);
+}
+// user position = agreement-weighted blend of party positions
+function userCoord(){
+  const a=affinity();
+  let wx=0,wy=0,wsum=0;
+  PARTIES.forEach((p,i)=>{
+    const r=a[p.token];
+    if(!r.comp)return;
+    const w=Math.pow(r.pct/100,2);
+    wx+=w*COORD[i][0];wy+=w*COORD[i][1];wsum+=w;
+  });
+  return wsum>1e-6?[wx/wsum,wy/wsum]:null;
+}
+function toPct(c){
+  const pad=.17;
+  const nx=(c[0]-MX.minx)/((MX.maxx-MX.minx)||1);
+  const ny=(c[1]-MX.miny)/((MX.maxy-MX.miny)||1);
+  return [(pad+nx*(1-2*pad))*100,(pad+(1-ny)*(1-2*pad))*100];
+}
+function buildMapBase(){
+  const dots=PARTIES.map((p,i)=>{
+    const [l,t]=toPct(COORD[i]);
+    const inner=p.logo?`<span class="mc"><img src="${p.logo}" alt="${esc(p.name)}"></span>`
+                      :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
+    return `<div class="mdot" style="left:${l}%;top:${t}%" title="${esc(p.name)}">${inner}</div>`;
+  }).join("");
+  $("#map").innerHTML=`<span class="maptag">Mapa polític · prova</span>
+    <div class="axis x"></div><div class="axis y"></div>
+    ${dots}
+    <div class="mdot me" id="userDot" style="opacity:0"><span class="mc fb">TU</span></div>
+    <div class="maphint" id="mapHint"></div>`;
+  mapBuilt=true;
+}
+function renderMap(){
+  if(!COORD)return;
+  if(!mapBuilt)buildMapBase();
+  const n=Object.keys(answers).length;
+  const ud=$("#userDot"),hint=$("#mapHint");
+  const uc=n>=MAP_GATE?userCoord():null;
+  if(uc){const [l,t]=toPct(uc);ud.style.left=l+"%";ud.style.top=t+"%";ud.style.opacity="1";}
+  else ud.style.opacity="0";
+  if(uc){hint.style.display="none";}
+  else{
+    hint.style.display="block";
+    const left=MAP_GATE-n;
+    hint.textContent=n>=MAP_GATE?"Vota més per situar-t'hi"
+      :`Reacciona ${left} cop${left===1?'':'s'} més per situar-t'hi`;
+  }
 }
 
 function renderStack(){
@@ -275,6 +398,7 @@ function react(vote){
   const top=$("#stack").lastChild;
   if(top)top.classList.add(vote==="for"?"gone-r":vote==="against"?"gone-l":"gone-d");
   renderAffinity();
+  renderMap();
   setTimeout(()=>{idx++;renderStack();},230);
 }
 function finish(){
@@ -309,7 +433,7 @@ $("#restart").addEventListener("click",()=>{
   deck=shuffle(R.decisions.filter(d=>d.headline)); idx=0;
   for(const k in answers)delete answers[k];
   $("#done").style.display="none";
-  renderAffinity(); renderStack();
+  renderAffinity(); renderStack(); renderMap();
 });
 
 function buildLog(){
@@ -340,8 +464,15 @@ $("#closeLog").addEventListener("click",()=>$("#log").style.display="none");
 $("#origToggle").addEventListener("change",e=>{useOriginal=e.target.checked;renderStack();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";}});
 
+if(PARTIES.length>=3 && R.decisions.length){
+  COORD=partyMap();
+  const xs=COORD.map(c=>c[0]),ys=COORD.map(c=>c[1]);
+  MX={minx:Math.min(...xs),maxx:Math.max(...xs),miny:Math.min(...ys),maxy:Math.max(...ys)};
+}else{ $("#map").style.display="none"; }
+
 renderAffinity();
 renderStack();
+renderMap();
 </script>
 </body>
 </html>
