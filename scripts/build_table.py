@@ -12,7 +12,7 @@ Adds session metadata (date, source_url) to each row, canonicalises drifting par
 tokens, and attaches a PROVISIONAL contested flag (decided==divided or rejected) —
 clearly NOT the final `counts` (that's the Phase-2 human/▪heuristic step).
 """
-import json
+import json, hashlib, re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -91,7 +91,17 @@ def main():
     (ROOT / "data" / "decisions.json").write_text(json.dumps(out, indent=2, ensure_ascii=False))
     # data.js sits next to index.html at repo root so the site works on GitHub Pages
     # (https fetch) AND by double-clicking index.html locally (file://, no CORS).
-    (ROOT / "data.js").write_text("window.RIOT = " + json.dumps(out, ensure_ascii=False) + ";")
+    data_js = "window.RIOT = " + json.dumps(out, ensure_ascii=False) + ";"
+    (ROOT / "data.js").write_text(data_js)
+    # Cache-bust: stamp data.js content hash onto its <script src> in index.html so every
+    # deploy forces browsers (and the Pages CDN) to fetch the fresh data — no hard-refresh.
+    ver = hashlib.md5(data_js.encode()).hexdigest()[:8]
+    idx = ROOT / "index.html"
+    html = idx.read_text()
+    new_html = re.sub(r'src="data\.js(?:\?v=[^"]*)?"', f'src="data.js?v={ver}"', html)
+    if new_html != html:
+        idx.write_text(new_html)
+    print(f"  cache-bust: data.js?v={ver}")
 
     contested = sum(1 for r in rows if r["contested_suggested"])
     print(f"built {len(rows)} decisions from {len(out['sessions_in_table'])} sessions")
