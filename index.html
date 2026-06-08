@@ -383,8 +383,9 @@ function renderStack(){
           <button class="btn f" data-v="for">A favor</button>
         </div>`
       : "";
+    const headTip = useOriginal ? "" : ` title="${esc(d.title||"")}"`;
     el.innerHTML=`<span class="topic${useOriginal?" orig":""}">${topic}</span>
-      <h2>${head}</h2>
+      <h2${headTip}>${head}</h2>
       <button class="more" type="button">Veure més ▾</button>
       <div class="reveal" hidden>${body}</div>
       ${acts}`;
@@ -442,9 +443,8 @@ function buildLog(){
     const out=d.outcome==="rejected"?'<span class="badge b-rej">REBUTJAT</span>':'<span class="badge b-app">APROVAT</span>';
     const chips=Object.entries(d.party_votes_canon||{}).map(([k,v])=>`<span class="pchip"><span class="dot d-${v}"></span>${k} ${VLAB[v]||v}</span>`).join("");
     return `<div class="lcard">
-      <div class="lt">${esc(d.headline||d.title)}</div>
-      <div class="lm"><span>${d.date||""}</span><span>${d.session_code} · punt ${d.point??"?"}</span><span>${esc(d.topic||"")}</span>${out}</div>
-      <div class="muted" style="font-size:12px;margin-top:6px">${esc(d.title||"")}</div>
+      <div class="lt">${esc(d.title||d.headline)}</div>
+      <div class="lm"><span>${d.date||""}</span><span>${d.session_code} · punt ${d.point??"?"}</span><span>${esc(d.organ||d.type||"")}</span>${out}</div>
       <div class="lvotes">${chips}</div>
       <details><summary>text literal de l'acta + font</summary>
         <div class="lraw">${esc(d.raw_outcome||"—")}</div>
