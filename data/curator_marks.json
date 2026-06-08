@@ -1,13 +1,72 @@
 [
-  {"id":"PLE_12_2025_EXTR-p23","session_code":"PLE_12_2025_EXTR","point":"23","date":"2025-12-29","headline":"Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de l'Ajuntament: +2,5% (2025) i +1,5% (2026)."},
-  {"id":"PLE_12_2025_EXTR-p24","session_code":"PLE_12_2025_EXTR","point":"24","date":"2025-12-29","headline":"Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Reus Promoció: +2,5% (2025) i +1,5% (2026)."},
-  {"id":"PLE_12_2025_EXTR-p25","session_code":"PLE_12_2025_EXTR","point":"25","date":"2025-12-29","headline":"Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Reus Cultura: +2,5% (2025) i +1,5% (2026)."},
-  {"id":"PLE_12_2025_EXTR-p26","session_code":"PLE_12_2025_EXTR","point":"26","date":"2025-12-29","headline":"Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Mas Carandell: +2,5% (2025) i +1,5% (2026)."},
-  {"id":"PLE_12_2025_EXTR-p5","session_code":"PLE_12_2025_EXTR","point":"5","date":"2025-12-29","headline":"Apujar un 3,72% la taxa d'escombraries de les llars —cobrada pels metres del pis— per cobrir el cost real del servei, com obliga una llei estatal."},
-  {"id":"PLE_9_2023_ORD-p4","session_code":"PLE_9_2023_ORD","point":"4","date":"2023-07-21","headline":"Designar els representants de cada grup als organismes municipals (cultura, residus, transport, promoció) després de les eleccions."},
-  {"id":"PLE_9_2023_ORD-p6","session_code":"PLE_9_2023_ORD","point":"6","date":"2023-07-21","headline":"Donar la Menció Honorífica Municipal al Ball de Cavallets pels 25 anys de la seva tornada a la Festa Major."},
-  {"id":"PLE_9_2023_ORD-p9","session_code":"PLE_9_2023_ORD","point":"9","date":"2023-07-21","headline":"Aprovar el pla d'emergència per sequera de Reus, obligatori per llei, que fixa què fer si falta aigua."},
-  {"id":"PLE_9_2023_ORD-p10","session_code":"PLE_9_2023_ORD","point":"10","date":"2023-07-21","headline":"Manifestar que Reus manté el Pla Educatiu d'Entorn, requisit per seguir cobrant-ne el finançament de la Generalitat."},
-  {"id":"PLE_9_2023_ORD-p12","session_code":"PLE_9_2023_ORD","point":"12","date":"2023-07-21","headline":"Apujar de categoria (subgrup C1) 19 places de la Guàrdia Urbana, com obliga una llei nova, sense apujar-ne el sou total."},
-  {"id":"PLE_03_2026_ORD-p6","session_code":"PLE_03_2026_ORD","point":"6","date":"2026-03-20","headline":"Ratificar el canvi de representant de les direccions d'instituts públics al Consell Educatiu de Ciutat (el tria el sector, no l'Ajuntament)."}
+  {
+    "id": "PLE_12_2025_EXTR-p23",
+    "session_code": "PLE_12_2025_EXTR",
+    "point": "23",
+    "date": "2025-12-29",
+    "headline": "Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de l'Ajuntament: +2,5% (2025) i +1,5% (2026)."
+  },
+  {
+    "id": "PLE_12_2025_EXTR-p24",
+    "session_code": "PLE_12_2025_EXTR",
+    "point": "24",
+    "date": "2025-12-29",
+    "headline": "Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Reus Promoció: +2,5% (2025) i +1,5% (2026)."
+  },
+  {
+    "id": "PLE_12_2025_EXTR-p25",
+    "session_code": "PLE_12_2025_EXTR",
+    "point": "25",
+    "date": "2025-12-29",
+    "headline": "Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Reus Cultura: +2,5% (2025) i +1,5% (2026)."
+  },
+  {
+    "id": "PLE_12_2025_EXTR-p26",
+    "session_code": "PLE_12_2025_EXTR",
+    "point": "26",
+    "date": "2025-12-29",
+    "headline": "Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Mas Carandell: +2,5% (2025) i +1,5% (2026)."
+  },
+  {
+    "id": "PLE_9_2023_ORD-p4",
+    "session_code": "PLE_9_2023_ORD",
+    "point": "4",
+    "date": "2023-07-21",
+    "headline": "Designar els representants de cada grup als organismes municipals (cultura, residus, transport, promoció) després de les eleccions."
+  },
+  {
+    "id": "PLE_9_2023_ORD-p6",
+    "session_code": "PLE_9_2023_ORD",
+    "point": "6",
+    "date": "2023-07-21",
+    "headline": "Donar la Menció Honorífica Municipal al Ball de Cavallets pels 25 anys de la seva tornada a la Festa Major."
+  },
+  {
+    "id": "PLE_9_2023_ORD-p9",
+    "session_code": "PLE_9_2023_ORD",
+    "point": "9",
+    "date": "2023-07-21",
+    "headline": "Aprovar el pla d'emergència per sequera de Reus, obligatori per llei, que fixa què fer si falta aigua."
+  },
+  {
+    "id": "PLE_9_2023_ORD-p10",
+    "session_code": "PLE_9_2023_ORD",
+    "point": "10",
+    "date": "2023-07-21",
+    "headline": "Manifestar que Reus manté el Pla Educatiu d'Entorn, requisit per seguir cobrant-ne el finançament de la Generalitat."
+  },
+  {
+    "id": "PLE_9_2023_ORD-p12",
+    "session_code": "PLE_9_2023_ORD",
+    "point": "12",
+    "date": "2023-07-21",
+    "headline": "Apujar de categoria (subgrup C1) 19 places de la Guàrdia Urbana, com obliga una llei nova, sense apujar-ne el sou total."
+  },
+  {
+    "id": "PLE_03_2026_ORD-p6",
+    "session_code": "PLE_03_2026_ORD",
+    "point": "6",
+    "date": "2026-03-20",
+    "headline": "Ratificar el canvi de representant de les direccions d'instituts públics al Consell Educatiu de Ciutat (el tria el sector, no l'Ajuntament)."
+  }
 ]
