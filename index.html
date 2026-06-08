@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RIOT.REUS</title>
+<title>REUS</title>
 <style>
   :root{
     --bg:#0e1014; --card:#1b1f27; --card2:#222732; --line:#2b313c;
@@ -20,7 +20,8 @@
   /* header */
   header{display:flex;align-items:center;justify-content:space-between;
     padding:14px 18px 8px;flex:0 0 auto}
-  .brand{font-weight:800;letter-spacing:.5px;font-size:17px}
+  .brand{font-weight:800;letter-spacing:.5px;font-size:17px;display:flex;align-items:center;gap:8px}
+  .brand .rose{height:24px;width:24px;flex:0 0 auto;display:block}
   .brand span{color:var(--dim);font-weight:500;font-size:13px;margin-left:6px}
   .gear{background:none;border:0;color:var(--dim);cursor:pointer;padding:0;border-radius:8px;font-size:20px;line-height:1;width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
   .gear:hover{color:var(--ink);background:var(--card)}
@@ -238,7 +239,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand">RIOT.REUS</div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="24" height="24"> REUS</div>
     <button class="gear" id="menuBtn" title="Opcions">⚙</button>
   </header>
 
