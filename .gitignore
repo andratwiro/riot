@@ -15,3 +15,6 @@ __pycache__/
 node_modules/
 .venv/
 *.log
+
+# expedient/source PDFs (re-fetchable from the portal; transcriptions are kept)
+data/expedients/*.pdf
