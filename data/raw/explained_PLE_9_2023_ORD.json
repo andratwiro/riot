@@ -1,91 +1,91 @@
 [
   {
     "id": "PLE_9_2023_ORD-p4",
-    "headline": "Triar qui representa l'Ajuntament en diferents òrgans",
+    "headline": "Nomenar les persones que representaran l'Ajuntament en diversos òrgans i organismes municipals.",
     "body": "L'Ajuntament nomena les persones que el representaran en diversos organismes i comissions municipals. Votar a favor és acceptar aquests nomenaments; votar en contra és rebutjar-los.",
     "topic": "Govern i institucional",
     "stake": "Determina quins càrrecs municipals ocupen llocs en organismes de la ciutat."
   },
   {
     "id": "PLE_9_2023_ORD-p5",
-    "headline": "Canviar la llista de personal de confiança de l'Ajuntament",
+    "headline": "Modificar la llista de càrrecs de confiança (personal eventual) de l'Ajuntament.",
     "body": "Es modifica la plantilla del personal eventual, és a dir, els càrrecs de confiança que treballen per a l'Ajuntament. Votar a favor és aprovar aquest canvi; votar en contra és deixar la plantilla com estava.",
     "topic": "Govern i institucional",
     "stake": "Afecta quants càrrecs de confiança hi ha i el cost en personal de l'Ajuntament."
   },
   {
     "id": "PLE_9_2023_ORD-p6",
-    "headline": "Donar una distinció honorífica al Ball de Cavallets",
+    "headline": "Concedir una menció d'honor al Ball de Cavallets de Reus per la seva tradició.",
     "body": "L'Ajuntament concedeix una menció d'honor al Ball de Cavallets de Reus per reconèixer la seva tradició. Votar a favor és donar-li aquest reconeixement; votar en contra és no concedir-lo.",
     "topic": "Cultura i esport",
     "stake": "Reconeixement públic a una entitat cultural i tradicional de la ciutat."
   },
   {
     "id": "PLE_9_2023_ORD-p7",
-    "headline": "Donar el vistiplau inicial a urbanitzar el sector Bellisens",
+    "headline": "Donar el vistiplau inicial per estudiar la urbanització del sector Bellisens, vora la N-340.",
     "body": "L'Ajuntament dona un informe favorable per començar a estudiar el desenvolupament urbanístic de la zona de Bellisens, vora la N-340. Votar a favor és donar llum verda a aquesta primera fase; votar en contra és aturar-la.",
     "topic": "Urbanisme",
     "stake": "Afecta el futur creixement urbà i el sòl de la zona de Bellisens."
   },
   {
     "id": "PLE_9_2023_ORD-p8",
-    "headline": "Aprovar canvis al pla urbanístic del Barri del Carme",
+    "headline": "Aprovar inicialment canvis al pla urbanístic en àrees del Barri del Carme (PAU 12-15).",
     "body": "Es modifica el pla urbanístic en unes àrees concretes del Barri del Carme per ordenar com s'hi pot construir. Votar a favor és aprovar inicialment aquests canvis; votar en contra és no aprovar-los.",
     "topic": "Urbanisme",
     "stake": "Afecta veïns i propietaris d'aquestes àrees del Barri del Carme."
   },
   {
     "id": "PLE_9_2023_ORD-p9",
-    "headline": "Aprovar el pla de la ciutat per als períodes de sequera",
+    "headline": "Aprovar el pla que fixa què farà Reus en períodes de sequera.",
     "body": "S'aprova de manera definitiva un pla que estableix què farà Reus quan hi hagi poca aigua per sequera. Votar a favor és tenir aquest pla en marxa; votar en contra és no aprovar-lo.",
     "topic": "Medi ambient",
     "stake": "Afecta tota la ciutadania quan hi hagi restriccions o falta d'aigua."
   },
   {
     "id": "PLE_9_2023_ORD-p10",
-    "headline": "Continuar amb el pla educatiu de barri de Reus",
+    "headline": "Donar continuïtat al Pla Educatiu d'Entorn, que coordina suport i activitats educatives fora de l'escola.",
     "body": "L'Ajuntament manifesta que vol seguir mantenint el Pla Educatiu d'Entorn, que coordina activitats i suport educatiu fora de l'escola. Votar a favor és voler continuar-lo; votar en contra és no donar-li continuïtat.",
     "topic": "Drets i igualtat",
     "stake": "Afecta infants, joves i famílies que reben suport educatiu al barri."
   },
   {
     "id": "PLE_9_2023_ORD-p11",
-    "headline": "Demanar un préstec per pagar inversions del pressupost 2023",
+    "headline": "Demanar un préstec a llarg termini per finançar inversions del pressupost del 2023.",
     "body": "L'Ajuntament demana un crèdit a llarg termini a una entitat financera per finançar inversions previstes el 2023. Votar a favor és aprovar aquest préstec; votar en contra és no endeutar-se per a aquestes inversions.",
     "topic": "Impostos i pressupost",
     "stake": "Afecta el deute municipal i les obres i inversions que es podran fer."
   },
   {
     "id": "PLE_9_2023_ORD-p12",
-    "headline": "Reordenar la classificació del personal funcionari",
+    "headline": "Reclassificar la plantilla de personal funcionari: revisar categories i nivells dels treballadors públics.",
     "body": "Es reclassifica la plantilla de personal funcionari de l'Ajuntament, és a dir, es revisen categories i nivells dels treballadors públics. Votar a favor és aprovar aquesta reordenació; votar en contra és deixar-la com estava.",
     "topic": "Govern i institucional",
     "stake": "Afecta les condicions i categories dels treballadors municipals."
   },
   {
     "id": "PLE_9_2023_ORD-p13",
-    "headline": "Canviar les condicions del pàrquing del Pallol",
+    "headline": "Modificar el contracte de l'empresa que explota l'aparcament públic del Centre del Pallol.",
     "body": "Es modifica el contracte de l'empresa que explota l'aparcament públic del Centre del Pallol. Votar a favor és aprovar aquests canvis al contracte; votar en contra és no aprovar-los.",
     "topic": "Mobilitat",
     "stake": "Afecta els usuaris de l'aparcament i la gestió d'un servei públic."
   },
   {
     "id": "PLE_9_2023_ORD-p14",
-    "headline": "Impulsar un pacte local per defensar el català",
+    "headline": "Impulsar un pacte local per la llengua per defensar i promoure el català a Reus.",
     "body": "El grup Junts per Reus demana que l'Ajuntament impulsi un pacte local per la llengua per protegir i promoure el català a la ciutat. Votar a favor és que el ple doni suport a aquesta proposta; votar en contra és no donar-li suport.",
     "topic": "Drets i igualtat",
     "stake": "Afecta com es promou l'ús del català als serveis i la vida de la ciutat."
   },
   {
     "id": "PLE_9_2023_ORD-p15",
-    "headline": "Reclamar que es compleixin els compromisos del mandat 2019-2023",
+    "headline": "Reclamar al govern que compleixi les promeses de campanya i del mandat 2019-2023.",
     "body": "El grup de la CUP demana que el govern compleixi les promeses de campanya i del mandat 2019-2023. Votar a favor és reclamar al govern que compleixi aquests compromisos; votar en contra és no fer aquesta reclamació.",
     "topic": "Govern i institucional",
     "stake": "Posa en qüestió si les promeses fetes a la ciutadania s'han complert."
   },
   {
     "id": "PLE_9_2023_ORD-p16",
-    "headline": "Demanar aturar el projecte del pàrquing de la Hispània",
+    "headline": "Demanar que l'Ajuntament aturi el projecte de l'aparcament de la Hispània.",
     "body": "El grup de la CUP demana que l'Ajuntament aturi el projecte d'aparcament de la Hispània. Votar a favor és demanar que s'aturi el projecte; votar en contra és deixar que segueixi endavant.",
     "topic": "Mobilitat",
     "stake": "Afecta els veïns de la zona de la Hispània i el futur d'aquest espai."
