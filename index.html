@@ -237,6 +237,11 @@
       <span class="si-tx"><b>Text original a les targetes</b><small>Mostra el títol i el text oficial de l'acta en lloc de la versió simplificada.</small></span>
       <span class="switch"><input type="checkbox" id="origToggle"><span class="slider"></span></span>
     </label>
+    <label class="sheet-item" for="mapToggle">
+      <span class="si-ic">🗺️</span>
+      <span class="si-tx"><b>Mostra el mapa polític</b><small>Situa els partits i la teva posició en un mapa d'afinitats (en proves).</small></span>
+      <span class="switch"><input type="checkbox" id="mapToggle"><span class="slider"></span></span>
+    </label>
   </div>
 </div>
 
@@ -251,6 +256,7 @@ const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
 let deck = shuffle(R.decisions.filter(d => d.headline));
 let idx = 0;
 let useOriginal = false;
+let showMap = false;
 const answers = {};
 const MAP_GATE = 5;          // votes required before the user is placed on the map
 let COORD = null, MX = {}, mapBuilt = false;
@@ -522,17 +528,23 @@ $("#sheetBack").addEventListener("click",closeSheet);
 $("#openLog").addEventListener("click",()=>{closeSheet();openLog();});
 $("#closeLog").addEventListener("click",()=>$("#log").style.display="none");
 $("#origToggle").addEventListener("change",e=>{useOriginal=e.target.checked;renderStack();});
+$("#mapToggle").addEventListener("change",e=>{showMap=e.target.checked;applyMapVisibility();});
+function applyMapVisibility(){
+  $("#map").style.display=(showMap&&COORD)?"":"none";
+  if(showMap&&COORD)renderMap();
+}
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";}});
 
 if(PARTIES.length>=3 && R.decisions.length){
   COORD=partyMap();
   const xs=COORD.map(c=>c[0]),ys=COORD.map(c=>c[1]);
   MX={minx:Math.min(...xs),maxx:Math.max(...xs),miny:Math.min(...ys),maxy:Math.max(...ys)};
-}else{ $("#map").style.display="none"; }
+}
+$("#mapToggle").checked=showMap;
+applyMapVisibility();
 
 renderAffinity();
 renderStack();
-renderMap();
 </script>
 </body>
 </html>
