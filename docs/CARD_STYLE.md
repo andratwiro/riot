@@ -10,9 +10,11 @@ have not seen how the council actually voted. Your job is to make them understan
 **why this touches their life** — enough to have an instant gut reaction.
 
 ## The three layers (each has a distinct job — they must NOT repeat each other)
-1. **headline** — 1–2 short sentences. Answers **"why should I, a person from Reus, care?"**
-   and triggers an immediate for/against reaction. Opinionated, catchy, plain. NOT a neutral
-   description of the agenda item.
+1. **headline** — 1–2 short sentences stating the **concrete proposal being voted** — the
+   actual thing that gets approved if you vote *a favor*. Plain and understandable on its own,
+   so a rushed person grasps what they're deciding without opening "Veure més". Lead with the
+   action (the verb): *Aprovar / Apujar / Aturar / Crear / Eliminar / Exigir…* The nuance, the
+   "why it matters" and the opinion go in the **brief**, NOT the headline.
 2. **brief** (`source_brief`) — short lead paragraph + 2–4 bullets. The de-bureaucratised
    explanation: what it really is, why it's on the table, the real stake or fault line.
    Self-contained and opinionated. The first "Veure més".
@@ -49,20 +51,39 @@ have not seen how the council actually voted. Your job is to make them understan
 - **The result does not help anyone vote** — telling them "unanimitat" or who won only biases
   the blind vote. This is why vote outcomes are banned (see above), restated because it slips.
 
-## Headlines — the why-should-I-care test
-Every headline must pass: *"Would a busy person from Reus feel this touches them?"* Find the
-hook: **what it costs them, what changes in their street/wallet/rights, what's really at play.**
+## Headlines — the two tests
+Every headline must pass BOTH:
+1. **The vote test:** could a reader vote *a favor* or *en contra* and know what each means? The
+   headline must state the concrete proposal as an action. If you can't tell what "a favor"
+   approves, it fails.
+2. **The direction test:** for anything about money/rules/services, the headline must say which
+   WAY it goes — *apujar / congelar / abaixar / eliminar / crear*. Never hide the direction
+   behind a neutral "s'actualitza" or a fact dump.
 
-GOOD (hooks the reader, no proposer, no result):
-- *"Si tens un bar, botiga o taller, pagues a part per la teva brossa — i el rebut depèn dels metres del local, no del que generes."*
-- *"Reus paga una funerària pública que un jutge acaba de tombar. Hi seguim posant diners o en sortim?"*
-- *"Apugen el sou als treballadors de l'Ajuntament amb els teus impostos — i Reus no hi pot fer res, ho mana Madrid."*
+Then keep it plain and self-contained (understandable without "Veure més").
 
-BAD (rewrite these patterns):
-- *"…L'altre punt amb 10 vots en contra."* → states the result.
-- *"Moció de VOX per…"* / *"La CUP vol…"* → names the proposer.
-- *"La taxa per entrar vehicles als guals s'actualitza. Decidiu si…"* → no hook, generic CTA, why care?
-- *"Aprovació definitiva de la modificació de l'Ordenança…"* → bureaucratic, dead.
+BANNED in headlines:
+- **Rhetorical or either/or questions** — "Val la pena?", "Hi seguim o en sortim?",
+  "Prioritat o sobredimensionat?". You can't vote a question; state the proposal instead.
+- **Tacked-on warnings or asides** — "…i una advertència, …". One clean proposition only.
+- **Snark / dangling attitude** — "…deute que pagarem amb anys de quotes". If you add a second
+  clause it must be a CONCRETE fact (a figure, a duration, a consequence), e.g. "a tornar en 12 anys".
+- **Vibe over substance** — copy so punchy the reader must open the brief to learn what's
+  actually being decided. The decision comes first; the angle lives in the brief.
+- Proposer names and vote results (see hard rules).
+
+GOOD (action stated, votable, direction explicit) — several are Rob's own rewrites:
+- *"Aturar la construcció del pàrquing soterrat de 11 M€ de la Hispània (s'hi ha trobat mercuri i plom al sòl) i reconvertir-lo en parc."*
+- *"Sortir de la funerària pública FUNECAMP i deixar d'aportar-hi diners, després que un jutge n'anul·lés la justificació econòmica."*
+- *"Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Reus Promoció: +2,5% (2025) i +1,5% (2026)."*
+- *"Apujar un 2,5% (IPC) la taxa per obtenir documents municipals (empadronament, cèdules) i els drets d'examen d'oposicions."*
+- *"Crear un Pacte Local pel català que, entre altres coses, lligaria la llicència d'obertura dels comerços a retolar en català."* (short, clear, votable)
+
+BAD (real misfires we fixed):
+- *"…i una advertència, l'Ajuntament a penes executa…"* → second topic glued on; drop it.
+- *"…deute que pagarem amb anys de quotes."* → snark; give the actual term (12 anys) or nothing.
+- *"Pavelló del Molinet aturat, gespa amb microplàstics… La proposta posa terminis i diners."* → what am I approving? State it: "Exigir dates per al Molinet i canviar la gespa (600.000 €)…".
+- *"Hi seguim posant diners o en sortim?"* → unvotable question.
 
 ## Gold standard (full triple)
 **headline:** Apugen el sou als treballadors de l'Ajuntament amb els teus impostos — i Reus no hi pot fer res, ho mana Madrid.
