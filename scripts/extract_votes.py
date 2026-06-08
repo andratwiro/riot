@@ -20,6 +20,9 @@ in each bucket.
 import json, re, sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from taxonomy import classify_legal_category, is_votable
+
 ROOT = Path(__file__).resolve().parent.parent
 ACTAS = ROOT / "data" / "actas"
 RAW = ROOT / "data" / "raw"
@@ -108,18 +111,32 @@ def main():
                 rest = rest[:cut.start()]
             tally = parse_tally(rest)
             kind = classify(verb, tally)
-            outcomes.append({"kind": kind, **tally,
-                             "snippet": re.sub(r"\s+", " ", m.group(0))[:240]})
+            # Legal category from the vote LEAD-IN only ("Sotmes... la X ... a votació").
+            # Classifying the full snippet would misfire on the next item's title that
+            # bleeds into the window (e.g. a trailing "Donar compte del decret...").
+            full = re.sub(r"\s+", " ", m.group(0))
+            vidx = full.lower().find("votació")
+            lead_in = full[:vidx] if vidx > 0 else full[:80]
+            legal_category = classify_legal_category(lead_in)
+            outcomes.append({"legal_category": legal_category,
+                             "votable": is_votable(legal_category),
+                             "kind": kind, **tally,
+                             "snippet": full[:240]})
         per_session.append((code, by_code.get(code, {}).get("date"), outcomes))
         all_outcomes.extend(outcomes)
 
     # Survey
     from collections import Counter
     kinds = Counter(o["kind"] for o in all_outcomes)
+    cats = Counter(o["legal_category"] for o in all_outcomes)
     contested = [o for o in all_outcomes if o["kind"] in ("rejected", "approved-divided")]
     print("=== RIOT corpus survey ===")
     print(f"sessions with text : {len(per_session)}")
     print(f"total vote outcomes: {len(all_outcomes)}")
+    print("legal category (votability gate — only votable categories become cards):")
+    for c, n in cats.most_common():
+        print(f"  {c:26}: {n}  ({'votable' if is_votable(c) else 'NOT votable'})")
+    print("outcome kind:")
     for k, n in kinds.most_common():
         print(f"  {k:18}: {n}")
     effectively_unanimous = kinds.get('unanimous',0) + kinds.get('approved-unanimous-effect',0)
