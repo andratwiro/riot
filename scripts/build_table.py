@@ -14,6 +14,7 @@ clearly NOT the final `counts` (that's the Phase-2 human/▪heuristic step).
 """
 import json
 from pathlib import Path
+from classify import classify  # structural layer: kind + votable (see docs/PLENARY_TAXONOMY.md)
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw"
@@ -57,7 +58,10 @@ def main():
         for d in decisions:
             ex = explained.get(d["id"], {})
             party_votes = {canon(k): v for k, v in (d.get("party_votes") or {}).items()}
-            contested = d.get("outcome") == "rejected" or d.get("decided") == "divided"
+            cls = classify(d)            # {kind, votable, part} — the structural layer
+            # contested only has meaning for things that were actually decided (votable).
+            contested = cls["votable"] and (
+                d.get("outcome") == "rejected" or d.get("decided") == "divided")
             rows.append({
                 **d,
                 "session_code": code,
@@ -65,6 +69,10 @@ def main():
                 "source_url": sess.get("detail_url"),
                 "acta_url": sess.get("acta_url"),
                 "party_votes_canon": party_votes,
+                # --- structural layer: is this even a decision? gates the card deck ---
+                "kind": cls["kind"],
+                "votable": cls["votable"],
+                "part": cls["part"],
                 "contested_suggested": contested,   # PROVISIONAL — not the final `counts`
                 # --- human layer (Phase 1; reviewed separately, never overwrites facts) ---
                 "headline": ex.get("headline"),
@@ -83,6 +91,7 @@ def main():
         "parties": PARTY_META,
         "sessions_in_table": sorted({r["session_code"] for r in rows}),
         "n_decisions": len(rows),
+        "n_votable": sum(1 for r in rows if r["votable"]),
         "n_explained": sum(1 for r in rows if r["explained"]),
         "decisions": rows,
     }
@@ -92,8 +101,10 @@ def main():
     (ROOT / "data.js").write_text("window.RIOT = " + json.dumps(out, ensure_ascii=False) + ";")
 
     contested = sum(1 for r in rows if r["contested_suggested"])
-    print(f"built {len(rows)} decisions from {len(out['sessions_in_table'])} sessions")
-    print(f"  provisional contested: {contested}  |  unanimous-ish: {len(rows)-contested}")
+    votable = out["n_votable"]
+    print(f"built {len(rows)} agenda points from {len(out['sessions_in_table'])} sessions")
+    print(f"  votable (reach cards): {votable}  |  non-votable (raw view only): {len(rows)-votable}")
+    print(f"  provisional contested: {contested}  |  unanimous-ish: {votable-contested}")
     print(f"  -> data/decisions.json and ./data.js")
 
 if __name__ == "__main__":

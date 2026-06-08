@@ -97,6 +97,18 @@ vs ~117 effectively-unanimous. Plenty of contested signal — the map won't coll
 - **NOT in this pass:** `counts` (the contested-filter flag — Phase 2) and `context` (the
   citizen-legible compression — Phase 1, the bias-prone part, needs human review). Kept
   separate on purpose so extraction stays auditable.
+- **Derived at build time (not extracted):** `kind` + `votable` + `part` — the structural
+  "is this even a decision?" layer (`scripts/classify.py`). `votable` gates the card deck;
+  `counts` (later) gates affinity/map. Two orthogonal flags — see `docs/PLENARY_TAXONOMY.md`.
+
+### ⚠️ Capture-scope change for the remaining sessions (read before extracting more)
+The 3 done sessions were extracted **votable-only** — every *donar compte / prec / pregunta*
+was dropped (`scripts/classify.py` → 49 votable / 0 non-votable). For the raw view to show the
+whole plenary, the remaining ~32 sessions must capture **every numbered agenda point**, including
+non-votable ones: set `type` (donar_compte/prec/pregunta/info/acta), leave `tally`/`party_votes`
+empty, and carry the ALL-CAPS **section header** above each point (makes kind deterministic +
+gives a committee-area topic). `classify` then marks them `votable=false` → raw view only. Full
+spec + closed `type` vocabulary in `docs/PLENARY_TAXONOMY.md`.
 
 ## How "context" per decision will be stored (answer to an open question)
 Three distinct layers, deliberately separated so we never lose the thread back to the source:

@@ -115,6 +115,7 @@
   .badge{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px}
   .b-app{background:rgba(39,182,106,.16);color:#5fd58c}
   .b-rej{background:rgba(229,72,95,.16);color:#f08197}
+  .b-kind{background:rgba(255,255,255,.08);color:#9aa3b2}
   .lvotes{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
   .pchip{font-size:11px;padding:3px 8px;border-radius:7px;border:1px solid var(--line);display:flex;gap:5px;align-items:center}
   .dot{width:7px;height:7px;border-radius:50%}
@@ -223,9 +224,14 @@ const R = window.RIOT || {decisions:[], parties:[]};
 const PARTIES = R.parties || [];
 const $ = s => document.querySelector(s);
 const VLAB = {for:"a favor", against:"en contra", abstain:"abstenció", split:"dividit", absent:"absent"};
+// Structural kind labels (raw view only). Non-votable kinds never reach the card deck.
+const KLAB = {dictamen:"Dictamen", proposicio:"Proposició", mocio:"Moció", ratificacio:"Ratificació",
+  declaracio:"Declaració", donar_compte:"Donar compte", info:"Informació", acta:"Acta",
+  prec:"Prec", pregunta:"Pregunta", altres:"Altres"};
 const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
 
-let deck = shuffle(R.decisions.filter(d => d.headline));
+// cards = real decisions only: explained AND structurally votable (votable===false => raw view only)
+let deck = shuffle(R.decisions.filter(d => d.headline && d.votable !== false));
 let idx = 0;
 let useOriginal = false;
 const answers = {};
@@ -429,7 +435,7 @@ document.addEventListener("keydown",e=>{
   else if(e.key==="ArrowDown")react("abstain");
 });
 $("#restart").addEventListener("click",()=>{
-  deck=shuffle(R.decisions.filter(d=>d.headline)); idx=0;
+  deck=shuffle(R.decisions.filter(d=>d.headline && d.votable !== false)); idx=0;
   for(const k in answers)delete answers[k];
   $("#done").style.display="none";
   renderAffinity(); renderStack(); renderMap();
@@ -440,10 +446,11 @@ function buildLog(){
   const rows=R.decisions.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   $("#logList").innerHTML=rows.map(d=>{
     const out=d.outcome==="rejected"?'<span class="badge b-rej">REBUTJAT</span>':'<span class="badge b-app">APROVAT</span>';
+    const kind=d.kind?`<span class="badge b-kind">${KLAB[d.kind]||d.kind}${d.votable===false?" · no es vota":""}</span>`:"";
     const chips=Object.entries(d.party_votes_canon||{}).map(([k,v])=>`<span class="pchip"><span class="dot d-${v}"></span>${k} ${VLAB[v]||v}</span>`).join("");
     return `<div class="lcard">
       <div class="lt">${esc(d.headline||d.title)}</div>
-      <div class="lm"><span>${d.date||""}</span><span>${d.session_code} · punt ${d.point??"?"}</span><span>${esc(d.topic||"")}</span>${out}</div>
+      <div class="lm"><span>${d.date||""}</span><span>${d.session_code} · punt ${d.point??"?"}</span><span>${esc(d.topic||"")}</span>${kind}${d.votable===false?"":out}</div>
       <div class="muted" style="font-size:12px;margin-top:6px">${esc(d.title||"")}</div>
       <div class="lvotes">${chips}</div>
       <details><summary>text literal de l'acta + font</summary>
