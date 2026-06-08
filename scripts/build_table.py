@@ -30,14 +30,32 @@ def canon(token: str) -> str:
         return token
     return CANON.get(token, token)
 
+# Party display metadata (token -> name, brand colour, logo file or null=colored fallback).
+# Affinity bar shows these, in this order. Minor groups (A, no_adscrit_*) still count in
+# party_votes but aren't given a logo slot here.
+PARTY_META = [
+    {"token": "PSC", "name": "PSC",  "color": "#e2001a", "logo": "assets/logos/PSC.svg"},
+    {"token": "JxR", "name": "Junts", "color": "#00c3b2", "logo": "assets/logos/JxR.svg"},
+    {"token": "ERC", "name": "ERC",  "color": "#ffb232", "logo": "assets/logos/ERC.svg"},
+    {"token": "CUP", "name": "CUP",  "color": "#fff200", "logo": "assets/logos/CUP.png"},
+    {"token": "VOX", "name": "Vox",  "color": "#63be21", "logo": "assets/logos/VOX.svg"},
+    {"token": "PP",  "name": "PP",   "color": "#1a4f8b", "logo": None},
+]
+
 def main():
     sessions = {s["code"]: s for s in json.loads((RAW / "sessions.json").read_text())}
+    # Load human-layer explanations, keyed by decision id.
+    explained = {}
+    for ef in RAW.glob("explained_*.json"):
+        for e in json.loads(ef.read_text()):
+            explained[e["id"]] = e
     rows = []
     for pf in sorted(RAW.glob("parsed_*.json")):
         code = pf.stem.replace("parsed_", "")
         sess = sessions.get(code, {})
         decisions = json.loads(pf.read_text())
         for d in decisions:
+            ex = explained.get(d["id"], {})
             party_votes = {canon(k): v for k, v in (d.get("party_votes") or {}).items()}
             contested = d.get("outcome") == "rejected" or d.get("decided") == "divided"
             rows.append({
@@ -48,6 +66,12 @@ def main():
                 "acta_url": sess.get("acta_url"),
                 "party_votes_canon": party_votes,
                 "contested_suggested": contested,   # PROVISIONAL — not the final `counts`
+                # --- human layer (Phase 1; reviewed separately, never overwrites facts) ---
+                "headline": ex.get("headline"),
+                "human_body": ex.get("body"),
+                "topic": ex.get("topic"),
+                "stake": ex.get("stake"),
+                "explained": bool(ex),
             })
     # newest first
     rows.sort(key=lambda r: (r.get("date") or "", r.get("session_code") or "",
@@ -55,9 +79,11 @@ def main():
 
     out = {
         "generated_for": "riot.reus",
-        "note": "Facts-only extraction. 'contested_suggested' is provisional, NOT the final counts.",
+        "note": "Facts extracted from actes; 'headline'/'human_body' are a reviewed human layer.",
+        "parties": PARTY_META,
         "sessions_in_table": sorted({r["session_code"] for r in rows}),
         "n_decisions": len(rows),
+        "n_explained": sum(1 for r in rows if r["explained"]),
         "decisions": rows,
     }
     (ROOT / "data" / "decisions.json").write_text(json.dumps(out, indent=2, ensure_ascii=False))

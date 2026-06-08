@@ -2,157 +2,264 @@
 <html lang="ca">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RIOT · riot.reus — verificació de vots</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RIOT · Reus — què hi dius?</title>
 <style>
   :root{
-    --for:#1a8f4c; --against:#c8324a; --abstain:#c8860a; --muted:#8a8f98;
-    --bg:#0f1115; --card:#181b22; --line:#262a33; --ink:#e7e9ee; --dim:#9aa0ab;
+    --bg:#0e1014; --card:#1b1f27; --card2:#222732; --line:#2b313c;
+    --ink:#f0f2f6; --dim:#9aa1ad; --acc:#6db3ff;
+    --for:#27b66a; --against:#e5485f; --abstain:#9aa1ad;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);
-       font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-  header{padding:20px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;
-         background:rgba(15,17,21,.92);backdrop-filter:blur(8px);z-index:5}
-  h1{margin:0;font-size:18px;letter-spacing:.2px}
-  h1 small{color:var(--dim);font-weight:400;font-size:13px;margin-left:8px}
-  .sub{color:var(--dim);font-size:13px;margin-top:4px}
-  .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
-  input,select{background:var(--card);border:1px solid var(--line);color:var(--ink);
-    padding:7px 10px;border-radius:8px;font-size:13px}
-  input[type=search]{min-width:240px}
-  label.chk{color:var(--dim);font-size:13px;display:flex;gap:6px;align-items:center;cursor:pointer}
-  .wrap{max-width:980px;margin:0 auto;padding:20px 24px 80px}
-  .stat{color:var(--dim);font-size:13px;margin:6px 0 16px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
-        padding:16px 18px;margin:0 0 14px}
-  .top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
-  .title{font-weight:600;font-size:15px;margin:0}
-  .meta{color:var(--dim);font-size:12.5px;margin-top:5px;display:flex;gap:10px;flex-wrap:wrap}
-  .badge{font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap}
-  .b-app{background:rgba(26,143,76,.16);color:#5fd58c}
-  .b-rej{background:rgba(200,50,74,.16);color:#f08197}
-  .b-div{background:rgba(200,134,10,.16);color:#f0c060}
-  .b-una{background:rgba(138,143,152,.16);color:#b8bdc7}
-  .tally{display:flex;gap:14px;margin:12px 0 6px;font-size:13px}
-  .tally b{font-variant-numeric:tabular-nums}
-  .f{color:var(--for)} .a{color:var(--against)} .ab{color:var(--abstain)}
-  .parties{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-  .pchip{font-size:12px;padding:3px 9px;border-radius:7px;border:1px solid var(--line);
-    display:flex;gap:6px;align-items:center}
-  .dot{width:8px;height:8px;border-radius:50%}
-  .d-for{background:var(--for)} .d-against{background:var(--against)}
-  .d-abstain{background:var(--abstain)} .d-split,.d-absent{background:var(--muted)}
-  details{margin-top:10px}
-  summary{cursor:pointer;color:var(--dim);font-size:12.5px;outline:none}
-  .raw{background:#0c0e12;border:1px solid var(--line);border-radius:8px;padding:10px 12px;
-    margin-top:8px;font-size:12.5px;color:#c7ccd6;white-space:pre-wrap}
-  .cv{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px;margin-top:8px}
-  .cv span{font-size:12px;color:var(--dim)}
-  .cv .vv{font-weight:600}
-  a.src{color:#6db3ff;font-size:12.5px;text-decoration:none}
-  a.src:hover{text-decoration:underline}
-  .empty{color:var(--dim);text-align:center;padding:40px}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--ink);
+    font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    overflow:hidden}
+  .app{display:flex;flex-direction:column;height:100dvh;max-width:680px;margin:0 auto}
+
+  /* header */
+  header{display:flex;align-items:center;justify-content:space-between;
+    padding:14px 18px 8px;flex:0 0 auto}
+  .brand{font-weight:800;letter-spacing:.5px;font-size:17px}
+  .brand span{color:var(--dim);font-weight:500;font-size:13px;margin-left:6px}
+  .gear{background:none;border:0;color:var(--dim);cursor:pointer;padding:6px;border-radius:8px;font-size:20px;line-height:1}
+  .gear:hover{color:var(--ink);background:var(--card)}
+
+  /* affinity bar */
+  #affinity{display:flex;gap:6px;padding:6px 12px 12px;overflow-x:auto;flex:0 0 auto;scrollbar-width:none}
+  #affinity::-webkit-scrollbar{display:none}
+  .pa{flex:0 0 auto;width:62px;text-align:center}
+  .pa .lg{width:42px;height:42px;border-radius:50%;margin:0 auto 4px;background:#fff;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--line)}
+  .pa .lg img{width:100%;height:100%;object-fit:contain;padding:4px}
+  .pa .lg.fb{color:#fff;font-weight:800;font-size:13px;border:0}
+  .pa .pct{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+  .pa .nm{font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pa .track{height:3px;border-radius:3px;background:var(--line);margin-top:3px;overflow:hidden}
+  .pa .fill{height:100%;width:0;border-radius:3px;transition:width .4s ease}
+  .pa.muted{opacity:.45}
+
+  /* survey / card stack */
+  #survey{flex:1 1 auto;position:relative;padding:6px 16px 0;min-height:0}
+  .progress{text-align:center;color:var(--dim);font-size:12.5px;margin-bottom:8px}
+  .stack{position:relative;height:100%;max-height:560px;margin:0 auto}
+  .card{position:absolute;inset:0;background:var(--card);border:1px solid var(--line);
+    border-radius:20px;padding:22px 22px 18px;display:flex;flex-direction:column;
+    box-shadow:0 18px 50px rgba(0,0,0,.4);
+    transition:transform .38s cubic-bezier(.2,.7,.3,1),opacity .38s}
+  .card .topic{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.4px;
+    text-transform:uppercase;color:var(--acc);background:rgba(109,179,255,.12);
+    padding:4px 10px;border-radius:999px}
+  .card h2{font-size:23px;line-height:1.25;margin:14px 0 10px;font-weight:750}
+  .card .body{color:#d4d8e0;font-size:15px;flex:1 1 auto;overflow:auto}
+  .card .stake{margin-top:10px;color:var(--dim);font-size:13px;border-left:2px solid var(--line);padding-left:10px}
+  .card .src{margin-top:10px}
+  .card .src a{color:var(--dim);font-size:11.5px;text-decoration:none}
+  .card .src a:hover{color:var(--acc)}
+  .card.behind1{transform:scale(.95) translateY(14px);opacity:.6;filter:saturate(.6)}
+  .card.behind2{transform:scale(.9) translateY(28px);opacity:.3;filter:saturate(.3)}
+  .card.gone-r{transform:translateX(120%) rotate(8deg);opacity:0}
+  .card.gone-l{transform:translateX(-120%) rotate(-8deg);opacity:0}
+  .card.gone-d{transform:translateY(120%);opacity:0}
+
+  /* buttons */
+  .actions{display:flex;gap:10px;padding:14px 16px calc(16px + env(safe-area-inset-bottom));flex:0 0 auto}
+  .btn{flex:1;border:0;border-radius:14px;padding:15px 8px;font-size:15px;font-weight:700;
+    cursor:pointer;color:#fff;display:flex;flex-direction:column;align-items:center;gap:3px;
+    transition:transform .08s}
+  .btn:active{transform:scale(.96)}
+  .btn small{font-weight:500;opacity:.85;font-size:11px}
+  .btn.f{background:var(--for)} .btn.a{background:var(--against)} .btn.ab{background:#39404d}
+
+  /* done screen */
+  #done{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;padding:30px}
+  #done h2{font-size:24px;margin:0 0 6px}
+  #done p{color:var(--dim);margin:4px 0 18px;font-size:14px}
+  #done .closest{font-size:15px;margin:8px 0 22px}
+  .restart{background:var(--card2);border:1px solid var(--line);color:var(--ink);
+    padding:12px 20px;border-radius:12px;font-size:14px;cursor:pointer}
+
+  /* log overlay */
+  #log{position:fixed;inset:0;background:var(--bg);z-index:20;display:none;overflow:auto;padding:0 0 40px}
+  #log .lh{position:sticky;top:0;background:rgba(14,16,20,.95);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+  #log .lwrap{max-width:760px;margin:0 auto;padding:16px 18px}
+  .lcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+  .lcard .lt{font-weight:600;font-size:14px}
+  .lcard .lm{color:var(--dim);font-size:12px;margin-top:4px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .badge{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px}
+  .b-app{background:rgba(39,182,106,.16);color:#5fd58c}
+  .b-rej{background:rgba(229,72,95,.16);color:#f08197}
+  .lvotes{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .pchip{font-size:11px;padding:3px 8px;border-radius:7px;border:1px solid var(--line);display:flex;gap:5px;align-items:center}
+  .dot{width:7px;height:7px;border-radius:50%}
+  .d-for{background:var(--for)} .d-against{background:var(--against)} .d-abstain{background:var(--abstain)}
+  .d-split,.d-absent{background:#6b7280}
+  .lraw{background:#0b0d11;border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-top:9px;font-size:11.5px;color:#c2c8d2;white-space:pre-wrap}
+  .lcard a.src{color:var(--acc);font-size:11.5px;text-decoration:none}
+  .muted{color:var(--dim)}
+  details summary{cursor:pointer;color:var(--dim);font-size:11.5px;margin-top:8px;outline:none}
 </style>
 </head>
 <body>
-<header>
-  <h1>RIOT · riot.reus <small>verificació d'extracció de vots — Ple de Reus</small></h1>
-  <div class="sub" id="scope"></div>
-  <div class="controls">
-    <input type="search" id="q" placeholder="Cerca títol / partit…">
-    <select id="sess"><option value="">Totes les sessions</option></select>
-    <select id="kind">
-      <option value="">Tots els resultats</option>
-      <option value="rejected">Rebutjats</option>
-      <option value="divided">Dividits</option>
-      <option value="unanimous">Unànimes</option>
-    </select>
-    <label class="chk"><input type="checkbox" id="onlycon"> només disputats</label>
+<div class="app">
+  <header>
+    <div class="brand">RIOT <span>Reus · què hi dius?</span></div>
+    <button class="gear" id="toLog" title="Registre / verificació">⚙</button>
+  </header>
+
+  <div id="affinity"></div>
+
+  <div id="survey">
+    <div class="progress" id="progress"></div>
+    <div class="stack" id="stack"></div>
+    <div id="done">
+      <h2>Ja està 🎉</h2>
+      <p id="doneSub"></p>
+      <div class="closest" id="closest"></div>
+      <button class="restart" id="restart">Torna a començar</button>
+      <p style="margin-top:18px;font-size:12px">Res no s'ha desat. En recarregar, s'esborra tot.</p>
+    </div>
   </div>
-</header>
-<div class="wrap">
-  <div class="stat" id="stat"></div>
-  <div id="list"></div>
+
+  <div class="actions" id="actions">
+    <button class="btn a" data-v="against">En contra<small>no hi estic d'acord</small></button>
+    <button class="btn ab" data-v="abstain">Abstenció<small>ni una ni l'altra</small></button>
+    <button class="btn f" data-v="for">A favor<small>hi estic d'acord</small></button>
+  </div>
 </div>
+
+<div id="log">
+  <div class="lh">
+    <div><b>Registre de decisions</b> <span class="muted" id="logCount"></span></div>
+    <button class="gear" id="closeLog" style="font-size:16px">✕ tanca</button>
+  </div>
+  <div class="lwrap">
+    <p class="muted" style="font-size:12.5px;margin-top:0">
+      Totes les decisions extretes de les actes del Ple, amb el vot real de cada partit i el text
+      literal de la font. Aquesta és la capa verificable: cada targeta de l'enquesta surt d'aquí.
+    </p>
+    <div id="logList"></div>
+  </div>
+</div>
+
 <script src="data.js"></script>
 <script>
-const R = window.RIOT || {decisions:[]};
-const VLAB = {for:"a favor", against:"en contra", abstain:"abstenció", split:"dividit", absent:"absent"};
+const R = window.RIOT || {decisions:[], parties:[]};
+const PARTIES = R.parties || [];
 const $ = s => document.querySelector(s);
+const VLAB = {for:"a favor", against:"en contra", abstain:"abstenció", split:"dividit", absent:"absent"};
+const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
 
-document.title = `RIOT · ${R.n_decisions||0} decisions`;
-$("#scope").textContent =
-  `${R.n_decisions||0} decisions extretes · ${(R.sessions_in_table||[]).length} sessions · ` +
-  `${R.note||""}`;
+let deck = shuffle(R.decisions.filter(d => d.headline));
+let idx = 0;
+const answers = {};
 
-const sess = $("#sess");
-(R.sessions_in_table||[]).sort().reverse().forEach(c=>{
-  const o=document.createElement("option");o.value=c;o.textContent=c;sess.appendChild(o);
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function esc(s){return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+function affinity(){
+  const res={};
+  for(const p of PARTIES){
+    let comp=0,match=0;
+    for(const id in answers){
+      const pv=(byId[id].party_votes_canon||{})[p.token];
+      if(pv==="for"||pv==="against"||pv==="abstain"){comp++; if(pv===answers[id])match++;}
+    }
+    res[p.token]=comp?{pct:Math.round(100*match/comp),comp}:{pct:null,comp:0};
+  }
+  return res;
+}
+function logoEl(p){
+  return p.logo ? `<span class="lg"><img src="${p.logo}" alt="${p.name}"></span>`
+                : `<span class="lg fb" style="background:${p.color}">${p.token}</span>`;
+}
+function renderAffinity(){
+  const a=affinity();
+  const order=PARTIES.slice().sort((x,y)=>{
+    const px=a[x.token].pct,py=a[y.token].pct;
+    if(px===null&&py===null)return 0; if(px===null)return 1; if(py===null)return -1; return py-px;
+  });
+  $("#affinity").innerHTML=order.map(p=>{
+    const r=a[p.token],pct=r.pct;
+    return `<div class="pa ${r.comp?'':'muted'}">${logoEl(p)}
+      <div class="pct">${pct===null?'—':pct+'%'}</div>
+      <div class="nm">${p.name}</div>
+      <div class="track"><div class="fill" style="width:${pct||0}%;background:${p.color}"></div></div>
+    </div>`;
+  }).join("");
+}
+
+function renderStack(){
+  const stack=$("#stack");
+  if(idx>=deck.length){finish();return;}
+  $("#progress").textContent=`${idx+1} de ${deck.length}`;
+  stack.innerHTML="";
+  for(let k=Math.min(idx+2,deck.length-1);k>=idx;k--){
+    const d=deck[k],depth=k-idx;
+    const el=document.createElement("div");
+    el.className="card"+(depth===1?" behind1":depth===2?" behind2":"");
+    el.innerHTML=`<span class="topic">${esc(d.topic||"Decisió")}</span>
+      <h2>${esc(d.headline)}</h2>
+      <div class="body">${esc(d.human_body||"")}${d.stake?`<div class="stake">${esc(d.stake)}</div>`:""}</div>
+      <div class="src"><a href="${d.acta_url||'#'}" target="_blank" rel="noopener">font · ${d.session_code} · ${d.date||""} ↗</a></div>`;
+    stack.appendChild(el);
+  }
+}
+function react(vote){
+  if(idx>=deck.length)return;
+  answers[deck[idx].id]=vote;
+  const top=$("#stack").lastChild;
+  if(top)top.classList.add(vote==="for"?"gone-r":vote==="against"?"gone-l":"gone-d");
+  renderAffinity();
+  setTimeout(()=>{idx++;renderStack();},230);
+}
+function finish(){
+  $("#stack").innerHTML=""; $("#actions").style.visibility="hidden"; $("#progress").textContent="";
+  const a=affinity();
+  const ranked=PARTIES.filter(p=>a[p.token].comp).sort((x,y)=>a[y.token].pct-a[x.token].pct);
+  $("#doneSub").textContent=`Has reaccionat a ${Object.keys(answers).length} decisions.`;
+  $("#closest").innerHTML=ranked.length
+    ?`Ara mateix, el teu partit més afí: <b style="color:${ranked[0].color}">${ranked[0].name}</b> (${a[ranked[0].token].pct}%)`:"";
+  $("#done").style.display="flex";
+}
+
+document.querySelectorAll(".btn[data-v]").forEach(b=>b.addEventListener("click",()=>react(b.dataset.v)));
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowLeft")react("against");
+  else if(e.key==="ArrowRight")react("for");
+  else if(e.key==="ArrowDown")react("abstain");
+});
+$("#restart").addEventListener("click",()=>{
+  deck=shuffle(R.decisions.filter(d=>d.headline)); idx=0;
+  for(const k in answers)delete answers[k];
+  $("#done").style.display="none"; $("#actions").style.visibility="visible";
+  renderAffinity(); renderStack();
 });
 
-function partyChip(token, vote){
-  const cls = "d-"+vote;
-  return `<span class="pchip"><span class="dot ${cls}"></span>${token} · ${VLAB[vote]||vote}</span>`;
+function buildLog(){
+  $("#logCount").textContent=`· ${R.n_decisions} decisions · ${(R.sessions_in_table||[]).length} sessions`;
+  const rows=R.decisions.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  $("#logList").innerHTML=rows.map(d=>{
+    const out=d.outcome==="rejected"?'<span class="badge b-rej">REBUTJAT</span>':'<span class="badge b-app">APROVAT</span>';
+    const chips=Object.entries(d.party_votes_canon||{}).map(([k,v])=>`<span class="pchip"><span class="dot d-${v}"></span>${k} ${VLAB[v]||v}</span>`).join("");
+    return `<div class="lcard">
+      <div class="lt">${esc(d.headline||d.title)}</div>
+      <div class="lm"><span>${d.date||""}</span><span>${d.session_code} · punt ${d.point??"?"}</span><span>${esc(d.topic||"")}</span>${out}</div>
+      <div class="muted" style="font-size:12px;margin-top:6px">${esc(d.title||"")}</div>
+      <div class="lvotes">${chips}</div>
+      <details><summary>text literal de l'acta + font</summary>
+        <div class="lraw">${esc(d.raw_outcome||"—")}</div>
+        ${d.acta_url?`<div style="margin-top:7px"><a class="src" href="${d.acta_url}" target="_blank" rel="noopener">↗ obrir l'acta (PDF)</a></div>`:""}
+      </details></div>`;
+  }).join("");
 }
+$("#toLog").addEventListener("click",()=>{if(!$("#logList").innerHTML)buildLog(); $("#log").style.display="block";});
+$("#closeLog").addEventListener("click",()=>$("#log").style.display="none");
 
-function card(d){
-  const out = d.outcome==="rejected"
-      ? '<span class="badge b-rej">REBUTJAT</span>'
-      : '<span class="badge b-app">APROVAT</span>';
-  const dec = d.decided==="divided"
-      ? '<span class="badge b-div">dividit</span>'
-      : '<span class="badge b-una">unànime</span>';
-  const t = d.tally||{};
-  const pv = d.party_votes_canon || d.party_votes || {};
-  const chips = Object.entries(pv).map(([k,v])=>partyChip(k,v)).join("");
-  const cvs = (d.councillor_votes||[]).map(c=>
-      `<span>${c.name} <span class="vv ${c.vote==='for'?'f':c.vote==='against'?'a':'ab'}">·${VLAB[c.vote]||c.vote}</span></span>`).join("");
-  return `<div class="card">
-    <div class="top">
-      <div>
-        <p class="title">${d.title||"(sense títol)"}</p>
-        <div class="meta">
-          <span>${d.date||""}</span><span>${d.session_code} · punt ${d.point??"?"}</span>
-          <span>${d.type||""}${d.organ?(" · "+d.organ):""}${d.proposed_by?(" · prop.: "+d.proposed_by):""}</span>
-        </div>
-      </div>
-      <div style="display:flex;gap:6px;flex-shrink:0">${out}${dec}</div>
-    </div>
-    <div class="tally">
-      <span class="f">a favor <b>${t.for??0}</b></span>
-      <span class="a">en contra <b>${t.against??0}</b></span>
-      <span class="ab">abstenció <b>${t.abstain??0}</b></span>
-    </div>
-    <div class="parties">${chips||'<span style="color:var(--muted);font-size:12px">(sense desglossament per nom — unànime)</span>'}</div>
-    <details><summary>verificar contra la font (text literal de l'acta + vots per regidor)</summary>
-      <div class="raw">${(d.raw_outcome||"(—)").replace(/</g,"&lt;")}</div>
-      ${cvs?`<div class="cv">${cvs}</div>`:""}
-      ${d.acta_url?`<div style="margin-top:8px"><a class="src" href="${d.acta_url}" target="_blank" rel="noopener">↗ obrir l'acta (PDF font)</a></div>`:""}
-    </details>
-  </div>`;
-}
-
-function render(){
-  const q=$("#q").value.toLowerCase().trim();
-  const fs=$("#sess").value, fk=$("#kind").value, oc=$("#onlycon").checked;
-  let rows = R.decisions.filter(d=>{
-    if(fs && d.session_code!==fs) return false;
-    if(fk==="rejected" && d.outcome!=="rejected") return false;
-    if(fk==="divided" && d.decided!=="divided") return false;
-    if(fk==="unanimous" && d.decided!=="unanimous") return false;
-    if(oc && !d.contested_suggested) return false;
-    if(q){
-      const hay=(d.title+" "+JSON.stringify(d.party_votes_canon||{})+" "+(d.proposed_by||"")).toLowerCase();
-      if(!hay.includes(q)) return false;
-    }
-    return true;
-  });
-  $("#stat").textContent = `${rows.length} decisions mostrades`;
-  $("#list").innerHTML = rows.length ? rows.map(card).join("") : '<div class="empty">cap decisió</div>';
-}
-["#q","#sess","#kind","#onlycon"].forEach(s=>$(s).addEventListener("input",render));
-render();
+renderAffinity();
+renderStack();
 </script>
 </body>
 </html>

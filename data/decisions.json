@@ -1,12 +1,51 @@
 {
   "generated_for": "riot.reus",
-  "note": "Facts-only extraction. 'contested_suggested' is provisional, NOT the final counts.",
+  "note": "Facts extracted from actes; 'headline'/'human_body' are a reviewed human layer.",
+  "parties": [
+    {
+      "token": "PSC",
+      "name": "PSC",
+      "color": "#e2001a",
+      "logo": "assets/logos/PSC.svg"
+    },
+    {
+      "token": "JxR",
+      "name": "Junts",
+      "color": "#00c3b2",
+      "logo": "assets/logos/JxR.svg"
+    },
+    {
+      "token": "ERC",
+      "name": "ERC",
+      "color": "#ffb232",
+      "logo": "assets/logos/ERC.svg"
+    },
+    {
+      "token": "CUP",
+      "name": "CUP",
+      "color": "#fff200",
+      "logo": "assets/logos/CUP.png"
+    },
+    {
+      "token": "VOX",
+      "name": "Vox",
+      "color": "#63be21",
+      "logo": "assets/logos/VOX.svg"
+    },
+    {
+      "token": "PP",
+      "name": "PP",
+      "color": "#1a4f8b",
+      "logo": null
+    }
+  ],
   "sessions_in_table": [
     "PLE_03_2026_ORD",
     "PLE_12_2025_EXTR",
     "PLE_9_2023_ORD"
   ],
   "n_decisions": 49,
+  "n_explained": 49,
   "decisions": [
     {
       "id": "PLE_03_2026_ORD-p8",
@@ -186,7 +225,12 @@
         "no_adscrit_Pardo": "for",
         "CUP": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Simplificar normes urbanístiques per a comerços i edificis",
+      "human_body": "Es retoca el pla urbanístic per facilitar obrir o dividir locals comercials (treure la mida mínima de 30 m² i altres requisits) i fixar com han d'instal·lar-se els aparells d'aire condicionat a les façanes. Votar a favor és aprovar aquests canvis i enviar-los a la Generalitat; votar en contra és no acceptar-los.",
+      "topic": "Urbanisme",
+      "stake": "Afecta comerciants i propietaris que vulguin obrir, partir o reformar locals i habitatges.",
+      "explained": true
     },
     {
       "id": "PLE_03_2026_ORD-p7",
@@ -366,7 +410,12 @@
         "no_adscrit_Ruiz": "for",
         "no_adscrit_Pardo": "against"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Permetre fer pisos de protecció pública a l'antiga fàbrica Pich Aguilera",
+      "human_body": "Es fa un primer pas per canviar el pla urbanístic de la zona de l'antiga fàbrica Pich Aguilera perquè tot l'habitatge nou que s'hi construeixi sigui de protecció pública i es conservi part de l'edifici antic. Votar a favor és tirar endavant aquest canvi i obrir-lo a al·legacions; votar en contra és no acceptar-lo.",
+      "topic": "Habitatge",
+      "stake": "Hi sortirien uns 190 habitatges de preu protegit al barri del Carme; afecta veïns i gent que busca pis assequible.",
+      "explained": true
     },
     {
       "id": "PLE_03_2026_ORD-p6",
@@ -390,7 +439,12 @@
       "source_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c082829cba8cd6019cf78b7a7101a4",
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c082829d2a3464019dd886214d04a2",
       "party_votes_canon": {},
-      "contested_suggested": false
+      "contested_suggested": false,
+      "headline": "Canviar qui representa els instituts públics al consell d'educació",
+      "human_body": "Es vol substituir la directora que representa els instituts públics de secundària al Consell Educatiu de Ciutat per una altra directora, perquè el mateix sector ho ha demanat. Votar a favor és acceptar aquest canvi de persona; votar en contra és no acceptar-lo.",
+      "topic": "Cultura i esport",
+      "stake": "Afecta qui parla en nom dels instituts públics dins l'òrgan de participació educativa de la ciutat.",
+      "explained": true
     },
     {
       "id": "PLE_03_2026_ORD-p16",
@@ -565,7 +619,12 @@
         "VOX": "against",
         "no_adscrit_Ruiz": "absent"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Garantir per ordenança la devolució ràpida d'impostos cobrats de més",
+      "human_body": "El regidor no adscrit Sr. Pardo demana modificar l'ordenança de tributs perquè quan l'Ajuntament cobri impostos indeguts (o duplicats) els torni en un màxim de sis mesos, amb interessos i sovint de manera automàtica, sense que el ciutadà ho hagi de reclamar. Votar a favor és iniciar aquest canvi de l'ordenança; votar en contra és no fer-ho.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta qualsevol veí o empresa a qui l'Ajuntament hagi cobrat un impost de més o per error.",
+      "explained": true
     },
     {
       "id": "PLE_03_2026_ORD-p15",
@@ -740,7 +799,12 @@
         "A": "against",
         "no_adscrit_Ruiz": "absent"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Exigir un millor manteniment i planificació dels equipaments esportius",
+      "human_body": "Junts per Reus demana al govern que presenti el projecte del pavelló del Molinet, que la nova gespa dels camps de futbol sigui de qualitat i sense microplàstics, que es replantegi el mapa d'instal·lacions esportives amb participació i que es posin aparells d'esport a l'aire lliure a cada barri. Votar a favor és obligar el govern a fer tot això; votar en contra és no aprovar-ho.",
+      "topic": "Cultura i esport",
+      "stake": "Afecta usuaris d'instal·lacions esportives municipals i veïns de tots els barris.",
+      "explained": true
     },
     {
       "id": "PLE_03_2026_ORD-p14",
@@ -920,7 +984,12 @@
         "CUP": "against",
         "VOX": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Mantenir els descomptes fiscals ja concedits per a plaques solars",
+      "human_body": "Junts per Reus demana que qui ja va rebre bonificacions d'impostos per posar plaques solars no les perdi pel nou requisit de presentar una declaració responsable, i que qualsevol retallada d'aquests ajuts no s'apliqui cap enrere. Votar a favor és protegir aquests descomptes ja concedits; votar en contra és deixar el criteri actual del govern.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta famílies i empreses que van instal·lar plaques solars confiant en una bonificació fiscal.",
+      "explained": true
     },
     {
       "id": "PLE_03_2026_ORD-p13",
@@ -1100,7 +1169,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Posar el nom de Joan Sabater al Pavelló Olímpic",
+      "human_body": "VOX demana homenatjar l'exjugador d'hoquei Joan Sabater i l'equip històric del «Reus de les sis copes», rebatejant el Pavelló Olímpic Municipal amb el seu nom i estudiant dedicar-los un carrer o plaça. Votar a favor és aprovar aquest homenatge i el canvi de nom; votar en contra és no fer-ho.",
+      "topic": "Cultura i esport",
+      "stake": "Afecta el nom d'un equipament esportiu públic emblemàtic de la ciutat.",
+      "explained": true
     },
     {
       "id": "PLE_03_2026_ORD-p12",
@@ -1280,7 +1354,12 @@
         "PP": "abstain",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Crear serveis municipals de cures i igualtat pel 8 de març",
+      "human_body": "Amb motiu del Dia de les Dones Treballadores, la CUP demana un seguit de mesures: un centre de cures, cangur municipal gratuït, millorar les condicions de les feines de cura, més places públiques de 0-3 anys i un fons municipal de cures. Votar a favor és encarregar a l'Ajuntament que impulsi totes aquestes mesures; votar en contra és no aprovar-les.",
+      "topic": "Drets i igualtat",
+      "stake": "Afectaria sobretot dones, persones cuidadores, famílies amb criatures i gent gran dependent.",
+      "explained": true
     },
     {
       "id": "PLE_03_2026_ORD-p11",
@@ -1460,7 +1539,12 @@
         "PP": "abstain",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Que l'Ajuntament doni suport a les protestes de l'educació pública",
+      "human_body": "La CUP demana que l'Ajuntament recolzi les mobilitzacions del professorat i reclami a la Generalitat més recursos per a l'escola pública (menys alumnes per aula, menys burocràcia, reduir els concerts, etc.). Votar a favor és que l'Ajuntament faci seves aquestes reivindicacions; votar en contra és no fer-ho.",
+      "topic": "Cultura i esport",
+      "stake": "És una declaració política dirigida a la Generalitat; afecta docents, famílies i alumnes de l'escola pública.",
+      "explained": true
     },
     {
       "id": "PLE_03_2026_ORD-p10",
@@ -1640,7 +1724,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Demanar que Reus surti de l'empresa funerària pública FUNECAMP",
+      "human_body": "VOX demana que l'Ajuntament comenci a sortir de FUNECAMP, l'empresa pública de serveis funeraris compartida amb altres municipis, després que un jutge anul·lés l'informe que la justificava. Votar a favor és demanar que l'Ajuntament en surti i aturi els pagaments; votar en contra és deixar que l'Ajuntament hi continuï.",
+      "topic": "Govern i institucional",
+      "stake": "Afecta com es gestionaran els serveis funeraris i el cementiri, i possibles riscos econòmics per a l'Ajuntament.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p9",
@@ -1815,7 +1904,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa per demanar documents a l'Ajuntament",
+      "human_body": "Es modifica el que es paga per obtenir certificats i altres documents administratius, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Govern i institucional",
+      "stake": "Afecta qualsevol persona que demani documents oficials a l'Ajuntament.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p8",
@@ -1990,7 +2084,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa de la grua municipal",
+      "human_body": "Es modifica el que es paga quan la grua s'emporta un cotxe i el deixa al dipòsit, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Mobilitat",
+      "stake": "Afecta qui té el vehicle retirat per la grua municipal.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p7",
@@ -2165,7 +2264,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa de cartografia i ús d'infraestructures de telecomunicacions",
+      "human_body": "Es modifica el que es paga pels serveis de mapes i dades cadastrals i per fer servir les infraestructures de telecomunicacions municipals, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta empreses de telecomunicacions i qui demana informació de mapes o cadastre.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p6",
@@ -2340,7 +2444,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa de les llicències de taxi",
+      "human_body": "Es modifica el que cobra l'Ajuntament per les llicències de taxi, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Mobilitat",
+      "stake": "Afecta els taxistes i les persones que volen una llicència de taxi.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p5",
@@ -2515,7 +2624,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa de recollida d'escombraries per al 2026",
+      "human_body": "Es modifica el que paguen els veïns per la recollida de la brossa, vigent des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Medi ambient",
+      "stake": "Afecta totes les llars de Reus, que paguen aquesta taxa cada any.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p4",
@@ -2690,7 +2804,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa per tramitar activitats i negocis",
+      "human_body": "Es modifica el que cobra l'Ajuntament per revisar i tramitar l'obertura o el control d'activitats i negocis, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta qui vulgui obrir o legalitzar un negoci o activitat a la ciutat.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p3",
@@ -2865,7 +2984,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en l'impost d'obres i construccions per al 2026",
+      "human_body": "Es modifica l'impost que es paga quan es fan obres, instal·lacions o construccions, vigent des de l'1 de gener de 2026. Votar a favor és aprovar els nous imports; votar en contra és rebutjar-los.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta qui faci obres o reformes que necessitin llicència municipal.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p26",
@@ -2889,7 +3013,12 @@
       "source_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019b4710732b1d90",
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e86f6cb29ea",
       "party_votes_canon": {},
-      "contested_suggested": false
+      "contested_suggested": false,
+      "headline": "Pujada de sou del personal de Mas Carandell",
+      "human_body": "S'aplica la mateixa pujada de sou (2,5% al 2025 i 1,5% al 2026) al personal de l'Institut de Formació i Empresa Mas Carandell. Votar a favor és aplicar-la; votar en contra és rebutjar-la.",
+      "topic": "Govern i institucional",
+      "stake": "Afecta els treballadors de l'organisme municipal de formació i ocupació.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p25",
@@ -2913,7 +3042,12 @@
       "source_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019b4710732b1d90",
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e86f6cb29ea",
       "party_votes_canon": {},
-      "contested_suggested": false
+      "contested_suggested": false,
+      "headline": "Pujada de sou del personal de l'Institut de Cultura",
+      "human_body": "S'aplica la mateixa pujada de sou (2,5% al 2025 i 1,5% al 2026) al personal de l'Institut Municipal Reus Cultura. Votar a favor és aplicar-la; votar en contra és rebutjar-la.",
+      "topic": "Cultura i esport",
+      "stake": "Afecta els treballadors de l'organisme municipal de cultura.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p24",
@@ -2937,7 +3071,12 @@
       "source_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019b4710732b1d90",
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e86f6cb29ea",
       "party_votes_canon": {},
-      "contested_suggested": false
+      "contested_suggested": false,
+      "headline": "Pujada de sou del personal de Reus Promoció",
+      "human_body": "S'aplica la mateixa pujada de sou (2,5% al 2025 i 1,5% al 2026) al personal de l'organisme Reus Promoció. Votar a favor és aplicar-la; votar en contra és rebutjar-la.",
+      "topic": "Govern i institucional",
+      "stake": "Afecta els treballadors de l'organisme municipal de promoció de la ciutat.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p23",
@@ -2961,7 +3100,12 @@
       "source_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c08382989f3b86019b4710732b1d90",
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e86f6cb29ea",
       "party_votes_canon": {},
-      "contested_suggested": false
+      "contested_suggested": false,
+      "headline": "Pujada de sou del personal de l'Ajuntament",
+      "human_body": "S'apliquen les pujades de sou marcades per l'Estat als treballadors municipals: un 2,5% al 2025 (amb pagament endarrerit) i un 1,5% al 2026. Votar a favor és aplicar aquestes pujades; votar en contra és rebutjar-les.",
+      "topic": "Govern i institucional",
+      "stake": "Afecta la plantilla de l'Ajuntament i la despesa de personal del pressupost.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p22",
@@ -3136,7 +3280,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en el pla d'ajuts i subvencions 2025-2027",
+      "human_body": "Es modifica el pla que fixa quins ajuts i subvencions donarà l'Ajuntament fins al 2027. Votar a favor és aprovar els canvis; votar en contra és rebutjar-los.",
+      "topic": "Govern i institucional",
+      "stake": "Afecta entitats, associacions i persones que poden rebre ajuts públics municipals.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p21",
@@ -3311,7 +3460,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "El pressupost de l'Ajuntament per a l'any 2026",
+      "human_body": "Decideix quants diners gasta i ingressa l'Ajuntament durant tot el 2026 i en què es reparteixen. Votar a favor és aprovar aquest pla de comptes; votar en contra és rebutjar-lo.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta tota la ciutat: marca els diners per a serveis, inversions i ajuts durant tot l'any.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p20",
@@ -3486,7 +3640,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa dels serveis de cementiri",
+      "human_body": "Es modifica el que es paga pels serveis del cementiri, com nínxols i enterraments, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Altres",
+      "stake": "Afecta les famílies que fan servir els serveis del cementiri municipal.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p2",
@@ -3661,7 +3820,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en l'impost sobre els immobles (IBI) per al 2026",
+      "human_body": "Es modifica l'impost que paguen els propietaris de pisos, cases i locals, que entra en vigor l'1 de gener de 2026. Votar a favor és aprovar els nous valors; votar en contra és mantenir-ho com estava o rebutjar el canvi.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta tothom qui tingui un habitatge o local en propietat a Reus.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p19",
@@ -3836,7 +4000,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en el preu de la bicicleta pública compartida",
+      "human_body": "Es modifica el preu del servei de bicicletes públiques compartides de Reus, des de l'1 de gener de 2026. Votar a favor és aprovar les noves tarifes; votar en contra és rebutjar-les.",
+      "topic": "Mobilitat",
+      "stake": "Afecta les persones usuàries del servei de bici pública de la ciutat.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p18",
@@ -4011,7 +4180,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en el preu del transport públic urbà",
+      "human_body": "Es modifica el preu del bus urbà de Reus, des de l'1 de gener de 2026. Votar a favor és aprovar les noves tarifes; votar en contra és rebutjar-les.",
+      "topic": "Mobilitat",
+      "stake": "Afecta totes les persones que fan servir l'autobús urbà de la ciutat.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p17",
@@ -4186,7 +4360,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en les tarifes de l'aigua i el clavegueram",
+      "human_body": "Es modifica el que es paga pel subministrament d'aigua potable i pel servei de clavegueram, des de l'1 de gener de 2026. Votar a favor és aprovar les noves tarifes; votar en contra és rebutjar-les.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta totes les llars i negocis que tenen aigua i clavegueram a Reus.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p16",
@@ -4361,7 +4540,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en el preu de recollida de residus comercials",
+      "human_body": "Es modifica el preu que paguen comerços i indústries per recollir els seus residus i per neteges especials, des de l'1 de gener de 2026. Votar a favor és aprovar el nou preu; votar en contra és rebutjar-lo.",
+      "topic": "Medi ambient",
+      "stake": "Afecta comerços, indústries i activitats que generen residus assimilables als domèstics.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p15",
@@ -4536,7 +4720,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa del cens i la recollida d'animals",
+      "human_body": "Es modifica el que es paga pel registre de gossos i gats i per la recollida i acollida d'animals abandonats, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Medi ambient",
+      "stake": "Afecta les persones amb animals de companyia i el servei d'animals abandonats.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p14",
@@ -4711,7 +4900,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa per fer servir béns i instal·lacions municipals",
+      "human_body": "Es modifica el que es paga per utilitzar edificis, espais o instal·lacions de l'Ajuntament, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta entitats i persones que lloguen o fan servir espais municipals.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p13",
@@ -4886,7 +5080,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa per ocupar el subsòl i l'espai de la via pública",
+      "human_body": "Es modifica el que es paga per fer servir el terra, el subsòl o l'espai aeri de la via pública, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta sobretot empreses de serveis (llum, aigua, gas, telefonia) que ocupen el subsòl.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p12",
@@ -5061,7 +5260,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa dels guals i reserves d'aparcament",
+      "human_body": "Es modifica el que es paga pels guals (entrades de vehicles) i per reservar espai a la via pública per carregar i descarregar, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Mobilitat",
+      "stake": "Afecta qui té un gual o una reserva d'aparcament o de càrrega i descàrrega.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p11",
@@ -5236,7 +5440,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa per serveis especials de la Guàrdia Urbana",
+      "human_body": "Es modifica el que es cobra per serveis concrets de la Guàrdia Urbana, com vigilància en actes privats, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Seguretat",
+      "stake": "Afecta qui demana serveis especials de la policia municipal, com organitzadors d'esdeveniments.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p10",
@@ -5411,7 +5620,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en la taxa dels serveis d'urbanisme",
+      "human_body": "Es modifica el que es paga pels tràmits urbanístics, com llicències i informes, des de l'1 de gener de 2026. Votar a favor és aprovar la nova taxa; votar en contra és rebutjar-la.",
+      "topic": "Urbanisme",
+      "stake": "Afecta qui fa tràmits d'obres, llicències o gestions urbanístiques.",
+      "explained": true
     },
     {
       "id": "PLE_12_2025_EXTR-p1",
@@ -5586,7 +5800,12 @@
         "no_adscrit_Pardo": "against",
         "no_adscrit_Ruiz": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canvis en l'impost de les activitats econòmiques per al 2026",
+      "human_body": "Es modifica l'impost que paguen empreses i negocis grans per la seva activitat, amb efecte des de l'1 de gener de 2026. Votar a favor és acceptar aquests canvis; votar en contra és rebutjar-los.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta sobretot empreses i negocis amb facturació alta; els petits autònoms solen estar exempts.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p9",
@@ -5610,7 +5829,12 @@
       "source_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0828288bda7ac018968e4a60e04b3",
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0848289e16cc1018aefc0db4b0541",
       "party_votes_canon": {},
-      "contested_suggested": false
+      "contested_suggested": false,
+      "headline": "Aprovar el pla de la ciutat per als períodes de sequera",
+      "human_body": "S'aprova de manera definitiva un pla que estableix què farà Reus quan hi hagi poca aigua per sequera. Votar a favor és tenir aquest pla en marxa; votar en contra és no aprovar-lo.",
+      "topic": "Medi ambient",
+      "stake": "Afecta tota la ciutadania quan hi hagi restriccions o falta d'aigua.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p8",
@@ -5634,7 +5858,12 @@
       "source_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0828288bda7ac018968e4a60e04b3",
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0848289e16cc1018aefc0db4b0541",
       "party_votes_canon": {},
-      "contested_suggested": false
+      "contested_suggested": false,
+      "headline": "Aprovar canvis al pla urbanístic del Barri del Carme",
+      "human_body": "Es modifica el pla urbanístic en unes àrees concretes del Barri del Carme per ordenar com s'hi pot construir. Votar a favor és aprovar inicialment aquests canvis; votar en contra és no aprovar-los.",
+      "topic": "Urbanisme",
+      "stake": "Afecta veïns i propietaris d'aquestes àrees del Barri del Carme.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p7",
@@ -5810,7 +6039,12 @@
         "VOX": "for",
         "CUP": "against"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Donar el vistiplau inicial a urbanitzar el sector Bellisens",
+      "human_body": "L'Ajuntament dona un informe favorable per començar a estudiar el desenvolupament urbanístic de la zona de Bellisens, vora la N-340. Votar a favor és donar llum verda a aquesta primera fase; votar en contra és aturar-la.",
+      "topic": "Urbanisme",
+      "stake": "Afecta el futur creixement urbà i el sòl de la zona de Bellisens.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p6",
@@ -5834,7 +6068,12 @@
       "source_url": "https://serveis.reus.cat/actes/session/sessionDetail/e4c0828288bda7ac018968e4a60e04b3",
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0848289e16cc1018aefc0db4b0541",
       "party_votes_canon": {},
-      "contested_suggested": false
+      "contested_suggested": false,
+      "headline": "Donar una distinció honorífica al Ball de Cavallets",
+      "human_body": "L'Ajuntament concedeix una menció d'honor al Ball de Cavallets de Reus per reconèixer la seva tradició. Votar a favor és donar-li aquest reconeixement; votar en contra és no concedir-lo.",
+      "topic": "Cultura i esport",
+      "stake": "Reconeixement públic a una entitat cultural i tradicional de la ciutat.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p5",
@@ -6010,7 +6249,12 @@
         "JxR": "against",
         "CUP": "against"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canviar la llista de personal de confiança de l'Ajuntament",
+      "human_body": "Es modifica la plantilla del personal eventual, és a dir, els càrrecs de confiança que treballen per a l'Ajuntament. Votar a favor és aprovar aquest canvi; votar en contra és deixar la plantilla com estava.",
+      "topic": "Govern i institucional",
+      "stake": "Afecta quants càrrecs de confiança hi ha i el cost en personal de l'Ajuntament.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p4",
@@ -6186,7 +6430,12 @@
         "VOX": "for",
         "CUP": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Triar qui representa l'Ajuntament en diferents òrgans",
+      "human_body": "L'Ajuntament nomena les persones que el representaran en diversos organismes i comissions municipals. Votar a favor és acceptar aquests nomenaments; votar en contra és rebutjar-los.",
+      "topic": "Govern i institucional",
+      "stake": "Determina quins càrrecs municipals ocupen llocs en organismes de la ciutat.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p16",
@@ -6362,7 +6611,12 @@
         "VOX": "against",
         "PP": "against"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Demanar aturar el projecte del pàrquing de la Hispània",
+      "human_body": "El grup de la CUP demana que l'Ajuntament aturi el projecte d'aparcament de la Hispània. Votar a favor és demanar que s'aturi el projecte; votar en contra és deixar que segueixi endavant.",
+      "topic": "Mobilitat",
+      "stake": "Afecta els veïns de la zona de la Hispània i el futur d'aquest espai.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p15",
@@ -6538,7 +6792,12 @@
         "JxR": "abstain",
         "PP": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Reclamar que es compleixin els compromisos del mandat 2019-2023",
+      "human_body": "El grup de la CUP demana que el govern compleixi les promeses de campanya i del mandat 2019-2023. Votar a favor és reclamar al govern que compleixi aquests compromisos; votar en contra és no fer aquesta reclamació.",
+      "topic": "Govern i institucional",
+      "stake": "Posa en qüestió si les promeses fetes a la ciutadania s'han complert.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p14",
@@ -6714,7 +6973,12 @@
         "PP": "abstain",
         "VOX": "against"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Impulsar un pacte local per defensar el català",
+      "human_body": "El grup Junts per Reus demana que l'Ajuntament impulsi un pacte local per la llengua per protegir i promoure el català a la ciutat. Votar a favor és que el ple doni suport a aquesta proposta; votar en contra és no donar-li suport.",
+      "topic": "Drets i igualtat",
+      "stake": "Afecta com es promou l'ús del català als serveis i la vida de la ciutat.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p13",
@@ -6890,7 +7154,12 @@
         "VOX": "for",
         "CUP": "against"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Canviar les condicions del pàrquing del Pallol",
+      "human_body": "Es modifica el contracte de l'empresa que explota l'aparcament públic del Centre del Pallol. Votar a favor és aprovar aquests canvis al contracte; votar en contra és no aprovar-los.",
+      "topic": "Mobilitat",
+      "stake": "Afecta els usuaris de l'aparcament i la gestió d'un servei públic.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p12",
@@ -7066,7 +7335,12 @@
         "VOX": "for",
         "CUP": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Reordenar la classificació del personal funcionari",
+      "human_body": "Es reclassifica la plantilla de personal funcionari de l'Ajuntament, és a dir, es revisen categories i nivells dels treballadors públics. Votar a favor és aprovar aquesta reordenació; votar en contra és deixar-la com estava.",
+      "topic": "Govern i institucional",
+      "stake": "Afecta les condicions i categories dels treballadors municipals.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p11",
@@ -7242,7 +7516,12 @@
         "PP": "abstain",
         "CUP": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Demanar un préstec per pagar inversions del pressupost 2023",
+      "human_body": "L'Ajuntament demana un crèdit a llarg termini a una entitat financera per finançar inversions previstes el 2023. Votar a favor és aprovar aquest préstec; votar en contra és no endeutar-se per a aquestes inversions.",
+      "topic": "Impostos i pressupost",
+      "stake": "Afecta el deute municipal i les obres i inversions que es podran fer.",
+      "explained": true
     },
     {
       "id": "PLE_9_2023_ORD-p10",
@@ -7418,7 +7697,12 @@
         "VOX": "against",
         "CUP": "abstain"
       },
-      "contested_suggested": true
+      "contested_suggested": true,
+      "headline": "Continuar amb el pla educatiu de barri de Reus",
+      "human_body": "L'Ajuntament manifesta que vol seguir mantenint el Pla Educatiu d'Entorn, que coordina activitats i suport educatiu fora de l'escola. Votar a favor és voler continuar-lo; votar en contra és no donar-li continuïtat.",
+      "topic": "Drets i igualtat",
+      "stake": "Afecta infants, joves i famílies que reben suport educatiu al barri.",
+      "explained": true
     }
   ]
 }
