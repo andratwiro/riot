@@ -76,6 +76,11 @@
     padding:4px 10px;border-radius:999px}
   .card h2{font-size:25px;line-height:1.4;margin:14px 0 10px;font-weight:450;letter-spacing:-.01em}
   .card .body{color:#d4d8e0;font-size:15px}
+  .card .brief{color:#d4d8e0;font-size:15px;line-height:1.5}
+  .card .brief p{margin:0 0 11px}
+  .card .brief ul{margin:0 0 11px;padding-left:18px}
+  .card .brief li{margin:4px 0}
+  .card .brief strong{color:#fff;font-weight:650}
   .card .stake{margin-top:10px;color:var(--dim);font-size:13px;border-left:2px solid var(--line);padding-left:10px}
   .more{align-self:flex-start;margin:4px 0 0;background:none;border:0;color:var(--acc);
     font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 0}
@@ -373,6 +378,17 @@ function renderMap(){
   }
 }
 
+// Render a rich "brief" (light markdown: blank-line paragraphs, "- " bullets, **bold**).
+function renderBrief(md){
+  const bold=s=>esc(s).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");
+  const html=String(md).split(/\n{2,}/).map(block=>{
+    const lines=block.split("\n").map(l=>l.trim()).filter(Boolean);
+    if(lines.length && lines.every(l=>l.startsWith("- ")))
+      return "<ul>"+lines.map(l=>"<li>"+bold(l.slice(2))+"</li>").join("")+"</ul>";
+    return "<p>"+bold(lines.join(" "))+"</p>";
+  }).join("");
+  return `<div class="brief">${html}</div>`;
+}
 function renderStack(){
   const stack=$("#stack");
   if(idx>=deck.length){finish();return;}
@@ -386,7 +402,9 @@ function renderStack(){
     const head  = useOriginal ? esc(d.title||d.headline) : esc(d.headline);
     const body  = useOriginal
       ? `<div class="body rawtxt">${esc(d.raw_outcome||d.title||"")}</div>`
-      : `<div class="body">${esc(d.human_body||"")}${d.stake?`<div class="stake">${esc(d.stake)}</div>`:""}</div>`;
+      : d.source_brief
+        ? renderBrief(d.source_brief)+(d.stake?`<div class="stake">${esc(d.stake)}</div>`:"")
+        : `<div class="body">${esc(d.human_body||"")}${d.stake?`<div class="stake">${esc(d.stake)}</div>`:""}</div>`;
     const acts = depth===0
       ? `<div class="acts">
           <button class="btn a" data-v="against">En contra</button>
