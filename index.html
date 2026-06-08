@@ -160,13 +160,21 @@
   #pvHead .lg{width:30px;height:30px;border-radius:50%;margin:0;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
   #pvHead .lg img{width:100%;height:100%;object-fit:contain}
   #pvHead .lg.fb{color:#fff;font-size:10px;font-weight:700}
-  #pvHead b{font-size:15px}
-  #pvHead .pvpct{font-size:12px;color:var(--dim)}
+  #pvHead b{font-size:17px}
+  #pvHead .pvpct{font-size:13.5px;color:var(--dim)}
   .pvrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
   .pvrow .pchip.you{border-color:var(--acc)}
   .badge.b-agree{background:rgba(39,182,106,.16);color:#5fd58c}
   .badge.b-disagree{background:rgba(229,72,95,.16);color:#f08197}
   .badge.b-na{background:rgba(120,130,145,.18);color:#9aa3b0}
+  /* larger, easier-to-read text in the party comparison list */
+  #partyView #pvIntro{font-size:14.5px}
+  #partyView .lcard{padding:16px 18px}
+  #partyView .lcard .lt{font-size:18px;line-height:1.4}
+  #partyView .pvrow{gap:8px;margin-top:13px}
+  #partyView .pvrow .pchip{font-size:14px;padding:6px 11px;gap:7px}
+  #partyView .pvrow .dot{width:9px;height:9px}
+  #partyView .badge{font-size:12.5px;padding:4px 10px}
   .pa{cursor:pointer}
   /* curator / dev bar (fixed footer) */
   #devbar{position:fixed;left:0;right:0;bottom:0;z-index:18;display:none;gap:10px;
@@ -277,7 +285,7 @@
     </div>
   </div>
   <div class="lwrap">
-    <p class="muted" id="pvIntro" style="font-size:12.5px;margin-top:0"></p>
+    <p class="muted" id="pvIntro" style="margin-top:0"></p>
     <div id="pvList"></div>
   </div>
 </div>
