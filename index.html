@@ -162,6 +162,25 @@
   .badge.b-disagree{background:rgba(229,72,95,.16);color:#f08197}
   .badge.b-na{background:rgba(120,130,145,.18);color:#9aa3b0}
   .pa{cursor:pointer}
+  /* curator / dev bar (fixed footer) */
+  #devbar{position:fixed;left:0;right:0;bottom:0;z-index:18;display:none;gap:10px;
+    align-items:center;justify-content:center;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(14,16,20,.92);backdrop-filter:blur(8px);border-top:1px solid var(--line)}
+  body.dev #devbar{display:flex}
+  body.dev .app{padding-bottom:66px}
+  .markbtn{flex:1 1 auto;max-width:360px;background:var(--card2);border:1px solid var(--line);
+    color:var(--ink);font-size:14px;padding:11px 14px;border-radius:11px;cursor:pointer}
+  .markbtn:hover{background:#2a313d}
+  .markbtn:disabled{opacity:.45;cursor:default}
+  .markbtn.on{background:rgba(229,72,95,.16);border-color:var(--against);color:#f3a3af}
+  .markreview{background:none;border:1px solid var(--line);color:var(--dim);
+    font-size:12px;padding:9px 11px;border-radius:10px;cursor:pointer;flex:0 0 auto}
+  .markreview:hover{color:var(--ink);border-color:var(--dim)}
+  #marksView{position:fixed;inset:0;background:var(--bg);z-index:21;display:none;overflow:auto;padding:0 0 40px}
+  #marksView .lh{position:sticky;top:0;background:rgba(14,16,20,.95);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+  #marksView .lwrap{max-width:760px;margin:0 auto;padding:16px 18px}
   .muted{color:var(--dim)}
   details summary{cursor:pointer;color:var(--dim);font-size:11.5px;margin-top:8px;outline:none}
 
@@ -225,6 +244,11 @@
 
 </div>
 
+<div id="devbar">
+  <button id="markBtn" class="markbtn" type="button">🚩 No val la pena votar</button>
+  <button id="markReview" class="markreview" type="button" title="Revisa els marcats">0 marcats</button>
+</div>
+
 <div id="log">
   <div class="lh">
     <div><b>Dades originals</b> <span class="muted" id="logCount"></span></div>
@@ -250,6 +274,21 @@
   </div>
 </div>
 
+<div id="marksView">
+  <div class="lh">
+    <div><b>No val la pena votar</b> <span class="muted" id="marksCount"></span></div>
+    <button class="gear" id="closeMarks" title="Tanca">⚙</button>
+  </div>
+  <div class="lwrap">
+    <p class="muted" style="font-size:12.5px;margin-top:0">
+      Decisions que has marcat manualment per revisar més tard (govern obligat a actuar, tràmits, etc.).
+      Es desa al navegador i persisteix entre sessions, a diferència dels vots.
+    </p>
+    <div style="margin:0 0 14px"><button id="copyMarks" class="markreview" type="button">⧉ Copia JSON</button></div>
+    <div id="marksList"></div>
+  </div>
+</div>
+
 <div id="sheet" aria-hidden="true">
   <div class="sheet-back" id="sheetBack"></div>
   <div class="sheet-panel" role="dialog" aria-label="Opcions">
@@ -270,6 +309,11 @@
       <span class="si-tx"><b>Mostra el mapa polític</b><small>Situa els partits i la teva posició en un mapa d'afinitats (en proves).</small></span>
       <span class="switch"><input type="checkbox" id="mapToggle"><span class="slider"></span></span>
     </label>
+    <label class="sheet-item" for="devToggle">
+      <span class="si-ic">🛠️</span>
+      <span class="si-tx"><b>Mode curador</b><small>Mostra un botó al peu per marcar decisions que no val la pena votar. Es desa entre sessions.</small></span>
+      <span class="switch"><input type="checkbox" id="devToggle"><span class="slider"></span></span>
+    </label>
   </div>
 </div>
 
@@ -286,6 +330,13 @@ let idx = 0;
 let useOriginal = false;
 let showMap = false;
 const answers = {};
+/* curator marks + dev mode — persist across sessions in localStorage */
+const MARK_KEY="riot.marks.v1", DEV_KEY="riot.dev.v1";
+function loadMarks(){try{return JSON.parse(localStorage.getItem(MARK_KEY))||[];}catch(e){return [];}}
+function saveMarks(){try{localStorage.setItem(MARK_KEY,JSON.stringify(marks));}catch(e){}}
+let marks=loadMarks();
+let devMode=false; try{devMode=localStorage.getItem(DEV_KEY)==="1";}catch(e){}
+const isMarked=id=>marks.some(m=>m.id===id);
 const MAP_GATE = 5;          // votes required before the user is placed on the map
 let COORD = null, MX = {}, mapBuilt = false;
 
@@ -470,6 +521,7 @@ function renderStack(){
       ${acts}`;
     stack.appendChild(el);
   }
+  updateDevBar();
 }
 function react(vote){
   if(idx>=deck.length)return;
@@ -488,6 +540,7 @@ function finish(){
   $("#closest").innerHTML=ranked.length
     ?`Ara mateix, el teu partit més afí: <b style="color:${ranked[0].color}">${ranked[0].name}</b> (${a[ranked[0].token].pct}%)`:"";
   $("#done").style.display="flex";
+  updateDevBar();
 }
 
 function collapseCard(card){
@@ -517,7 +570,7 @@ $("#stack").addEventListener("click",e=>{
   if(vb)react(vb.dataset.v);
 });
 document.addEventListener("keydown",e=>{
-  if($("#sheet").classList.contains("open")||$("#log").style.display==="block"||$("#partyView").style.display==="block")return;
+  if($("#sheet").classList.contains("open")||$("#log").style.display==="block"||$("#partyView").style.display==="block"||$("#marksView").style.display==="block")return;
   const exp=$("#stack").querySelector(".card.expanded");
   if(exp){if(e.key==="Escape")collapseCard(exp);return;}
   if(e.key==="ArrowLeft")react("against");
@@ -582,6 +635,61 @@ function openParty(token){
 $("#affinity").addEventListener("click",e=>{const el=e.target.closest(".pa");if(el)openParty(el.dataset.token);});
 $("#closeParty").addEventListener("click",()=>$("#partyView").style.display="none");
 
+/* ---- curator mode ---- */
+function setDevMode(on){
+  devMode=on;
+  try{localStorage.setItem(DEV_KEY,on?"1":"0");}catch(e){}
+  document.body.classList.toggle("dev",on);
+  updateDevBar();
+}
+function updateDevBar(){
+  if(!devMode)return;
+  const d=(idx<deck.length)?deck[idx]:null, btn=$("#markBtn");
+  if(d){const on=isMarked(d.id);
+    btn.disabled=false; btn.classList.toggle("on",on);
+    btn.textContent=on?"✓ Marcat — toca per treure":"🚩 No val la pena votar";
+  }else{btn.disabled=true; btn.classList.remove("on"); btn.textContent="🚩 No val la pena votar";}
+  $("#markReview").textContent=`${marks.length} marcat${marks.length===1?"":"s"}`;
+}
+function toggleMark(d){
+  const i=marks.findIndex(m=>m.id===d.id);
+  if(i>=0)marks.splice(i,1);
+  else marks.push({id:d.id,headline:d.headline||d.title||"",title:d.title||"",
+    date:d.date||"",session_code:d.session_code||"",point:d.point??null});
+  saveMarks(); updateDevBar();
+}
+$("#markBtn").addEventListener("click",()=>{
+  if(idx>=deck.length)return;
+  const d=deck[idx], wasMarked=isMarked(d.id);
+  toggleMark(d);
+  if(!wasMarked){ // mark + advance (does not count as a vote)
+    const top=$("#stack").lastChild;
+    if(top)top.classList.add("gone-d");
+    setTimeout(()=>{idx++;renderStack();},230);
+  }
+});
+function openMarks(){
+  $("#marksCount").textContent=`· ${marks.length}`;
+  $("#marksList").innerHTML=marks.length?marks.map(m=>`<div class="lcard">
+    <div class="lt">${esc(m.headline||m.title||m.id)}</div>
+    <div class="lm"><span>${m.date||""}</span><span>${esc(m.session_code||"")}${m.point!=null?" · punt "+m.point:""}</span></div>
+    <div class="pvrow"><button class="markreview" type="button" data-unmark="${m.id}">✕ Treure marca</button></div>
+  </div>`).join(""):`<p class="muted">Encara no has marcat cap decisió.</p>`;
+  $("#marksView").style.display="block";
+}
+$("#markReview").addEventListener("click",openMarks);
+$("#closeMarks").addEventListener("click",()=>$("#marksView").style.display="none");
+$("#copyMarks").addEventListener("click",()=>{
+  const txt=JSON.stringify(marks,null,2);
+  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>{$("#copyMarks").textContent="✓ Copiat";setTimeout(()=>$("#copyMarks").textContent="⧉ Copia JSON",1500);});
+});
+$("#marksList").addEventListener("click",e=>{
+  const b=e.target.closest("[data-unmark]"); if(!b)return;
+  const i=marks.findIndex(m=>m.id===b.dataset.unmark);
+  if(i>=0){marks.splice(i,1);saveMarks();openMarks();updateDevBar();}
+});
+$("#devToggle").addEventListener("change",e=>setDevMode(e.target.checked));
+
 function openSheet(){$("#sheet").classList.add("open");$("#sheet").setAttribute("aria-hidden","false");}
 function closeSheet(){$("#sheet").classList.remove("open");$("#sheet").setAttribute("aria-hidden","true");}
 function openLog(){if(!$("#logList").innerHTML)buildLog(); $("#log").style.display="block";}
@@ -596,7 +704,7 @@ function applyMapVisibility(){
   $("#map").style.display=(showMap&&COORD)?"":"none";
   if(showMap&&COORD)renderMap();
 }
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";$("#partyView").style.display="none";}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";$("#partyView").style.display="none";$("#marksView").style.display="none";}});
 
 if(PARTIES.length>=3 && R.decisions.length){
   COORD=partyMap();
@@ -605,6 +713,8 @@ if(PARTIES.length>=3 && R.decisions.length){
 }
 $("#mapToggle").checked=showMap;
 applyMapVisibility();
+$("#devToggle").checked=devMode;
+document.body.classList.toggle("dev",devMode);
 
 renderAffinity();
 renderStack();
