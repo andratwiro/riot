@@ -1,91 +1,91 @@
 [
   {
     "id": "PLE_9_2023_ORD-p4",
-    "headline": "Nomenar les persones que representaran l'Ajuntament en diversos òrgans i organismes municipals.",
+    "headline": "Aprovar quines persones representaran l'Ajuntament en diferents organismes i comissions (consells, empreses públiques, etc.) durant aquest mandat.",
     "body": "L'Ajuntament nomena les persones que el representaran en diversos organismes i comissions municipals. Votar a favor és acceptar aquests nomenaments; votar en contra és rebutjar-los.",
     "topic": "Govern i institucional",
     "stake": "Determina quins càrrecs municipals ocupen llocs en organismes de la ciutat."
   },
   {
     "id": "PLE_9_2023_ORD-p5",
-    "headline": "Modificar la llista de càrrecs de confiança (personal eventual) de l'Ajuntament.",
+    "headline": "Canviar la llista de càrrecs de confiança, persones que l'equip de govern contracta directament (sense oposició) per treballar per a l'Ajuntament.",
     "body": "Es modifica la plantilla del personal eventual, és a dir, els càrrecs de confiança que treballen per a l'Ajuntament. Votar a favor és aprovar aquest canvi; votar en contra és deixar la plantilla com estava.",
     "topic": "Govern i institucional",
     "stake": "Afecta quants càrrecs de confiança hi ha i el cost en personal de l'Ajuntament."
   },
   {
     "id": "PLE_9_2023_ORD-p6",
-    "headline": "Concedir una menció d'honor al Ball de Cavallets de Reus per la seva tradició.",
+    "headline": "Donar una distinció d'honor de la ciutat al Ball de Cavallets de Reus per reconèixer aquesta tradició popular.",
     "body": "L'Ajuntament concedeix una menció d'honor al Ball de Cavallets de Reus per reconèixer la seva tradició. Votar a favor és donar-li aquest reconeixement; votar en contra és no concedir-lo.",
     "topic": "Cultura i esport",
     "stake": "Reconeixement públic a una entitat cultural i tradicional de la ciutat."
   },
   {
     "id": "PLE_9_2023_ORD-p7",
-    "headline": "Donar el vistiplau inicial per estudiar la urbanització del sector Bellisens, vora la N-340.",
+    "headline": "Donar un primer vistiplau per començar a estudiar si s'urbanitza el sector de Bellisens, una zona vora la carretera N-340.",
     "body": "L'Ajuntament dona un informe favorable per començar a estudiar el desenvolupament urbanístic de la zona de Bellisens, vora la N-340. Votar a favor és donar llum verda a aquesta primera fase; votar en contra és aturar-la.",
     "topic": "Urbanisme",
     "stake": "Afecta el futur creixement urbà i el sòl de la zona de Bellisens."
   },
   {
     "id": "PLE_9_2023_ORD-p8",
-    "headline": "Aprovar inicialment canvis al pla urbanístic en àrees del Barri del Carme (PAU 12-15).",
+    "headline": "Aprovar, de manera inicial, canvis al pla urbanístic en unes zones concretes del Barri del Carme per ordenar com s'hi pot construir.",
     "body": "Es modifica el pla urbanístic en unes àrees concretes del Barri del Carme per ordenar com s'hi pot construir. Votar a favor és aprovar inicialment aquests canvis; votar en contra és no aprovar-los.",
     "topic": "Urbanisme",
     "stake": "Afecta veïns i propietaris d'aquestes àrees del Barri del Carme."
   },
   {
     "id": "PLE_9_2023_ORD-p9",
-    "headline": "Aprovar el pla que fixa què farà Reus en períodes de sequera.",
+    "headline": "Aprovar el pla que estableix què farà la ciutat (restriccions i mesures d'estalvi) quan hi hagi poca aigua per culpa de la sequera.",
     "body": "S'aprova de manera definitiva un pla que estableix què farà Reus quan hi hagi poca aigua per sequera. Votar a favor és tenir aquest pla en marxa; votar en contra és no aprovar-lo.",
     "topic": "Medi ambient",
     "stake": "Afecta tota la ciutadania quan hi hagi restriccions o falta d'aigua."
   },
   {
     "id": "PLE_9_2023_ORD-p10",
-    "headline": "Donar continuïtat al Pla Educatiu d'Entorn, que coordina suport i activitats educatives fora de l'escola.",
+    "headline": "Continuar amb el Pla Educatiu d'Entorn, que organitza activitats i suport educatiu per a infants i joves fora de l'horari de l'escola.",
     "body": "L'Ajuntament manifesta que vol seguir mantenint el Pla Educatiu d'Entorn, que coordina activitats i suport educatiu fora de l'escola. Votar a favor és voler continuar-lo; votar en contra és no donar-li continuïtat.",
     "topic": "Drets i igualtat",
     "stake": "Afecta infants, joves i famílies que reben suport educatiu al barri."
   },
   {
     "id": "PLE_9_2023_ORD-p11",
-    "headline": "Demanar un préstec a llarg termini per finançar inversions del pressupost del 2023.",
+    "headline": "Demanar un préstec bancari a llarg termini per pagar inversions (obres i millores) previstes al pressupost del 2023.",
     "body": "L'Ajuntament demana un crèdit a llarg termini a una entitat financera per finançar inversions previstes el 2023. Votar a favor és aprovar aquest préstec; votar en contra és no endeutar-se per a aquestes inversions.",
     "topic": "Impostos i pressupost",
     "stake": "Afecta el deute municipal i les obres i inversions que es podran fer."
   },
   {
     "id": "PLE_9_2023_ORD-p12",
-    "headline": "Reclassificar la plantilla de personal funcionari: revisar categories i nivells dels treballadors públics.",
+    "headline": "Revisar la classificació del personal funcionari de l'Ajuntament, canviant categories i nivells dels treballadors públics.",
     "body": "Es reclassifica la plantilla de personal funcionari de l'Ajuntament, és a dir, es revisen categories i nivells dels treballadors públics. Votar a favor és aprovar aquesta reordenació; votar en contra és deixar-la com estava.",
     "topic": "Govern i institucional",
     "stake": "Afecta les condicions i categories dels treballadors municipals."
   },
   {
     "id": "PLE_9_2023_ORD-p13",
-    "headline": "Modificar el contracte de l'empresa que explota l'aparcament públic del Centre del Pallol.",
+    "headline": "Canviar les condicions del contracte de l'empresa que gestiona l'aparcament públic del Centre del Pallol.",
     "body": "Es modifica el contracte de l'empresa que explota l'aparcament públic del Centre del Pallol. Votar a favor és aprovar aquests canvis al contracte; votar en contra és no aprovar-los.",
     "topic": "Mobilitat",
     "stake": "Afecta els usuaris de l'aparcament i la gestió d'un servei públic."
   },
   {
     "id": "PLE_9_2023_ORD-p14",
-    "headline": "Impulsar un pacte local per la llengua per defensar i promoure el català a Reus.",
+    "headline": "Que l'Ajuntament impulsi un pacte local per la llengua per protegir i promoure l'ús del català a la ciutat.",
     "body": "El grup Junts per Reus demana que l'Ajuntament impulsi un pacte local per la llengua per protegir i promoure el català a la ciutat. Votar a favor és que el ple doni suport a aquesta proposta; votar en contra és no donar-li suport.",
     "topic": "Drets i igualtat",
     "stake": "Afecta com es promou l'ús del català als serveis i la vida de la ciutat."
   },
   {
     "id": "PLE_9_2023_ORD-p15",
-    "headline": "Reclamar al govern que compleixi les promeses de campanya i del mandat 2019-2023.",
+    "headline": "Reclamar al govern municipal que compleixi les promeses que va fer a la campanya i durant el mandat 2019-2023.",
     "body": "El grup de la CUP demana que el govern compleixi les promeses de campanya i del mandat 2019-2023. Votar a favor és reclamar al govern que compleixi aquests compromisos; votar en contra és no fer aquesta reclamació.",
     "topic": "Govern i institucional",
     "stake": "Posa en qüestió si les promeses fetes a la ciutadania s'han complert."
   },
   {
     "id": "PLE_9_2023_ORD-p16",
-    "headline": "Demanar que l'Ajuntament aturi el projecte de l'aparcament de la Hispània.",
+    "headline": "Demanar que l'Ajuntament aturi el projecte de construir un aparcament a la zona de la Hispània.",
     "body": "El grup de la CUP demana que l'Ajuntament aturi el projecte d'aparcament de la Hispània. Votar a favor és demanar que s'aturi el projecte; votar en contra és deixar que segueixi endavant.",
     "topic": "Mobilitat",
     "stake": "Afecta els veïns de la zona de la Hispània i el futur d'aquest espai."
