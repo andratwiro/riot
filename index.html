@@ -336,7 +336,7 @@
   </div>
 </div>
 
-<script src="data.js?v=1fd90031"></script>
+<script src="data.js?v=45d81149"></script>
 <script>
 const R = window.RIOT || {decisions:[], parties:[]};
 const PARTIES = R.parties || [];
@@ -344,7 +344,7 @@ const $ = s => document.querySelector(s);
 const VLAB = {for:"a favor", against:"en contra", abstain:"abstenció", split:"dividit", absent:"absent"};
 const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
 
-let deck = shuffle(R.decisions.filter(d => d.headline));
+let deck = shuffle(R.decisions.filter(d => d.headline && !d.curator_drop));
 let idx = 0;
 let useOriginal = false;
 let showMap = false;
@@ -601,7 +601,7 @@ document.addEventListener("keydown",e=>{
   else if(e.key==="ArrowDown")react("abstain");
 });
 $("#restart").addEventListener("click",()=>{
-  deck=shuffle(R.decisions.filter(d=>d.headline)); idx=0;
+  deck=shuffle(R.decisions.filter(d=>d.headline && !d.curator_drop)); idx=0;
   for(const k in answers)delete answers[k];
   $("#done").style.display="none";
   renderAffinity(); renderStack(); renderMap();

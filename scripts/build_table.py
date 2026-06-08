@@ -44,6 +44,10 @@ PARTY_META = [
 
 def main():
     sessions = {s["code"]: s for s in json.loads((RAW / "sessions.json").read_text())}
+    # Curator "no val la pena votar" flags — hidden from the voting deck (but kept in the
+    # table for transparency, and still reachable via the app's flagged-items view).
+    cm = ROOT / "data" / "curator_marks.json"
+    curator_drop = {m["id"] for m in json.loads(cm.read_text())} if cm.exists() else set()
     # Load human-layer explanations, keyed by decision id.
     explained = {}
     for ef in RAW.glob("explained_*.json"):
@@ -66,6 +70,7 @@ def main():
                 "acta_url": sess.get("acta_url"),
                 "party_votes_canon": party_votes,
                 "contested_suggested": contested,   # PROVISIONAL — not the final `counts`
+                "curator_drop": d["id"] in curator_drop,   # flagged 'no val la pena votar'
                 # --- human layer (Phase 1; reviewed separately, never overwrites facts) ---
                 "headline": ex.get("headline"),
                 "human_body": ex.get("body"),
@@ -103,6 +108,8 @@ def main():
         idx.write_text(new_html)
     print(f"  cache-bust: data.js?v={ver}")
 
+    dropped = sum(1 for r in rows if r.get("curator_drop"))
+    print(f"  curator-dropped (hidden from deck): {dropped}  |  in voting deck: {len(rows)-dropped}")
     contested = sum(1 for r in rows if r["contested_suggested"])
     print(f"built {len(rows)} decisions from {len(out['sessions_in_table'])} sessions")
     print(f"  provisional contested: {contested}  |  unanimous-ish: {len(rows)-contested}")

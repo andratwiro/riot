@@ -226,6 +226,7 @@
         "CUP": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Eliminar traves urbanístiques per obrir negocis: treure el mínim de 30 m² per botiga i facilitar dividir locals i posar aires a les façanes.",
       "human_body": "Es retoca el pla urbanístic per facilitar obrir o dividir locals comercials (treure la mida mínima de 30 m² i altres requisits) i fixar com han d'instal·lar-se els aparells d'aire condicionat a les façanes. Votar a favor és aprovar aquests canvis i enviar-los a la Generalitat; votar en contra és no acceptar-los.",
       "source_brief": "Es modifica el planejament per **facilitar l'activitat econòmica** i accelerar les autoritzacions d'obres i activitats, retocant diverses normes urbanístiques. Toca directament qui vol muntar un negoci o reformar un edifici.\n\n- **Desapareix** l'obligació que tota botiga tingui un mínim de **30 m²** de venda.\n- Es permet **dividir locals comercials** de planta baixa sense exigir sortida de fums a cadascun.\n- **El frec:** menys traves per obrir i adaptar locals, a canvi de relaxar requisits tècnics que abans eren obligatoris.",
@@ -413,6 +414,7 @@
         "no_adscrit_Pardo": "against"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Requalificar l'antiga sedera Pich Aguilera perquè tot el sostre residencial nou (13.315 m²) sigui habitatge de protecció pública.",
       "human_body": "Es fa un primer pas per canviar el pla urbanístic de la zona de l'antiga fàbrica Pich Aguilera perquè tot l'habitatge nou que s'hi construeixi sigui de protecció pública i es conservi part de l'edifici antic. Votar a favor és tirar endavant aquest canvi i obrir-lo a al·legacions; votar en contra és no acceptar-lo.",
       "source_brief": "Es dona el primer pas per transformar l'entorn de l'**antiga fàbrica Pich Aguilera**: tot el sostre residencial nou passa a ser **habitatge de protecció pública**, i es preserva part de l'estructura històrica. Encara queda un mes d'informació pública abans de res definitiu.\n\n- **El gir clau:** desapareix l'habitatge lliure i tot el nou sostre residencial es destina a protecció oficial.\n- Es retalla sostre total a canvi de més equipaments i carrers.\n- **El frec:** prioritzar pisos assequibles i memòria industrial, però amb menys metres construïbles que el planejament vigent permetia.",
@@ -444,6 +446,7 @@
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c082829d2a3464019dd886214d04a2",
       "party_votes_canon": {},
       "contested_suggested": false,
+      "curator_drop": true,
       "headline": "Ratificar el canvi de representant de les direccions d'instituts públics al Consell Educatiu de Ciutat (el tria el sector, no l'Ajuntament).",
       "human_body": "Es vol substituir la directora que representa els instituts públics de secundària al Consell Educatiu de Ciutat per una altra directora, perquè el mateix sector ho ha demanat. Votar a favor és acceptar aquest canvi de persona; votar en contra és no acceptar-lo.",
       "source_brief": "Es relleva qui parla en nom de les direccions dels instituts públics dins el **Consell Educatiu de Ciutat (CEC)**, l'espai on es debat l'educació a Reus. No és un nomenament polític: el sector tria, i l'acord només ho ratifica.\n\n- **Surt** la directora de l'institut Domènech i Montaner; **entra** la directora de l'institut Salvador Vilaseca.\n- És per al que resta del període **2022-2026**.\n- **El frec:** el Ple vota un relleu que en realitat ja ha decidit el sector — té sentit que ho ratifiqui o és pur formalisme?",
@@ -626,6 +629,7 @@
         "no_adscrit_Ruiz": "absent"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Obligar l'Ajuntament a tornar d'ofici, en 6 mesos i amb interessos, els diners cobrats de més en qualsevol tribut.",
       "human_body": "El regidor no adscrit Sr. Pardo demana modificar l'ordenança de tributs perquè quan l'Ajuntament cobri impostos indeguts (o duplicats) els torni en un màxim de sis mesos, amb interessos i sovint de manera automàtica, sense que el ciutadà ho hagi de reclamar. Votar a favor és iniciar aquest canvi de l'ordenança; votar en contra és no fer-ho.",
       "source_brief": "Es proposa modificar l'ordenança de recaptació per clarificar les **devolucions d'ingressos indeguts** en tots els tributs municipals: és a dir, què passa quan l'Ajuntament et cobra més del que toca.\n\n- Resoldre les sol·licituds de devolució en un **màxim de 6 mesos**.\n- Pagar els **interessos de demora d'ofici**, sense que els hagis de reclamar.\n- **El frec:** obligar l'Ajuntament a tornar d'ofici el que cobra de més, o deixar que sigui el ciutadà qui ho hagi de reclamar.",
@@ -808,6 +812,7 @@
         "no_adscrit_Ruiz": "absent"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Exigir al govern dates per al Pavelló del Molinet i canviar la gespa de tres camps de futbol (600.000 €) per una sense microplàstics.",
       "human_body": "Junts per Reus demana al govern que presenti el projecte del pavelló del Molinet, que la nova gespa dels camps de futbol sigui de qualitat i sense microplàstics, que es replantegi el mapa d'instal·lacions esportives amb participació i que es posin aparells d'esport a l'aire lliure a cada barri. Votar a favor és obligar el govern a fer tot això; votar en contra és no aprovar-ho.",
       "source_brief": "Es planteja un paquet crític amb la gestió dels **equipaments esportius** de Reus, retraient manca de planificació i posant terminis concrets a obres i millores que afecten qui fa esport a la ciutat.\n\n- Presentar en **30 dies** el projecte executiu del **Pavelló del Molinet**, amb data d'inici abans de final de 2026.\n- Renovar la gespa dels camps del **Reddis, la Pastoreta i l'annex de l'Estadi**, substituint el cautxú per alternatives biodegradables.\n- **El frec:** posar dates i diners obligatoris a l'esport, o deixar marge al govern per planificar al seu ritme.",
@@ -995,6 +1000,7 @@
         "VOX": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Mantenir les bonificacions fiscals ja concedides per plaques solars i no aplicar el nou tràmit amb caràcter retroactiu.",
       "human_body": "Junts per Reus demana que qui ja va rebre bonificacions d'impostos per posar plaques solars no les perdi pel nou requisit de presentar una declaració responsable, i que qualsevol retallada d'aquests ajuts no s'apliqui cap enrere. Votar a favor és protegir aquests descomptes ja concedits; votar en contra és deixar el criteri actual del govern.",
       "source_brief": "Es debat un canvi de criteri municipal sobre les **bonificacions fiscals per a plaques solars** d'autoconsum. La proposta retreu que ara s'exigeixi una **declaració responsable amb caràcter retroactiu**, sota amenaça de perdre bonificacions ja concedides.\n\n- Afecta **famílies i empreses** que ja van invertir confiant en el marc anterior.\n- Reclama que cap revisió a la baixa sigui **retroactiva**.\n- **El frec:** seguretat jurídica per a qui ja va invertir, contra la potestat de l'Ajuntament de revisar bonificacions.",
@@ -1182,6 +1188,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Rebatejar el Pavelló Olímpic Municipal com a Pavelló Joan Sabater i dedicar un carrer a «El Reus de les sis copes».",
       "human_body": "VOX demana homenatjar l'exjugador d'hoquei Joan Sabater i l'equip històric del «Reus de les sis copes», rebatejant el Pavelló Olímpic Municipal amb el seu nom i estudiant dedicar-los un carrer o plaça. Votar a favor és aprovar aquest homenatge i el canvi de nom; votar en contra és no fer-ho.",
       "source_brief": "Es proposa homenatjar el jugador d'hoquei sobre patins **Joan Sabater** (87 anys) i l'equip del Reus Deportiu que va guanyar **sis Copes d'Europa consecutives entre 1967 i 1972**, un palmarès que va situar Reus al mapa esportiu europeu.\n\n- Rebatejar el **Pavelló Olímpic Municipal** com a **Pavelló Olímpic Municipal Joan Sabater**.\n- Estudiar dedicar un carrer o plaça a l'equip amb el nom «Carrer o Plaça del Reus de les Sis Copes».\n- **El frec:** reconèixer una glòria local amb el nom d'un espai públic, o esperar i fer-ho amb més consens.",
@@ -1369,6 +1376,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Crear un centre municipal de cures, un canguratge gratuït i un «Fons Municipal de Cures», i municipalitzar serveis com neteja i atenció domiciliària.",
       "human_body": "Amb motiu del Dia de les Dones Treballadores, la CUP demana un seguit de mesures: un centre de cures, cangur municipal gratuït, millorar les condicions de les feines de cura, més places públiques de 0-3 anys i un fons municipal de cures. Votar a favor és encarregar a l'Ajuntament que impulsi totes aquestes mesures; votar en contra és no aprovar-les.",
       "source_brief": "Amb motiu del **8 de març**, es proposa un paquet ampli de polítiques municipals de cures amb perspectiva feminista, partint de la idea que el treball no remunerat de cura recau sobretot sobre les dones.\n\n- Un **centre municipal de cures** i un **servei de canguratge municipal gratuït** fora d'horari escolar.\n- **Municipalització progressiva** de serveis externalitzats feminitzats: cures, neteja, atenció domiciliària, serveis socials.\n- **El frec:** un gir cap a més serveis públics i molta més despesa municipal en igualtat — Reus ho prioritza i ho pot pagar?",
@@ -1556,6 +1564,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Donar suport a les mobilitzacions docents i reclamar a la Generalitat reduir ràtios, dedicar el 6% del PIB a educació i reduir els concerts.",
       "human_body": "La CUP demana que l'Ajuntament recolzi les mobilitzacions del professorat i reclami a la Generalitat més recursos per a l'escola pública (menys alumnes per aula, menys burocràcia, reduir els concerts, etc.). Votar a favor és que l'Ajuntament faci seves aquestes reivindicacions; votar en contra és no fer-ho.",
       "source_brief": "Es planteja que l'Ajuntament doni suport a les mobilitzacions del personal educatiu i exigeixi al Departament d'Educació un gir en la seva política. La proposta afirma que els docents han perdut un **21,6% de poder adquisitiu respecte al 2010**.\n\n- Demana **reduir ràtios** i garantir la gratuïtat de l'educació infantil.\n- Vol situar la despesa educativa **al voltant del 6% del PIB** català.\n- **El frec:** inclou la **reducció progressiva dels concerts** fins a eliminar-los — un xoc de model educatiu, no només de pressupost.",
@@ -1743,6 +1752,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Sortir de la funerària pública FUNECAMP i deixar d'aportar-hi diners, després que un jutge n'anul·lés la justificació econòmica.",
       "human_body": "VOX demana que l'Ajuntament comenci a sortir de FUNECAMP, l'empresa pública de serveis funeraris compartida amb altres municipis, després que un jutge anul·lés l'informe que la justificava. Votar a favor és demanar que l'Ajuntament en surti i aturi els pagaments; votar en contra és deixar que l'Ajuntament hi continuï.",
       "source_brief": "Un jutjat ha anul·lat els acords que van crear **FUNECAMP**, la funerària pública supramunicipal de Reus, Salou, Vila-seca i Constantí. Sobre la taula, una proposta per fer que Reus en surti i suspengui les aportacions econòmiques fins a aclarir la situació.\n\n- **El detonant:** una sentència declara contraris a Dret els acords que van aprovar el projecte i anul·la la seva memòria justificativa.\n- La sentència qüestiona la **viabilitat econòmica**: previsions irreals, costos infraestimats i risc de pèrdues.\n- **El frec:** continuar finançant una societat pública amb la base jurídica anul·lada, o retirar-se'n per protegir els diners municipals.",
@@ -1925,6 +1935,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar un 2,5% (IPC) la taxa per obtenir documents municipals (empadronament, cèdules) i els drets d'examen d'oposicions.",
       "human_body": "Puja un 2,5% (IPC previst del 2025) el que es paga per obtenir certificats i altres documents administratius. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Cada vegada que demanes un document oficial a l'Ajuntament pagues una taxa, i aquesta s'apuja seguint la inflació. També afecta els drets d'examen de qui es presenta a una plaça pública. Es va plantejar eximir els certificats que el mateix Ajuntament t'exigeix per a altres tràmits, però es descarta per impediment legal.\n\n- **Empadronament:** **7,65 €** per certificat.\n- **Opositar:** els drets d'examen arriben a **42,48 €**.\n- **El frec:** pagar per un certificat que el mateix Ajuntament t'obliga a presentar.",
@@ -2107,6 +2118,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar les tarifes de la grua i el dipòsit, amb les primeres 24 h gratis i 3 dies de marge si el titular està hospitalitzat.",
       "human_body": "Es pugen les tarifes de la grua (retirada i dipòsit de vehicles) per finançar el servei i s'afegeix un marge de 3 dies sense cobrament en cas d'hospitalització. L'acta d'aquest punt no en concreta el percentatge. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Quan la grua retira un vehicle, pagues per l'arrossegament i pel temps que es queda al dipòsit. La revisió actualitza tarifes però hi afegeix dues proteccions: no es cobren les primeres 24 hores de custòdia i s'obre una carència si el titular estava hospitalitzat.\n\n- **Retirada:** des de 51 € (motos i bicis) fins a 186,78 € (turismes).\n- **Custòdia:** es paga per dia, però les **primeres 24 h són gratis**.\n- **El gest social:** descompte del 50% per discapacitat i marge per hospitalització.",
@@ -2289,6 +2301,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar un 2,5% la taxa de cartografia i el lloguer d'infraestructures de telecom municipals; la cartografia digital segueix gratuïta.",
       "human_body": "Puja un 2,5% (IPC previst del 2025) el que es paga pels serveis de mapes i dades cadastrals i per fer servir les infraestructures de telecomunicacions municipals. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Aquesta taxa cobreix dues coses molt diferents: la feina tècnica amb la cartografia municipal i el lloguer d'infraestructura de telecomunicacions de l'Ajuntament. La cartografia digital es manté gratuïta per al ciutadà; qui paga de debò són les operadores.\n\n- **Per a tu:** la cartografia oficial i les ortofotos digitals són **gratuïtes**.\n- **Per a les teleco:** canalitzacions i torres es lloguen a preu d'or.\n- **El frec:** si la ciutat cobra prou o massa poc a les operadores per ocupar el seu espai.",
@@ -2471,6 +2484,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar les taxes de la llicència de taxi: 781,54 € per obtenir-la i 1.426,64 € per traspassar-la en vida.",
       "human_body": "Es modifiquen les tarifes de les llicències de taxi per ajustar-les a les necessitats de finançament del servei; l'acta d'aquest punt no en concreta el percentatge. Votar a favor és aprovar el canvi; votar en contra és rebutjar-lo.",
       "source_brief": "La llicència de taxi és un permís limitat que té valor de mercat: es concedeix, es transmet en vida i s'hereta, i cada moviment paga taxa a l'Ajuntament. Aquesta revisió n'actualitza els imports. El rerefons: que un permís públic funcioni gairebé com un actiu privat que es ven car.\n\n- **Treure una llicència nova:** **781,54 €** (molt menys si el vehicle és adaptat).\n- **Traspassar-la en vida:** el moviment més car, **1.426,64 €**.\n- **El frec:** traspassar val gairebé el doble que obtenir-la nova de l'Ajuntament.",
@@ -2653,6 +2667,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar un 3,72% la taxa d'escombraries i mantenir que es pagui pels metres del pis, no per persones, renda ni pel que recicles.",
       "human_body": "La taxa que paguen els veïns per la brossa puja, de mitjana, un 3,72%, per cobrir el cost real del servei (com obliga la llei). Votar a favor és aprovar la pujada; votar en contra és rebutjar-la.",
       "source_brief": "La taxa que paga tota llar de Reus per la brossa puja, però no per capritx municipal: una llei estatal de residus obliga que cobreixi el cost real del servei i no doni pèrdues. Es manté el càlcul per superfície del pis, tot i les peticions de cobrar per persones, per generació real o per renda.\n\n- **Pagues per metres del pis**, no pel que recicles.\n- **Puja perquè ho mana la llei:** la taxa ha de ser específica i no deficitària.\n- **El frec:** un pis gran que recicla molt pot pagar més que un de petit que no recicla gens.",
@@ -2835,6 +2850,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar un 2,5% (IPC) la taxa per tramitar l'obertura o legalització d'una activitat (bars, botigues, tallers).",
       "human_body": "L'Ajuntament apuja un 2,5% (en línia amb l'IPC previst del 2025) el que cobra per revisar i tramitar l'obertura o el control d'activitats i negocis. Votar a favor és aprovar la pujada; votar en contra és rebutjar-la.",
       "source_brief": "Abans d'aixecar la persiana, qualsevol activitat ha de pagar a l'Ajuntament la tramitació del permís. Aquesta taxa s'apuja un 2,5% seguint la inflació prevista i es calcula per metre quadrat del local, amb una quota mínima que tothom paga sí o sí.\n\n- **Es paga per m²**, segons el tipus de permís ambiental.\n- **Mínim garantit:** **313,65 €**, per petit que sigui el local.\n- **El frec:** que el cost del tràmit pugi sol cada any amb la inflació, creis o no creis ocupació.",
@@ -3017,6 +3033,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Reordenar l'impost d'obres: mòdul de 646 €/m² al tipus màxim (4%) i bonificacions de fins al 95% per treure amiant, accessibilitat, patrimoni i lloguer social.",
       "human_body": "L'impost d'obres i construccions (ICIO) es paga quan es fan obres. No se'n canvia el tipus (4%); es confirma el mòdul de càlcul (646 €/m²), es corregeix una bonificació (del 50% al 75%) i es reordenen els descomptes. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "L'impost sobre obres (l'ICIO) es calcula sobre un mòdul per metre quadrat i grava qualsevol construcció o reforma. La novetat és un ventall de bonificacions de fins al 95% per a obres que interessen a la ciutat: treure amiant, accessibilitat, patrimoni o lloguer social.\n\n- **Es paga al tipus màxim legal:** **4%** sobre el valor de l'obra.\n- **Treure amiant:** nova bonificació del **95%**.\n- **Detall que es corregeix:** el text fixava per error un 50% on de fet s'aplicava un **75%** a obres de conveni.",
@@ -3048,6 +3065,7 @@
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e86f6cb29ea",
       "party_votes_canon": {},
       "contested_suggested": false,
+      "curator_drop": true,
       "headline": "Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Mas Carandell: +2,5% (2025) i +1,5% (2026).",
       "human_body": "S'aplica la mateixa pujada de sou (2,5% al 2025 i 1,5% al 2026) al personal de l'Institut de Formació i Empresa Mas Carandell. Votar a favor és aplicar-la; votar en contra és rebutjar-la.",
       "source_brief": "La pujada salarial que l'Estat ha decretat per a tot el sector públic (+2,5% el 2025, +1,5% el 2026) s'aplica al personal de l'Institut Municipal de Formació i Empresa «Mas Carandell». No és una decisió que Reus prengui lliurement: l'aplica perquè hi està obligat.\n\n- **Surt de la caixa municipal** — dels teus impostos.\n- **No és exclusiu d'aquest organisme:** la mateixa pujada arriba a tot el personal municipal.\n- **El fons:** el sou dels empleats públics es decideix a Madrid, no a Reus.",
@@ -3079,6 +3097,7 @@
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e86f6cb29ea",
       "party_votes_canon": {},
       "contested_suggested": false,
+      "curator_drop": true,
       "headline": "Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Reus Cultura: +2,5% (2025) i +1,5% (2026).",
       "human_body": "S'aplica la mateixa pujada de sou (2,5% al 2025 i 1,5% al 2026) al personal de l'Institut Municipal Reus Cultura. Votar a favor és aplicar-la; votar en contra és rebutjar-la.",
       "source_brief": "La pujada salarial que l'Estat ha decretat per a tot el sector públic (+2,5% el 2025, +1,5% el 2026) s'aplica al personal de l'Institut Municipal Reus Cultura. L'Ajuntament està obligat a aplicar-ho; el vot només ho fa efectiu.\n\n- **Surt de la caixa municipal** — dels teus impostos.\n- **No és exclusiu d'aquest organisme:** la mateixa pujada arriba a tot el personal municipal.\n- **El fons:** el sou dels empleats públics es decideix a Madrid, no a Reus.",
@@ -3110,6 +3129,7 @@
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e86f6cb29ea",
       "party_votes_canon": {},
       "contested_suggested": false,
+      "curator_drop": true,
       "headline": "Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de Reus Promoció: +2,5% (2025) i +1,5% (2026).",
       "human_body": "S'aplica la mateixa pujada de sou (2,5% al 2025 i 1,5% al 2026) al personal de l'organisme Reus Promoció. Votar a favor és aplicar-la; votar en contra és rebutjar-la.",
       "source_brief": "L'Estat ha apujat el sou a **tot** el sector públic (+2,5% el 2025, +1,5% el 2026) i l'Ajuntament està **obligat** a aplicar-ho; aquí, al personal de Reus Promoció, l'agència de turisme i comerç de la ciutat. Reus no decideix ni el quant ni el si: només firma.\n\n- **Surt de la caixa municipal** — és a dir, dels teus impostos.\n- **No és exclusiu d'aquest organisme:** la mateixa pujada arriba a tot el personal municipal.\n- **El fons:** el sou dels empleats públics es decideix a Madrid, no a la plaça del Mercadal.",
@@ -3141,6 +3161,7 @@
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c08382989f3b86019c8e86f6cb29ea",
       "party_votes_canon": {},
       "contested_suggested": false,
+      "curator_drop": true,
       "headline": "Aprovar la pujada salarial obligatòria fixada per l'Estat per al personal de l'Ajuntament: +2,5% (2025) i +1,5% (2026).",
       "human_body": "S'apliquen les pujades de sou marcades per l'Estat als treballadors municipals: un 2,5% al 2025 (amb pagament endarrerit) i un 1,5% al 2026. Votar a favor és aplicar aquestes pujades; votar en contra és rebutjar-les.",
       "source_brief": "L'Estat ha apujat el sou a **tot** el sector públic (+2,5% el 2025, +1,5% el 2026) i l'Ajuntament està **obligat** a aplicar-ho; aquí, al personal del propi Ajuntament de Reus. Reus no decideix ni el quant ni el si: només firma.\n\n- **Surt de la caixa municipal** — és a dir, dels teus impostos.\n- **La mateixa pujada arriba també als organismes autònoms municipals.**\n- **El fons:** el sou dels empleats públics es decideix a Madrid, no a la plaça del Mercadal.",
@@ -3323,6 +3344,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Reorientar les subvencions municipals: 279.486 € per crear empreses i un nou ajut per a negocis afectats per obres.",
       "human_body": "Es modifica el pla que fixa quins ajuts i subvencions donarà l'Ajuntament fins al 2027. Votar a favor és aprovar els canvis; votar en contra és rebutjar-los.",
       "source_brief": "És el pla que decideix a què es destinen les subvencions municipals del 2025 al 2027, ajustat al pressupost del 2026. Reordena prioritats cap a l'emprenedoria i estrena un ajut per als comerços afectats per obres, amb una advertència tècnica sobre el seguiment.\n\n- **Creació d'empreses:** **279.486 €** (inclou negocis de triple impacte a Santa Teresa).\n- **Nou ajut:** rebaixar la taxa d'escombraries als negocis afectats per obres urbanístiques.\n- **El frec:** repartir subvencions quan els informes no recullen tots els indicadors de control exigits.",
@@ -3505,6 +3527,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Aprovar el pressupost municipal de Reus per al 2026, que creix un 3,18% respecte del 2025.",
       "human_body": "Decideix quants diners gasta i ingressa l'Ajuntament durant tot el 2026 i en què es reparteixen. Votar a favor és aprovar aquest pla de comptes; votar en contra és rebutjar-lo.",
       "source_brief": "És el pressupost definitiu de la ciutat per al 2026: el repartiment de tots els ingressos i despeses municipals. Creix poc més d'un 3% i preveu reduir deute, però arrossega un punt feble greu: any rere any executa una part molt petita de les inversions previstes.\n\n- **Creixement:** **+3,18%** respecte del 2025.\n- **El taló d'Aquil·les:** de les inversions del 2024 només se'n va executar el **13,8%**.\n- **El frec:** aprovar grans plans d'inversió que després amb prou feines es fan.",
@@ -3687,6 +3710,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar un 2,5% (IPC) les taxes del cementiri: sepultures de 958 € a 18.771 €, inhumacions i columbaris.",
       "human_body": "Puja un 2,5% (IPC previst del 2025) el que es paga pels serveis del cementiri, com nínxols i enterraments. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Les concessions de sepultures, columbaris i inhumacions del cementiri municipal s'actualitzen amb la inflació. Són despeses que toquen tothom abans o després, amb una forquilla de preus enorme segons el tipus i la ubicació.\n\n- **Concessió de sepultura (50 anys):** de **958 €** fins a gairebé **19.000 €**.\n- **Inhumació:** de 158 € a 473 €.\n- **El frec:** que un servei que necessita tothom tingui preus tan desiguals.",
@@ -3869,6 +3893,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Mantenir el recàrrec del 50% de l'IBI als pisos buits i ampliar els descomptes per habitatge protegit i plaques solars.",
       "human_body": "L'IBI el paguen els propietaris de pisos, cases i locals. No se'n canvia el tipus ni el recàrrec dels pisos buits; s'ajusten bonificacions (habitatge de protecció, un límit per a les plaques solars i una nova bonificació del 95% en una zona concreta). Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "La principal factura de qui té un immoble a Reus, l'IBI, manté el càstig als habitatges desocupats i amplia els premis a qui inverteix en energia solar o en habitatge protegit. El debat real: fins on l'impost ha de forçar conductes (omplir pisos, posar plaques) i no només recaptar.\n\n- **Pisos buits:** es manté el recàrrec del **50%**, malgrat les peticions de suprimir-lo.\n- **Plaques solars:** **-50%** de la quota, amb topalls anuals.\n- **Habitatge protegit:** bonificat el primer tram de vida de l'immoble.",
@@ -4051,6 +4076,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Fixar els preus de la bici pública: 90 €/any (60 € joves i jubilats) i 1 €/dia, amb suplements si passes de 30 minuts.",
       "human_body": "Es modifiquen les tarifes del servei de bicicletes públiques compartides (per exemple, abonament anual 90 €, mensual 9 €/mes, tiquet diari 1 €), ajustant-les a les necessitats dels usuaris i als objectius de promoure el servei. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "El servei de bicicleta pública compartida fixa preus: abonaments barats per a ús quotidià de viatges curts, però amb recàrrecs si allargues el trajecte més de mitja hora. Pensat per moure's, no per passejar.\n\n- **Abonament anual:** **90 €** (jove i daurada **60 €**).\n- **Tiquet diari:** **1 €**.\n- **El frec:** el cost amagat dels suplements si superes els 30 minuts.",
@@ -4233,6 +4259,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Mantenir el bus urbà a 1,50 € i gratuït fins als 14 anys (per ajudes estatals) i apujar el bitllet a l'aeroport a 4 €.",
       "human_body": "El bitllet senzill del bus urbà es manté a 1,50 €; només es modifica el bitllet a l'aeroport, que es fixa en 4 €, i s'afegeix una reducció temporal del 50% en algunes targetes per ajudes estatals. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "El preu del bus urbà manté les rebaixes finançades amb ajudes estatals: gratuïtat fins als 14 anys i descomptes del 50% en diverses targetes, mentre durin aquestes ajudes. El bitllet ordinari es manté a 1,50 €, però el de l'aeroport puja.\n\n- **Bitllet senzill:** **1,50 €**.\n- **Bitllet aeroport:** puja a **4,00 €**.\n- **El frec:** les rebaixes són temporals i depenen que l'Estat mantingui les ajudes.",
@@ -4415,6 +4442,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar els preus de l'aigua potable, el clavegueram i el control d'abocaments a la depuradora.",
       "human_body": "Es pugen alguns preus de l'aigua entre el 0% i el 5%, aplicats sobretot als consums més elevats. El tram variable fins a 9 m³/mes, la tarifa social i els usos municipals no canvien. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Aquest és el bloc tarifari més extens de la sessió: cobreix l'aigua potable, el clavegueram, el control d'abocaments a la depuradora i serveis associats com analítiques de laboratori i venda de compost. Afecta qui consumeix aigua i, sobretot, les empreses que aboquen.\n\n- **Control d'abocaments a la depuradora (EDAR):** es paga per mostra.\n- **Venda de compost i sauló adobat:** es comercialitzen per m³.\n- **El frec:** afinar el preu perquè qui més embruta, més pagui.",
@@ -4597,6 +4625,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Fixar el preu públic de la recollida de brossa de comerços i indústries, cobrat pels metres del local i el tipus de residu.",
       "human_body": "Es pugen els imports que paguen comerços i indústries per la recollida dels seus residus i s'amplien els trams segons la superfície; l'acta d'aquest punt no en concreta el percentatge. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Els negocis no entren a la taxa domèstica d'escombraries: paguen un preu públic propi per la recollida dels seus residus comercials i industrials. Es calcula per superfície del local i per tipus de residu, amb coeficients que encareixen activitats com l'alimentació.\n\n- **Pagues pels metres del local**, amb un mínim i un màxim anuals.\n- **Segons l'activitat:** un coeficient pot apujar-te la quota (ex.: alimentació, x1,25).\n- **El frec:** cobrar per superfície i no per residu real generat.",
@@ -4779,6 +4808,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Fer gratuït censar un animal adoptat, incloure les fures al cens i eliminar el cobrament de duplicats de plaques.",
       "human_body": "Pugen un 2,5% (IPC) els imports del cens i la recollida d'animals, però el registre passa a ser gratuït si l'animal prové d'una adopció i s'elimina el cobrament per duplicar la xapa. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Tenir un animal a Reus obliga a inscriure'l al cens municipal, i la mateixa ordenança cobreix la recollida d'animals abandonats. La novetat premia l'adopció responsable i amplia qui ha d'estar censat.\n\n- **Si adoptes en un centre registrat:** la inscripció al cens és **gratuïta**.\n- **Novetat:** les **fures** passen a estar subjectes a cens.\n- **El fons:** usar les taxes per empènyer cap a l'adopció responsable.",
@@ -4961,6 +4991,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar un 2,5% el preu de llogar sales municipals i de casar-se per lo civil a la Sala de Plens (184,50 €).",
       "human_body": "Puja un 2,5% (IPC previst del 2025) el que es paga per utilitzar edificis, espais o instal·lacions de l'Ajuntament (estació d'autobusos, centres cívics, sala de plens...). Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Usar espais i equipaments municipals —des d'una aula d'un centre cívic fins a la mateixa Sala de Plens per a un casament— té preu, i aquest any s'apuja un 2,5% seguint la inflació.\n\n- **Casament civil a la Sala de Plens:** **184,50 €**.\n- **Sales i aules de centres cívics:** es lloguen per hora.\n- **El frec:** quant ha de pagar el ciutadà per usar allò que ja sosté amb impostos.",
@@ -5143,6 +5174,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar la taxa per ocupar la via pública amb terrasses, bastides o canonades (vol, sòl i subsòl).",
       "human_body": "Es pugen les tarifes per fer servir el terra, el subsòl o l'espai aeri de la via pública i la quota mínima passa de 6 a 7 €. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Qualsevol ús privatiu de l'espai públic —el vol (terrasses, marquesines), el sòl (bastides, contenidors) o el subsòl (canonades, dipòsits)— paga taxa a l'Ajuntament. Aquesta revisió n'actualitza els imports.\n\n- **Afecta** bars amb terrassa, obres amb bastida i empreses amb instal·lacions soterrades.\n- **És el lloguer de l'espai de tots** per a un ús privat.\n- **El frec:** qui treu profit privat de l'espai comú, quant ha de tornar a la ciutat.",
@@ -5325,6 +5357,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar la taxa del gual i de les reserves d'espai a la via pública.",
       "human_body": "Puja un 2,5% (IPC previst del 2025) el que es paga pels guals i per reservar espai a la via pública per carregar i descarregar. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "La placa de gual i les reserves d'espai a la via pública són un privilegi sobre un bé de tots — la vorera — i per això es paguen cada any. Aquesta revisió actualitza els imports segons l'informe tècnic-econòmic.\n\n- **Afecta** qui té entrada de vehicles o reserva d'estacionament.\n- **És un peatge per ocupar espai públic** en exclusiva.\n- **El frec:** quant ha de costar reservar-se per a tu sol un tros de carrer.",
@@ -5507,6 +5540,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar les taxes per serveis especials de la Guàrdia Urbana (informes, escortar vehicles) i regular l'ús de la galeria de tir.",
       "human_body": "Es pugen els imports que es cobren per serveis concrets de la Guàrdia Urbana (com vigilar actes privats), per ajustar-los al cost; l'acta d'aquest punt no en concreta el percentatge. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Hi ha serveis de la Guàrdia Urbana que no són gratuïts: informes tècnics i l'escorta de transports especials es cobren a qui els demana. Aquesta ordenança en fixa el preu i, de passada, regula l'ús de la galeria de tir municipal.\n\n- **Informe tècnic:** **51,32 €**.\n- **Acompanyar un vehicle especial:** **51,32 €** per servei.\n- **El frec:** qui fa servir serveis especials de la policia, ho paga ell o tota la ciutat.",
@@ -5689,6 +5723,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Apujar un 2,5% (IPC) les taxes pels tràmits urbanístics (llicències d'obra, informes tècnics).",
       "human_body": "Puja un 2,5% (IPC previst del 2025) el que es paga pels tràmits urbanístics, com llicències i informes. Votar a favor és aprovar-ho; votar en contra és rebutjar-ho.",
       "source_brief": "Tota gestió urbanística (llicències, informes d'idoneïtat tècnica) paga taxa a l'Ajuntament. Aquesta revisió n'apuja els imports un 2,5% segons l'IPC. El punt de fricció: una proposta per externalitzar els informes tècnics, que es rebutja.\n\n- **Afecta** qui vol construir, reformar o legalitzar obres.\n- **Puja amb l'IPC:** **+2,5%**.\n- **El frec:** mantenir els informes tècnics dins l'Ajuntament o deixar-los en mans privades.",
@@ -5871,6 +5906,7 @@
         "no_adscrit_Ruiz": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Rebaixar l'impost d'activitats econòmiques: −50% els primers 5 anys per a nous professionals i −15% per a empreses amb renovables o transport per a la plantilla.",
       "human_body": "L'impost d'activitats econòmiques (IAE) el paguen les empreses grans. No se'n canvia el tipus; només s'afegeix una bonificació obligatòria per a empreses noves i s'ajusta una bonificació ja existent. Votar a favor és aprovar aquests canvis; votar en contra és rebutjar-los.",
       "source_brief": "L'impost que paguen les empreses i professionals per exercir a Reus (l'IAE) es retoca per premiar qui comença i qui inverteix en verd. La pregunta de fons: rebaixar la càrrega a nous negocis i a empreses sostenibles, o mantenir-la perquè és diner que entra a la caixa municipal.\n\n- **Si arrenques una activitat professional:** pagues la **meitat** de la quota durant cinc anys.\n- **Si fas servir energies renovables o tens pla de transport per a la plantilla:** **-15%**.\n- **El frec:** les bonificacions no s'apliquen soles — les has de demanar, o les perds.",
@@ -5902,6 +5938,7 @@
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0848289e16cc1018aefc0db4b0541",
       "party_votes_canon": {},
       "contested_suggested": false,
+      "curator_drop": true,
       "headline": "Aprovar el pla d'emergència per sequera de Reus, obligatori per llei, que fixa què fer si falta aigua.",
       "human_body": "S'aprova de manera definitiva un pla que estableix què farà Reus quan hi hagi poca aigua per sequera. Votar a favor és tenir aquest pla en marxa; votar en contra és no aprovar-lo.",
       "source_brief": "Reus no té aigua pròpia il·limitada: depèn de fonts externes que poden patir sequera. La llei obliga les ciutats grans a tenir un pla que digui què es fa, i en quin ordre, quan l'aigua escasseja. Aquí es tanca aquest pla.\n\n- **Per què t'afecta:** marca les regles del joc si arriba una restricció d'aigua a la ciutat.\n- **D'on beu Reus:** de l'embassament de **Mequinensa**, via el Consorci d'Aigües de Tarragona.\n- **El frec:** és un pla obligatori per llei — el marge és sobre el com, no el si.",
@@ -5933,6 +5970,7 @@
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0848289e16cc1018aefc0db4b0541",
       "party_votes_canon": {},
       "contested_suggested": false,
+      "curator_drop": false,
       "headline": "Reordenar quatre illes del Barri del Carme per fer-hi un nou CAP i pisos de protecció oficial de lloguer assequible.",
       "human_body": "Es modifica el pla urbanístic en unes àrees concretes del Barri del Carme per ordenar com s'hi pot construir. Votar a favor és aprovar inicialment aquests canvis; votar en contra és no aprovar-los.",
       "source_brief": "Una part del Barri del Carme es replanteja de cap i de nou per poder-hi posar equipaments i habitatge que avui no hi caben. No és un canvi cosmètic: redibuixa carrers, espais i usos d'una part del barri.\n\n- **Què hi guanya el barri:** un **Centre d'Atenció Primària** nou i **habitatges de protecció oficial de lloguer assequible**.\n- **Què més canvia:** una plaça-espai lliure central, millor connexió de carrers i un aparcament soterrat unitari.\n- **El frec:** sòl públic destinat a sanitat i habitatge assequible — prioritat clara o densificació excessiva.",
@@ -6116,6 +6154,7 @@
         "CUP": "against"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Donar via lliure a urbanitzar el sector Bellisens (vora la N-340), avui sòl sense construir.",
       "human_body": "L'Ajuntament dona un informe favorable per començar a estudiar el desenvolupament urbanístic de la zona de Bellisens, vora la N-340. Votar a favor és donar llum verda a aquesta primera fase; votar en contra és aturar-la.",
       "source_brief": "Reus té un pla urbanístic de 1999 que ja s'ha quedat antic respecte de la planificació del territori del Camp. Per poder desenvolupar un nou sector de sòl urbanitzable cal demanar permís a urbanisme abans de tirar endavant. Aquí es fa aquest primer pas.\n\n- **Què està en joc:** obrir la porta a urbanitzar el sector **H.7 «Bellisens Actual N.340»**.\n- **Per què cal el permís:** el planejament de Reus és anterior i no està adaptat a la planificació territorial vigent.\n- **El frec:** créixer urbanitzant sòl nou, o contenir l'expansió de la ciutat.",
@@ -6147,6 +6186,7 @@
       "acta_url": "https://serveis.reus.cat/actes/session/downloadItem/e4c0848289e16cc1018aefc0db4b0541",
       "party_votes_canon": {},
       "contested_suggested": false,
+      "curator_drop": true,
       "headline": "Donar la Menció Honorífica Municipal al Ball de Cavallets pels 25 anys de la seva tornada a la Festa Major.",
       "human_body": "L'Ajuntament concedeix una menció d'honor al Ball de Cavallets de Reus per reconèixer la seva tradició. Votar a favor és donar-li aquest reconeixement; votar en contra és no concedir-lo.",
       "source_brief": "L'Ajuntament reconeix una colla emblemàtica de la cultura popular reusenca amb la Menció Honorífica Municipal. És un gest simbòlic, sense cost ni efecte sobre serveis, però marca a qui la ciutat decideix posar com a exemple.\n\n- **Qui rep el reconeixement:** el **Ball de Cavallets de Reus**.\n- **Per què ara:** es commemoren els **25 anys** de la seva reincorporació a la Festa Major.\n- **El frec:** quina cultura popular mereix el segell oficial de la ciutat.",
@@ -6330,6 +6370,7 @@
         "CUP": "against"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Crear un nou càrrec de confiança de lliure designació de l'alcaldia, de fins a 56.408 € l'any.",
       "human_body": "Es modifica la plantilla del personal eventual, és a dir, els càrrecs de confiança que treballen per a l'Ajuntament. Votar a favor és aprovar aquest canvi; votar en contra és deixar la plantilla com estava.",
       "source_brief": "L'equip de càrrecs de lliure designació de l'alcaldia s'amplia amb una plaça més. No són funcionaris que han fet oposicions: són persones que l'alcaldessa nomena i cessa quan vol, pagades amb diners públics.\n\n- **Què canvia:** els delegats de Servei passen de **6 a 7**.\n- **Què costa:** la nova plaça pot arribar a una retribució anual de **56.408,06 €**.\n- **El frec:** més estructura política de confiança a càrrec de la caixa municipal, sense concurs públic.",
@@ -6513,6 +6554,7 @@
         "CUP": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": true,
       "headline": "Designar els representants de cada grup als organismes municipals (cultura, residus, transport, promoció) després de les eleccions.",
       "human_body": "L'Ajuntament nomena les persones que el representaran en diversos organismes i comissions municipals. Votar a favor és acceptar aquests nomenaments; votar en contra és rebutjar-los.",
       "source_brief": "Cada vegada que es renova l'Ajuntament cal tornar a posar nom als qui representaran Reus en els ens que en realitat gestionen molts diners i serveis: cultura, formació, promoció, residus, telecomunicacions i transport del Camp. Aquí es decideix qui s'hi asseu.\n\n- **Què cobreix:** Reus Cultura, Mas Carandell, Reus Promoció, Fundació REGO, la mancomunitat de residus urbans, el consorci LOCALRET i el del Transport Públic del Camp de Tarragona.\n- **Per què importa:** són els consells que mouen els pressupostos reals de la ciutat fora del Ple; qui hi seu, mana.\n- **El frec:** repartir poder institucional en càrrecs que no surten a les urnes.",
@@ -6696,6 +6738,7 @@
         "PP": "against"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Aturar la construcció del pàrquing soterrat de 11 M€ de la Hispània (s'hi ha trobat mercuri i plom al sòl) i reconvertir-lo en parc.",
       "human_body": "El grup de la CUP demana que l'Ajuntament aturi el projecte d'aparcament de la Hispània. Votar a favor és demanar que s'aturi el projecte; votar en contra és deixar que segueixi endavant.",
       "source_brief": "Als terrenys municipals de La Hispània hi ha previst un aparcament soterrat de **3 pisos** heretat del mandat anterior. La proposta vol aturar-lo i fer-hi un parc, perquè a l'expedient hi ha dos informes municipals en contra i el sòl està contaminat.\n\n- **El cost:** uns **11 M€**, quan els pàrquings públics de la ciutat estan de mitjana al **40%** d'ocupació.\n- **El risc:** contaminació del sòl amb metalls pesants (mercuri, plom, arseni…) als sectors S3 i S4.\n- **El frec:** gastar milions en més aparcament sobre sòl contaminat, o aturar-ho i prioritzar salut i zona verda.",
@@ -6879,6 +6922,7 @@
         "PP": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Exigir al govern un calendari amb pressupost per als compromisos climàtics pendents, com un parc de 30.000 m² als terrenys d'ADIF.",
       "human_body": "El grup de la CUP demana que el govern compleixi les promeses de campanya i del mandat 2019-2023. Votar a favor és reclamar al govern que compleixi aquests compromisos; votar en contra és no fer aquesta reclamació.",
       "source_brief": "La proposta sobre la taula exigeix al govern municipal que deixi de prometre i posi data i pressupost a una llista de compromisos ambientals que segueixen sense complir-se. El cap visible: un gran parc on ara hi ha terrenys ferroviaris.\n\n- **La petició estrella:** una zona verda de **30.000 m²** permeables i arbrats als terrenys d'**ADIF**, connectada a peu i en bici amb el passeig Mata.\n- **Què es demana de fons:** un **calendari plurianual amb dotació pressupostària** per a tots els compromisos.\n- **El frec:** obligar el govern a comprometre calendari i diners, o deixar-li marge de prioritats.",
@@ -7062,6 +7106,7 @@
         "VOX": "against"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Crear un Pacte Local pel català que, entre altres coses, lligaria la llicència d'obertura dels comerços a retolar en català.",
       "human_body": "El grup Junts per Reus demana que l'Ajuntament impulsi un pacte local per la llengua per protegir i promoure el català a la ciutat. Votar a favor és que el ple doni suport a aquesta proposta; votar en contra és no donar-li suport.",
       "source_brief": "Sobre la taula hi ha la proposta de crear un pacte municipal per defensar i promoure l'ús del català a Reus. Va més enllà del simbòlic: inclou mesures concretes que tocarien des de les classes de llengua fins als requisits per obrir un comerç.\n\n- **Per què interessa:** el català l'entén gairebé tothom però cada cop menys gent l'usa de forma habitual.\n- **Mesura que pica:** exigir la **retolació en català** dels comerços com a condició per a la llicència d'obertura.\n- **El frec:** fins on pot arribar l'Ajuntament per protegir la llengua sense imposar als comerços.",
@@ -7245,6 +7290,7 @@
         "CUP": "against"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Eliminar 6 places i 4 trasters de l'aparcament públic del Pallol per encabir els ascensors d'un nou Mercadona.",
       "human_body": "Es modifica el contracte de l'empresa que explota l'aparcament públic del Centre del Pallol. Votar a favor és aprovar aquests canvis al contracte; votar en contra és no aprovar-los.",
       "source_brief": "L'aparcament públic del Centre del Pallol perd places i trasters perquè un supermercat nou hi necessita instal·lar ascensors. La concessionària assumeix els costos, però el resultat és menys aparcament públic disponible al centre.\n\n- **Què hi perds:** **6 places** i **4 trasters** del pàrquing.\n- **Per què:** l'obertura d'un **Mercadona** al passeig comercial El Pallol obliga a posar-hi dos ascensors.\n- **El frec:** retallar oferta pública d'aparcament per encabir-hi un interès comercial privat.",
@@ -7428,6 +7474,7 @@
         "CUP": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": true,
       "headline": "Apujar de categoria (subgrup C1) 19 places de la Guàrdia Urbana, com obliga una llei nova, sense apujar-ne el sou total.",
       "human_body": "Es reclassifica la plantilla de personal funcionari de l'Ajuntament, és a dir, es revisen categories i nivells dels treballadors públics. Votar a favor és aprovar aquesta reordenació; votar en contra és deixar-la com estava.",
       "source_brief": "Una llei catalana de 2023 obliga a reclassificar els policies locals a una categoria professional superior. Reus ho aplica a part de la plantilla de la Guàrdia Urbana. És un reconeixement de nivell que ve imposat des de fora.\n\n- **A qui afecta:** **8 places de caporal** i **11 d'agent**.\n- **Què no canvia:** **no puja la despesa total** en retribucions.\n- **El frec:** és complir una llei, no una decisió pròpia — el marge local és mínim.",
@@ -7611,6 +7658,7 @@
         "CUP": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": false,
       "headline": "Demanar un préstec de 2 M€ per pagar inversions de 2023, a tornar en 12 anys (Euríbor + 0,67%).",
       "human_body": "L'Ajuntament demana un crèdit a llarg termini a una entitat financera per finançar inversions previstes el 2023. Votar a favor és aprovar aquest préstec; votar en contra és no endeutar-se per a aquestes inversions.",
       "source_brief": "Reus no paga totes les seves inversions amb el que ingressa: una part la finança demanant diners als bancs. Aquí s'autoritza un préstec nou de 2 milions, que se suma a altres ja contractats. És deute que la ciutat tornarà a terminis.\n\n- **Quant:** **2.000.000 €** amb Caixa d'Enginyers.\n- **Per a què:** cobrir part de les inversions del Pressupost 2023.\n- **El frec:** finançar inversió amb més deute públic, que pagaran també els anys vinents.",
@@ -7794,6 +7842,7 @@
         "CUP": "abstain"
       },
       "contested_suggested": true,
+      "curator_drop": true,
       "headline": "Manifestar que Reus manté el Pla Educatiu d'Entorn, requisit per seguir cobrant-ne el finançament de la Generalitat.",
       "human_body": "L'Ajuntament manifesta que vol seguir mantenint el Pla Educatiu d'Entorn, que coordina activitats i suport educatiu fora de l'escola. Votar a favor és voler continuar-lo; votar en contra és no donar-li continuïtat.",
       "source_brief": "El Pla Educatiu d'Entorn finança reforç, activitats i suport educatiu fora de l'aula a Reus des de fa gairebé vint anys. La Generalitat ha canviat les regles: si la ciutat no diu formalment que el vol mantenir, deixa de pagar-lo. Aquí es fa aquesta manifestació.\n\n- **Què hi ha en joc:** continuar rebent finançament per al suport educatiu a infants i joves de Reus.\n- **Per què ara:** la Generalitat ho exigeix per escrit i amb data límit.\n- **El frec:** un sí gairebé forçat per no perdre diners que ja arriben a la ciutat.",
