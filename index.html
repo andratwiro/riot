@@ -225,6 +225,14 @@
   #marksView .lh{position:sticky;top:0;background:rgba(14,16,20,.95);backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;z-index:2}
   #marksView .lwrap{max-width:760px;margin:0 auto;padding:16px 18px}
+  #importView{position:fixed;inset:0;background:var(--bg);z-index:21;display:none;overflow:auto;padding:0 0 40px}
+  #importView .lh{position:sticky;top:0;background:rgba(14,16,20,.95);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+  #importView .lwrap{max-width:680px;margin:0 auto;padding:16px 18px}
+  #importBox{width:100%;min-height:180px;background:var(--card);border:1px solid var(--line);color:var(--ink);
+    border-radius:12px;padding:12px 14px;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical}
+  #importStatus{font-size:13px;margin:10px 0 0;min-height:18px}
+  #importStatus.ok{color:#5fd58c} #importStatus.err{color:#f08197}
   .muted{color:var(--dim)}
   details summary{cursor:pointer;color:var(--dim);font-size:11.5px;margin-top:8px;outline:none}
 
@@ -282,6 +290,7 @@
       <p id="doneSub"></p>
       <div class="closest" id="closest"></div>
       <button class="restart" id="restart">Torna a començar</button>
+      <button class="markreview" id="copyVotes" type="button" style="margin-top:12px">⧉ Copia els vots (JSON)</button>
       <p style="margin-top:18px;font-size:12px">Res no s'ha desat. En recarregar, s'esborra tot.</p>
     </div>
   </div>
@@ -335,6 +344,24 @@
   </div>
 </div>
 
+<div id="importView">
+  <div class="lh">
+    <div><b>Importa vots</b></div>
+    <button class="gear" id="closeImport" title="Tanca">⚙</button>
+  </div>
+  <div class="lwrap">
+    <p class="muted" style="font-size:12.5px;margin-top:0">
+      Enganxa aquí un JSON de vots (el que vas copiar des de la pantalla final) per recuperar una sessió.
+      Substitueix els vots actuals.
+    </p>
+    <textarea id="importBox" placeholder='{ "v": 1, "votes": { "&lt;id&gt;": "for", … } }' spellcheck="false"></textarea>
+    <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+      <button id="loadVotes" class="markreview" type="button">⤓ Carrega els vots</button>
+    </div>
+    <p id="importStatus"></p>
+  </div>
+</div>
+
 <div id="sheet" aria-hidden="true">
   <div class="sheet-back" id="sheetBack"></div>
   <div class="sheet-panel" role="dialog" aria-label="Opcions">
@@ -365,6 +392,11 @@
       <span class="si-tx"><b>Mode curador</b></span>
       <span class="switch"><input type="checkbox" id="devToggle"><span class="slider"></span></span>
     </label>
+    <button class="sheet-item" id="importVotes">
+      <span class="si-ic">⤓</span>
+      <span class="si-tx"><b>Importa vots</b><small>Recupera una sessió de vots des d'un JSON copiat (per a demos i proves).</small></span>
+      <span class="si-go">↗</span>
+    </button>
   </div>
 </div>
 
@@ -687,7 +719,7 @@ $("#stack").addEventListener("click",e=>{
   if(vb)react(vb.dataset.v);
 });
 document.addEventListener("keydown",e=>{
-  if($("#sheet").classList.contains("open")||$("#log").style.display==="block"||$("#partyView").style.display==="block"||$("#marksView").style.display==="block")return;
+  if($("#sheet").classList.contains("open")||$("#log").style.display==="block"||$("#partyView").style.display==="block"||$("#marksView").style.display==="block"||$("#importView").style.display==="block")return;
   const exp=$("#stack").querySelector(".card.expanded");
   if(exp){if(e.key==="Escape")collapseCard(exp);return;}
   if(e.key==="ArrowLeft")react("against");
@@ -818,6 +850,46 @@ $("#marksList").addEventListener("click",e=>{
 });
 $("#devToggle").addEventListener("change",e=>setDevMode(e.target.checked));
 
+/* ---- export / import votes (simplified id->vote map; demo + AI comparison) ---- */
+function votesJSON(){
+  return JSON.stringify({v:1,exported:new Date().toISOString(),n:Object.keys(answers).length,votes:{...answers}},null,2);
+}
+$("#copyVotes").addEventListener("click",()=>{
+  const txt=votesJSON();
+  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>{
+    $("#copyVotes").textContent="✓ Copiat";setTimeout(()=>$("#copyVotes").textContent="⧉ Copia els vots (JSON)",1500);
+  });
+});
+// Replace the live session with an imported set of votes, then re-render (lands on the
+// next unvoted card, or the results screen if every imported decision is covered).
+function applyImportedVotes(map){
+  for(const k in answers)delete answers[k];
+  let applied=0;
+  for(const id in map){
+    const v=map[id];
+    if(byId[id]&&(v==="for"||v==="against"||v==="abstain")){answers[id]=v;applied++;}
+  }
+  deck=shuffle(R.decisions.filter(d=>d.headline && !d.curator_drop && !(d.id in answers)));
+  idx=0;
+  $("#done").style.display="none";
+  renderAffinity();renderMap();renderStack();
+  return applied;
+}
+$("#importVotes").addEventListener("click",()=>{closeSheet();const st=$("#importStatus");st.textContent="";st.className="";$("#importView").style.display="block";$("#importBox").focus();});
+$("#closeImport").addEventListener("click",()=>$("#importView").style.display="none");
+$("#loadVotes").addEventListener("click",()=>{
+  const st=$("#importStatus");st.className="";
+  const raw=$("#importBox").value.trim();
+  if(!raw){st.className="err";st.textContent="Enganxa primer un JSON.";return;}
+  let data; try{data=JSON.parse(raw);}catch(e){st.className="err";st.textContent="JSON no vàlid: "+e.message;return;}
+  const map=(data&&typeof data==="object"&&data.votes&&typeof data.votes==="object")?data.votes:data;
+  if(!map||typeof map!=="object"||Array.isArray(map)){st.className="err";st.textContent="No s'hi troben vots.";return;}
+  const applied=applyImportedVotes(map);
+  if(!applied){st.className="err";st.textContent="Cap vot vàlid (ids desconeguts?).";return;}
+  st.className="ok";st.textContent=`✓ ${applied} vots carregats.`;
+  setTimeout(()=>$("#importView").style.display="none",700);
+});
+
 function openSheet(){$("#sheet").classList.add("open");$("#sheet").setAttribute("aria-hidden","false");}
 function closeSheet(){$("#sheet").classList.remove("open");$("#sheet").setAttribute("aria-hidden","true");}
 function openLog(){if(!$("#logList").innerHTML)buildLog(); $("#log").style.display="block";}
@@ -842,7 +914,7 @@ function rebuildMap(){
   }
   applyMapVisibility();
 }
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";closePartyView();$("#marksView").style.display="none";}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";closePartyView();$("#marksView").style.display="none";$("#importView").style.display="none";}});
 
 $("#mapToggle").checked=showMap;
 $("#aiToggle").checked=showAI;
