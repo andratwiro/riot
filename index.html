@@ -42,8 +42,11 @@
   .gear:hover{color:var(--ink);background:var(--card)}
 
   /* affinity bar */
-  #affinity{display:flex;gap:6px;padding:6px 12px 12px;flex:0 0 auto}
-  .pa{flex:1 1 0;min-width:0;text-align:center}
+  #affinity{display:flex;gap:6px;padding:6px 12px 12px;flex:0 0 auto;overflow-x:auto;scrollbar-width:none}
+  #affinity::-webkit-scrollbar{display:none}
+  /* grow to fill when there's room; never shrink below a tappable size — overflow scrolls
+     horizontally (least-aligned parties, sorted last, fall off the right). */
+  .pa{flex:1 0 44px;min-width:44px;text-align:center}
   .pa .lg{width:36px;height:36px;border-radius:50%;margin:0 auto 4px;background:#fff;
     display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--line)}
   .pa .lg img{width:100%;height:100%;object-fit:contain;padding:4px}
@@ -396,7 +399,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.33</span>
+      <span class="ver">v0.34</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
