@@ -248,9 +248,9 @@
     transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%}
   .dprow .dptx{flex:1 1 auto;min-width:0;text-align:left}
   .dprow .dpname{display:block;font-size:14px;font-weight:650}
-  .dprow .dptrack{display:block;height:4px;border-radius:3px;background:var(--line);margin-top:5px;overflow:hidden;max-width:220px}
+  .dprow .dptrack{display:block;height:4px;border-radius:3px;background:var(--line);margin-top:5px;overflow:hidden}
   .dprow .dpfill{display:block;height:100%;border-radius:3px}
-  .dprow .dppct{font-size:16px;font-weight:800;flex:0 0 auto}
+  .dprow .dppct{font-size:16px;font-weight:800;flex:0 0 auto;color:var(--ink)}
   .dprow .dpgo{color:var(--dim);font-size:19px;flex:0 0 auto;line-height:1}
   /* action buttons */
   .doneActions{display:flex;gap:10px;width:100%;max-width:600px}
@@ -396,7 +396,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.31</span>
+      <span class="ver">v0.32</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -853,7 +853,7 @@ function renderExtremes(ranked,a){
   ex.style.display="";
   const card=(cls,lab,p)=>`<button class="exc ${cls}" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">${logoEl(p)}
     <span class="extx"><span class="exlab">${lab}</span><span class="exname" title="${esc(p.name)}">${esc(p.name)}</span></span>
-    <span class="expct" style="color:${p.color}">${a[p.token].pct}%</span></button>`;
+    <span class="expct">${a[p.token].pct}%</span></button>`;
   const most=ranked[0], least=ranked[ranked.length-1];
   ex.innerHTML = ranked.length===1
     ? card("most","Most aligned",most)
@@ -870,7 +870,7 @@ function renderDoneParties(ranked,a){
       return `<button class="dprow" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">${logoEl(p)}
         <span class="dptx"><span class="dpname">${esc(p.name)}</span>
           <span class="dptrack"><span class="dpfill" style="width:${pct||0}%;background:${p.color}"></span></span></span>
-        <span class="dppct" style="color:${p.color}">${pct==null?'—':pct+'%'}</span><span class="dpgo">›</span></button>`;
+        <span class="dppct">${pct==null?'—':pct+'%'}</span><span class="dpgo">›</span></button>`;
     }).join("");
   decorateHer(el,34);
 }
