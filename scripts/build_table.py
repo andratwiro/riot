@@ -107,26 +107,19 @@ def main():
         "decisions": rows,
     }
     (ROOT / "data" / "decisions.json").write_text(json.dumps(out, indent=2, ensure_ascii=False))
-    # data.js sits next to index.html at repo root so the site works on GitHub Pages
-    # (https fetch) AND by double-clicking index.html locally (file://, no CORS).
+    # Per-city bundle: the viewer loads cities/<id>/data.js based on ?city=. Reus is the
+    # default instance. (Works on GitHub Pages over https AND by double-clicking locally.)
     data_js = "window.RIOT = " + json.dumps(out, ensure_ascii=False) + ";"
-    (ROOT / "data.js").write_text(data_js)
-    # Cache-bust: stamp data.js content hash onto its <script src> in index.html so every
-    # deploy forces browsers (and the Pages CDN) to fetch the fresh data — no hard-refresh.
-    ver = hashlib.md5(data_js.encode()).hexdigest()[:8]
-    idx = ROOT / "index.html"
-    html = idx.read_text()
-    new_html = re.sub(r'src="data\.js(?:\?v=[^"]*)?"', f'src="data.js?v={ver}"', html)
-    if new_html != html:
-        idx.write_text(new_html)
-    print(f"  cache-bust: data.js?v={ver}")
+    out_js = ROOT / "cities" / "reus" / "data.js"
+    out_js.parent.mkdir(parents=True, exist_ok=True)
+    out_js.write_text(data_js)
 
     dropped = sum(1 for r in rows if r.get("curator_drop"))
     print(f"  curator-dropped (hidden from deck): {dropped}  |  in voting deck: {len(rows)-dropped}")
     contested = sum(1 for r in rows if r["contested_suggested"])
     print(f"built {len(rows)} decisions from {len(out['sessions_in_table'])} sessions")
     print(f"  provisional contested: {contested}  |  unanimous-ish: {len(rows)-contested}")
-    print(f"  -> data/decisions.json and ./data.js")
+    print(f"  -> data/decisions.json and cities/reus/data.js")
 
 if __name__ == "__main__":
     main()

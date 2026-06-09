@@ -37,9 +37,9 @@ ROOT = Path(__file__).resolve().parent.parent
 SOUL = ROOT / "soul.md"
 DECISIONS = ROOT / "data" / "decisions.json"
 OUT = ROOT / "data" / "ai_votes.json"
-# ai_votes.js sits next to index.html so the site reads it as window.AI_VOTES,
-# matching data.js — no fetch(), so it works opened locally and on GitHub Pages.
-OUT_JS = ROOT / "ai_votes.js"
+# ai_votes.js sits in the Reus city bundle (cities/reus/) so the viewer reads it as
+# window.AI_VOTES, matching data.js — no fetch(), works locally and on GitHub Pages.
+OUT_JS = ROOT / "cities" / "reus" / "ai_votes.js"
 
 MODEL = "claude-opus-4-8"
 

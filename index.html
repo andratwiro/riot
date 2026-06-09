@@ -20,10 +20,24 @@
   /* header */
   header{display:flex;align-items:center;justify-content:space-between;
     padding:14px 18px 8px;flex:0 0 auto}
-  .brand{font-weight:800;letter-spacing:.5px;font-size:17px;display:flex;align-items:center;gap:8px}
-  .brand .rose{height:23px;width:23px;flex:0 0 auto;display:block;object-fit:contain}
-  .brand span{color:var(--dim);font-weight:500;font-size:13px;margin-left:6px}
-  .brand .ver{color:var(--dim);font-weight:600;font-size:11px;letter-spacing:.2px;margin-left:7px;align-self:flex-end;margin-bottom:3px}
+  .brand{position:relative;display:flex;align-items:center;gap:7px}
+  .citysel{display:flex;align-items:center;gap:8px;background:none;border:0;cursor:pointer;
+    color:var(--ink);font:inherit;font-weight:800;font-size:17px;letter-spacing:.5px;padding:4px 6px;border-radius:10px}
+  .citysel:hover{background:var(--card)}
+  .citysel .rose{height:23px;width:23px;flex:0 0 auto;display:block;object-fit:contain}
+  .citysel .citychev{color:var(--dim);font-size:11px;font-weight:600;margin-left:1px}
+  .brand .ver{color:var(--dim);font-weight:600;font-size:11px;letter-spacing:.2px;align-self:flex-end;margin-bottom:3px}
+  .previewtag{color:#f0b46d;background:rgba(240,180,109,.14);font-size:10px;font-weight:700;
+    padding:2px 7px;border-radius:999px;letter-spacing:.3px;text-transform:uppercase;align-self:center}
+  .citymenu{position:absolute;top:100%;left:0;margin-top:6px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:6px;min-width:174px;box-shadow:0 14px 40px rgba(0,0,0,.5);z-index:40;display:none}
+  .citymenu.open{display:block}
+  .citymenu button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;
+    color:var(--ink);font:inherit;font-size:14px;font-weight:600;padding:9px 10px;border-radius:9px;cursor:pointer}
+  .citymenu button:hover{background:var(--card2)}
+  .citymenu button.active{color:var(--acc)}
+  .citymenu img{width:24px;height:24px;object-fit:contain;flex:0 0 auto;background:#fff;border-radius:50%;padding:3px}
+  .citymenu .tick{margin-left:auto;color:var(--acc);font-size:13px}
   .gear{background:none;border:0;color:var(--dim);cursor:pointer;padding:0;border-radius:8px;font-size:20px;line-height:1;width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
   .gear:hover{color:var(--ink);background:var(--card)}
 
@@ -322,7 +336,14 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.22</span></div>
+    <div class="brand">
+      <button class="citysel" id="cityBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Switch city">
+        <img class="rose" id="cityLogo" src="assets/logos/reus_rose.svg" alt="" width="23" height="23">
+        <span id="cityName">Reus</span><span class="citychev">▾</span>
+      </button>
+      <span class="ver">v0.23</span>
+      <div class="citymenu" id="cityMenu" role="menu"></div>
+    </div>
     <button class="gear" id="menuBtn" title="Options">⚙</button>
   </header>
 
@@ -453,9 +474,29 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js"></script>
 <script src="her.js"></script>
-<script src="data.js?v=6dba74f7"></script>
-<script src="ai_votes.js"></script>
 <script>
+// City loader: ?city=reus|brussels selects which bundle to load. The viewer is
+// shared; only data + config differ per city. document.write keeps the bundles
+// parser-synchronous so window.CITY_CONFIG/RIOT/AI_VOTES exist before the app runs.
+(function(){
+  var c=(new URLSearchParams(location.search).get("city")||"reus").toLowerCase();
+  if(!/^[a-z]+$/.test(c)) c="reus";
+  window.__CITY__=c;
+  var base="cities/"+c+"/";
+  document.write('<scr'+'ipt src="'+base+'config.js"></scr'+'ipt>');
+  document.write('<scr'+'ipt src="'+base+'data.js"></scr'+'ipt>');
+  document.write('<scr'+'ipt src="'+base+'ai_votes.js"></scr'+'ipt>');
+})();
+</script>
+<script>
+// Known cities for the header selector (adding one also needs a cities/<id>/ bundle).
+const CITIES=[
+  {id:"reus",name:"Reus",logo:"assets/logos/reus_rose.svg"},
+  {id:"brussels",name:"Brussels",logo:"assets/logos/brussels_iris.svg"}
+];
+const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo:"assets/logos/reus_rose.svg",mapGate:5};
+document.title=CFG.title||"RIOT";
+document.documentElement.lang=CFG.lang||"en";
 const R = window.RIOT || {decisions:[], parties:[]};
 // AI proxy's blind votes (id -> {vote,confidence,rationale}); null until ai_vote.py / the proxy run has produced them.
 const AI = (window.AI_VOTES && window.AI_VOTES.votes) || null;
@@ -501,7 +542,7 @@ let devMode=false; try{devMode=localStorage.getItem(DEV_KEY)==="1";}catch(e){}
 const AI_KEY="riot.ai.v1";
 let showAI=false; try{showAI=localStorage.getItem(AI_KEY)==="1";}catch(e){}
 const isMarked=id=>marks.some(m=>m.id===id);
-const MAP_GATE = 5;          // votes required before the user is placed on the map
+const MAP_GATE = CFG.mapGate || 5;   // votes required before the user is placed on the map (per-city)
 let COORD = null, MX = {}, mapBuilt = false;
 
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -1027,6 +1068,22 @@ if(!AI){const r=$("#aiRow"); if(r)r.style.display="none";}   // hide the toggle 
 applyAiParty(showAI);   // builds the map coords + renders affinity (adds the IA party iff showAI)
 if(devToggleEl)devToggleEl.checked=devMode;
 document.body.classList.toggle("dev",devMode);
+
+/* ---- city selector (header logo → switch Reus / Brussels via ?city=) ---- */
+(function setupCitySelector(){
+  const logo=$("#cityLogo"),name=$("#cityName"),btn=$("#cityBtn"),menu=$("#cityMenu");
+  if(!btn)return;
+  logo.src=CFG.logo||CITIES[0].logo; name.textContent=CFG.name||"";
+  if(CFG.preview){const t=document.createElement("span");t.className="previewtag";t.textContent="preview";btn.after(t);}
+  menu.innerHTML=CITIES.map(c=>`<button type="button" role="menuitem" data-city="${c.id}" class="${c.id===CFG.id?'active':''}">
+    <img src="${c.logo}" alt="">${c.name}${c.id===CFG.id?'<span class="tick">✓</span>':''}</button>`).join("");
+  const close=()=>{menu.classList.remove("open");btn.setAttribute("aria-expanded","false");};
+  btn.addEventListener("click",e=>{e.stopPropagation();const o=menu.classList.toggle("open");btn.setAttribute("aria-expanded",o?"true":"false");});
+  menu.addEventListener("click",e=>{const b=e.target.closest("[data-city]");if(!b)return;
+    if(b.dataset.city===CFG.id){close();return;}
+    const u=new URL(location.href); u.searchParams.set("city",b.dataset.city); location.href=u.toString();});
+  document.addEventListener("click",e=>{if(!e.target.closest(".brand"))close();});
+})();
 
 renderStack();
 </script>
