@@ -48,6 +48,10 @@
   .herHero{display:inline-flex;width:120px;height:120px;border-radius:50%;background:#d1684e;position:relative;overflow:hidden;flex:0 0 auto}
   .herHero canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
   .herHero.fallback{background:#d1684e url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 50c0-11 8-18 14-12l28 24c6 6 14-1 14-12s-8-18-14-12L36 62c-6 6-14-1-14-12z' fill='none' stroke='%23ffffff' stroke-width='3'/></svg>") center/64% no-repeat}
+  /* IA on the opinion map: the resting "O" state (white ring on coral) — no per-dot WebGL */
+  .mdot .mc.her{background:#d1684e;border-color:rgba(255,255,255,.25);position:relative}
+  .mdot .mc.her::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;
+    transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%}
 
   /* opinion map (experimental) */
   #map{position:relative;flex:0 0 auto;height:225px;margin:0 12px 8px;
@@ -261,7 +265,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.11</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.12</span></div>
     <button class="gear" id="menuBtn" title="Opcions">⚙</button>
   </header>
 
@@ -350,6 +354,11 @@
       <span class="si-tx"><b>Mostra el mapa polític</b><small>Situa els partits i la teva posició en un mapa d'afinitats (en proves).</small></span>
       <span class="switch"><input type="checkbox" id="mapToggle"><span class="slider"></span></span>
     </label>
+    <label class="sheet-item" for="aiToggle" id="aiRow">
+      <span class="si-ic">○</span>
+      <span class="si-tx"><b>Afegeix la IA als partits</b><small>Inclou el proxy IA (en honor a la pel·lícula «Her») com un partit més: a la barra d'afinitat i al mapa.</small></span>
+      <span class="switch"><input type="checkbox" id="aiToggle"><span class="slider"></span></span>
+    </label>
     <label class="sheet-item" for="devToggle">
       <span class="si-ic">🛠️</span>
       <span class="si-tx"><b>Mode curador</b><small>Mostra un botó al peu per marcar decisions que no val la pena votar. Es desa entre sessions.</small></span>
@@ -366,12 +375,23 @@
 const R = window.RIOT || {decisions:[], parties:[]};
 // AI proxy's blind votes (id -> {vote,confidence,rationale}); null until ai_vote.py / the proxy run has produced them.
 const AI = (window.AI_VOTES && window.AI_VOTES.votes) || null;
-// Inject the proxy as one more "party" so it shows up everywhere (affinity bar, opinion map, compare view).
-if(AI){
-  if(!R.parties.some(p=>p.token==="IA")) R.parties.push({token:"IA",name:"Proxy IA",color:"#d1684e",logo:null,her:true});
-  for(const d of R.decisions){const rec=AI[d.id]; if(rec){(d.party_votes_canon=d.party_votes_canon||{})["IA"]=rec.vote;}}
-}
 const PARTIES = R.parties || [];
+// Add/remove the proxy as one more "party" (affinity bar, opinion map, compare view). Off by default; menu toggle.
+function applyAiParty(on){
+  if(AI){
+    const has=PARTIES.some(p=>p.token==="IA");
+    if(on && !has){
+      PARTIES.push({token:"IA",name:"Proxy IA",color:"#d1684e",logo:null,her:true});
+      for(const d of R.decisions){const rec=AI[d.id]; if(rec){(d.party_votes_canon=d.party_votes_canon||{})["IA"]=rec.vote;}}
+    } else if(!on && has){
+      const i=PARTIES.findIndex(p=>p.token==="IA"); if(i>=0) PARTIES.splice(i,1);
+      for(const d of R.decisions){ if(d.party_votes_canon) delete d.party_votes_canon["IA"]; }
+      if(iaMark){iaMark.dispose();iaMark=null;}
+    }
+  }
+  rebuildMap();      // PARTIES changed → recompute the opinion-map coordinates
+  renderAffinity();
+}
 const $ = s => document.querySelector(s);
 const VLAB = {for:"a favor", against:"en contra", abstain:"abstenció", split:"dividit", absent:"absent"};
 const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
@@ -392,6 +412,9 @@ let dismissed=loadDismissed();
 const isDismissed=id=>dismissed.includes(id);
 function dismissSuggest(id){if(!isDismissed(id)){dismissed.push(id);try{localStorage.setItem(DISMISS_KEY,JSON.stringify(dismissed));}catch(e){}}}
 let devMode=false; try{devMode=localStorage.getItem(DEV_KEY)==="1";}catch(e){}
+// show the AI proxy as a party (off by default) — persists across sessions
+const AI_KEY="riot.ai.v1";
+let showAI=false; try{showAI=localStorage.getItem(AI_KEY)==="1";}catch(e){}
 const isMarked=id=>marks.some(m=>m.id===id);
 const MAP_GATE = 5;          // votes required before the user is placed on the map
 let COORD = null, MX = {}, mapBuilt = false;
@@ -511,8 +534,9 @@ function toPct(c){
 function buildMapBase(){
   const dots=PARTIES.map((p,i)=>{
     const [l,t]=toPct(COORD[i]);
-    const inner=p.logo?`<span class="mc bg-${p.token}"><img src="${p.logo}" alt="${esc(p.name)}"></span>`
-                      :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
+    const inner=p.her?`<span class="mc her"></span>`
+                : p.logo?`<span class="mc bg-${p.token}"><img src="${p.logo}" alt="${esc(p.name)}"></span>`
+                       :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
     return `<div class="mdot" style="left:${l}%;top:${t}%" title="${esc(p.name)}">${inner}</div>`;
   }).join("");
   $("#map").innerHTML=`<span class="maptag">Mapa polític</span>
@@ -803,23 +827,29 @@ $("#openLog").addEventListener("click",()=>{closeSheet();openLog();});
 $("#closeLog").addEventListener("click",()=>$("#log").style.display="none");
 $("#origToggle").addEventListener("change",e=>{useOriginal=e.target.checked;renderStack();});
 $("#mapToggle").addEventListener("change",e=>{showMap=e.target.checked;applyMapVisibility();});
+$("#aiToggle").addEventListener("change",e=>{showAI=e.target.checked;try{localStorage.setItem(AI_KEY,showAI?"1":"0");}catch(err){}applyAiParty(showAI);});
 function applyMapVisibility(){
   $("#map").style.display=(showMap&&COORD)?"":"none";
   if(showMap&&COORD)renderMap();
 }
+function rebuildMap(){
+  COORD=null; mapBuilt=false; MX={};
+  if(PARTIES.length>=3 && R.decisions.length){
+    COORD=partyMap();
+    const xs=COORD.map(c=>c[0]),ys=COORD.map(c=>c[1]);
+    MX={minx:Math.min(...xs),maxx:Math.max(...xs),miny:Math.min(...ys),maxy:Math.max(...ys)};
+  }
+  applyMapVisibility();
+}
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";closePartyView();$("#marksView").style.display="none";}});
 
-if(PARTIES.length>=3 && R.decisions.length){
-  COORD=partyMap();
-  const xs=COORD.map(c=>c[0]),ys=COORD.map(c=>c[1]);
-  MX={minx:Math.min(...xs),maxx:Math.max(...xs),miny:Math.min(...ys),maxy:Math.max(...ys)};
-}
 $("#mapToggle").checked=showMap;
-applyMapVisibility();
+$("#aiToggle").checked=showAI;
+if(!AI){const r=$("#aiRow"); if(r)r.style.display="none";}   // hide the toggle if no proxy votes exist
+applyAiParty(showAI);   // builds the map coords + renders affinity (adds the IA party iff showAI)
 $("#devToggle").checked=devMode;
 document.body.classList.toggle("dev",devMode);
 
-renderAffinity();
 renderStack();
 </script>
 </body>
