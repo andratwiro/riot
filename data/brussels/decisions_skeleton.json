@@ -1076,7 +1076,7 @@
       "Ecolo": "against",
       "NVA": "against"
     },
-    "curator_drop": false
+    "curator_drop": true
   },
   {
     "id": "BXL-2526-00020-A-215",
@@ -1181,7 +1181,7 @@
       "Ecolo": "against",
       "NVA": "against"
     },
-    "curator_drop": false
+    "curator_drop": true
   },
   {
     "id": "BXL-2526-00023-A-268",
@@ -1391,7 +1391,7 @@
       "Ecolo": "against",
       "VB": "against"
     },
-    "curator_drop": false
+    "curator_drop": true
   },
   {
     "id": "BXL-2526-00025-v1",
