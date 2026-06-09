@@ -63,6 +63,10 @@
   .mapbar:active{transform:scale(.99)}
   .mapbar .chev{font-size:11px;transition:transform .32s cubic-bezier(.2,.7,.3,1)}
   #mapPanel.open .mapbar .chev{transform:rotate(180deg)}
+  /* locked state: a countdown prompt, not a toggle */
+  .mapbar.locked{cursor:default;color:var(--dim);background:var(--card)}
+  .mapbar.locked:hover{background:var(--card);color:var(--dim)}
+  .mapbar.locked .chev{display:none}
   #mapCollapse{max-height:0;opacity:0;overflow:hidden;
     transition:max-height .34s cubic-bezier(.2,.7,.3,1),opacity .25s,margin-top .34s}
   #mapPanel.open #mapCollapse{max-height:233px;opacity:1;margin-top:8px}
@@ -318,7 +322,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.19</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.20</span></div>
     <button class="gear" id="menuBtn" title="Options">⚙</button>
   </header>
 
@@ -479,9 +483,8 @@ const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
 let deck = shuffle(R.decisions.filter(d => d.headline && !d.curator_drop));
 let idx = 0;
 let useOriginal = false;
-// map is collapsed by default; the thin bar above the cards expands it. Persists across sessions.
-const MAPOPEN_KEY="riot.mapopen.v1";
-let mapOpen=false; try{mapOpen=localStorage.getItem(MAPOPEN_KEY)==="1";}catch(e){}
+// Opinion map unlocks after MAP_GATE votes: locked (countdown) → auto-reveals at the gate → user toggles.
+let mapOpen=false, mapRevealed=false;
 const answers = {};
 /* curator marks + dev mode — persist across sessions in localStorage */
 const MARK_KEY="riot.marks.v1", DEV_KEY="riot.dev.v1", DISMISS_KEY="riot.dismissed.v1";
@@ -714,7 +717,7 @@ function react(vote){
   const top=$("#stack").lastChild;
   if(top)top.classList.add(vote==="for"?"gone-r":vote==="against"?"gone-l":"gone-d");
   renderAffinity();
-  renderMap();
+  applyMapVisibility();   // updates the unlock countdown / auto-reveals at the gate
   setTimeout(()=>{idx++;renderStack();},230);
 }
 // dots (all parties + the user) for the big result map, reusing the MDS coords
@@ -815,8 +818,9 @@ document.addEventListener("keydown",e=>{
 $("#restart").addEventListener("click",()=>{
   deck=shuffle(R.decisions.filter(d=>d.headline && !d.curator_drop)); idx=0;
   for(const k in answers)delete answers[k];
+  mapOpen=false; mapRevealed=false;     // re-lock the map for the new run
   $("#done").style.display="none";
-  renderAffinity(); renderStack(); renderMap();
+  renderAffinity(); renderStack(); applyMapVisibility();
 });
 
 function buildLog(){
@@ -957,8 +961,9 @@ function applyImportedVotes(map){
   }
   deck=shuffle(R.decisions.filter(d=>d.headline && !d.curator_drop && !(d.id in answers)));
   idx=0;
+  mapOpen=false; mapRevealed=false;     // let the gate re-evaluate against the imported count
   $("#done").style.display="none";
-  renderAffinity();renderMap();renderStack();
+  renderAffinity();applyMapVisibility();renderStack();
   return applied;
 }
 $("#importVotes").addEventListener("click",()=>{closeSheet();const st=$("#importStatus");st.textContent="";st.className="";$("#importView").style.display="block";$("#importBox").focus();});
@@ -985,20 +990,24 @@ $("#sheetBack").addEventListener("click",closeSheet);
 $("#openLog").addEventListener("click",()=>{closeSheet();openLog();});
 $("#closeLog").addEventListener("click",()=>$("#log").style.display="none");
 $("#origToggle").addEventListener("change",e=>{useOriginal=e.target.checked;renderStack();});
-function setMapOpen(open){
-  mapOpen=open;
-  try{localStorage.setItem(MAPOPEN_KEY,open?"1":"0");}catch(e){}
-  applyMapVisibility();
-}
-$("#mapToggleBtn").addEventListener("click",()=>setMapOpen(!mapOpen));
+$("#mapToggleBtn").addEventListener("click",()=>{
+  if(Object.keys(answers).length<MAP_GATE)return;   // still locked — bar is a countdown, not a toggle
+  mapOpen=!mapOpen; applyMapVisibility();
+});
 $("#aiToggle").addEventListener("change",e=>{showAI=e.target.checked;try{localStorage.setItem(AI_KEY,showAI?"1":"0");}catch(err){}applyAiParty(showAI);});
+// Map bar has states over time: locked countdown → auto-reveal at the gate → free show/hide.
 function applyMapVisibility(){
-  const panel=$("#mapPanel");
+  const panel=$("#mapPanel"),btn=$("#mapToggleBtn"),tx=btn.querySelector(".mb-tx");
   panel.style.display=COORD?"":"none";        // no coords (e.g. <3 parties) → no bar at all
-  const open=mapOpen&&!!COORD;
+  if(!COORD)return;
+  const n=Object.keys(answers).length, locked=n<MAP_GATE;
+  if(!locked && !mapRevealed){mapRevealed=true; mapOpen=true;}   // first time past the gate → show by default
+  const open=mapOpen && !locked;
   panel.classList.toggle("open",open);
-  $("#mapToggleBtn").setAttribute("aria-expanded",open?"true":"false");
-  $("#mapToggleBtn").querySelector(".mb-tx").textContent=open?"🗺️ Hide map":"🗺️ Show map";
+  btn.classList.toggle("locked",locked);
+  btn.setAttribute("aria-expanded",open?"true":"false");
+  if(locked){const k=MAP_GATE-n; tx.textContent=`🗺️ React ${k} more to unlock the map`;}
+  else tx.textContent=open?"🗺️ Hide map":"🗺️ Show map";
   if(open)renderMap();
 }
 function rebuildMap(){
