@@ -305,7 +305,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.16</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.17</span></div>
     <button class="gear" id="menuBtn" title="Options">⚙</button>
   </header>
 
@@ -427,6 +427,11 @@
       <span class="si-tx"><b>Import votes</b></span>
       <span class="si-go">↗</span>
     </button>
+    <label class="sheet-item" for="devToggle">
+      <span class="si-ic">🛠️</span>
+      <span class="si-tx"><b>Curator mode</b></span>
+      <span class="switch"><input type="checkbox" id="devToggle"><span class="slider"></span></span>
+    </label>
   </div>
 </div>
 
@@ -986,7 +991,6 @@ $("#marksList").addEventListener("click",e=>{
   const i=marks.findIndex(m=>m.id===b.dataset.unmark);
   if(i>=0){marks.splice(i,1);saveMarks();openMarks();updateDevBar();}
 });
-// curator mode is no longer surfaced in the menu; it still honours the persisted localStorage flag.
 const devToggleEl=$("#devToggle"); if(devToggleEl)devToggleEl.addEventListener("change",e=>setDevMode(e.target.checked));
 
 /* ---- export / import votes (simplified id->vote map; demo + AI comparison) ---- */
