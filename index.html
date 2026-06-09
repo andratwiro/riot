@@ -214,23 +214,23 @@
   #resultMap .maptag{position:absolute;top:8px;left:11px;font-size:10px;letter-spacing:.4px;
     text-transform:uppercase;color:var(--dim);font-weight:700;z-index:5;pointer-events:none}
   /* most / least affinity cards — compact horizontal rows */
-  .extremes{display:flex;gap:10px;width:100%;max-width:600px;margin:0 0 12px}
+  .extremes{display:flex;gap:10px;width:100%;max-width:600px;margin:0 0 14px}
   .exc{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);font:inherit;color:var(--ink);
-    border-radius:12px;padding:8px 11px;display:flex;align-items:center;gap:9px;cursor:pointer;transition:transform .08s}
+    border-radius:14px;padding:15px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;
+    cursor:pointer;transition:transform .08s,border-color .12s}
   .exc:hover{border-color:var(--dim)} .exc:active{transform:scale(.99)}
   .exc.most{border-color:rgba(39,182,106,.4)}
   .exc.least{border-color:rgba(229,72,95,.4)}
-  .exc .lg{width:30px;height:30px;flex:0 0 auto;border-radius:50%;background:#fff;display:flex;
+  .exc .lg{width:46px;height:46px;flex:0 0 auto;border-radius:50%;background:#fff;display:flex;
     align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--line)}
-  .exc .lg img{width:100%;height:100%;object-fit:contain;padding:4px}
-  .exc .lg.fb{color:#fff;font-weight:800;font-size:11px;border:0}
+  .exc .lg img{width:100%;height:100%;object-fit:contain;padding:5px}
+  .exc .lg.fb{color:#fff;font-weight:800;font-size:14px;border:0}
   .exc .lg.her{background:#d1684e;border-color:rgba(255,255,255,.18);position:relative}
-  .exc .lg.her::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;
+  .exc .lg.her::after{content:"";position:absolute;left:50%;top:50%;width:15px;height:15px;
     transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%}
-  .exc .extx{min-width:0;text-align:left;line-height:1.15}
-  .exc .exlab{display:block;font-size:9px;letter-spacing:.4px;text-transform:uppercase;color:var(--dim);font-weight:700}
-  .exc .exname{display:block;font-size:13px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .exc .expct{font-size:17px;font-weight:800;line-height:1;margin-left:auto;flex:0 0 auto}
+  .exc .exlab{font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--dim);font-weight:700}
+  .exc .exname{font-size:15px;font-weight:650;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .exc .expct{font-size:24px;font-weight:800;line-height:1;color:var(--ink)}
   /* full ranked, clickable party list (done screen) */
   .dparties{width:100%;max-width:600px;margin:2px 0 14px;display:flex;flex-direction:column;gap:7px}
   .dparties .dplabel{font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--dim);
@@ -396,7 +396,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.32</span>
+      <span class="ver">v0.33</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -851,8 +851,9 @@ function renderExtremes(ranked,a){
   const ex=$("#extremes");
   if(!ranked.length){ex.innerHTML="";ex.style.display="none";return;}
   ex.style.display="";
-  const card=(cls,lab,p)=>`<button class="exc ${cls}" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">${logoEl(p)}
-    <span class="extx"><span class="exlab">${lab}</span><span class="exname" title="${esc(p.name)}">${esc(p.name)}</span></span>
+  const card=(cls,lab,p)=>`<button class="exc ${cls}" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">
+    <span class="exlab">${lab}</span>${logoEl(p)}
+    <span class="exname" title="${esc(p.name)}">${esc(p.name)}</span>
     <span class="expct">${a[p.token].pct}%</span></button>`;
   const most=ranked[0], least=ranked[ranked.length-1];
   ex.innerHTML = ranked.length===1
