@@ -11,7 +11,8 @@ the Brussels-Capital regional Parliament).
 > 🔗 **Live:** https://andratwiro.github.io/riot/
 
 ## What's here
-- **The site** (`index.html` + per-city `cities/<id>/` bundles) — swipe through real council
+- **The site** (`index.html` + `style.css` + `app.js`/`map.js`/`views.js`/`multiplayer.js`,
+  with per-city `cities/<id>/` bundles) — swipe through real council
   decisions, vote yourself, and see your affinity with each party (Polis-style affinity bar +
   2D opinion map), with a citizen-legible explanation and a link back to the source minutes.
   Optional shared rooms (Firebase) show other live participants; without it the site runs
