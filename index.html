@@ -35,8 +35,8 @@
   .pa .lg img{width:100%;height:100%;object-fit:contain;padding:4px}
   .pa .lg.fb{color:#fff;font-weight:800;font-size:13px;border:0}
   /* brand-colour backfill so logo squares blend into the circle (no white corners) */
-  .lg.bg-PSC,#map .mc.bg-PSC{background:#e2001a}
-  .lg.bg-CUP,#map .mc.bg-CUP{background:#fff200}
+  .lg.bg-PSC,#map .mc.bg-PSC,#resultMap .mc.bg-PSC{background:#e2001a}
+  .lg.bg-CUP,#map .mc.bg-CUP,#resultMap .mc.bg-CUP{background:#fff200}
   .pa .track{height:4px;border-radius:3px;background:var(--line);margin-top:2px;overflow:hidden}
   .pa .fill{height:100%;width:0;border-radius:3px;transition:width .4s ease}
   .pa.muted{opacity:.45}
@@ -148,12 +148,43 @@
 
   /* done screen */
   #done{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;
-    justify-content:center;text-align:center;padding:30px}
-  #done h2{font-size:24px;margin:0 0 6px}
-  #done p{color:var(--dim);margin:4px 0 18px;font-size:14px}
-  #done .closest{font-size:15px;margin:8px 0 22px}
-  .restart{background:var(--card2);border:1px solid var(--line);color:var(--ink);
-    padding:12px 20px;border-radius:12px;font-size:14px;cursor:pointer}
+    justify-content:flex-start;text-align:center;padding:14px 16px 28px;
+    overflow-y:auto;-webkit-overflow-scrolling:touch}
+  #done h2{font-size:24px;margin:4px 0 2px}
+  #done .doneSub{color:var(--dim);margin:2px 0 12px;font-size:14px}
+  #done .donenote{color:var(--dim);margin:14px 0 0;font-size:12px}
+  /* big result map */
+  #resultMap{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;max-height:48vh;
+    border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:2px 0 14px;
+    background:radial-gradient(circle at 50% 50%,rgba(109,179,255,.06),transparent 68%),var(--card)}
+  #resultMap .axis{position:absolute;background:var(--line);opacity:.55}
+  #resultMap .axis.x{left:8%;right:8%;top:50%;height:1px}
+  #resultMap .axis.y{top:8%;bottom:8%;left:50%;width:1px}
+  #resultMap .maptag{position:absolute;top:8px;left:11px;font-size:10px;letter-spacing:.4px;
+    text-transform:uppercase;color:var(--dim);font-weight:700;z-index:5;pointer-events:none}
+  /* most / least affinity cards */
+  .extremes{display:flex;gap:10px;width:100%;max-width:520px;margin:0 0 16px}
+  .exc{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:13px 10px;display:flex;flex-direction:column;align-items:center;gap:7px}
+  .exc.most{border-color:rgba(39,182,106,.4)}
+  .exc.least{border-color:rgba(229,72,95,.4)}
+  .exc .exlab{font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--dim);font-weight:700}
+  .exc .lg{width:44px;height:44px;border-radius:50%;background:#fff;display:flex;
+    align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--line)}
+  .exc .lg img{width:100%;height:100%;object-fit:contain;padding:5px}
+  .exc .lg.fb{color:#fff;font-weight:800;font-size:14px;border:0}
+  .exc .lg.her{background:#d1684e;border-color:rgba(255,255,255,.18);position:relative}
+  .exc .lg.her::after{content:"";position:absolute;left:50%;top:50%;width:15px;height:15px;
+    transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%}
+  .exc .exname{font-size:14px;font-weight:650;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .exc .expct{font-size:22px;font-weight:800;line-height:1}
+  /* action buttons */
+  .doneActions{display:flex;gap:10px;width:100%;max-width:520px}
+  .doneActions button{flex:1 1 0;border-radius:14px;padding:14px 12px;font-size:15px;
+    font-weight:700;cursor:pointer;transition:transform .08s}
+  .doneActions button:active{transform:scale(.97)}
+  #downloadBtn{background:var(--acc);color:#06121f;border:0}
+  .restart{background:var(--card2);border:1px solid var(--line);color:var(--ink)}
 
   /* log overlay */
   #log{position:fixed;inset:0;background:var(--bg);z-index:20;display:none;overflow:auto;padding:0 0 40px}
@@ -274,7 +305,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.12</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.14</span></div>
     <button class="gear" id="menuBtn" title="Opcions">⚙</button>
   </header>
 
@@ -287,11 +318,15 @@
     <div class="stack" id="stack"></div>
     <div id="done">
       <h2>Ja està 🎉</h2>
-      <p id="doneSub"></p>
-      <div class="closest" id="closest"></div>
-      <button class="restart" id="restart">Torna a començar</button>
+      <p class="doneSub" id="doneSub"></p>
+      <div id="resultMap"></div>
+      <div class="extremes" id="extremes"></div>
+      <div class="doneActions">
+        <button id="downloadBtn" type="button">⬇ Descarrega</button>
+        <button class="restart" id="restart" type="button">↻ Torna a començar</button>
+      </div>
       <button class="markreview" id="copyVotes" type="button" style="margin-top:12px">⧉ Copia els vots (JSON)</button>
-      <p style="margin-top:18px;font-size:12px">Res no s'ha desat. En recarregar, s'esborra tot.</p>
+      <p class="donenote">Res no s'ha desat. En recarregar, s'esborra tot.</p>
     </div>
   </div>
 
@@ -668,16 +703,124 @@ function react(vote){
   renderMap();
   setTimeout(()=>{idx++;renderStack();},230);
 }
+// dots (all parties + the user) for the big result map, reusing the MDS coords
+function renderResultMap(){
+  const el=$("#resultMap");
+  if(!COORD){el.style.display="none";return;}
+  el.style.display="";
+  const dots=PARTIES.map((p,i)=>{
+    const [l,t]=toPct(COORD[i]);
+    const inner=p.her?`<span class="mc her"></span>`
+              : p.logo?`<span class="mc bg-${p.token}"><img src="${p.logo}" alt="${esc(p.name)}"></span>`
+                     :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
+    return `<div class="mdot" style="left:${l}%;top:${t}%" title="${esc(p.name)}">${inner}</div>`;
+  }).join("");
+  const uc=userCoord();
+  let userDot="";
+  if(uc){const [l,t]=toPct(uc);userDot=`<div class="mdot me" style="left:${l}%;top:${t}%"><span class="mc fb">TU</span></div>`;}
+  el.innerHTML=`<span class="maptag">El teu mapa polític</span>
+    <div class="axis x"></div><div class="axis y"></div>${dots}${userDot}`;
+}
+// most / least affine party cards
+function renderExtremes(ranked,a){
+  const ex=$("#extremes");
+  if(!ranked.length){ex.innerHTML="";ex.style.display="none";return;}
+  ex.style.display="";
+  const card=(cls,lab,p)=>`<div class="exc ${cls}">
+    <span class="exlab">${lab}</span>${logoEl(p)}
+    <span class="exname" title="${esc(p.name)}">${esc(p.name)}</span>
+    <span class="expct" style="color:${p.color}">${a[p.token].pct}%</span></div>`;
+  const most=ranked[0], least=ranked[ranked.length-1];
+  ex.innerHTML = ranked.length===1
+    ? card("most","Més afí",most)
+    : card("most","Més afí",most)+card("least","Menys afí",least);
+  // mount the "Her" mark live on any IA card that's currently on-screen
+  if(AI&&window.HerOS1&&HerOS1.supported){
+    ex.querySelectorAll('.exc .lg.her').forEach(slot=>{
+      const m=HerOS1.mount(null,{size:44}); slot.appendChild(m.canvas);
+    });
+  }
+}
 function finish(){
   $("#stack").innerHTML=""; $("#progress").textContent="";
   const a=affinity();
   const ranked=PARTIES.filter(p=>a[p.token].comp).sort((x,y)=>a[y.token].pct-a[x.token].pct);
   $("#doneSub").textContent=`Has reaccionat a ${Object.keys(answers).length} decisions.`;
-  $("#closest").innerHTML=ranked.length
-    ?`Ara mateix, el teu partit més afí: <b style="color:${ranked[0].color}">${ranked[0].name}</b> (${a[ranked[0].token].pct}%)`:"";
+  renderResultMap();
+  renderExtremes(ranked,a);
   $("#done").style.display="flex";
   updateDevBar();
 }
+
+/* ---- shareable PNG of the result (map + most/least affinity) ---- */
+function lumTextColor(hex){
+  const c=String(hex||"#888").replace('#','');
+  const r=parseInt(c.slice(0,2),16),g=parseInt(c.slice(2,4),16),b=parseInt(c.slice(4,6),16);
+  return (0.299*r+0.587*g+0.114*b)/255>0.62?'#0e1014':'#ffffff';
+}
+function roundRectPath(g,x,y,w,h,r){
+  g.beginPath();
+  g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);
+  g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();
+}
+function downloadResult(){
+  if(!COORD){return;}
+  const FONT='-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif';
+  const W=1080,H=1540, g=Object.assign(document.createElement('canvas'),{width:W,height:H}).getContext('2d');
+  const cv=g.canvas;
+  g.fillStyle='#0e1014';g.fillRect(0,0,W,H);
+  g.textAlign='center';g.textBaseline='alphabetic';
+  g.fillStyle='#f0f2f6';g.font=`800 60px ${FONT}`;
+  g.fillText('El meu mapa polític',W/2,116);
+  g.fillStyle='#9aa1ad';g.font=`500 32px ${FONT}`;
+  g.fillText(`REUS · ${Object.keys(answers).length} decisions votades`,W/2,166);
+  // map card
+  const m={x:80,y:210,w:W-160,h:W-160};
+  roundRectPath(g,m.x,m.y,m.w,m.h,42);g.fillStyle='#171b22';g.fill();
+  g.lineWidth=2;g.strokeStyle='#2b313c';g.stroke();
+  g.save();roundRectPath(g,m.x,m.y,m.w,m.h,42);g.clip();
+  g.strokeStyle='rgba(43,49,60,.9)';g.lineWidth=2;
+  g.beginPath();g.moveTo(m.x+m.w*0.08,m.y+m.h/2);g.lineTo(m.x+m.w*0.92,m.y+m.h/2);g.stroke();
+  g.beginPath();g.moveTo(m.x+m.w/2,m.y+m.h*0.08);g.lineTo(m.x+m.w/2,m.y+m.h*0.92);g.stroke();
+  const place=c=>{const [px,py]=toPct(c);return [m.x+px/100*m.w,m.y+py/100*m.h];};
+  const dot=(x,y,r,fill,label,labelColor,her)=>{
+    g.beginPath();g.arc(x,y,r,0,7);g.fillStyle=fill;g.fill();
+    g.lineWidth=3;g.strokeStyle='rgba(255,255,255,.85)';g.stroke();
+    if(her){g.beginPath();g.arc(x,y,r*0.4,0,7);g.lineWidth=4;g.strokeStyle='#fff';g.stroke();}
+    if(label){g.fillStyle=labelColor||lumTextColor(fill);g.font=`800 ${Math.round(r*0.74)}px ${FONT}`;
+      g.textBaseline='middle';g.fillText(label,x,y+1);g.textBaseline='alphabetic';}
+  };
+  PARTIES.forEach((p,i)=>{const [x,y]=place(COORD[i]);dot(x,y,30,p.her?'#d1684e':p.color,p.her?null:p.token,null,p.her);});
+  const uc=userCoord();
+  if(uc){const [x,y]=place(uc);
+    g.beginPath();g.arc(x,y,40,0,7);g.fillStyle='rgba(109,179,255,.22)';g.fill();
+    dot(x,y,32,'#6db3ff','TU','#06121f');}
+  g.restore();
+  // most / least affinity
+  const a=affinity();
+  const ranked=PARTIES.filter(p=>a[p.token].comp).sort((x,y)=>a[y.token].pct-a[x.token].pct);
+  let y=m.y+m.h+90;
+  const exLine=(lab,p)=>{
+    g.fillStyle='#9aa1ad';g.font=`700 26px ${FONT}`;g.fillText(lab,W/2,y);
+    y+=58;
+    g.font=`800 42px ${FONT}`;
+    const txt=`${p.name} · ${a[p.token].pct}%`, tw=g.measureText(txt).width, dr=18, gap=24;
+    let x=W/2-(dr*2+gap+tw)/2;
+    g.beginPath();g.arc(x+dr,y-15,dr,0,7);g.fillStyle=p.her?'#d1684e':p.color;g.fill();
+    g.fillStyle='#f0f2f6';g.textAlign='left';g.fillText(txt,x+dr*2+gap,y);g.textAlign='center';
+    y+=64;
+  };
+  if(ranked.length){exLine('MÉS AFÍ',ranked[0]);
+    if(ranked.length>1){y+=8;exLine('MENYS AFÍ',ranked[ranked.length-1]);}}
+  g.fillStyle='#5a616c';g.font=`500 24px ${FONT}`;
+  g.fillText('fet amb RIOT · github.com/andratwiro/riot',W/2,H-46);
+  cv.toBlob(b=>{
+    const url=URL.createObjectURL(b),a2=document.createElement('a');
+    a2.href=url;a2.download='reus-mapa-politic.png';document.body.appendChild(a2);a2.click();
+    a2.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
+  },'image/png');
+}
+$("#downloadBtn").addEventListener("click",downloadResult);
 
 function collapseCard(card){
   card.classList.remove("expanded");
