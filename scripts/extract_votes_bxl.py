@@ -79,7 +79,7 @@ def session_date(txt):
     return f"{y}-{MONTHS.get(mon,'00')}-{int(d):02d}"
 
 
-def parse_cri(path):
+def parse_cri(path, session):
     txt = path.read_text(encoding="utf-8")
     # The roll-call blocks ("STEMMING N / VOTE N") live in the detail annex. The
     # "DÉTAIL DU VOTE NOMINATIF" header is NOT always present, so anchor on the markers.
@@ -114,7 +114,8 @@ def parse_cri(path):
                     break
                 k += 1
             kind, doc_ref, seg, clean = parse_subject(subj)
-            cur = {"cri": path.stem, "date": date, "vote_no": int(VOTE_MARK.search(ln).group(1)),
+            cur = {"session": session, "cri": path.stem, "date": date,
+                   "vote_no": int(VOTE_MARK.search(ln).group(1)),
                    "subject": clean, "kind": kind, "doc_ref": doc_ref, "segment": seg,
                    "oui": [], "non": [], "abst": []}
             bucket = None
@@ -142,18 +143,18 @@ def parse_cri(path):
 
 
 def main():
-    all_votes = []
-    for f in sorted(TXT.glob("*.txt")):
-        all_votes.extend(parse_cri(f))
+    all_votes, files = [], sorted(TXT.glob("*/*.txt"))   # cri_txt/<session>/<num>.txt
+    for f in files:
+        all_votes.extend(parse_cri(f, f.parent.name))
     OUT.write_text(json.dumps(all_votes, ensure_ascii=False, indent=2))
-    # quick report
-    ensemble = [v for v in all_votes if v["segment"] == "Ensemble" or v["kind"] in ("MOTION", "CONF", "Urgence")]
-    print(f"parsed {len(all_votes)} nominal votes across {len(list(TXT.glob('*.txt')))} CRIs")
-    print(f"  substantive (Ensemble / motion / urgence): {len(ensemble)}")
-    for v in ensemble:
-        ok = "ok" if (len(v["oui"]) + len(v["non"]) + len(v["abst"])) > 0 else "EMPTY"
-        print(f"  [{v['cri']} {v['date']}] {v['subject'][:64]:64s} "
-              f"P{len(v['oui'])}/C{len(v['non'])}/A{len(v['abst'])} {ok}")
+    by_sess = {}
+    for v in all_votes:
+        by_sess.setdefault(v["session"], 0)
+        by_sess[v["session"]] += 1
+    print(f"parsed {len(all_votes)} nominal votes across {len(files)} CRIs")
+    for s, n in sorted(by_sess.items()):
+        named = sum(1 for v in all_votes if v["session"] == s and v["subject"])
+        print(f"  {s}: {n} votes ({named} with an inline subject)")
 
 
 if __name__ == "__main__":

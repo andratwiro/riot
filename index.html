@@ -374,7 +374,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.29</span>
+      <span class="ver">v0.30</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -1125,7 +1125,10 @@ document.body.classList.toggle("dev",devMode);
 (function setupCitySelector(){
   const logo=$("#cityLogo"),name=$("#cityName"),btn=$("#cityBtn"),menu=$("#cityMenu");
   if(!btn)return;
-  logo.src=CFG.logo||CITIES[0].logo; name.textContent=CFG.name||"";
+  // use the CITIES entry (lives in index.html) for the header logo so it can't desync from
+  // the dropdown if a per-city config.js is stale in cache.
+  const cityEntry=CITIES.find(c=>c.id===CFG.id);
+  logo.src=(cityEntry&&cityEntry.logo)||CFG.logo||CITIES[0].logo; name.textContent=CFG.name||"";
   if(CFG.preview){const t=document.createElement("span");t.className="previewtag";t.textContent="preview";btn.after(t);}
   menu.innerHTML=CITIES.map(c=>`<button type="button" role="menuitem" data-city="${c.id}" class="${c.id===CFG.id?'active':''}">
     <img src="${c.logo}" alt="">${c.name}${c.id===CFG.id?'<span class="tick">✓</span>':''}</button>`).join("");

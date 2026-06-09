@@ -1,5 +1,5 @@
 {
-  "BXL-00023-A-267": {
+  "BXL-2526-00023-A-267": {
     "headline": "Adopt the Brussels-Capital Region's 2026 revenue budget (\"voies et moyens\"), fixing forecast receipts and the year's borrowing authorisations to fund regional spending.",
     "topic": "Public finance",
     "type": "Budget",
@@ -18,7 +18,7 @@
     "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The revenue budget is the lever that lets the Region keep borrowing: voting it sets how much new debt the executive can legally raise this year.\n- The fight is less about the numbers on the page than about whether the receipts are realistic — if they are over-stated, the gap re-appears as deeper borrowing later.\n- Keeping large operations (housing, water, Kanal) off-budget flatters the headline balance, which is precisely the transparency point the Court of Auditors keeps flagging.",
     "raw_fr": "Projet d'ordonnance contenant le budget des voies et moyens de la Région de Bruxelles-Capitale pour l'année budgétaire 2026. Après les douzièmes provisoires, la Région se dote enfin d'un véritable budget initial, fixant le solde SEC à moins de 957 millions d'euros et amorçant une trajectoire de retour à l'équilibre à l'horizon 2029."
   },
-  "BXL-00023-A-268": {
+  "BXL-2526-00023-A-268": {
     "headline": "Adopt the Brussels-Capital Region's 2026 general expenditure budget (\"budget des dépenses\"), authorising the year's spending and running a budget deficit.",
     "topic": "Public finance",
     "type": "Budget",
@@ -36,7 +36,7 @@
     "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The expenditure budget is where the abstract \"reduce the deficit\" becomes concrete: every credit line cut is a programme that shrinks, which is why employment measures dominated the debate.\n- Pairing a -957-million-euro planned deficit with a 2029 balance target signals front-loaded ambition — the political risk is that the cuts needed to hit that path arrive faster than the affected sectors can absorb.\n- Reading this text against the revenue text shows the real choice: the same gap can be closed by spending less here or by borrowing/taxing more there.",
     "raw_fr": "Projet d'ordonnance contenant le budget général des dépenses de la Région de Bruxelles-Capitale pour l'année budgétaire 2026. Les primes du régime des agents contractuels subventionnés vont être réduites, Activa va être supprimé, les moyens financiers dédiés à l'emploi vont être diminués."
   },
-  "BXL-00023-A-270": {
+  "BXL-2526-00023-A-270": {
     "headline": "Enact the formal regulation carrying the 2026 revenue budget of the Brussels Agglomeration, the companion text to the Region's own revenue budget.",
     "topic": "Public finance",
     "type": "Budget",
@@ -51,7 +51,7 @@
     "raw_fr": "Projet de règlement contenant le budget des voies et moyens de l'Agglomération de Bruxelles pour l'année budgétaire 2026.",
     "curator_drop": true
   },
-  "BXL-00023-A-271": {
+  "BXL-2526-00023-A-271": {
     "headline": "Enact the formal regulation carrying the 2026 general expenditure budget of the Brussels Agglomeration, the companion text to the Region's own expenditure budget.",
     "topic": "Public finance",
     "type": "Budget",
@@ -66,7 +66,7 @@
     "raw_fr": "Projet de règlement contenant le budget général des dépenses de l'Agglomération de Bruxelles pour l'année budgétaire 2026.",
     "curator_drop": true
   },
-  "BXL-00023-A-263": {
+  "BXL-2526-00023-A-263": {
     "headline": "Amend the pension rules for former Brussels MPs to let their pensions be indexed again, lifting the freeze that follows from the federal salary-indexation pause.",
     "topic": "Pensions",
     "type": "Ordinance",

@@ -85,7 +85,19 @@ def main():
     decisions = []
     all_unmapped, split_tally, group_votes = set(), 0, 0
     for v in votes:
-        if not is_decision(v):
+        # Inclusion gate. 2025-26 annex carries inline subjects, so gate on the substantive
+        # grain (Ensemble / motion / urgence) — keeps amendments (which share a doc_ref) out.
+        # 2024-25 annex has no subjects, so it's purely card-driven (a subagent authored a card
+        # for the vote_no it judged worth voting). Either way a card must exist. ids are
+        # session-namespaced; 2024-25 keys on vote_no (no doc_ref in its annex).
+        if v["session"] == "2025-26":
+            if not is_decision(v):
+                continue
+            did = f"BXL-2526-{v['cri']}-{v['doc_ref'] or ('v'+str(v['vote_no']))}"
+        else:
+            did = f"BXL-2425-{v['cri']}-v{v['vote_no']}"
+        card = cards.get(did)
+        if card is None:
             continue
         pvc, splits, unmapped = canonical(v["oui"], v["non"], v["abst"], roster)
         all_unmapped |= unmapped
@@ -93,13 +105,11 @@ def main():
         group_votes += len(pvc)
         n_for, n_against = len(v["oui"]), len(v["non"])
         outcome = "approved" if n_for > n_against else "rejected"
-        did = f"BXL-{v['cri']}-{v['doc_ref'] or ('v'+str(v['vote_no']))}"
-        card = cards.get(did, {})
-        raw_fr = card.get("raw_fr") or v["subject"]
+        raw_fr = card.get("raw_fr") or v["subject"] or ""
         decisions.append({
             "id": did,
             "date": v["date"],
-            "session_code": f"PB_{v['cri']}",
+            "session_code": f"PB_{v['session']}_{v['cri']}",
             "point": v["vote_no"],
             "organ": "Parlement bruxellois",
             "type": card.get("type") or {"PPR": "Proposition de résolution", "PJO": "Projet d'ordonnance",
@@ -117,7 +127,7 @@ def main():
             "proposed_by": card.get("proposed_by", ""),   # metadata, never shown in the copy
             "doc_ref": v["doc_ref"],
             "outcome": outcome,                            # structured field (log/compare), not in copy
-            "source_url": f"http://weblex.brussels/data/crb/cri/2025-26/{v['cri']}/images.pdf",
+            "source_url": f"http://weblex.brussels/data/crb/cri/{v['session']}/{v['cri']}/images.pdf",
             "party_votes_canon": pvc,
             "curator_drop": bool(card.get("curator_drop")),
         })

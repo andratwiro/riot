@@ -1,5 +1,5 @@
 {
-  "BXL-00024-A-274": {
+  "BXL-2526-00024-A-274": {
     "headline": "Update the legal definition of a \"distributed-ledger address\" (a blockchain/crypto wallet address) in Brussels tax law, so the Region's reporting rules track the EU framework for taxing crypto-assets.",
     "topic": "Crypto tax reporting",
     "type": "Ordinance",
@@ -16,7 +16,7 @@
     "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The change reads as a DAC8-type alignment: the EU has been extending Directive 2011/16/UE to cover crypto-assets, and a stale wallet-address definition would leave Brussels' reporting rules out of step with that exchange of tax information.\n- The absence of floor debate signals this was treated as a consensual technical transposition rather than a contested policy choice — the substantive arguments (crypto avoidance vs. fiscal privacy) sit at the EU level, not in this single-definition tweak.\n- For a citizen, the live question is less about this clause than about the direction it serves: tighter traceability of crypto holdings for tax purposes.",
     "raw_fr": "Projet d'ordonnance modifiant la définition de l'adresse de registre distribué dans l'article 5, 31°, de l'ordonnance du 26 juillet 2013 transposant la directive 2011/16/UE du Conseil du 15 février 2011 relative à la coopération administrative dans le domaine fiscal et abrogeant la directive 77/799/CEE. M. Gilles Verstraeten, rapporteur, se réfère au rapport écrit."
   },
-  "BXL-00024-A-273": {
+  "BXL-2526-00024-A-273": {
     "headline": "Decline to raise a conflict-of-interest objection against federal bill 56-1342, letting the federal reform that merges Brussels' six local police zones into one proceed without the Region forcing a formal pause for inter-parliamentary talks.",
     "topic": "Police-zone merger",
     "type": "Motion",
