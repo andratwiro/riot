@@ -1,27 +1,13 @@
-// Multiplayer backend (OPTIONAL). Paste your Firebase web config below to turn on the
-// shared per-city rooms (presence + live dots + "reset everyone"). Leave it null and the
-// app runs single-player exactly as before.
-//
-// The apiKey is NOT a secret for a Firebase *web* app — access is governed by the Realtime
-// Database security rules, not by hiding the key. See SETUP below.
-window.FIREBASE_CONFIG = null;
-
-/* ── SETUP (≈3 min, free) ───────────────────────────────────────────────────────────
- 1. console.firebase.google.com → Add project (no Google Analytics needed).
- 2. Build → Realtime Database → Create database → pick a region (europe-west1) →
-    start in "test mode" (or set the rules below).
- 3. Project settings → General → "Your apps" → Web (</>) → register → copy the config.
- 4. Replace the line above with, e.g.:
-
-    window.FIREBASE_CONFIG = {
-      apiKey: "AIza………",
-      authDomain: "your-app.firebaseapp.com",
-      databaseURL: "https://your-app-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "your-app"
-    };
-
- 5. Commit + push (GitHub Pages serves it). Both cities now share live rooms.
-
- Demo-grade rules (open; fine for an ephemeral demo you wipe afterward):
-   { "rules": { "rooms": { ".read": true, ".write": true } } }
- ──────────────────────────────────────────────────────────────────────────────────── */
+// Multiplayer backend. The app reads window.FIREBASE_CONFIG; set it to your Firebase web
+// config to turn on the shared per-city rooms (presence + live dots + "reset everyone").
+// Set it back to null for single-player. The apiKey is NOT a secret for a web app —
+// access is governed by the Realtime Database rules, not by hiding the key.
+window.FIREBASE_CONFIG = {
+  apiKey: "AIzaSyCv9sMMIOUERPiQP4roiYxuKA-WRfSUUxk",
+  authDomain: "riot-e8c73.firebaseapp.com",
+  projectId: "riot-e8c73",
+  storageBucket: "riot-e8c73.firebasestorage.app",
+  messagingSenderId: "60627806636",
+  appId: "1:60627806636:web:72789a4d64839d6b413209",
+  databaseURL: "https://riot-e8c73-default-rtdb.europe-west1.firebasedatabase.app/"
+};
