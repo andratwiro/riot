@@ -119,7 +119,7 @@
     font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 0}
   .card .reveal{margin-top:10px;max-height:42vh;overflow:auto}
   .card .reveal[hidden]{display:none}
-  /* expanded ("Veure més") — same card; title + vote buttons swap out for the
+  /* expanded ("See more") — same card; title + vote buttons swap out for the
      full description, with a close ✕ top-right. Card keeps its size. */
   .card .closex{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;
     border:1px solid var(--line);background:var(--card2);color:var(--ink);font-size:18px;line-height:1;
@@ -305,8 +305,8 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.15</span></div>
-    <button class="gear" id="menuBtn" title="Opcions">⚙</button>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.16</span></div>
+    <button class="gear" id="menuBtn" title="Options">⚙</button>
   </header>
 
   <div id="affinity"></div>
@@ -317,35 +317,35 @@
     <div class="progress" id="progress"></div>
     <div class="stack" id="stack"></div>
     <div id="done">
-      <h2>Ja està 🎉</h2>
+      <h2>All done 🎉</h2>
       <p class="doneSub" id="doneSub"></p>
       <div id="resultMap"></div>
       <div class="extremes" id="extremes"></div>
       <div class="doneActions">
-        <button id="downloadBtn" type="button">⬇ Descarrega</button>
-        <button class="restart" id="restart" type="button">↻ Torna a començar</button>
+        <button id="downloadBtn" type="button">⬇ Download</button>
+        <button class="restart" id="restart" type="button">↻ Start over</button>
       </div>
-      <button class="markreview" id="copyVotes" type="button" style="margin-top:12px">⧉ Copia els vots (JSON)</button>
-      <p class="donenote">Res no s'ha desat. En recarregar, s'esborra tot.</p>
+      <button class="markreview" id="copyVotes" type="button" style="margin-top:12px">⧉ Copy votes (JSON)</button>
+      <p class="donenote">Nothing is saved. Reloading clears everything.</p>
     </div>
   </div>
 
 </div>
 
 <div id="devbar">
-  <button id="markBtn" class="markbtn" type="button">🚩 No val la pena votar</button>
-  <button id="markReview" class="markreview" type="button" title="Revisa els marcats">0 marcats</button>
+  <button id="markBtn" class="markbtn" type="button">🚩 Not worth voting</button>
+  <button id="markReview" class="markreview" type="button" title="Review flagged">0 flagged</button>
 </div>
 
 <div id="log">
   <div class="lh">
-    <div><b>Dades originals</b> <span class="muted" id="logCount"></span></div>
-    <button class="gear" id="closeLog" title="Torna a les targetes">⚙</button>
+    <div><b>Raw data</b> <span class="muted" id="logCount"></span></div>
+    <button class="gear" id="closeLog" title="Back to cards">⚙</button>
   </div>
   <div class="lwrap">
     <p class="muted" style="font-size:12.5px;margin-top:0">
-      Totes les decisions extretes de les actes del Ple, amb el vot real de cada partit i el text
-      literal de la font. Aquesta és la capa verificable: cada targeta de l'enquesta surt d'aquí.
+      Every decision is drawn from the council minutes, with each party's real vote and the
+      verbatim source text. This is the verifiable layer: every survey card comes from here.
     </p>
     <div id="logList"></div>
   </div>
@@ -354,7 +354,7 @@
 <div id="partyView">
   <div class="lh">
     <div class="lhrow">
-      <button class="pvback" id="closeParty" type="button" aria-label="Enrere" title="Enrere">←</button>
+      <button class="pvback" id="closeParty" type="button" aria-label="Back" title="Back">←</button>
       <div id="pvHead"></div>
     </div>
   </div>
@@ -366,32 +366,32 @@
 
 <div id="marksView">
   <div class="lh">
-    <div><b>No val la pena votar</b> <span class="muted" id="marksCount"></span></div>
-    <button class="gear" id="closeMarks" title="Tanca">⚙</button>
+    <div><b>Not worth voting</b> <span class="muted" id="marksCount"></span></div>
+    <button class="gear" id="closeMarks" title="Close">⚙</button>
   </div>
   <div class="lwrap">
     <p class="muted" style="font-size:12.5px;margin-top:0">
-      Decisions que has marcat manualment per revisar més tard (govern obligat a actuar, tràmits, etc.).
-      Es desa al navegador i persisteix entre sessions, a diferència dels vots.
+      Decisions you manually flagged to review later (government required to act, procedural items, etc.).
+      Saved in the browser and persists across sessions, unlike votes.
     </p>
-    <div style="margin:0 0 14px"><button id="copyMarks" class="markreview" type="button">⧉ Copia JSON</button></div>
+    <div style="margin:0 0 14px"><button id="copyMarks" class="markreview" type="button">⧉ Copy JSON</button></div>
     <div id="marksList"></div>
   </div>
 </div>
 
 <div id="importView">
   <div class="lh">
-    <div><b>Importa vots</b></div>
-    <button class="gear" id="closeImport" title="Tanca">⚙</button>
+    <div><b>Import votes</b></div>
+    <button class="gear" id="closeImport" title="Close">⚙</button>
   </div>
   <div class="lwrap">
     <p class="muted" style="font-size:12.5px;margin-top:0">
-      Enganxa aquí un JSON de vots (el que vas copiar des de la pantalla final) per recuperar una sessió.
-      Substitueix els vots actuals.
+      Paste a votes JSON here (the one you copied from the final screen) to restore a session.
+      It replaces the current votes.
     </p>
     <textarea id="importBox" placeholder='{ "v": 1, "votes": { "&lt;id&gt;": "for", … } }' spellcheck="false"></textarea>
     <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
-      <button id="loadVotes" class="markreview" type="button">⤓ Carrega els vots</button>
+      <button id="loadVotes" class="markreview" type="button">⤓ Load votes</button>
     </div>
     <p id="importStatus"></p>
   </div>
@@ -399,37 +399,32 @@
 
 <div id="sheet" aria-hidden="true">
   <div class="sheet-back" id="sheetBack"></div>
-  <div class="sheet-panel" role="dialog" aria-label="Opcions">
+  <div class="sheet-panel" role="dialog" aria-label="Options">
     <div class="sheet-grab"></div>
-    <h3>Opcions</h3>
-    <button class="sheet-item" id="openLog">
-      <span class="si-ic">📄</span>
-      <span class="si-tx"><b>Dades originals</b><small>El registre del Ple amb el vot real i el text literal de cada acta.</small></span>
-      <span class="si-go">↗</span>
-    </button>
-    <label class="sheet-item" for="origToggle">
-      <span class="si-ic">🔁</span>
-      <span class="si-tx"><b>Text original a les targetes</b><small>Mostra el títol i el text oficial de l'acta en lloc de la versió simplificada.</small></span>
-      <span class="switch"><input type="checkbox" id="origToggle"><span class="slider"></span></span>
-    </label>
+    <h3>Options</h3>
     <label class="sheet-item" for="mapToggle">
       <span class="si-ic">🗺️</span>
-      <span class="si-tx"><b>Mostra el mapa polític</b><small>Situa els partits i la teva posició en un mapa d'afinitats.</small></span>
+      <span class="si-tx"><b>Show affinity map</b></span>
       <span class="switch"><input type="checkbox" id="mapToggle"><span class="slider"></span></span>
     </label>
     <label class="sheet-item" for="aiToggle" id="aiRow">
       <span class="si-ic">○</span>
-      <span class="si-tx"><b>Afegeix la IA als partits</b><small>Inclou el proxy IA com un partit més: a la barra d'afinitat i al mapa.</small></span>
+      <span class="si-tx"><b>Show AI proxy</b></span>
       <span class="switch"><input type="checkbox" id="aiToggle"><span class="slider"></span></span>
     </label>
-    <label class="sheet-item" for="devToggle">
-      <span class="si-ic">🛠️</span>
-      <span class="si-tx"><b>Mode curador</b></span>
-      <span class="switch"><input type="checkbox" id="devToggle"><span class="slider"></span></span>
+    <button class="sheet-item" id="openLog">
+      <span class="si-ic">📄</span>
+      <span class="si-tx"><b>View raw data</b></span>
+      <span class="si-go">↗</span>
+    </button>
+    <label class="sheet-item" for="origToggle">
+      <span class="si-ic">🔁</span>
+      <span class="si-tx"><b>Show original text on cards</b></span>
+      <span class="switch"><input type="checkbox" id="origToggle"><span class="slider"></span></span>
     </label>
     <button class="sheet-item" id="importVotes">
       <span class="si-ic">⤓</span>
-      <span class="si-tx"><b>Importa vots</b><small>Recupera una sessió de vots des d'un JSON copiat (per a demos i proves).</small></span>
+      <span class="si-tx"><b>Import votes</b></span>
       <span class="si-go">↗</span>
     </button>
   </div>
@@ -461,7 +456,7 @@ function applyAiParty(on){
   renderAffinity();
 }
 const $ = s => document.querySelector(s);
-const VLAB = {for:"a favor", against:"en contra", abstain:"abstenció", split:"dividit", absent:"absent"};
+const VLAB = {for:"for", against:"against", abstain:"abstain", split:"split", absent:"absent"};
 const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
 
 let deck = shuffle(R.decisions.filter(d => d.headline && !d.curator_drop));
@@ -526,7 +521,7 @@ function renderAffinity(){
   $("#affinity").innerHTML=order.map(p=>{
     const r=a[p.token],pct=r.pct;
     const ai=p.token==="IA";
-    return `<div class="pa ${r.comp?'':'muted'}" data-token="${p.token}" title="${esc(p.name)} · toca per veure on ${ai?"t'encerta":"discrepeu"}">${logoEl(p)}
+    return `<div class="pa ${r.comp?'':'muted'}" data-token="${p.token}" title="${esc(p.name)} · tap to see where ${ai?"it matches you":"you differ"}">${logoEl(p)}
       <div class="track"><div class="fill" style="width:${pct||0}%;background:${p.color}"></div></div>
     </div>`;
   }).join("");
@@ -607,10 +602,10 @@ function buildMapBase(){
                        :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
     return `<div class="mdot" style="left:${l}%;top:${t}%" title="${esc(p.name)}">${inner}</div>`;
   }).join("");
-  $("#map").innerHTML=`<span class="maptag">Mapa polític</span>
+  $("#map").innerHTML=`<span class="maptag">Affinity map</span>
     <div class="axis x"></div><div class="axis y"></div>
     ${dots}
-    <div class="mdot me" id="userDot" style="opacity:0"><span class="mc fb">TU</span></div>
+    <div class="mdot me" id="userDot" style="opacity:0"><span class="mc fb">YOU</span></div>
     <div class="maphint" id="mapHint"></div>`;
   mapBuilt=true;
 }
@@ -626,8 +621,8 @@ function renderMap(){
   else{
     hint.style.display="block";
     const left=MAP_GATE-n;
-    hint.textContent=n>=MAP_GATE?"Vota més per situar-t'hi"
-      :`Reacciona ${left} cop${left===1?'':'s'} més per situar-t'hi`;
+    hint.textContent=n>=MAP_GATE?"Vote more to place yourself"
+      :`React ${left} more time${left===1?'':'s'} to place yourself`;
   }
 }
 
@@ -645,13 +640,13 @@ function renderBrief(md){
 function renderStack(){
   const stack=$("#stack");
   if(idx>=deck.length){finish();return;}
-  $("#progress").textContent=`${idx+1} de ${deck.length}`;
+  $("#progress").textContent=`${idx+1} of ${deck.length}`;
   stack.innerHTML="";
   for(let k=Math.min(idx+2,deck.length-1);k>=idx;k--){
     const d=deck[k],depth=k-idx;
     const el=document.createElement("div");
     el.className="card"+(depth===1?" behind1":depth===2?" behind2":"");
-    const topic = useOriginal ? esc(d.organ||d.type||"Acta") : esc(d.topic||"Decisió");
+    const topic = useOriginal ? esc(d.organ||d.type||"Record") : esc(d.topic||"Decision");
     const head  = useOriginal ? esc(d.title||d.headline) : esc(d.headline);
     let body;
     if(useOriginal){
@@ -661,7 +656,7 @@ function renderStack(){
                  : `<div class="body">${esc(d.human_body||"")}</div>`;
       const dfacts = d.deep_facts || d.deep;   // neutral, cited (what the AI proxy reads)
       const deep = dfacts
-        ? `<button class="deepmore" type="button">Anàlisi completa ▾</button>`+
+        ? `<button class="deepmore" type="button">Full analysis ▾</button>`+
           `<div class="deep" hidden>${renderBrief(dfacts)}`+
           (d.deep_lectura?`<div class="lectura">${renderBrief(d.deep_lectura)}</div>`:"")+
           `</div>`
@@ -670,24 +665,24 @@ function renderStack(){
     }
     const acts = depth===0
       ? `<div class="acts">
-          <button class="btn a" data-v="against">En contra</button>
-          <button class="btn ab" data-v="abstain">Abstenció</button>
-          <button class="btn f" data-v="for">A favor</button>
+          <button class="btn a" data-v="against">Against</button>
+          <button class="btn ab" data-v="abstain">Abstain</button>
+          <button class="btn f" data-v="for">For</button>
         </div>`
       : "";
     const headTip = useOriginal ? "" : ` title="${esc(d.title||"")}"`;
     // auto-discretion suggestion (curator only): proposed-drop the curator hasn't confirmed/dismissed
     const showSug = depth===0 && devMode && d.auto_suggest && !isMarked(d.id) && !isDismissed(d.id);
     const suggest = showSug
-      ? `<div class="suggest"><span class="stxt">🤖 Proposem: no val la pena votar</span>`+
-        `<button class="sugOk" type="button">Confirma</button>`+
-        `<button class="sugNo" type="button">Ignora</button></div>`
+      ? `<div class="suggest"><span class="stxt">🤖 Suggested: not worth voting</span>`+
+        `<button class="sugOk" type="button">Confirm</button>`+
+        `<button class="sugNo" type="button">Dismiss</button></div>`
       : "";
-    el.innerHTML=`<button class="closex" type="button" aria-label="Tanca">✕</button>
+    el.innerHTML=`<button class="closex" type="button" aria-label="Close">✕</button>
       ${suggest}
       <span class="topic${useOriginal?" orig":""}">${topic}</span>
       <h2${headTip}>${head}</h2>
-      <button class="more" type="button">Veure més ▾</button>
+      <button class="more" type="button">See more ▾</button>
       <div class="reveal" hidden>${body}</div>
       ${acts}`;
     stack.appendChild(el);
@@ -717,8 +712,8 @@ function renderResultMap(){
   }).join("");
   const uc=userCoord();
   let userDot="";
-  if(uc){const [l,t]=toPct(uc);userDot=`<div class="mdot me" style="left:${l}%;top:${t}%"><span class="mc fb">TU</span></div>`;}
-  el.innerHTML=`<span class="maptag">El teu mapa polític</span>
+  if(uc){const [l,t]=toPct(uc);userDot=`<div class="mdot me" style="left:${l}%;top:${t}%"><span class="mc fb">YOU</span></div>`;}
+  el.innerHTML=`<span class="maptag">Your affinity map</span>
     <div class="axis x"></div><div class="axis y"></div>${dots}${userDot}`;
 }
 // most / least affine party cards
@@ -732,8 +727,8 @@ function renderExtremes(ranked,a){
     <span class="expct" style="color:${p.color}">${a[p.token].pct}%</span></div>`;
   const most=ranked[0], least=ranked[ranked.length-1];
   ex.innerHTML = ranked.length===1
-    ? card("most","Més afí",most)
-    : card("most","Més afí",most)+card("least","Menys afí",least);
+    ? card("most","Most aligned",most)
+    : card("most","Most aligned",most)+card("least","Least aligned",least);
   // mount the "Her" mark live on any IA card that's currently on-screen
   if(AI&&window.HerOS1&&HerOS1.supported){
     ex.querySelectorAll('.exc .lg.her').forEach(slot=>{
@@ -745,7 +740,7 @@ function finish(){
   $("#stack").innerHTML=""; $("#progress").textContent="";
   const a=affinity();
   const ranked=PARTIES.filter(p=>a[p.token].comp).sort((x,y)=>a[y.token].pct-a[x.token].pct);
-  $("#doneSub").textContent=`Has reaccionat a ${Object.keys(answers).length} decisions.`;
+  $("#doneSub").textContent=`You reacted to ${Object.keys(answers).length} decisions.`;
   renderResultMap();
   renderExtremes(ranked,a);
   $("#done").style.display="flex";
@@ -771,9 +766,9 @@ function downloadResult(){
   g.fillStyle='#0e1014';g.fillRect(0,0,W,H);
   g.textAlign='center';g.textBaseline='alphabetic';
   g.fillStyle='#f0f2f6';g.font=`800 60px ${FONT}`;
-  g.fillText('El meu mapa polític',W/2,116);
+  g.fillText('My affinity map',W/2,116);
   g.fillStyle='#9aa1ad';g.font=`500 32px ${FONT}`;
-  g.fillText(`REUS · ${Object.keys(answers).length} decisions votades`,W/2,166);
+  g.fillText(`REUS · ${Object.keys(answers).length} decisions voted`,W/2,166);
   // map card
   const m={x:80,y:210,w:W-160,h:W-160};
   roundRectPath(g,m.x,m.y,m.w,m.h,42);g.fillStyle='#171b22';g.fill();
@@ -794,7 +789,7 @@ function downloadResult(){
   const uc=userCoord();
   if(uc){const [x,y]=place(uc);
     g.beginPath();g.arc(x,y,40,0,7);g.fillStyle='rgba(109,179,255,.22)';g.fill();
-    dot(x,y,32,'#6db3ff','TU','#06121f');}
+    dot(x,y,32,'#6db3ff','YOU','#06121f');}
   g.restore();
   // most / least affinity
   const a=affinity();
@@ -810,10 +805,10 @@ function downloadResult(){
     g.fillStyle='#f0f2f6';g.textAlign='left';g.fillText(txt,x+dr*2+gap,y);g.textAlign='center';
     y+=64;
   };
-  if(ranked.length){exLine('MÉS AFÍ',ranked[0]);
-    if(ranked.length>1){y+=8;exLine('MENYS AFÍ',ranked[ranked.length-1]);}}
+  if(ranked.length){exLine('MOST ALIGNED',ranked[0]);
+    if(ranked.length>1){y+=8;exLine('LEAST ALIGNED',ranked[ranked.length-1]);}}
   g.fillStyle='#5a616c';g.font=`500 24px ${FONT}`;
-  g.fillText('fet amb RIOT · github.com/andratwiro/riot',W/2,H-46);
+  g.fillText('made with RIOT · github.com/andratwiro/riot',W/2,H-46);
   cv.toBlob(b=>{
     const url=URL.createObjectURL(b),a2=document.createElement('a');
     a2.href=url;a2.download='reus-mapa-politic.png';document.body.appendChild(a2);a2.click();
@@ -835,7 +830,7 @@ $("#stack").addEventListener("click",e=>{
     card.querySelector(".reveal").removeAttribute("hidden");
     card.classList.add("expanded");
     // Pin the card to the space left in #survey so .reveal scrolls instead of
-    // overflowing off-screen (incl. when "Anàlisi completa" adds more content).
+    // overflowing off-screen (incl. when "Full analysis" adds more content).
     const survey=$("#survey");
     const avail=survey.getBoundingClientRect().bottom - card.getBoundingClientRect().top - 6;
     card.style.height=Math.max(avail,220)+"px";
@@ -853,8 +848,8 @@ $("#stack").addEventListener("click",e=>{
   if(dm){
     const blk=dm.nextElementSibling;
     const open=blk.hasAttribute("hidden");
-    if(open){blk.removeAttribute("hidden");dm.textContent="Amaga l'anàlisi ▴";}
-    else{blk.setAttribute("hidden","");dm.textContent="Anàlisi completa ▾";}
+    if(open){blk.removeAttribute("hidden");dm.textContent="Hide analysis ▴";}
+    else{blk.setAttribute("hidden","");dm.textContent="Full analysis ▾";}
     return;
   }
   if(e.target.closest(".closex")){collapseCard(e.target.closest(".card"));return;}
@@ -880,15 +875,15 @@ function buildLog(){
   $("#logCount").textContent=`· ${R.n_decisions} decisions · ${(R.sessions_in_table||[]).length} sessions`;
   const rows=R.decisions.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   $("#logList").innerHTML=rows.map(d=>{
-    const out=d.votes_pending?'<span class="badge b-pend">VOTS PENDENTS</span>':d.outcome==="rejected"?'<span class="badge b-rej">REBUTJAT</span>':'<span class="badge b-app">APROVAT</span>';
-    const chips=d.votes_pending?'<span class="pchip">acta encara no publicada</span>':Object.entries(d.party_votes_canon||{}).map(([k,v])=>`<span class="pchip"><span class="dot d-${v}"></span>${k} ${VLAB[v]||v}</span>`).join("");
+    const out=d.votes_pending?'<span class="badge b-pend">VOTES PENDING</span>':d.outcome==="rejected"?'<span class="badge b-rej">REJECTED</span>':'<span class="badge b-app">APPROVED</span>';
+    const chips=d.votes_pending?'<span class="pchip">minutes not yet published</span>':Object.entries(d.party_votes_canon||{}).map(([k,v])=>`<span class="pchip"><span class="dot d-${v}"></span>${k} ${VLAB[v]||v}</span>`).join("");
     return `<div class="lcard">
       <div class="lt">${esc(d.title||d.headline)}</div>
-      <div class="lm"><span>${d.date||""}</span><span>${d.session_code} · punt ${d.point??"?"}</span><span>${esc(d.organ||d.type||"")}</span>${out}</div>
+      <div class="lm"><span>${d.date||""}</span><span>${d.session_code} · item ${d.point??"?"}</span><span>${esc(d.organ||d.type||"")}</span>${out}</div>
       <div class="lvotes">${chips}</div>
-      <details><summary>text literal de l'acta + font</summary>
+      <details><summary>verbatim minutes text + source</summary>
         <div class="lraw">${esc(d.raw_outcome||"—")}</div>
-        ${d.acta_url?`<div style="margin-top:7px"><a class="src" href="${d.acta_url}" target="_blank" rel="noopener">↗ obrir l'acta (PDF)</a></div>`:""}
+        ${d.acta_url?`<div style="margin-top:7px"><a class="src" href="${d.acta_url}" target="_blank" rel="noopener">↗ open the minutes (PDF)</a></div>`:""}
       </details></div>`;
   }).join("");
 }
@@ -907,25 +902,25 @@ function openParty(token){
   rows.sort((a,b)=>rankOf(a)-rankOf(b));
   const comp=rows.filter(r=>r.comparable), matches=comp.filter(r=>r.agree).length;
   const pct=comp.length?Math.round(100*matches/comp.length):null, disagrees=comp.length-matches;
-  const accord=isAI?"d'encert":"d'acord";
+  const accord=isAI?"accuracy":"agreement";
 
   const headMark=isAI?`<span class="herHero" id="herHero"></span>`:logoEl(p);
   $("#pvHead").innerHTML=`${headMark}<div><b>${esc(p.name)}</b> <span class="pvpct">${
-    pct===null?"encara sense comparació":pct+"% "+accord+" · "+disagrees+(disagrees===1?" discrepància":" discrepàncies")}</span></div>`;
+    pct===null?"no comparison yet":pct+"% "+accord+" · "+disagrees+(disagrees===1?" disagreement":" disagreements")}</span></div>`;
   if(iaHero){iaHero.dispose();iaHero=null;}
   if(isAI){const hero=document.getElementById("herHero");
     if(hero){ if(window.HerOS1&&HerOS1.supported) iaHero=HerOS1.mount(hero,{size:60}); else hero.classList.add("fallback"); }}
   $("#pvIntro").textContent=rows.length
     ? (isAI
-        ? `Predicció cega: el proxy va votar només des del teu perfil i el context neutral de cada decisió — sense veure mai els teus vots, els dels partits ni el resultat. Les ${rows.length} que has votat, primer on falla.`
-        : `Les ${rows.length} decisions que has votat, comparades amb ${p.name}. Primer on discrepeu.`)
-    : "Encara no has reaccionat a cap decisió.";
+        ? `Blind prediction: the proxy voted only from your profile and the neutral context of each decision — never seeing your votes, the parties' votes or the outcome. The ${rows.length} you voted, where it misses first.`
+        : `The ${rows.length} decisions you voted, compared with ${p.name}. Where you differ first.`)
+    : "You haven't reacted to any decision yet.";
   $("#pvList").innerHTML=rows.map(r=>{
-    const badge=!r.comparable?`<span class="badge b-na">${VLAB[r.pv]||"sense vot"}</span>`
-      :r.agree?`<span class="badge b-agree">${isAI?"ENCERTA":"COINCIDIU"}</span>`:`<span class="badge b-disagree">${isAI?"FALLA":"DISCREPEU"}</span>`;
+    const badge=!r.comparable?`<span class="badge b-na">${VLAB[r.pv]||"no vote"}</span>`
+      :r.agree?`<span class="badge b-agree">${isAI?"MATCH":"AGREE"}</span>`:`<span class="badge b-disagree">${isAI?"MISS":"DIFFER"}</span>`;
     const conf=isAI&&r.conf!=null?` · ${Math.round(r.conf*100)}%`:"";
-    const pchip=`<span class="pchip"><span class="dot d-${r.pv||"absent"}"></span>${p.token} ${VLAB[r.pv]||"sense vot"}${conf}</span>`;
-    const uchip=`<span class="pchip you"><span class="dot d-${r.uv}"></span>Tu ${VLAB[r.uv]||r.uv}</span>`;
+    const pchip=`<span class="pchip"><span class="dot d-${r.pv||"absent"}"></span>${p.token} ${VLAB[r.pv]||"no vote"}${conf}</span>`;
+    const uchip=`<span class="pchip you"><span class="dot d-${r.uv}"></span>You ${VLAB[r.uv]||r.uv}</span>`;
     const why=r.rationale?`<div class="lm" style="margin-top:6px;font-style:italic">«${esc(r.rationale)}»</div>`:"";
     return `<div class="lcard">
       <div class="lt">${esc(r.d.headline||r.d.title)}</div>
@@ -950,9 +945,9 @@ function updateDevBar(){
   const d=(idx<deck.length)?deck[idx]:null, btn=$("#markBtn");
   if(d){const on=isMarked(d.id);
     btn.disabled=false; btn.classList.toggle("on",on);
-    btn.textContent=on?"✓ Marcat — toca per treure":"🚩 No val la pena votar";
-  }else{btn.disabled=true; btn.classList.remove("on"); btn.textContent="🚩 No val la pena votar";}
-  $("#markReview").textContent=`${marks.length} marcat${marks.length===1?"":"s"}`;
+    btn.textContent=on?"✓ Flagged — tap to remove":"🚩 Not worth voting";
+  }else{btn.disabled=true; btn.classList.remove("on"); btn.textContent="🚩 Not worth voting";}
+  $("#markReview").textContent=`${marks.length} flagged`;
 }
 function toggleMark(d){
   const i=marks.findIndex(m=>m.id===d.id);
@@ -975,23 +970,24 @@ function openMarks(){
   $("#marksCount").textContent=`· ${marks.length}`;
   $("#marksList").innerHTML=marks.length?marks.map(m=>`<div class="lcard">
     <div class="lt">${esc(m.headline||m.title||m.id)}</div>
-    <div class="lm"><span>${m.date||""}</span><span>${esc(m.session_code||"")}${m.point!=null?" · punt "+m.point:""}</span></div>
-    <div class="pvrow"><button class="markreview" type="button" data-unmark="${m.id}">✕ Treure marca</button></div>
-  </div>`).join(""):`<p class="muted">Encara no has marcat cap decisió.</p>`;
+    <div class="lm"><span>${m.date||""}</span><span>${esc(m.session_code||"")}${m.point!=null?" · item "+m.point:""}</span></div>
+    <div class="pvrow"><button class="markreview" type="button" data-unmark="${m.id}">✕ Remove flag</button></div>
+  </div>`).join(""):`<p class="muted">You haven't flagged any decisions yet.</p>`;
   $("#marksView").style.display="block";
 }
 $("#markReview").addEventListener("click",openMarks);
 $("#closeMarks").addEventListener("click",()=>$("#marksView").style.display="none");
 $("#copyMarks").addEventListener("click",()=>{
   const txt=JSON.stringify(dismissed.length?{marks,dismissed}:marks,null,2);
-  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>{$("#copyMarks").textContent="✓ Copiat";setTimeout(()=>$("#copyMarks").textContent="⧉ Copia JSON",1500);});
+  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>{$("#copyMarks").textContent="✓ Copied";setTimeout(()=>$("#copyMarks").textContent="⧉ Copy JSON",1500);});
 });
 $("#marksList").addEventListener("click",e=>{
   const b=e.target.closest("[data-unmark]"); if(!b)return;
   const i=marks.findIndex(m=>m.id===b.dataset.unmark);
   if(i>=0){marks.splice(i,1);saveMarks();openMarks();updateDevBar();}
 });
-$("#devToggle").addEventListener("change",e=>setDevMode(e.target.checked));
+// curator mode is no longer surfaced in the menu; it still honours the persisted localStorage flag.
+const devToggleEl=$("#devToggle"); if(devToggleEl)devToggleEl.addEventListener("change",e=>setDevMode(e.target.checked));
 
 /* ---- export / import votes (simplified id->vote map; demo + AI comparison) ---- */
 function votesJSON(){
@@ -1000,7 +996,7 @@ function votesJSON(){
 $("#copyVotes").addEventListener("click",()=>{
   const txt=votesJSON();
   if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>{
-    $("#copyVotes").textContent="✓ Copiat";setTimeout(()=>$("#copyVotes").textContent="⧉ Copia els vots (JSON)",1500);
+    $("#copyVotes").textContent="✓ Copied";setTimeout(()=>$("#copyVotes").textContent="⧉ Copy votes (JSON)",1500);
   });
 });
 // Replace the live session with an imported set of votes, then re-render (lands on the
@@ -1023,13 +1019,13 @@ $("#closeImport").addEventListener("click",()=>$("#importView").style.display="n
 $("#loadVotes").addEventListener("click",()=>{
   const st=$("#importStatus");st.className="";
   const raw=$("#importBox").value.trim();
-  if(!raw){st.className="err";st.textContent="Enganxa primer un JSON.";return;}
-  let data; try{data=JSON.parse(raw);}catch(e){st.className="err";st.textContent="JSON no vàlid: "+e.message;return;}
+  if(!raw){st.className="err";st.textContent="Paste a JSON first.";return;}
+  let data; try{data=JSON.parse(raw);}catch(e){st.className="err";st.textContent="Invalid JSON: "+e.message;return;}
   const map=(data&&typeof data==="object"&&data.votes&&typeof data.votes==="object")?data.votes:data;
-  if(!map||typeof map!=="object"||Array.isArray(map)){st.className="err";st.textContent="No s'hi troben vots.";return;}
+  if(!map||typeof map!=="object"||Array.isArray(map)){st.className="err";st.textContent="No votes found.";return;}
   const applied=applyImportedVotes(map);
-  if(!applied){st.className="err";st.textContent="Cap vot vàlid (ids desconeguts?).";return;}
-  st.className="ok";st.textContent=`✓ ${applied} vots carregats.`;
+  if(!applied){st.className="err";st.textContent="No valid votes (unknown ids?).";return;}
+  st.className="ok";st.textContent=`✓ ${applied} votes loaded.`;
   setTimeout(()=>$("#importView").style.display="none",700);
 });
 
@@ -1063,7 +1059,7 @@ $("#mapToggle").checked=showMap;
 $("#aiToggle").checked=showAI;
 if(!AI){const r=$("#aiRow"); if(r)r.style.display="none";}   // hide the toggle if no proxy votes exist
 applyAiParty(showAI);   // builds the map coords + renders affinity (adds the IA party iff showAI)
-$("#devToggle").checked=devMode;
+if(devToggleEl)devToggleEl.checked=devMode;
 document.body.classList.toggle("dev",devMode);
 
 renderStack();
