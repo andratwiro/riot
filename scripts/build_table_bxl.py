@@ -66,6 +66,14 @@ def canonical(names_oui, names_non, names_abst, roster):
     return pvc, splits, unmapped
 
 
+def md(x):
+    """Coerce a card field to a markdown string. Some agents emit bullet lists as JSON
+    arrays; turn those into '- ' lines that renderBrief understands."""
+    if isinstance(x, list):
+        return "\n".join(s if str(s).lstrip().startswith(("-", "*", "#")) else "- " + str(s) for s in x)
+    return x or ""
+
+
 def main():
     votes = json.loads((BX / "votes_raw.json").read_text())
     roster = json.loads((BX / "roster.json").read_text())["roster"]
@@ -87,6 +95,7 @@ def main():
         outcome = "approved" if n_for > n_against else "rejected"
         did = f"BXL-{v['cri']}-{v['doc_ref'] or ('v'+str(v['vote_no']))}"
         card = cards.get(did, {})
+        raw_fr = card.get("raw_fr") or v["subject"]
         decisions.append({
             "id": did,
             "date": v["date"],
@@ -99,13 +108,15 @@ def main():
                      "Urgence": "Demande d'urgence"}.get(v["kind"], "Texte"),
             "topic": card.get("topic", "Brussels Parliament"),
             "headline": card.get("headline") or v["subject"],
-            "title": v["subject"],
-            "source_brief": card.get("source_brief", ""),
-            "stake": card.get("stake", ""),
+            # "original text" layer (opt-in toggle) — the French source, NO result (blind vote).
+            "title": raw_fr,
+            "raw_outcome": raw_fr,
+            "source_brief": md(card.get("source_brief")),
+            "deep_facts": md(card.get("deep_facts")),
+            "deep_lectura": md(card.get("deep_lectura")),
+            "proposed_by": card.get("proposed_by", ""),   # metadata, never shown in the copy
             "doc_ref": v["doc_ref"],
-            "raw_outcome": f"{v['subject']} — {len(v['oui'])} pour, {len(v['non'])} contre, "
-                           f"{len(v['abst'])} abstention(s). " + ("Adopté." if outcome == "approved" else "Rejeté."),
-            "outcome": outcome,
+            "outcome": outcome,                            # structured field (log/compare), not in copy
             "source_url": f"http://weblex.brussels/data/crb/cri/2025-26/{v['cri']}/images.pdf",
             "party_votes_canon": pvc,
             "curator_drop": bool(card.get("curator_drop")),

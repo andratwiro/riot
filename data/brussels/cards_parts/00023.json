@@ -1,39 +1,87 @@
 {
   "BXL-00023-A-267": {
-    "headline": "Adopting the 2026 regional revenue budget",
+    "headline": "Adopt the Brussels-Capital Region's 2026 revenue budget (\"voies et moyens\"), fixing forecast receipts and the year's borrowing authorisations to fund regional spending.",
     "topic": "Public finance",
-    "source_brief": "This is the Brussels-Capital Region's revenue budget (\"voies et moyens\") for 2026, setting out the income the Region expects to collect. It is the first full initial budget after a long period in which the Region operated on provisional twelfths, carrying forward deficits without a clear plan. The majority (PS, MR, Open VLD, Les Engagés, Groen, CD&V, Vooruit) approved it 53-32; the opposition (PTB, DéFI, Team Fouad Ahidar, Vlaams Belang, Ecolo, N-VA) voted against.",
-    "stake": "It determines the revenue side underpinning all regional spending for 2026.",
-    "type": "Budget"
+    "type": "Budget",
+    "proposed_by": "Brussels-Capital Government",
+    "source_brief": "This is the income side of the Region's budget for 2026 — the receipts it expects to collect and the borrowing it is authorised to take on. It matters because, for the first time in over a year, the Region is setting a full initial budget rather than improvising.\n\n- **First real budget in 615 days.** Brussels had been running on five successive sets of provisional \"twelfths\" — monthly stopgaps that kept the lights on but rolled deficits forward with no clear plan.\n- **A deep hole to fill.** The Region starts from a structural deficit cited in debate at around 1.5 billion euros, with a stated goal of reaching balance by 2029.\n- **Heavy reliance on borrowing.** Interest on the existing debt alone is set to cost about 500 million euros in 2026; the revenue side has to be read against that load.\n- **The rub:** balancing the books means either raising more revenue or borrowing more — and critics argue the receipts here are optimistic and the real adjustment is being pushed onto future years.",
+    "deep_facts": [
+      "The text is the \"projet d'ordonnance contenant le budget des voies et moyens de la Région de Bruxelles-Capitale pour l'année budgétaire 2026\" (CRI, 27 Mar 2026).",
+      "It follows a period in which the Region operated on provisional twelfths; the budget minister referred to \"615 jours\" and \"cinq budgets provisoires successifs\" before this initial budget (CRI, 27 Mar 2026).",
+      "The 2026 budget fixes the SEC/ESR balance at under -957 million euros (\"le solde SEC à moins de 957 millions d'euros\"), with a stated trajectory back to balance by 2029 (CRI, 27 Mar 2026).",
+      "The minister stated the budget improves by 591 million euros versus the previous year, citing the Court of Auditors (Cour des comptes), equal to about 9% of revenues (CRI, 27 Mar 2026).",
+      "Interest on the debt is forecast at around 500 million euros in 2026; a 1-percentage-point rise in rates would add about 150 million euros (CRI, 27 Mar 2026).",
+      "A debt ceiling of 3 billion euros was set; direct debt is estimated at 14.6 billion euros in 2026, rising to 15.6 (2027), 16.2 (2028) and 16.4 billion euros in 2029 (CRI, 27 Mar 2026).",
+      "Regional debt was cited as having risen from 6 billion euros in 2019 to about 15 billion euros (CRI, 27 Mar 2026).",
+      "Opposition members put the underlying deficit and off-budget operations differently, citing 400 million euros for the regional housing company (SLRB), 180 million for Vivaqua and 60 million for Kanal-Centre Pompidou, and a projected cumulative debt of 19.1 billion euros by 2029 (CRI, 27 Mar 2026)."
+    ],
+    "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The revenue budget is the lever that lets the Region keep borrowing: voting it sets how much new debt the executive can legally raise this year.\n- The fight is less about the numbers on the page than about whether the receipts are realistic — if they are over-stated, the gap re-appears as deeper borrowing later.\n- Keeping large operations (housing, water, Kanal) off-budget flatters the headline balance, which is precisely the transparency point the Court of Auditors keeps flagging.",
+    "raw_fr": "Projet d'ordonnance contenant le budget des voies et moyens de la Région de Bruxelles-Capitale pour l'année budgétaire 2026. Après les douzièmes provisoires, la Région se dote enfin d'un véritable budget initial, fixant le solde SEC à moins de 957 millions d'euros et amorçant une trajectoire de retour à l'équilibre à l'horizon 2029."
   },
   "BXL-00023-A-268": {
-    "headline": "Adopting the 2026 regional expenditure budget",
+    "headline": "Adopt the Brussels-Capital Region's 2026 general expenditure budget (\"budget des dépenses\"), authorising the year's spending and running a budget deficit.",
     "topic": "Public finance",
-    "source_brief": "This is the Brussels-Capital Region's expenditure budget (\"budget des dépenses\") for 2026, authorising the Region's spending and credits for the year. It accompanies the revenue budget as the Region's first full initial budget after running on provisional twelfths. The majority (PS, MR, Open VLD, Les Engagés, Groen, CD&V, Vooruit) approved it 53-32 against the opposition (PTB, DéFI, Team Fouad Ahidar, Vlaams Belang, Ecolo, N-VA).",
-    "stake": "It sets how much the Region is authorised to spend across all its policy areas in 2026.",
-    "type": "Budget"
+    "type": "Budget",
+    "proposed_by": "Brussels-Capital Government",
+    "source_brief": "This is the spending side of the Region's 2026 budget — the credits each policy area is authorised to spend. Paired with the revenue text, it is the Region's first full initial budget after a long run on provisional twelfths.\n\n- **It sets the deficit.** The 2026 budget is planned to close in the red, with the SEC/ESR balance fixed at under -957 million euros.\n- **From stopgap to plan.** For more than a year the Region spent through monthly provisional twelfths, which guaranteed continuity of public services but rolled deficits forward without a clear direction.\n- **Savings land on real programmes.** Debate flagged cuts touching employment measures — reduced subsidised-contract premiums and the end of the Activa scheme among them.\n- **The rub:** the only ways to shrink a 1.5-billion-euro deficit are to cut spending or raise revenue — and where the axe falls (employment, social programmes) is exactly what the budget is fought over.",
+    "deep_facts": [
+      "The text is the \"projet d'ordonnance contenant le budget général des dépenses de la Région de Bruxelles-Capitale pour l'année budgétaire 2026\" (CRI, 27 Mar 2026).",
+      "It is the companion expenditure text to the 2026 revenue budget, the Region having previously operated on provisional twelfths (CRI, 27 Mar 2026).",
+      "The 2026 budget fixes the SEC/ESR balance at under -957 million euros, with a stated return to balance targeted for 2029, from a deficit cited at about 1.5 billion euros (CRI, 27 Mar 2026).",
+      "The minister stated the budget improves by 591 million euros versus the prior year, per the Court of Auditors, about 9% of revenues (CRI, 27 Mar 2026).",
+      "Debate cited spending cuts in employment policy: reduced premiums for subsidised contractual agents (ACS), suppression of the Activa scheme, and a lower employment budget; one figure given was 16,500 insertion pathways concerned (CRI, 27 Mar 2026).",
+      "Several amendments were tabled to the expenditure budget, including ones touching the totals of Bruxelles Environnement and STIB programmes (CRI, 27 Mar 2026).",
+      "Investment in housing in 2026 was cited at around 150 million euros (compared to the debt-interest charge of about 500 million euros) (CRI, 27 Mar 2026)."
+    ],
+    "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The expenditure budget is where the abstract \"reduce the deficit\" becomes concrete: every credit line cut is a programme that shrinks, which is why employment measures dominated the debate.\n- Pairing a -957-million-euro planned deficit with a 2029 balance target signals front-loaded ambition — the political risk is that the cuts needed to hit that path arrive faster than the affected sectors can absorb.\n- Reading this text against the revenue text shows the real choice: the same gap can be closed by spending less here or by borrowing/taxing more there.",
+    "raw_fr": "Projet d'ordonnance contenant le budget général des dépenses de la Région de Bruxelles-Capitale pour l'année budgétaire 2026. Les primes du régime des agents contractuels subventionnés vont être réduites, Activa va être supprimé, les moyens financiers dédiés à l'emploi vont être diminués."
   },
   "BXL-00023-A-270": {
-    "headline": "Formal revenue regulation for the 2026 budget",
+    "headline": "Enact the formal regulation carrying the 2026 revenue budget of the Brussels Agglomeration, the companion text to the Region's own revenue budget.",
     "topic": "Public finance",
-    "source_brief": "This is the formal regulation enacting the 2026 revenue budget, a procedural companion to the main revenue budget. It carries the same 2026-budget context, the Region having previously operated on provisional twelfths. The majority approved it 53-32 against the opposition, on the same line as the budget itself.",
-    "stake": "It formally enacts the Region's 2026 revenue budget.",
     "type": "Budget",
+    "proposed_by": "Brussels-Capital Government",
+    "source_brief": "This is the formal regulation (\"règlement\") setting the 2026 revenue budget of the Brussels Agglomeration, the small legacy entity whose budget travels alongside the Region's. It carries the same 2026 context, the Region having spent over a year on provisional twelfths.\n\n- **A procedural twin.** It mirrors the main revenue budget for the Agglomeration's separate accounts.\n- **The rub:** it is technical, but voting it through is part of finally closing the door on budgeting by monthly stopgap.",
+    "deep_facts": [
+      "The text is the \"projet de règlement contenant le budget des voies et moyens de l'Agglomération de Bruxelles pour l'année budgétaire 2026\" (CRI, 27 Mar 2026).",
+      "It is the Agglomeration's revenue companion to the Region's 2026 voies-et-moyens budget; the regulation is submitted for sanction by the government (CRI, 27 Mar 2026).",
+      "It shares the same 2026 initial-budget context that followed the period of provisional twelfths (CRI, 27 Mar 2026)."
+    ],
+    "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- This is a near-mechanical companion vote: the Agglomeration's accounts must move in lockstep with the Region's, so the substantive choices sit in the main revenue budget, not here.",
+    "raw_fr": "Projet de règlement contenant le budget des voies et moyens de l'Agglomération de Bruxelles pour l'année budgétaire 2026.",
     "curator_drop": true
   },
   "BXL-00023-A-271": {
-    "headline": "Formal expenditure regulation for the 2026 budget",
+    "headline": "Enact the formal regulation carrying the 2026 general expenditure budget of the Brussels Agglomeration, the companion text to the Region's own expenditure budget.",
     "topic": "Public finance",
-    "source_brief": "This is the formal regulation enacting the 2026 expenditure budget, a procedural companion to the main expenditure budget. It carries the same 2026-budget context, the Region having previously operated on provisional twelfths. The majority approved it 53-32 against the opposition, on the same line as the budget itself.",
-    "stake": "It formally enacts the Region's 2026 expenditure budget.",
     "type": "Budget",
+    "proposed_by": "Brussels-Capital Government",
+    "source_brief": "This is the formal regulation (\"règlement\") setting the 2026 expenditure budget of the Brussels Agglomeration, the legacy entity whose accounts run alongside the Region's. It carries the same 2026 context, after a long stretch of provisional twelfths.\n\n- **A procedural twin.** It mirrors the main expenditure budget for the Agglomeration's separate accounts.\n- **The rub:** procedural, but it completes the set of texts that replace budgeting by monthly stopgap with a full 2026 budget.",
+    "deep_facts": [
+      "The text is the \"projet de règlement contenant le budget général des dépenses de l'Agglomération de Bruxelles pour l'année budgétaire 2026\" (CRI, 27 Mar 2026).",
+      "It is the Agglomeration's expenditure companion to the Region's 2026 expenditure budget; the regulation is submitted for sanction by the government (CRI, 27 Mar 2026).",
+      "It shares the same 2026 initial-budget context that followed the period of provisional twelfths (CRI, 27 Mar 2026)."
+    ],
+    "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- A companion vote with no independent stake of its own: the spending choices live in the Region's expenditure budget, which this text simply tracks for the Agglomeration.",
+    "raw_fr": "Projet de règlement contenant le budget général des dépenses de l'Agglomération de Bruxelles pour l'année budgétaire 2026.",
     "curator_drop": true
   },
   "BXL-00023-A-263": {
-    "headline": "Allowing pensions of former Brussels MPs to be indexed",
+    "headline": "Amend the pension rules for former Brussels MPs to let their pensions be indexed again, lifting the freeze that follows from the federal salary-indexation pause.",
     "topic": "Pensions",
-    "source_brief": "This decision amends the rules on pensions paid to former members of the Brussels-Capital Parliament so that they can be indexed (raised in line with cost of living). Those pensions are calculated on federal MP salaries, which the federal level has decided not to index until 2029, automatically freezing the Brussels pensions unless a separate decision provides otherwise. The text was approved with all parties in favour except PTB, which argued these pensions are already far higher than average pensions and voted against.",
-    "stake": "It restores indexation for former Brussels MPs' pensions that would otherwise stay frozen.",
-    "type": "Ordinance"
+    "type": "Ordinance",
+    "proposed_by": "Brussels-Capital Parliament (cross-party)",
+    "source_brief": "This changes the rules on pensions paid to former members of the Brussels Parliament so they can be indexed — raised in line with the cost of living — again. The catch is a chain reaction from the federal level.\n\n- **Why they are frozen.** These pensions are calculated on the salary of federal Chamber MPs. The federal level decided not to index those salaries until 2029, so the Brussels pensions are automatically blocked unless a separate decision says otherwise.\n- **What it does.** It creates the legal basis to index the pensions despite that federal freeze, with an amendment making it take effect from 1 March 2026.\n- **The numbers in play.** Debate cited an average former-MP pension of about 2,000 euros a month, with older mandates reaching far higher.\n- **The rub:** indexing protects retirees against inflation — but applied here it lifts pensions already described as several times the average, raising the fairness question of who gets shielded from a freeze that hits everyone else.",
+    "deep_facts": [
+      "The text is a \"proposition de décision visant à modifier le règlement fixant le régime des pensions attribuées aux anciens membres du Parlement de la Région de Bruxelles-Capitale en vue de l'indexation des pensions\" (CRI, 27 Mar 2026).",
+      "Former Brussels MPs' pensions are calculated on the salary of federal Chamber of Representatives MPs; the federal level decided not to index those salaries until 2029, which automatically freezes the Brussels pensions \"sauf si une décision permet le contraire\" (CRI, 27 Mar 2026).",
+      "An amendment by two members gives the change retroactive effect from 1 March 2026 (\"L'article 1er produit ses effets le 1er mars 2026\"), with the pension fund (Caisse de retraite) to execute it without delay (CRI, 27 Mar 2026).",
+      "Debate cited the average former-MP pension at about 2,000 euros per month, corresponding to nine years of parliamentary mandate (CRI, 27 Mar 2026).",
+      "For a five-year mandate after 2019, the pension was cited at roughly 800 euros gross per month; for earlier mandates it could reach about 7,800 euros gross per month (CRI, 27 Mar 2026).",
+      "The Wijninckx ceiling was cited at 8,329 euros gross per month; debate noted past cases of MPs receiving up to 20% above it, since ended, and that fourteen former Brussels MPs who litigated to exceed the ceiling were all dismissed (CRI, 27 Mar 2026).",
+      "For comparison, Statbel figures cited put the 2025 average pension at 2,252 euros for men and 1,853 euros gross for women (CRI, 27 Mar 2026)."
+    ],
+    "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The mechanism is the real story: by pegging its pensions to a federal salary the Region cannot control, Brussels imported a freeze it never voted for — this text is the manual override.\n- Framing it as \"indexation\" makes it sound like routine inflation protection, but applied to pensions cited at multiples of the national average it is politically a top-up, which is the wedge the opposition presses.\n- The 1 March 2026 retroactivity means the override is designed to bridge the freeze seamlessly, leaving no gap month — a sign the drafters wanted continuity, not a one-off catch-up.",
+    "raw_fr": "Proposition de décision visant à permettre l'indexation des pensions des anciens députés bruxellois. Comme le montant de ces pensions est calculé sur la base du salaire des députés de la Chambre des représentants, et que le niveau fédéral a décidé de ne plus indexer ces salaires jusqu'en 2029, les pensions des députés bruxellois à la retraite sont automatiquement bloquées, sauf si une décision permet le contraire."
   }
 }
