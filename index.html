@@ -40,6 +40,9 @@
   .pa .track{height:4px;border-radius:3px;background:var(--line);margin-top:2px;overflow:hidden}
   .pa .fill{height:100%;width:0;border-radius:3px;transition:width .4s ease}
   .pa.muted{opacity:.45}
+  /* AI proxy voter — visually set apart from the real parties */
+  .pa.ai{border-right:1px solid var(--line);padding-right:7px;margin-right:1px}
+  .lg.fb.ai{background:#8b5cf6;color:#fff;font-weight:800;font-size:12px;border:0}
 
   /* opinion map (experimental) */
   #map{position:relative;flex:0 0 auto;height:150px;margin:0 12px 8px;
@@ -253,7 +256,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.05</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.06</span></div>
     <button class="gear" id="menuBtn" title="Opcions">⚙</button>
   </header>
 
@@ -351,12 +354,15 @@
 </div>
 
 <script src="data.js?v=6dba74f7"></script>
+<script src="ai_votes.js"></script>
 <script>
 const R = window.RIOT || {decisions:[], parties:[]};
 const PARTIES = R.parties || [];
 const $ = s => document.querySelector(s);
 const VLAB = {for:"a favor", against:"en contra", abstain:"abstenció", split:"dividit", absent:"absent"};
 const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
+// AI proxy's blind votes (id -> {vote,confidence,rationale}); null until ai_vote.py has run.
+const AI = (window.AI_VOTES && window.AI_VOTES.votes) || null;
 
 let deck = shuffle(R.decisions.filter(d => d.headline && !d.curator_drop));
 let idx = 0;
@@ -397,13 +403,30 @@ function logoEl(p){
   return p.logo ? `<span class="lg bg-${p.token}"><img src="${p.logo}" alt="${p.name}"></span>`
                 : `<span class="lg fb" style="background:${p.color}">${p.token}</span>`;
 }
+// the AI proxy's agreement with the user's own votes — Phase 4's blind-prediction score
+function aiAff(){
+  let comp=0,match=0;
+  for(const id in answers){
+    const a=AI&&AI[id], av=a&&a.vote;
+    if(av==="for"||av==="against"||av==="abstain"){comp++; if(av===answers[id])match++;}
+  }
+  return comp?{pct:Math.round(100*match/comp),comp}:{pct:null,comp:0};
+}
 function renderAffinity(){
   const a=affinity();
   const order=PARTIES.slice().sort((x,y)=>{
     const px=a[x.token].pct,py=a[y.token].pct;
     if(px===null&&py===null)return 0; if(px===null)return 1; if(py===null)return -1; return py-px;
   });
-  $("#affinity").innerHTML=order.map(p=>{
+  let aiHtml="";
+  if(AI){
+    const r=aiAff();
+    aiHtml=`<div class="pa ai ${r.comp?'':'muted'}" data-token="__AI__" title="El meu proxy IA · vot cec des de soul.md · toca per veure on m'encerta">
+      <span class="lg fb ai">IA</span>
+      <div class="track"><div class="fill" style="width:${r.pct||0}%;background:#8b5cf6"></div></div>
+    </div>`;
+  }
+  $("#affinity").innerHTML=aiHtml+order.map(p=>{
     const r=a[p.token],pct=r.pct;
     return `<div class="pa ${r.comp?'':'muted'}" data-token="${p.token}" title="${esc(p.name)} · toca per veure on discrepeu">${logoEl(p)}
       <div class="track"><div class="fill" style="width:${pct||0}%;background:${p.color}"></div></div>
@@ -693,7 +716,41 @@ function openParty(token){
   }).join("");
   $("#partyView").style.display="block";
 }
-$("#affinity").addEventListener("click",e=>{const el=e.target.closest(".pa");if(el)openParty(el.dataset.token);});
+// the AI proxy comparison view — reuses the party overlay, adds the blind rationale per decision
+function openAI(){
+  if(!AI)return;
+  const rows=[];
+  for(const id in answers){
+    const d=byId[id]; if(!d)continue;
+    const a=AI[id], av=a&&a.vote;
+    const comparable=(av==="for"||av==="against"||av==="abstain");
+    rows.push({d,av,uv:answers[id],comparable,agree:comparable&&av===answers[id],rationale:a&&a.rationale,conf:a&&a.confidence});
+  }
+  // rank: misses first, then no AI vote, then hits
+  const rankOf=r=> r.comparable ? (r.agree?2:0) : 1;
+  rows.sort((x,y)=>rankOf(x)-rankOf(y));
+  const comp=rows.filter(r=>r.comparable), matches=comp.filter(r=>r.agree).length;
+  const pct=comp.length?Math.round(100*matches/comp.length):null, misses=comp.length-matches;
+  $("#pvHead").innerHTML=`<span class="lg fb ai" style="width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center">IA</span><div><b>El meu proxy IA</b> <span class="pvpct">${
+    pct===null?"encara sense comparació":pct+"% d'encert · "+misses+(misses===1?" discrepància":" discrepàncies")}</span></div>`;
+  $("#pvIntro").textContent=rows.length
+    ? `Predicció cega: la IA va votar només des de soul.md i el context neutral de cada decisió — sense veure mai els teus vots, els dels partits ni el resultat. Aquí, les ${rows.length} que has votat. Primer on falla.`
+    : "Encara no has reaccionat a cap decisió.";
+  $("#pvList").innerHTML=rows.map(r=>{
+    const badge=!r.comparable?`<span class="badge b-na">sense vot IA</span>`
+      :r.agree?`<span class="badge b-agree">ENCERTA</span>`:`<span class="badge b-disagree">FALLA</span>`;
+    const conf=r.conf!=null?` · ${Math.round(r.conf*100)}%`:"";
+    const aichip=`<span class="pchip"><span class="dot d-${r.av||"absent"}"></span>IA ${VLAB[r.av]||"sense vot"}${conf}</span>`;
+    const uchip=`<span class="pchip you"><span class="dot d-${r.uv}"></span>Tu ${VLAB[r.uv]||r.uv}</span>`;
+    const why=r.rationale?`<div class="lm" style="margin-top:6px;font-style:italic">«${esc(r.rationale)}»</div>`:"";
+    return `<div class="lcard">
+      <div class="lt">${esc(r.d.headline||r.d.title)}</div>
+      <div class="pvrow">${aichip}${uchip}${badge}</div>${why}
+    </div>`;
+  }).join("");
+  $("#partyView").style.display="block";
+}
+$("#affinity").addEventListener("click",e=>{const el=e.target.closest(".pa");if(!el)return;if(el.dataset.token==="__AI__")openAI();else openParty(el.dataset.token);});
 $("#closeParty").addEventListener("click",()=>$("#partyView").style.display="none");
 
 /* ---- curator mode ---- */

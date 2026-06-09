@@ -37,6 +37,9 @@ ROOT = Path(__file__).resolve().parent.parent
 SOUL = ROOT / "soul.md"
 DECISIONS = ROOT / "data" / "decisions.json"
 OUT = ROOT / "data" / "ai_votes.json"
+# ai_votes.js sits next to index.html so the site reads it as window.AI_VOTES,
+# matching data.js — no fetch(), so it works opened locally and on GitHub Pages.
+OUT_JS = ROOT / "ai_votes.js"
 
 MODEL = "claude-opus-4-8"
 
@@ -182,7 +185,8 @@ def main() -> int:
         "votes": votes,
     }
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=2))
-    print(f"\nWrote {len(votes)} votes to {OUT.relative_to(ROOT)} (soul {soul_hash}).")
+    OUT_JS.write_text("window.AI_VOTES = " + json.dumps(out, ensure_ascii=False) + ";\n")
+    print(f"\nWrote {len(votes)} votes to {OUT.relative_to(ROOT)} + {OUT_JS.relative_to(ROOT)} (soul {soul_hash}).")
     return 0
 
 
