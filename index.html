@@ -53,8 +53,20 @@
   .mdot .mc.her::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;
     transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%}
 
-  /* opinion map (experimental) */
-  #map{position:relative;flex:0 0 auto;height:225px;margin:0 12px 8px;
+  /* opinion map — thin toggle bar + collapsible panel above the cards */
+  #mapPanel{flex:0 0 auto;margin:0 12px 8px}
+  .mapbar{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+    height:30px;background:var(--card);border:1px solid var(--line);border-radius:999px;
+    color:var(--dim);font:inherit;font-size:12.5px;font-weight:600;letter-spacing:.3px;cursor:pointer;
+    transition:color .15s,background .15s}
+  .mapbar:hover{color:var(--ink);background:var(--card2)}
+  .mapbar:active{transform:scale(.99)}
+  .mapbar .chev{font-size:11px;transition:transform .32s cubic-bezier(.2,.7,.3,1)}
+  #mapPanel.open .mapbar .chev{transform:rotate(180deg)}
+  #mapCollapse{max-height:0;opacity:0;overflow:hidden;
+    transition:max-height .34s cubic-bezier(.2,.7,.3,1),opacity .25s,margin-top .34s}
+  #mapPanel.open #mapCollapse{max-height:233px;opacity:1;margin-top:8px}
+  #map{position:relative;height:225px;
     border:1px solid var(--line);border-radius:16px;overflow:hidden;
     background:radial-gradient(circle at 50% 50%,rgba(109,179,255,.06),transparent 68%),var(--card)}
   #map .axis{position:absolute;background:var(--line);opacity:.55}
@@ -306,13 +318,18 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.18</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.19</span></div>
     <button class="gear" id="menuBtn" title="Options">⚙</button>
   </header>
 
   <div id="affinity"></div>
 
-  <div id="map"></div>
+  <div id="mapPanel">
+    <button class="mapbar" id="mapToggleBtn" type="button" aria-expanded="false">
+      <span class="mb-tx">🗺️ Show map</span><span class="chev">▾</span>
+    </button>
+    <div id="mapCollapse"><div id="map"></div></div>
+  </div>
 
   <div id="survey">
     <div class="progress" id="progress"></div>
@@ -402,11 +419,6 @@
   <div class="sheet-panel" role="dialog" aria-label="Options">
     <div class="sheet-grab"></div>
     <h3>Options</h3>
-    <label class="sheet-item" for="mapToggle">
-      <span class="si-ic">🗺️</span>
-      <span class="si-tx"><b>Show affinity map</b></span>
-      <span class="switch"><input type="checkbox" id="mapToggle"><span class="slider"></span></span>
-    </label>
     <label class="sheet-item" for="aiToggle" id="aiRow">
       <span class="si-ic">○</span>
       <span class="si-tx"><b>Show AI proxy</b></span>
@@ -467,7 +479,9 @@ const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
 let deck = shuffle(R.decisions.filter(d => d.headline && !d.curator_drop));
 let idx = 0;
 let useOriginal = false;
-let showMap = false;
+// map is collapsed by default; the thin bar above the cards expands it. Persists across sessions.
+const MAPOPEN_KEY="riot.mapopen.v1";
+let mapOpen=false; try{mapOpen=localStorage.getItem(MAPOPEN_KEY)==="1";}catch(e){}
 const answers = {};
 /* curator marks + dev mode — persist across sessions in localStorage */
 const MARK_KEY="riot.marks.v1", DEV_KEY="riot.dev.v1", DISMISS_KEY="riot.dismissed.v1";
@@ -971,11 +985,21 @@ $("#sheetBack").addEventListener("click",closeSheet);
 $("#openLog").addEventListener("click",()=>{closeSheet();openLog();});
 $("#closeLog").addEventListener("click",()=>$("#log").style.display="none");
 $("#origToggle").addEventListener("change",e=>{useOriginal=e.target.checked;renderStack();});
-$("#mapToggle").addEventListener("change",e=>{showMap=e.target.checked;applyMapVisibility();});
+function setMapOpen(open){
+  mapOpen=open;
+  try{localStorage.setItem(MAPOPEN_KEY,open?"1":"0");}catch(e){}
+  applyMapVisibility();
+}
+$("#mapToggleBtn").addEventListener("click",()=>setMapOpen(!mapOpen));
 $("#aiToggle").addEventListener("change",e=>{showAI=e.target.checked;try{localStorage.setItem(AI_KEY,showAI?"1":"0");}catch(err){}applyAiParty(showAI);});
 function applyMapVisibility(){
-  $("#map").style.display=(showMap&&COORD)?"":"none";
-  if(showMap&&COORD)renderMap();
+  const panel=$("#mapPanel");
+  panel.style.display=COORD?"":"none";        // no coords (e.g. <3 parties) → no bar at all
+  const open=mapOpen&&!!COORD;
+  panel.classList.toggle("open",open);
+  $("#mapToggleBtn").setAttribute("aria-expanded",open?"true":"false");
+  $("#mapToggleBtn").querySelector(".mb-tx").textContent=open?"🗺️ Hide map":"🗺️ Show map";
+  if(open)renderMap();
 }
 function rebuildMap(){
   COORD=null; mapBuilt=false; MX={};
@@ -988,7 +1012,6 @@ function rebuildMap(){
 }
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";closePartyView();$("#marksView").style.display="none";$("#importView").style.display="none";}});
 
-$("#mapToggle").checked=showMap;
 $("#aiToggle").checked=showAI;
 if(!AI){const r=$("#aiRow"); if(r)r.style.display="none";}   // hide the toggle if no proxy votes exist
 applyAiParty(showAI);   // builds the map coords + renders affinity (adds the IA party iff showAI)
