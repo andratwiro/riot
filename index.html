@@ -40,6 +40,14 @@
   .pa .track{height:4px;border-radius:3px;background:var(--line);margin-top:2px;overflow:hidden}
   .pa .fill{height:100%;width:0;border-radius:3px;transition:width .4s ease}
   .pa.muted{opacity:.45}
+  /* "Her" OS1 mark — the AI proxy's identity (coral disc + cream animated loop) */
+  .pa .lg.her{background:#c0463a;border-color:rgba(255,255,255,.18);padding:0;position:relative}
+  .lg.her canvas{position:absolute;inset:0;width:100%!important;height:100%!important;border-radius:50%;display:block}
+  /* fallback when WebGL/Three.js is unavailable: static cream lemniscate */
+  .lg.her.fallback{background:#c0463a url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 50c0-11 8-18 14-12l28 24c6 6 14-1 14-12s-8-18-14-12L36 62c-6 6-14-1-14-12z' fill='none' stroke='%23f1e5c9' stroke-width='3'/></svg>") center/64% no-repeat}
+  .herHero{display:inline-flex;width:120px;height:120px;border-radius:50%;background:#c0463a;position:relative;overflow:hidden;flex:0 0 auto}
+  .herHero canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+  .herHero.fallback{background:#c0463a url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 50c0-11 8-18 14-12l28 24c6 6 14-1 14-12s-8-18-14-12L36 62c-6 6-14-1-14-12z' fill='none' stroke='%23f1e5c9' stroke-width='3'/></svg>") center/64% no-repeat}
 
   /* opinion map (experimental) */
   #map{position:relative;flex:0 0 auto;height:150px;margin:0 12px 8px;
@@ -253,7 +261,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.07</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.08</span></div>
     <button class="gear" id="menuBtn" title="Opcions">⚙</button>
   </header>
 
@@ -350,6 +358,8 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js"></script>
+<script src="her.js"></script>
 <script src="data.js?v=6dba74f7"></script>
 <script src="ai_votes.js"></script>
 <script>
@@ -358,7 +368,7 @@ const R = window.RIOT || {decisions:[], parties:[]};
 const AI = (window.AI_VOTES && window.AI_VOTES.votes) || null;
 // Inject the proxy as one more "party" so it shows up everywhere (affinity bar, opinion map, compare view).
 if(AI){
-  if(!R.parties.some(p=>p.token==="IA")) R.parties.push({token:"IA",name:"Proxy IA",color:"#8b5cf6",logo:null});
+  if(!R.parties.some(p=>p.token==="IA")) R.parties.push({token:"IA",name:"Proxy IA",color:"#c0463a",logo:null,her:true});
   for(const d of R.decisions){const rec=AI[d.id]; if(rec){(d.party_votes_canon=d.party_votes_canon||{})["IA"]=rec.vote;}}
 }
 const PARTIES = R.parties || [];
@@ -402,8 +412,19 @@ function affinity(){
   return res;
 }
 function logoEl(p){
+  if(p.her) return `<span class="lg her"></span>`;
   return p.logo ? `<span class="lg bg-${p.token}"><img src="${p.logo}" alt="${p.name}"></span>`
                 : `<span class="lg fb" style="background:${p.color}">${p.token}</span>`;
+}
+// the "Her" OS1 mark for the IA proxy — one persistent WebGL instance, re-homed after each re-render
+let iaMark=null, iaHero=null;
+function decorateIaMark(){
+  if(!AI) return;
+  const slot=document.querySelector('#affinity .lg.her');
+  if(!slot) return;
+  if(!window.HerOS1||!HerOS1.supported){ slot.classList.add('fallback'); return; }
+  if(!iaMark) iaMark=HerOS1.mount(null,{size:40,R:5.6,len:13,maxMorph:0.45,dist:24,tube:0.55,breathe:0.011,line:HerOS1.COLORS.cream});
+  if(iaMark.canvas.parentNode!==slot) slot.appendChild(iaMark.canvas);
 }
 function renderAffinity(){
   const a=affinity();
@@ -418,6 +439,7 @@ function renderAffinity(){
       <div class="track"><div class="fill" style="width:${pct||0}%;background:${p.color}"></div></div>
     </div>`;
   }).join("");
+  decorateIaMark();
 }
 
 /* ---- opinion map (experimental) ---- */
@@ -687,8 +709,12 @@ function openParty(token){
   const pct=comp.length?Math.round(100*matches/comp.length):null, disagrees=comp.length-matches;
   const accord=isAI?"d'encert":"d'acord";
 
-  $("#pvHead").innerHTML=`${logoEl(p)}<div><b>${esc(p.name)}</b> <span class="pvpct">${
+  const headMark=isAI?`<span class="herHero" id="herHero"></span>`:logoEl(p);
+  $("#pvHead").innerHTML=`${headMark}<div><b>${esc(p.name)}</b> <span class="pvpct">${
     pct===null?"encara sense comparació":pct+"% "+accord+" · "+disagrees+(disagrees===1?" discrepància":" discrepàncies")}</span></div>`;
+  if(iaHero){iaHero.dispose();iaHero=null;}
+  if(isAI){const hero=document.getElementById("herHero");
+    if(hero){ if(window.HerOS1&&HerOS1.supported) iaHero=HerOS1.mount(hero,{size:120,R:5.6,len:24,maxMorph:1,dist:64,tube:0.5,breathe:0.013,line:HerOS1.COLORS.cream}); else hero.classList.add("fallback"); }}
   $("#pvIntro").textContent=rows.length
     ? (isAI
         ? `Predicció cega: el proxy va votar només des del teu perfil i el context neutral de cada decisió — sense veure mai els teus vots, els dels partits ni el resultat. Les ${rows.length} que has votat, primer on falla.`
@@ -709,7 +735,8 @@ function openParty(token){
   $("#partyView").style.display="block";
 }
 $("#affinity").addEventListener("click",e=>{const el=e.target.closest(".pa");if(el)openParty(el.dataset.token);});
-$("#closeParty").addEventListener("click",()=>$("#partyView").style.display="none");
+function closePartyView(){$("#partyView").style.display="none"; if(iaHero){iaHero.dispose();iaHero=null;}}
+$("#closeParty").addEventListener("click",closePartyView);
 
 /* ---- curator mode ---- */
 function setDevMode(on){
@@ -780,7 +807,7 @@ function applyMapVisibility(){
   $("#map").style.display=(showMap&&COORD)?"":"none";
   if(showMap&&COORD)renderMap();
 }
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";$("#partyView").style.display="none";$("#marksView").style.display="none";}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";closePartyView();$("#marksView").style.display="none";}});
 
 if(PARTIES.length>=3 && R.decisions.length){
   COORD=partyMap();
