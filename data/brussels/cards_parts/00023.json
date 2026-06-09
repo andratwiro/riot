@@ -1,0 +1,39 @@
+{
+  "BXL-00023-A-267": {
+    "headline": "Adopting the 2026 regional revenue budget",
+    "topic": "Public finance",
+    "source_brief": "This is the Brussels-Capital Region's revenue budget (\"voies et moyens\") for 2026, setting out the income the Region expects to collect. It is the first full initial budget after a long period in which the Region operated on provisional twelfths, carrying forward deficits without a clear plan. The majority (PS, MR, Open VLD, Les Engagés, Groen, CD&V, Vooruit) approved it 53-32; the opposition (PTB, DéFI, Team Fouad Ahidar, Vlaams Belang, Ecolo, N-VA) voted against.",
+    "stake": "It determines the revenue side underpinning all regional spending for 2026.",
+    "type": "Budget"
+  },
+  "BXL-00023-A-268": {
+    "headline": "Adopting the 2026 regional expenditure budget",
+    "topic": "Public finance",
+    "source_brief": "This is the Brussels-Capital Region's expenditure budget (\"budget des dépenses\") for 2026, authorising the Region's spending and credits for the year. It accompanies the revenue budget as the Region's first full initial budget after running on provisional twelfths. The majority (PS, MR, Open VLD, Les Engagés, Groen, CD&V, Vooruit) approved it 53-32 against the opposition (PTB, DéFI, Team Fouad Ahidar, Vlaams Belang, Ecolo, N-VA).",
+    "stake": "It sets how much the Region is authorised to spend across all its policy areas in 2026.",
+    "type": "Budget"
+  },
+  "BXL-00023-A-270": {
+    "headline": "Formal revenue regulation for the 2026 budget",
+    "topic": "Public finance",
+    "source_brief": "This is the formal regulation enacting the 2026 revenue budget, a procedural companion to the main revenue budget. It carries the same 2026-budget context, the Region having previously operated on provisional twelfths. The majority approved it 53-32 against the opposition, on the same line as the budget itself.",
+    "stake": "It formally enacts the Region's 2026 revenue budget.",
+    "type": "Budget",
+    "curator_drop": true
+  },
+  "BXL-00023-A-271": {
+    "headline": "Formal expenditure regulation for the 2026 budget",
+    "topic": "Public finance",
+    "source_brief": "This is the formal regulation enacting the 2026 expenditure budget, a procedural companion to the main expenditure budget. It carries the same 2026-budget context, the Region having previously operated on provisional twelfths. The majority approved it 53-32 against the opposition, on the same line as the budget itself.",
+    "stake": "It formally enacts the Region's 2026 expenditure budget.",
+    "type": "Budget",
+    "curator_drop": true
+  },
+  "BXL-00023-A-263": {
+    "headline": "Allowing pensions of former Brussels MPs to be indexed",
+    "topic": "Pensions",
+    "source_brief": "This decision amends the rules on pensions paid to former members of the Brussels-Capital Parliament so that they can be indexed (raised in line with cost of living). Those pensions are calculated on federal MP salaries, which the federal level has decided not to index until 2029, automatically freezing the Brussels pensions unless a separate decision provides otherwise. The text was approved with all parties in favour except PTB, which argued these pensions are already far higher than average pensions and voted against.",
+    "stake": "It restores indexation for former Brussels MPs' pensions that would otherwise stay frozen.",
+    "type": "Ordinance"
+  }
+}

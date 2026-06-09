@@ -1,0 +1,16 @@
+{
+  "BXL-00024-A-274": {
+    "headline": "Update tax-cooperation rules to cover crypto-asset addresses",
+    "topic": "Crypto tax reporting",
+    "source_brief": "The ordinance amends the definition of a \"distributed-ledger address\" in article 5, 31° of the 2013 ordinance that transposed EU Directive 2011/16/EU on administrative cooperation in the field of taxation. The change aligns Brussels rules for sharing tax information on crypto-assets with the relevant EU framework. Parliament adopted it unanimously (78 present, 78 in favour).",
+    "stake": "It determines how Brussels tax authorities identify and exchange information on crypto-asset holdings held via distributed-ledger (blockchain) addresses.",
+    "type": "Ordinance"
+  },
+  "BXL-00024-A-273": {
+    "headline": "Block conflict-of-interest motion against federal police-merger bill",
+    "topic": "Police zone merger",
+    "source_brief": "Members of DeFI and Ecolo tabled a conflict-of-interest motion (art. 91.4) asking to pause federal bill no. 56-1342, which reforms Belgium's police law and would merge Brussels' six local police zones. The committee recommended rejecting the motion, and Parliament adopted that rejection by 50 votes to 28. PS, MR, Open VLD, Les Engages, Groen, CD&V, Vooruit and N-VA backed rejecting the motion; DeFI, Team Fouad Ahidar, PTB, Ecolo and Vlaams Belang did not.",
+    "stake": "It decides whether the Brussels Parliament formally objects to and delays the federal plan to merge the region's local police zones.",
+    "type": "Motion"
+  }
+}

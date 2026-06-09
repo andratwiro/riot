@@ -1,0 +1,16 @@
+{
+  "BXL-00025-v1": {
+    "headline": "Rejected bid to fast-track an inquiry into Anderlecht social-housing company",
+    "topic": "Commission of inquiry",
+    "source_brief": "Opposition members asked Parliament to urgently take up and immediately debate a proposal to set up a parliamentary commission of inquiry into the management of the Foyer anderlechtois, a public social-housing company, following a news report raising questions about how it is run. The majority refused to treat the request as urgent, sending the text instead to the Finance and General Affairs Committee for its scheduled 1 June meeting. The urgency vote was 25 for, 51 against, with 1 abstention.",
+    "stake": "Whether an inquiry into a public housing company's management would start at once or wait weeks for the normal committee timetable.",
+    "type": "Urgency request"
+  },
+  "BXL-00025-v2": {
+    "headline": "Rejected bid to fast-track conflict-of-interest motion over tuition-fee hike",
+    "topic": "Tuition-fee motion",
+    "source_brief": "Opposition members asked Parliament to urgently take up a conflict-of-interest motion targeting a French Community (Fédération Wallonie-Bruxelles) draft decree, including a rise in university tuition fees toward 1,250 euros, arguing it could shift extra costs onto Brussels municipalities and their public welfare centres (CPAS). They sought urgency because the French Community's plenary vote was due the following Wednesday and wanted time to assess the financial impact. The majority refused to grant urgent treatment, with the opposition voting in favour and the majority against.",
+    "stake": "Whether Brussels would act before a neighbouring assembly's vote it feared would pass new costs onto local budgets.",
+    "type": "Urgency request"
+  }
+}

@@ -5,8 +5,10 @@ soul.*.md
 # (Rob's manual votes live in browser localStorage, never on disk.)
 
 # --- large / re-fetchable source binaries ---
-# The .txt extractions ARE committed; PDFs are re-fetchable via fetch_sessions.py.
+# The .txt extractions ARE committed; PDFs are re-fetchable via fetch_sessions*.py.
 data/actas/*.pdf
+# Brussels CRI PDFs — re-fetchable via fetch_sessions_bxl.py; .txt audit trail is kept.
+data/brussels/cri_pdf/
 
 # --- junk ---
 .DS_Store
