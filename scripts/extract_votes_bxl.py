@@ -22,7 +22,9 @@ ROOT = Path(__file__).resolve().parent.parent
 TXT = ROOT / "data" / "brussels" / "cri_txt"
 OUT = ROOT / "data" / "brussels" / "votes_raw.json"
 
-VOTE_MARK = re.compile(r"STEMMING\s+(\d+)\s*/\s*VOTE\s+\d+")
+# A combined annex block "STEMMING 6 &7 / VOTE 6 &7" (two identical roll-calls) also counts;
+# the optional "&N" group is emitted as a duplicate record for the second vote number.
+VOTE_MARK = re.compile(r"STEMMING\s+(\d+)\s*(?:&\s*(\d+))?\s*/\s*VOTE\s+\d+")
 H_OUI = re.compile(r"^\s*Ja\s+(\d+)\s+Oui\s*$")
 H_NON = re.compile(r"^\s*Neen\s+(\d+)\s+Non\s*$")
 H_ABS = re.compile(r"^\s*Onthoudingen\s+(\d+)\s+Abstentions\s*$")
@@ -32,7 +34,10 @@ KIND = {"PPR": "Proposition de résolution", "PJO": "Projet d'ordonnance",
         "P": "Proposition", "MOTION": "Motion", "Urgence": "Demande d'urgence"}
 DATE_RE = re.compile(r"(LUNDI|MARDI|MERCREDI|JEUDI|VENDREDI)\s+(\d+)\s+([A-ZÉÛ]+)\s+(202\d)")
 MONTHS = {"JANVIER":"01","FÉVRIER":"02","MARS":"03","AVRIL":"04","MAI":"05","JUIN":"06",
-          "JUILLET":"07","AOÛT":"08","SEPTEMBRE":"09","OCTOBRE":"10","NOVEMBRE":"11","DÉCEMBRE":"12"}
+          "JUILLET":"07","AOÛT":"08","SEPTEMBRE":"09","OCTOBRE":"10","NOVEMBRE":"11","DÉCEMBRE":"12",
+          # some CRIs swap the FR/NL columns in the header, leaving a Dutch month after VENDREDI
+          "JANUARI":"01","FEBRUARI":"02","MAART":"03","MEI":"05","JUNI":"06","JULI":"07",
+          "AUGUSTUS":"08","OKTOBER":"10","DECEMBER":"12"}
 
 
 def clean_names(chunk):
@@ -114,10 +119,13 @@ def parse_cri(path, session):
                     break
                 k += 1
             kind, doc_ref, seg, clean = parse_subject(subj)
+            m = VOTE_MARK.search(ln)
             cur = {"session": session, "cri": path.stem, "date": date,
-                   "vote_no": int(VOTE_MARK.search(ln).group(1)),
+                   "vote_no": int(m.group(1)),
                    "subject": clean, "kind": kind, "doc_ref": doc_ref, "segment": seg,
                    "oui": [], "non": [], "abst": []}
+            if m.group(2):
+                cur["_also"] = int(m.group(2))
             bucket = None
             j = k
             continue
@@ -139,7 +147,15 @@ def parse_cri(path, session):
     flush()
     if cur:
         votes.append(cur)
-    return votes
+    # expand combined "STEMMING N &M" blocks into one record per vote number
+    out = []
+    for v in votes:
+        also = v.pop("_also", None)
+        out.append(v)
+        if also:
+            dup = dict(v, vote_no=also)
+            out.append(dup)
+    return out
 
 
 def main():
