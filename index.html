@@ -215,8 +215,9 @@
     text-transform:uppercase;color:var(--dim);font-weight:700;z-index:5;pointer-events:none}
   /* most / least affinity cards — compact horizontal rows */
   .extremes{display:flex;gap:10px;width:100%;max-width:600px;margin:0 0 12px}
-  .exc{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);
-    border-radius:12px;padding:8px 11px;display:flex;align-items:center;gap:9px}
+  .exc{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);font:inherit;color:var(--ink);
+    border-radius:12px;padding:8px 11px;display:flex;align-items:center;gap:9px;cursor:pointer;transition:transform .08s}
+  .exc:hover{border-color:var(--dim)} .exc:active{transform:scale(.99)}
   .exc.most{border-color:rgba(39,182,106,.4)}
   .exc.least{border-color:rgba(229,72,95,.4)}
   .exc .lg{width:30px;height:30px;flex:0 0 auto;border-radius:50%;background:#fff;display:flex;
@@ -230,6 +231,27 @@
   .exc .exlab{display:block;font-size:9px;letter-spacing:.4px;text-transform:uppercase;color:var(--dim);font-weight:700}
   .exc .exname{display:block;font-size:13px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .exc .expct{font-size:17px;font-weight:800;line-height:1;margin-left:auto;flex:0 0 auto}
+  /* full ranked, clickable party list (done screen) */
+  .dparties{width:100%;max-width:600px;margin:2px 0 14px;display:flex;flex-direction:column;gap:7px}
+  .dparties .dplabel{font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--dim);
+    font-weight:700;text-align:left;padding:2px 2px 1px}
+  .dprow{display:flex;align-items:center;gap:12px;width:100%;font:inherit;color:var(--ink);cursor:pointer;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 13px;
+    transition:background .12s,border-color .12s,transform .08s}
+  .dprow:hover{background:var(--card2);border-color:var(--dim)} .dprow:active{transform:scale(.995)}
+  .dprow .lg{width:34px;height:34px;flex:0 0 auto;border-radius:50%;background:#fff;display:flex;
+    align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--line)}
+  .dprow .lg img{width:100%;height:100%;object-fit:contain;padding:4px}
+  .dprow .lg.fb{color:#fff;font-weight:800;font-size:12px;border:0}
+  .dprow .lg.her{background:#d1684e;border-color:rgba(255,255,255,.18);position:relative}
+  .dprow .lg.her::after{content:"";position:absolute;left:50%;top:50%;width:13px;height:13px;
+    transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%}
+  .dprow .dptx{flex:1 1 auto;min-width:0;text-align:left}
+  .dprow .dpname{display:block;font-size:14px;font-weight:650}
+  .dprow .dptrack{display:block;height:4px;border-radius:3px;background:var(--line);margin-top:5px;overflow:hidden;max-width:220px}
+  .dprow .dpfill{display:block;height:100%;border-radius:3px}
+  .dprow .dppct{font-size:16px;font-weight:800;flex:0 0 auto}
+  .dprow .dpgo{color:var(--dim);font-size:19px;flex:0 0 auto;line-height:1}
   /* action buttons */
   .doneActions{display:flex;gap:10px;width:100%;max-width:600px}
   .doneActions button{flex:1 1 0;border-radius:14px;padding:14px 12px;font-size:15px;
@@ -374,7 +396,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.30</span>
+      <span class="ver">v0.31</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -399,6 +421,7 @@
       <p class="doneSub" id="doneSub"></p>
       <div id="resultMap"></div>
       <div class="extremes" id="extremes"></div>
+      <div class="dparties" id="doneParties"></div>
       <div class="doneActions">
         <button class="restart" id="restart" type="button">↻ Start over</button>
         <button id="copyVotes" type="button">⧉ Copy votes</button>
@@ -828,17 +851,34 @@ function renderExtremes(ranked,a){
   const ex=$("#extremes");
   if(!ranked.length){ex.innerHTML="";ex.style.display="none";return;}
   ex.style.display="";
-  const card=(cls,lab,p)=>`<div class="exc ${cls}">${logoEl(p)}
+  const card=(cls,lab,p)=>`<button class="exc ${cls}" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">${logoEl(p)}
     <span class="extx"><span class="exlab">${lab}</span><span class="exname" title="${esc(p.name)}">${esc(p.name)}</span></span>
-    <span class="expct" style="color:${p.color}">${a[p.token].pct}%</span></div>`;
+    <span class="expct" style="color:${p.color}">${a[p.token].pct}%</span></button>`;
   const most=ranked[0], least=ranked[ranked.length-1];
   ex.innerHTML = ranked.length===1
     ? card("most","Most aligned",most)
     : card("most","Most aligned",most)+card("least","Least aligned",least);
-  // mount the "Her" mark live on any IA card that's currently on-screen
+  decorateHer(ex,44);
+}
+// ranked, clickable list of ALL parties (replaces the top affinity bar on the done screen)
+function renderDoneParties(ranked,a){
+  const el=$("#doneParties");
+  if(!ranked.length){el.innerHTML="";el.style.display="none";return;}
+  el.style.display="";
+  el.innerHTML=`<span class="dplabel">Every party · tap to compare your votes</span>`+
+    ranked.map(p=>{const pct=a[p.token].pct;
+      return `<button class="dprow" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">${logoEl(p)}
+        <span class="dptx"><span class="dpname">${esc(p.name)}</span>
+          <span class="dptrack"><span class="dpfill" style="width:${pct||0}%;background:${p.color}"></span></span></span>
+        <span class="dppct" style="color:${p.color}">${pct==null?'—':pct+'%'}</span><span class="dpgo">›</span></button>`;
+    }).join("");
+  decorateHer(el,34);
+}
+// mount the "Her" mark on any IA logo slots inside a container (done screen)
+function decorateHer(container,size){
   if(AI&&window.HerOS1&&HerOS1.supported){
-    ex.querySelectorAll('.exc .lg.her').forEach(slot=>{
-      const m=HerOS1.mount(null,{size:44}); slot.appendChild(m.canvas);
+    container.querySelectorAll('.lg.her').forEach(slot=>{
+      const m=HerOS1.mount(null,{size}); slot.appendChild(m.canvas);
     });
   }
 }
@@ -849,7 +889,9 @@ function finish(){
   $("#doneSub").textContent=`You reacted to ${Object.keys(answers).length} decisions.`;
   renderResultMap();
   renderExtremes(ranked,a);
-  $("#mapPanel").style.display="none";   // the done screen has its own (big) map — hide the top one
+  renderDoneParties(ranked,a);
+  $("#mapPanel").style.display="none";   // the done screen has its own (big) map
+  $("#affinity").style.display="none";   // parties move into the clickable list below
   $("#done").style.display="flex";
   updateDevBar();
 }
@@ -915,6 +957,7 @@ $("#restart").addEventListener("click",()=>{
   for(const k in answers)delete answers[k];
   mapOpen=false; mapRevealed=false;     // re-lock the map for the new run
   $("#done").style.display="none";
+  $("#affinity").style.display="";      // bring the parties bar back for the new run
   renderAffinity(); renderStack(); applyMapVisibility();
 });
 
@@ -977,6 +1020,9 @@ function openParty(token){
   $("#partyView").style.display="block";
 }
 $("#affinity").addEventListener("click",e=>{const el=e.target.closest(".pa");if(el)openParty(el.dataset.token);});
+// done screen: the ranked party list + the most/least cards open the same comparison view
+$("#doneParties").addEventListener("click",e=>{const b=e.target.closest(".dprow");if(b)openParty(b.dataset.token);});
+$("#extremes").addEventListener("click",e=>{const b=e.target.closest(".exc");if(b)openParty(b.dataset.token);});
 function closePartyView(){$("#partyView").style.display="none"; if(iaHero){iaHero.dispose();iaHero=null;}}
 $("#closeParty").addEventListener("click",closePartyView);
 
@@ -1058,6 +1104,7 @@ function applyImportedVotes(map){
   idx=0;
   mapOpen=false; mapRevealed=false;     // let the gate re-evaluate against the imported count
   $("#done").style.display="none";
+  $("#affinity").style.display="";
   renderAffinity();applyMapVisibility();renderStack();
   return applied;
 }
