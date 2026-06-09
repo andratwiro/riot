@@ -170,7 +170,7 @@
   #done .doneSub{color:var(--dim);margin:2px 0 12px;font-size:14px}
   #done .donenote{color:var(--dim);margin:14px 0 0;font-size:12px}
   /* big result map */
-  #resultMap{position:relative;width:100%;max-width:600px;aspect-ratio:1/1;max-height:62vh;
+  #resultMap{flex:0 0 auto;position:relative;width:100%;max-width:600px;aspect-ratio:1/1;max-height:62vh;
     border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:2px 0 12px;
     background:radial-gradient(circle at 50% 50%,rgba(109,179,255,.06),transparent 68%),var(--card)}
   #resultMap .axis{position:absolute;background:var(--line);opacity:.55}
@@ -322,7 +322,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.20</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.21</span></div>
     <button class="gear" id="menuBtn" title="Options">⚙</button>
   </header>
 
@@ -764,6 +764,7 @@ function finish(){
   $("#doneSub").textContent=`You reacted to ${Object.keys(answers).length} decisions.`;
   renderResultMap();
   renderExtremes(ranked,a);
+  $("#mapPanel").style.display="none";   // the done screen has its own (big) map — hide the top one
   $("#done").style.display="flex";
   updateDevBar();
 }
