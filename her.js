@@ -50,7 +50,12 @@
     var coral = opts.coral || "#d1684e";
     var line  = opts.line != null ? opts.line : 0xffffff;
 
-    var camera = new THREE.PerspectiveCamera(65, 1, 1, 10000);
+    // "3x bigger in the disc" = a 3x tighter lens. Narrowing the FOV magnifies everything
+    // uniformly while leaving every z-position untouched, so the finishing rotation + ring
+    // reveal still land exactly as designed (moving the camera or scaling the group breaks it).
+    var SCALE = opts.scale != null ? opts.scale : 3;
+    var fov = 2 * Math.atan(Math.tan(65*Math.PI/360) / SCALE) * 180/Math.PI;
+    var camera = new THREE.PerspectiveCamera(fov, 1, 1, 10000);
     camera.position.z = opts.dist || 150;
     var scene = new THREE.Scene();
     var group = new THREE.Group();
@@ -82,24 +87,27 @@
     renderer.setSize(size, size);
     if(!opts.alpha) renderer.setClearColor(coral);
 
+    // calm ~15s cycle (assuming ~60fps): idle helix -> slow resolve to "O" -> hold -> snap back.
     var inst = {
       canvas: renderer.domElement,
       running: true,
       animatestep: 0, acceleration: 0, toend: false, hold: 0,
-      holdTop: opts.holdTop != null ? opts.holdTop : 12,      // frames resting as the "O"
-      holdBottom: opts.holdBottom != null ? opts.holdBottom : 24 // frames resting as the spinning helix
+      upStep:     opts.upStep   != null ? opts.upStep   : 0.8,   // 240/0.8 ≈ 300f ≈ 5s resolve
+      downStep:   opts.downStep != null ? opts.downStep : 2,     // 240/2  ≈ 120f ≈ 2s return
+      holdTop:    opts.holdTop  != null ? opts.holdTop  : 210,   // ~3.5s resting as the "O"
+      holdBottom: opts.holdBottom != null ? opts.holdBottom : 240 // ~4s resting as the spinning helix
     };
 
     inst._frame = function(){
       if(!inst.running) return;
-      // auto-cycle: ping-pong toend with a short hold at each end (was mousedown/up)
+      // auto-cycle: ping-pong toend with a hold at each end (was mousedown/up)
       if(inst.toend){ if(inst.animatestep>=240 && ++inst.hold>=inst.holdTop){ inst.toend=false; inst.hold=0; } }
       else          { if(inst.animatestep<=0   && ++inst.hold>=inst.holdBottom){ inst.toend=true;  inst.hold=0; } }
 
       mesh.rotation.x += ROTATE + inst.acceleration;
 
-      // render() — verbatim
-      inst.animatestep = Math.max(0, Math.min(240, inst.toend ? inst.animatestep+1 : inst.animatestep-4));
+      // render() — verbatim (step sizes parametrized for the calmer cycle)
+      inst.animatestep = Math.max(0, Math.min(240, inst.toend ? inst.animatestep+inst.upStep : inst.animatestep-inst.downStep));
       inst.acceleration = easing(inst.animatestep, 0, 1, 240);
       if(inst.acceleration > 0.35){
         var progress = (inst.acceleration-0.35)/0.65;
