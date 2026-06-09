@@ -90,8 +90,12 @@
   #map .axis{position:absolute;background:var(--line);opacity:.55}
   #map .axis.x{left:8%;right:8%;top:50%;height:1px}
   #map .axis.y{top:8%;bottom:8%;left:50%;width:1px}
-  .mdot{position:absolute;transform:translate(-50%,-50%);
+  .mdot{position:absolute;transform:translate(-50%,-50%);z-index:3;
     transition:left .55s cubic-bezier(.2,.7,.3,1),top .55s cubic-bezier(.2,.7,.3,1),opacity .4s}
+  /* other participants (multiplayer) — deliberately subordinate: small, faded, behind parties */
+  .peer{position:absolute;width:12px;height:12px;border-radius:50%;transform:translate(-50%,-50%);
+    z-index:1;opacity:.5;border:1.5px solid rgba(255,255,255,.45);box-shadow:0 1px 3px rgba(0,0,0,.45);
+    pointer-events:none;transition:left .6s cubic-bezier(.2,.7,.3,1),top .6s cubic-bezier(.2,.7,.3,1)}
   .mdot .mc{width:26px;height:26px;border-radius:50%;background:#fff;overflow:hidden;
     display:flex;align-items:center;justify-content:center;border:2px solid var(--line);
     box-shadow:0 2px 8px rgba(0,0,0,.45)}
@@ -331,6 +335,18 @@
     background:#fff;border-radius:50%;transition:transform .2s}
   .switch input:checked + .slider{background:var(--acc)}
   .switch input:checked + .slider::before{transform:translateX(19px)}
+
+  /* multiplayer header bits */
+  .hdr-right{display:flex;align-items:center;gap:8px}
+  #presence{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--dim);
+    font-weight:600;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 11px}
+  #presence b{color:var(--ink)}
+  #presence .live{width:7px;height:7px;border-radius:50%;background:var(--for);flex:0 0 auto;
+    box-shadow:0 0 0 0 rgba(39,182,106,.5);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(39,182,106,.5)}70%{box-shadow:0 0 0 6px rgba(39,182,106,0)}100%{box-shadow:0 0 0 0 rgba(39,182,106,0)}}
+  #resetRoom{background:rgba(229,72,95,.12);border:1px solid rgba(229,72,95,.5);color:#f3a3af;
+    font-size:12px;font-weight:600;padding:8px 11px;border-radius:10px;cursor:pointer}
+  #resetRoom:hover{background:rgba(229,72,95,.2)}
 </style>
 </head>
 <body>
@@ -341,10 +357,13 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.25</span>
+      <span class="ver">v0.26</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
-    <button class="gear" id="menuBtn" title="Options">⚙</button>
+    <div class="hdr-right">
+      <span id="presence" hidden title="People in this room right now"><span class="live"></span><b id="presenceN">1</b> here</span>
+      <button class="gear" id="menuBtn" title="Options">⚙</button>
+    </div>
   </header>
 
   <div id="affinity"></div>
@@ -382,7 +401,10 @@
 <div id="log">
   <div class="lh">
     <div><b>Raw data</b> <span class="muted" id="logCount"></span></div>
-    <button class="gear" id="closeLog" title="Back to cards">⚙</button>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button id="resetRoom" type="button" hidden>↺ Reset everyone's votes</button>
+      <button class="gear" id="closeLog" title="Back to cards">⚙</button>
+    </div>
   </div>
   <div class="lwrap">
     <p class="muted" style="font-size:12.5px;margin-top:0">
@@ -488,6 +510,11 @@
   document.write('<scr'+'ipt src="'+base+'ai_votes.js"></scr'+'ipt>');
 })();
 </script>
+<!-- Multiplayer backend (optional): Firebase Realtime DB. Degrades to single-player if
+     the SDK can't load or firebase-config.js leaves FIREBASE_CONFIG null. -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
 <script>
 // Known cities for the header selector (adding one also needs a cities/<id>/ bundle).
 const CITIES=[
@@ -671,6 +698,7 @@ function buildMapBase(){
     <div class="mdot me" id="userDot" style="opacity:0"><span class="mc fb">YOU</span></div>
     <div class="maphint" id="mapHint"></div>`;
   mapBuilt=true;
+  renderPeers();
 }
 function renderMap(){
   if(!COORD)return;
@@ -759,6 +787,7 @@ function react(vote){
   if(top)top.classList.add(vote==="for"?"gone-r":vote==="against"?"gone-l":"gone-d");
   renderAffinity();
   applyMapVisibility();   // updates the unlock countdown / auto-reveals at the gate
+  publishSelf();          // share my new map position with the room (no-op if single-player)
   setTimeout(()=>{idx++;renderStack();},230);
 }
 // dots (all parties + the user) for the big result map, reusing the MDS coords
@@ -778,6 +807,7 @@ function renderResultMap(){
   if(uc){const [l,t]=toPct(uc);userDot=`<div class="mdot me" style="left:${l}%;top:${t}%"><span class="mc fb">YOU</span></div>`;}
   el.innerHTML=`<span class="maptag">Your affinity map</span>
     <div class="axis x"></div><div class="axis y"></div>${dots}${userDot}`;
+  renderPeers();
 }
 // most / least affine party cards
 function renderExtremes(ranked,a){
@@ -1084,6 +1114,82 @@ document.body.classList.toggle("dev",devMode);
     const u=new URL(location.href); u.searchParams.set("city",b.dataset.city); location.href=u.toString();});
   document.addEventListener("click",e=>{if(!e.target.closest(".brand"))close();});
 })();
+
+/* ---- multiplayer (optional, Firebase Realtime DB) — each city is a shared room ---- */
+// PEERS: other participants in this room (pid -> {color, c:[left%,top%]|null}). Their map
+// dots are intentionally subordinate to the parties and your own YOU dot. Degrades to a
+// no-op single-player app if firebase-config.js leaves FIREBASE_CONFIG null or the SDK
+// fails to load. Positions are published as screen-% (same toPct frame), which lines up
+// across clients as long as everyone is on the same data + default settings.
+const PEERS = {};
+let mpSelf=null, mpCtrl=null, mpPart=null, mpPid=null, mpColor=null, mpSeenReset=null;
+function mpHue(seed){let h=2166136261;for(const ch of seed){h^=ch.charCodeAt(0);h=Math.imul(h,16777619);}return (h>>>0)%360;}
+function renderPeersInto(el){
+  if(!el) return;
+  el.querySelectorAll(".peer").forEach(n=>n.remove());
+  for(const pid in PEERS){
+    const p=PEERS[pid]; if(!p.c) continue;
+    const d=document.createElement("div");
+    d.className="peer"; d.style.left=p.c[0]+"%"; d.style.top=p.c[1]+"%";
+    d.style.background=p.color||"#9aa1ad";
+    el.appendChild(d);
+  }
+}
+function renderPeers(){
+  renderPeersInto(document.getElementById("map"));
+  const rm=document.getElementById("resultMap"); if(rm && rm.innerHTML) renderPeersInto(rm);
+}
+function publishSelf(){
+  if(!mpSelf) return;
+  const uc=(COORD && Object.keys(answers).length>=MAP_GATE)?userCoord():null;
+  mpSelf.set({color:mpColor, c:uc?toPct(uc):null, n:Object.keys(answers).length,
+              ts:firebase.database.ServerValue.TIMESTAMP});
+}
+function localReset(){            // wipe my own session (mirrors "Start over") — used when the room resets
+  for(const k in answers) delete answers[k];
+  deck=shuffle(R.decisions.filter(d=>d.headline && !d.curator_drop)); idx=0;
+  mapOpen=false; mapRevealed=false;
+  $("#done").style.display="none";
+  renderAffinity(); renderStack(); applyMapVisibility(); publishSelf();
+}
+function resetEveryone(){
+  if(!mpCtrl) return;
+  mpCtrl.child("resetAt").set(firebase.database.ServerValue.TIMESTAMP);  // signal all clients
+  mpPart.remove();                                                       // clear everyone's dots
+}
+function mpInit(){
+  if(!window.FIREBASE_CONFIG || !window.firebase){ return; }   // single-player
+  try{
+    firebase.initializeApp(window.FIREBASE_CONFIG);
+    const db=firebase.database(), room=CFG.id;
+    try{mpPid=localStorage.getItem("riot.pid.v1");}catch(e){}
+    if(!mpPid){mpPid="p"+Math.random().toString(36).slice(2,9);try{localStorage.setItem("riot.pid.v1",mpPid);}catch(e){}}
+    mpColor=`hsl(${mpHue(mpPid)} 70% 62%)`;
+    mpPart=db.ref(`rooms/${room}/participants`);
+    mpCtrl=db.ref(`rooms/${room}/control`);
+    mpSelf=mpPart.child(mpPid);
+    mpSelf.onDisconnect().remove();
+    publishSelf();
+    mpPart.on("value",snap=>{
+      const all=snap.val()||{}; let n=0;
+      for(const k in PEERS) delete PEERS[k];
+      for(const k in all){ n++; if(k!==mpPid) PEERS[k]={color:all[k].color, c:all[k].c||null}; }
+      const pe=$("#presence"); if(pe){pe.hidden=false; $("#presenceN").textContent=n||1;}
+      renderPeers();
+    });
+    mpCtrl.child("resetAt").on("value",snap=>{          // someone hit "reset everyone"
+      const t=snap.val()||0;
+      if(mpSeenReset!=null && t>mpSeenReset) localReset();
+      mpSeenReset=t;
+    });
+    const rb=$("#resetRoom"); if(rb) rb.hidden=false;
+  }catch(e){ console.warn("multiplayer off:",e&&e.message); }
+}
+$("#resetRoom").addEventListener("click",()=>{
+  if(!mpCtrl) return;
+  if(confirm("Reset votes for EVERYONE in this room? This clears all participants' progress and dots.")) resetEveryone();
+});
+mpInit();
 
 renderStack();
 </script>
