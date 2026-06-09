@@ -357,7 +357,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.26</span>
+      <span class="ver">v0.27</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -1162,8 +1162,11 @@ function mpInit(){
   try{
     firebase.initializeApp(window.FIREBASE_CONFIG);
     const db=firebase.database(), room=CFG.id;
-    try{mpPid=localStorage.getItem("riot.pid.v1");}catch(e){}
-    if(!mpPid){mpPid="p"+Math.random().toString(36).slice(2,9);try{localStorage.setItem("riot.pid.v1",mpPid);}catch(e){}}
+    // per-TAB identity (sessionStorage): each window is a distinct participant, and it
+    // survives a refresh within that tab. (localStorage would make every window of the
+    // same browser collapse into one participant.)
+    try{mpPid=sessionStorage.getItem("riot.pid.v1");}catch(e){}
+    if(!mpPid){mpPid="p"+Math.random().toString(36).slice(2,9);try{sessionStorage.setItem("riot.pid.v1",mpPid);}catch(e){}}
     mpColor=`hsl(${mpHue(mpPid)} 70% 62%)`;
     mpPart=db.ref(`rooms/${room}/participants`);
     mpCtrl=db.ref(`rooms/${room}/control`);
