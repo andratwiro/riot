@@ -26,7 +26,7 @@
   .citysel:hover{background:var(--card)}
   .citysel .rose{height:23px;width:23px;flex:0 0 auto;display:block;object-fit:contain}
   .citysel .citychev{color:var(--dim);font-size:11px;font-weight:600;margin-left:1px}
-  .brand .ver{color:var(--dim);font-weight:600;font-size:11px;letter-spacing:.2px;align-self:flex-end;margin-bottom:3px}
+  .brand .ver{color:var(--dim);font-weight:600;font-size:11px;letter-spacing:.2px;align-self:center}
   .previewtag{color:#f0b46d;background:rgba(240,180,109,.14);font-size:10px;font-weight:700;
     padding:2px 7px;border-radius:999px;letter-spacing:.3px;text-transform:uppercase;align-self:center}
   .citymenu{position:absolute;top:100%;left:0;margin-top:6px;background:var(--card);border:1px solid var(--line);
@@ -111,6 +111,13 @@
 
   /* survey / card stack */
   #survey{flex:1 1 auto;position:relative;padding:6px 16px 0;min-height:0}
+  /* phone: when the open map squeezes a tall card, let the survey scroll so the text +
+     vote buttons stay reachable (the app is otherwise a fixed, no-scroll column). */
+  @media (max-width:680px){
+    #survey{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:14px}
+    #map{height:188px}
+    #mapPanel.open #mapCollapse{max-height:196px}
+  }
   .progress{text-align:center;color:var(--dim);font-size:12.5px;margin-bottom:8px}
   .stack{position:relative;margin:0 auto}
   .card{position:relative;background:var(--card);border:1px solid var(--line);
@@ -357,7 +364,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.27</span>
+      <span class="ver">v0.28</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
