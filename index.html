@@ -68,7 +68,9 @@
     transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%}
 
   /* opinion map — thin toggle bar + collapsible panel above the cards */
-  #mapPanel{flex:0 0 auto;margin:0 12px 8px}
+  /* map lives at the top of the (scrollable) survey, so on phone it scrolls up under the
+     fixed political-parties bar instead of pinning above the cards. */
+  #mapPanel{flex:0 0 auto;margin:0 0 8px}
   .mapbar{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
     height:30px;background:var(--card);border:1px solid var(--line);border-radius:999px;
     color:var(--dim);font:inherit;font-size:12.5px;font-weight:600;letter-spacing:.3px;cursor:pointer;
@@ -166,6 +168,14 @@
     border:1px solid var(--line);background:var(--card2);color:var(--ink);font-size:18px;line-height:1;
     cursor:pointer;display:none;align-items:center;justify-content:center;z-index:3}
   .card .closex:active{transform:scale(.94)}
+  /* ✨ AI-reword flag — small, top-right; signals the headline is an AI rewording you can undo */
+  .card .aiflag{position:absolute;top:13px;right:13px;width:28px;height:28px;border-radius:50%;
+    border:1px solid rgba(109,179,255,.35);background:rgba(109,179,255,.12);font-size:13px;line-height:1;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;padding:0;transition:opacity .15s}
+  .card .aiflag:hover{background:rgba(109,179,255,.2)}
+  .card .aiflag:active{transform:scale(.92)}
+  .card .aiflag.off{border-color:var(--line);background:transparent;opacity:.5;filter:grayscale(1)}
+  .card.expanded .aiflag{display:none}   /* close ✕ takes the corner when expanded */
   .card.expanded h2,
   .card.expanded .more,
   .card.expanded .acts{display:none}
@@ -361,10 +371,10 @@
   <header>
     <div class="brand">
       <button class="citysel" id="cityBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Switch city">
-        <img class="rose" id="cityLogo" src="assets/logos/reus_rose.svg" alt="" width="23" height="23">
+        <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.28</span>
+      <span class="ver">v0.29</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -375,14 +385,13 @@
 
   <div id="affinity"></div>
 
-  <div id="mapPanel">
-    <button class="mapbar" id="mapToggleBtn" type="button" aria-expanded="false">
-      <span class="mb-tx">🗺️ Show map</span><span class="chev">▾</span>
-    </button>
-    <div id="mapCollapse"><div id="map"></div></div>
-  </div>
-
   <div id="survey">
+    <div id="mapPanel">
+      <button class="mapbar" id="mapToggleBtn" type="button" aria-expanded="false">
+        <span class="mb-tx">🗺️ Show map</span><span class="chev">▾</span>
+      </button>
+      <div id="mapCollapse"><div id="map"></div></div>
+    </div>
     <div class="progress" id="progress"></div>
     <div class="stack" id="stack"></div>
     <div id="done">
@@ -483,11 +492,6 @@
       <span class="si-tx"><b>View raw data</b></span>
       <span class="si-go">↗</span>
     </button>
-    <label class="sheet-item" for="origToggle">
-      <span class="si-ic">🔁</span>
-      <span class="si-tx"><b>Show original text on cards</b></span>
-      <span class="switch"><input type="checkbox" id="origToggle"><span class="slider"></span></span>
-    </label>
     <button class="sheet-item" id="importVotes">
       <span class="si-ic">⤓</span>
       <span class="si-tx"><b>Import votes</b></span>
@@ -525,10 +529,10 @@
 <script>
 // Known cities for the header selector (adding one also needs a cities/<id>/ bundle).
 const CITIES=[
-  {id:"reus",name:"Reus",logo:"assets/logos/reus_rose.svg"},
+  {id:"reus",name:"Reus",logo:"assets/logos/reus_rose_color.svg"},
   {id:"brussels",name:"Brussels",logo:"assets/logos/brussels_iris.svg"}
 ];
-const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo:"assets/logos/reus_rose.svg",mapGate:5};
+const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo:"assets/logos/reus_rose_color.svg",mapGate:5};
 document.title=CFG.title||"RIOT";
 document.documentElement.lang=CFG.lang||"en";
 const R = window.RIOT || {decisions:[], parties:[]};
@@ -557,7 +561,7 @@ const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
 
 let deck = shuffle(R.decisions.filter(d => d.headline && !d.curator_drop));
 let idx = 0;
-let useOriginal = false;
+const origShown = new Set();   // card ids currently showing the original (un-reworded) title
 // Opinion map unlocks after MAP_GATE votes: locked (countdown) → auto-reveals at the gate → user toggles.
 let mapOpen=false, mapRevealed=false;
 const answers = {};
@@ -744,23 +748,21 @@ function renderStack(){
     const d=deck[k],depth=k-idx;
     const el=document.createElement("div");
     el.className="card"+(depth===1?" behind1":depth===2?" behind2":"");
-    const topic = useOriginal ? esc(d.organ||d.type||"Record") : esc(d.topic||"Decision");
-    const head  = useOriginal ? esc(d.title||d.headline) : esc(d.headline);
-    let body;
-    if(useOriginal){
-      body=`<div class="body rawtxt">${esc(d.raw_outcome||d.title||"")}</div>`;
-    } else {
-      const main = d.source_brief ? renderBrief(d.source_brief)
-                 : `<div class="body">${esc(d.human_body||"")}</div>`;
-      const dfacts = d.deep_facts || d.deep;   // neutral, cited (what the AI proxy reads)
-      const deep = dfacts
-        ? `<button class="deepmore" type="button">Full analysis ▾</button>`+
-          `<div class="deep" hidden>${renderBrief(dfacts)}`+
-          (d.deep_lectura?`<div class="lectura">${renderBrief(d.deep_lectura)}</div>`:"")+
-          `</div>`
-        : "";
-      body = main+deep;
-    }
+    const topic = esc(d.topic||"Decision");
+    // The headline is an AI-reworded version of the proposal; the ✨ flag toggles back to
+    // the original wording (d.title — the source's own name/text) per card.
+    const showOrig = origShown.has(d.id);
+    const head = showOrig ? esc(d.title||d.headline) : esc(d.headline);
+    const main = d.source_brief ? renderBrief(d.source_brief)
+               : `<div class="body">${esc(d.human_body||"")}</div>`;
+    const dfacts = d.deep_facts || d.deep;   // neutral, cited (what the AI proxy reads)
+    const deep = dfacts
+      ? `<button class="deepmore" type="button">Full analysis ▾</button>`+
+        `<div class="deep" hidden>${renderBrief(dfacts)}`+
+        (d.deep_lectura?`<div class="lectura">${renderBrief(d.deep_lectura)}</div>`:"")+
+        `</div>`
+      : "";
+    const body = main+deep;
     const acts = depth===0
       ? `<div class="acts">
           <button class="btn a" data-v="against">Against</button>
@@ -768,7 +770,11 @@ function renderStack(){
           <button class="btn f" data-v="for">For</button>
         </div>`
       : "";
-    const headTip = useOriginal ? "" : ` title="${esc(d.title||"")}"`;
+    // ✨ AI-reword flag (front card only, when there's a distinct original to reveal)
+    const hasOrig = depth===0 && d.title && d.title!==d.headline;
+    const aiflag = hasOrig
+      ? `<button class="aiflag${showOrig?' off':''}" type="button" data-id="${esc(d.id)}" title="${showOrig?'Showing the original wording — tap to restore the AI-reworded title':'AI-reworded for clarity — tap to read the original proposal wording'}">✨</button>`
+      : "";
     // auto-discretion suggestion (curator only): proposed-drop the curator hasn't confirmed/dismissed
     const showSug = depth===0 && devMode && d.auto_suggest && !isMarked(d.id) && !isDismissed(d.id);
     const suggest = showSug
@@ -777,9 +783,10 @@ function renderStack(){
         `<button class="sugNo" type="button">Dismiss</button></div>`
       : "";
     el.innerHTML=`<button class="closex" type="button" aria-label="Close">✕</button>
+      ${aiflag}
       ${suggest}
-      <span class="topic${useOriginal?" orig":""}">${topic}</span>
-      <h2${headTip}>${head}</h2>
+      <span class="topic">${topic}</span>
+      <h2 title="${esc(d.title||"")}">${head}</h2>
       <button class="more" type="button">See more ▾</button>
       <div class="reveal" hidden>${body}</div>
       ${acts}`;
@@ -880,6 +887,15 @@ $("#stack").addEventListener("click",e=>{
     const open=blk.hasAttribute("hidden");
     if(open){blk.removeAttribute("hidden");dm.textContent="Hide analysis ▴";}
     else{blk.setAttribute("hidden","");dm.textContent="Full analysis ▾";}
+    return;
+  }
+  const af=e.target.closest(".aiflag");
+  if(af){
+    const id=af.dataset.id, h2=af.closest(".card").querySelector("h2"), d=byId[id];
+    if(origShown.has(id)){origShown.delete(id); h2.textContent=d.headline; af.classList.remove("off");
+      af.title="AI-reworded for clarity — tap to read the original proposal wording";}
+    else{origShown.add(id); h2.textContent=d.title||d.headline; af.classList.add("off");
+      af.title="Showing the original wording — tap to restore the AI-reworded title";}
     return;
   }
   if(e.target.closest(".closex")){collapseCard(e.target.closest(".card"));return;}
@@ -1068,7 +1084,6 @@ $("#menuBtn").addEventListener("click",openSheet);
 $("#sheetBack").addEventListener("click",closeSheet);
 $("#openLog").addEventListener("click",()=>{closeSheet();openLog();});
 $("#closeLog").addEventListener("click",()=>$("#log").style.display="none");
-$("#origToggle").addEventListener("change",e=>{useOriginal=e.target.checked;renderStack();});
 $("#mapToggleBtn").addEventListener("click",()=>{
   if(Object.keys(answers).length<MAP_GATE)return;   // still locked — bar is a countdown, not a toggle
   mapOpen=!mapOpen; applyMapVisibility();

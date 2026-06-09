@@ -6,6 +6,6 @@ window.CITY_CONFIG = {
   name: "Reus",
   title: "REUS",
   lang: "ca",                          // Reus cards stay in Catalan (source language)
-  logo: "assets/logos/reus_rose.svg",
+  logo: "assets/logos/reus_rose_color.svg",
   mapGate: 5                           // votes before the opinion map unlocks
 };
