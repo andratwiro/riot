@@ -50,7 +50,7 @@
   .herHero.fallback{background:#d1684e url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 50c0-11 8-18 14-12l28 24c6 6 14-1 14-12s-8-18-14-12L36 62c-6 6-14-1-14-12z' fill='none' stroke='%23ffffff' stroke-width='3'/></svg>") center/64% no-repeat}
 
   /* opinion map (experimental) */
-  #map{position:relative;flex:0 0 auto;height:150px;margin:0 12px 8px;
+  #map{position:relative;flex:0 0 auto;height:225px;margin:0 12px 8px;
     border:1px solid var(--line);border-radius:16px;overflow:hidden;
     background:radial-gradient(circle at 50% 50%,rgba(109,179,255,.06),transparent 68%),var(--card)}
   #map .axis{position:absolute;background:var(--line);opacity:.55}
@@ -261,7 +261,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.10</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.11</span></div>
     <button class="gear" id="menuBtn" title="Opcions">⚙</button>
   </header>
 
@@ -515,7 +515,7 @@ function buildMapBase(){
                       :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
     return `<div class="mdot" style="left:${l}%;top:${t}%" title="${esc(p.name)}">${inner}</div>`;
   }).join("");
-  $("#map").innerHTML=`<span class="maptag">Mapa polític · prova</span>
+  $("#map").innerHTML=`<span class="maptag">Mapa polític</span>
     <div class="axis x"></div><div class="axis y"></div>
     ${dots}
     <div class="mdot me" id="userDot" style="opacity:0"><span class="mc fb">TU</span></div>
