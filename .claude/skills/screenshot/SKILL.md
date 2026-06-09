@@ -28,8 +28,14 @@ with `cd /tmp/riot-pw && npx playwright install chromium`.
 # full tour, mobile viewport (390×844), default city reus → /tmp/riot-shots/reus/
 node .claude/skills/screenshot/shoot.js tour
 
-# Brussels
-node .claude/skills/screenshot/shoot.js tour --city brussels
+# Brussels, simulated 15-person room, curated live deck
+node .claude/skills/screenshot/shoot.js tour --city brussels --params "simroom=15&deck=live"
+
+# the room-session flow: join screen → booth+strip → stamp → split → next card
+node .claude/skills/screenshot/shoot.js booth --params "simroom=15&deck=live"
+
+# 60fps check: 5s rAF sampler while 15 sim peers tick (prints avg fps + long frames)
+node .claude/skills/screenshot/shoot.js perf --params "simroom=15&deck=live"
 
 # just the opening screen (quick check after a CSS tweak)
 node .claude/skills/screenshot/shoot.js shot
@@ -37,27 +43,34 @@ node .claude/skills/screenshot/shoot.js shot --desktop          # 1440×900 too
 
 # options
 --city <id>     # reus (default) | brussels
---out <dir>     # default /tmp/riot-shots/<city>
+--params <qs>   # extra query params, e.g. "simroom=15&deck=live"
+--out <dir>     # default /tmp/riot-shots/<city>[-params]
 --port <n>      # default 8741 (reuses an already-running server on that port)
 ```
 
 **Then actually Read the PNGs.** A screenshot you didn't look at proves
-nothing. The tour writes, in order: `01-initial`, `02-expanded`,
-`03-map-unlocked` (after 5 votes), `04-party-compare`, `05-done-top`,
-`06-done-bottom`, `07-sheet`, `08-rawdata`, `09-desktop-initial`.
+nothing. The tour writes: `01-initial`, `02-expanded`, `03-mid-deck`,
+`04-reveal-top`, `05-reveal-bottom`, `06-party-compare`, `07-sheet`,
+`08-minutes`, `09-desktop-initial`.
 
 ## App-driving gotchas (learned the hard way)
 
 - **The top (interactive) card is `#stack`'s LAST child** — behind-cards come
   first in DOM order. A bare `.card .btn` selector clicks a hidden card and
   times out. The driver votes via DOM `click()` on `#stack.lastChild`.
-- **An expanded card ("See more") hides its vote buttons** and disables the
-  arrow-key shortcuts. Collapse with `Escape` before voting.
-- The map bar **auto-opens** after `CFG.mapGate` votes (5 by default) and
-  reflows the column — wait ~800 ms before screenshotting around the gate.
-- Vote transitions take ~230 ms (`react()` advances `idx` on a timeout);
-  the driver waits 300 ms between votes.
-- Done screen is reached when `#done` has `display:flex`.
+- **Room sessions gate on a join screen** (`#join`): when `simroom` (or a real
+  room) is active and no identity is stored, click `#joinGo` first — the
+  driver's `passJoin()` handles it.
+- **The vote beat**: a vote triggers the stamp (~460ms solo) and, in a room,
+  the after-vote split (~2.5s, tap-to-skip). The driver waits 950ms / 2700ms
+  per vote accordingly. Votes are blocked while the beat runs (`voting` flag).
+- An expanded card keeps its vote buttons (pinned under the scrolling brief);
+  `Escape` collapses it.
+- Done/reveal is reached when `#done` has `display:flex`; wait ~1.6s after
+  for the map-dot entrance animation to land before screenshotting.
+- `?simroom=N` fakes an N-person room with no backend (peers tick, tallies
+  seed) — use it for presence/split/perf shots; without it (and with Firebase
+  stubbed) the app is single-player: no strip, no join, no split.
 - Firebase stubbing = the driver intercepts `firebase-config.js` and serves
   `window.FIREBASE_CONFIG=null` (the app's documented single-player fallback);
   the gstatic SDK requests are aborted. **Never screenshot against the live

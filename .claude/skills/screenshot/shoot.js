@@ -5,8 +5,10 @@
  * finds the ms-playwright Chromium cache, stubs Firebase so headless runs
  * never pollute the live rooms, walks the app, writes numbered PNGs.
  *
- *   node .claude/skills/screenshot/shoot.js tour [--city reus|brussels]
- *   node .claude/skills/screenshot/shoot.js shot [--desktop]
+ *   node .claude/skills/screenshot/shoot.js tour  [--city reus|brussels]
+ *   node .claude/skills/screenshot/shoot.js shot  [--desktop]
+ *   node .claude/skills/screenshot/shoot.js booth --params "simroom=15&deck=live"
+ *   node .claude/skills/screenshot/shoot.js perf  --params "simroom=15&deck=live"
  */
 const fs = require('fs');
 const path = require('path');
@@ -24,9 +26,10 @@ const opt = (name, dflt) => {
 };
 const CITY = opt('city', 'reus');
 const PORT = Number(opt('port', '8741'));
-const OUT = opt('out', path.join('/tmp/riot-shots', CITY));
+const PARAMS = opt('params', '');              // extra query params, e.g. "simroom=15&deck=live"
+const OUT = opt('out', path.join('/tmp/riot-shots', CITY + (PARAMS ? '-' + PARAMS.replace(/[^a-z0-9]+/gi, '_') : '')));
 const WANT_DESKTOP = argv.includes('--desktop');
-const URL = `http://127.0.0.1:${PORT}/index.html?city=${CITY}`;
+const URL = `http://127.0.0.1:${PORT}/index.html?city=${CITY}` + (PARAMS ? '&' + PARAMS : '');
 
 /* ---- deps ---- */
 function loadPlaywright() {
@@ -83,6 +86,12 @@ const voteTop = (page, v) => page.evaluate(v => {
   if (b) b.click();
 }, v);
 const isDone = page => page.evaluate(() => document.querySelector('#done').style.display === 'flex');
+// Room sessions gate on a join screen — enter as 🦊 so flows can proceed.
+async function passJoin(page) {
+  const visible = await page.evaluate(() => !document.querySelector('#join').hidden);
+  if (visible) { await page.evaluate(() => document.querySelector('#joinGo').click()); await sleep(400); }
+  return visible;
+}
 
 async function newPage(browser, desktop) {
   const ctx = await browser.newContext(desktop
@@ -95,7 +104,7 @@ async function newPage(browser, desktop) {
   const page = await ctx.newPage();
   page.on('pageerror', e => console.log('PAGEERROR:', e.message));
   await page.goto(URL, { waitUntil: 'load' });
-  await sleep(1200);
+  await sleep(1400);
   return page;
 }
 
@@ -108,13 +117,20 @@ async function newPage(browser, desktop) {
     await page.screenshot({ path: path.join(OUT, name + '.png') });
     console.log('📸', path.join(OUT, name + '.png'));
   };
+  // the vote beat: stamp ~460ms solo, stamp+split ~2.5s in a room — wait it out
+  const voteAndSettle = async (page, v, room) => { await voteTop(page, v); await sleep(room ? 2700 : 950); };
 
   if (mode === 'shot') {
     const page = await newPage(browser, false);
+    await passJoin(page);
     await shot(page, '01-initial');
-    if (WANT_DESKTOP) await shot(await newPage(browser, true), '01-initial-desktop');
+    if (WANT_DESKTOP) { const p2 = await newPage(browser, true); await passJoin(p2); await shot(p2, '01-initial-desktop'); }
+
   } else if (mode === 'tour') {
+    const room = /simroom=/.test(PARAMS);
     const page = await newPage(browser, false);
+    const hadJoin = await passJoin(page);
+    if (hadJoin) console.log('· passed join gate');
     await shot(page, '01-initial');
 
     // expanded card ("See more")
@@ -124,37 +140,70 @@ async function newPage(browser, desktop) {
     await page.keyboard.press('Escape');   // collapse — vote buttons are hidden while expanded
     await sleep(300);
 
-    // past the map gate (auto-opens; wait out the reflow)
-    for (const v of ['for', 'against', 'for', 'abstain', 'for']) { await voteTop(page, v); await sleep(300); }
-    await sleep(800);
-    await shot(page, '03-map-unlocked');
+    // a few votes in
+    for (const v of ['for', 'against', 'abstain', 'for', 'against']) await voteAndSettle(page, v, room);
+    await shot(page, '03-mid-deck');
 
-    // party comparison, mid-run
-    await page.evaluate(() => { const el = document.querySelector('#affinity .pa'); if (el) el.click(); });
+    // finish the deck
+    for (let i = 0; i < 200 && !(await isDone(page)); i++) await voteAndSettle(page, 'for', room);
+    await sleep(1600);                     // let the reveal-map dots land
+    await shot(page, '04-reveal-top');
+    await page.evaluate(() => { const s = document.querySelector('#done'); s.scrollTop = s.scrollHeight; });
+    await sleep(400);
+    await shot(page, '05-reveal-bottom');
+
+    // party compare (from the ranked list)
+    await page.evaluate(() => { const b = document.querySelector('.dprow'); if (b) b.click(); });
     await sleep(500);
-    await shot(page, '04-party-compare');
+    await shot(page, '06-party-compare');
     await page.evaluate(() => document.querySelector('#closeParty').click());
     await sleep(300);
 
-    // finish the deck
-    for (let i = 0; i < 200 && !(await isDone(page)); i++) { await voteTop(page, 'for'); await sleep(300); }
-    await sleep(900);
-    await shot(page, '05-done-top');
-    await page.evaluate(() => { const s = document.querySelector('#done'); s.scrollTop = s.scrollHeight; });
-    await sleep(400);
-    await shot(page, '06-done-bottom');
-
-    // options sheet, then raw-data view
+    // options sheet, then the minutes
     await page.evaluate(() => document.querySelector('#menuBtn').click());
     await sleep(450);
     await shot(page, '07-sheet');
     await page.evaluate(() => document.querySelector('#openLog').click());
     await sleep(500);
-    await shot(page, '08-rawdata');
+    await shot(page, '08-minutes');
 
-    await shot(await newPage(browser, true), '09-desktop-initial');
+    const p2 = await newPage(browser, true); await passJoin(p2);
+    await shot(p2, '09-desktop-initial');
+
+  } else if (mode === 'booth') {
+    // the room-session flow: join → booth+strip → stamp → split. Use --params "simroom=15&deck=live".
+    const page = await newPage(browser, false);
+    await shot(page, '01-join');
+    await passJoin(page);
+    await sleep(2200);                     // let sim peers tick
+    await shot(page, '02-booth');
+    await voteTop(page, 'for');
+    await sleep(260);
+    await shot(page, '03-stamp');
+    await sleep(700);
+    await shot(page, '04-split');
+    await sleep(2200);
+    await shot(page, '05-next-card');
+
+  } else if (mode === 'perf') {
+    // 5s rAF sampler while the sim room ticks — reports avg fps and long frames.
+    const page = await newPage(browser, false);
+    await passJoin(page);
+    await sleep(1500);
+    const r = await page.evaluate(() => new Promise(res => {
+      const deltas = []; let last = performance.now();
+      const tick = t => { deltas.push(t - last); last = t; if (deltas.length < 300) requestAnimationFrame(tick); else done(); };
+      const done = () => {
+        const avg = deltas.reduce((s, d) => s + d, 0) / deltas.length;
+        const long = deltas.filter(d => d > 28).length;   // >28ms ≈ dropped frame at 60Hz
+        res({ frames: deltas.length, avgMs: +avg.toFixed(2), fps: +(1000 / avg).toFixed(1), longFrames: long });
+      };
+      requestAnimationFrame(tick);
+    }));
+    console.log('PERF', JSON.stringify(r));
+
   } else {
-    console.error(`Unknown mode "${mode}" — use: tour | shot`);
+    console.error(`Unknown mode "${mode}" — use: tour | shot | booth | perf`);
     process.exit(1);
   }
 

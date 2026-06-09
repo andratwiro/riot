@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2F0E8">
 <title>REUS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;650;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,28 +18,34 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.44</span>
+      <span class="ver">v0.45</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
-      <span id="presence" hidden title="People in this room right now"><span class="live"></span><b id="presenceN">1</b> here</span>
-      <button class="gear" id="menuBtn" title="Options">⚙</button>
+      <button class="hbtn" id="quickLog" type="button" title="The minutes — verbatim source text and real party votes for every card">§</button>
+      <button class="hbtn" id="menuBtn" type="button" title="Options">⚙</button>
     </div>
   </header>
 
-  <div id="affinity"></div>
+  <!-- The room: who's here, anonymous activity ticks, how far the room is through the deck.
+       Broadcasts ACTIVITY, never DIRECTION — no votes, no parties, no affinity here. -->
+  <div id="roomstrip" hidden>
+    <div class="rs-faces" id="rsFaces" aria-label="People in this room"></div>
+    <div class="rs-right">
+      <span class="rs-pulse" id="rsPulse" aria-hidden="true"></span>
+      <span class="rs-label" id="rsLabel"></span>
+    </div>
+  </div>
 
   <div id="survey">
-    <div id="mapPanel">
-      <button class="mapbar" id="mapToggleBtn" type="button" aria-expanded="false">
-        <span class="mb-tx">🗺️ Show map</span><span class="chev">▾</span>
-      </button>
-      <div id="mapCollapse"><div id="map"></div></div>
+    <div class="progressrow" id="progressRow">
+      <div class="ptrack" aria-hidden="true"><div class="pfill" id="progressFill"></div><div class="proomtick" id="roomTick" hidden title="Room average"></div></div>
+      <span class="plabel" id="progress"></span>
     </div>
-    <div class="progress" id="progress"></div>
     <div class="stack" id="stack"></div>
     <div id="done">
-      <h2>All done 🎉</h2>
+      <p class="donek" id="doneKicker"></p>
+      <h2 id="doneHead"></h2>
       <p class="doneSub" id="doneSub"></p>
       <div id="resultMap"></div>
       <div class="extremes" id="extremes"></div>
@@ -44,10 +54,23 @@
         <button class="restart" id="restart" type="button">↻ Start over</button>
         <button id="copyVotes" type="button">⧉ Copy votes</button>
       </div>
-      <p class="donenote">Nothing is saved. Reloading clears everything.</p>
+      <p class="donenote">Votes stay on this phone. Reloading clears them.</p>
     </div>
   </div>
 
+</div>
+
+<!-- Join: name-or-emoji onboarding for room sessions. One screen, one button, <30s. -->
+<div id="join" hidden>
+  <div class="join-card">
+    <img class="join-logo" id="joinLogo" src="assets/logos/reus_rose_color.svg" alt="">
+    <p class="join-kicker" id="joinKicker">LIVE SESSION</p>
+    <h1 class="join-h">Vote on real council decisions.</h1>
+    <p class="join-sub">Pick how the room sees you. Your votes stay anonymous — the room only ever sees activity, never direction.</p>
+    <div class="join-grid" id="joinGrid"></div>
+    <input class="join-name" id="joinName" type="text" maxlength="14" autocomplete="off" placeholder="Name (optional)">
+    <button class="join-go" id="joinGo" type="button">Enter the booth</button>
+  </div>
 </div>
 
 <div id="devbar">
@@ -57,11 +80,8 @@
 
 <div id="log">
   <div class="lh">
-    <div><b>Raw data</b> <span class="muted" id="logCount"></span></div>
-    <div style="display:flex;gap:8px;align-items:center">
-      <button id="resetRoom" type="button" hidden>↺ Reset everyone's votes</button>
-      <button class="gear" id="closeLog" title="Back to cards">⚙</button>
-    </div>
+    <div><b>The minutes</b> <span class="muted" id="logCount"></span></div>
+    <button class="hbtn" id="closeLog" title="Back to cards">✕</button>
   </div>
   <div class="lwrap">
     <p class="muted" style="font-size:12.5px;margin-top:0">
@@ -88,7 +108,7 @@
 <div id="marksView">
   <div class="lh">
     <div><b>Not worth voting</b> <span class="muted" id="marksCount"></span></div>
-    <button class="gear" id="closeMarks" title="Close">⚙</button>
+    <button class="hbtn" id="closeMarks" title="Close">✕</button>
   </div>
   <div class="lwrap">
     <p class="muted" style="font-size:12.5px;margin-top:0">
@@ -103,7 +123,7 @@
 <div id="importView">
   <div class="lh">
     <div><b>Import votes</b></div>
-    <button class="gear" id="closeImport" title="Close">⚙</button>
+    <button class="hbtn" id="closeImport" title="Close">✕</button>
   </div>
   <div class="lwrap">
     <p class="muted" style="font-size:12.5px;margin-top:0">
@@ -129,8 +149,8 @@
       <span class="switch"><input type="checkbox" id="aiToggle"><span class="slider"></span></span>
     </label>
     <button class="sheet-item" id="openLog">
-      <span class="si-ic">📄</span>
-      <span class="si-tx"><b>View raw data</b></span>
+      <span class="si-ic">§</span>
+      <span class="si-tx"><b>View the minutes</b><small>Verbatim source + real party votes</small></span>
       <span class="si-go">↗</span>
     </button>
     <button class="sheet-item" id="importVotes">
@@ -143,6 +163,11 @@
       <span class="si-tx"><b>Curator mode</b></span>
       <span class="switch"><input type="checkbox" id="devToggle"><span class="slider"></span></span>
     </label>
+    <!-- Room reset: curator mode only, two-step confirm. Hidden unless body.dev + a live room. -->
+    <button class="sheet-item devonly danger" id="resetRoom" type="button" hidden>
+      <span class="si-ic">↺</span>
+      <span class="si-tx"><b id="resetRoomTx">Reset everyone's votes</b><small>Clears the whole room's progress and tallies</small></span>
+    </button>
   </div>
 </div>
 
@@ -174,13 +199,14 @@
 <script src="views.js"></script>
 <script src="multiplayer.js"></script>
 <script>
-// Boot — original startup order: map coords + affinity → room connect → deal cards.
+// Boot — startup order: map coords (for the reveal) → join gate → room connect → deal cards.
 $("#aiToggle").checked=showAI;
 if(!AI){const r=$("#aiRow"); if(r)r.style.display="none";}   // hide the toggle if no proxy votes exist
-applyAiParty(showAI);   // builds the map coords + renders affinity (adds the IA party iff showAI)
+applyAiParty(showAI);   // builds the reveal-map coords (adds the IA party iff showAI)
 if(devToggleEl)devToggleEl.checked=devMode;
 document.body.classList.toggle("dev",devMode);
 mpInit();
+maybeShowJoin();        // room sessions: name/emoji gate before the first card (no-op single-player)
 renderStack();
 </script>
 </body>

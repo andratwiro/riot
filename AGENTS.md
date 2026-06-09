@@ -34,11 +34,11 @@ without it.
 | Path | What it is |
 |------|------------|
 | `index.html` | The shared viewer's markup + loaders: a `?city=reus\|brussels` loader picks which `cities/<id>/` bundle to load (only data + config differ per city), then the app scripts below, then a small inline **boot** block (startup order: `applyAiParty` → `mpInit` → `renderStack`). Carries the visible **version tag** (see Conventions). |
-| `style.css` | All viewer CSS (extracted from `index.html`). |
-| `app.js` | Viewer core: city config/state, affinity bar, card stack, done screen, city switcher. User votes go to `localStorage` (never committed). |
-| `map.js` | Opinion map: MDS of party vote-distances (Jacobi eigensolver), user placement, map panel + big result map. |
-| `views.js` | Secondary views: raw-data log, party comparison, curator mode, votes export/import, options sheet. |
-| `multiplayer.js` | Firebase Realtime DB rooms: presence, peer dots, room-wide reset; no-op single-player fallback. |
+| `style.css` | All viewer CSS — the «l'acta» ballot-paper theme (tokens + doctrine in `.claude/skills/riot-ui/SKILL.md`). |
+| `app.js` | Viewer core: city config/state, the booth (card stack, stamp + after-vote split beat, deck modes incl. `?deck=live`), the reveal screen, join onboarding, city switcher. Votes live in memory only. |
+| `map.js` | The affinity map (reveal-only): MDS of party vote-distances (Jacobi eigensolver), user placement, animated entrance. |
+| `views.js` | Secondary views: the minutes (raw-data log, one tap via the header `§`), party comparison, curator mode, votes export/import, options sheet. |
+| `multiplayer.js` | The room (Firebase Realtime DB): presence with names/emoji, anonymous per-decision tallies, room progress, activity ticks, curator room reset; single-player fallback; `?simroom=N` fakes a room for testing. |
 | `cities/<id>/config.js` | Per-city chrome + tunables: `window.CITY_CONFIG` (name, logo, document lang, `mapGate`). |
 | `cities/<id>/data.js` | `window.RIOT = {...}` — that city's decisions table as a JS object (avoids CORS). **Generated** by `build_table.py` (Reus) / `build_table_bxl.py` (Brussels). |
 | `cities/<id>/ai_votes.js` | `window.AI_VOTES = {...}` — the AI proxy's votes (Reus only so far). |
@@ -163,14 +163,19 @@ decisions table.
 ## Conventions
 
 - **Frontend:** vanilla HTML/CSS/JS, no framework, no build step; Three.js (CDN)
-  for `her.js`; CSS custom properties for theming. The viewer JS is split into
-  plain (non-module) scripts that share top-level globals — **load order matters**
-  and is encoded in `index.html`: `app.js` → `map.js` → `views.js` →
-  `multiplayer.js` → inline boot. Don't convert to ES modules: the city loader
-  relies on parser-synchronous `document.write`. Parallel agents should each own
-  one of these files; shared CSS lives in `style.css`. Before touching viewer UI,
-  read `.claude/skills/riot-ui/SKILL.md` (design system); after, verify visually
-  with `.claude/skills/screenshot/` (mobile viewport first).
+  for `her.js`; Archivo + Courier Prime via Google Fonts (CDN); CSS custom
+  properties for theming. The viewer JS is split into plain (non-module) scripts
+  that share top-level globals — **load order matters** and is encoded in
+  `index.html`: `app.js` → `map.js` → `views.js` → `multiplayer.js` → inline
+  boot. Don't convert to ES modules: the city loader relies on
+  parser-synchronous `document.write`. Parallel agents should each own one of
+  these files; shared CSS lives in `style.css`. Before touching viewer UI, read
+  `.claude/skills/riot-ui/SKILL.md` (design system + **booth doctrine**:
+  activity-not-direction, no valence pre-vote); after, verify visually with
+  `.claude/skills/screenshot/` (mobile viewport first).
+- **Viewer URL params:** `?city=reus|brussels` (instance), `?deck=live`
+  (curated room-session deck from `CFG.live_deck`), `?split=0` (kill the
+  after-vote room split), `?simroom=N` (fake N-person room, testing only).
 - **Pipeline:** Python 3, stdlib + `anthropic`; module + function docstrings;
   snake_case. JS uses kebab/camelCase.
 - **Version tag:** `index.html` carries a visible `vX.YZ` tag in the header

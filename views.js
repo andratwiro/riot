@@ -1,7 +1,9 @@
 /* RIOT viewer — secondary views: raw-data log, party comparison, curator mode
    (marks/suggestions), votes export/import, options sheet. Loads after map.js. */
 function buildLog(){
-  $("#logCount").textContent=`· ${R.n_decisions} decisions · ${(R.sessions_in_table||[]).length} sessions`;
+  // "source table" ≠ "deck": the table holds every extracted decision (incl.
+  // curator-dropped ones); the deck is what's votable. Label it to match.
+  $("#logCount").textContent=`· ${R.decisions.length} in the source table · ${(R.sessions_in_table||[]).length} sessions`;
   const rows=R.decisions.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   $("#logList").innerHTML=rows.map(d=>{
     const out=d.votes_pending?'<span class="badge b-pend">VOTES PENDING</span>':d.outcome==="rejected"?'<span class="badge b-rej">REJECTED</span>':'<span class="badge b-app">APPROVED</span>';
@@ -58,8 +60,7 @@ function openParty(token){
   }).join("");
   $("#partyView").style.display="block";
 }
-$("#affinity").addEventListener("click",e=>{const el=e.target.closest(".pa");if(el)openParty(el.dataset.token);});
-// done screen: the ranked party list + the most/least cards open the same comparison view
+// reveal screen: the ranked party list + the closest/furthest cards open the same comparison view
 $("#doneParties").addEventListener("click",e=>{const b=e.target.closest(".dprow");if(b)openParty(b.dataset.token);});
 $("#extremes").addEventListener("click",e=>{const b=e.target.closest(".exc");if(b)openParty(b.dataset.token);});
 function closePartyView(){$("#partyView").style.display="none"; if(iaHero){iaHero.dispose();iaHero=null;}}
@@ -139,12 +140,11 @@ function applyImportedVotes(map){
     const v=map[id];
     if(byId[id]&&(v==="for"||v==="against"||v==="abstain")){answers[id]=v;applied++;}
   }
-  deck=shuffle(R.decisions.filter(d=>d.headline && !d.curator_drop && !(d.id in answers)));
+  deck=buildDeck(true);   // continue with the unanswered remainder of the same deck mode
   idx=0;
-  mapOpen=false; mapRevealed=false;     // let the gate re-evaluate against the imported count
   $("#done").style.display="none";
-  $("#affinity").style.display="";
-  renderAffinity();applyMapVisibility();renderStack();
+  renderStack();
+  if(typeof publishSelf==="function")publishSelf();
   return applied;
 }
 $("#importVotes").addEventListener("click",()=>{closeSheet();const st=$("#importStatus");st.textContent="";st.className="";$("#importView").style.display="block";$("#importBox").focus();});
@@ -169,6 +169,7 @@ function openLog(){if(!$("#logList").innerHTML)buildLog(); $("#log").style.displ
 $("#menuBtn").addEventListener("click",openSheet);
 $("#sheetBack").addEventListener("click",closeSheet);
 $("#openLog").addEventListener("click",()=>{closeSheet();openLog();});
+$("#quickLog").addEventListener("click",openLog);   // the credibility answer, one tap from the booth
 $("#closeLog").addEventListener("click",()=>$("#log").style.display="none");
 $("#aiToggle").addEventListener("change",e=>{showAI=e.target.checked;try{localStorage.setItem(AI_KEY,showAI?"1":"0");}catch(err){}applyAiParty(showAI);});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";closePartyView();$("#marksView").style.display="none";$("#importView").style.display="none";}});
