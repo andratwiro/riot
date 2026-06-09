@@ -154,6 +154,7 @@
   .badge{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px}
   .b-app{background:rgba(39,182,106,.16);color:#5fd58c}
   .b-rej{background:rgba(229,72,95,.16);color:#f08197}
+  .b-pend{background:rgba(120,130,145,.18);color:#9aa3b0}
   .lvotes{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
   .pchip{font-size:11px;padding:3px 8px;border-radius:7px;border:1px solid var(--line);display:flex;gap:5px;align-items:center}
   .dot{width:7px;height:7px;border-radius:50%}
@@ -349,7 +350,7 @@
   </div>
 </div>
 
-<script src="data.js?v=d45c4606"></script>
+<script src="data.js?v=6dba74f7"></script>
 <script>
 const R = window.RIOT || {decisions:[], parties:[]};
 const PARTIES = R.parties || [];
@@ -648,8 +649,8 @@ function buildLog(){
   $("#logCount").textContent=`· ${R.n_decisions} decisions · ${(R.sessions_in_table||[]).length} sessions`;
   const rows=R.decisions.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   $("#logList").innerHTML=rows.map(d=>{
-    const out=d.outcome==="rejected"?'<span class="badge b-rej">REBUTJAT</span>':'<span class="badge b-app">APROVAT</span>';
-    const chips=Object.entries(d.party_votes_canon||{}).map(([k,v])=>`<span class="pchip"><span class="dot d-${v}"></span>${k} ${VLAB[v]||v}</span>`).join("");
+    const out=d.votes_pending?'<span class="badge b-pend">VOTS PENDENTS</span>':d.outcome==="rejected"?'<span class="badge b-rej">REBUTJAT</span>':'<span class="badge b-app">APROVAT</span>';
+    const chips=d.votes_pending?'<span class="pchip">acta encara no publicada</span>':Object.entries(d.party_votes_canon||{}).map(([k,v])=>`<span class="pchip"><span class="dot d-${v}"></span>${k} ${VLAB[v]||v}</span>`).join("");
     return `<div class="lcard">
       <div class="lt">${esc(d.title||d.headline)}</div>
       <div class="lm"><span>${d.date||""}</span><span>${d.session_code} · punt ${d.point??"?"}</span><span>${esc(d.organ||d.type||"")}</span>${out}</div>

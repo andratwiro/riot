@@ -1,0 +1,50 @@
+[
+  {
+    "id": "PLE_05_2026_ORD-p16",
+    "point": "16",
+    "title": "Moció del GRUP MUNICIPAL CANDIDATURA D'UNITAT POPULAR – CUP AMUNT per l'elaboració d'un estudi participatiu sobre la seguretat i la percepció de seguretat de la xarxa ciclista de Reus, així com l'elaboració d'un Pla d'Actuació de Millora.",
+    "organ": null,
+    "legal_category": "mocio",
+    "type": "mocio",
+    "proposed_by": "CUP",
+    "outcome": null,
+    "decided": null,
+    "tally": null,
+    "party_votes": {},
+    "councillor_votes": [],
+    "raw_outcome": null,
+    "votes_pending": true
+  },
+  {
+    "id": "PLE_05_2026_ORD-p17",
+    "point": "17",
+    "title": "Moció del GRUP MUNICIPAL CANDIDATURA D'UNITAT POPULAR – CUP AMUNT per garantir la funció social de l'habitatge i mobilitzar els pisos buits de grans tenidors.",
+    "organ": null,
+    "legal_category": "mocio",
+    "type": "mocio",
+    "proposed_by": "CUP",
+    "outcome": null,
+    "decided": null,
+    "tally": null,
+    "party_votes": {},
+    "councillor_votes": [],
+    "raw_outcome": null,
+    "votes_pending": true
+  },
+  {
+    "id": "PLE_05_2026_ORD-p18",
+    "point": "18",
+    "title": "Moció del GRUP MUNICIPAL JUNTS PER REUS - CM per al nou impuls del nou Pla d'Ordenació Urbanística Municipal (POUM) de Reus: una ciutat saludable, sostenible i pensada per les persones.",
+    "organ": null,
+    "legal_category": "mocio",
+    "type": "mocio",
+    "proposed_by": "JxR",
+    "outcome": null,
+    "decided": null,
+    "tally": null,
+    "party_votes": {},
+    "councillor_votes": [],
+    "raw_outcome": null,
+    "votes_pending": true
+  }
+]
