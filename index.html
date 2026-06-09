@@ -305,7 +305,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.14</span></div>
+    <div class="brand"><img class="rose" src="assets/logos/reus_rose.svg" alt="" width="23" height="23"> Reus<span class="ver">v0.15</span></div>
     <button class="gear" id="menuBtn" title="Opcions">⚙</button>
   </header>
 
@@ -865,9 +865,9 @@ document.addEventListener("keydown",e=>{
   if($("#sheet").classList.contains("open")||$("#log").style.display==="block"||$("#partyView").style.display==="block"||$("#marksView").style.display==="block"||$("#importView").style.display==="block")return;
   const exp=$("#stack").querySelector(".card.expanded");
   if(exp){if(e.key==="Escape")collapseCard(exp);return;}
-  if(e.key==="ArrowLeft")react("against");
-  else if(e.key==="ArrowRight")react("for");
-  else if(e.key==="ArrowDown")react("abstain");
+  if(e.key==="ArrowLeft"){e.preventDefault();react("against");}      // disagree
+  else if(e.key==="ArrowRight"){e.preventDefault();react("for");}    // agree
+  else if(e.key==="ArrowDown"){e.preventDefault();react("abstain");} // pass
 });
 $("#restart").addEventListener("click",()=>{
   deck=shuffle(R.decisions.filter(d=>d.headline && !d.curator_drop)); idx=0;
