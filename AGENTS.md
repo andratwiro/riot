@@ -1,14 +1,17 @@
-# AGENTS.md — RIOT (`riot.reus`)
+# AGENTS.md — RIOT (multi-city: `riot.reus`, `riot.brussels`)
 
 > Orientation file for AI agents (and humans) working in this repo. Read this
-> first; it should be enough to act without reading every file. For the full
-> rationale and non-negotiables, see [`Riot.md`](Riot.md).
+> first; it should be enough to act without reading every file. For the *why* and
+> where it's going, see [`VISION.md`](VISION.md); for the non-negotiables, see
+> [`Riot.md`](Riot.md).
 
 ## What this is
 
 **RIOT** asks a falsifiable question: *can an AI proxy faithfully represent a
-citizen's political will on real council decisions?* This is the **Reus** instance
-(`riot.reus`); the engine is jurisdiction-agnostic.
+citizen's political will on real council decisions?* The viewer is now
+**multi-city**: **Reus** city council (`?city=reus`, Catalan) and the
+**Brussels-Capital Parliament** (`?city=brussels`, English UI / French source),
+each with its own data bundle. The engine is jurisdiction-agnostic.
 
 The proof: Rob votes manually on contested Reus city-council decisions (stored
 device-locally). An AI proxy votes **blind** — from a private profile
@@ -17,30 +20,34 @@ votes, the parties' votes, or the outcome. Parties contribute their real recorde
 votes. We then compare Rob vs each party vs the AI, and report the AI's
 **out-of-sample hit-rate** against Rob's votes. That hit-rate is the actual proof.
 
-It is a **static site** (`index.html` + `data.js`) on GitHub Pages, fed by a
-**Python data pipeline** (`scripts/`) that downloads plenary minutes and extracts
-a per-decision vote table. **No backend, no build step, no package manager.**
+It is a **static site** (`index.html` + per-city bundles under `cities/`) on
+GitHub Pages, fed by a **Python data pipeline** (`scripts/`) that downloads
+plenary minutes and extracts per-decision vote tables. **No build step, no package
+manager.** *Optional* **multiplayer** is layered on via Firebase Realtime DB
+(`firebase-config.js`) — each city is a shared room (presence + peer dots on the
+map); it **degrades cleanly to single-player** when no Firebase config is present.
 
-🔗 Live: https://andratwiro.github.io/riot/
+🔗 Live: https://andratwiro.github.io/riot/ (append `?city=brussels` for Brussels)
 
 ## Repo map
 
 | Path | What it is |
 |------|------------|
-| `index.html` | The viewer (~vanilla HTML/CSS/JS): Polis-style affinity bar, 2D opinion map, decision card-stack. Reads `window.RIOT` + `window.AI_VOTES`. User votes go to `localStorage` (never committed). |
-| `data.js` | `window.RIOT = {...}` — the decisions table as a JS object (avoids CORS for the static site). **Generated** by `build_table.py`. |
-| `ai_votes.js` | `window.AI_VOTES = {...}` — the AI proxy's votes as a JS object. |
+| `index.html` | The shared viewer (vanilla HTML/CSS/JS): Polis-style affinity bar, 2D opinion map, decision card-stack, header **city selector**. A `?city=` loader (`document.write`, parser-synchronous) pulls the active city's `config.js` + `data.js` + `ai_votes.js`. Reads `window.CITY_CONFIG` / `window.RIOT` / `window.AI_VOTES`. Per-tab identity via `sessionStorage`; user votes in `localStorage` (never committed). |
+| `cities/<id>/` | Per-city bundle: `config.js` (`window.CITY_CONFIG` — chrome/lang/`mapGate`), `data.js` (`window.RIOT` — the decisions table), `ai_votes.js` (`window.AI_VOTES`). Cities today: `reus`, `brussels`. **Generated** (Reus by `build_table.py`, Brussels by `build_table_bxl.py`). |
+| `firebase-config.js` | `window.FIREBASE_CONFIG` for the optional multiplayer rooms (RTDB, `europe-west1`). Web apiKey is committed by design — **access is governed by RTDB security rules**, so keep those locked. Null/absent ⇒ single-player. |
 | `her.js` | "Her" (2013) OS1 mark animation — the AI proxy's visual identity. |
-| `scripts/` | The Python pipeline (see Commands). |
-| `data/decisions.json` | **The core table** — top-level metadata + `decisions[]` (70 rows, one per decision). The one committed source of truth. |
-| `data/ai_votes.json` | AI proxy votes (mirror of `ai_votes.js`). |
+| `scripts/` | The Python pipeline (see Commands). `*_bxl.py` are the Brussels variants. |
+| `data/decisions.json` | **The Reus core table** — top-level metadata + `decisions[]` (one row per decision); `build_table.py` compiles it into `cities/reus/data.js`. |
+| `data/ai_votes.json` | Reus AI proxy votes (mirror of `cities/reus/ai_votes.js`). |
 | `data/curator_marks.json`, `data/auto_discretion.json` | Human curator flags + auto-detected low-discretion proposals. |
-| `data/actas/*.txt` | Source plenary minutes (PDF → `pdftotext`). |
-| `data/raw/` | Pipeline intermediates + session index (`sessions.json`). **Audit trail — never delete.** |
-| `data/expedients/` | Source PDFs + per-decision metadata (re-fetchable). |
+| `data/actas/*.txt` | Reus source plenary minutes (PDF → `pdftotext`). |
+| `data/brussels/` | Brussels source + cards: `cri_txt/<session>/*.txt` (plenary CRIs, FR/NL), `cards.json` + `cards_parts/` (curated three-layer decisions); compiled into `cities/brussels/data.js` by `build_table_bxl.py`. |
+| `data/raw/` | Reus pipeline intermediates + session index (`sessions.json`). **Audit trail — never delete.** |
+| `data/expedients/` | Reus source PDFs + per-decision metadata (re-fetchable). |
 | `assets/logos/` | Party logos + brand assets. |
 | `docs/` | Canonical working docs — see "Where to read more". |
-| `Riot.md`, `To Do Riot.md` | Vision/non-negotiables + phased build plan. |
+| `VISION.md`, `Riot.md`, `To Do Riot.md` | The *why* + roadmap, the non-negotiables, the phased build plan. |
 | `soul.md` | The proxy's private profile. **Gitignored, never committed.** |
 
 ## Commands
@@ -56,9 +63,14 @@ python3 scripts/fetch_sessions.py
 # Corpus survey — regex pass over actas to find/quantify vote outcomes
 python3 scripts/extract_votes.py
 
-# Build the committed table — merge data/raw/parsed_<code>.json (per-session,
-# facts-only LLM extraction) → data/decisions.json AND data.js
+# Build the Reus table — merge data/raw/parsed_<code>.json (per-session,
+# facts-only LLM extraction) → data/decisions.json AND cities/reus/data.js
 python3 scripts/build_table.py
+
+# Brussels has a parallel pipeline (CRIs → cards → bundle): scripts/*_bxl.py
+python3 scripts/fetch_sessions_bxl.py   # CRIs
+python3 scripts/extract_votes_bxl.py    # roll-call → groups
+python3 scripts/build_table_bxl.py      # → cities/brussels/data.js
 
 # Phase 4 — the AI proxy. Reads soul.md + each decision's neutral context → blind vote.
 # Needs ANTHROPIC_API_KEY in env and soul.md present.
@@ -73,8 +85,9 @@ taxonomy** and votability gate, imported by the extraction/build steps.
 (`enrich_tax_cards.py`, `rewrite_headlines.py` are domain-specific copy helpers.)
 
 **Deploy = push to `main`** — GitHub Pages serves the repo directly. After any
-change to `data/raw/`, re-run `build_table.py` so `decisions.json` and `data.js`
-stay in sync.
+change to a city's source, re-run that city's `build_table*.py` so the
+`cities/<id>/data.js` bundle stays in sync. Adding a city = a new `cities/<id>/`
+bundle + an entry in the header selector's known-cities list in `index.html`.
 
 ## Data model
 
@@ -91,8 +104,9 @@ n_decisions, n_explained, decisions[] }`. Each row in `decisions[]`:
 - **Two-layer deep context (critical — see below):** `deep_facts`, `deep_lectura`
 - **Curation flags:** `contested_suggested`, `curator_drop`, `auto_suggest`
 
-`parties[]` carries `{ token, name, color, logo }` for PSC, JxR (Junts), ERC,
-CUP, VOX, PP. AI votes live separately in `ai_votes.json`
+`parties[]` carries `{ token, name, color, logo }` (Reus: PSC, JxR/Junts, ERC,
+CUP, VOX, PP; Brussels: its ~13 parliamentary groups — same shape). AI votes live
+separately in `ai_votes.json`
 (`{ model, produced_via, soul_hash, n_votes, note, votes }`), not inside
 `decisions.json`.
 
@@ -109,8 +123,13 @@ CUP, VOX, PP. AI votes live separately in `ai_votes.json`
 - **Falsifiability first.** Every decision links back to its source acta; no magic
   numbers, no hidden steps. The out-of-sample hit-rate is the deliverable.
 - **`data/raw/` is an audit trail** — additive, never deleted.
-- **Static site, push-to-deploy.** No backend, no CORS, no in-browser LLM calls;
-  the AI votes are produced offline and committed.
+- **Static site, push-to-deploy.** No build step, no in-browser LLM calls; the AI
+  votes are produced offline and committed per city. The *only* backend is the
+  optional Firebase Realtime DB for multiplayer presence — and the app must keep
+  working (single-player) when it's absent.
+- **Multi-city by data, not by fork.** One shared `index.html`; a city is a
+  `cities/<id>/` data+config bundle selected by `?city=`. Keep city-specific
+  content in the bundle, not in the viewer.
 
 ## Conventions
 
@@ -133,7 +152,9 @@ manual votes live only in browser `localStorage`. Never add either to the repo.
 
 | Doc | Read it for |
 |-----|-------------|
-| [`Riot.md`](Riot.md) | Vision, the bet, goals, non-negotiables, what's out of scope |
+| [`VISION.md`](VISION.md) | The *why*: bandwidth thesis, the two-engine machine (deliberation + proxy), where it's going |
+| [`docs/GOVOCAL_PITCH.md`](docs/GOVOCAL_PITCH.md) | The pitch to rally GoVocal around RIOT |
+| [`Riot.md`](Riot.md) | The bet, goals, non-negotiables, what's out of scope |
 | [`To Do Riot.md`](To%20Do%20Riot.md) | The phased build plan (phases 0–7) |
 | [`docs/FINDINGS.md`](docs/FINDINGS.md) | Data sources, Reus council composition, extraction method/status, legal taxonomy |
 | [`docs/DEEP_DIVE.md`](docs/DEEP_DIVE.md) | The per-item analysis pipeline (neutral facts → opinion layers) |

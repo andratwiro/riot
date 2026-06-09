@@ -4,22 +4,27 @@
 RIOT exists to prove it, then scale. It makes political representation *falsifiable* — you can
 check whether a proxy (or a party) actually votes the way you would.
 
-This is the **Reus** instance (`riot.reus`). The engine is jurisdiction-agnostic.
+The engine is jurisdiction-agnostic and now runs **multiple cities** — **Reus**
+city council (`riot.reus`) and the **Brussels-Capital Parliament**
+(`riot.brussels`).
 
-> 🔗 **Live:** https://andratwiro.github.io/riot/
+> 🔗 **Live:** https://andratwiro.github.io/riot/ — switch city from the header,
+> or append `?city=brussels`.
+>
+> 🧭 **Why this exists:** [`VISION.md`](VISION.md).
 
 ## What's here
-- **The site** (`index.html` + `data.js`) — a Polis-style view of real Reus city-council
-  decisions with each party's recorded vote, the citizen-legible explanation, and a link back
-  to the source acta. Currently shows the **vote-extraction verification view** (for checking
-  data integrity before the comparison/affinity layers land).
-- **The data** — `data/decisions.json` is the one committed table (one row per decision).
-  `data/actas/*.txt` are the source minutes; `data/raw/` holds the session index and per-session
-  extractions.
-- **The pipeline** (`scripts/`):
-  - `fetch_sessions.py` — enumerate Ple sessions → download + verify each acta → `data/actas/*.txt`
-  - `extract_votes.py` — regex corpus survey of vote outcomes
-  - `build_table.py` — merge per-session extractions → `data/decisions.json` + `data.js`
+- **The site** (`index.html` + per-city `cities/<id>/` bundles) — a Polis-style, interactive
+  view of real council/parliament decisions: vote on the contested ones, see your affinity with
+  each party and a 2D opinion map, and compare against an AI proxy — each decision citizen-legible
+  and linked back to its source. A `?city=` loader + header selector switch between cities.
+- **Multiplayer** (optional, Firebase Realtime DB) — each city is a shared room: invite people and
+  watch everyone land on the same map. Degrades to single-player when unconfigured.
+- **The data** — `data/decisions.json` (Reus) and `data/brussels/` (Brussels CRIs + cards) are the
+  committed sources, compiled into the `cities/<id>/data.js` bundles.
+- **The pipeline** (`scripts/`) — Reus: `fetch_sessions.py` → `extract_votes.py` →
+  `build_table.py` (→ `cities/reus/data.js`). Brussels has parallel `*_bxl.py` variants that
+  parse the Parliament CRIs (→ `cities/brussels/data.js`).
 
 ## How it works (v1 — single-user proof)
 Rob votes manually on contested council decisions (stored device-locally). An AI proxy votes
@@ -28,13 +33,15 @@ Rob's votes. Parties contribute their real recorded votes. We then compare Rob v
 the AI proxy (affinity % + a 2D map), and report the AI's **out-of-sample** hit-rate against
 Rob's votes — the actual proof.
 
-See [`Riot.md`](Riot.md) for the full rationale and non-negotiables, [`To Do Riot.md`](To%20Do%20Riot.md)
-for the build plan, and [`docs/FINDINGS.md`](docs/FINDINGS.md) for the working knowledge
+See [`VISION.md`](VISION.md) for the vision and where it's going, [`Riot.md`](Riot.md) for the
+non-negotiables, [`To Do Riot.md`](To%20Do%20Riot.md) for the build plan, [`AGENTS.md`](AGENTS.md)
+for a repo orientation, and [`docs/FINDINGS.md`](docs/FINDINGS.md) for the working knowledge
 (data sources, council composition, extraction method).
 
 ## Data provenance
-All vote data is derived from Reus city council's public plenary minutes (*actes del ple*) on the
-[AudioVideoActa portal](https://serveis.reus.cat/actes). Every decision links back to its source.
+All vote data is derived from public records: Reus city council's plenary minutes (*actes del ple*)
+on the [AudioVideoActa portal](https://serveis.reus.cat/actes), and the Brussels-Capital
+Parliament's plenary *comptes rendus intégraux* (CRIs). Every decision links back to its source.
 
 ## Privacy
 `soul.md` (the proxy's profile) and Rob's own votes are never committed — the repo is public, the
