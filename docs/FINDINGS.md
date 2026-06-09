@@ -150,9 +150,10 @@ docs/FINDINGS.md           this file
 scripts/fetch_sessions.py  enumerate sessions → download+verify actas → data/actas/*.txt
 scripts/taxonomy.py        CANONICAL legal-category taxonomy + votability gate (import everywhere)
 scripts/extract_votes.py   regex corpus survey (tags legal_category/votable) → data/raw/vote_outcomes.json
-scripts/build_table.py     merge parsed_*.json → data/decisions.json (+ ./data.js)
+scripts/build_table.py     merge parsed_*.json → data/decisions.json (+ cities/reus/data.js)
 data/raw/sessions.json     session index (code, date, detail/acta URLs)
 data/raw/parsed_<code>.json  per-session LLM extraction
 data/decisions.json        the committed table (one row per decision)
-index.html + data.js       the site (GitHub Pages root) — verification viewer for now
+index.html                 the shared viewer (GitHub Pages root); ?city= picks a
+cities/<id>/               per-city bundle (config.js, data.js, ai_votes.js)
 ```

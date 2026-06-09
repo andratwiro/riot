@@ -162,7 +162,10 @@ decisions table.
   snake_case. JS uses kebab/camelCase.
 - **Version tag:** `index.html` carries a visible `vX.YZ` tag in the header
   (currently in the `.ver` span). **Bump it ~+0.01 on every push** and mention
-  the new version in the commit message.
+  the new version in the commit message. **On every bump, check whether this
+  file (AGENTS.md) is still accurate** — if the change added/moved/renamed
+  anything described here (paths, scripts, commands, conventions), update it
+  in the same commit.
 - **No linters or formatters configured; no automated tests.** Validation is
   manual: cross-check the tables against the source actas/CRIs (the Brussels
   build prints its own roster/bloc-consistency report), curator review of copy

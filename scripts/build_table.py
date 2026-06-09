@@ -5,7 +5,7 @@ RIOT — build the committed decisions table from per-session extractions.
 Merges data/raw/parsed_<code>.json (one file per session, facts-only LLM extraction)
 into:
   data/decisions.json   — the one committed table (one row per decision)
-  viewer/data.js        — same data as `window.DECISIONS` so viewer/index.html opens
+  cities/reus/data.js   — same data as `window.RIOT` so index.html opens
                           by double-click (no server / no CORS issues)
 
 Adds session metadata (date, source_url) to each row, canonicalises drifting party

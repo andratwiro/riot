@@ -68,7 +68,7 @@ the human layers are written *from* it, never inventing beyond it.
   (accurate facts → the title rarely needs to change).
 
 Pipeline files: `deep_<code>.json` (raw neutral dossiers) → `voice_<code>.json` (`{id, headline,
-brief, deep}`) → merged into `explained_<code>.json` → `build_table.py` → `decisions.json`/`data.js`.
+brief, deep}`) → merged into `explained_<code>.json` → `build_table.py` → `decisions.json`/`cities/reus/data.js`.
 
 ## What differs from Aleida's vault (on purpose)
 - **Lens stripped:** her Flux 2 bakes in the CUP lens; RIOT's deep is neutral. Opinion is quarantined to headline/brief.
