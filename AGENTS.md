@@ -54,6 +54,7 @@ without it.
 | `data/brussels/` | The Brussels layer: `cri_txt/` (committed CRI text; `cri_pdf/` is gitignored, re-fetchable), `votes_raw.json` (per-MEMBER roll-calls), `roster.json` (member → political group), `cards.json` (English card copy, authored separately), `decisions_skeleton.json`. |
 | `assets/logos/` | Party/group logos + brand assets. |
 | `docs/` | Canonical working docs — see "Where to read more". |
+| `.claude/skills/` | Agent skills: `screenshot/` (self-contained headless-Chromium driver — serves the app, stubs Firebase so test runs never join the live rooms, screenshots every screen; **use it to verify any UI change**), `riot-ui/` (the project's concrete design system: tokens, reserved palettes, vote semantics, idioms), `frontend-design/` (Anthropic's general design-quality skill, vendored). |
 | `Riot.md`, `To Do Riot.md` | Vision/non-negotiables + phased build plan. |
 | `soul.md` | The proxy's private profile. **Gitignored, never committed.** |
 
@@ -167,7 +168,9 @@ decisions table.
   and is encoded in `index.html`: `app.js` → `map.js` → `views.js` →
   `multiplayer.js` → inline boot. Don't convert to ES modules: the city loader
   relies on parser-synchronous `document.write`. Parallel agents should each own
-  one of these files; shared CSS lives in `style.css`.
+  one of these files; shared CSS lives in `style.css`. Before touching viewer UI,
+  read `.claude/skills/riot-ui/SKILL.md` (design system); after, verify visually
+  with `.claude/skills/screenshot/` (mobile viewport first).
 - **Pipeline:** Python 3, stdlib + `anthropic`; module + function docstrings;
   snake_case. JS uses kebab/camelCase.
 - **Version tag:** `index.html` carries a visible `vX.YZ` tag in the header
