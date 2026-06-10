@@ -39,7 +39,7 @@ without it.
 | `map.js` | The affinity map (reveal-only): MDS of party vote-distances (Jacobi eigensolver), user placement, animated entrance. |
 | `views.js` | Secondary views: the minutes (raw-data log, one tap via the header `§`), party comparison, curator mode, votes export/import, options sheet. |
 | `multiplayer.js` | The room (Firebase Realtime DB): presence with names/emoji, anonymous per-decision tallies, room progress, activity ticks, curator room reset; single-player fallback; `?simroom=N` fakes a room for testing. |
-| `live.js` | **LIVE SESSION** — lockstep room voting (lobby → per-card voting/reveal → final reveal; everyone on the same card). State machine in `rooms/<city>/live` (RTDB), written ONLY by the moderator client (`?role=moderator`, whose screen doubles as the projector/stage view). Voters write an anonymous tally increment + a directionless `cast` marker per card; countdown renders from a server-clock deadline (`.info/serverTimeOffset`); timeouts are recorded nowhere and so are auto-excluded from affinity. Per-card reveal shows the official outcome only — party detail stays in the final reveal/minutes. `?simlive=N` fakes the whole lockstep room (late joiner, disconnect/rejoin, force-advance scenarios) with no backend. |
+| `live.js` | **LIVE SESSION** — lockstep room voting (lobby → per-card voting/reveal → final reveal; everyone on the same card). State machine in `rooms/<city>/live` (RTDB), written ONLY by the moderator client (`?role=moderator`, whose screen doubles as the projector/stage view). Voters write an anonymous tally increment + a `cast` marker carrying their direction (reveal-only; see Conventions); countdown renders from a server-clock deadline (`.info/serverTimeOffset`); timeouts are recorded nowhere and so are auto-excluded from affinity. Per-card reveal: the chamber's official stamp first, then the room as emoji piles — party detail stays in the final reveal/minutes. `?simlive=N` fakes the whole lockstep room (late joiner, disconnect/rejoin, force-advance scenarios) with no backend. |
 | `cities/<id>/config.js` | Per-city chrome + tunables: `window.CITY_CONFIG` (name, logo, document `lang`, source-document `srcLang` for the original-wording toggle, `chamber` for live-session copy, `mapGate`). |
 | `cities/<id>/data.js` | `window.RIOT = {...}` — that city's decisions table as a JS object (avoids CORS). **Generated** by `build_table.py` (Reus) / `build_table_bxl.py` (Brussels). |
 | `cities/<id>/ai_votes.js` | `window.AI_VOTES = {...}` — the AI proxy's votes (Reus only so far). |
@@ -160,11 +160,13 @@ decisions table.
   `FIREBASE_CONFIG` is null.
 - **Multiplayer identity is per-tab** (`sessionStorage`), so multiple windows on
   one browser are distinct participants.
-- **The room never carries direction.** Shared-layer vote data is anonymous
-  aggregate tallies only (`rooms/<room>/tallies/...` async; session-scoped
-  `rooms/<city>/live/sessions/<sid>/tallies/...` in live sessions). Live-session
-  `cast/<id>/<pid>` markers are timestamps — ballot-in activity, never the vote.
-  Only the moderator client writes live-session state.
+- **Async rooms never carry direction.** Shared-layer vote data there is
+  anonymous aggregate tallies only (`rooms/<room>/tallies/...`). LIVE sessions
+  (doctrine amended by Rob, 2026-06) also keep anonymous tallies
+  (`.../sessions/<sid>/tallies/...`), but `cast/<id>/<pid>` markers carry the
+  voter's DIRECTION — pseudonymous by join emoji, surfaced only in the
+  per-card reveal's emoji piles, never while a ballot is open. Only the
+  moderator client writes live-session state.
 
 ## Conventions
 

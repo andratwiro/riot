@@ -61,9 +61,12 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   tally (it cannot bias a cast ballot); counts only, never who.
 - Vote semantics are fixed: Against = left, Abstain = middle, For = right;
   keyboard ← / ↓ / →; card exits left / down / right. Never reorder.
-- The shared layer stores directions ONLY as anonymous aggregate tallies
-  (`rooms/<room>/tallies/<id>/<dir>`, atomic increments). Participant records
-  carry counts and timestamps, never votes.
+- The shared layer stores directions as anonymous aggregate tallies
+  (`rooms/<room>/tallies/<id>/<dir>`, atomic increments). Async-room
+  participant records carry counts and timestamps, never votes. LIVE sessions
+  (amended by Rob, 2026-06) additionally write each voter's direction to their
+  cast marker — pseudonymous by join emoji, surfaced ONLY in the per-card
+  reveal's piles, never while a ballot is open.
 
 ## Layout behavior
 
@@ -114,17 +117,19 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
 - **Live-session idioms** (`live.js` + the `LIVE SESSION` block in style.css):
   the **countdown** is one ink bar closing from both edges toward the centre
   (`scaleX`, origin centre; stamp-violet under 5s) — a ceiling, not a clock;
-  **ballot cast** shows a mono `n/m` count, never the split; the **official
-  stamp** (`.stamp.official`, classes `st-app`/`st-rej`) is the chamber's
-  imprint — moss APPROVED / brick REJECTED, +4° (opposite the user's −8°),
-  small chamber eyebrow (`CFG.chamber`) — landing in the same `.stamprow` next
-  to the user's stamp as reveal beat 2, after the room's split (beat 1); the
-  **reveal split is two layers per row** — thick ink bar = this room, thin
-  outlined bar = the chamber by group/party (`.sp-bars`/`.sp-ns`, legend
-  `.sp-leg`), each normalised to its own total; the **stage** (`#stage`)
-  scales with `clamp()` for 5-metre legibility and reuses the split rows
-  enlarged. Voter chrome in live mode is stripped (no §, no ⚙ until the final
-  reveal, city switch disabled).
+  **ballot cast** shows a mono `n/m` count, never the split; the per-card
+  reveal is two beats, **verdict first**: beat 1 the **official stamp**
+  (`.stamp.official`, classes `st-app`/`st-rej`) — the chamber's imprint, moss
+  APPROVED / brick REJECTED, +4° (opposite the user's −8°), small chamber
+  eyebrow (`CFG.chamber`) — lands in the same `.stamprow` next to the user's
+  stamp; beat 2 (+900ms) the **room rains in as emoji piles** (`.piles`,
+  `renderLivePiles`): every cast face drops onto its pile in button order
+  (Against/Abstain/For), abstain quieter, my column violet, counts under the
+  rules, timeouts one muted "n didn't vote" line — no bars, no party detail
+  (that's the final reveal's). Pile directions come from cast markers (see
+  doctrine); the **stage** (`#stage`) scales with `clamp()` for 5-metre
+  legibility and reuses the piles enlarged. Voter chrome in live mode is
+  stripped (no §, no ⚙ until the final reveal, city switch disabled).
 
 ## Motion & feedback
 
