@@ -26,20 +26,41 @@ function roomTally(id){
 }
 
 /* ---- peer dots on the reveal map: small faded emojis (ink ring when faceless).
-   The crowd is texture, never anchors — they sit below the party dots. ---- */
+   The crowd is texture, never anchors — they sit below the party dots (z-index).
+   Placement: in a live session EVERY participant — synthetic voters included —
+   has a full ballot record in the cast markers, so each is blended onto the
+   CURRENT projection like "you" is; outside live sessions a peer sits at the
+   position it published over presence (canonical MDS). Keyed by pid so a
+   projection switch morphs the dots instead of re-dealing them. ---- */
 function renderPeersInto(el){
   if(!el) return;
-  el.querySelectorAll(".peer").forEach(n=>n.remove());
+  const live=window.LIVE && LIVE.active();
+  const seen=new Set();
   let i=0;
   for(const pid in PEERS){
-    const p=PEERS[pid]; if(!p.c) continue;
-    const d=document.createElement("div");
-    d.className="peer"+(p.e?" emo":"");
-    if(p.e) d.textContent=p.e;
-    d.style.left=p.c[0]+"%"; d.style.top=p.c[1]+"%";
-    d.style.setProperty("--d",(60+(i++)*40)+"ms");
-    el.appendChild(d);
+    const p=PEERS[pid];
+    let c=null;
+    if(live){
+      const votes=LIVE.peerVotes(pid);
+      const bc=votes?blendCoord(votes):null;
+      if(bc) c=toPct(bc);
+    }
+    if(!c) c=p.c;
+    i++;
+    if(!c) continue;
+    seen.add(pid);
+    let d=el.querySelector(`.peer[data-pid="${CSS.escape(pid)}"]`);
+    if(!d){
+      d=document.createElement("div");
+      d.dataset.pid=pid;
+      d.className="peer"+(p.e?" emo":"");
+      if(p.e) d.textContent=p.e;
+      d.style.setProperty("--d",(60+i*40)+"ms");
+      el.appendChild(d);
+    }
+    d.style.left=c[0]+"%"; d.style.top=c[1]+"%";
   }
+  el.querySelectorAll(".peer").forEach(n=>{if(!seen.has(n.dataset.pid))n.remove();});
 }
 function renderPeers(){
   const rm=document.getElementById("resultMap"); if(rm && rm.innerHTML) renderPeersInto(rm);
@@ -95,9 +116,9 @@ function activityTick(pid){
 function publishSelf(){
   renderStrip();
   if(!mpSelf) return;
-  const uc=(typeof COORD!=="undefined"&&COORD)?userCoord():null;
+  const c=(typeof publishCoord==="function")?publishCoord():null;
   mpSelf.set({e:(identity&&identity.emoji)||"", nm:(identity&&identity.name)||"",
-              c:uc?toPct(uc):null, n:Object.keys(answers).length, t:deck.length,
+              c, n:Object.keys(answers).length, t:deck.length,
               ts:firebase.database.ServerValue.TIMESTAMP});
 }
 // called by app.js react(): my ballot → anonymous tally + presence. No-op single-player.

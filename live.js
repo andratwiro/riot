@@ -64,6 +64,16 @@ window.LIVE={
     const t=((lvS&&lvS.tallies)||{})[id]||{};
     return {for:t.for||0, against:t.against||0, abstain:t.abstain||0};
   },
+  // a participant's full ballot record {decisionId: dir}, from the cast markers —
+  // it places every face (synthetic voters included) on the final reveal's map.
+  // Same exposure rule as the piles: rendered only on reveal surfaces, never
+  // while a ballot is open (the map itself doesn't exist before the reveal).
+  peerVotes(pid){
+    const cast=(lvS&&lvS.cast)||null; if(!cast) return null;
+    const out={}; let n=0;
+    for(const id in cast){const v=cast[id]&&cast[id][pid]; if(v){out[id]=v;n++;}}
+    return n?out:null;
+  },
   afterCast(top){ voting=false; updateProgress(); showCastPanel(top); updateCastCounts(); }
 };
 

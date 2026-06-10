@@ -98,18 +98,22 @@ function esc(s){return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":
 
 let deck = buildDeck();
 
-function affinity(){
+// agreement with each party for ANY ballot record {decisionId: dir} — mine is
+// affinity(); the map also blends peers from theirs (live cast markers)
+function affinityFor(votes){
   const res={};
   for(const p of PARTIES){
     let comp=0,match=0;
-    for(const id in answers){
-      const pv=(byId[id].party_votes_canon||{})[p.token];
-      if(pv==="for"||pv==="against"||pv==="abstain"){comp++; if(pv===answers[id])match++;}
+    for(const id in votes){
+      const d=byId[id]; if(!d) continue;
+      const pv=(d.party_votes_canon||{})[p.token];
+      if(pv==="for"||pv==="against"||pv==="abstain"){comp++; if(pv===votes[id])match++;}
     }
     res[p.token]=comp?{pct:Math.round(100*match/comp),comp}:{pct:null,comp:0};
   }
   return res;
 }
+function affinity(){ return affinityFor(answers); }
 function logoEl(p){
   if(p.her) return `<span class="lg her"></span>`;
   return p.logo ? `<span class="lg bg-${p.token}"><img src="${p.logo}" alt="${p.name}"></span>`

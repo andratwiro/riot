@@ -246,6 +246,7 @@ body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
 #resultMap .maptag{position:absolute;top:8px;left:11px;font:700 10px var(--f-mono);letter-spacing:.14em;
   text-transform:uppercase;color:var(--ink60);z-index:5;pointer-events:none}
 .mdot{position:absolute;transform:translate(-50%,-50%);z-index:3;
+  transition:left .55s cubic-bezier(.2,.7,.3,1),top .55s cubic-bezier(.2,.7,.3,1);
   animation:dotin .5s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:var(--d,0ms)}
 @keyframes dotin{0%{opacity:0;scale:.2}100%{opacity:1;scale:1}}
 .mdot .mc{width:30px;height:30px;border-radius:50%;background:#fff;overflow:hidden;
@@ -271,6 +272,19 @@ body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
   animation:dotin .5s both;animation-delay:var(--d,0ms)}
 .peer.emo{width:auto;height:auto;border:0;border-radius:0;opacity:.45;
   font:400 13px/1 var(--f-ui);filter:grayscale(.35)}
+/* projection bench — one scrollable row of mono chips under the map: the same
+   vote distances flattened eight ways; active = ink. Dots morph on switch. */
+#mapProj{width:100%;max-width:600px;margin:-6px 0 14px}
+#mapProj .mp-row{display:flex;gap:6px;overflow-x:auto;padding:2px;margin:0 -2px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#mapProj .mp-row::-webkit-scrollbar{display:none}
+.mp-chip{flex:0 0 auto;min-height:44px;padding:0 13px;display:flex;align-items:center;
+  font:700 10px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink60);background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  cursor:pointer}
+.mp-chip:active{transform:scale(.96)}
+.mp-chip.on{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.mp-note{margin:6px 2px 0;font:400 10.5px/1.5 var(--f-mono);color:var(--ink60)}
 /* brand-colour backfill so square logos blend into their disc (no white corners) */
 .lg.bg-PSC,.mc.bg-PSC{background:#e2001a}
 .lg.bg-CUP,.mc.bg-CUP{background:#fff200}

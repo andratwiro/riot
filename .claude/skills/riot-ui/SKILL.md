@@ -65,8 +65,9 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   (`rooms/<room>/tallies/<id>/<dir>`, atomic increments). Async-room
   participant records carry counts and timestamps, never votes. LIVE sessions
   (amended by Rob, 2026-06) additionally write each voter's direction to their
-  cast marker — pseudonymous by join emoji, surfaced ONLY in the per-card
-  reveal's piles, never while a ballot is open.
+  cast marker — pseudonymous by join emoji, surfaced ONLY on reveal surfaces
+  (the per-card reveal's piles + each participant's blended placement on the
+  final reveal's map), never while a ballot is open.
 
 ## Layout behavior
 
