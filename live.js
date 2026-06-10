@@ -14,7 +14,8 @@
          idx:      current card
          deadline: epoch ms (server clock)     ← voting ceiling; bar renders from it
          remaining: ms (only while paused)
-         cfg:      {timer, reveal}             ← seconds; reveal 0 = manual advance
+         cfg:      {timer, reveal, bots}       ← seconds; reveal 0 = manual advance;
+                                                 bots = synthetic voters, moderator-staged
          cast/<id>/<pid>: dir                  ← ballot in, WITH direction (reveal-only)
          tallies/<id>/<dir>: n                 ← anonymous atomic increments
 
@@ -143,7 +144,7 @@ function onSnapshot(){
   simOnSnapshot();
 }
 function onSessionGone(){
-  if(LIVE_ROLE==="mod"){ stageOff(); renderModSetup(); return; }
+  if(LIVE_ROLE==="mod"){ botsRemove(); stageOff(); renderModSetup(); return; }
   liveEnded();
 }
 function liveEnded(){
@@ -479,6 +480,7 @@ function renderModSetup(){
     <div class="ms-cfg">
       <label>ballot ceiling <input id="msTimer" type="number" inputmode="numeric" min="10" max="180" value="${modSel.timer}"> s</label>
       <label>auto-advance after reveal <input id="msReveal" type="number" inputmode="numeric" min="0" max="60" value="${modSel.reveal}"> s <small>0 = you advance</small></label>
+      <label>synthetic voters <input id="msBots" type="number" inputmode="numeric" min="0" max="24" value="${modSel.bots}"> <small>fake people who vote at random</small></label>
     </div>
     <div class="ms-acts">
       <button class="ms-back" type="button">← Sessions</button>
@@ -495,15 +497,16 @@ function startSession(ids,cfg){
   el.addEventListener("click",e=>{
     const sess=e.target.closest(".ms-sess");
     if(sess){ const s=modSessions().find(x=>x.code===sess.dataset.code);
-      modSel={code:s.code,ids:new Set(s.ids),timer:30,reveal:0}; renderModSetup(); return; }
+      modSel={code:s.code,ids:new Set(s.ids),timer:30,reveal:0,bots:0}; renderModSetup(); return; }
     if(e.target.closest(".ms-back")){ modSel=null; renderModSetup(); return; }
     if(e.target.closest(".ms-go")){
       modSel.timer=Math.max(10,parseInt($("#msTimer").value,10)||30);
       modSel.reveal=Math.max(0,parseInt($("#msReveal").value,10)||0);
+      modSel.bots=Math.max(0,Math.min(24,parseInt($("#msBots").value,10)||0));
       const order=modSessions().find(x=>x.code===modSel.code).ids.filter(id=>modSel.ids.has(id));
       if(!order.length) return;
       el.hidden=true;
-      startSession(order,{timer:modSel.timer,reveal:modSel.reveal});
+      startSession(order,{timer:modSel.timer,reveal:modSel.reveal,bots:modSel.bots});
       return;
     }
   });
@@ -519,6 +522,7 @@ function startSession(ids,cfg){
 function modAuthority(){
   if(!lvS) return;
   if(!(LIVE_ROLE==="mod" || (SIMLIVE && LIVE_ROLE!=="mod"))) return;  // sim rig drives when you're a voter
+  botsSync();
   const key=lvS.state+":"+lvS.idx+":"+(lvS.deadline||0);
   if(key!==lvAuthKey){
     lvAuthKey=key;
@@ -526,11 +530,91 @@ function modAuthority(){
     if(lvS.state==="voting"){
       lvDeadlineT=setTimeout(()=>{ if(lvS&&lvS.state==="voting") goReveal(); },
                              Math.max(lvS.deadline-lvStore.now(),0)+250);
+      botsSchedule();
     } else if(lvS.state==="reveal" && lvS.cfg && lvS.cfg.reveal>0){
       lvAutoNextT=setTimeout(()=>{ if(lvS&&lvS.state==="reveal") modNext(); }, 2300+lvS.cfg.reveal*1000);
     }
   }
   if(lvS.state==="voting") checkAllIn();
+}
+
+/* ---- synthetic voters (cfg.bots): the moderator stages a fuller room ----
+   N fake people the moderator's client seats in the room — REAL participant
+   records + real tally/cast writes, so every phone renders them exactly like
+   humans (lobby faces, ballots-in counts, the reveal's piles) with zero
+   voter-side code. Directions are random; timing is human-ish (a spread, a
+   cluster at the deadline, the odd timeout). Presence goes through PEERS in
+   a sim room and through mpPart on Firebase (onDisconnect ⇒ the moderator
+   leaving takes their fakes with them); casts go through lvStore either way.
+   Deterministic pids ("bot<i>") let a reloaded moderator re-adopt the same
+   fakes instead of orphaning them. */
+let botIds=[], botJoinQ=0, botJoinT=[], botCastT=[], botSkip={}, botCardId=null;
+function botsActive(){
+  return LIVE_ROLE==="mod" && lvS && lvS.cfg && (lvS.cfg.bots|0)>0
+      && (SIMLIVE>0 || !!(window.mpDb && typeof mpPart!=="undefined" && mpPart));
+}
+function botsSync(){
+  if(lvS && lvS.state==="ended"){ botsRemove(); return; }
+  if(!botsActive()) return;
+  const n=lvS.cfg.bots|0;
+  while(botJoinQ<n){                 // they trickle into the lobby like people do
+    const i=botJoinQ++;
+    botJoinT.push(setTimeout(()=>botJoin(i),
+      lvS.state==="lobby" ? 400+i*(500+Math.random()*700) : 60+i*140));
+  }
+}
+function botJoin(i){
+  if(!lvS || lvS.state==="ended" || !botsActive()) return;
+  const pid="bot"+i;
+  if(botIds.indexOf(pid)<0) botIds.push(pid);
+  const rec={e:SIM_FACES[i%SIM_FACES.length], nm:SIM_NAMES[i%SIM_NAMES.length],
+             c:null, n:0, t:(lvS.deck||[]).length};
+  if(SIMLIVE){ PEERS[pid]=rec; }
+  else { rec.ts=firebase.database.ServerValue.TIMESTAMP;
+         const ref=mpPart.child(pid); ref.set(rec); ref.onDisconnect().remove(); }
+  if(typeof renderStrip==="function") renderStrip();
+  if(LIVE_ROLE==="mod") renderStage();                       // lobby faces update now
+  if(lvS.state==="voting") botCastAt(pid, lvCurId());        // latecomer still votes this card
+}
+function botsSchedule(){              // (re)arm this card's casts — new card or resume
+  if(!botsActive()) return;
+  const id=lvCurId(); if(!id) return;
+  for(const t of botCastT) clearTimeout(t); botCastT=[];
+  if(botCardId!==id){ botCardId=id; botSkip={};
+    for(const pid of botIds) if(Math.random()<0.07) botSkip[pid]=1;   // the odd timeout
+  }
+  const cast=(lvS.cast||{})[id]||{};
+  for(const pid of botIds){ if(!botSkip[pid] && !cast[pid]) botCastAt(pid,id); }
+}
+function botCastAt(pid,id){
+  if(botSkip[pid]) return;
+  const dur=Math.max(lvS.deadline-lvStore.now(),3000);
+  const late=Math.random()<0.4;       // most spread out, a cluster near the deadline
+  const at=late ? Math.max(dur-(400+Math.random()*2600),600)
+                : 700+Math.random()*Math.max(dur-5200,1200);
+  botCastT.push(setTimeout(()=>{
+    if(!lvS || lvS.state!=="voting" || lvCurId()!==id) return;
+    if(((lvS.cast||{})[id]||{})[pid]) return;
+    const r=Math.random(), v=r<0.42?"for":r<0.8?"against":"abstain";
+    lvStore.inc(`${lvSess()}/tallies/${id}/${v}`);
+    lvStore.set(`${lvSess()}/cast/${id}/${pid}`,v);          // feeds the reveal's piles
+    const n=lvS.idx+1;
+    if(SIMLIVE){ const p=PEERS[pid];
+      if(p){ p.n=n; if(typeof activityTick==="function") activityTick(pid); } }
+    else mpPart.child(pid).update({n});                      // activity tick on every phone
+  },at));
+}
+function botsRemove(){
+  for(const t of botJoinT) clearTimeout(t);
+  for(const t of botCastT) clearTimeout(t);
+  botJoinT=[]; botCastT=[]; botJoinQ=0; botCardId=null; botSkip={};
+  for(const pid of botIds){
+    if(SIMLIVE) delete PEERS[pid];
+    else if(typeof mpPart!=="undefined" && mpPart){
+      const ref=mpPart.child(pid); ref.onDisconnect().cancel(); ref.remove(); }
+  }
+  botIds=[];
+  if(typeof renderStrip==="function") renderStrip();
 }
 function checkAllIn(){
   const id=lvCurId(), m=voterCount();
