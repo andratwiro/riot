@@ -184,15 +184,21 @@ header{display:flex;align-items:center;justify-content:space-between;
 /* during the stamp/split beat the ballot is cast — buttons recede */
 .card.voted .acts{opacity:.3;pointer-events:none;transition:opacity .2s}
 
-/* ---- the stamp: cast a vote, ink hits paper ---- */
-.stamp{position:absolute;left:50%;top:42%;z-index:5;pointer-events:none;
-  transform:translate(-50%,-50%) rotate(-8deg);
-  font:800 26px var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--stamp);
-  border:3px solid var(--stamp);border-radius:8px;padding:8px 20px 6px;
+/* ---- the stamps: ink hits paper — in the ballot's margin, never over the text.
+   They land in .stamprow, a right-aligned row just above the action slot, in
+   normal flow (no absolute positioning → can't cover the statement or stretch). */
+.stamprow{display:flex;justify-content:flex-end;align-items:flex-end;flex-wrap:wrap;
+  margin-top:auto;padding:2px 2px 0;pointer-events:none;min-height:0}
+.stamprow:empty{display:none}
+.card .stamprow~.acts,.card .stamprow~.castp,.card .stamprow~.split{margin-top:10px}
+.stamp{display:inline-flex;align-items:center;z-index:5;pointer-events:none;position:relative;
+  transform:rotate(-8deg);margin:2px 4px -4px 10px;white-space:nowrap;
+  font:800 22px var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--stamp);
+  border:3px solid var(--stamp);border-radius:8px;padding:7px 16px 5px;
   box-shadow:inset 0 0 0 1.5px var(--stamp);background:rgba(251,250,246,.5);
   mix-blend-mode:multiply;animation:stampin .2s cubic-bezier(.2,1.6,.4,1) both}
-@keyframes stampin{0%{transform:translate(-50%,-50%) rotate(-8deg) scale(1.8);opacity:0}
-  100%{transform:translate(-50%,-50%) rotate(-8deg) scale(1);opacity:.92}}
+@keyframes stampin{0%{transform:rotate(-8deg) scale(1.8);opacity:0}
+  100%{transform:rotate(-8deg) scale(1);opacity:.92}}
 
 /* ---- after-vote split: the room's tally on THIS card (your ballot is already in) ---- */
 .split{margin-top:auto;padding-top:14px;flex:0 0 auto;animation:fadein .25s both}
@@ -460,18 +466,28 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 .cp-n span{font-size:17px;color:var(--ink60);font-weight:400;margin-left:4px}
 .cp-w{margin:7px 0 0;font:400 11px var(--f-mono);color:var(--ink60)}
 
-/* the official imprint: the parliament's stamp meets yours on the same paper.
-   Post-vote context — valence allowed. Opposite angle to the user's stamp. */
-.stamp.official{left:50%;top:22%;display:flex;flex-direction:column;align-items:center;gap:1px;
-  transform:translate(-50%,-50%) rotate(6deg);font-size:21px;padding:7px 18px 5px;
-  animation:stampoff .2s cubic-bezier(.2,1.6,.4,1) both}
+/* the official imprint: the chamber's stamp lands NEXT TO yours in the margin —
+   two imprints, one glance. Post-vote context — valence allowed. Opposite angle. */
+.stamp.official{flex-direction:column;gap:1px;transform:rotate(4deg);
+  font-size:19px;padding:6px 14px 4px;animation-name:stampoff}
 .stamp.official small{font:700 8.5px var(--f-mono);letter-spacing:.22em;text-transform:uppercase;opacity:.85}
-.stamp.official.app{color:var(--moss);border-color:var(--moss);box-shadow:inset 0 0 0 1.5px var(--moss)}
-.stamp.official.rej{color:var(--brick);border-color:var(--brick);box-shadow:inset 0 0 0 1.5px var(--brick)}
-@keyframes stampoff{0%{transform:translate(-50%,-50%) rotate(6deg) scale(1.8);opacity:0}
-  100%{transform:translate(-50%,-50%) rotate(6deg) scale(1);opacity:.92}}
+.stamp.official.st-app{color:var(--moss);border-color:var(--moss);box-shadow:inset 0 0 0 1.5px var(--moss)}
+.stamp.official.st-rej{color:var(--brick);border-color:var(--brick);box-shadow:inset 0 0 0 1.5px var(--brick)}
+@keyframes stampoff{0%{transform:rotate(4deg) scale(1.8);opacity:0}
+  100%{transform:rotate(4deg) scale(1);opacity:.92}}
 
-/* reveal extras on the split: timeouts as a muted no-ballot row + the verdict line */
+/* reveal split, two layers per row: thick ink bar = this room (simulated),
+   thin outlined bar = the chamber (real votes, by group/party) */
+.sp-leg{margin:-7px 0 9px;text-align:right;font:400 9.5px var(--f-mono);
+  letter-spacing:.04em;color:var(--ink60)}
+.sp-bars{flex:1 1 auto;display:flex;flex-direction:column;gap:3px;min-width:0}
+.sp-bars .sp-track{flex:none}
+.sp-track.ch{height:5px;background:transparent;border:1px solid var(--rule);border-radius:2px}
+.sp-fill.ch{background:var(--ink60);border-radius:1px}
+.sp-ns{flex:0 0 30px;display:flex;flex-direction:column;align-items:flex-end;gap:1px;line-height:1.05}
+.sp-ns b{font:700 14px var(--f-mono);color:var(--ink)}
+.sp-ns i{font:400 10.5px var(--f-mono);color:var(--ink60);font-style:normal}
+/* timeouts as a muted no-ballot row + the verdict line */
 .sp-row.to{opacity:.65}
 .sp-row.to .sp-l,.sp-row.to .sp-n{color:var(--ink60)}
 .lv-verdict{margin:11px 0 0;text-align:center;font:700 12px var(--f-mono);
@@ -530,14 +546,18 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 #stage .split{margin-top:0;padding-top:6px}
 #stage .sp-l{flex:0 0 clamp(70px,11vw,140px);font-size:clamp(12px,1.8vw,20px)}
 #stage .sp-track{height:clamp(10px,1.6vw,18px);border-radius:3px}
+#stage .sp-track.ch{height:clamp(6px,.9vw,10px)}
 #stage .sp-n{flex:0 0 clamp(30px,4vw,56px);font-size:clamp(14px,2.4vw,30px)}
+#stage .sp-ns{flex:0 0 clamp(34px,4vw,60px)}
+#stage .sp-ns b{font-size:clamp(14px,2.4vw,30px)}
+#stage .sp-ns i{font-size:clamp(11px,1.4vw,18px)}
 #stage .sp-k{font-size:clamp(11px,1.4vw,16px)}
+#stage .sp-leg{font-size:clamp(10px,1.2vw,15px)}
 #stage .lv-verdict{font-size:clamp(13px,2vw,22px);margin-top:14px}
-#stage .stamp.official.big{position:absolute;left:auto;right:4%;top:16%;transform:rotate(8deg);
-  font-size:clamp(26px,4.5vw,54px);padding:1.5vh 2.4vw 1vh;border-width:4px;border-radius:12px}
-#stage .stamp.official.big small{font-size:clamp(10px,1.2vw,15px)}
-@keyframes stampbig{0%{transform:rotate(8deg) scale(1.8);opacity:0}100%{transform:rotate(8deg) scale(1);opacity:.92}}
-#stage .stamp.official.big{animation-name:stampbig}
+#stage .stamprow{margin-top:0;padding:0 0 8px}
+#stage .stamp{font-size:clamp(22px,3vw,38px);border-width:4px;border-radius:10px;
+  padding:1.1vh 1.6vw .7vh;margin:0 6px -2px 12px}
+#stage .stamp.official small{font-size:clamp(9px,1.1vw,14px)}
 /* stage lobby: the join moment */
 .sg-lobby{margin:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0}
 .sg-join{margin:14px 0 6px;font:700 clamp(24px,5vw,64px) var(--f-mono);letter-spacing:.01em;word-break:break-all}
@@ -576,6 +596,8 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
   border-radius:10px;padding:14px 16px;font:inherit;color:var(--ink);cursor:pointer;min-height:56px;text-align:left}
 .ms-sess:hover{border-color:var(--ink60)}
 .ms-sess:active{transform:scale(.995)}
+.ms-sess.all{border-color:rgba(75,63,160,.45)}
+.ms-sess.all .ms-date{color:var(--stamp)}
 .ms-date{font:700 13px var(--f-mono);flex:0 0 auto}
 .ms-code{font:400 12px var(--f-mono);color:var(--ink60);flex:1 1 auto;min-width:0;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

@@ -202,6 +202,18 @@ function renderStack(){
    bias them; it shows counts, never who. Tap anywhere to move on early. */
 let splitUpdate=null;          // multiplayer.js calls this when the room tally changes
 const STAMP_TXT={for:"FOR",against:"AGAINST",abstain:"ABSTAIN"};
+// Stamps land in a right-aligned row just above the action slot — the ballot's
+// margin, never over the statement. In normal flow: an absolute stamp shrink-fits
+// against its offsets and can wrap one-letter-per-line once real fonts load.
+function stampRow(card){
+  let row=card.querySelector(".stamprow");
+  if(!row){
+    row=document.createElement("div"); row.className="stamprow";
+    const slot=card.querySelector(".acts,.castp,.split");
+    if(slot) card.insertBefore(row,slot); else card.appendChild(row);
+  }
+  return row;
+}
 function renderSplitInto(el,id,myVote){
   const t=(typeof roomTally==="function" && roomTally(id))||{};
   const rows=[["against","Against"],["abstain","Abstain"],["for","For"]];
@@ -226,12 +238,12 @@ function react(vote){
   if(typeof mpVote==="function") mpVote(d.id,vote);   // tally + presence (no-op single-player)
   updateProgress();
   const top=$("#stack").lastChild;
-  // 1) the stamp lands; the buttons recede (ballot is cast)
+  // 1) the stamp lands in the ballot's margin; the buttons recede (ballot is cast)
   if(top){
     top.classList.add("voted");
     const st=document.createElement("div");
     st.className="stamp"; st.textContent=STAMP_TXT[vote]||vote;
-    top.appendChild(st);
+    stampRow(top).appendChild(st);
   }
   // live session: the stamp lands, then "ballot cast · n/m" — the card advances
   // only when the ROOM advances (lockstep), and the split waits for the reveal.

@@ -244,26 +244,42 @@ function verdictCopy(d){
   if(rv===d.outcome) return {cls:"agree", tx:`The room agrees with ${CHAMBER}.`};
   return {cls:"differ", tx:"The room would have decided differently."};
 }
+// the chamber's split, counted by political group/party (aggregate, never names)
+function chamberTally(d){
+  const t={for:0,against:0,abstain:0};
+  for(const v of Object.values(d.party_votes_canon||{})) if(t[v]!=null) t[v]++;
+  return t;
+}
+/* two layers per row: thick ink bar = this room (simulated), thin outlined
+   bar = the chamber (real). Each layer normalised to its own total. */
 function renderLiveSplit(el,id){
-  const t=LIVE.tally(id), my=answers[id];
+  const d=byId[id], t=LIVE.tally(id), c=chamberTally(d), my=answers[id];
   const rows=[["against","Against"],["abstain","Abstain"],["for","For"]];
   const ball=rows.reduce((s,[k])=>s+t[k],0), total=ball||1;
+  const cTotal=rows.reduce((s,[k])=>s+c[k],0)||1;
+  const unit=CFG.id==="brussels"?"group":"party";
   const noBallot=Math.max(voterCount()-castCount(id),0);
-  el.innerHTML=`<p class="sp-k">The room on this one · ${ball} ballot${ball===1?"":"s"}</p>`+
-    rows.map(([k,lab])=>`<div class="sp-row${k===my?" mine":""}">
+  el.innerHTML=`<p class="sp-k">The room v. ${esc(CHAMBER)} · ${ball} ballot${ball===1?"":"s"}</p>
+    <p class="sp-leg">▰ this room · ▱ ${esc(CHAMBER)}, by ${unit}</p>`+
+    rows.map(([k,lab])=>`<div class="sp-row dual${k===my?" mine":""}">
         <span class="sp-l">${lab}</span>
-        <span class="sp-track"><span class="sp-fill" style="width:${Math.round(100*t[k]/total)}%"></span></span>
-        <span class="sp-n">${t[k]}</span></div>`).join("")+
+        <span class="sp-bars">
+          <span class="sp-track"><span class="sp-fill" style="width:${Math.round(100*t[k]/total)}%"></span></span>
+          <span class="sp-track ch"><span class="sp-fill ch" style="width:${Math.round(100*c[k]/cTotal)}%"></span></span>
+        </span>
+        <span class="sp-ns"><b>${t[k]}</b><i>${c[k]}</i></span></div>`).join("")+
     (noBallot?`<div class="sp-row to"><span class="sp-l">Timeout</span><span class="sp-track"></span><span class="sp-n">${noBallot}</span></div>`:"")+
     `<p class="lv-verdict" hidden></p>`;
 }
-function stampOutcome(card,d,big){
+function stampOutcome(card,d){
   if(!d.outcome) return;
   const ok=d.outcome==="approved";
   const st=document.createElement("div");
-  st.className="stamp official "+(ok?"app":"rej")+(big?" big":"");
+  // st-app / st-rej, NOT "app": a bare `app` class collides with the page root
+  // (.app{height:100dvh}) and inflated every APPROVED stamp to viewport height
+  st.className="stamp official "+(ok?"st-app":"st-rej");
   st.innerHTML=`<small>${esc(CHAMBER)}</small>${ok?"APPROVED":"REJECTED"}`;
-  card.appendChild(st);
+  stampRow(card).appendChild(st);   // next to the user's stamp — two imprints, one glance
 }
 function runRevealBeats(top,d){
   top.dataset.revealed="1";
@@ -347,7 +363,9 @@ function modSessions(){
     if(!d.headline||d.curator_drop||!d.outcome) continue;   // a live card must have an outcome to stamp
     (by[d.session_code]=by[d.session_code]||{code:d.session_code,date:d.date||"",ids:[]}).ids.push(d.id);
   }
-  return Object.values(by).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  const list=Object.values(by).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  // "All plenaries" first: one deck across every session (newest first), trimmed next
+  return [{code:"*",all:true,date:"",ids:list.flatMap(s=>s.ids)},...list];
 }
 function renderModSetup(){
   const el=$("#modSetup"); el.hidden=false;
@@ -357,13 +375,14 @@ function renderModSetup(){
     w.innerHTML=`<p class="ms-k">Moderator · ${esc(CFG.name)}</p>
       <h2 class="ms-h">Pick the plenary session.</h2>
       <p class="ms-sub">One session is one deck. You can trim items next. Switch city from the header.</p>
-      <div class="ms-list">`+ss.map(s=>`<button class="ms-sess" type="button" data-code="${esc(s.code)}">
-        <span class="ms-date">${esc(s.date)}</span><span class="ms-code">${esc(s.code)}</span>
+      <div class="ms-list">`+ss.map(s=>`<button class="ms-sess${s.all?" all":""}" type="button" data-code="${esc(s.code)}">
+        <span class="ms-date">${s.all?"All plenaries":esc(s.date)}</span>
+        <span class="ms-code">${s.all?"every decision · newest session first":esc(s.code)}</span>
         <span class="ms-n">${s.ids.length} decision${s.ids.length===1?"":"s"}</span></button>`).join("")+`</div>`;
     return;
   }
   const s=modSessions().find(x=>x.code===modSel.code);
-  w.innerHTML=`<p class="ms-k">Moderator · ${esc(CFG.name)} · ${esc(modSel.code)}</p>
+  w.innerHTML=`<p class="ms-k">Moderator · ${esc(CFG.name)} · ${modSel.code==="*"?"all plenaries":esc(modSel.code)}</p>
     <h2 class="ms-h">Trim the deck, set the clock.</h2>
     <div class="ms-list">`+s.ids.map(id=>{const d=byId[id];const on=modSel.ids.has(id);
       return `<label class="ms-item${on?"":" off"}"><input type="checkbox" data-id="${esc(id)}" ${on?"checked":""}>
@@ -506,7 +525,7 @@ function renderStage(){
       rev.className="sg-revwrap split"; renderLiveSplit(rev,d.id);
       const host=sg.querySelector(".sg-card");
       setTimeout(()=>{ if(!rev.isConnected)return;
-        stampOutcome(host,d,true);
+        stampOutcome(host,d);
         const v=rev.querySelector(".lv-verdict");
         if(v){ const c=verdictCopy(d); v.hidden=false; v.classList.add(c.cls); v.textContent=c.tx; }
       },1100);

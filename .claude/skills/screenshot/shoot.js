@@ -100,7 +100,7 @@ async function newPage(browser, desktop) {
   // Firebase stub: single-player fallback, no live-room pollution from headless runs.
   await ctx.route('**/firebase-config.js', r =>
     r.fulfill({ contentType: 'application/javascript', body: 'window.FIREBASE_CONFIG=null;' }));
-  await ctx.route('**/*gstatic.com/**', r => r.abort());
+  await ctx.route('**/www.gstatic.com/firebasejs/**', r => r.abort());  // block the SDK, NOT fonts.gstatic.com — real font metrics change layout
   const page = await ctx.newPage();
   page.on('pageerror', e => console.log('PAGEERROR:', e.message));
   await page.goto(URL, { waitUntil: 'load' });

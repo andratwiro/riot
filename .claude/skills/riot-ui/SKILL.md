@@ -80,7 +80,13 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
 ## Component idioms (reuse, don't reinvent)
 
 - **The stamp** (`.stamp`): violet double-ring imprint, mono 800, −8°,
-  `mix-blend-mode:multiply`, ~200ms thunk. One per vote, on the card.
+  `mix-blend-mode:multiply`, ~200ms thunk. One per vote. Stamps land in
+  `.stamprow` — a right-aligned in-flow row in the ballot's margin just above
+  the action slot (via `stampRow(card)`), NEVER absolutely positioned over the
+  statement text. (History: an absolute stamp shrink-fit against its offsets,
+  and the APPROVED variant once carried a bare `app` class that collided with
+  `.app{height:100dvh}` — viewport-tall stamps. Class names on injected
+  elements must never reuse root/layout class names.)
 - **Room strip**: overlapping 28px faces (emoji or mono initials, me =
   violet ring, max 7 + `+N`), activity ring ticks (`facetick`, compositor
   only — transform/opacity), mono label `N here · room X%`.
@@ -104,12 +110,16 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   the **countdown** is one ink bar closing from both edges toward the centre
   (`scaleX`, origin centre; stamp-violet under 5s) — a ceiling, not a clock;
   **ballot cast** shows a mono `n/m` count, never the split; the **official
-  stamp** (`.stamp.official`) is the chamber's imprint — moss APPROVED / brick
-  REJECTED, +6° (opposite the user's −8°), small chamber eyebrow
-  (`CFG.chamber`) — landing as reveal beat 2 after the room's split (beat 1);
-  the **stage** (`#stage`) scales with `clamp()` for 5-metre legibility and
-  reuses the split rows enlarged. Voter chrome in live mode is stripped
-  (no §, no ⚙ until the final reveal, city switch disabled).
+  stamp** (`.stamp.official`, classes `st-app`/`st-rej`) is the chamber's
+  imprint — moss APPROVED / brick REJECTED, +4° (opposite the user's −8°),
+  small chamber eyebrow (`CFG.chamber`) — landing in the same `.stamprow` next
+  to the user's stamp as reveal beat 2, after the room's split (beat 1); the
+  **reveal split is two layers per row** — thick ink bar = this room, thin
+  outlined bar = the chamber by group/party (`.sp-bars`/`.sp-ns`, legend
+  `.sp-leg`), each normalised to its own total; the **stage** (`#stage`)
+  scales with `clamp()` for 5-metre legibility and reuses the split rows
+  enlarged. Voter chrome in live mode is stripped (no §, no ⚙ until the final
+  reveal, city switch disabled).
 
 ## Motion & feedback
 

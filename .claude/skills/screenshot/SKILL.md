@@ -73,8 +73,12 @@ nothing. The tour writes: `01-initial`, `02-expanded`, `03-mid-deck`,
   stubbed) the app is single-player: no strip, no join, no split.
 - Firebase stubbing = the driver intercepts `firebase-config.js` and serves
   `window.FIREBASE_CONFIG=null` (the app's documented single-player fallback);
-  the gstatic SDK requests are aborted. **Never screenshot against the live
-  room config** — your phantom participants show up for real visitors.
+  only `www.gstatic.com/firebasejs/` is aborted. **Never screenshot against
+  the live room config** — your phantom participants show up for real visitors.
+- **Fonts must load for real** (`fonts.gstatic.com` is NOT blocked): Courier
+  Prime's metrics differ from the Courier New fallback, and a blanket gstatic
+  block once masked a layout bug that only reproduced with the real font. If a
+  user-reported layout bug won't reproduce headless, check font loading first.
 
 ## Custom flows
 
