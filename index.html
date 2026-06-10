@@ -34,7 +34,7 @@ else try{
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.63</span>
+      <span class="ver">v0.64</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -150,6 +150,16 @@ else try{
       Every decision is drawn from the council minutes, with each party's real vote and the
       verbatim source text. This is the verifiable layer: every survey card comes from here.
     </p>
+    <!-- Controls: titles-provenance pill (everyone) + the moderator's curator strip
+         (?role=moderator only — a review check on each row + JSON download). -->
+    <div class="logctl">
+      <button class="aiflag" id="logTitles" type="button" aria-pressed="false"><span class="aifpill"></span></button>
+      <label class="logcur" id="logCurRow" for="logCurator" hidden>
+        <span>Curator mode</span>
+        <span class="switch"><input type="checkbox" id="logCurator"><span class="slider"></span></span>
+      </label>
+      <button class="markreview" id="dlMarks" type="button" hidden>⤓ Download JSON</button>
+    </div>
     <div id="logList"></div>
   </div>
 </div>
@@ -220,12 +230,8 @@ else try{
       <span class="si-tx"><b>Import votes</b></span>
       <span class="si-go">↗</span>
     </button>
-    <label class="sheet-item" for="devToggle">
-      <span class="si-ic">🛠️</span>
-      <span class="si-tx"><b>Curator mode</b></span>
-      <span class="switch"><input type="checkbox" id="devToggle"><span class="slider"></span></span>
-    </label>
-    <!-- Room reset: curator mode only, two-step confirm. Hidden unless body.dev + a live room. -->
+    <!-- Room reset: curator mode only (the moderator toggles it in the Minutes page),
+         two-step confirm. Hidden unless body.dev + a live room. -->
     <button class="sheet-item devonly danger" id="resetRoom" type="button" hidden>
       <span class="si-ic">↺</span>
       <span class="si-tx"><b id="resetRoomTx">Reset everyone's votes</b><small>Clears the whole room's progress and tallies</small></span>
@@ -268,7 +274,6 @@ else try{
 $("#aiToggle").checked=showAI;
 if(!AI){const r=$("#aiRow"); if(r)r.style.display="none";}   // hide the toggle if no proxy votes exist
 applyAiParty(showAI);   // builds the reveal-map coords (adds the IA party iff showAI)
-if(devToggleEl)devToggleEl.checked=devMode;
 document.body.classList.toggle("dev",devMode);
 if(!location.search){
   // Bare URL = no entrance: hold the visitor, and never touch the room

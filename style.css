@@ -159,17 +159,19 @@ body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
 .card .closex:active{transform:scale(.94)}
 /* original-wording toggle: a labeled provenance pill (amber = editorial), not a
    bare icon — the state is visible text, the ⇄ is the tap affordance. The button
-   itself is a transparent ≥44px hit area; the pill inside is the visual. */
-.card .aiflag{position:absolute;top:6px;right:8px;min-height:44px;display:flex;align-items:center;
-  background:none;border:0;padding:0 6px 0 12px;cursor:pointer;z-index:3}
-.card .aifpill{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;
+   itself is a transparent ≥44px hit area; the pill inside is the visual.
+   Shared idiom: per-card on the booth (absolute, top-right) and page-wide on
+   the Minutes — pill rules stay unscoped, only the placement is card-scoped. */
+.aiflag{min-height:44px;display:flex;align-items:center;background:none;border:0;padding:0;cursor:pointer}
+.card .aiflag{position:absolute;top:6px;right:8px;padding:0 6px 0 12px;z-index:3}
+.aifpill{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;
   font:700 10px var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--amber);
   border:1px solid rgba(138,106,31,.45);background:rgba(138,106,31,.08);
   padding:5px 10px;border-radius:999px;transition:background .15s,color .15s}
-.card .aifswap{font-size:12px;line-height:1;opacity:.75}
-.card .aiflag:hover .aifpill{background:rgba(138,106,31,.16)}
-.card .aiflag:active .aifpill{transform:scale(.95)}
-.card .aiflag.on .aifpill{background:var(--amber);border-color:var(--amber);color:var(--card)}
+.aifswap{font-size:12px;line-height:1;opacity:.75}
+.aiflag:hover .aifpill{background:rgba(138,106,31,.16)}
+.aiflag:active .aifpill{transform:scale(.95)}
+.aiflag.on .aifpill{background:var(--amber);border-color:var(--amber);color:var(--card)}
 /* long topics wrap clear of the pill instead of running under it */
 .card .aiflag~.topic{max-width:calc(100% - 148px)}
 .card.expanded .aiflag{display:none}
@@ -349,6 +351,20 @@ body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
 .lraw{background:var(--card2);border:1px solid var(--rule);border-radius:6px;padding:10px 12px;margin-top:9px;
   font:11.5px/1.55 var(--f-mono);color:var(--ink80);white-space:pre-wrap}
 .lcard a.src{color:var(--stamp);font:600 11.5px var(--f-mono);text-decoration:none}
+/* ---- minutes controls: provenance pill + the moderator's curator strip ---- */
+.logctl{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 14px}
+.logcur{display:flex;align-items:center;gap:9px;cursor:pointer;min-height:44px;margin-left:auto;
+  font:700 10px var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink60)}
+.logcur[hidden]{display:none}
+/* curator's review check, one per minutes row — hidden outside curator mode */
+.lg-mark{display:none}
+#log.curator .lg-mark{display:inline-flex;align-items:center;gap:7px;float:right;
+  margin:-6px -8px 2px 12px;padding:6px 8px;min-height:44px;cursor:pointer;
+  font:700 10px var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink60)}
+.lg-mark input{width:17px;height:17px;accent-color:var(--brick);margin:0;cursor:pointer}
+.lg-mark.on{color:var(--brick)}
+/* original wording = verbatim source → the minutes' own typewritten face */
+#log.orig .lcard .lt{font:600 12.5px/1.55 var(--f-mono)}
 .pvback{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--rule);
   background:var(--card);color:var(--ink);font-size:20px;line-height:1;cursor:pointer;
   display:inline-flex;align-items:center;justify-content:center}

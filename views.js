@@ -1,5 +1,10 @@
 /* RIOT viewer — secondary views: raw-data log, party comparison, curator mode
    (marks/suggestions), votes export/import, options sheet. Loads after map.js. */
+/* The minutes: title provenance is a page-wide toggle (AI-reworded headline ↔ the
+   source's own wording — same amber pill idiom as the cards); curator tools (a
+   review check on each row + JSON download) exist only for the moderator. */
+let logOrig=false;   // the page is showing the original (un-reworded) titles
+const logTitle=d=>logOrig?(d.title||d.headline):(d.headline||d.title);
 function buildLog(){
   // "source table" ≠ "deck": the table holds every extracted decision (incl.
   // curator-dropped ones); the deck is what's votable. Label it to match.
@@ -8,8 +13,10 @@ function buildLog(){
   $("#logList").innerHTML=rows.map(d=>{
     const out=d.votes_pending?'<span class="badge b-pend">VOTES PENDING</span>':d.outcome==="rejected"?'<span class="badge b-rej">REJECTED</span>':'<span class="badge b-app">APPROVED</span>';
     const chips=d.votes_pending?'<span class="pchip">minutes not yet published</span>':Object.entries(d.party_votes_canon||{}).map(([k,v])=>`<span class="pchip"><span class="dot d-${v}"></span>${k} ${VLAB[v]||v}</span>`).join("");
-    return `<div class="lcard">
-      <div class="lt">${esc(d.title||d.headline)}</div>
+    const mark=IS_MOD?`<label class="lg-mark${isMarked(d.id)?" on":""}"><input type="checkbox" data-mark="${d.id}"${isMarked(d.id)?" checked":""}><span>🚩 for review</span></label>`:"";
+    return `<div class="lcard" data-id="${d.id}">
+      ${mark}
+      <div class="lt">${esc(logTitle(d))}</div>
       <div class="lm"><span>${d.date||""}</span><span>${d.session_code} · item ${d.point??"?"}</span><span>${esc(d.organ||d.type||"")}</span>${out}</div>
       <div class="lvotes">${chips}</div>
       <details><summary>verbatim minutes text + source</summary>
@@ -17,7 +24,50 @@ function buildLog(){
         ${d.acta_url?`<div style="margin-top:7px"><a class="src" href="${d.acta_url}" target="_blank" rel="noopener">↗ open the minutes (PDF)</a></div>`:""}
       </details></div>`;
   }).join("");
+  updateLogCtl();
 }
+/* minutes controls: pill label states what the titles ARE (provenance idiom);
+   the curator strip mirrors devMode and is only ever revealed to the moderator. */
+function updateLogCtl(){
+  const t=$("#logTitles");
+  t.classList.toggle("on",logOrig);
+  t.setAttribute("aria-pressed",String(logOrig));
+  t.querySelector(".aifpill").innerHTML=aiflagLabel(logOrig);
+  $("#logCurRow").hidden=!IS_MOD;
+  $("#logCurator").checked=devMode;
+  $("#log").classList.toggle("curator",IS_MOD&&devMode);
+  const dl=$("#dlMarks");
+  dl.hidden=!(IS_MOD&&devMode);
+  dl.textContent=`⤓ Download JSON (${marks.length})`;
+}
+$("#logTitles").addEventListener("click",()=>{
+  logOrig=!logOrig;
+  // swap titles in place — keeps any open "verbatim" details as they are
+  $("#logList").querySelectorAll(".lcard[data-id]").forEach(c=>{
+    const d=byId[c.dataset.id], lt=c.querySelector(".lt");
+    if(d&&lt)lt.textContent=logTitle(d);
+  });
+  const ll=$("#logList");   // original wording = the source language, mono face (CSS)
+  if(CFG.srcLang){if(logOrig)ll.setAttribute("lang",CFG.srcLang);else ll.removeAttribute("lang");}
+  $("#log").classList.toggle("orig",logOrig);
+  updateLogCtl();
+});
+$("#logCurator").addEventListener("change",e=>setDevMode(e.target.checked));
+$("#logList").addEventListener("change",e=>{
+  const cb=e.target.closest("input[data-mark]"); if(!cb)return;
+  const d=byId[cb.dataset.mark]; if(!d)return;
+  if(cb.checked!==isMarked(d.id))toggleMark(d);   // same store as the booth's 🚩 flag
+  cb.closest(".lg-mark").classList.toggle("on",cb.checked);
+  $("#dlMarks").textContent=`⤓ Download JSON (${marks.length})`;
+});
+$("#dlMarks").addEventListener("click",()=>{
+  const txt=JSON.stringify(dismissed.length?{marks,dismissed}:marks,null,2);
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([txt],{type:"application/json"}));
+  a.download=`riot-${CFG.id||"city"}-marks.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+});
 function openParty(token){
   const p=PARTIES.find(x=>x.token===token); if(!p)return;
   const isAI=token==="IA";
@@ -72,6 +122,7 @@ function setDevMode(on){
   try{localStorage.setItem(DEV_KEY,on?"1":"0");}catch(e){}
   document.body.classList.toggle("dev",on);
   updateDevBar();
+  updateLogCtl();   // the Minutes page's curator strip mirrors devMode
 }
 function updateDevBar(){
   if(!devMode)return;
@@ -117,9 +168,14 @@ $("#copyMarks").addEventListener("click",()=>{
 $("#marksList").addEventListener("click",e=>{
   const b=e.target.closest("[data-unmark]"); if(!b)return;
   const i=marks.findIndex(m=>m.id===b.dataset.unmark);
-  if(i>=0){marks.splice(i,1);saveMarks();openMarks();updateDevBar();}
+  if(i>=0){
+    marks.splice(i,1);saveMarks();openMarks();updateDevBar();
+    // keep the Minutes page's review checks + download count in step
+    const cb=$(`#logList input[data-mark="${b.dataset.unmark}"]`);
+    if(cb){cb.checked=false;cb.closest(".lg-mark").classList.remove("on");}
+    updateLogCtl();
+  }
 });
-const devToggleEl=$("#devToggle"); if(devToggleEl)devToggleEl.addEventListener("change",e=>setDevMode(e.target.checked));
 
 /* ---- export / import votes (simplified id->vote map; demo + AI comparison) ---- */
 function votesJSON(){

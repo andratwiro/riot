@@ -81,7 +81,10 @@ function loadDismissed(){try{return JSON.parse(localStorage.getItem(DISMISS_KEY)
 let dismissed=loadDismissed();
 const isDismissed=id=>dismissed.includes(id);
 function dismissSuggest(id){if(!isDismissed(id)){dismissed.push(id);try{localStorage.setItem(DISMISS_KEY,JSON.stringify(dismissed));}catch(e){}}}
-let devMode=false; try{devMode=localStorage.getItem(DEV_KEY)==="1";}catch(e){}
+// Curator powers belong to the moderator (?role=moderator) — toggled from the
+// Minutes page. A persisted dev flag never activates on a plain voter URL.
+const IS_MOD=(QS.get("role")||"").toLowerCase()==="moderator";
+let devMode=false; try{devMode=IS_MOD&&localStorage.getItem(DEV_KEY)==="1";}catch(e){}
 const AI_KEY="riot.ai.v1";
 let showAI=false; try{showAI=localStorage.getItem(AI_KEY)==="1";}catch(e){}
 const isMarked=id=>marks.some(m=>m.id===id);
