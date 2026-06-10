@@ -265,7 +265,36 @@ function rebuildMap(){
   if(PARTIES.length>=3 && R.decisions.length) applyProjection(MAP_PROJ);
 }
 
-/* ---- placement: any ballot record → agreement-weighted blend of party dots ---- */
+/* ---- placement: a ballot is projected like a party — out-of-sample.
+
+   The OLD way blended the party dots by agreement weight (the convex combination
+   below). Because the weights are non-negative, the result ALWAYS lands inside the
+   party hull — and since you partially agree with every party (parties share many
+   votes), every party carries weight and the blend collapses toward the centroid.
+   That's why a ballot sat in the middle no matter how it voted, and no projection
+   could move it to a side: the parties were projected, the ballot was interpolated.
+
+   Now a ballot is placed the way the parties were — by its real vote-distance to
+   each party. We hold the party dots fixed and slide ONE point to best-fit those
+   distances (single-point stress majorization / the Guttman transform — the very
+   stress the map itself minimises). The weights are uniform, so the point can leave
+   the hull and land right beside whichever party you actually vote with. ---- */
+
+// a ballot's mean disagreement to each party, in the same [0,1] metric as distMatrix()
+function ballotDists(votes){
+  return PARTIES.map(p=>{
+    let s=0,c=0;
+    for(const id in votes){
+      const d=byId[id]; if(!d) continue;
+      const pv=voteNum((d.party_votes_canon||{})[p.token]), uv=voteNum(votes[id]);
+      if(pv==null||uv==null) continue;
+      s+=Math.abs(uv-pv)/2; c++;
+    }
+    return c?s/c:null;            // null = nothing comparable with this party
+  });
+}
+// agreement-weighted blend of party dots — convex, so strictly inside the hull.
+// kept only as the deterministic starting point for the out-of-sample solve.
 function blendCoordIn(votes,coords){
   const a=affinityFor(votes);
   let wx=0,wy=0,ws=0;
@@ -276,20 +305,45 @@ function blendCoordIn(votes,coords){
   });
   return ws>1e-6?[wx/ws,wy/ws]:null;
 }
-function blendCoord(votes){ return COORD?blendCoordIn(votes,COORD):null; }
+// out-of-sample placement: slide one point so its 2D distances to the (fixed) party
+// dots match its true vote-distances — single-point SMACOF, may land outside the hull.
+function projectBallotIn(votes,coords){
+  const start=blendCoordIn(votes,coords);    // finite seed (inside the hull)
+  if(!start) return null;
+  const dd=ballotDists(votes);
+  let p=start;
+  for(let it=0;it<80;it++){
+    let x=0,y=0,n=0;
+    for(let i=0;i<PARTIES.length;i++){
+      const di=dd[i]; if(di==null) continue;
+      const dx=p[0]-coords[i][0], dy=p[1]-coords[i][1];
+      const dist=Math.sqrt(dx*dx+dy*dy)||1e-9;
+      x+=coords[i][0]+di*dx/dist; y+=coords[i][1]+di*dy/dist; n++;
+    }
+    if(!n) break;
+    const np=[x/n,y/n];
+    if(Math.abs(np[0]-p[0])+Math.abs(np[1]-p[1])<1e-6){p=np;break;}
+    p=np;
+  }
+  return (isFinite(p[0])&&isFinite(p[1]))?p:start;
+}
+function blendCoord(votes){ return COORD?projectBallotIn(votes,COORD):null; }
 function userCoord(){ return blendCoord(answers); }
 function toPctIn(c,mx){
-  const pad=.17;
+  // parties span [minx,maxx] → the inner [pad,1-pad] band; the pad margin is now
+  // live space for ballots that project OUTSIDE the party hull. Clamp so a far
+  // out-of-sample dot pins to the map edge instead of rendering off-screen.
+  const pad=.17, cl=v=>Math.max(2,Math.min(98,v));
   const nx=(c[0]-mx.minx)/((mx.maxx-mx.minx)||1);
   const ny=(c[1]-mx.miny)/((mx.maxy-mx.miny)||1);
-  return [(pad+nx*(1-2*pad))*100,(pad+(1-ny)*(1-2*pad))*100];
+  return [cl((pad+nx*(1-2*pad))*100),cl((pad+(1-ny)*(1-2*pad))*100)];
 }
 function toPct(c){ return toPctIn(c,MX); }
 // presence publishes the CANONICAL (MDS) position — a peer's published dot must
 // not depend on which projection this device is experimenting with
 function publishCoord(){
   const P=getProj("mds"); if(!P) return null;
-  const uc=blendCoordIn(answers,P.coords);
+  const uc=projectBallotIn(answers,P.coords);
   return uc?toPctIn(uc,P.mx):null;
 }
 

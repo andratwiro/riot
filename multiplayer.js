@@ -28,9 +28,9 @@ function roomTally(id){
 /* ---- peer dots on the reveal map: small faded emojis (ink ring when faceless).
    The crowd is texture, never anchors — they sit below the party dots (z-index).
    Placement: in a live session EVERY participant — synthetic voters included —
-   has a full ballot record in the cast markers, so each is blended onto the
-   CURRENT projection like "you" is; outside live sessions a peer sits at the
-   position it published over presence (canonical MDS). Keyed by pid so a
+   has a full ballot record in the cast markers, so each is projected out-of-sample
+   onto the CURRENT projection like "you" is; outside live sessions a peer sits at
+   the position it published over presence (canonical MDS). Keyed by pid so a
    projection switch morphs the dots instead of re-dealing them. ---- */
 function renderPeersInto(el){
   if(!el) return;
