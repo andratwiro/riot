@@ -37,7 +37,10 @@ header{display:flex;align-items:center;justify-content:space-between;
 .citysel:hover{background:var(--card)}
 .citysel .rose{height:23px;width:23px;flex:0 0 auto;display:block;object-fit:contain}
 .citysel .citychev{color:var(--ink60);font-size:11px;font-weight:600;margin-left:1px}
-.brand .ver{font:700 10.5px var(--f-mono);color:var(--ink60);letter-spacing:.4px;align-self:center}
+/* the tag optically shares the wordmark's baseline: vertical centring alone
+   leaves the smaller mono text sitting ~2px high next to 17px/800 Archivo */
+.brand .ver{font:700 10.5px var(--f-mono);color:var(--ink60);letter-spacing:.4px;
+  align-self:center;position:relative;top:2px}
 .previewtag{color:var(--amber);background:rgba(138,106,31,.12);font:700 10px var(--f-mono);
   padding:2px 7px;border-radius:3px;letter-spacing:.6px;text-transform:uppercase;align-self:center}
 .citymenu{position:absolute;top:100%;left:0;margin-top:6px;background:var(--card);border:1px solid var(--rule);
@@ -452,6 +455,14 @@ body.live-voter.live-final #menuBtn{display:inline-flex}
 body.live-voter .citysel{pointer-events:none}
 body.live-voter .citychev{display:none}
 body.live-lobby #survey,body.live-lobby #roomstrip{display:none}
+/* lobby only: the header becomes the convocation's letterhead — the seal
+   centred above the city name, the version as small print beneath. Everywhere
+   else the brand stays left (the switch is disabled in live mode anyway). */
+body.live-lobby header{justify-content:center}
+body.live-lobby .brand{flex-direction:column;gap:0}
+body.live-lobby .citysel{flex-direction:column;gap:5px;padding-bottom:2px}
+body.live-lobby .citysel .rose{height:30px;width:30px}
+body.live-lobby .brand .ver{top:0}
 body.live-mod #survey,body.live-mod #roomstrip,body.live-mod #join{display:none}
 body.live-mod .app{max-width:none}
 
@@ -606,6 +617,12 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 #holding{position:fixed;inset:0;z-index:60;background:var(--paper);
   display:flex;align-items:center;justify-content:center;padding:32px 28px}
 #holding[hidden]{display:none}
+/* html.hold is set by the tiny inline head script BEFORE first paint: the boot
+   block at the end of body only runs after Three.js/bundles/Firebase load — far
+   too late to hide the app chrome. These two rules swap shell↔holding on frame
+   one; keep the [hidden] override AFTER #holding[hidden] so it out-ranks it. */
+html.hold .app{display:none}
+html.hold #holding[hidden]{display:flex}
 .hd-riot{position:relative;margin:0;font-weight:800;line-height:1;
   font-size:clamp(18px,5.5vw,38px);letter-spacing:-.045em;color:var(--ink);
   user-select:none;-webkit-user-select:none}

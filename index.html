@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F2F0E8">
 <title>REUS</title>
+<script>
+// Bare URL = the holding page, decided BEFORE first paint. The boot block at the
+// end of body runs only after Three.js/city bundles/Firebase load — far too late
+// to hide the app chrome. This class lets CSS swap shell↔holding on frame one.
+if(!location.search){document.documentElement.classList.add("hold");document.title="RIOT";}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;650;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
@@ -18,7 +24,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.56</span>
+      <span class="ver">v0.57</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
