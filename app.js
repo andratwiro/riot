@@ -416,14 +416,19 @@ $("#restart").addEventListener("click",()=>{
 });
 
 /* ---- join: room onboarding (name or emoji, <30s). Single-player skips it. ---- */
+/* identity is per-TAB (sessionStorage), like mpPid: a new browser session or
+   window always re-prompts — the room never remembers who you were, which is
+   the point of picking a face in private. The legacy localStorage copy is
+   purged so identities saved by older versions die too. */
 const ID_KEY="riot.identity.v1";
-let identity=null; try{identity=JSON.parse(localStorage.getItem(ID_KEY));}catch(e){}
+try{localStorage.removeItem(ID_KEY);}catch(e){}
+let identity=null; try{identity=JSON.parse(sessionStorage.getItem(ID_KEY));}catch(e){}
 const JOIN_EMOJI=["🦊","🦉","🐢","🐝","🦋","🐙","🌻","🌿","🍊","🌙","⚡","🔥","💧","⭐","🍀","🎈"];
 function maybeShowJoin(){
   // only gate when there IS a room to join (live multiplayer or simulated one)
   if(window.LIVE_ROLE==="mod") return;       // the moderator runs the room, not a ballot
   if(!(typeof roomActive==="function" && roomActive())) return;
-  if(identity && (identity.emoji||identity.name)) return;
+  if(identity && (identity.emoji||identity.name)){ updateMeBadge(); return; }
   const grid=$("#joinGrid");
   $("#joinLogo").src=(CITIES.find(c=>c.id===CFG.id)||CITIES[0]).logo;
   $("#joinKicker").textContent=`Live session · ${CFG.name}`;
@@ -440,12 +445,25 @@ function maybeShowJoin(){
   const go=()=>{
     const sel=grid.querySelector(".sel");
     identity={emoji:sel?sel.dataset.e:"", name:($("#joinName").value||"").trim().slice(0,14)};
-    try{localStorage.setItem(ID_KEY,JSON.stringify(identity));}catch(e){}
+    try{sessionStorage.setItem(ID_KEY,JSON.stringify(identity));}catch(e){}
     $("#join").hidden=true;
+    updateMeBadge();
     if(typeof publishSelf==="function")publishSelf();
   };
   $("#joinGo").addEventListener("click",go);
   $("#joinName").addEventListener("keydown",e=>{if(e.key==="Enter")go();});
+}
+/* the room "account": your chosen face top-right, for your own eyes — the
+   room meets you through the strip / lobby faces / reveal piles instead.
+   Only called after the scripts have loaded (faceHTML lives in multiplayer.js). */
+function updateMeBadge(){
+  const el=$("#meBadge"); if(!el) return;
+  const has=identity&&(identity.emoji||identity.name);
+  el.hidden=!has;
+  if(has){
+    el.innerHTML=faceHTML(identity.emoji,identity.name||"you",true);
+    el.setAttribute("aria-label",`You joined as ${identity.emoji||identity.name}`);
+  }
 }
 
 /* ---- city selector (header logo → switch Reus / Brussels via ?city=) ---- */

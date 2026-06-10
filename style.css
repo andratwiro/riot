@@ -58,6 +58,13 @@ header{display:flex;align-items:center;justify-content:space-between;
   display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;font-family:var(--f-mono)}
 .hbtn:hover{border-color:var(--ink60);background:var(--card)}
 .hbtn:active{transform:scale(.94)}
+/* the room "account": your own chosen face, top-right — visible to you whenever
+   you carry a room identity. Not on the lobby letterhead (your face already
+   leads the gathering there) and not on the moderator's chrome. */
+#meBadge{display:inline-flex}
+#meBadge[hidden]{display:none}
+#meBadge .face{width:36px;height:36px;font-size:18px;margin:0}
+body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
 
 /* ---- the room strip: activity, never direction ---- */
 #roomstrip{display:flex;align-items:center;justify-content:space-between;gap:10px;
