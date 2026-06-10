@@ -10,6 +10,20 @@ window.CITY_CONFIG = {
   logo: "assets/logos/reus_rose_color.svg",
   chamber: "the council",                 // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
+  // LIVE SESSION lobby — every visible string on the gathering screen comes from
+  // here (no copy conditionals in live.js). {period} and {n} in docketCountLine
+  // are computed from the active deck's metadata at render time.
+  lobby: {
+    eyebrow: "SESSIÓ EN DIRECTE · REUS",
+    headline: "El ple s'està reunint.",
+    body: "T'hem reservat un seient al Ple de l'Ajuntament de Reus. Les decisions són reals, extretes de sessions plenàries reals. Els regidors electes ja han votat cadascuna d'elles. Votaràs el mateix ordre del dia, a cegues, i després veuràs en què tu i ells us separeu.",
+    docketInstitutionLine: "PLE DE L'AJUNTAMENT DE REUS",
+    docketCountLine: "SESSIONS PLENÀRIES {period} · {n} DECISIONS A L'ORDRE DEL DIA",
+    statusWaiting: "esperant que s'obri la sessió",
+    privacyLine: "Els teus vots es queden en aquest telèfon. La sala només veu recomptes.",
+    disclosure: "Decisions seleccionades de l'acta del ple.",
+    sittingOpenedFormula: "S'obre la sessió."
+  },
   // ?deck=live → this curated room-session deck (~15-20 contested cards; the whole
   // room gets the same SET, order is per-person). Curator-picked for variety from
   // the most evenly split for-vs-against votes; the full deck remains the default.

@@ -513,18 +513,42 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 .lv-verdict.tie{color:var(--ink60)}
 .lv-verdict[hidden]{display:none}
 
-/* ---- voter lobby ---- */
+/* ---- voter lobby: the convocation document ----
+   A seat in a real sitting, not a quiz waiting room: left-aligned like the
+   cards; the docket block is the order-paper header (institution over a rule,
+   sittings period + decision count, small-print disclosure). All copy from
+   CFG.lobby. On open (.opening) the document falls away and one line of the
+   minutes remains — the chair's formula — before the first card lands. */
 #lobby{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:20px;min-height:0}
+  padding:20px;min-height:0;position:relative}
 #lobby[hidden]{display:none}
+.lb-doc{width:100%;max-width:480px;text-align:left;
+  transition:opacity .4s cubic-bezier(.2,.7,.3,1),transform .4s cubic-bezier(.2,.7,.3,1)}
+#lobby.opening .lb-doc{opacity:0;transform:translateY(-10px);pointer-events:none}
 .lb-k{margin:0 0 6px;font:700 11px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--stamp)}
-.lb-h{margin:0 0 18px;font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.015em}
-.lb-faces{display:flex;flex-wrap:wrap;justify-content:center;max-width:340px;margin:0 0 16px}
-#lobbyFaces .face{width:38px;height:38px;font-size:19px;margin-left:-9px}
-#lobbyFaces .face.init{font-size:13px}
-.lb-count{margin:0;font:700 52px var(--f-mono);line-height:1}
-.lb-sub{margin:4px 0 0;font:400 12px var(--f-mono);color:var(--ink60);max-width:300px}
-.lb-note{margin:22px 0 0;font:400 11px var(--f-mono);color:var(--ink60);max-width:300px}
+.lb-h{margin:0 0 12px;font-size:29px;line-height:1.15;font-weight:800;letter-spacing:-.015em}
+.lb-body{margin:0 0 20px;font:400 15px/1.55 var(--f-ui);color:var(--ink80)}
+.lb-docket{background:var(--card);border:1px solid var(--rule);border-radius:10px;
+  padding:13px 15px;margin:0 0 22px}
+.lb-inst{margin:0 0 9px;padding:0 0 9px;border-bottom:1px solid var(--rule);
+  font:700 11.5px/1.5 var(--f-mono);letter-spacing:.12em;color:var(--ink)}
+.lb-dl{margin:0;font:400 11px/1.6 var(--f-mono);letter-spacing:.06em;color:var(--ink60)}
+.lb-disc{margin:7px 0 0;font:400 11px/1.5 var(--f-mono);color:var(--ink60)}
+.lb-faces{display:flex;flex-wrap:wrap;margin:0 0 10px}
+#lobbyFaces .face{width:34px;height:34px;font-size:17px;margin:0 -8px 4px 0}
+#lobbyFaces .face.init{font-size:12px}
+.lb-status{display:flex;align-items:center;gap:8px;margin:0;font:400 12px var(--f-mono);color:var(--ink60)}
+.lb-status b{font:700 15px var(--f-mono);color:var(--ink)}
+.lb-pulse{width:7px;height:7px;border-radius:50%;background:var(--stamp);flex:0 0 auto;
+  animation:lbpulse 2.4s ease-in-out infinite}
+@keyframes lbpulse{0%,100%{opacity:1}50%{opacity:.35}}
+.lb-note{margin:20px 0 0;font:400 11px/1.5 var(--f-mono);color:var(--ink60)}
+/* the formula: one line of the minutes, centred where the document stood */
+.lb-open{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:20px;opacity:0;transform:translateY(8px)}
+.lb-open[hidden]{display:none}
+#lobby.opening .lb-open{opacity:1;transform:none;
+  transition:opacity .45s cubic-bezier(.2,.7,.3,1) .25s,transform .45s cubic-bezier(.2,.7,.3,1) .25s}
 
 /* ---- room verdict on the final reveal (closes the page, after the personal finding) ---- */
 #roomVerdict{width:100%;max-width:600px;margin:18px 0 6px;background:var(--card);
@@ -575,14 +599,33 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
   padding:1.1vh 1.6vw .7vh;margin:0 6px -2px 12px}
 #stage .stamp.official small{font-size:clamp(9px,1.1vw,14px)}
 /* ---- holding page: the bare URL, before any link is shared ---- */
+/* Zero info: just the wordmark. The glitch is a misregistered print — a
+   stamp-violet copy and an ink copy slip out of register in sliced bursts
+   (steps(1), multiply), then the page sits still. Pseudos are opacity:0 at
+   both keyframe endpoints, so reduced-motion collapses to a static "riot". */
 #holding{position:fixed;inset:0;z-index:60;background:var(--paper);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:32px 28px}
+  display:flex;align-items:center;justify-content:center;padding:32px 28px}
 #holding[hidden]{display:none}
-.hd-k{margin:0 0 10px;font:700 11px var(--f-mono);letter-spacing:.22em;
-  text-transform:uppercase;color:var(--stamp)}
-.hd-h{margin:0 0 12px;font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.015em}
-.hd-sub{margin:0;font:400 13px/1.6 var(--f-mono);color:var(--ink60);max-width:320px}
+.hd-riot{position:relative;margin:0;font-weight:800;line-height:1;
+  font-size:clamp(72px,22vw,150px);letter-spacing:-.045em;color:var(--ink);
+  user-select:none;-webkit-user-select:none}
+.hd-riot::before,.hd-riot::after{content:attr(data-text);position:absolute;
+  inset:0;opacity:0;pointer-events:none;mix-blend-mode:multiply}
+.hd-riot::before{color:var(--stamp);animation:hdSlipA 3.4s steps(1) infinite}
+.hd-riot::after{color:var(--ink);animation:hdSlipB 5.2s steps(1) infinite}
+@keyframes hdSlipA{
+  0%,100%{opacity:0;transform:none;clip-path:inset(0)}
+  78%{opacity:.85;transform:translate(-5px,2px);clip-path:inset(8% 0 64% 0)}
+  82%{opacity:.85;transform:translate(4px,-1px);clip-path:inset(58% 0 12% 0)}
+  86%{opacity:.85;transform:translate(-3px,0);clip-path:inset(30% 0 42% 0)}
+  90%{opacity:0}}
+@keyframes hdSlipB{
+  0%,100%{opacity:0;transform:none;clip-path:inset(0)}
+  41%{opacity:.6;transform:translate(6px,1px);clip-path:inset(44% 0 38% 0)}
+  44%{opacity:.6;transform:translate(-4px,-2px);clip-path:inset(70% 0 6% 0)}
+  47%{opacity:0}
+  80%{opacity:.6;transform:translate(3px,2px);clip-path:inset(12% 0 74% 0)}
+  84%{opacity:0}}
 
 /* stage lobby: the join moment */
 .sg-lobby{margin:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0}

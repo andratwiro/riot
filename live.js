@@ -119,6 +119,8 @@ function onSnapshot(){
   if(st==="lobby"){ showLobby(); }
   else if(st==="ended"){ liveEnded(); }
   else if(st==="final"){ hideLobby(); renderFinal(); }
+  else if(lvShownState==="lobby" && st==="voting" && lvS.idx===0){ openSitting(); lvShownState="opening"; }
+  else if(lvOpening){ /* the formula holds the screen; the timeout lands the card */ }
   else { hideLobby(); syncDeck(()=>applyPhase()); }
   if(typeof renderStrip==="function") renderStrip();
   modAuthority();          // no-op unless the sim rig drives the room
@@ -334,23 +336,72 @@ function renderFinal(){
   const r=$("#restart"); if(r) r.style.display="none";   // the moderator owns the session
 }
 
-/* ---- lobby (voter) ---- */
+/* ---- lobby (voter): a seat in the sitting ----
+   Every visible string comes from CFG.lobby (per-city config) — no copy
+   conditionals here. The docket line's {period}/{n} are computed from the
+   active deck's metadata (decision dates, deck length), never hardcoded. */
+function deckPeriod(){
+  let lo=Infinity, hi=-Infinity;
+  for(const id of ((lvS&&lvS.deck)||[])){
+    const d=byId[id], y=d&&d.date?parseInt(d.date.slice(0,4),10):NaN;
+    if(Number.isFinite(y)){ lo=Math.min(lo,y); hi=Math.max(hi,y); }
+  }
+  if(!Number.isFinite(lo)) return "";
+  return lo===hi ? String(lo) : lo+"–"+hi;
+}
+function lobbyPresence(){
+  const lb=$("#lobby"); if(!lb||lb.hidden) return;
+  $("#lobbyCount").textContent=voterCount();
+  const faces=[faceHTML(identity&&identity.emoji,(identity&&identity.name)||"you",true)];
+  for(const pid of Object.keys(PEERS)) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false));
+  $("#lobbyFaces").innerHTML=faces.join("");
+}
 function showLobby(){
   lvShownState="lobby"; lvShownIdx=-1;
   document.body.classList.remove("live-final");
   document.body.classList.add("live-lobby");
   const lb=$("#lobby"); lb.hidden=false;
-  $("#lobbyKicker").textContent=`Live session · ${CFG.name}`;
-  const n=voterCount();
-  $("#lobbyCount").textContent=n;
-  $("#lobbySub").textContent=n>1?"in the room — waiting for the first ballot to open":"in the room — waiting for the others";
-  const faces=[faceHTML(identity&&identity.emoji,(identity&&identity.name)||"you",true)];
-  for(const pid of Object.keys(PEERS)) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false));
-  $("#lobbyFaces").innerHTML=faces.join("");
+  const L=CFG.lobby||{};
+  $("#lobbyKicker").textContent=L.eyebrow||"";
+  $("#lobbyHead").textContent=L.headline||"";
+  $("#lobbyBody").textContent=L.body||"";
+  $("#lobbyInst").textContent=L.docketInstitutionLine||"";
+  $("#lobbyDocketLine").textContent=(L.docketCountLine||"")
+    .replace("{period}",deckPeriod()).replace("{n}",((lvS&&lvS.deck)||[]).length);
+  $("#lobbyDisc").textContent=L.disclosure||"";
+  $("#lobbyStatus").textContent=L.statusWaiting||"";
+  $("#lobbyPrivacy").textContent=L.privacyLine||"";
+  lobbyPresence();
 }
+/* peers arrive over presence, not session snapshots — keep the gathering live */
+(function(){
+  const prev=window.renderStrip;
+  window.renderStrip=function(){ if(prev)prev(); if(lvS&&lvS.state==="lobby")lobbyPresence(); };
+})();
 function hideLobby(){
   document.body.classList.remove("live-lobby");
   const lb=$("#lobby"); if(lb) lb.hidden=true;
+  lb&&lb.classList.remove("opening");
+  const op=$("#lobbyOpen"); if(op) op.hidden=true;
+}
+/* the transition: the document falls away, one line of the minutes remains —
+   the chair's formula — then the first card lands. Only plays for voters who
+   witnessed the gathering (lobby → voting on card 0). */
+let lvOpening=false;
+function openSitting(){
+  const L=CFG.lobby||{};
+  if(!L.sittingOpenedFormula){ hideLobby(); syncDeck(()=>applyPhase()); return; }
+  lvOpening=true;
+  const lb=$("#lobby"), op=$("#lobbyOpen");
+  $("#lobbyOpenK").textContent=L.eyebrow||"";
+  $("#lobbyFormula").textContent=L.sittingOpenedFormula;
+  op.hidden=false;
+  lb.classList.add("opening");
+  setTimeout(()=>{
+    lvOpening=false;
+    hideLobby();
+    if(lvS&&lvS.state!=="lobby"&&lvS.state!=="ended"&&lvS.state!=="final") syncDeck(()=>applyPhase());
+  },1600);
 }
 
 /* =====================  MODERATOR / STAGE  ===================== */

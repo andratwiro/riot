@@ -10,6 +10,20 @@ window.CITY_CONFIG = {
   logo: "assets/logos/brussels_iris.svg",
   chamber: "the parliament",                 // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
+  // LIVE SESSION lobby — every visible string on the gathering screen comes from
+  // here (no copy conditionals in live.js). {period} and {n} in docketCountLine
+  // are computed from the active deck's metadata at render time.
+  lobby: {
+    eyebrow: "LIVE SESSION · BRUSSELS",
+    headline: "The room is gathering.",
+    body: "A seat in the Brussels Parliament has been opened for you. The decisions are real, taken from actual plenary sittings. The elected members have already voted on every one of them. You'll vote the same docket, blind, and then see where you and they part ways.",
+    docketInstitutionLine: "PARLIAMENT OF THE BRUSSELS-CAPITAL REGION",
+    docketCountLine: "PLENARY SITTINGS {period} · {n} DECISIONS ON THE DOCKET",
+    statusWaiting: "waiting for the sitting to open",
+    privacyLine: "Your votes stay on this phone. The room only ever sees counts.",
+    disclosure: "Decisions selected from the plenary record.",
+    sittingOpenedFormula: "The sitting is opened."
+  },
   // ?deck=live → curated room-session deck (~15 contested cards; same SET for the
   // whole room, per-person order). The two procedural fast-track votes are excluded.
   live_deck: [
