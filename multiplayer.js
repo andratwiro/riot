@@ -25,7 +25,8 @@ function roomTally(id){
   return TALLIES[id] || (TALLIES[id]={for:0,against:0,abstain:0});
 }
 
-/* ---- peer dots on the reveal map (anonymous ink rings) ---- */
+/* ---- peer dots on the reveal map: small faded emojis (ink ring when faceless).
+   The crowd is texture, never anchors — they sit below the party dots. ---- */
 function renderPeersInto(el){
   if(!el) return;
   el.querySelectorAll(".peer").forEach(n=>n.remove());
@@ -33,7 +34,9 @@ function renderPeersInto(el){
   for(const pid in PEERS){
     const p=PEERS[pid]; if(!p.c) continue;
     const d=document.createElement("div");
-    d.className="peer"; d.style.left=p.c[0]+"%"; d.style.top=p.c[1]+"%";
+    d.className="peer"+(p.e?" emo":"");
+    if(p.e) d.textContent=p.e;
+    d.style.left=p.c[0]+"%"; d.style.top=p.c[1]+"%";
     d.style.setProperty("--d",(60+(i++)*40)+"ms");
     el.appendChild(d);
   }

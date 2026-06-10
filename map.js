@@ -82,7 +82,11 @@ function renderResultMap(){
   const uc=userCoord();
   let userDot="";
   if(uc){const [l,t]=toPct(uc);
-    userDot=`<div class="mdot me" style="left:${l}%;top:${t}%;--d:${120+PARTIES.length*90+260}ms"><span class="mc fb">YOU</span></div>`;}
+    // your join emoji wears the violet ring + a "you" tag; pre-join solo keeps the YOU disc
+    const em=(identity&&identity.emoji)||"";
+    const inner=em?`<span class="mc you">${esc(em)}</span><span class="mtag">you</span>`
+                  :`<span class="mc fb">YOU</span>`;
+    userDot=`<div class="mdot me" style="left:${l}%;top:${t}%;--d:${120+PARTIES.length*90+260}ms">${inner}</div>`;}
   el.innerHTML=`<span class="maptag">Closer = votes more alike</span>
     <div class="axis x"></div><div class="axis y"></div>${dots}${userDot}`;
   renderPeers();

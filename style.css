@@ -245,11 +245,20 @@ header{display:flex;align-items:center;justify-content:space-between;
 .mdot.me .mc{width:34px;height:34px;background:var(--stamp);color:var(--card);
   border-color:var(--card);font:700 10px var(--f-mono);
   box-shadow:0 0 0 4px rgba(75,63,160,.18),0 2px 8px rgba(28,27,23,.25)}
-/* other participants — anonymous ink rings, deliberately subordinate */
+/* your join emoji as the YOU mark: paper disc, violet ring, "you" tag below */
+.mdot.me .mc.you{background:var(--card);border:2px solid var(--stamp);
+  font:400 19px/1 var(--f-ui)}
+.mdot.me .mtag{position:absolute;top:calc(100% + 3px);left:50%;transform:translateX(-50%);
+  font:700 9px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--stamp);
+  background:var(--card);border:1px solid var(--stamp);border-radius:4px;padding:1px 5px 0 6px}
+/* other participants — deliberately subordinate: small faded emojis (the crowd
+   is texture, the parties are the anchors), anonymous ink ring when faceless */
 .peer{position:absolute;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-50%);
   z-index:1;opacity:.35;background:none;border:2px solid var(--ink);
   pointer-events:none;transition:left .6s cubic-bezier(.2,.7,.3,1),top .6s cubic-bezier(.2,.7,.3,1);
   animation:dotin .5s both;animation-delay:var(--d,0ms)}
+.peer.emo{width:auto;height:auto;border:0;border-radius:0;opacity:.45;
+  font:400 13px/1 var(--f-ui);filter:grayscale(.35)}
 /* brand-colour backfill so square logos blend into their disc (no white corners) */
 .lg.bg-PSC,.mc.bg-PSC{background:#e2001a}
 .lg.bg-CUP,.mc.bg-CUP{background:#fff200}
@@ -478,20 +487,25 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 @keyframes stampoff{0%{transform:rotate(4deg) scale(1.8);opacity:0}
   100%{transform:rotate(4deg) scale(1);opacity:.92}}
 
-/* reveal split, two layers per row: thick ink bar = this room (simulated),
-   thin outlined bar = the chamber (real votes, by group/party) */
-.sp-leg{margin:-7px 0 9px;text-align:right;font:400 9.5px var(--f-mono);
-  letter-spacing:.04em;color:var(--ink60)}
-.sp-bars{flex:1 1 auto;display:flex;flex-direction:column;gap:3px;min-width:0}
-.sp-bars .sp-track{flex:none}
-.sp-track.ch{height:5px;background:transparent;border:1px solid var(--rule);border-radius:2px}
-.sp-fill.ch{background:var(--ink60);border-radius:1px}
-.sp-ns{flex:0 0 30px;display:flex;flex-direction:column;align-items:flex-end;gap:1px;line-height:1.05}
-.sp-ns b{font:700 14px var(--f-mono);color:var(--ink)}
-.sp-ns i{font:400 10.5px var(--f-mono);color:var(--ink60);font-style:normal}
-/* timeouts as a muted no-ballot row + the verdict line */
-.sp-row.to{opacity:.65}
-.sp-row.to .sp-l,.sp-row.to .sp-n{color:var(--ink60)}
+/* the room's reveal: emoji piles in button order — every cast face lands on
+   its pile (the fun beat; the chamber's stamp above is the verdict) */
+.piles{display:flex;align-items:flex-end;gap:8px;margin:4px 0 0}
+.pl-col{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.pl-stack{display:flex;flex-wrap:wrap-reverse;justify-content:center;align-items:center;
+  gap:2px;min-height:30px;max-width:100%}
+.pl-stack .face{width:26px;height:26px;font-size:14px;margin:0}
+.pl-stack .face.init{font-size:10px}
+.pl-none{font:400 12px var(--f-mono);color:var(--rule)}
+.pl-lab{font:700 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink80);
+  border-top:2px solid var(--ink);padding-top:5px;width:100%;text-align:center}
+.pl-n{font:700 13px var(--f-mono);color:var(--ink)}
+.pl-col.quiet .pl-lab{color:var(--ink60);border-top-color:var(--rule)}
+.pl-col.quiet .pl-n{color:var(--ink60)}
+.pl-col.mine .pl-lab{color:var(--stamp);border-top-color:var(--stamp)}
+.pl-drop{display:inline-flex;animation:pldrop .3s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes pldrop{0%{transform:translateY(-14px) scale(1.5);opacity:0}
+  100%{transform:translateY(0) scale(1);opacity:1}}
+.pl-to{margin:9px 0 0;text-align:center;font:400 11px var(--f-mono);color:var(--ink60)}
 .lv-verdict{margin:11px 0 0;text-align:center;font:700 12px var(--f-mono);
   letter-spacing:.08em;text-transform:uppercase;animation:fadein .3s both}
 .lv-verdict.agree{color:var(--moss)}
@@ -546,15 +560,15 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 .sg-revwrap{margin:0 0 18px}
 .sg-revwrap:empty{display:none}
 #stage .split{margin-top:0;padding-top:6px}
-#stage .sp-l{flex:0 0 clamp(70px,11vw,140px);font-size:clamp(12px,1.8vw,20px)}
-#stage .sp-track{height:clamp(10px,1.6vw,18px);border-radius:3px}
-#stage .sp-track.ch{height:clamp(6px,.9vw,10px)}
-#stage .sp-n{flex:0 0 clamp(30px,4vw,56px);font-size:clamp(14px,2.4vw,30px)}
-#stage .sp-ns{flex:0 0 clamp(34px,4vw,60px)}
-#stage .sp-ns b{font-size:clamp(14px,2.4vw,30px)}
-#stage .sp-ns i{font-size:clamp(11px,1.4vw,18px)}
 #stage .sp-k{font-size:clamp(11px,1.4vw,16px)}
-#stage .sp-leg{font-size:clamp(10px,1.2vw,15px)}
+#stage .piles{gap:clamp(10px,2vw,28px)}
+#stage .pl-stack{gap:clamp(2px,.4vw,6px)}
+#stage .pl-stack .face{width:clamp(28px,3.4vw,46px);height:clamp(28px,3.4vw,46px);
+  font-size:clamp(15px,1.9vw,26px);margin:0}   /* beat the id-strength #stage .face overlap margin */
+#stage .pl-stack .face.init{font-size:clamp(10px,1.2vw,16px)}
+#stage .pl-lab{font-size:clamp(12px,1.6vw,20px)}
+#stage .pl-n{font-size:clamp(14px,2.2vw,28px)}
+#stage .pl-to{font-size:clamp(11px,1.4vw,16px)}
 #stage .lv-verdict{font-size:clamp(13px,2vw,22px);margin-top:14px}
 #stage .stamprow{margin-top:0;padding:0 0 8px;height:auto}  /* stage: in-flow (its own rhythm; no card to keep still) */
 #stage .stamp{font-size:clamp(22px,3vw,38px);border-width:4px;border-radius:10px;

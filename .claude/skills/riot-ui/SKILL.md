@@ -132,7 +132,11 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   scale .92–.99. Card-advance timing: exit animation ↔ the ~260ms timeout in
   `react()` stay in sync.
 - The reveal map is the payoff: dots stagger in via `--d` animation-delay
-  (parties ~90ms apart, YOU last), peers are anonymous ink rings behind.
+  (parties ~90ms apart, YOU last). YOU = the user's join emoji in a paper disc
+  with a violet ring + a "you" paper pill below (`.mc.you`/`.mtag`; falls back
+  to the violet YOU disc with no identity). Peers are small faded emojis below
+  the party dots' z-index (anonymous ink ring when faceless) — the crowd is
+  texture, the parties are the anchors.
 - Animations are transform/opacity only (the 15-peer pulse must hold 60fps —
   verified via the screenshot skill's `perf` mode; keep it ≥58fps, 0 long
   frames).

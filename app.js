@@ -211,7 +211,8 @@ function stampRow(card){
   let row=card.querySelector(".stamprow");
   if(!row){
     row=document.createElement("div"); row.className="stamprow";
-    const slot=card.querySelector(".acts,.castp,.split");
+    // .sg-revwrap: the stage's reveal slot — its beat-1 stamp lands before .split exists
+    const slot=card.querySelector(".acts,.castp,.split,.sg-revwrap");
     if(slot) card.insertBefore(row,slot); else card.appendChild(row);
   }
   return row;

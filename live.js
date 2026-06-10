@@ -289,14 +289,14 @@ function stampOutcome(card,d){
 function runRevealBeats(top,d){
   top.dataset.revealed="1";
   top.classList.add("voted");
-  let slot=top.querySelector(".castp")||top.querySelector(".acts");
-  if(slot){ slot.className="split"; renderLiveSplit(slot,d.id); }
-  setTimeout(()=>{                                   // beat 2: the official imprint
+  stampOutcome(top,d);                               // beat 1: the verdict — the chamber's imprint
+  setTimeout(()=>{                                   // beat 2: the room rains in as emoji piles
     if(!top.isConnected) return;
-    stampOutcome(top,d);
+    const slot=top.querySelector(".castp")||top.querySelector(".acts");
+    if(slot){ slot.className="split"; renderLivePiles(slot,d.id); }
     const v=top.querySelector(".lv-verdict");
     if(v){ const c=verdictCopy(d); v.hidden=false; v.classList.add(c.cls); v.textContent=c.tx; }
-  },1100);
+  },900);
 }
 
 /* ---- final reveal: the personal headline first, the room's verdict closes the page ---- */
@@ -531,13 +531,13 @@ function renderStage(){
     const rev=$("#sgRev");
     if(rev && !rev.dataset.done && d){
       rev.dataset.done="1";
-      rev.className="sg-revwrap split"; renderLiveSplit(rev,d.id);
       const host=sg.querySelector(".sg-card");
-      setTimeout(()=>{ if(!rev.isConnected)return;
-        stampOutcome(host,d);
+      stampOutcome(host,d);                          // beat 1: the chamber's verdict
+      setTimeout(()=>{ if(!rev.isConnected)return;   // beat 2: the room's piles
+        rev.className="sg-revwrap split"; renderLivePiles(rev,d.id);
         const v=rev.querySelector(".lv-verdict");
         if(v){ const c=verdictCopy(d); v.hidden=false; v.classList.add(c.cls); v.textContent=c.tx; }
-      },1100);
+      },900);
     }
   }
   updateCastCounts();
@@ -641,7 +641,7 @@ function simScheduleCard(){
       if(!lvS||lvS.state!=="voting"||lvCurId()!==id||!PEERS[pid]) return;
       const r=Math.random(), v=r<0.42?"for":r<0.8?"against":"abstain";
       lvStore.inc(`${lvSess()}/tallies/${id}/${v}`);
-      lvStore.set(`${lvSess()}/cast/${id}/${pid}`,lvStore.now());
+      lvStore.set(`${lvSess()}/cast/${id}/${pid}`,v);   // direction — feeds the reveal's piles
       PEERS[pid].n++;
       if(typeof activityTick==="function") activityTick(pid);
     },at);
