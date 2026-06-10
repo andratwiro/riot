@@ -183,7 +183,8 @@ decisions table.
 - **Viewer URL params:** `?city=reus|brussels` (instance), `?deck=live`
   (curated room-session deck from `CFG.live_deck`), `?split=0` (kill the
   after-vote room split), `?simroom=N` (fake N-person room, testing only),
-  `?role=moderator` (live-session moderator + stage view),
+  `?role=moderator` (live-session moderator + stage view; the session picker
+  pins the city's curated `CFG.demo_deck` as "DEMO" when defined),
   `?simlive=N[&simtimer=S]` (fake lockstep live session, testing only).
 - **Pipeline:** Python 3, stdlib + `anthropic`; module + function docstrings;
   snake_case. JS uses kebab/camelCase.

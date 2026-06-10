@@ -18,7 +18,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.49</span>
+      <span class="ver">v0.50</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -45,14 +45,14 @@
     <p id="pausedNote">Paused — the moderator holds the room</p>
     <div class="stack" id="stack"></div>
     <div id="done">
-      <!-- LIVE SESSION only: the room-level finding lands before the personal one -->
-      <div id="roomVerdict" hidden></div>
       <p class="donek" id="doneKicker"></p>
       <h2 id="doneHead"></h2>
       <p class="doneSub" id="doneSub"></p>
       <div id="resultMap"></div>
       <div class="extremes" id="extremes"></div>
       <div class="dparties" id="doneParties"></div>
+      <!-- LIVE SESSION only: the room-level finding closes the page, after the personal one -->
+      <div id="roomVerdict" hidden></div>
       <div class="doneActions">
         <button class="restart" id="restart" type="button">↻ Start over</button>
         <button id="copyVotes" type="button">⧉ Copy votes</button>
@@ -81,6 +81,14 @@
   <!-- LIVE SESSION · moderator setup: pick the plenary session, trim, set the clock -->
   <div id="modSetup" hidden><div class="ms-wrap"></div></div>
 
+</div>
+
+<!-- Holding page: the bare URL (no query at all) is not an entrance. A visitor
+     lands here only without a shared link — nothing to do but wait for one. -->
+<div id="holding" hidden>
+  <p class="hd-k">Live session</p>
+  <h1 class="hd-h">The room isn't open yet.</h1>
+  <p class="hd-sub">Your moderator opens the room and shares the link to join. Nothing to do here until then.</p>
 </div>
 
 <!-- Join: name-or-emoji onboarding for room sessions. One screen, one button, <30s. -->
@@ -229,10 +237,17 @@ if(!AI){const r=$("#aiRow"); if(r)r.style.display="none";}   // hide the toggle 
 applyAiParty(showAI);   // builds the reveal-map coords (adds the IA party iff showAI)
 if(devToggleEl)devToggleEl.checked=devMode;
 document.body.classList.toggle("dev",devMode);
-mpInit();
-liveInit();             // LIVE SESSION: lockstep room state (no-op without a backend or ?simlive)
-maybeShowJoin();        // room sessions: name/emoji gate before the first card (no-op single-player)
-renderStack();
+if(!location.search){
+  // Bare URL = no entrance: hold the visitor, and never touch the room
+  // (no mpInit → no phantom presence from idle tabs parked on the root).
+  document.title="RIOT";
+  $("#holding").hidden=false;
+}else{
+  mpInit();
+  liveInit();             // LIVE SESSION: lockstep room state (no-op without a backend or ?simlive)
+  maybeShowJoin();        // room sessions: name/emoji gate before the first card (no-op single-player)
+  renderStack();
+}
 </script>
 </body>
 </html>

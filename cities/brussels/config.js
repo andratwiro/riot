@@ -28,5 +28,19 @@ window.CITY_CONFIG = {
     "BXL-2425-00023-v1",       // make airlines pay for CO2 (12F/1A)
     "BXL-2425-00031-v3",       // raise tourist city tax 4→5€ (12F/1A)
     "BXL-2526-00023-A-263"     // index former MPs' pensions (12F/1A)
+  ],
+  // The DEMO deck: ten contested, story-rich decisions hand-picked for live
+  // demos. Pinned first in the moderator's session picker.
+  demo_deck: [
+    "BXL-2526-00021-A-264",    // producers fund the waste their packaging creates
+    "BXL-2526-00014-A-29",     // recognise gynaecological & obstetric violence
+    "BXL-2526-00014-A-236",    // condemn the Iranian regime's repression
+    "BXL-2425-00031-v3",       // raise tourist city tax 4→5€
+    "BXL-2425-00031-v9",       // cut MPs' indemnity 5% permanently
+    "BXL-2425-00022-v4",       // press for Gaza aid — air drops if needed
+    "BXL-2425-00016-v1",       // parliament cuts its own budget 5%
+    "BXL-2425-00013-v13",      // cancel arms-export licences to Israel
+    "BXL-2425-00011-v9",       // homeless first in social housing
+    "BXL-2425-00003-v10"       // postpone next LEZ phase two years
   ]
 };

@@ -294,7 +294,7 @@ function runRevealBeats(top,d){
   },1100);
 }
 
-/* ---- final reveal: the room's headline first, the personal one after ---- */
+/* ---- final reveal: the personal headline first, the room's verdict closes the page ---- */
 function roomDiffersList(){
   const out=[];
   for(const id of (lvS.deck||[])){
@@ -365,7 +365,11 @@ function modSessions(){
   }
   const list=Object.values(by).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   // "All plenaries" first: one deck across every session (newest first), trimmed next
-  return [{code:"*",all:true,date:"",ids:list.flatMap(s=>s.ids)},...list];
+  const out=[{code:"*",all:true,date:"",ids:list.flatMap(s=>s.ids)},...list];
+  // The city's curated DEMO deck (CFG.demo_deck) pins above everything
+  const demo=(CFG.demo_deck||[]).filter(id=>byId[id]&&byId[id].headline&&!byId[id].curator_drop&&byId[id].outcome);
+  if(demo.length) out.unshift({code:"DEMO",demo:true,date:"",ids:demo});
+  return out;
 }
 function renderModSetup(){
   const el=$("#modSetup"); el.hidden=false;
@@ -375,9 +379,9 @@ function renderModSetup(){
     w.innerHTML=`<p class="ms-k">Moderator · ${esc(CFG.name)}</p>
       <h2 class="ms-h">Pick the plenary session.</h2>
       <p class="ms-sub">One session is one deck. You can trim items next. Switch city from the header.</p>
-      <div class="ms-list">`+ss.map(s=>`<button class="ms-sess${s.all?" all":""}" type="button" data-code="${esc(s.code)}">
-        <span class="ms-date">${s.all?"All plenaries":esc(s.date)}</span>
-        <span class="ms-code">${s.all?"every decision · newest session first":esc(s.code)}</span>
+      <div class="ms-list">`+ss.map(s=>`<button class="ms-sess${s.all||s.demo?" all":""}" type="button" data-code="${esc(s.code)}">
+        <span class="ms-date">${s.demo?"DEMO":s.all?"All plenaries":esc(s.date)}</span>
+        <span class="ms-code">${s.demo?"the curated showcase deck":s.all?"every decision · newest session first":esc(s.code)}</span>
         <span class="ms-n">${s.ids.length} decision${s.ids.length===1?"":"s"}</span></button>`).join("")+`</div>`;
     return;
   }

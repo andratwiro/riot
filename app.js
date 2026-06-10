@@ -202,9 +202,11 @@ function renderStack(){
    bias them; it shows counts, never who. Tap anywhere to move on early. */
 let splitUpdate=null;          // multiplayer.js calls this when the room tally changes
 const STAMP_TXT={for:"FOR",against:"AGAINST",abstain:"ABSTAIN"};
-// Stamps land in a right-aligned row just above the action slot — the ballot's
-// margin, never over the statement. In normal flow: an absolute stamp shrink-fits
-// against its offsets and can wrap one-letter-per-line once real fonts load.
+// Stamps land in a right-aligned zero-height row just above the action slot and
+// grow upward — overlapping the content above is part of the effect; the card
+// never resizes when a stamp lands. Still in normal flow: an absolute stamp
+// shrink-fits against its offsets and can wrap one-letter-per-line once real
+// fonts load.
 function stampRow(card){
   let row=card.querySelector(".stamprow");
   if(!row){
@@ -311,7 +313,7 @@ function decorateHer(container,size){
 // The finding, not a match score: even your closest list only votes like you X% of the time.
 function revealCopy(ranked,a){
   const n=Object.keys(answers).length;
-  $("#doneKicker").textContent=`The reveal · ${n} ballot${n===1?"":"s"} cast`;
+  $("#doneKicker").textContent=`${n} ballot${n===1?"":"s"} cast`;
   if(!ranked.length){
     $("#doneHead").textContent="All done.";
     $("#doneSub").textContent="No comparable party votes on the decisions you drew.";

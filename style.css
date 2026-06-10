@@ -184,13 +184,15 @@ header{display:flex;align-items:center;justify-content:space-between;
 /* during the stamp/split beat the ballot is cast — buttons recede */
 .card.voted .acts{opacity:.3;pointer-events:none;transition:opacity .2s}
 
-/* ---- the stamps: ink hits paper — in the ballot's margin, never over the text.
-   They land in .stamprow, a right-aligned row just above the action slot, in
-   normal flow (no absolute positioning → can't cover the statement or stretch). */
+/* ---- the stamps: ink hits paper — bottom-right, just above the action slot.
+   .stamprow is an in-flow zero-height line (no absolute positioning → can't
+   shrink-fit or stretch); stamps grow UPWARD from it and may overlap the card
+   content above — that's the effect: a stamp lands on the page, the page
+   doesn't move. The card never changes size when a stamp lands. */
 .stamprow{display:flex;justify-content:flex-end;align-items:flex-end;flex-wrap:wrap;
-  margin-top:auto;padding:2px 2px 0;pointer-events:none;min-height:0}
+  align-content:flex-end;margin-top:auto;padding:0 2px;pointer-events:none;
+  height:0;overflow:visible}
 .stamprow:empty{display:none}
-.card .stamprow~.acts,.card .stamprow~.castp,.card .stamprow~.split{margin-top:10px}
 .stamp{display:inline-flex;align-items:center;z-index:5;pointer-events:none;position:relative;
   transform:rotate(-8deg);margin:2px 4px -4px 10px;white-space:nowrap;
   font:800 22px var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--stamp);
@@ -510,8 +512,8 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 .lb-sub{margin:4px 0 0;font:400 12px var(--f-mono);color:var(--ink60);max-width:300px}
 .lb-note{margin:22px 0 0;font:400 11px var(--f-mono);color:var(--ink60);max-width:300px}
 
-/* ---- room verdict on the final reveal (the shared payoff lands first) ---- */
-#roomVerdict{width:100%;max-width:600px;margin:6px 0 18px;background:var(--card);
+/* ---- room verdict on the final reveal (closes the page, after the personal finding) ---- */
+#roomVerdict{width:100%;max-width:600px;margin:18px 0 6px;background:var(--card);
   border:1px solid var(--rule);border-radius:12px;padding:16px 16px 10px;text-align:left}
 #roomVerdict[hidden]{display:none}
 .rv-k{margin:0 0 6px;font:700 10.5px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--stamp)}
@@ -554,10 +556,20 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 #stage .sp-k{font-size:clamp(11px,1.4vw,16px)}
 #stage .sp-leg{font-size:clamp(10px,1.2vw,15px)}
 #stage .lv-verdict{font-size:clamp(13px,2vw,22px);margin-top:14px}
-#stage .stamprow{margin-top:0;padding:0 0 8px}
+#stage .stamprow{margin-top:0;padding:0 0 8px;height:auto}  /* stage: in-flow (its own rhythm; no card to keep still) */
 #stage .stamp{font-size:clamp(22px,3vw,38px);border-width:4px;border-radius:10px;
   padding:1.1vh 1.6vw .7vh;margin:0 6px -2px 12px}
 #stage .stamp.official small{font-size:clamp(9px,1.1vw,14px)}
+/* ---- holding page: the bare URL, before any link is shared ---- */
+#holding{position:fixed;inset:0;z-index:60;background:var(--paper);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:32px 28px}
+#holding[hidden]{display:none}
+.hd-k{margin:0 0 10px;font:700 11px var(--f-mono);letter-spacing:.22em;
+  text-transform:uppercase;color:var(--stamp)}
+.hd-h{margin:0 0 12px;font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.015em}
+.hd-sub{margin:0;font:400 13px/1.6 var(--f-mono);color:var(--ink60);max-width:320px}
+
 /* stage lobby: the join moment */
 .sg-lobby{margin:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0}
 .sg-join{margin:14px 0 6px;font:700 clamp(24px,5vw,64px) var(--f-mono);letter-spacing:.01em;word-break:break-all}
