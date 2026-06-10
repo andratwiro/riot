@@ -64,6 +64,13 @@ function buildDeck(excludeAnswered){
 let idx = 0;
 let voting = false;          // true during the stamp/split beat — blocks double votes
 const origShown = new Set(); // card ids currently showing the original (un-reworded) title
+// Label for the original-wording toggle pill: states what the headline IS now
+// (provenance), with a swap glyph for the tap affordance. The source language
+// tag (e.g. "· fr") only appears when it differs from the display language.
+function aiflagLabel(showOrig){
+  const src=CFG.srcLang && CFG.srcLang!==(CFG.lang||"") ? ` · ${CFG.srcLang}` : "";
+  return (showOrig?`Original${src}`:"✨ AI-reworded")+'<span class="aifswap">⇄</span>';
+}
 const answers = {};
 /* curator marks + dev mode — persist across sessions in localStorage */
 const MARK_KEY="riot.marks.v1", DEV_KEY="riot.dev.v1", DISMISS_KEY="riot.dismissed.v1";
@@ -147,7 +154,9 @@ function renderStack(){
     const showOrig = origShown.has(d.id);
     const headTxt = showOrig ? (d.title||d.headline) : d.headline;
     const head = esc(headTxt);
-    const long = (headTxt||"").length>110 ? " class=\"long\"" : "";
+    // .orig = verbatim source wording → mono "minutes" face, capped height
+    const h2cls = [showOrig?"orig":"", (headTxt||"").length>110?"long":""].filter(Boolean).join(" ");
+    const long = h2cls ? ` class="${h2cls}"` : "";
     const main = d.source_brief ? renderBrief(d.source_brief)
                : `<div class="body">${esc(d.human_body||"")}</div>`;
     const dfacts = d.deep_facts || d.deep;   // neutral, cited (what the AI proxy reads)
@@ -167,7 +176,7 @@ function renderStack(){
       : "";
     const hasOrig = depth===0 && d.title && d.title!==d.headline;
     const aiflag = hasOrig
-      ? `<button class="aiflag${showOrig?' off':''}" type="button" data-id="${esc(d.id)}" title="${showOrig?'Showing the original wording — tap to restore the AI-reworded title':'AI-reworded for clarity — tap to read the original proposal wording'}">✨</button>`
+      ? `<button class="aiflag${showOrig?' on':''}" type="button" data-id="${esc(d.id)}" aria-pressed="${showOrig?'true':'false'}"><span class="aifpill">${aiflagLabel(showOrig)}</span></button>`
       : "";
     const showSug = depth===0 && devMode && d.auto_suggest && !isMarked(d.id) && !isDismissed(d.id);
     const suggest = showSug
@@ -179,7 +188,7 @@ function renderStack(){
       ${aiflag}
       ${suggest}
       <span class="topic">${topic}</span>
-      <h2${long} title="${esc(d.title||"")}">${head}</h2>
+      <h2${long}${showOrig&&CFG.srcLang?` lang="${esc(CFG.srcLang)}"`:""} title="${esc(d.title||"")}">${head}</h2>
       <button class="more" type="button">See more ▾</button>
       <div class="reveal" hidden>${body}</div>
       ${acts}`;
@@ -356,10 +365,14 @@ $("#stack").addEventListener("click",e=>{
   const af=e.target.closest(".aiflag");
   if(af){
     const id=af.dataset.id, h2=af.closest(".card").querySelector("h2"), d=byId[id];
-    if(origShown.has(id)){origShown.delete(id); h2.textContent=d.headline; af.classList.remove("off");
-      af.title="AI-reworded for clarity — tap to read the original proposal wording";}
-    else{origShown.add(id); h2.textContent=d.title||d.headline; af.classList.add("off");
-      af.title="Showing the original wording — tap to restore the AI-reworded title";}
+    const show=!origShown.has(id);
+    if(show)origShown.add(id); else origShown.delete(id);
+    h2.textContent=show?(d.title||d.headline):d.headline;
+    if(CFG.srcLang){if(show)h2.setAttribute("lang",CFG.srcLang);else h2.removeAttribute("lang");}
+    af.classList.toggle("on",show);
+    af.setAttribute("aria-pressed",String(show));
+    const pill=af.querySelector(".aifpill"); if(pill)pill.innerHTML=aiflagLabel(show);
+    h2.classList.toggle("orig",show);
     h2.classList.toggle("long",(h2.textContent||"").length>110);
     return;
   }

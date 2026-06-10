@@ -39,7 +39,7 @@ without it.
 | `map.js` | The affinity map (reveal-only): MDS of party vote-distances (Jacobi eigensolver), user placement, animated entrance. |
 | `views.js` | Secondary views: the minutes (raw-data log, one tap via the header `§`), party comparison, curator mode, votes export/import, options sheet. |
 | `multiplayer.js` | The room (Firebase Realtime DB): presence with names/emoji, anonymous per-decision tallies, room progress, activity ticks, curator room reset; single-player fallback; `?simroom=N` fakes a room for testing. |
-| `cities/<id>/config.js` | Per-city chrome + tunables: `window.CITY_CONFIG` (name, logo, document lang, `mapGate`). |
+| `cities/<id>/config.js` | Per-city chrome + tunables: `window.CITY_CONFIG` (name, logo, document `lang`, source-document `srcLang` for the original-wording toggle, `mapGate`). |
 | `cities/<id>/data.js` | `window.RIOT = {...}` — that city's decisions table as a JS object (avoids CORS). **Generated** by `build_table.py` (Reus) / `build_table_bxl.py` (Brussels). |
 | `cities/<id>/ai_votes.js` | `window.AI_VOTES = {...}` — the AI proxy's votes (Reus only so far). |
 | `firebase-config.js` | `window.FIREBASE_CONFIG` — multiplayer backend config. Set to `null` for single-player. The apiKey is not a secret; access is governed by the DB rules. |

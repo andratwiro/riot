@@ -109,6 +109,10 @@ header{display:flex;align-items:center;justify-content:space-between;
 .card .topic.orig{color:var(--amber);border-color:rgba(138,106,31,.4)}
 .card h2{font-size:23px;line-height:1.32;margin:14px 0 8px;font-weight:650;letter-spacing:-.012em;color:var(--ink)}
 .card h2.long{font-size:19.5px;line-height:1.38}
+/* original wording = a verbatim quote from the source document → the mono
+   "minutes" face, capped so very long originals never push the vote buttons off */
+.card h2.orig{font:400 14px/1.6 var(--f-mono);letter-spacing:0;color:var(--ink80);
+  max-height:34vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .card .body{color:var(--ink80);font-size:15px}
 .card .body.rawtxt{font:12.5px/1.55 var(--f-mono);color:var(--ink80);white-space:pre-wrap}
 .card .brief{color:var(--ink80);font-size:15px;line-height:1.55}
@@ -143,12 +147,21 @@ header{display:flex;align-items:center;justify-content:space-between;
   border:1.5px solid var(--rule);background:var(--card);color:var(--ink);font-size:17px;line-height:1;
   cursor:pointer;display:none;align-items:center;justify-content:center;z-index:3}
 .card .closex:active{transform:scale(.94)}
-.card .aiflag{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;
-  border:1px solid rgba(138,106,31,.4);background:rgba(138,106,31,.08);font-size:13px;line-height:1;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;padding:0;transition:opacity .15s}
-.card .aiflag:hover{background:rgba(138,106,31,.16)}
-.card .aiflag:active{transform:scale(.92)}
-.card .aiflag.off{border-color:var(--rule);background:transparent;opacity:.5;filter:grayscale(1)}
+/* original-wording toggle: a labeled provenance pill (amber = editorial), not a
+   bare icon — the state is visible text, the ⇄ is the tap affordance. The button
+   itself is a transparent ≥44px hit area; the pill inside is the visual. */
+.card .aiflag{position:absolute;top:6px;right:8px;min-height:44px;display:flex;align-items:center;
+  background:none;border:0;padding:0 6px 0 12px;cursor:pointer;z-index:3}
+.card .aifpill{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;
+  font:700 10px var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--amber);
+  border:1px solid rgba(138,106,31,.45);background:rgba(138,106,31,.08);
+  padding:5px 10px;border-radius:999px;transition:background .15s,color .15s}
+.card .aifswap{font-size:12px;line-height:1;opacity:.75}
+.card .aiflag:hover .aifpill{background:rgba(138,106,31,.16)}
+.card .aiflag:active .aifpill{transform:scale(.95)}
+.card .aiflag.on .aifpill{background:var(--amber);border-color:var(--amber);color:var(--card)}
+/* long topics wrap clear of the pill instead of running under it */
+.card .aiflag~.topic{max-width:calc(100% - 148px)}
 .card.expanded .aiflag{display:none}
 .card.expanded h2,
 .card.expanded .more{display:none}

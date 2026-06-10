@@ -6,6 +6,7 @@ window.CITY_CONFIG = {
   name: "Brussels",
   title: "BRUSSELS",
   lang: "en",
+  srcLang: "fr",                       // original proposal wording (CRI source) is French
   logo: "assets/logos/brussels_iris.svg",
   live_split: true,                    // after-vote room split (only renders post-vote)
   // ?deck=live → curated room-session deck (~15 contested cards; same SET for the

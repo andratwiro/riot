@@ -6,6 +6,7 @@ window.CITY_CONFIG = {
   name: "Reus",
   title: "REUS",
   lang: "ca",                          // Reus cards stay in Catalan (source language)
+  srcLang: "ca",                       // original proposal wording is also Catalan
   logo: "assets/logos/reus_rose_color.svg",
   live_split: true,                    // after-vote room split (only renders post-vote)
   // ?deck=live → this curated room-session deck (~15-20 contested cards; the whole

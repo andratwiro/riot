@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <!-- Rosa de Reus — stylised 5-petal rose, the city's emblem -->
-  <g fill="#e23b5a">
-    <path d="M50 50 C38 30 42 13 50 9 C58 13 62 30 50 50Z"/>
-    <path d="M50 50 C38 30 42 13 50 9 C58 13 62 30 50 50Z" transform="rotate(72 50 50)"/>
-    <path d="M50 50 C38 30 42 13 50 9 C58 13 62 30 50 50Z" transform="rotate(144 50 50)"/>
-    <path d="M50 50 C38 30 42 13 50 9 C58 13 62 30 50 50Z" transform="rotate(216 50 50)"/>
-    <path d="M50 50 C38 30 42 13 50 9 C58 13 62 30 50 50Z" transform="rotate(288 50 50)"/>
+  <!-- Rosa de Reus — the city's heraldic five-petal rose. Petals are drawn fat
+       and overlapping so the mark still reads as a rose at 23px header size. -->
+  <g fill="#DC3055" stroke="#A6203D" stroke-width="3" stroke-linejoin="round">
+    <ellipse cx="50" cy="27" rx="16.5" ry="22"/>
+    <ellipse cx="50" cy="27" rx="16.5" ry="22" transform="rotate(72 50 50)"/>
+    <ellipse cx="50" cy="27" rx="16.5" ry="22" transform="rotate(144 50 50)"/>
+    <ellipse cx="50" cy="27" rx="16.5" ry="22" transform="rotate(216 50 50)"/>
+    <ellipse cx="50" cy="27" rx="16.5" ry="22" transform="rotate(288 50 50)"/>
   </g>
-  <circle cx="50" cy="50" r="12.5" fill="#c41e3a"/>
-  <circle cx="50" cy="50" r="5" fill="#ffd9e1"/>
+  <circle cx="50" cy="50" r="12" fill="#8E1B33"/>
+  <circle cx="50" cy="50" r="4.5" fill="#FFD9E1"/>
 </svg>
