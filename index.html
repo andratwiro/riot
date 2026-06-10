@@ -18,7 +18,7 @@
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.46</span>
+      <span class="ver">v0.47</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -39,11 +39,14 @@
 
   <div id="survey">
     <div class="progressrow" id="progressRow">
-      <div class="ptrack" aria-hidden="true"><div class="pfill" id="progressFill"></div><div class="proomtick" id="roomTick" hidden title="Room average"></div></div>
+      <div class="ptrack" aria-hidden="true"><div class="pfill" id="progressFill"></div><div class="proomtick" id="roomTick" hidden title="Room average"></div><div class="livefill" id="liveFill" hidden></div></div>
       <span class="plabel" id="progress"></span>
     </div>
+    <p id="pausedNote">Paused — the moderator holds the room</p>
     <div class="stack" id="stack"></div>
     <div id="done">
+      <!-- LIVE SESSION only: the room-level finding lands before the personal one -->
+      <div id="roomVerdict" hidden></div>
       <p class="donek" id="doneKicker"></p>
       <h2 id="doneHead"></h2>
       <p class="doneSub" id="doneSub"></p>
@@ -57,6 +60,26 @@
       <p class="donenote">Votes stay on this phone. Reloading clears them.</p>
     </div>
   </div>
+
+  <!-- LIVE SESSION · voter lobby: the room gathers, the moderator opens the first ballot -->
+  <div id="lobby" hidden>
+    <p class="lb-k" id="lobbyKicker">Live session</p>
+    <h1 class="lb-h">The room is gathering.</h1>
+    <div class="lb-faces" id="lobbyFaces"></div>
+    <p class="lb-count"><b id="lobbyCount">1</b></p>
+    <p class="lb-sub" id="lobbySub">in the room</p>
+    <p class="lb-note">Your votes stay on this phone — the room only ever sees counts.</p>
+  </div>
+
+  <!-- LIVE SESSION · stage: the moderator's screen doubles as the projector view.
+       Built by live.js; controls render only for ?role=moderator. -->
+  <div id="stage" hidden>
+    <div class="sg-main"></div>
+    <div id="sgCtl" hidden></div>
+  </div>
+
+  <!-- LIVE SESSION · moderator setup: pick the plenary session, trim, set the clock -->
+  <div id="modSetup" hidden><div class="ms-wrap"></div></div>
 
 </div>
 
@@ -198,14 +221,16 @@
 <script src="map.js"></script>
 <script src="views.js"></script>
 <script src="multiplayer.js"></script>
+<script src="live.js"></script>
 <script>
-// Boot — startup order: map coords (for the reveal) → join gate → room connect → deal cards.
+// Boot — startup order: map coords (for the reveal) → room connect → live session → join gate → deal cards.
 $("#aiToggle").checked=showAI;
 if(!AI){const r=$("#aiRow"); if(r)r.style.display="none";}   // hide the toggle if no proxy votes exist
 applyAiParty(showAI);   // builds the reveal-map coords (adds the IA party iff showAI)
 if(devToggleEl)devToggleEl.checked=devMode;
 document.body.classList.toggle("dev",devMode);
 mpInit();
+liveInit();             // LIVE SESSION: lockstep room state (no-op without a backend or ?simlive)
 maybeShowJoin();        // room sessions: name/emoji gate before the first card (no-op single-player)
 renderStack();
 </script>

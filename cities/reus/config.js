@@ -8,6 +8,7 @@ window.CITY_CONFIG = {
   lang: "ca",                          // Reus cards stay in Catalan (source language)
   srcLang: "ca",                       // original proposal wording is also Catalan
   logo: "assets/logos/reus_rose_color.svg",
+  chamber: "the council",                 // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
   // ?deck=live → this curated room-session deck (~15-20 contested cards; the whole
   // room gets the same SET, order is per-person). Curator-picked for variety from

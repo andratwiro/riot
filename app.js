@@ -218,8 +218,10 @@ function renderSplitInto(el,id,myVote){
 }
 function react(vote){
   if(voting || idx>=deck.length)return;
-  voting=true;
   const d=deck[idx];
+  // live session: ballots open only during the voting phase, one per card
+  if(window.LIVE && LIVE.active() && !LIVE.canVote(d.id))return;
+  voting=true;
   answers[d.id]=vote;
   if(typeof mpVote==="function") mpVote(d.id,vote);   // tally + presence (no-op single-player)
   updateProgress();
@@ -230,6 +232,12 @@ function react(vote){
     const st=document.createElement("div");
     st.className="stamp"; st.textContent=STAMP_TXT[vote]||vote;
     top.appendChild(st);
+  }
+  // live session: the stamp lands, then "ballot cast · n/m" — the card advances
+  // only when the ROOM advances (lockstep), and the split waits for the reveal.
+  if(window.LIVE && LIVE.active()){
+    setTimeout(()=>{ if(top && top.isConnected) LIVE.afterCast(top); },430);
+    return;
   }
   const proceed=()=>{
     if(!voting)return; voting=false; splitUpdate=null;
@@ -382,6 +390,7 @@ $("#stack").addEventListener("click",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(!$("#join").hidden)return;
+  if($("#lobby")&&!$("#lobby").hidden)return;          // live session not started yet
   if($("#sheet").classList.contains("open")||$("#log").style.display==="block"||$("#partyView").style.display==="block"||$("#marksView").style.display==="block"||$("#importView").style.display==="block")return;
   const exp=$("#stack").querySelector(".card.expanded");
   if(exp){if(e.key==="Escape")collapseCard(exp);return;}
@@ -403,6 +412,7 @@ let identity=null; try{identity=JSON.parse(localStorage.getItem(ID_KEY));}catch(
 const JOIN_EMOJI=["🦊","🦉","🐢","🐝","🦋","🐙","🌻","🌿","🍊","🌙","⚡","🔥","💧","⭐","🍀","🎈"];
 function maybeShowJoin(){
   // only gate when there IS a room to join (live multiplayer or simulated one)
+  if(window.LIVE_ROLE==="mod") return;       // the moderator runs the room, not a ballot
   if(!(typeof roomActive==="function" && roomActive())) return;
   if(identity && (identity.emoji||identity.name)) return;
   const grid=$("#joinGrid");

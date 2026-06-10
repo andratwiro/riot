@@ -100,6 +100,16 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
 - **Join screen**: kicker (violet mono) → Archivo 800 headline → 4×4 emoji
   grid (≥44px targets, one preselected) → optional mono name field → single
   ink CTA. One screen, one button, <30s.
+- **Live-session idioms** (`live.js` + the `LIVE SESSION` block in style.css):
+  the **countdown** is one ink bar closing from both edges toward the centre
+  (`scaleX`, origin centre; stamp-violet under 5s) — a ceiling, not a clock;
+  **ballot cast** shows a mono `n/m` count, never the split; the **official
+  stamp** (`.stamp.official`) is the chamber's imprint — moss APPROVED / brick
+  REJECTED, +6° (opposite the user's −8°), small chamber eyebrow
+  (`CFG.chamber`) — landing as reveal beat 2 after the room's split (beat 1);
+  the **stage** (`#stage`) scales with `clamp()` for 5-metre legibility and
+  reuses the split rows enlarged. Voter chrome in live mode is stripped
+  (no §, no ⚙ until the final reveal, city switch disabled).
 
 ## Motion & feedback
 

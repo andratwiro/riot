@@ -8,6 +8,7 @@ window.CITY_CONFIG = {
   lang: "en",
   srcLang: "fr",                       // original proposal wording (CRI source) is French
   logo: "assets/logos/brussels_iris.svg",
+  chamber: "the parliament",                 // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
   // ?deck=live → curated room-session deck (~15 contested cards; same SET for the
   // whole room, per-person order). The two procedural fast-track votes are excluded.

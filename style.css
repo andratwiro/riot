@@ -424,6 +424,179 @@ body.dev #sheet .devonly:not([hidden]){display:flex}
   border:0;border-radius:10px;padding:16px;font:700 16.5px var(--f-ui);cursor:pointer;min-height:54px}
 .join-go:active{transform:scale(.98)}
 
+/* ============================  LIVE SESSION  ============================
+   Lockstep room voting. The voter phone stays radically simple; the stage
+   (the moderator's screen on the projector) carries the room moment. */
+
+/* voter chrome: no settings, no minutes, no city switch — until the final
+   reveal, where ⚙ returns (the AI-proxy toggle lives there) */
+body.live-voter #quickLog,body.live-voter #menuBtn{display:none}
+body.live-voter.live-final #menuBtn{display:inline-flex}
+body.live-voter .citysel{pointer-events:none}
+body.live-voter .citychev{display:none}
+body.live-lobby #survey,body.live-lobby #roomstrip{display:none}
+body.live-mod #survey,body.live-mod #roomstrip,body.live-mod #join{display:none}
+body.live-mod .app{max-width:none}
+
+/* the countdown: a ceiling, not a clock — the bar closes from both edges
+   toward the centre; the last five seconds turn stamp-violet */
+.livefill{position:absolute;inset:0;background:var(--ink);border-radius:2px;
+  transform-origin:center;transform:scaleX(1)}
+.livefill.low{background:var(--stamp)}
+.livefill[hidden]{display:none}
+.ptrack.counting .pfill,.ptrack.counting .proomtick{display:none}
+
+/* paused: the moderator holds the room */
+#pausedNote{display:none;margin:-4px 0 10px;text-align:center;
+  font:700 11px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--stamp)}
+body.live-paused #pausedNote{display:block}
+body.live-paused #stack{opacity:.5;pointer-events:none}
+
+/* ballot cast — how many are in, never the split (that belongs to the reveal) */
+.castp{margin-top:auto;padding-top:14px;flex:0 0 auto;text-align:center;animation:fadein .25s both}
+.castp .sp-k{margin:0 0 7px;font:700 10.5px var(--f-mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink60)}
+.cp-n{font:700 34px var(--f-mono);line-height:1;color:var(--ink)}
+.cp-n span{font-size:17px;color:var(--ink60);font-weight:400;margin-left:4px}
+.cp-w{margin:7px 0 0;font:400 11px var(--f-mono);color:var(--ink60)}
+
+/* the official imprint: the parliament's stamp meets yours on the same paper.
+   Post-vote context — valence allowed. Opposite angle to the user's stamp. */
+.stamp.official{left:50%;top:22%;display:flex;flex-direction:column;align-items:center;gap:1px;
+  transform:translate(-50%,-50%) rotate(6deg);font-size:21px;padding:7px 18px 5px;
+  animation:stampoff .2s cubic-bezier(.2,1.6,.4,1) both}
+.stamp.official small{font:700 8.5px var(--f-mono);letter-spacing:.22em;text-transform:uppercase;opacity:.85}
+.stamp.official.app{color:var(--moss);border-color:var(--moss);box-shadow:inset 0 0 0 1.5px var(--moss)}
+.stamp.official.rej{color:var(--brick);border-color:var(--brick);box-shadow:inset 0 0 0 1.5px var(--brick)}
+@keyframes stampoff{0%{transform:translate(-50%,-50%) rotate(6deg) scale(1.8);opacity:0}
+  100%{transform:translate(-50%,-50%) rotate(6deg) scale(1);opacity:.92}}
+
+/* reveal extras on the split: timeouts as a muted no-ballot row + the verdict line */
+.sp-row.to{opacity:.65}
+.sp-row.to .sp-l,.sp-row.to .sp-n{color:var(--ink60)}
+.lv-verdict{margin:11px 0 0;text-align:center;font:700 12px var(--f-mono);
+  letter-spacing:.08em;text-transform:uppercase;animation:fadein .3s both}
+.lv-verdict.agree{color:var(--moss)}
+.lv-verdict.differ{color:var(--brick)}
+.lv-verdict.tie{color:var(--ink60)}
+.lv-verdict[hidden]{display:none}
+
+/* ---- voter lobby ---- */
+#lobby{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:20px;min-height:0}
+#lobby[hidden]{display:none}
+.lb-k{margin:0 0 6px;font:700 11px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--stamp)}
+.lb-h{margin:0 0 18px;font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.015em}
+.lb-faces{display:flex;flex-wrap:wrap;justify-content:center;max-width:340px;margin:0 0 16px}
+#lobbyFaces .face{width:38px;height:38px;font-size:19px;margin-left:-9px}
+#lobbyFaces .face.init{font-size:13px}
+.lb-count{margin:0;font:700 52px var(--f-mono);line-height:1}
+.lb-sub{margin:4px 0 0;font:400 12px var(--f-mono);color:var(--ink60);max-width:300px}
+.lb-note{margin:22px 0 0;font:400 11px var(--f-mono);color:var(--ink60);max-width:300px}
+
+/* ---- room verdict on the final reveal (the shared payoff lands first) ---- */
+#roomVerdict{width:100%;max-width:600px;margin:6px 0 18px;background:var(--card);
+  border:1px solid var(--rule);border-radius:12px;padding:16px 16px 10px;text-align:left}
+#roomVerdict[hidden]{display:none}
+.rv-k{margin:0 0 6px;font:700 10.5px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--stamp)}
+.rv-h{margin:0 0 12px;font-size:18px;line-height:1.3;font-weight:650;letter-spacing:-.01em}
+.rv-row{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-top:1px solid var(--rule)}
+.rv-t{font-size:13.5px;font-weight:600;line-height:1.35}
+.rv-chips{display:flex;gap:6px;flex-wrap:wrap}
+
+/* ---- the stage: legible from five metres ---- */
+#stage{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;
+  padding:4px clamp(16px,4vw,52px) 0}
+#stage[hidden]{display:none}
+.sg-main{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow-y:auto}
+.sg-k{margin:0;font:700 clamp(11px,1.4vw,16px) var(--f-mono);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink60)}
+.sg-card{position:relative;display:flex;flex-direction:column;flex:1 1 auto;min-height:0;padding-top:8px}
+.sg-topic{margin:14px 0 0;font:700 clamp(11px,1.5vw,17px) var(--f-mono);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink60);align-self:flex-start;
+  border-bottom:1px solid var(--rule);padding:0 1px 5px}
+.sg-h{margin:14px 0 18px;font-weight:800;font-size:clamp(25px,4.6vw,58px);
+  line-height:1.16;letter-spacing:-.015em;max-width:24ch}
+.sg-track{position:relative;height:8px;background:var(--rule);border-radius:4px;margin:auto 0 16px;flex:0 0 auto}
+.sg-fill{position:absolute;inset:0;background:var(--ink);border-radius:4px;
+  transform-origin:center;transform:scaleX(1)}
+.sg-fill.low{background:var(--stamp)}
+.sg-meta{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 14px;flex:0 0 auto}
+.sg-in{font:700 clamp(20px,3.2vw,40px) var(--f-mono);color:var(--ink)}
+.sg-in b{font-weight:700}
+.sg-secs{font:700 clamp(15px,2.2vw,26px) var(--f-mono);color:var(--ink60)}
+.sg-revwrap{margin:0 0 18px}
+.sg-revwrap:empty{display:none}
+#stage .split{margin-top:0;padding-top:6px}
+#stage .sp-l{flex:0 0 clamp(70px,11vw,140px);font-size:clamp(12px,1.8vw,20px)}
+#stage .sp-track{height:clamp(10px,1.6vw,18px);border-radius:3px}
+#stage .sp-n{flex:0 0 clamp(30px,4vw,56px);font-size:clamp(14px,2.4vw,30px)}
+#stage .sp-k{font-size:clamp(11px,1.4vw,16px)}
+#stage .lv-verdict{font-size:clamp(13px,2vw,22px);margin-top:14px}
+#stage .stamp.official.big{position:absolute;left:auto;right:4%;top:16%;transform:rotate(8deg);
+  font-size:clamp(26px,4.5vw,54px);padding:1.5vh 2.4vw 1vh;border-width:4px;border-radius:12px}
+#stage .stamp.official.big small{font-size:clamp(10px,1.2vw,15px)}
+@keyframes stampbig{0%{transform:rotate(8deg) scale(1.8);opacity:0}100%{transform:rotate(8deg) scale(1);opacity:.92}}
+#stage .stamp.official.big{animation-name:stampbig}
+/* stage lobby: the join moment */
+.sg-lobby{margin:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0}
+.sg-join{margin:14px 0 6px;font:700 clamp(24px,5vw,64px) var(--f-mono);letter-spacing:.01em;word-break:break-all}
+.sg-sub{margin:6px 0 0;font:400 clamp(12px,1.8vw,20px) var(--f-mono);color:var(--ink60)}
+.sg-faces{display:flex;flex-wrap:wrap;justify-content:center;max-width:620px;margin:22px 0 12px}
+#stage .face{width:clamp(30px,4vw,46px);height:clamp(30px,4vw,46px);font-size:clamp(15px,2vw,23px);margin-left:-9px}
+.sg-inlab{margin:0;font:400 clamp(14px,2.2vw,24px) var(--f-mono);color:var(--ink60)}
+.sg-inlab b{color:var(--ink);font-size:clamp(20px,3vw,36px)}
+/* stage final: the room v. the parliament, big */
+.sg-final{margin:auto 0;padding:16px 0}
+.sg-final .sg-h{max-width:30ch}
+.sg-rvlist{max-width:880px;margin:6px 0 14px}
+.sg-rvlist .rv-row{flex-direction:row;align-items:baseline;gap:16px;padding:clamp(8px,1.2vh,14px) 0}
+.sg-rvlist .rv-t{flex:1 1 auto;font-size:clamp(14px,2vw,22px)}
+.sg-rvlist .badge{font-size:clamp(10px,1.3vw,15px)}
+/* stage controls (moderator only) */
+#sgCtl{flex:0 0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  padding:12px 0 calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--rule)}
+#sgCtl[hidden]{display:none}
+.sgc{min-height:48px;padding:12px 18px;border-radius:9px;font:700 14px var(--f-ui);cursor:pointer;
+  background:transparent;border:2px solid var(--ink);color:var(--ink);transition:transform .08s}
+.sgc:active{transform:scale(.97)}
+.sgc.pri{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.sgc.danger{border-color:rgba(156,61,61,.55);color:var(--brick)}
+.sgc.danger.armed{background:rgba(156,61,61,.08);border-color:var(--brick)}
+
+/* ---- moderator setup ---- */
+#modSetup{flex:1 1 auto;overflow-y:auto;min-height:0;padding:8px 16px 40px}
+#modSetup[hidden]{display:none}
+.ms-wrap{max-width:720px;margin:0 auto}
+.ms-k{margin:8px 0 4px;font:700 11px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--stamp)}
+.ms-h{margin:0 0 6px;font-size:26px;font-weight:800;letter-spacing:-.015em;line-height:1.2}
+.ms-sub{margin:0 0 16px;color:var(--ink60);font-size:14px}
+.ms-list{display:flex;flex-direction:column;gap:8px;margin:0 0 18px}
+.ms-sess{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--rule);
+  border-radius:10px;padding:14px 16px;font:inherit;color:var(--ink);cursor:pointer;min-height:56px;text-align:left}
+.ms-sess:hover{border-color:var(--ink60)}
+.ms-sess:active{transform:scale(.995)}
+.ms-date{font:700 13px var(--f-mono);flex:0 0 auto}
+.ms-code{font:400 12px var(--f-mono);color:var(--ink60);flex:1 1 auto;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ms-n{font:700 12px var(--f-mono);flex:0 0 auto}
+.ms-item{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--rule);
+  border-radius:9px;padding:13px 14px;cursor:pointer;min-height:48px}
+.ms-item.off{opacity:.45}
+.ms-item input{width:20px;height:20px;accent-color:var(--stamp);margin-top:1px;flex:0 0 auto}
+.ms-it{font-size:14px;line-height:1.4}
+.ms-cfg{display:flex;flex-direction:column;gap:10px;margin:0 0 18px}
+.ms-cfg label{display:flex;align-items:center;gap:8px;font:400 13px var(--f-mono);color:var(--ink80);flex-wrap:wrap}
+.ms-cfg input{width:68px;background:var(--card);border:1px solid var(--rule);border-radius:7px;
+  padding:9px 6px;font:700 15px var(--f-mono);color:var(--ink);text-align:center;min-height:44px}
+.ms-cfg small{color:var(--ink60)}
+.ms-acts{display:flex;gap:10px}
+.ms-back{flex:0 0 auto;background:transparent;border:2px solid var(--ink);color:var(--ink);
+  border-radius:9px;padding:12px 16px;font:700 14px var(--f-ui);cursor:pointer;min-height:50px}
+.ms-go{flex:1 1 auto;background:var(--ink);color:var(--card);border:0;border-radius:9px;
+  padding:12px 16px;font:700 15px var(--f-ui);cursor:pointer;min-height:50px}
+.ms-go:active,.ms-back:active{transform:scale(.98)}
+
 /* ---- quality floor ---- */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}

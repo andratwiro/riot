@@ -17,9 +17,10 @@ const SIM_N = (()=>{const v=parseInt(new URLSearchParams(location.search).get("s
                     return Number.isFinite(v)&&v>0?Math.min(v,40):0;})();
 let simOn = SIM_N>0;
 
-function roomActive(){ return !!(mpSelf || simOn); }
+function roomActive(){ return !!(mpSelf || simOn || (window.LIVE && LIVE.simActive())); }
 // the split's data source: null = no room → app.js skips the split beat entirely
 function roomTally(id){
+  if(window.LIVE && LIVE.active()) return LIVE.tally(id);   // live sessions tally per-session
   if(!roomActive()) return null;
   return TALLIES[id] || (TALLIES[id]={for:0,against:0,abstain:0});
 }
@@ -98,6 +99,13 @@ function publishSelf(){
 }
 // called by app.js react(): my ballot → anonymous tally + presence. No-op single-player.
 function mpVote(id,vote){
+  // live session: tally + cast marker live under the session node, not the room's
+  if(window.LIVE && LIVE.active()){
+    LIVE.cast(id,vote);
+    activityTick("me");
+    if(mpSelf) publishSelf(); else renderStrip();
+    return;
+  }
   if(simOn){ simCastRoom(id); const t=roomTally(id); t[vote]=(t[vote]||0)+1; activityTick("me"); renderStrip(); return; }
   if(!mpSelf){ return; }
   if(mpTallies) mpTallies.child(id).child(vote).transaction(v=>(v||0)+1);
@@ -122,6 +130,7 @@ function mpInit(){
   try{
     firebase.initializeApp(window.FIREBASE_CONFIG);
     const db=firebase.database(), room=CFG.id;
+    window.mpDb=db;                       // live.js builds its store on the same handle
     // per-TAB identity (sessionStorage): each window is a distinct participant, and it
     // survives a refresh within that tab. (localStorage would make every window of the
     // same browser collapse into one participant.)
@@ -130,9 +139,13 @@ function mpInit(){
     mpPart=db.ref(`rooms/${room}/participants`);
     mpCtrl=db.ref(`rooms/${room}/control`);
     mpTallies=db.ref(`rooms/${room}/tallies`);
-    mpSelf=mpPart.child(mpPid);
-    mpSelf.onDisconnect().remove();
-    publishSelf();
+    // the moderator observes the room but is not a voter: no participant record,
+    // so ballots-in counts and "all present have cast" stay honest
+    if(window.LIVE_ROLE!=="mod"){
+      mpSelf=mpPart.child(mpPid);
+      mpSelf.onDisconnect().remove();
+      publishSelf();
+    }
     mpPart.on("value",snap=>{
       const all=snap.val()||{};
       const prev={}; for(const k in PEERS){prev[k]=PEERS[k].n; delete PEERS[k];}
