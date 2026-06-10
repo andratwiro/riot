@@ -28,10 +28,11 @@ function roomTally(id){
 /* ---- peer dots on the reveal map: small faded emojis (ink ring when faceless).
    The crowd is texture, never anchors — they sit below the party dots (z-index).
    Placement: in a live session EVERY participant — synthetic voters included —
-   has a full ballot record in the cast markers, so each is projected out-of-sample
-   onto the CURRENT projection like "you" is; outside live sessions a peer sits at
-   the position it published over presence (canonical MDS). Keyed by pid so a
-   projection switch morphs the dots instead of re-dealing them. ---- */
+   has a full ballot record in the cast markers, so each is a ROW of the same
+   matrix the parties are in and sits at its row's coordinate; outside live
+   sessions a peer sits at the position it published over presence (the
+   canonical Room frame). Keyed by pid so a projection switch morphs the dots
+   instead of re-dealing them. ---- */
 function renderPeersInto(el){
   if(!el) return;
   const live=window.LIVE && LIVE.active();
@@ -41,10 +42,10 @@ function renderPeersInto(el){
     const p=PEERS[pid];
     let c=null;
     // live peers carry a full ballot (cast markers); sim peers carry a fabricated
-    // one — either way, project it like "you". Real async peers have no votes on
-    // this device, so they sit at the canonical position they published.
+    // one — either way they're rows, looked up by pid. Real async peers have no
+    // votes on this device, so they sit at the canonical position they published.
     const votes = live ? LIVE.peerVotes(pid) : (p.votes||null);
-    const bc = votes?blendCoord(votes):null;
+    const bc = votes?blendCoord(votes,pid):null;
     if(bc) c=toPct(bc);
     if(!c) c=p.c;
     i++;
@@ -203,7 +204,9 @@ function mpInit(){
       for(const k in all){ if(k!==mpPid) PEERS[k]={e:all[k].e||"",nm:all[k].nm||"",c:all[k].c||null,n:all[k].n||0,t:all[k].t||0}; }
       renderStrip();
       for(const k in PEERS) if(prev[k]!=null && PEERS[k].n>prev[k]) activityTick(k);
-      renderPeers();
+      // new known ballots are new ROWS — they can tug everyone, so reposition
+      // the whole map (it renders peers too), not just the peer dots
+      if(typeof repositionMap==="function") repositionMap(); else renderPeers();
     });
     mpTallies.on("value",snap=>{
       TALLIES=snap.val()||{};
