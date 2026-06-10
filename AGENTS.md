@@ -33,7 +33,7 @@ without it.
 
 | Path | What it is |
 |------|------------|
-| `index.html` | The shared viewer's markup + loaders: a `?city=reus\|brussels` loader picks which `cities/<id>/` bundle to load (only data + config differ per city), then the app scripts below, then a small inline **boot** block (startup order: `applyAiParty` → `mpInit` → `liveInit` → `renderStack`). Carries the visible **version tag** (see Conventions). |
+| `index.html` | The shared viewer's markup + loaders: a `?city=reus\|brussels` loader picks which `cities/<id>/` bundle to load (only data + config differ per city), then the app scripts below, then a small inline **boot** block (startup order: `applyAiParty` → `mpInit` → `liveInit` → `renderStack`). The **bare URL (no query string) is not an entrance**: it shows a static holding page (`#holding`, "wait for the moderator") and skips the whole boot — no `mpInit`, so parked tabs never appear in room presence. Carries the visible **version tag** (see Conventions). |
 | `style.css` | All viewer CSS — the «l'acta» ballot-paper theme (tokens + doctrine in `.claude/skills/riot-ui/SKILL.md`). |
 | `app.js` | Viewer core: city config/state, the booth (card stack, stamp + after-vote split beat, deck modes incl. `?deck=live`), the reveal screen, join onboarding, city switcher. Votes live in memory only. |
 | `map.js` | The affinity map (reveal-only): MDS of party vote-distances (Jacobi eigensolver), user placement, animated entrance. |
