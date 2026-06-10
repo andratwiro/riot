@@ -10,6 +10,16 @@
 // end of body runs only after Three.js/city bundles/Firebase load — far too late
 // to hide the app chrome. This class lets CSS swap shell↔holding on frame one.
 if(!location.search){document.documentElement.classList.add("hold");document.title="RIOT";}
+// LIVE lobby refresh: this tab is seated in a live lobby (live.js keeps the
+// sessionStorage flag current). Re-seat it on frame one — the booth shell would
+// otherwise flash for the seconds Firebase needs to reconnect and deliver the
+// session snapshot. live.js retires the class once real session state lands.
+else try{
+  var q=new URLSearchParams(location.search);
+  if((q.get("role")||"").toLowerCase()!=="moderator"
+     && sessionStorage.getItem("riot.liveLobby")===(q.get("city")||"reus").toLowerCase())
+    document.documentElement.classList.add("lvhold");
+}catch(e){}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +34,7 @@ if(!location.search){document.documentElement.classList.add("hold");document.tit
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.59</span>
+      <span class="ver">v0.60</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">

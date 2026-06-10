@@ -98,10 +98,26 @@ function simStore(){
 function liveInit(){
   if(SIMLIVE){ lvStore=simStore(); }
   else if(window.mpDb){ lvStore=fbStore(); }
-  else { if(LIVE_ROLE==="mod") modNoBackend(); return; }   // single-player: no live mode
-  if(LIVE_ROLE==="mod"){ document.body.classList.add("live-mod"); }
+  else { lvHold(false); if(LIVE_ROLE==="mod") modNoBackend(); return; }   // single-player: no live mode
+  if(LIVE_ROLE==="mod"){ lvHold(false); document.body.classList.add("live-mod"); }
+  else if(document.documentElement.classList.contains("lvhold")){
+    // refresh hold (html.lvhold, set before first paint): this tab was seated
+    // in the lobby — draw the real document from CFG now, seconds before the
+    // first snapshot confirms it (or returns the booth if the sitting moved on)
+    document.body.classList.add("live-voter");
+    showLobby();
+    setTimeout(()=>{ if(!lvS && lvShownState==="lobby") liveEnded(); },10000);  // backend never answered
+  }
+  let goneT=0;
   lvStore.on("current",sid=>{
-    if(sid===lvSid) return;
+    if(sid===lvSid){
+      // held lobby, but no session in the store: give a freshly-created one a
+      // beat to land (the sim rig writes it late) before returning the booth
+      if(!sid && lvShownState==="lobby" && !goneT)
+        goneT=setTimeout(()=>{ if(!lvSid && lvShownState==="lobby") liveEnded(); },2500);
+      return;
+    }
+    clearTimeout(goneT); goneT=0;
     lvSid=sid;
     if(!sid){ lvS=null; onSessionGone(); return; }
     lvStore.on(lvSess(), s=>{ if(lvSid!==sid)return; lvS=s; onSnapshot(); });
@@ -349,6 +365,15 @@ function deckPeriod(){
   if(!Number.isFinite(lo)) return "";
   return lo===hi ? String(lo) : lo+"–"+hi;
 }
+/* refresh hold: the sessionStorage flag lets the inline head script re-seat
+   this tab in the lobby on frame one (html.lvhold) before Firebase delivers
+   the first snapshot. Seated → renew; leaving → clear. Either way the CSS
+   hold class retires here — body classes carry the layout from now on. */
+function lvHold(on){
+  document.documentElement.classList.remove("lvhold");
+  try{ if(on) sessionStorage.setItem("riot.liveLobby",CFG.id);
+       else   sessionStorage.removeItem("riot.liveLobby"); }catch(e){}
+}
 function lobbyPresence(){
   const lb=$("#lobby"); if(!lb||lb.hidden) return;
   $("#lobbyCount").textContent=voterCount();
@@ -366,12 +391,15 @@ function showLobby(){
   $("#lobbyHead").textContent=L.headline||"";
   $("#lobbyBody").textContent=L.body||"";
   $("#lobbyInst").textContent=L.docketInstitutionLine||"";
-  $("#lobbyDocketLine").textContent=(L.docketCountLine||"")
-    .replace("{period}",deckPeriod()).replace("{n}",((lvS&&lvS.deck)||[]).length);
+  // pre-snapshot (refresh hold) there is no deck yet — leave the count line
+  // blank rather than printing "0 decisions"; the first snapshot fills it
+  $("#lobbyDocketLine").textContent=lvS ? (L.docketCountLine||"")
+    .replace("{period}",deckPeriod()).replace("{n}",(lvS.deck||[]).length) : "";
   $("#lobbyDisc").textContent=L.disclosure||"";
   $("#lobbyStatus").textContent=L.statusWaiting||"";
   $("#lobbyPrivacy").textContent=L.privacyLine||"";
   lobbyPresence();
+  lvHold(true);
 }
 /* peers arrive over presence, not session snapshots — keep the gathering live */
 (function(){
@@ -379,6 +407,7 @@ function showLobby(){
   window.renderStrip=function(){ if(prev)prev(); if(lvS&&lvS.state==="lobby")lobbyPresence(); };
 })();
 function hideLobby(){
+  lvHold(false);
   document.body.classList.remove("live-lobby");
   const lb=$("#lobby"); if(lb) lb.hidden=true;
   lb&&lb.classList.remove("opening");

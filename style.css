@@ -533,6 +533,24 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 #lobby{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:20px;min-height:0;position:relative}
 #lobby[hidden]{display:none}
+/* html.lvhold: set by the inline head script BEFORE first paint when this tab
+   is seated in a live lobby (sessionStorage flag, kept current by live.js) —
+   a refresh re-paints the convocation document on frame one instead of
+   flashing the booth shell while Firebase reconnects. Mirrors the
+   body.live-lobby letterhead + .live-voter chrome strip above; live.js
+   retires the class as soon as real session state lands. */
+html.lvhold #survey,html.lvhold #roomstrip{display:none}
+html.lvhold #lobby[hidden]{display:flex}
+html.lvhold #quickLog,html.lvhold #menuBtn{display:none}
+/* seal, city name and lobby copy are JS-set — until the boot prefill runs the
+   held frame is clean paper, never the wrong city's letterhead (the static
+   markup defaults to Reus). visibility keeps layout, so nothing jumps. */
+html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
+html.lvhold header{justify-content:center}
+html.lvhold .brand{flex-direction:column;gap:0}
+html.lvhold .citysel{flex-direction:column;gap:5px;padding-bottom:2px}
+html.lvhold .citysel .rose{height:30px;width:30px}
+html.lvhold .brand .ver{top:0}
 .lb-doc{width:100%;max-width:480px;text-align:left;
   transition:opacity .4s cubic-bezier(.2,.7,.3,1),transform .4s cubic-bezier(.2,.7,.3,1)}
 #lobby.opening .lb-doc{opacity:0;transform:translateY(-10px);pointer-events:none}
