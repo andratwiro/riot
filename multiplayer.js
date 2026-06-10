@@ -28,9 +28,9 @@ function roomTally(id){
 /* ---- peer dots on the reveal map: small faded emojis (ink ring when faceless).
    The crowd is texture, never anchors — they sit below the party dots (z-index).
    Placement: in a live session EVERY participant — synthetic voters included —
-   has a full ballot record in the cast markers, so each is blended onto the
-   CURRENT projection like "you" is; outside live sessions a peer sits at the
-   position it published over presence (canonical MDS). Keyed by pid so a
+   has a full ballot record in the cast markers, so each is projected out-of-sample
+   onto the CURRENT projection like "you" is; outside live sessions a peer sits at
+   the position it published over presence (canonical MDS). Keyed by pid so a
    projection switch morphs the dots instead of re-dealing them. ---- */
 function renderPeersInto(el){
   if(!el) return;
@@ -40,11 +40,12 @@ function renderPeersInto(el){
   for(const pid in PEERS){
     const p=PEERS[pid];
     let c=null;
-    if(live){
-      const votes=LIVE.peerVotes(pid);
-      const bc=votes?blendCoord(votes):null;
-      if(bc) c=toPct(bc);
-    }
+    // live peers carry a full ballot (cast markers); sim peers carry a fabricated
+    // one — either way, project it like "you". Real async peers have no votes on
+    // this device, so they sit at the canonical position they published.
+    const votes = live ? LIVE.peerVotes(pid) : (p.votes||null);
+    const bc = votes?blendCoord(votes):null;
+    if(bc) c=toPct(bc);
     if(!c) c=p.c;
     i++;
     if(!c) continue;
@@ -112,6 +113,29 @@ function activityTick(pid){
   }
 }
 
+/* ---- the room aggregate (joint map): contribute my ballot's second moments once,
+   read the room's running sum so the map's axes reflect everyone. No individual
+   vote crosses the wire — only the summed covariance, like the anonymous tallies. */
+let mpCov=null;
+function mpContributeCov(){
+  if(simOn || !mpCov || typeof jointMyRow!=="function") return;
+  let done=false; try{done=sessionStorage.getItem("riot.cov."+CFG.id)==="1";}catch(e){}
+  if(done) return;
+  const row=jointMyRow(); if(!row.length) return;
+  const inc=firebase.database.ServerValue.increment, upd={"k":inc(1)};
+  for(const {j,v} of row) upd["s/"+j]=inc(v);
+  for(let a=0;a<row.length;a++)for(let b=a;b<row.length;b++)
+    upd["m2/"+row[a].j+"_"+row[b].j]=inc(row[a].v*row[b].v);
+  mpCov.update(upd).catch(()=>{});
+  try{sessionStorage.setItem("riot.cov."+CFG.id,"1");}catch(e){}
+}
+function parseCov(raw){
+  const s={}, m2={};
+  if(raw && raw.s) for(const j in raw.s) s[j]=raw.s[j];
+  if(raw && raw.m2) for(const key in raw.m2) m2[key]=raw.m2[key];
+  return {k:(raw&&raw.k)||0, s, m2};
+}
+
 /* ---- publishing ---- */
 function publishSelf(){
   renderStrip();
@@ -137,6 +161,7 @@ function mpVote(id,vote){
   publishSelf();
 }
 function localReset(){            // wipe my own session (mirrors "Start over") — used when the room resets
+  try{sessionStorage.removeItem("riot.cov."+CFG.id);}catch(e){}   // re-contribute on the next run
   for(const k in answers) delete answers[k];
   deck=buildDeck(); idx=0; voting=false; splitUpdate=null;
   $("#done").style.display="none";
@@ -147,6 +172,7 @@ function resetEveryone(){
   mpCtrl.child("resetAt").set(firebase.database.ServerValue.TIMESTAMP);  // signal all clients
   mpPart.remove();                                                       // clear everyone's dots
   if(mpTallies) mpTallies.remove();                                      // clear the room's tallies
+  if(mpCov) mpCov.remove();                                              // clear the joint-map aggregate
 }
 function mpInit(){
   if(simOn){ simInit(); return; }
@@ -163,6 +189,7 @@ function mpInit(){
     mpPart=db.ref(`rooms/${room}/participants`);
     mpCtrl=db.ref(`rooms/${room}/control`);
     mpTallies=db.ref(`rooms/${room}/tallies`);
+    mpCov=db.ref(`rooms/${room}/cov`);
     // the moderator observes the room but is not a voter: no participant record,
     // so ballots-in counts and "all present have cast" stay honest
     if(window.LIVE_ROLE!=="mod"){
@@ -181,6 +208,9 @@ function mpInit(){
     mpTallies.on("value",snap=>{
       TALLIES=snap.val()||{};
       if(typeof splitUpdate==="function"&&splitUpdate)splitUpdate();   // live-refresh an open split
+    });
+    mpCov.on("value",snap=>{                            // room's running covariance → reshape the joint map
+      if(typeof jointDataChanged==="function") jointDataChanged(parseCov(snap.val()));
     });
     mpCtrl.child("resetAt").on("value",snap=>{          // someone hit "reset everyone"
       const t=snap.val()||0;
@@ -233,11 +263,20 @@ function simCastRoom(id){
   }
 }
 function simInit(){
+  // give each fake peer a real ballot over the deck — the SAME rows drive their
+  // map dot and the room aggregate, so the joint map's axes bend to the crowd
+  const ids=(typeof jointCols==="function")?jointCols():[];
+  const num=v=>v==="for"?1:v==="against"?-1:0;
+  const s={}, m2={};
   for(let i=0;i<SIM_N;i++){
-    const pid="sim"+i;
+    const pid="sim"+i, votes={};
+    for(const id of ids){const t=Math.random(); votes[id]=t<.4?"for":t<.8?"against":"abstain";}
+    ids.forEach((id,j)=>{const v=num(votes[id]); if(!v)return; s[j]=(s[j]||0)+v;
+      for(let l=j;l<ids.length;l++){const w=num(votes[ids[l]]); if(w)m2[j+"_"+l]=(m2[j+"_"+l]||0)+v*w;}});
     PEERS[pid]={e:SIM_FACES[i%SIM_FACES.length], nm:SIM_NAMES[i%SIM_NAMES.length],
-                c:null, n:Math.floor(Math.random()*3), t:deck.length||18};
+                c:null, votes, n:Math.floor(Math.random()*3), t:deck.length||18};
   }
+  if(typeof jointDataChanged==="function" && ids.length) jointDataChanged({k:SIM_N,s,m2});
   renderStrip();
   // human-ish cadence: each peer casts a ballot every 1.2–4s until they finish
   setInterval(()=>{
@@ -252,8 +291,6 @@ function simInit(){
     }
     if(k)renderStrip();
   },900);
-  // peers appear on the reveal map around the centre once they have votes
-  setTimeout(()=>{for(const pid in PEERS){
-    PEERS[pid].c=[38+Math.random()*24, 34+Math.random()*32];
-  }},1500);
+  // (peer map dots come from each peer's fabricated ballot via blendCoord — no
+  // need to scatter fake coordinates; the joint projection places them for real)
 }
