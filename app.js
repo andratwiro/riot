@@ -311,28 +311,22 @@ function decorateHer(container,size){
   }
 }
 // The finding, not a match score: even your closest list only votes like you X% of the time.
+// The headline stands alone — the map and the ranked field below carry the detail.
 function revealCopy(ranked,a){
   const n=Object.keys(answers).length;
   $("#doneKicker").textContent=`${n} ballot${n===1?"":"s"} cast`;
+  const sub=$("#doneSub");
   if(!ranked.length){
     $("#doneHead").textContent="All done.";
-    $("#doneSub").textContent="No comparable party votes on the decisions you drew.";
+    sub.hidden=false; sub.textContent="No comparable party votes on the decisions you drew.";
     return;
   }
-  const top=ranked[0], pct=a[top.token].pct, comp=a[top.token].comp;
-  let head,sub;
-  if(pct>=85){
-    head=`${top.name} votes like you ${pct}% of the time.`;
-    sub=`Nearly a straight ticket, across the ${comp} decisions you both voted on. Here's the whole field.`;
-  }else if(pct>=60){
-    head=`Even your closest party only votes with you ${pct}% of the time.`;
-    sub=`That's ${top.name}, across ${comp} shared decisions. No list is you — the map shows where you actually sit.`;
-  }else{
-    head=`No party votes the way you do. ${top.name} comes closest, at ${pct}%.`;
-    sub=`Across ${comp} shared decisions. The map shows where you actually sit.`;
-  }
-  $("#doneHead").textContent=head;
-  $("#doneSub").textContent=sub;
+  sub.hidden=true; sub.textContent="";
+  const top=ranked[0], pct=a[top.token].pct;
+  $("#doneHead").textContent =
+    pct>=85 ? `${top.name} votes like you ${pct}% of the time.` :
+    pct>=60 ? `Even your closest party only votes with you ${pct}% of the time.` :
+    `No party votes the way you do. ${top.name} comes closest, at ${pct}%.`;
 }
 function finish(){
   $("#stack").innerHTML="";

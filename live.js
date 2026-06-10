@@ -3,7 +3,8 @@
    The model: lobby → [card N: voting → card N: reveal] × deck → final reveal.
    Everyone is always on the same card. State lives in one moderator-written
    RTDB subtree (rooms/<city>/live); voters write exactly two things per card:
-   an anonymous tally increment and a directionless "ballot in" cast marker.
+   an anonymous tally increment and a cast marker carrying their direction
+   (pseudonymous by emoji — surfaced ONLY at the per-card reveal, never before).
 
      rooms/<city>/live/
        current: <sid>                          ← null/absent = no live session
@@ -14,13 +15,16 @@
          deadline: epoch ms (server clock)     ← voting ceiling; bar renders from it
          remaining: ms (only while paused)
          cfg:      {timer, reveal}             ← seconds; reveal 0 = manual advance
-         cast/<id>/<pid>: ts                   ← ballot in — ACTIVITY, no direction
+         cast/<id>/<pid>: dir                  ← ballot in, WITH direction (reveal-only)
          tallies/<id>/<dir>: n                 ← anonymous atomic increments
 
-   Doctrine holds: per-card reveal shows the official OUTCOME only — party
-   detail belongs to the final reveal and the minutes. Timeouts are never
-   written anywhere: no cast marker + nothing in local `answers` ⇒ excluded
-   from affinity automatically.
+   Doctrine (amended by Rob, 2026-06): the per-card reveal leads with the
+   chamber's official stamp (the real verdict), then the room lands as emoji
+   piles — each cast face on its pile. Directions are pseudonymous (emoji,
+   chosen in private) and surface only AFTER everyone on the card has cast or
+   timed out; nothing direction-shaped ever shows pre-vote. Party detail still
+   belongs to the final reveal and the minutes. Timeouts get no cast marker +
+   nothing in local `answers` ⇒ excluded from affinity automatically.
 
    Roles: default URL = voter (radically simple). ?role=moderator = picks the
    deck by plenary session, starts/pauses/advances/ends; their screen is the
@@ -52,7 +56,7 @@ window.LIVE={
   cast(id,vote){
     if(!lvSid) return;
     lvStore.inc(`${lvSess()}/tallies/${id}/${vote}`);
-    lvStore.set(`${lvSess()}/cast/${id}/${lvPid()}`, lvStore.now());
+    lvStore.set(`${lvSess()}/cast/${id}/${lvPid()}`, vote);   // direction — for the reveal's piles
   },
   tally(id){
     const t=((lvS&&lvS.tallies)||{})[id]||{};
@@ -230,7 +234,7 @@ function updateCastCounts(){
   const sg=$("#sgIn"); if(sg) sg.textContent=`${n}/${m}`;
 }
 
-/* ---- the two-beat reveal: 1) the room's split  2) the parliament's stamp ---- */
+/* ---- the two-beat reveal: 1) the parliament's stamp  2) the room's emoji piles ---- */
 function roomVerdict(id){
   const t=LIVE.tally(id);
   if(t.for>t.against) return "approved";
@@ -244,31 +248,32 @@ function verdictCopy(d){
   if(rv===d.outcome) return {cls:"agree", tx:`The room agrees with ${CHAMBER}.`};
   return {cls:"differ", tx:"The room would have decided differently."};
 }
-// the chamber's split, counted by political group/party (aggregate, never names)
-function chamberTally(d){
-  const t={for:0,against:0,abstain:0};
-  for(const v of Object.values(d.party_votes_canon||{})) if(t[v]!=null) t[v]++;
-  return t;
-}
-/* two layers per row: thick ink bar = this room (simulated), thin outlined
-   bar = the chamber (real). Each layer normalised to its own total. */
-function renderLiveSplit(el,id){
-  const d=byId[id], t=LIVE.tally(id), c=chamberTally(d), my=answers[id];
-  const rows=[["against","Against"],["abstain","Abstain"],["for","For"]];
-  const ball=rows.reduce((s,[k])=>s+t[k],0), total=ball||1;
-  const cTotal=rows.reduce((s,[k])=>s+c[k],0)||1;
-  const unit=CFG.id==="brussels"?"group":"party";
+/* the room as emoji piles: every cast face lands on its pile, in button order
+   (Against / Abstain / For). Directions come from the cast markers — they are
+   pseudonymous and shown only here, after the card has closed. */
+function renderLivePiles(el,id){
+  const my=answers[id];
+  const castMap=((lvS&&lvS.cast)||{})[id]||{};
+  const piles={against:[],abstain:[],for:[]};
+  if(my && piles[my]) piles[my].push({e:identity&&identity.emoji,nm:(identity&&identity.name)||"you",me:true});
+  for(const pid of Object.keys(castMap)){
+    if(pid===lvPid()) continue;                  // mine comes from `answers` (may still be in flight)
+    const v=castMap[pid]; if(!piles[v]) continue;
+    const p=PEERS[pid]||{};
+    piles[v].push({e:p.e,nm:p.nm,me:false});
+  }
+  const ball=piles.against.length+piles.abstain.length+piles.for.length;
   const noBallot=Math.max(voterCount()-castCount(id),0);
-  el.innerHTML=`<p class="sp-k">The room v. ${esc(CHAMBER)} · ${ball} ballot${ball===1?"":"s"}</p>
-    <p class="sp-leg">▰ this room · ▱ ${esc(CHAMBER)}, by ${unit}</p>`+
-    rows.map(([k,lab])=>`<div class="sp-row dual${k===my?" mine":""}">
-        <span class="sp-l">${lab}</span>
-        <span class="sp-bars">
-          <span class="sp-track"><span class="sp-fill" style="width:${Math.round(100*t[k]/total)}%"></span></span>
-          <span class="sp-track ch"><span class="sp-fill ch" style="width:${Math.round(100*c[k]/cTotal)}%"></span></span>
-        </span>
-        <span class="sp-ns"><b>${t[k]}</b><i>${c[k]}</i></span></div>`).join("")+
-    (noBallot?`<div class="sp-row to"><span class="sp-l">Timeout</span><span class="sp-track"></span><span class="sp-n">${noBallot}</span></div>`:"")+
+  let i=0;                                       // global stagger across the three piles
+  const stack=f=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${faceHTML(f.e,f.nm,f.me)}</span>`;
+  const col=(k,lab)=>`<div class="pl-col${k==="abstain"?" quiet":""}${my===k?" mine":""}">
+      <div class="pl-stack">${piles[k].map(stack).join("")||`<span class="pl-none">—</span>`}</div>
+      <span class="pl-lab">${lab}</span>
+      <span class="pl-n">${piles[k].length}</span>
+    </div>`;
+  el.innerHTML=`<p class="sp-k">The room · ${ball} ballot${ball===1?"":"s"}</p>
+    <div class="piles">${col("against","Against")}${col("abstain","Abstain")}${col("for","For")}</div>`+
+    (noBallot?`<p class="pl-to">${noBallot} didn't vote</p>`:"")+
     `<p class="lv-verdict" hidden></p>`;
 }
 function stampOutcome(card,d){
