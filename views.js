@@ -187,8 +187,9 @@ $("#copyVotes").addEventListener("click",()=>{
     $("#copyVotes").textContent="✓ Copied";setTimeout(()=>$("#copyVotes").textContent="⧉ Copy votes",1500);
   });
 });
-// Replace the live session with an imported set of votes, then re-render (lands on the
-// next unvoted card, or the results screen if every imported decision is covered).
+// Replace the session with an imported set of votes and land straight on the reveal:
+// an import is a finished sitting brought back, not a resume — even a partial set
+// skips the remaining cards' rhythm. ↻ on the reveal still re-deals the full deck.
 function applyImportedVotes(map){
   for(const k in answers)delete answers[k];
   let applied=0;
@@ -196,8 +197,8 @@ function applyImportedVotes(map){
     const v=map[id];
     if(byId[id]&&(v==="for"||v==="against"||v==="abstain")){answers[id]=v;applied++;}
   }
-  deck=buildDeck(true);   // continue with the unanswered remainder of the same deck mode
-  idx=0;
+  deck=buildDeck(true);          // same deck mode, minus the imported ballots
+  idx=applied?deck.length:0;     // past the remainder → renderStack lands on finish()
   $("#done").style.display="none";
   renderStack();
   if(typeof publishSelf==="function")publishSelf();
