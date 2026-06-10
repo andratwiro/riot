@@ -459,13 +459,22 @@ function renderStage(){
     sgKey=key;
     let main="";
     if(st==="lobby"){
-      main=`<div class="sg-lobby">
-        <p class="sg-k">Live session · ${esc(CFG.name)}</p>
-        <h1 class="sg-join">${esc(joinUrl)}</h1>
-        <p class="sg-sub">open it on your phone · pick a face · you're in</p>
-        <div class="sg-faces" id="sgFaces"></div>
-        <p class="sg-inlab"><b id="sgHere">0</b> in the room</p>
-      </div>`;
+      // sim rooms are tab-local (no backend) — showing a join URL there would lie
+      main=SIMLIVE
+        ? `<div class="sg-lobby">
+            <p class="sg-k">Live session · ${esc(CFG.name)} · rehearsal</p>
+            <h1 class="sg-h">Sim room — ${SIMLIVE} fake voters, this tab only.</h1>
+            <p class="sg-sub">phones can't join a rehearsal · drop ?simlive=${SIMLIVE} from your URL for the real room</p>
+            <div class="sg-faces" id="sgFaces"></div>
+            <p class="sg-inlab"><b id="sgHere">0</b> in the room</p>
+          </div>`
+        : `<div class="sg-lobby">
+            <p class="sg-k">Live session · ${esc(CFG.name)}</p>
+            <h1 class="sg-join">${esc(joinUrl)}</h1>
+            <p class="sg-sub">open it on your phone · pick a face · you're in</p>
+            <div class="sg-faces" id="sgFaces"></div>
+            <p class="sg-inlab"><b id="sgHere">0</b> in the room</p>
+          </div>`;
     } else if(st==="final"){
       main=`<div class="sg-final" id="sgFinal"></div>`;
     } else if(d){
