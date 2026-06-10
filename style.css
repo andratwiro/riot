@@ -745,6 +745,7 @@ html.hold #holding[hidden]{display:flex}
 .ms-cfg label{display:flex;align-items:center;gap:8px;font:400 13px var(--f-mono);color:var(--ink80);flex-wrap:wrap}
 .ms-cfg input{width:68px;background:var(--card);border:1px solid var(--rule);border-radius:7px;
   padding:9px 6px;font:700 15px var(--f-mono);color:var(--ink);text-align:center;min-height:44px}
+.ms-cfg .switch input{width:0;min-height:0;padding:0;border:0}   /* the AI-proxy switch reuses the sheet idiom */
 .ms-cfg small{color:var(--ink60)}
 .ms-acts{display:flex;gap:10px}
 .ms-back{flex:0 0 auto;background:transparent;border:2px solid var(--ink);color:var(--ink);

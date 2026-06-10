@@ -34,7 +34,7 @@ else try{
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.64</span>
+      <span class="ver">v0.65</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -215,11 +215,6 @@ else try{
   <div class="sheet-panel" role="dialog" aria-label="Options">
     <div class="sheet-grab"></div>
     <h3>Options</h3>
-    <label class="sheet-item" for="aiToggle" id="aiRow">
-      <span class="si-ic">○</span>
-      <span class="si-tx"><b>Show AI proxy</b></span>
-      <span class="switch"><input type="checkbox" id="aiToggle"><span class="slider"></span></span>
-    </label>
     <button class="sheet-item" id="openLog">
       <span class="si-ic">§</span>
       <span class="si-tx"><b>View the minutes</b><small>Verbatim source + real party votes</small></span>
@@ -271,9 +266,7 @@ else try{
 <script src="live.js"></script>
 <script>
 // Boot — startup order: map coords (for the reveal) → room connect → live session → join gate → deal cards.
-$("#aiToggle").checked=showAI;
-if(!AI){const r=$("#aiRow"); if(r)r.style.display="none";}   // hide the toggle if no proxy votes exist
-applyAiParty(showAI);   // builds the reveal-map coords (adds the IA party iff showAI)
+applyAiParty(showAI);   // builds the reveal-map coords (AI mode is session cfg — off at boot)
 document.body.classList.toggle("dev",devMode);
 if(!location.search){
   // Bare URL = no entrance: hold the visitor, and never touch the room

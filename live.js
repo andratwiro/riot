@@ -14,8 +14,9 @@
          idx:      current card
          deadline: epoch ms (server clock)     ← voting ceiling; bar renders from it
          remaining: ms (only while paused)
-         cfg:      {timer, reveal, bots}       ← seconds; reveal 0 = manual advance;
-                                                 bots = synthetic voters, moderator-staged
+         cfg:      {timer, reveal, bots, ai}   ← seconds; reveal 0 = manual advance;
+                                                 bots = synthetic voters, moderator-staged;
+                                                 ai 1 = seat the AI proxy (Proxy IA) in the reveal
          cast/<id>/<pid>: dir                  ← ballot in, WITH direction (reveal-only)
          tallies/<id>/<dir>: n                 ← anonymous atomic increments
 
@@ -130,6 +131,7 @@ function liveInit(){
 /* ---- snapshot dispatch ---- */
 function onSnapshot(){
   if(!lvS) return;
+  liveSyncAI();                            // AI mode is the session's, not the visitor's
   if(LIVE_ROLE==="mod"){ $("#modSetup").hidden=true; renderStage(); modAuthority(); simOnSnapshot(); return; }
   document.body.classList.add("live-voter");
   const st=lvS.state;
@@ -154,10 +156,17 @@ function liveEnded(){
   if(lvShownState!=="final"){       // never reached the payoff → back to the solo booth
     document.body.classList.remove("live-voter","live-final");
     lvShownState="ended"; lvShownIdx=-1; lvDeckSig="";
+    if(showAI){ showAI=false; applyAiParty(false); }   // AI mode dies with the session
     deck=buildDeck(); idx=0; voting=false;
     $("#done").style.display="none";
     renderStack();
   }
+}
+/* AI mode (cfg.ai): the moderator seats the proxy for the whole room — every
+   client mirrors the session flag (a voter on the final screen keeps it). */
+function liveSyncAI(){
+  const on=!!(AI && lvS && lvS.cfg && lvS.cfg.ai);
+  if(on!==showAI){ showAI=on; applyAiParty(on); }
 }
 
 /* ---- lockstep deck/card sync (voter) ---- */
@@ -347,7 +356,7 @@ function renderFinal(){
   lvShownState="final";
   stopCountdown();
   document.body.classList.remove("live-paused");
-  document.body.classList.add("live-final");       // re-opens ⚙ (AI proxy toggle) for voters
+  document.body.classList.add("live-final");       // re-opens ⚙ (minutes, import) for voters
   buildRoomVerdict();
   finish();
   const r=$("#restart"); if(r) r.style.display="none";   // the moderator owns the session
@@ -484,6 +493,7 @@ function renderModSetup(){
       <label>ballot ceiling <input id="msTimer" type="number" inputmode="numeric" min="10" max="180" value="${modSel.timer}"> s</label>
       <label>auto-advance after reveal <input id="msReveal" type="number" inputmode="numeric" min="0" max="60" value="${modSel.reveal}"> s <small>0 = you advance</small></label>
       <label>synthetic voters <input id="msBots" type="number" inputmode="numeric" min="0" max="24" value="${modSel.bots}"> <small>fake people who vote at random</small></label>
+      ${AI?`<label>AI proxy <span class="switch"><input id="msAI" type="checkbox" ${modSel.ai?"checked":""}><span class="slider"></span></span> <small>seats Proxy IA in the reveal</small></label>`:""}
     </div>
     <div class="ms-acts">
       <button class="ms-back" type="button">← Sessions</button>
@@ -500,16 +510,17 @@ function startSession(ids,cfg){
   el.addEventListener("click",e=>{
     const sess=e.target.closest(".ms-sess");
     if(sess){ const s=modSessions().find(x=>x.code===sess.dataset.code);
-      modSel={code:s.code,ids:new Set(s.ids),timer:30,reveal:0,bots:0}; renderModSetup(); return; }
+      modSel={code:s.code,ids:new Set(s.ids),timer:30,reveal:0,bots:0,ai:0}; renderModSetup(); return; }
     if(e.target.closest(".ms-back")){ modSel=null; renderModSetup(); return; }
     if(e.target.closest(".ms-go")){
       modSel.timer=Math.max(10,parseInt($("#msTimer").value,10)||30);
       modSel.reveal=Math.max(0,parseInt($("#msReveal").value,10)||0);
       modSel.bots=Math.max(0,Math.min(24,parseInt($("#msBots").value,10)||0));
+      modSel.ai=(AI && $("#msAI") && $("#msAI").checked)?1:0;
       const order=modSessions().find(x=>x.code===modSel.code).ids.filter(id=>modSel.ids.has(id));
       if(!order.length) return;
       el.hidden=true;
-      startSession(order,{timer:modSel.timer,reveal:modSel.reveal,bots:modSel.bots});
+      startSession(order,{timer:modSel.timer,reveal:modSel.reveal,bots:modSel.bots,ai:modSel.ai});
       return;
     }
   });

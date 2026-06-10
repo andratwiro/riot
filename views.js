@@ -227,5 +227,4 @@ $("#sheetBack").addEventListener("click",closeSheet);
 $("#openLog").addEventListener("click",()=>{closeSheet();openLog();});
 $("#quickLog").addEventListener("click",openLog);   // the credibility answer, one tap from the booth
 $("#closeLog").addEventListener("click",()=>$("#log").style.display="none");
-$("#aiToggle").addEventListener("change",e=>{showAI=e.target.checked;try{localStorage.setItem(AI_KEY,showAI?"1":"0");}catch(err){}applyAiParty(showAI);});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();$("#log").style.display="none";closePartyView();$("#marksView").style.display="none";$("#importView").style.display="none";}});

@@ -85,8 +85,9 @@ function dismissSuggest(id){if(!isDismissed(id)){dismissed.push(id);try{localSto
 // Minutes page. A persisted dev flag never activates on a plain voter URL.
 const IS_MOD=(QS.get("role")||"").toLowerCase()==="moderator";
 let devMode=false; try{devMode=IS_MOD&&localStorage.getItem(DEV_KEY)==="1";}catch(e){}
-const AI_KEY="riot.ai.v1";
-let showAI=false; try{showAI=localStorage.getItem(AI_KEY)==="1";}catch(e){}
+// AI mode: the moderator enables it per live session (cfg.ai); live.js flips it from snapshots.
+let showAI=false;
+try{localStorage.removeItem("riot.ai.v1");}catch(e){}   // retire the old per-visitor toggle
 const isMarked=id=>marks.some(m=>m.id===id);
 let COORD = null, MX = {};
 // After-vote room split: feature-flagged (default ON), only ever rendered post-vote.
