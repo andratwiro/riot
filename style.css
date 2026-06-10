@@ -624,7 +624,7 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 html.hold .app{display:none}
 html.hold #holding[hidden]{display:flex}
 .hd-riot{position:relative;margin:0;font-weight:800;line-height:1;
-  font-size:clamp(18px,5.5vw,38px);letter-spacing:-.045em;color:var(--ink);
+  font-size:clamp(13px,3.85vw,27px);letter-spacing:-.045em;color:var(--ink);
   user-select:none;-webkit-user-select:none}
 .hd-riot::before,.hd-riot::after{content:attr(data-text);position:absolute;
   inset:0;opacity:0;pointer-events:none;mix-blend-mode:multiply}
@@ -632,14 +632,14 @@ html.hold #holding[hidden]{display:flex}
 .hd-riot::after{color:var(--ink);animation:hdSlipB 11s steps(1) infinite}
 @keyframes hdSlipA{
   0%,100%{opacity:0;transform:none;clip-path:inset(0)}
-  88%{opacity:.95;transform:translate(-4px,2px);clip-path:inset(8% 0 55% 0)}
-  89.2%{opacity:.95;transform:translate(3px,-1px);clip-path:inset(50% 0 10% 0)}
+  88%{opacity:.95;transform:translate(-3px,1.5px);clip-path:inset(8% 0 55% 0)}
+  89.2%{opacity:.95;transform:translate(2px,-1px);clip-path:inset(50% 0 10% 0)}
   90.4%{opacity:0}}
 @keyframes hdSlipB{
   0%,100%{opacity:0;transform:none;clip-path:inset(0)}
-  43%{opacity:.8;transform:translate(4px,-2px);clip-path:inset(36% 0 34% 0)}
+  43%{opacity:.8;transform:translate(3px,-1.5px);clip-path:inset(36% 0 34% 0)}
   43.9%{opacity:0}
-  81%{opacity:.8;transform:translate(-3px,2px);clip-path:inset(10% 0 62% 0)}
+  81%{opacity:.8;transform:translate(-2px,1.5px);clip-path:inset(10% 0 62% 0)}
   81.9%{opacity:0}}
 
 /* stage lobby: the join moment */
