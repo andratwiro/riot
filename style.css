@@ -626,21 +626,27 @@ html.hold #holding[hidden]{display:flex}
 .hd-riot{position:relative;margin:0;font-weight:800;line-height:1;
   font-size:clamp(13px,3.85vw,27px);letter-spacing:-.045em;color:var(--ink);
   user-select:none;-webkit-user-select:none}
+/* chromatic split: the word tears into a rose ghost (left) and a blue ghost
+   (right) — anaglyph misalignment, both layers fire on the SAME clock so the
+   tricolour reads as one event, not two slips. Multiply keeps it print-like. */
 .hd-riot::before,.hd-riot::after{content:attr(data-text);position:absolute;
   inset:0;opacity:0;pointer-events:none;mix-blend-mode:multiply}
-.hd-riot::before{color:var(--stamp);animation:hdSlipA 7s steps(1) infinite}
-.hd-riot::after{color:var(--ink);animation:hdSlipB 11s steps(1) infinite}
-@keyframes hdSlipA{
+.hd-riot::before{color:#E8336E;animation:hdSplitR 7s steps(1) infinite}
+.hd-riot::after{color:#2A52E8;animation:hdSplitB 7s steps(1) infinite}
+@keyframes hdSplitR{
   0%,100%{opacity:0;transform:none;clip-path:inset(0)}
-  88%{opacity:.95;transform:translate(-3px,1.5px);clip-path:inset(8% 0 55% 0)}
-  89.2%{opacity:.95;transform:translate(2px,-1px);clip-path:inset(50% 0 10% 0)}
-  90.4%{opacity:0}}
-@keyframes hdSlipB{
-  0%,100%{opacity:0;transform:none;clip-path:inset(0)}
-  43%{opacity:.8;transform:translate(3px,-1.5px);clip-path:inset(36% 0 34% 0)}
+  43%{opacity:.9;transform:translate(-2px,1px);clip-path:inset(40% 0 30% 0)}
   43.9%{opacity:0}
-  81%{opacity:.8;transform:translate(-2px,1.5px);clip-path:inset(10% 0 62% 0)}
-  81.9%{opacity:0}}
+  88%{opacity:.9;transform:translate(-3px,1px);clip-path:inset(0)}
+  89.2%{opacity:.9;transform:translate(-2px,0);clip-path:inset(45% 0 12% 0)}
+  90.4%{opacity:0}}
+@keyframes hdSplitB{
+  0%,100%{opacity:0;transform:none;clip-path:inset(0)}
+  43%{opacity:.9;transform:translate(2px,-1px);clip-path:inset(12% 0 52% 0)}
+  43.9%{opacity:0}
+  88%{opacity:.9;transform:translate(3px,-1px);clip-path:inset(0)}
+  89.2%{opacity:.9;transform:translate(2px,0);clip-path:inset(8% 0 58% 0)}
+  90.4%{opacity:0}}
 
 /* stage lobby: the join moment */
 .sg-lobby{margin:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0}
