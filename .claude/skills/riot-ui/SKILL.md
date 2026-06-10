@@ -115,6 +115,16 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   grid (≥44px targets, one preselected) → optional mono name field → single
   ink CTA. One screen, one button, <30s.
 - **Live-session idioms** (`live.js` + the `LIVE SESSION` block in style.css):
+  the **voter lobby is the convocation document** — left-aligned like the
+  cards: eyebrow → headline → body → the **docket block** (`.lb-docket`, the
+  order-paper header: institution line over a rule, sittings period +
+  decision count, small-print disclosure) → faces + a mono count/status line
+  with the violet pulse → privacy footnote. ALL lobby copy comes from
+  `CFG.lobby` (per-city; no copy conditionals in live.js); the docket line's
+  `{period}`/`{n}` are computed from the active deck's metadata, never
+  hardcoded. On open the document falls away and one line of the minutes
+  remains — the chair's formula (`CFG.lobby.sittingOpenedFormula`, ~1.6s,
+  voters who witnessed the gathering only) — then the first card lands;
   the **countdown** is one ink bar closing from both edges toward the centre
   (`scaleX`, origin centre; stamp-violet under 5s) — a ceiling, not a clock;
   **ballot cast** shows a mono `n/m` count, never the split; the per-card
