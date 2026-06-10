@@ -402,10 +402,13 @@ function showLobby(){
   lobbyPresence();
   lvHold(true);
 }
-/* peers arrive over presence, not session snapshots — keep the gathering live */
+/* peers arrive over presence, not session snapshots — keep the gathering live
+   (both the voter lobby AND the moderator's stage: nothing writes to the session
+   node while people gather, so without this the stage faces never refresh) */
 (function(){
   const prev=window.renderStrip;
-  window.renderStrip=function(){ if(prev)prev(); if(lvS&&lvS.state==="lobby")lobbyPresence(); };
+  window.renderStrip=function(){ if(prev)prev();
+    if(lvS&&lvS.state==="lobby"){ lobbyPresence(); if(LIVE_ROLE==="mod")renderStage(); } };
 })();
 function hideLobby(){
   lvHold(false);
@@ -639,6 +642,19 @@ function modEnd(){ lvStore.update(lvSess(),{state:"ended"}); lvStore.set("curren
 /* ---- the stage: current card large, ballots-in, the two-beat reveal ----
    The moderator's screen IS the projector view; phones carry everything too. */
 function stageOff(){ const sg=$("#stage"); if(sg) sg.hidden=true; }
+/* the join code: QR drawn as inline SVG so it wears the print ink (one path,
+   crisp edges); the white panel behind it comes from CSS (.sg-qr) — scanners
+   want real white, not paper. Degrades to nothing if the encoder didn't load. */
+function qrSVG(url){
+  if(typeof qrcode!=="function") return "";
+  try{
+    const qr=qrcode(0,"M"); qr.addData(url); qr.make();
+    const n=qr.getModuleCount(), Q=2;                      // 2 modules in-SVG + CSS padding = full quiet zone
+    let d="";
+    for(let r=0;r<n;r++)for(let c=0;c<n;c++) if(qr.isDark(r,c)) d+=`M${c+Q} ${r+Q}h1v1h-1z`;
+    return `<svg class="sg-qr" viewBox="0 0 ${n+2*Q} ${n+2*Q}" shape-rendering="crispEdges" role="img" aria-label="Scan to join: ${esc(url)}"><path d="${d}" fill="currentColor"/></svg>`;
+  }catch(e){ return ""; }
+}
 let sgKey="";
 function renderStage(){
   const sg=$("#stage"); if(!sg) return;
@@ -646,7 +662,8 @@ function renderStage(){
   const st=lvS.state, id=lvCurId(), d=id?byId[id]:null;
   // pausing must not rebuild the card skeleton (it would reset the frozen bar)
   const key=(st==="paused"?"voting":st)+":"+lvS.idx+":"+(lvS.deck||[]).join(",");
-  const joinUrl=location.host+location.pathname.replace(/index\.html$/,"")+(CFG.id!=="reus"?`?city=${CFG.id}`:"");
+  // ALWAYS carry ?city= — a bare URL is the holding page (index.html), not the app
+  const joinUrl=location.host+location.pathname.replace(/index\.html$/,"")+`?city=${CFG.id}`;
   if(key!==sgKey){
     sgKey=key;
     let main="";
@@ -662,8 +679,9 @@ function renderStage(){
           </div>`
         : `<div class="sg-lobby">
             <p class="sg-k">Live session · ${esc(CFG.name)}</p>
+            ${qrSVG(location.protocol+"//"+joinUrl)}
             <h1 class="sg-join">${esc(joinUrl)}</h1>
-            <p class="sg-sub">open it on your phone · pick a face · you're in</p>
+            <p class="sg-sub">scan it — or type it · pick a face · you're in</p>
             <div class="sg-faces" id="sgFaces"></div>
             <p class="sg-inlab"><b id="sgHere">0</b> in the room</p>
           </div>`;

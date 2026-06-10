@@ -675,6 +675,9 @@ html.hold #holding[hidden]{display:flex}
 
 /* stage lobby: the join moment */
 .sg-lobby{margin:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0}
+/* the join QR: print ink on a true-white panel (scanners want white, not paper) */
+.sg-qr{width:clamp(150px,30vmin,300px);height:auto;margin:18px 0 4px;color:var(--ink);
+  background:#fff;border:1px solid var(--rule);border-radius:12px;padding:clamp(8px,1.4vmin,14px)}
 .sg-join{margin:14px 0 6px;font:700 clamp(24px,5vw,64px) var(--f-mono);letter-spacing:.01em;word-break:break-all}
 .sg-sub{margin:6px 0 0;font:400 clamp(12px,1.8vw,20px) var(--f-mono);color:var(--ink60)}
 .sg-faces{display:flex;flex-wrap:wrap;justify-content:center;max-width:620px;margin:22px 0 12px}
