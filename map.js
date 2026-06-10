@@ -208,29 +208,100 @@ function projTSNE(D){            // t-SNE — local neighbourhoods; deterministi
 }
 
 /* ---- Procrustes: rotate/reflect+scale B onto A so projections share an
-   orientation — switching then shows structure, not an arbitrary spin ---- */
-function procrustes(B,A){
+   orientation — switching then shows structure, not an arbitrary spin.
+   procrustesT returns the fitted point-set AND the transform itself, so a point
+   that wasn't in B (a participant) can be carried onto the same frame. ---- */
+function procrustesT(B,A){
   const n=A.length;
-  const cen=M=>{let mx=0,my=0;for(const p of M){mx+=p[0];my+=p[1];}mx/=n;my/=n;
-    return M.map(p=>[p[0]-mx,p[1]-my]);};
-  const A0=cen(A),B0=cen(B);
+  const mean=M=>{let x=0,y=0;for(const p of M){x+=p[0];y+=p[1];}return [x/n,y/n];};
+  const Am=mean(A),Bm=mean(B);
+  const A0=A.map(p=>[p[0]-Am[0],p[1]-Am[1]]);
+  const B0=B.map(p=>[p[0]-Bm[0],p[1]-Bm[1]]);
   const nrm=M=>Math.sqrt(M.reduce((s,p)=>s+p[0]*p[0]+p[1]*p[1],0))||1;
   const k=nrm(A0)/nrm(B0);
-  const fit=M=>{
+  const fit=sgn=>{                                  // sgn=-1 tries the mirror
     let num=0,den=0;
-    for(let i=0;i<n;i++){num+=M[i][0]*A0[i][1]-M[i][1]*A0[i][0];den+=M[i][0]*A0[i][0]+M[i][1]*A0[i][1];}
+    for(let i=0;i<n;i++){const bx=B0[i][0]*k,by=B0[i][1]*k*sgn;
+      num+=bx*A0[i][1]-by*A0[i][0];den+=bx*A0[i][0]+by*A0[i][1];}
     const th=Math.atan2(num,den),c=Math.cos(th),s=Math.sin(th);
-    const R=M.map(p=>[c*p[0]-s*p[1],s*p[0]+c*p[1]]);
-    let err=0;for(let i=0;i<n;i++)err+=(R[i][0]-A0[i][0])**2+(R[i][1]-A0[i][1])**2;
-    return {R,err};
+    let err=0;for(let i=0;i<n;i++){const bx=B0[i][0]*k,by=B0[i][1]*k*sgn;
+      err+=(c*bx-s*by-A0[i][0])**2+(s*bx+c*by-A0[i][1])**2;}
+    return {th,sgn,err};
   };
-  const Bs=B0.map(p=>[p[0]*k,p[1]*k]);
-  const f1=fit(Bs), f2=fit(Bs.map(p=>[p[0],-p[1]]));   // try the mirror too
-  return (f2.err<f1.err?f2:f1).R;
+  const f=[fit(1),fit(-1)].sort((a,b)=>a.err-b.err)[0];
+  const c=Math.cos(f.th),s=Math.sin(f.th);
+  const apply=pt=>{const bx=(pt[0]-Bm[0])*k,by=(pt[1]-Bm[1])*k*f.sgn;
+    return [c*bx-s*by+Am[0],s*bx+c*by+Am[1]];};
+  return {coords:B.map(apply),apply};
 }
+function procrustes(B,A){ return procrustesT(B,A).coords; }
 
+/* ---- the joint room projection: parties and participants are the SAME kind of
+   row, projected onto axes the WHOLE ROOM defines.
+
+   Every entity (party or person) is a vector over the deck's decisions
+   (for=+1, against=-1, abstain/blank=0). Stack them into one matrix and take its
+   first two principal components — that is the map, and a party is just a labelled
+   row in it, placed by the exact same formula as you: score = (row - mean)·axis.
+
+   At scale we never need anyone's individual ballot to do this. PCA's axes are the
+   eigenvectors of the decisions×decisions covariance, and a covariance is a SUM
+   over rows — so the room contributes through an aggregate second-moment
+   accumulator (JOINT_COV, summed via atomic increments in multiplayer.js), never a
+   broadcast vote. Parties are known locally and added as rows here. Empty room →
+   the 12 party rows alone → a clean party PCA; as people finish, their votes bend
+   the axes, and the map becomes the room's. Oriented onto the MDS baseline so it
+   doesn't spin from one recompute to the next (and matches across devices). ---- */
+let JOINT_COV=null;            // {k, s:{j:Σx_j}, m2:{"j_l":Σ x_j x_l}} — room aggregate, no individuals
+// the deck's decisions in a canonical (device-independent) order = the columns
+function jointCols(){
+  let pool=R.decisions.filter(d=>d.headline && !d.curator_drop);
+  if(typeof DECK_MODE!=="undefined" && DECK_MODE==="live" && typeof liveDeckIds==="function"){
+    const ids=new Set(liveDeckIds()); pool=pool.filter(d=>ids.has(d.id));
+  }
+  return pool.map(d=>d.id);
+}
+// my own ballot as the nonzero entries of its column vector — what gets summed in
+function jointMyRow(){
+  const out=[]; jointCols().forEach((id,j)=>{const v=voteNum(answers[id]); if(v)out.push({j,v});});
+  return out;
+}
+function projJoint(){
+  const cols=jointCols(), m=cols.length;
+  if(m<2) return null;
+  let K=0; const S=Array(m).fill(0), M2=Array.from({length:m},()=>Array(m).fill(0));
+  const add=x=>{ K++; for(let j=0;j<m;j++){ if(!x[j])continue; S[j]+=x[j];
+    for(let l=j;l<m;l++){ if(x[l])M2[j][l]+=x[j]*x[l]; } } };
+  const partyRows=PARTIES.map(p=>cols.map(id=>voteNum((byId[id].party_votes_canon||{})[p.token])||0));
+  partyRows.forEach(add);                          // parties are rows too — added locally
+  const C=JOINT_COV;                               // the room's aggregate, if any
+  if(C && C.k>0){
+    K+=C.k;
+    for(const j in C.s){ if(+j<m) S[+j]+=C.s[j]; }
+    for(const key in C.m2){ const p=key.indexOf("_"), j=+key.slice(0,p), l=+key.slice(p+1);
+      if(j<m && l<m) M2[j][l]+=C.m2[key]; }
+  }
+  if(K<2) return null;
+  const mu=S.map(v=>v/K);
+  const Cov=Array.from({length:m},(_,j)=>Array.from({length:m},(_,l)=>{
+    const a=j<=l?M2[j][l]:M2[l][j]; return a/K-mu[j]*mu[l]; }));
+  const {values,vectors}=jacobi(Cov);
+  const ord=values.map((_,i)=>i).sort((a,b)=>values[b]-values[a]);
+  const u1=vectors.map(r=>r[ord[0]]), u2=vectors.map(r=>r[ord[1]]);
+  const score=x=>{let a=0,b=0;for(let j=0;j<m;j++){const c=x[j]-mu[j];a+=c*u1[j];b+=c*u2[j];}return [a,b];};
+  return {coords:partyRows.map(score), project:votes=>score(cols.map(id=>voteNum(votes[id])||0))};
+}
+// multiplayer.js (real room or sim) calls this when the room aggregate changes
+function jointDataChanged(cov){
+  JOINT_COV=cov;
+  delete PROJ_CACHE["joint"];
+  if(MAP_PROJ==="joint" && $("#resultMap") && $("#resultMap").innerHTML){
+    applyProjection("joint"); repositionMap();
+  }
+}
 /* ---- the projection registry + current selection ---- */
 const PROJECTIONS=[
+  {k:"joint",   n:"Room",       fn:null,        note:"Everyone in the room is a row — you and the parties alike. The axes are shaped by the whole room's votes, so the more people vote, the more the map is the room's."},
   {k:"mds",     n:"MDS",        fn:projMDS,     note:"Classical MDS — pairwise vote distances, preserved globally."},
   {k:"pca",     n:"PCA",        fn:projPCA,     note:"Principal components of the raw vote matrix."},
   {k:"ca",      n:"CA",         fn:projCA,      note:"Correspondence analysis of the for / against / abstain table."},
@@ -240,28 +311,39 @@ const PROJECTIONS=[
   {k:"spectral",n:"Spectral",   fn:projSpectral,note:"Laplacian eigenmaps over the vote-similarity graph."},
   {k:"tsne",    n:"t-SNE",      fn:projTSNE,    note:"t-SNE — local neighbourhoods over global shape."},
 ];
-let MAP_PROJ="mds";
+let MAP_PROJ="joint";          // the room map is the default; the other 8 are the bench
 let PROJ_CACHE={};
 function getProj(key){
   if(PROJ_CACHE[key]) return PROJ_CACHE[key];
   if(PARTIES.length<3 || !R.decisions.length) return null;
-  const def=PROJECTIONS.find(p=>p.k===key)||PROJECTIONS[0];
   const D=distMatrix();
-  let co=null;
-  try{co=def.fn(D);}catch(e){co=null;}
-  if(!co || co.some(p=>!isFinite(p[0])||!isFinite(p[1]))) co=projMDS(D);   // never a broken map
-  if(def.k!=="mds"){const ref=getProj("mds"); if(ref)co=procrustes(co,ref.coords);}
+  let co=null, place=null;
+  if(key==="joint"){
+    // parties + the room, projected together; a participant rides the same
+    // MDS-aligned frame via the transform, so everyone is placed identically
+    const J=projJoint();
+    if(!J) return getProj("mds");                  // room too small to span 2D yet
+    const ref=getProj("mds");
+    const T=ref?procrustesT(J.coords,ref.coords):null;
+    co=T?T.coords:J.coords;
+    place=votes=>{const raw=J.project(votes); return T?T.apply(raw):raw;};
+  }else{
+    const def=PROJECTIONS.find(p=>p.k===key)||PROJECTIONS[1];
+    try{co=def.fn(D);}catch(e){co=null;}
+    if(!co || co.some(p=>!isFinite(p[0])||!isFinite(p[1]))) co=projMDS(D);   // never a broken map
+    if(key!=="mds"){const ref=getProj("mds"); if(ref)co=procrustes(co,ref.coords);}
+  }
   const xs=co.map(c=>c[0]),ys=co.map(c=>c[1]);
-  return PROJ_CACHE[key]={coords:co,
+  return PROJ_CACHE[key]={coords:co, place,
     mx:{minx:Math.min(...xs),maxx:Math.max(...xs),miny:Math.min(...ys),maxy:Math.max(...ys)}};
 }
 function applyProjection(key){
   const P=getProj(key);
-  if(!P){COORD=null;MX={};return;}
-  MAP_PROJ=key; COORD=P.coords; MX=P.mx;
+  if(!P){COORD=null;MX={};PLACE=null;return;}
+  MAP_PROJ=key; COORD=P.coords; MX=P.mx; PLACE=P.place||null;
 }
 function rebuildMap(){
-  PROJ_CACHE={}; COORD=null; MX={};
+  PROJ_CACHE={}; COORD=null; MX={}; PLACE=null;
   if(PARTIES.length>=3 && R.decisions.length) applyProjection(MAP_PROJ);
 }
 
@@ -327,7 +409,12 @@ function projectBallotIn(votes,coords){
   }
   return (isFinite(p[0])&&isFinite(p[1]))?p:start;
 }
-function blendCoord(votes){ return COORD?projectBallotIn(votes,COORD):null; }
+// any ballot → map point: the joint map projects it (PCA score, the same formula
+// as a party); every other projection places it out-of-sample by vote-distance
+function blendCoord(votes){
+  if(!COORD) return null;
+  return PLACE?PLACE(votes):projectBallotIn(votes,COORD);
+}
 function userCoord(){ return blendCoord(answers); }
 function toPctIn(c,mx){
   // parties span [minx,maxx] → the inner [pad,1-pad] band; the pad margin is now
@@ -339,11 +426,13 @@ function toPctIn(c,mx){
   return [cl((pad+nx*(1-2*pad))*100),cl((pad+(1-ny)*(1-2*pad))*100)];
 }
 function toPct(c){ return toPctIn(c,MX); }
-// presence publishes the CANONICAL (MDS) position — a peer's published dot must
-// not depend on which projection this device is experimenting with
+// presence publishes a CANONICAL position so a peer's dot doesn't depend on which
+// projection this device is experimenting with: the joint room frame when a room
+// is active (everyone shares it), else the MDS baseline.
 function publishCoord(){
-  const P=getProj("mds"); if(!P) return null;
-  const uc=projectBallotIn(answers,P.coords);
+  const key=(MAP_PROJ==="joint" || (typeof roomActive==="function" && roomActive()))?"joint":"mds";
+  const P=getProj(key)||getProj("mds"); if(!P) return null;
+  const uc=P.place?P.place(answers):projectBallotIn(answers,P.coords);
   return uc?toPctIn(uc,P.mx):null;
 }
 

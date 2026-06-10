@@ -90,6 +90,9 @@ let showAI=false;
 try{localStorage.removeItem("riot.ai.v1");}catch(e){}   // retire the old per-visitor toggle
 const isMarked=id=>marks.some(m=>m.id===id);
 let COORD = null, MX = {};
+// the active projection's placement fn for any ballot (set by map.js): the joint
+// room map places by PCA score; the others fall back to out-of-sample distance fit
+let PLACE = null;
 // After-vote room split: feature-flagged (default ON), only ever rendered post-vote.
 const SPLIT_ON = QS.get("split")==="0" ? false : (CFG.live_split!==false);
 
@@ -344,6 +347,7 @@ function finish(){
   const a=affinity();
   const ranked=PARTIES.filter(p=>a[p.token].comp).sort((x,y)=>a[y.token].pct-a[x.token].pct);
   revealCopy(ranked,a);
+  if(typeof mpContributeCov==="function") mpContributeCov();   // add my ballot to the room's joint-map aggregate
   renderResultMap();            // the map's first appearance — animated into place (map.js)
   renderExtremes(ranked,a);
   renderDoneParties(ranked,a);
