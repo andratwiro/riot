@@ -607,25 +607,23 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
   display:flex;align-items:center;justify-content:center;padding:32px 28px}
 #holding[hidden]{display:none}
 .hd-riot{position:relative;margin:0;font-weight:800;line-height:1;
-  font-size:clamp(72px,22vw,150px);letter-spacing:-.045em;color:var(--ink);
+  font-size:clamp(18px,5.5vw,38px);letter-spacing:-.045em;color:var(--ink);
   user-select:none;-webkit-user-select:none}
 .hd-riot::before,.hd-riot::after{content:attr(data-text);position:absolute;
   inset:0;opacity:0;pointer-events:none;mix-blend-mode:multiply}
-.hd-riot::before{color:var(--stamp);animation:hdSlipA 3.4s steps(1) infinite}
-.hd-riot::after{color:var(--ink);animation:hdSlipB 5.2s steps(1) infinite}
+.hd-riot::before{color:var(--stamp);animation:hdSlipA 7s steps(1) infinite}
+.hd-riot::after{color:var(--ink);animation:hdSlipB 11s steps(1) infinite}
 @keyframes hdSlipA{
   0%,100%{opacity:0;transform:none;clip-path:inset(0)}
-  78%{opacity:.85;transform:translate(-5px,2px);clip-path:inset(8% 0 64% 0)}
-  82%{opacity:.85;transform:translate(4px,-1px);clip-path:inset(58% 0 12% 0)}
-  86%{opacity:.85;transform:translate(-3px,0);clip-path:inset(30% 0 42% 0)}
-  90%{opacity:0}}
+  88%{opacity:.6;transform:translate(-1.5px,1px);clip-path:inset(8% 0 60% 0)}
+  89.2%{opacity:.6;transform:translate(1px,0);clip-path:inset(55% 0 14% 0)}
+  90.4%{opacity:0}}
 @keyframes hdSlipB{
   0%,100%{opacity:0;transform:none;clip-path:inset(0)}
-  41%{opacity:.6;transform:translate(6px,1px);clip-path:inset(44% 0 38% 0)}
-  44%{opacity:.6;transform:translate(-4px,-2px);clip-path:inset(70% 0 6% 0)}
-  47%{opacity:0}
-  80%{opacity:.6;transform:translate(3px,2px);clip-path:inset(12% 0 74% 0)}
-  84%{opacity:0}}
+  43%{opacity:.45;transform:translate(1.5px,-1px);clip-path:inset(40% 0 38% 0)}
+  43.9%{opacity:0}
+  81%{opacity:.45;transform:translate(-1px,1px);clip-path:inset(12% 0 70% 0)}
+  81.9%{opacity:0}}
 
 /* stage lobby: the join moment */
 .sg-lobby{margin:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0}
