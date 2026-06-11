@@ -44,12 +44,16 @@ window.CITY_CONFIG = {
     "BXL-2526-00023-A-263"     // index former MPs' pensions (12F/1A)
   ],
   // The DEMO deck: ten contested, story-rich decisions hand-picked for live
-  // demos. Pinned first in the moderator's session picker.
+  // demos. Pinned first in the moderator's session picker. Every card carries a
+  // tellable chamber moment (deck/BRUSSELS_DEMO_TRIVIA.md, internal); the
+  // tourist-tax card (00031-v3) was swapped out — its CRI preserves no debate
+  // and no stage directions — for the abusive-rents card, whose vote drew the
+  // quorum-break walkout (MR/N-VA/VB out of the hemicycle, 42-min suspension).
   demo_deck: [
     "BXL-2526-00021-A-264",    // producers fund the waste their packaging creates
     "BXL-2526-00014-A-29",     // recognise gynaecological & obstetric violence
     "BXL-2526-00014-A-236",    // condemn the Iranian regime's repression
-    "BXL-2425-00031-v3",       // raise tourist city tax 4→5€
+    "BXL-2425-00018-v4",       // tenants v. abusive rents (the walkout vote)
     "BXL-2425-00031-v9",       // cut MPs' indemnity 5% permanently
     "BXL-2425-00022-v4",       // press for Gaza aid — air drops if needed
     "BXL-2425-00016-v1",       // parliament cuts its own budget 5%
