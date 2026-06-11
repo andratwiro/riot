@@ -1,9 +1,9 @@
 {
-  "model": "claude-opus-4-8",
+  "model": "claude-opus-4-8 (first 70) / claude-fable-5 (the 44 added 2026-06-11)",
   "produced_via": "Claude Code subagents (no API key in env); each subagent saw only soul.md + the decision's neutral context — same firewall as scripts/ai_vote.py",
   "soul_hash": "3456219423bf",
-  "n_votes": 70,
-  "note": "AI proxy votes — blind from soul.md + each decision's neutral context (no Rob votes, party votes, outcome, or deep_lectura). soul.md is private; only these outputs are committed.",
+  "n_votes": 114,
+  "note": "GHOST votes — blind from soul.md + each decision's neutral context (no Rob votes, party votes, outcome, or deep_lectura). soul.md is private; only these outputs are committed.",
   "votes": {
     "PLE_05_2026_ORD-p18": {
       "vote": "for",
@@ -354,6 +354,226 @@
       "vote": "for",
       "confidence": 0.9,
       "rationale": "Continuing the Pla Educatiu d'Entorn keeps educational support funding flowing to children and young people — a clear pro-services, who-it-helps for."
+    },
+    "PLE_08_2025_ORD-p10": {
+      "vote": "against",
+      "confidence": 0.95,
+      "rationale": "El contingut és un filtre d'arrelament de 10 anys amb un marc explícitament anti-immigrant («empadronament fraudulent d'immigrants il·legals»): assigna habitatge públic per antiguitat i no per necessitat, carregant el cost sobre qui té menys — exactament el que el principi «a qui ajuda?» rebutja."
+    },
+    "PLE_08_2025_ORD-p15": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "Reforçar el servei de neteja i el control de plagues millora la vida quotidiana dels barris i trasllada el focus de multar veïns a prestar millor servei — qualitat de vida i gastar per una causa justa, jutjant el contingut i no qui ho proposa."
+    },
+    "PLE_08_2025_ORD-p7": {
+      "vote": "for",
+      "confidence": 0.8,
+      "rationale": "Cobrir les dues cadires de l'alumnat retorna veu real als estudiants en l'òrgan educatiu de la ciutat — un relleu reglat que enforteix la participació i els serveis públics quotidians."
+    },
+    "PLE_09_2025_ORD-p5": {
+      "vote": "for",
+      "confidence": 0.92,
+      "rationale": "Rehabilitar en lloc d'enderrocar, ampliar el parc com a refugi climàtic, treure busos del centre i concentrar la intermodalitat és ciutat verda i espai públic de manual — el cost municipal no frena una causa justa."
+    },
+    "PLE_10_2025_ORD-p11": {
+      "vote": "against",
+      "confidence": 0.75,
+      "rationale": "Sota la capa de rendició de comptes, el nucli és un paquet de vigilància permanent —càmeres, sensors, control d'accessos— i una caça de responsables al voltant de 16 persones sense llar: el perfil rebutja les respostes enforcement-first i l'expansió de la vigilància quan la resposta hauria de ser afegir recursos i serveis."
+    },
+    "PLE_10_2025_ORD-p13_4": {
+      "vote": "for",
+      "confidence": 0.8,
+      "rationale": "Posar termini a la reserva d'habitatge protegit, el tempteig públic i els límits a la compra especulativa converteix una intenció en una política exigible — obligacions socials sobre el mercat de l'habitatge que ajuden directament qui té menys, i una data ambiciosa no anul·la una direcció correcta."
+    },
+    "PLE_10_2025_ORD-p4": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "Acceptar els relleus que les pròpies entitats proposen manté viu l'òrgan on la gent gran porta la seva veu a l'Ajuntament — participació i serveis quotidians que milloren la vida dels residents."
+    },
+    "PLE_10_2025_ORD-p9": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "Un concurs públic amb tribunal i mèrits que tanca dos anys de direcció vacant a l'organisme de formació i ocupació ajuda directament les persones aturades i treballadores de Reus — jutjar pel resultat i pel procés, no per qui governa."
+    },
+    "PLE_11_2025_ORD-p5": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "Ratificar el representant que un grup tria per al consell d'un ens instrumental manté el control democràtic des de dins de l'agència — un tràmit reglat que jutjo pel seu contingut, no pel grup que el demana."
+    },
+    "PLE_08_2025_ORD-p11": {
+      "vote": "against",
+      "confidence": 0.95,
+      "rationale": "Suprimir un programa voluntari de llengua d'origen és un marc d'immigració de línia dura que perjudica l'alumnat migrant — el contrari d'invertir en integració i multiculturalitat."
+    },
+    "PLE_08_2025_ORD-p3": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "Formalitzar els representants que la societat civil (discapacitat, dones, comerç) ja ha triat dóna veu institucional a qui ajuda residents — cap raó del perfil per oposar-s'hi."
+    },
+    "PLE_08_2025_ORD-p8": {
+      "vote": "for",
+      "confidence": 0.9,
+      "rationale": "Tenir al dia el pla d'emergència nuclear protegeix directament tots els veïns — servei públic de qualitat de vida i seguretat sense cap contrapartida de drets."
+    },
+    "PLE_09_2025_ORD-p6": {
+      "vote": "for",
+      "confidence": 0.7,
+      "rationale": "Coordinació metropolitana voluntària que pot portar pes, inversió i serveis al territori beneficia els reusencs, i el cost encara per definir no tomba una causa bona (spend for right causes)."
+    },
+    "PLE_10_2025_ORD-p12": {
+      "vote": "for",
+      "confidence": 0.95,
+      "rationale": "Empadronament immediat, habitatge d'urgència i ajuts directes a víctimes de violència masclista ajuden exactament les persones amb menys — feminisme i drets en expansió, el nucli del perfil."
+    },
+    "PLE_10_2025_ORD-p14": {
+      "vote": "against",
+      "confidence": 0.65,
+      "rationale": "Màrqueting de marca turística sense finançament que poc millora la vida dels veïns, i anar a buscar a Madrid un segell «nacional d'Espanya» per una festa que ja és Festa Patrimonial d'Interès Nacional catalana xoca amb la lectura sobiranista."
+    },
+    "PLE_10_2025_ORD-p5": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "Ratificar el relleu que el sector de direccions escolars ja ha triat manté viu un òrgan de participació educativa — tràmit que reforça serveis públics, sense cap pega de fons."
+    },
+    "PLE_11_2025_ORD-p12": {
+      "vote": "for",
+      "confidence": 0.95,
+      "rationale": "Registre, supervisió independent i formació antiracista contra la perfilació policial són exactament el control anti-vigilància i social-first davant marcs policials de mà dura que el perfil defensa per als veïns que més pateixen els controls."
+    },
+    "PLE_11_2025_ORD-p6": {
+      "vote": "for",
+      "confidence": 0.95,
+      "rationale": "Sòl públic per a habitatge de protecció pública suma oferta i obligació social alhora — la posició d'habitatge «both at once» del perfil, ajudant qui més ho necessita."
+    },
+    "PLE_08_2025_ORD-p12": {
+      "vote": "for",
+      "confidence": 0.92,
+      "rationale": "L'equitat menstrual expandeix drets i ajuda directament qui té menys — i un primer pas declaratiu ('estudiar') segueix sent un senyal de direcció que compta."
+    },
+    "PLE_08_2025_ORD-p4": {
+      "vote": "for",
+      "confidence": 0.6,
+      "rationale": "Tot i la meva fredor amb la cultura de medalles policials, el contingut decideix: el bloc reconeix sobretot actes concrets que van ajudar gent vulnerable (rescats, alliberar una dona forçada a prostituir-se, reanimacions), no una política d'ordre dur."
+    },
+    "PLE_08_2025_ORD-p9": {
+      "vote": "against",
+      "confidence": 0.72,
+      "rationale": "Qui-ajuda decideix: premiar amb diners públics la millor nota mitjana consagra l'avantatge de qui ja parteix de millors condicions en lloc d'ajudar qui té menys, i l'exposició ('cultura de la mort') confirma un marc que no comparteixo."
+    },
+    "PLE_09_2025_ORD-p7": {
+      "vote": "for",
+      "confidence": 0.8,
+      "rationale": "Formació dual amb la URV millora serveis públics i dona oportunitats reals a joves de la ciutat — col·laboració pragmàtica que beneficia residents sense cost rellevant."
+    },
+    "PLE_10_2025_ORD-p13_1": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "El meu criteri d'habitatge és exactament aquest: obligacions socials sobre el mercat privat (reserva del 30% per a HPO amb prioritat de lloguer social) en una ciutat tensionada, on qui-ajuda són els veïns que no poden pagar 800 € de lloguer."
+    },
+    "PLE_10_2025_ORD-p15": {
+      "vote": "for",
+      "confidence": 0.75,
+      "rationale": "Qualitat de vida i vida diària dels barris: els veïns porten anys carregant soroll documentat per sobre del límit legal, i ordenar l'ús festiu amb límits raonables reparteix el cost de la festa de manera més justa."
+    },
+    "PLE_10_2025_ORD-p6": {
+      "vote": "for",
+      "confidence": 0.55,
+      "rationale": "Mercat-first en els mitjans: treure barreres innecessàries (mínim de 30 m², requisits redundants amb la normativa tècnica vigent) facilita activitat i locals assequibles, i l'aprovació inicial encara obre un mes d'al·legacions per vigilar la salubritat."
+    },
+    "PLE_11_2025_ORD-p13": {
+      "vote": "against",
+      "confidence": 0.55,
+      "rationale": "Clima primer i jutjar la palanca pels resultats: aturar sis parcs eòlics i la seva evacuació — amb el valor de mercat de les finques com a greuge central — frena la transició energètica que prioritzo, i aquests arguments repetits a cada territori la bloquejarien pertot."
+    },
+    "PLE_11_2025_ORD-p7": {
+      "vote": "for",
+      "confidence": 0.8,
+      "rationale": "Reordenació tècnica sense ni un metre més de sostre que millora assolellament i estalvi energètic dels habitatges, tramitada sense cap al·legació — pragmatisme que beneficia els futurs residents."
+    },
+    "PLE_08_2025_ORD-p13": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "Pro-Catalan self-government amb el català com a llengua d'acollida per a joves i persones migrades — reforç de la llengua pròpia que alhora ajuda la integració, i una causa justa val la despesa encara que el pressupost no estigui quantificat."
+    },
+    "PLE_08_2025_ORD-p5": {
+      "vote": "for",
+      "confidence": 0.7,
+      "rationale": "Merits over incumbency: aprovar el Compte no avala la gestió, és la porta a la fiscalització externa, i sense cap reclamació en exposició pública no hi ha base per bloquejar la rendició de comptes."
+    },
+    "PLE_09_2025_ORD-p31": {
+      "vote": "for",
+      "confidence": 0.6,
+      "rationale": "Pragmatisme sobre els mitjans: adaptar el finançament al ritme real d'una obra que porta 48 habitatges i equipament, amb empresa solvent i sense aval municipal, és prudència que no carrega cap cost sobre els veïns."
+    },
+    "PLE_09_2025_ORD-p8": {
+      "vote": "for",
+      "confidence": 0.55,
+      "rationale": "Gestió ordinària pressupostàriament neutra que paga serveis bàsics (enllumenat, via pública) amb partides no executades; les baixes socials són petites i no semblen retallar prestacions reals, així que el qui-ajuda no s'hi ressent."
+    },
+    "PLE_10_2025_ORD-p13_2": {
+      "vote": "for",
+      "confidence": 0.9,
+      "rationale": "Habitatge amb les dues mans alhora: obligacions socials sobre el mercat privat actuant contra grans tenidors i expulsions de llogaters per fer créixer el parc públic — exactament el costat que ajuda els qui tenen menys."
+    },
+    "PLE_10_2025_ORD-p16": {
+      "vote": "against",
+      "confidence": 0.6,
+      "rationale": "Market-first en els mitjans i poc mogut per la nostàlgia comerç-identitat: congelar llicències i decidir des de l'Ajuntament quines botigues pot tenir cada carrer aixeca barreres a la competència, i els bons injecten diner públic a uns negocis concrets sense retorn públic condicionat."
+    },
+    "PLE_10_2025_ORD-p7": {
+      "vote": "for",
+      "confidence": 0.7,
+      "rationale": "Habitatge que suma oferta i obligació social alhora — 186 pisos protegits, gairebé el doble que al projecte inicial, amb tots els informes sectorials favorables — ajuda qui més pateix l'accés a l'habitatge, i això pesa més que el recel a créixer sobre sòl nou."
+    },
+    "PLE_11_2025_ORD-p14": {
+      "vote": "for",
+      "confidence": 0.8,
+      "rationale": "Content over proposer: un ple anual de rendició de comptes amb votació de propostes de tots els grups millora el control democràtic sense costar res als veïns — el senyal institucional alineat es vota a favor."
+    },
+    "PLE_11_2025_ORD-p8": {
+      "vote": "abstain",
+      "confidence": 0.5,
+      "rationale": "El cas reservat d'abstenció del perfil — bona en substància (comandament clar i àgil) però procedimentalment tèrbola: concentra tot l'executiu en un càrrec de lliure designació la provisió del qual el mateix expedient admet que va tenir 'circumstàncies'."
+    },
+    "PLE_08_2025_ORD-p14": {
+      "vote": "for",
+      "confidence": 0.72,
+      "rationale": "Manteniment bàsic que millora la vida diària del barri (voreres, arbrat, parcs, marquesina) ajuda directament els veïns — incloent gent gran amb risc de caigudes — i el contingut decideix per sobre del proposant; només la càmera de videovigilància, que és un simple estudi, refreda la convicció."
+    },
+    "PLE_08_2025_ORD-p6": {
+      "vote": "for",
+      "confidence": 0.95,
+      "rationale": "Expandir i auditar externament els drets i les polítiques d'infància és exactament el progressisme social actiu que el perfil demana — la ciutat ha de liderar, no quedar-se neutral."
+    },
+    "PLE_09_2025_ORD-p4": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "Relleu intern proposat pel mateix grup segons els estatuts: ratificar que cada grup triï la seva gent és el funcionament democràtic normal i no perjudica ningú."
+    },
+    "PLE_10_2025_ORD-p10": {
+      "vote": "for",
+      "confidence": 0.8,
+      "rationale": "Spend for right causes: avançar uns anys una reurbanització d'eix cívic que millora l'espai públic del barri, amb interès bonificat i la subvenció com a garantia, és cost petit per benefici real als veïns."
+    },
+    "PLE_10_2025_ORD-p13_3": {
+      "vote": "for",
+      "confidence": 0.62,
+      "rationale": "El perfil d'habitatge demana explícitament posar obligacions socials al mercat privat i actuar sobre grans tenidors i especulació — qui-ajuda (llogaters de la segona ciutat més tensionada) guanya sobre la incertesa jurídica de l'instrument."
+    },
+    "PLE_10_2025_ORD-p3": {
+      "vote": "for",
+      "confidence": 0.9,
+      "rationale": "Corregir un nomenament que els estatuts no emparen és bona administració sense perdedors — mantenir un acte il·legal no ajuda ningú."
+    },
+    "PLE_10_2025_ORD-p8": {
+      "vote": "for",
+      "confidence": 0.7,
+      "rationale": "Ciutat verda primer: una ordenança que ordena residus i neteja millora el medi ambient i la vida diària, i incorpora la millora que protegeix els veïns d'obligacions de neteja en temporals; que els compromisos de servei quedin fora del Ple és un però, no un veto."
+    },
+    "PLE_11_2025_ORD-p4": {
+      "vote": "for",
+      "confidence": 0.85,
+      "rationale": "Ratificació rutinària del representant que el mateix grup ha triat per al Consell de Joventut — funcionament institucional normal, sense cap fricció amb el perfil."
     }
   }
 }

@@ -1,5 +1,23 @@
 [
   {
+    "id": "PLE_05_2026_ORD-p18",
+    "propose_drop": false,
+    "against_share": 0.0,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_05_2026_ORD-p17",
+    "propose_drop": true,
+    "against_share": 0.0,
+    "reason": "mandat (llei \\d)"
+  },
+  {
+    "id": "PLE_05_2026_ORD-p16",
+    "propose_drop": false,
+    "against_share": 0.0,
+    "reason": "—"
+  },
+  {
     "id": "PLE_04_2026_ORD-p9",
     "propose_drop": false,
     "against_share": 0.07,
@@ -322,6 +340,402 @@
     "propose_drop": false,
     "against_share": 0.27,
     "reason": "PERÒ contestat (27% en contra) → es manté"
+  },
+  {
+    "id": "PLE_11_2025_ORD-p8",
+    "propose_drop": false,
+    "against_share": 0.11,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_11_2025_ORD-p7",
+    "propose_drop": false,
+    "against_share": 0.07,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_11_2025_ORD-p6",
+    "propose_drop": false,
+    "against_share": 0.0,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_11_2025_ORD-p5",
+    "propose_drop": true,
+    "against_share": 0.0,
+    "reason": "procediment/simbòlic"
+  },
+  {
+    "id": "PLE_11_2025_ORD-p4",
+    "propose_drop": true,
+    "against_share": 0.0,
+    "reason": "procediment/simbòlic"
+  },
+  {
+    "id": "PLE_11_2025_ORD-p14",
+    "propose_drop": false,
+    "against_share": 0.59,
+    "reason": "PERÒ contestat (59% en contra) → es manté"
+  },
+  {
+    "id": "PLE_11_2025_ORD-p13",
+    "propose_drop": false,
+    "against_share": 0.11,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_11_2025_ORD-p12",
+    "propose_drop": false,
+    "against_share": 0.85,
+    "reason": "PERÒ contestat (85% en contra) → es manté"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p9",
+    "propose_drop": false,
+    "against_share": 0.07,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p8",
+    "propose_drop": false,
+    "against_share": 0.15,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p7",
+    "propose_drop": false,
+    "against_share": 0.07,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p6",
+    "propose_drop": false,
+    "against_share": 0.07,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p5",
+    "propose_drop": true,
+    "against_share": 0.0,
+    "reason": "procediment/simbòlic"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p4",
+    "propose_drop": false,
+    "against_share": 0.0,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p3",
+    "propose_drop": true,
+    "against_share": 0.04,
+    "reason": "mandat (obligat)"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p16",
+    "propose_drop": false,
+    "against_share": 0.59,
+    "reason": "PERÒ contestat (59% en contra) → es manté"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p15",
+    "propose_drop": false,
+    "against_share": 0.04,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p14",
+    "propose_drop": false,
+    "against_share": 0.81,
+    "reason": "mandat (estatal); PERÒ contestat (81% en contra) → es manté"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p13_1",
+    "propose_drop": false,
+    "against_share": 0.08,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p13_2",
+    "propose_drop": false,
+    "against_share": 0.73,
+    "reason": "PERÒ contestat (73% en contra) → es manté"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p13_3",
+    "propose_drop": false,
+    "against_share": 0.73,
+    "reason": "PERÒ contestat (73% en contra) → es manté"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p13_4",
+    "propose_drop": false,
+    "against_share": 0.73,
+    "reason": "PERÒ contestat (73% en contra) → es manté"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p12",
+    "propose_drop": false,
+    "against_share": 0.08,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p11",
+    "propose_drop": false,
+    "against_share": 0.85,
+    "reason": "PERÒ contestat (85% en contra) → es manté"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p10",
+    "propose_drop": false,
+    "against_share": 0.26,
+    "reason": "PERÒ contestat (26% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p9",
+    "propose_drop": false,
+    "against_share": 0.04,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p8",
+    "propose_drop": false,
+    "against_share": 0.11,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p7",
+    "propose_drop": false,
+    "against_share": 0.0,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p6",
+    "propose_drop": false,
+    "against_share": 0.19,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p5",
+    "propose_drop": false,
+    "against_share": 0.11,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p4",
+    "propose_drop": false,
+    "against_share": 0.04,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p31",
+    "propose_drop": false,
+    "against_share": 0.11,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p30",
+    "propose_drop": false,
+    "against_share": 0.41,
+    "reason": "PERÒ contestat (41% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p29",
+    "propose_drop": false,
+    "against_share": 0.26,
+    "reason": "PERÒ contestat (26% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p28",
+    "propose_drop": false,
+    "against_share": 0.37,
+    "reason": "PERÒ contestat (37% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p27",
+    "propose_drop": false,
+    "against_share": 0.19,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p26",
+    "propose_drop": false,
+    "against_share": 0.33,
+    "reason": "PERÒ contestat (33% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p25",
+    "propose_drop": false,
+    "against_share": 0.3,
+    "reason": "PERÒ contestat (30% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p24",
+    "propose_drop": false,
+    "against_share": 0.26,
+    "reason": "PERÒ contestat (26% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p23",
+    "propose_drop": false,
+    "against_share": 0.19,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p22",
+    "propose_drop": false,
+    "against_share": 0.22,
+    "reason": "PERÒ contestat (22% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p21",
+    "propose_drop": false,
+    "against_share": 0.3,
+    "reason": "PERÒ contestat (30% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p20",
+    "propose_drop": false,
+    "against_share": 0.22,
+    "reason": "PERÒ contestat (22% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p19",
+    "propose_drop": false,
+    "against_share": 0.26,
+    "reason": "PERÒ contestat (26% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p18",
+    "propose_drop": false,
+    "against_share": 0.26,
+    "reason": "PERÒ contestat (26% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p17",
+    "propose_drop": false,
+    "against_share": 0.04,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p16",
+    "propose_drop": false,
+    "against_share": 0.19,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p15",
+    "propose_drop": false,
+    "against_share": 0.0,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p14",
+    "propose_drop": false,
+    "against_share": 0.41,
+    "reason": "PERÒ contestat (41% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p13",
+    "propose_drop": false,
+    "against_share": 0.26,
+    "reason": "PERÒ contestat (26% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p12",
+    "propose_drop": false,
+    "against_share": 0.22,
+    "reason": "PERÒ contestat (22% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p11",
+    "propose_drop": false,
+    "against_share": 0.26,
+    "reason": "PERÒ contestat (26% en contra) → es manté"
+  },
+  {
+    "id": "PLE_09_2025_ORD-p10",
+    "propose_drop": false,
+    "against_share": 0.22,
+    "reason": "PERÒ contestat (22% en contra) → es manté"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p9",
+    "propose_drop": false,
+    "against_share": 0.85,
+    "reason": "PERÒ contestat (85% en contra) → es manté"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p8",
+    "propose_drop": false,
+    "against_share": 0.0,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p7",
+    "propose_drop": true,
+    "against_share": 0.0,
+    "reason": "procediment/simbòlic"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p6",
+    "propose_drop": false,
+    "against_share": 0.04,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p5",
+    "propose_drop": false,
+    "against_share": 0.07,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p4",
+    "propose_drop": false,
+    "against_share": 0.07,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p3",
+    "propose_drop": true,
+    "against_share": 0.0,
+    "reason": "procediment/simbòlic"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p15",
+    "propose_drop": false,
+    "against_share": 0.58,
+    "reason": "PERÒ contestat (58% en contra) → es manté"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p14",
+    "propose_drop": false,
+    "against_share": 0.58,
+    "reason": "PERÒ contestat (58% en contra) → es manté"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p13",
+    "propose_drop": false,
+    "against_share": 0.08,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p12",
+    "propose_drop": false,
+    "against_share": 0.04,
+    "reason": "—"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p11",
+    "propose_drop": false,
+    "against_share": 0.93,
+    "reason": "PERÒ contestat (93% en contra) → es manté"
+  },
+  {
+    "id": "PLE_08_2025_ORD-p10",
+    "propose_drop": false,
+    "against_share": 0.67,
+    "reason": "PERÒ contestat (67% en contra) → es manté"
   },
   {
     "id": "PLE_9_2023_ORD-p9",

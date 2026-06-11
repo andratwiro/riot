@@ -1,0 +1,2490 @@
+[
+  {
+    "id": "PLE_10_2025_ORD-p3",
+    "point": "3",
+    "title": "Alcaldia. Rectificar l’error en l’acord del ple de data 24 d’octubre de 2025, de canvi dels representants del Grup Municipal de la CANDIDATURA D'UNITAT POPULAR CUP AMUNT en el Consell General de l’Institut Municipal Reus Cultura i en el Consell General de l’Agència de Promoció de Ciutat «Reus Promoció».",
+    "organ": "Alcaldia",
+    "type": "proposta",
+    "legal_category": "proposta",
+    "proposed_by": null,
+    "outcome": "approved",
+    "decided": "divided",
+    "tally": {
+      "for": 25,
+      "against": 1,
+      "abstain": 1
+    },
+    "party_votes": {
+      "PSC-CP": "for",
+      "ERC": "for",
+      "A": "for",
+      "JxR-CM": "for",
+      "PP": "for",
+      "CUP": "for",
+      "no_adscrit_Pardo": "for",
+      "VOX": "against",
+      "no_adscrit_Ruiz": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "against"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesa la proposta a votació, s’aprova amb: - 25 vots a favor: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; (PP) Sr./Sra: Domènech i Virgili; (CUP) Sres. Pàmies i A. López ; i (regidor no adscrit): Sr. Pardo. - 1 vot en contra: (VOX): Sr.: Vaquero. - 1 abstenció: (regidor no adscrit): Sr. Ruiz."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p4",
+    "point": "4",
+    "title": "Alcaldia. Designació i cessament de representants membres d’entitats i d’un sindicat en el Consell Municipal de la Gent Gran.",
+    "organ": "Alcaldia",
+    "type": "proposta",
+    "legal_category": "proposta",
+    "proposed_by": null,
+    "outcome": "approved",
+    "decided": "unanimous",
+    "tally": {
+      "for": null,
+      "against": null,
+      "abstain": null
+    },
+    "party_votes": {},
+    "councillor_votes": [],
+    "raw_outcome": "Sotmesa la proposta a votació, s'aprova per unanimitat."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p5",
+    "point": "5",
+    "title": "Educació. Canvi de representant en el Consell Educatiu de Ciutat, període 2022-2026.",
+    "organ": "Educació",
+    "type": "proposta",
+    "legal_category": "proposta",
+    "proposed_by": null,
+    "outcome": "approved",
+    "decided": "unanimous",
+    "tally": {
+      "for": null,
+      "against": null,
+      "abstain": null
+    },
+    "party_votes": {},
+    "councillor_votes": [],
+    "raw_outcome": "Sotmesa la proposta a votació, s'aprova per unanimitat."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p6",
+    "point": "6",
+    "title": "Gestió Urbanística. Aprovació inicial de la Modificació puntual de la Revisió del Pla general d'ordenació urbana de Reus per actualitzacions normatives.",
+    "organ": "Gestió Urbanística",
+    "type": "proposta",
+    "legal_category": "proposta",
+    "proposed_by": null,
+    "outcome": "approved",
+    "decided": "divided",
+    "tally": {
+      "for": 25,
+      "against": 2,
+      "abstain": null
+    },
+    "party_votes": {
+      "PSC-CP": "for",
+      "ERC": "for",
+      "A": "for",
+      "JxR-CM": "for",
+      "PP": "for",
+      "VOX": "for",
+      "no_adscrit_Pardo": "for",
+      "no_adscrit_Ruiz": "for",
+      "CUP": "against"
+    },
+    "councillor_votes": [
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "for"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "against"
+      }
+    ],
+    "raw_outcome": "Sotmesa la proposta a votació, s’aprova amb: - 25 vots a favor: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs.: Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; (PP) Sr./Sra.: Domènech i Virgili; (VOX): Sr. Vaquero; i (regidors no adscrits): Srs. Pardo i Ruiz. - 2 vots en contra: (CUP): Sres.: Pàmies i A. López"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p7",
+    "point": "7",
+    "title": "Gestió Urbanística. Aprovació provisional del Pla parcial urbanístic del sector C.3b \"Barranc dels Capellans\", promogut per Orué Inversiones, SL.",
+    "organ": "Gestió Urbanística",
+    "type": "proposta",
+    "legal_category": "proposta",
+    "proposed_by": null,
+    "outcome": "approved",
+    "decided": "divided",
+    "tally": {
+      "for": 25,
+      "against": 2,
+      "abstain": null
+    },
+    "party_votes": {
+      "PSC-CP": "for",
+      "ERC": "for",
+      "A": "for",
+      "JxR-CM": "for",
+      "PP": "for",
+      "VOX": "for",
+      "no_adscrit_Pardo": "for",
+      "no_adscrit_Ruiz": "for",
+      "CUP": "against"
+    },
+    "councillor_votes": [
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "for"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "against"
+      }
+    ],
+    "raw_outcome": "Sotmesa la proposta a votació, s'aprova amb: - 25 vots a favor: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita (vota verbalment), M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs.: Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; (PP) Sr./Sra. Domènech i Virgili; (VOX): Sr. Vaquero; i (regidors no adscrits): Srs. Pardo i Ruiz. - 2 vots en contra: (CUP): Sres. Pàmies i A. López."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p8",
+    "point": "8",
+    "title": "Medi Ambient. Aprovació definitiva de l'Ordenança reguladora de la recollida, transport i prevenció de residus, del servei de neteja viària i espais privats, amb resolució de les al·legacions presentades.",
+    "organ": "Medi Ambient",
+    "type": "proposta",
+    "legal_category": "proposta",
+    "proposed_by": null,
+    "outcome": "approved",
+    "decided": "divided",
+    "tally": {
+      "for": 15,
+      "against": 4,
+      "abstain": 8
+    },
+    "party_votes": {
+      "PSC-CP": "for",
+      "ERC": "for",
+      "A": "for",
+      "CUP": "against",
+      "VOX": "against",
+      "no_adscrit_Pardo": "against",
+      "JxR-CM": "abstain",
+      "PP": "abstain",
+      "no_adscrit_Ruiz": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "against"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "against"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "abstain"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "abstain"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesa la proposta a votació, s’aprova amb: -15 vots a favor: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui i (A): Sr./Sra. Rubio i Vázquez. - 4 vots en contra: (CUP): Sres. Pàmies i A. López; (VOX): Sr.: Vaquero i (regidor no adscrit): Sr. Pardo. - 8 abstencions: (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; (PP) Sr./Sra. Domènech i Virgili; i (regidor no adscrit): Sr. Ruiz."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p9",
+    "point": "9",
+    "title": "Assessoria Jurídica. Nomenament de la Directora de l’Institut Municipal de Formació i Empresa «Mas Carandell».",
+    "organ": "Assessoria Jurídica",
+    "type": "proposta",
+    "legal_category": "proposta",
+    "proposed_by": null,
+    "outcome": "approved",
+    "decided": "divided",
+    "tally": {
+      "for": 20,
+      "against": 2,
+      "abstain": 5
+    },
+    "party_votes": {
+      "PSC-CP": "for",
+      "ERC": "for",
+      "A": "for",
+      "PP": "for",
+      "VOX": "for",
+      "no_adscrit_Pardo": "for",
+      "no_adscrit_Ruiz": "for",
+      "CUP": "against",
+      "JxR-CM": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "for"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesa la proposta a votació, s’aprova amb: -20 vots a favor: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (PP) Sr./Sra. Domènech i Virgili; (VOX): Sr. Vaquero; i (regidors no adscrits): Srs. Pardo i Ruiz. - 2 vots en contra: (CUP): Sres. Pàmies i A. López. - 5 abstencions: (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p10",
+    "point": "10",
+    "title": "Gestió Econòmica i Pressupostària. Expedient de modificació de crèdits del Pressupost 2025 de la Corporació i concertació d'operació de crèdit a llarg termini.",
+    "organ": "Gestió Econòmica i Pressupostària",
+    "type": "proposta",
+    "legal_category": "proposta",
+    "proposed_by": null,
+    "outcome": "approved",
+    "decided": "divided",
+    "tally": {
+      "for": 16,
+      "against": 7,
+      "abstain": 4
+    },
+    "party_votes": {
+      "PSC-CP": "for",
+      "ERC": "for",
+      "A": "for",
+      "no_adscrit_Pardo": "for",
+      "JxR-CM": "against",
+      "CUP": "against",
+      "PP": "abstain",
+      "VOX": "abstain",
+      "no_adscrit_Ruiz": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "abstain"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "abstain"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "abstain"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesa la proposta a votació, s’aprova amb: -16 vots a favor: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs.: Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; i (regidor no adscrit): Sr. Pardo - 7 vots en contra: (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; i (CUP): Sres. Pàmies i A. López. - 4 abstencions: (PP) Sr./Sra. Domènech i Virgili; (VOX): Sr. Vaquero ; i (regidor no adscrit): Sr. Ruiz."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p11",
+    "point": "11",
+    "title": "Moció del GRUP MUNICIPAL VOX sobre la greu ocupació del pàrking subterrani de l'Hospital Sant Joan de Reus i la necessitat de depurar responsabilitats i enfortir els protocols de seguretat.",
+    "organ": null,
+    "type": "mocio",
+    "legal_category": "mocio",
+    "proposed_by": "VOX",
+    "outcome": "rejected",
+    "decided": "divided",
+    "tally": {
+      "for": 2,
+      "against": 23,
+      "abstain": 2
+    },
+    "party_votes": {
+      "VOX": "for",
+      "no_adscrit_Ruiz": "for",
+      "PSC-CP": "against",
+      "ERC": "against",
+      "A": "against",
+      "JxR-CM": "against",
+      "CUP": "against",
+      "no_adscrit_Pardo": "against",
+      "PP": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "for"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "against"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "abstain"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesa la moció a votació, es rebutja amb: - 2 vots a favor: (VOX): Sr. Vaquero (vota verbalment); i (regidor no adscrit): Sr. Ruiz. - 23 vots en contra: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs.: Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; (CUP): Sres. Pàmies i A. López; i (regidor no adscrit): Sr. Pardo. - 2 abstencions: (PP) Sr./Sra. Domènech i Virgili."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p12",
+    "point": "12",
+    "title": "Moció del GRUP MUNICIPAL CANDIDATURA D'UNITAT POPULAR – CUP AMUNT en rebuig a la violència masclista.",
+    "organ": null,
+    "type": "mocio",
+    "legal_category": "mocio",
+    "proposed_by": "CUP",
+    "outcome": "approved",
+    "decided": "divided",
+    "tally": {
+      "for": 23,
+      "against": 2,
+      "abstain": 1
+    },
+    "party_votes": {
+      "PSC-CP": "for",
+      "ERC": "for",
+      "A": "for",
+      "JxR-CM": "for",
+      "CUP": "for",
+      "PP": "for",
+      "VOX": "against",
+      "no_adscrit_Pardo": "against",
+      "no_adscrit_Ruiz": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "against"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "against"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesa la Moció a votació, s’aprova amb: -23 vots a favor: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; (CUP): Sra. Pàmies; i (PP) Sr./Sra. Domènech i Virgili. (Sra. Caballero, Sr. Gavaldà i Sr. Cuerba voten verbalment) - 2 vots en contra: (VOX): Sr. Vaquero; i (regidor no adscrit): Sr. Pardo. - 1 abstenció: (regidor no adscrit): Sr. Ruiz"
+  },
+  {
+    "id": "PLE_10_2025_ORD-p13_1",
+    "point": "13",
+    "title": "Moció del GRUP MUNICIPAL CANDIDATURA D'UNITAT POPULAR – CUP AMUNT per limitar l’ús especulatiu de l’habitatge i el sòl i garantir el dret a l’habitatge digne. — punt 1: Incloure en el futur tràmit del Pla d’Ordenació Urbana Municipal, en les claus urbanístiques pertinents, l’obligació de destinar el 30% del sostre dels edificis sotmesos a gran rehabilitació i de nova construcció del municipi a habitatges amb protecció oficial.",
+    "organ": null,
+    "type": "mocio",
+    "legal_category": "mocio",
+    "proposed_by": "CUP",
+    "outcome": "approved",
+    "decided": "divided",
+    "tally": {
+      "for": 19,
+      "against": 2,
+      "abstain": 5
+    },
+    "party_votes": {
+      "PSC-CP": "for",
+      "ERC": "for",
+      "A": "for",
+      "PP": "for",
+      "CUP": "for",
+      "VOX": "against",
+      "no_adscrit_Pardo": "against",
+      "JxR-CM": "abstain",
+      "no_adscrit_Ruiz": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "against"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "against"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmès el punt 1 de la moció a votació, s’aprova amb: - 19 vots a favor: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (PP) Sr./Sra. Domènech i Virgili; i (CUP): Sres. Pàmies i A. López. - 2 vots en contra: (VOX): Sr. Vaquero; i (regidor no adscrit): Sr. Pardo. - 5 abstencions: (JxR-CM): Sres./Srs. Caballero, Dubois, Gavaldà i Cuerba; i (regidor no adscrit): Sr. Ruiz."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p13_2",
+    "point": "13",
+    "title": "Moció del GRUP MUNICIPAL CANDIDATURA D'UNITAT POPULAR – CUP AMUNT per limitar l’ús especulatiu de l’habitatge i el sòl i garantir el dret a l’habitatge digne. — punt 2: Tramitació d’una Modificació de Planejament General (MPG) que ampliï els supòsits del Dret de tempteig i retracte i l'ordenança corresponent que el desplegui.",
+    "organ": null,
+    "type": "mocio",
+    "legal_category": "mocio",
+    "proposed_by": "CUP",
+    "outcome": "rejected",
+    "decided": "divided",
+    "tally": {
+      "for": 2,
+      "against": 19,
+      "abstain": 5
+    },
+    "party_votes": {
+      "CUP": "for",
+      "PSC-CP": "against",
+      "ERC": "against",
+      "A": "against",
+      "PP": "against",
+      "VOX": "against",
+      "no_adscrit_Pardo": "against",
+      "JxR-CM": "abstain",
+      "no_adscrit_Ruiz": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "against"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "against"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "against"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "against"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesos els punts 2, 3 i 4 de la moció a votació, es rebutgen amb: - 2 vots a favor: (CUP): Sres.Pàmies i A. López. - 19 vots en contra: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (PP) Sr./Sra. Domènech i Virgili; (VOX): Sr. Vaquero; i (regidor no adscrit): Sr. Pardo. - 5 abstencions: (JxR-CM): Sres./Srs. Caballero, Dubois, Gavaldà i Cuerba; i (regidor no adscrit): Sr. Ruiz."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p13_3",
+    "point": "13",
+    "title": "Moció del GRUP MUNICIPAL CANDIDATURA D'UNITAT POPULAR – CUP AMUNT per limitar l’ús especulatiu de l’habitatge i el sòl i garantir el dret a l’habitatge digne. — punt 3: Tramitació d’una MPG que prohibeixi la compra especulativa d’habitatge.",
+    "organ": null,
+    "type": "mocio",
+    "legal_category": "mocio",
+    "proposed_by": "CUP",
+    "outcome": "rejected",
+    "decided": "divided",
+    "tally": {
+      "for": 2,
+      "against": 19,
+      "abstain": 5
+    },
+    "party_votes": {
+      "CUP": "for",
+      "PSC-CP": "against",
+      "ERC": "against",
+      "A": "against",
+      "PP": "against",
+      "VOX": "against",
+      "no_adscrit_Pardo": "against",
+      "JxR-CM": "abstain",
+      "no_adscrit_Ruiz": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "against"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "against"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "against"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "against"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesos els punts 2, 3 i 4 de la moció a votació, es rebutgen amb: - 2 vots a favor: (CUP): Sres.Pàmies i A. López. - 19 vots en contra: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (PP) Sr./Sra. Domènech i Virgili; (VOX): Sr. Vaquero; i (regidor no adscrit): Sr. Pardo. - 5 abstencions: (JxR-CM): Sres./Srs. Caballero, Dubois, Gavaldà i Cuerba; i (regidor no adscrit): Sr. Ruiz."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p13_4",
+    "point": "13",
+    "title": "Moció del GRUP MUNICIPAL CANDIDATURA D'UNITAT POPULAR – CUP AMUNT per limitar l’ús especulatiu de l’habitatge i el sòl i garantir el dret a l’habitatge digne. — punt 4: Aprovar inicialment les mesures dels punts anteriors durant el primer semestre del 2026.",
+    "organ": null,
+    "type": "mocio",
+    "legal_category": "mocio",
+    "proposed_by": "CUP",
+    "outcome": "rejected",
+    "decided": "divided",
+    "tally": {
+      "for": 2,
+      "against": 19,
+      "abstain": 5
+    },
+    "party_votes": {
+      "CUP": "for",
+      "PSC-CP": "against",
+      "ERC": "against",
+      "A": "against",
+      "PP": "against",
+      "VOX": "against",
+      "no_adscrit_Pardo": "against",
+      "JxR-CM": "abstain",
+      "no_adscrit_Ruiz": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "for"
+      },
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "against"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "against"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "against"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "against"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "abstain"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesos els punts 2, 3 i 4 de la moció a votació, es rebutgen amb: - 2 vots a favor: (CUP): Sres.Pàmies i A. López. - 19 vots en contra: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (PP) Sr./Sra. Domènech i Virgili; (VOX): Sr. Vaquero; i (regidor no adscrit): Sr. Pardo. - 5 abstencions: (JxR-CM): Sres./Srs. Caballero, Dubois, Gavaldà i Cuerba; i (regidor no adscrit): Sr. Ruiz."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p14",
+    "point": "14",
+    "title": "Moció del GRUP MUNICIPAL PARTIT POPULAR per impulsar la declaració de la Festa Major de Reus com a Festa d’Interès Turístic Nacional.",
+    "organ": null,
+    "type": "mocio",
+    "legal_category": "mocio",
+    "proposed_by": "PP",
+    "outcome": "rejected",
+    "decided": "divided",
+    "tally": {
+      "for": 5,
+      "against": 22,
+      "abstain": null
+    },
+    "party_votes": {
+      "PP": "for",
+      "VOX": "for",
+      "no_adscrit_Pardo": "for",
+      "no_adscrit_Ruiz": "for",
+      "PSC-CP": "against",
+      "ERC": "against",
+      "A": "against",
+      "JxR-CM": "against",
+      "CUP": "against"
+    },
+    "councillor_votes": [
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "for"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "against"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "against"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "against"
+      }
+    ],
+    "raw_outcome": "Sotmesa la Moció a votació, es rebutja amb: - 5 vots a favor: (PP) Sr./Sra. Domènech i Virgili; (VOX): Sr.: Vaquero; i (regidors no adscrits): Srs. Pardo i Ruiz. - 22 vots en contra: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui (vota verbalment); (A): Sr./Sra. Rubio i Vázquez; (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; i (CUP): Sres. Pàmies i A. López."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p15",
+    "point": "15",
+    "title": "Moció del GRUP MUNICIPAL JUNTS PER REUS - CM per garantir la convivència a la Plaça de la Llibertat.",
+    "organ": null,
+    "type": "mocio",
+    "legal_category": "mocio",
+    "proposed_by": "JxR-CM",
+    "outcome": "approved",
+    "decided": "divided",
+    "tally": {
+      "for": 24,
+      "against": 1,
+      "abstain": 2
+    },
+    "party_votes": {
+      "PSC-CP": "for",
+      "ERC": "for",
+      "A": "for",
+      "JxR-CM": "for",
+      "PP": "for",
+      "VOX": "for",
+      "no_adscrit_Ruiz": "for",
+      "no_adscrit_Pardo": "against",
+      "CUP": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "for"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "for"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "for"
+      },
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "for"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "against"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "abstain"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesa la moció a votació, s’aprova amb: - 24 vots a favor: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez; (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; (PP) Sr./Sra. Domènech i Virgili; (VOX): Sr. Vaquero; i (regidor no adscrit): Sr. Ruiz. - 1 vot en contra: (regidor no adscrit): Sr. Pardo. - 2 abstencions: (CUP): Sres. Pàmies i A. López."
+  },
+  {
+    "id": "PLE_10_2025_ORD-p16",
+    "point": "16",
+    "title": "Moció del GRUP MUNICIPAL JUNTS PER REUS - CM per a la protecció i dinamització del comerç de proximitat.",
+    "organ": null,
+    "type": "mocio",
+    "legal_category": "mocio",
+    "proposed_by": "JxR-CM",
+    "outcome": "rejected",
+    "decided": "divided",
+    "tally": {
+      "for": 9,
+      "against": 16,
+      "abstain": 2
+    },
+    "party_votes": {
+      "JxR-CM": "for",
+      "PP": "for",
+      "VOX": "for",
+      "no_adscrit_Ruiz": "for",
+      "PSC-CP": "against",
+      "ERC": "against",
+      "A": "against",
+      "no_adscrit_Pardo": "against",
+      "CUP": "abstain"
+    },
+    "councillor_votes": [
+      {
+        "name": "Pallarès",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Caballero",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Dubois",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Gavaldà",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Cuerba",
+        "party": "JxR-CM",
+        "vote": "for"
+      },
+      {
+        "name": "Domènech",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Virgili",
+        "party": "PP",
+        "vote": "for"
+      },
+      {
+        "name": "Vaquero",
+        "party": "VOX",
+        "vote": "for"
+      },
+      {
+        "name": "Ruiz",
+        "party": "no_adscrit",
+        "vote": "for"
+      },
+      {
+        "name": "Baiges",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Escoda",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Guaita",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "M. P. López",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Marcos",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martín",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Martínez",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Muñoz",
+        "party": "PSC-CP",
+        "vote": "against"
+      },
+      {
+        "name": "Llauradó",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Recasens",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Flores",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Subirats",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Berasategui",
+        "party": "ERC",
+        "vote": "against"
+      },
+      {
+        "name": "Rubio",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Vázquez",
+        "party": "A",
+        "vote": "against"
+      },
+      {
+        "name": "Pardo",
+        "party": "no_adscrit",
+        "vote": "against"
+      },
+      {
+        "name": "Pàmies",
+        "party": "CUP",
+        "vote": "abstain"
+      },
+      {
+        "name": "A. López",
+        "party": "CUP",
+        "vote": "abstain"
+      }
+    ],
+    "raw_outcome": "Sotmesa la moció a votació, es rebutja amb: - 9 vots a favor: (JxR-CM): Sres./Srs. Pallarès, Caballero, Dubois, Gavaldà i Cuerba; (PP) Sr./Sra. Domènech i Virgili; (VOX): Sr. Vaquero; i (regidor no adscrit): Sr. Ruiz. - 16 vots en contra: (PSC-CP): Sres./Srs. Baiges, Escoda, Guaita, M. P. López, Marcos, Martín, Martínez, Muñoz; (ERC): Sres./Srs. Llauradó, Recasens, Flores, Subirats, Berasategui; (A): Sr./Sra. Rubio i Vázquez ; i (regidor no adscrit): Sr. Pardo. - 2 abstencions: (CUP): Sres. Pàmies i A. López."
+  }
+]

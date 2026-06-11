@@ -120,8 +120,16 @@ Notes from the corpus:
 ## Extraction status & schema
 - Approach (Rob's call): **LLM extraction per session** (most robust to the prose). Pilot +
   2 diverse sessions extracted and **every tally reconciled exactly** against printed counts.
-- Done so far (`data/raw/parsed_<code>.json`): `PLE_03_2026_ORD` (10), `PLE_12_2025_EXTR` (26),
-  `PLE_9_2023_ORD` (13) = 49 decisions, spanning 2023→2026, ordinary + extraordinary.
+- Done so far (`data/raw/parsed_<code>.json`), 11 sessions / 136 decisions, 2023→2026:
+  all five 2026 ordinaries (10+8+7+3+3), `PLE_12_2025_EXTR` (26), `PLE_11_2025_ORD` (8),
+  `PLE_10_2025_ORD` (17 — one moció voted point-by-point = 4 rows, ids `-p13_1…_4`),
+  `PLE_09_2025_ORD` (28), `PLE_08_2025_ORD` (13), `PLE_9_2023_ORD` (13).
+- **Initial/definitive dedupe rule (2026-06-11):** when the same ordinance/budget is voted
+  twice (aprovació *inicial*, then *definitiva*), only ONE gets a card. `PLE_09_2025_ORD`
+  p9–p29 (the 2026 fiscal ordinances, inicial) + p30 (Pressupost 2026, inicial) are
+  facts-only rows — no `explained_` entry, so no headline, so never dealt (`votable` in
+  app.js requires a headline) — because their definitive twins in `PLE_12_2025_EXTR`
+  already carry the cards. The facts stay in the table for the audit trail.
 - Per-decision schema (this pass extracts **facts only** — no interpretation):
   `id · point · title · organ · legal_category(taxonomy.py) · votable(bool) · type(proposta/mocio) ·
    proposed_by · outcome(approved/rejected) · decided(unanimous/divided) · tally{for,against,abstain} ·
