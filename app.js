@@ -9,7 +9,8 @@
 // Known cities for the header selector (adding one also needs a cities/<id>/ bundle).
 const CITIES=[
   {id:"reus",name:"Reus",logo:"assets/logos/reus_rose_color.svg"},
-  {id:"brussels",name:"Brussels",logo:"assets/logos/brussels_iris.svg"}
+  {id:"brussels",name:"Brussels",logo:"assets/logos/brussels_iris.svg"},
+  {id:"congress",name:"Congress",logo:"assets/logos/us_capitol.svg"}
 ];
 const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo:"assets/logos/reus_rose_color.svg"};
 document.title=CFG.title||"RIOT";
