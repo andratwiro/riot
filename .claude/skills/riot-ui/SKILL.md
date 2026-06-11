@@ -71,7 +71,12 @@ asset itself — a near-miss yellow reads as a dirty ring (CUP, fixed #ffdd00).
   and For (right) are *exactly equal* in weight; Abstain (middle) is quieter.
   Moss/brick exist only after the user's own vote is cast.
 - The after-vote room split renders only AFTER the user's vote is in the
-  tally (it cannot bias a cast ballot); counts only, never who.
+  tally (it cannot bias a cast ballot); counts only, never who. Roomless
+  passes (solo / async) get the chamber's per-card reveal in the same slot
+  instead (Rob, 2026-06-11): the official stamp + party discs on the
+  Against/Abstain/For piles — post-vote per decision, so the firewall holds.
+  The GHOST never lands there: mid-deck its prediction would bias its keeper;
+  it belongs to the final reveal only.
 - Vote semantics are fixed: Against = left, Abstain = middle, For = right;
   keyboard ← / ↓ / →; card exits left / down / right. Never reorder.
 - The shared layer stores directions as anonymous aggregate tallies

@@ -267,6 +267,30 @@ function renderSplitInto(el,id,myVote){
     }).join("")+
     `<p class="sp-hint">tap to continue</p>`;
 }
+/* Roomless after-vote beat (solo / async booth): the per-card reveal inherited
+   from live sittings (v0.91/v0.94) — the chamber's official stamp lands beside
+   mine and each party's canonical direction drops its logo disc on the
+   Against/Abstain/For piles. Renders only AFTER my ballot is cast (the
+   firewall is per-decision); no room, so no faces and no ballot count. The
+   GHOST is neither room nor institution and never lands pre-reveal — seeing
+   its prediction mid-deck would bias its keeper. */
+function chamberPiles(d){
+  const pvc=d.party_votes_canon||{};
+  const pp={against:[],abstain:[],for:[]};
+  for(const p of PARTIES){ if(p.ghost) continue; const col=pp[pvc[p.token]]; if(col) col.push(p); }
+  return pp;
+}
+function renderChamberInto(el,pp,myVote){
+  let i=0;                                       // global stagger across the three piles
+  const pdisc=p=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${logoEl(p)}</span>`;
+  const col=(k,lab)=>`<div class="pl-col${k==="abstain"?" quiet":""}${myVote===k?" mine":""}">
+      <div class="pl-stack pl-chamber">${pp[k].map(pdisc).join("")||`<span class="pl-none">—</span>`}</div>
+      <span class="pl-lab">${lab}</span>
+    </div>`;
+  el.innerHTML=`<p class="sp-k">${esc(CFG.chamber||"the chamber")} on this one</p>
+    <div class="piles">${col("against","Against")}${col("abstain","Abstain")}${col("for","For")}</div>
+    <p class="sp-hint">tap to continue</p>`;
+}
 function react(vote){
   if(voting || idx>=deck.length)return;
   const d=deck[idx];
@@ -297,6 +321,9 @@ function react(vote){
   };
   // 2) the room's split on this card (only with a live room and the flag on)
   const tally = SPLIT_ON && typeof roomTally==="function" ? roomTally(d.id) : null;
+  // no room → the chamber's per-card reveal instead (solo / async pass)
+  const pp = (top && !tally) ? chamberPiles(d) : null;
+  const ppN = pp ? pp.against.length+pp.abstain.length+pp.for.length : 0;
   if(top && tally){
     const acts=top.querySelector(".acts");
     setTimeout(()=>{
@@ -305,6 +332,15 @@ function react(vote){
       splitUpdate=()=>{if(voting&&acts)renderSplitInto(acts,d.id,vote);};
       top.addEventListener("click",proceed,{once:true});
       setTimeout(proceed,2000);              // one beat, then next card
+    },430);
+  } else if(ppN){
+    const acts=top.querySelector(".acts");
+    setTimeout(()=>{
+      if(!voting)return;
+      if(typeof stampOutcome==="function") stampOutcome(top,d);   // the chamber's imprint (live.js)
+      if(acts){acts.classList.remove("acts");acts.classList.add("split");renderChamberInto(acts,pp,vote);}
+      top.addEventListener("click",proceed,{once:true});
+      setTimeout(proceed,2600);              // a beat longer than the split — discs to read
     },430);
   } else {
     setTimeout(proceed,460);                 // stamp beat only
