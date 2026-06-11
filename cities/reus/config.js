@@ -24,6 +24,23 @@ window.CITY_CONFIG = {
     disclosure: "Decisions seleccionades de l'acta del ple.",
     sittingOpenedFormula: "S'obre la sessió."
   },
+  // The DEMO deck — pinned first in the moderator's session picker ("the curated
+  // showcase deck"). Hand-picked for a live demo: the cards a citizen actually leans
+  // into — vivid, surprising or genuinely divisive — not the most evenly-split votes.
+  // Ordered as a run: grabber → light laughs → public-money eyebrow-raisers → the
+  // identity/rights flashpoints last, to close strong.
+  demo_deck: [
+    "PLE_10_2025_ORD-p11",  // 16 people lived a month and a half in the hospital car park
+    "PLE_10_2025_ORD-p8",   // the waste ordinance that rules where dogs can (and can't) pee
+    "PLE_08_2025_ORD-p12",  // free tampons & pads in municipal buildings and at city events
+    "PLE_9_2023_ORD-p13",   // scrap 6 parking spots so a new Mercadona fits its lifts
+    "PLE_9_2023_ORD-p5",    // a new mayor's-office confidence job, up to 56,408€/year
+    "PLE_2_2026_ORD-p6",    // 22,700 m² of public land to a private art foundation, 50yr, no tender
+    "PLE_9_2023_ORD-p16",   // the "cursed" 11M€ Hispània car park — mercury & lead in the soil
+    "PLE_9_2023_ORD-p14",   // tie a shop's opening licence to Catalan signage
+    "PLE_11_2025_ORD-p12",  // a registry of police ID-checks to detect racist bias (rejected)
+    "PLE_08_2025_ORD-p11"   // Vox: scrap the Morocco-funded Arabic program in 5 schools (rejected)
+  ],
   // ?deck=live → this curated room-session deck (~15-20 contested cards; the whole
   // room gets the same SET, order is per-person). Curator-picked for variety from
   // the most evenly split for-vs-against votes; the full deck remains the default.
