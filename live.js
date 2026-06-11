@@ -33,6 +33,15 @@
    stage (projector) view. "Server-authoritative" = the moderator's client is
    the only writer of session state; clocks sync via .info/serverTimeOffset.
 
+   Seats (amended by Rob, 2026-06): the voter URL is the sitting's entrance
+   and nothing else — no sitting in the store ⇒ the holding-page wall
+   (lvWall). Presence is taken, never ambient: every sitting (re-)shows the
+   seat gate, the TAP is the join (LIVE.seat → mpJoin → the record, stamped
+   with the sid), and a refresh re-seats silently only into the SAME sid
+   (sessionStorage). Counts, lobby/stage faces and the reveal's crowd see
+   only records seated in the current sitting — a tab left open through
+   yesterday's sitting can watch the gate, but it cannot haunt the room.
+
    Test rig: ?simlive=N fakes a lockstep room with no backend — N sim voters
    (deadline-clustered casts, a late joiner on card 2, a disconnect/rejoin on
    card 3, a force-advance on card 4) over an in-memory store with latency, so
@@ -43,6 +52,8 @@ const SIMLIVE=(()=>{const v=parseInt(QS.get("simlive")||"",10);
                     return Number.isFinite(v)&&v>0?Math.min(v,40):0;})();
 
 let lvStore=null, lvSid=null, lvS=null;     // store, session id, latest snapshot
+let lvSeated=false;                         // this tab tapped the gate INTO lvSid (or refreshed back into it)
+const SID_KEY="riot.sid.v1";                // per-tab: which sitting this tab confirmed into
 let lvDeckSig="", lvShownIdx=-1, lvShownState="";
 let lvRaf=0, lvAuthKey="", lvDeadlineT=0, lvAllInT=0, lvAutoNextT=0;
 let lvAdvancing=false;                      // card exit animation in flight
@@ -54,6 +65,20 @@ const lvSess=()=> "sessions/"+lvSid;
 window.LIVE={
   active(){ return !!(lvSid && lvS && lvS.state && lvS.state!=="ended"); },
   simActive(){ return SIMLIVE>0; },
+  sid(){ return lvSid; },
+  // the seat gate's tap (app.js gateGo): consent in, presence out. Joining a
+  // sitting is a clean slate — answers from an earlier sitting in this tab
+  // would otherwise block ballots and fake "in flight" casts.
+  seat(){
+    if(!lvSid || !lvS || lvS.state==="ended") return false;
+    lvSeated=true;
+    try{sessionStorage.setItem(SID_KEY,lvSid);}catch(e){}
+    for(const k in answers) delete answers[k];
+    lvShownIdx=-1; lvShownState=""; lvDeckSig="";
+    if(typeof mpJoin==="function") mpJoin();
+    onSnapshot();                    // land wherever the sitting is: lobby, card, final
+    return true;
+  },
   canVote(id){ return !!(lvS && lvS.state==="voting" && id===lvCurId() && !(id in answers)); },
   cast(id,vote){
     if(!lvSid) return;
@@ -112,26 +137,38 @@ function liveInit(){
   else if(window.mpDb){ lvStore=fbStore(); }
   else { lvHold(false); if(LIVE_ROLE==="mod") modNoBackend(); return; }   // single-player: no live mode
   if(LIVE_ROLE==="mod"){ lvHold(false); document.body.classList.add("live-mod"); }
-  else if(document.documentElement.classList.contains("lvhold")){
-    // refresh hold (html.lvhold, set before first paint): this tab was seated
-    // in the lobby — draw the real document from CFG now, seconds before the
-    // first snapshot confirms it (or returns the booth if the sitting moved on)
+  else {
+    // every voter boot holds the paper (html.lvhold, set before first paint)
+    // until the store answers: a sitting → the seat gate (or a silent
+    // re-seat), none → the wall. A tab that was SEATED in the lobby still
+    // re-paints the convocation document on frame one instead of waiting.
     document.body.classList.add("live-voter");
-    showLobby();
-    setTimeout(()=>{ if(!lvS && lvShownState==="lobby") liveEnded(); },10000);  // backend never answered
+    let seated=false; try{seated=sessionStorage.getItem("riot.liveLobby")===CFG.id;}catch(e){}
+    if(seated) showLobby();
+    setTimeout(()=>{ if(!lvS && lvShownState!=="final") lvWall(true); },10000);  // backend never answered
   }
   let goneT=0;
   lvStore.on("current",sid=>{
     if(sid===lvSid){
-      // held lobby, but no session in the store: give a freshly-created one a
-      // beat to land (the sim rig writes it late) before returning the booth
-      if(!sid && lvShownState==="lobby" && !goneT)
-        goneT=setTimeout(()=>{ if(!lvSid && lvShownState==="lobby") liveEnded(); },2500);
+      // no session in the store: give a freshly-created one a beat to land
+      // (the sim rig writes it late) — then the wall. The voter URL is the
+      // sitting's entrance, and there is no sitting behind it.
+      if(!sid && !goneT && LIVE_ROLE!=="mod")
+        goneT=setTimeout(()=>{ goneT=0; if(!lvSid && lvShownState!=="final") liveEnded(); },2500);
       return;
     }
     clearTimeout(goneT); goneT=0;
     lvSid=sid;
     if(!sid){ lvS=null; onSessionGone(); return; }
+    if(LIVE_ROLE!=="mod"){
+      // a refresh re-seats silently (same sitting, same consent); any other
+      // sid waits at the gate — and whatever record this tab left in an
+      // older sitting is withdrawn
+      let stored=null; try{stored=sessionStorage.getItem(SID_KEY);}catch(e){}
+      lvSeated = stored===sid;
+      if(lvSeated){ if(typeof mpJoin==="function") mpJoin(); }
+      else if(typeof mpLeave==="function") mpLeave();
+    }
     lvStore.on(lvSess(), s=>{ if(lvSid!==sid)return; lvS=s; onSnapshot(); });
   });
   if(SIMLIVE) simLiveBoot();
@@ -141,12 +178,13 @@ function liveInit(){
 /* ---- snapshot dispatch ---- */
 function onSnapshot(){
   if(!lvS) return;
-  liveSyncAI();                            // AI mode is the session's, not the visitor's
-  if(LIVE_ROLE==="mod"){ $("#modSetup").hidden=true; renderStage(); modAuthority(); simOnSnapshot(); return; }
-  document.body.classList.add("live-voter");
+  if(LIVE_ROLE==="mod"){ liveSyncAI(); $("#modSetup").hidden=true; renderStage(); modAuthority(); simOnSnapshot(); return; }
   const st=lvS.state;
+  if(st==="ended"){ liveEnded(); modAuthority(); simOnSnapshot(); return; }
+  if(!lvSeated){ showSeatGate(); modAuthority(); simOnSnapshot(); return; }   // the sitting asks before it seats
+  liveSyncAI();                            // AI mode is the session's, not the visitor's
+  document.body.classList.add("live-voter");
   if(st==="lobby"){ showLobby(); }
-  else if(st==="ended"){ liveEnded(); }
   else if(st==="final"){ hideLobby(); renderFinal(); }
   else if(lvShownState==="lobby" && st==="voting" && lvS.idx===0){ openSitting(); lvShownState="opening"; }
   else if(lvOpening){ /* the formula holds the screen; the timeout lands the card */ }
@@ -163,13 +201,15 @@ function liveEnded(){
   stopCountdown();
   document.body.classList.remove("live-paused");
   hideLobby();
-  if(lvShownState!=="final"){       // never reached the payoff → back to the solo booth
-    document.body.classList.remove("live-voter","live-final");
+  if(typeof gateHide==="function") gateHide();
+  if(lvShownState!=="final"){       // never reached the payoff → the URL is no longer an entrance
+    document.body.classList.remove("live-final");
     lvShownState="ended"; lvShownIdx=-1; lvDeckSig="";
+    lvSeated=false; voting=false;
+    if(typeof mpLeave==="function") mpLeave();
     if(showAI){ showAI=false; applyAiParty(false); }   // AI mode dies with the session
-    deck=buildDeck(); idx=0; voting=false;
     $("#done").style.display="none";
-    renderStack();
+    lvWall(true);
   }
 }
 /* AI mode (cfg.ai): the moderator seats the proxy for the whole room — every
@@ -247,8 +287,8 @@ function stopCountdown(){
 
 /* ---- after my ballot: cast confirmation, never the split (that's the reveal's) ---- */
 function voterCount(){
-  const peers=Object.keys(PEERS).length;
-  return LIVE_ROLE==="mod" ? peers : peers+1;
+  const peers=mpVisiblePids().length;       // only records seated in THIS sitting
+  return LIVE_ROLE==="mod" ? peers : peers+(lvSeated?1:0);
 }
 function castCount(id){
   const m=((lvS&&lvS.cast)||{})[id]||{};
@@ -394,11 +434,31 @@ function lvHold(on){
   try{ if(on) sessionStorage.setItem("riot.liveLobby",CFG.id);
        else   sessionStorage.removeItem("riot.liveLobby"); }catch(e){}
 }
+/* ---- the wall: a voter URL with no sitting behind it is not an entrance.
+   Reuses the bare-URL holding page (html.hold swaps shell ↔ holding).
+   Reversible: a sitting created while a tab waits here turns the wall back
+   into the seat gate on the next snapshot. */
+function lvWall(on){
+  if(LIVE_ROLE==="mod") return;
+  document.documentElement.classList.remove("lvhold");
+  document.documentElement.classList.toggle("hold",on);
+  const h=$("#holding"); if(h) h.hidden=!on;
+  document.title=on?"RIOT":(CFG.title||"RIOT");
+}
+/* ---- the seat gate: a sitting exists and this tab hasn't taken a seat in
+   it. Until the tap (app.js gateGo → LIVE.seat) the tab is invisible — no
+   presence record, no lobby face, no place in the all-in counts. */
+function showSeatGate(){
+  lvWall(false);
+  lvHold(false);                     // gated ≠ seated: a refresh re-asks, not re-paints
+  document.body.classList.add("live-voter");
+  if(typeof gateShow==="function") gateShow(true);
+}
 function lobbyPresence(){
   const lb=$("#lobby"); if(!lb||lb.hidden) return;
   $("#lobbyCount").textContent=voterCount();
   const faces=[faceHTML(identity&&identity.emoji,(identity&&identity.name)||"you",true)];
-  for(const pid of Object.keys(PEERS)) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false));
+  for(const pid of mpVisiblePids()) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false));
   $("#lobbyFaces").innerHTML=faces.join("");
 }
 function showLobby(){
@@ -592,7 +652,7 @@ function botJoin(i){
   const pid="bot"+i;
   if(botIds.indexOf(pid)<0) botIds.push(pid);
   const rec={e:SIM_FACES[i%SIM_FACES.length], nm:SIM_NAMES[i%SIM_NAMES.length],
-             c:null, n:0, t:(lvS.deck||[]).length};
+             c:null, n:0, t:(lvS.deck||[]).length, s:lvSid};   // seated by the moderator into THIS sitting
   if(SIMLIVE){ PEERS[pid]=rec; }
   else { rec.ts=firebase.database.ServerValue.TIMESTAMP;
          const ref=mpPart.child(pid); ref.set(rec); ref.onDisconnect().remove(); }
@@ -702,7 +762,7 @@ function renderStage(){
             <p class="sg-k">Live session · ${esc(CFG.name)}</p>
             ${qrSVG(location.protocol+"//"+joinUrl)}
             <h1 class="sg-join">${esc(joinUrl)}</h1>
-            <p class="sg-sub">scan it — or type it · pick a face · you're in</p>
+            <p class="sg-sub">scan it — or type it · pick a face · take your seat</p>
             <div class="sg-faces" id="sgFaces"></div>
             <p class="sg-inlab"><b id="sgHere">0</b> in the room</p>
           </div>`;
@@ -723,7 +783,7 @@ function renderStage(){
   }
   // per-state details on top of the stable skeleton
   if(st==="lobby"){
-    const faces=[]; for(const pid of Object.keys(PEERS)) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false));
+    const faces=[]; for(const pid of mpVisiblePids()) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false));
     const sf=$("#sgFaces"); if(sf) sf.innerHTML=faces.join("");
     const sh=$("#sgHere"); if(sh) sh.textContent=voterCount();
   }

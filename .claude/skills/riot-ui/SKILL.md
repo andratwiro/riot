@@ -112,9 +112,14 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   except the party view's back-arrow which returns to the reveal).
 - **Party identity**: white disc + logo via `logoEl()` (brand backfills for
   square logos); never hand-roll an avatar.
-- **Join screen**: kicker (violet mono) → Archivo 800 headline → 4×4 emoji
-  grid (≥44px targets, one preselected) → optional mono name field → single
-  ink CTA. One screen, one button, <30s.
+- **Join screen (the seat gate)**: kicker (violet mono) → Archivo 800 headline
+  → 4×4 emoji grid (≥44px targets, one preselected — the tab's own face when
+  it has one) → optional mono name field → single ink CTA ("Take your seat"
+  in live sittings, "Enter the booth" in sim rooms). One screen, one button,
+  <30s. **The CTA tap IS the join**: nothing about the tab exists for the
+  room (presence, counts, faces) until it's tapped, and every new sitting
+  re-asks — one tap back in. A voter URL with no sitting behind it shows the
+  holding page, not the booth.
 - **Live-session idioms** (`live.js` + the `LIVE SESSION` block in style.css):
   the **voter lobby is the convocation document** — left-aligned like the
   cards: eyebrow → headline → body → the **docket block** (`.lb-docket`, the

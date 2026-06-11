@@ -8,10 +8,17 @@
    layer ONLY as anonymous aggregate tallies (rooms/<room>/tallies/<id>/<dir>),
    written by atomic increments, rendered only after the viewer's own vote.
 
+   Presence is SEAT-GATED (Rob, 2026-06): a participant record is written only
+   when the visitor taps the seat gate (mpJoin), never on page load, and it
+   carries the sitting it joined (s: sid). Every count and face filters by the
+   current sid (mpVisiblePids) — a record from yesterday's sitting, or a tab
+   that loaded the URL and never tapped, is structurally invisible.
+
    Test/demo rig: ?simroom=15 fakes a 15-person room with no backend at all —
    used by the screenshot skill and the 60fps presence-pulse check. */
-const PEERS = {};                  // pid -> {e,nm,c,n,t}
+const PEERS = {};                  // pid -> {e,nm,c,n,t,s}
 let mpSelf=null, mpCtrl=null, mpPart=null, mpTallies=null, mpPid=null, mpSeenReset=null;
+let mpJoined=false;                // this tab took a seat (the gate tap) — presence exists only then
 let TALLIES = {};                  // decision id -> {for,against,abstain}
 const SIM_N = (()=>{const v=parseInt(new URLSearchParams(location.search).get("simroom")||"",10);
                     return Number.isFinite(v)&&v>0?Math.min(v,40):0;})();
@@ -33,12 +40,21 @@ function roomTally(id){
    sessions a peer sits at the position it published over presence (the
    canonical Room frame). Keyed by pid so a projection switch morphs the dots
    instead of re-dealing them. ---- */
+/* which peers exist for THIS screen: in a live session only records seated in
+   the current sitting (s === sid) — a record left by an older sitting or a
+   tab that never tapped the gate is invisible everywhere. Sim rigs carry no
+   sid; their records are the room by construction. */
+function mpVisiblePids(){
+  const pids=Object.keys(PEERS);
+  if(!(window.LIVE && LIVE.active()) || LIVE.simActive()) return pids;
+  return pids.filter(p=>PEERS[p].s===LIVE.sid());
+}
 function renderPeersInto(el){
   if(!el) return;
   const live=window.LIVE && LIVE.active();
   const seen=new Set();
   let i=0;
-  for(const pid in PEERS){
+  for(const pid of mpVisiblePids()){
     const p=PEERS[pid];
     let c=null;
     // live peers carry a full ballot (cast markers); sim peers carry a fabricated
@@ -81,7 +97,7 @@ function renderStrip(){
   const strip=$("#roomstrip"); if(!strip) return;
   if(!roomActive()){strip.hidden=true; return;}
   strip.hidden=false;
-  const pids=Object.keys(PEERS);
+  const pids=mpVisiblePids();
   const key=[identity&&identity.emoji,identity&&identity.name,...pids.map(p=>p+(PEERS[p].e||"")+(PEERS[p].nm||""))].join("|");
   if(key!==stripKey){
     stripKey=key;
@@ -137,14 +153,31 @@ function parseCov(raw){
   return {k:(raw&&raw.k)||0, s, m2};
 }
 
-/* ---- publishing ---- */
+/* ---- publishing: the gate tap is the join ----
+   Loading the URL is NOT joining the sitting. A participant record exists only
+   after mpJoin() (live.js calls it from the seat gate / a same-sid refresh),
+   and it carries the sid it belongs to — so a record orphaned by a suspended
+   phone can never haunt the next sitting's lobby or its all-in counts. */
 function publishSelf(){
   renderStrip();
-  if(!mpSelf) return;
+  if(!mpSelf || !mpJoined) return;
   const c=(typeof publishCoord==="function")?publishCoord():null;
   mpSelf.set({e:(identity&&identity.emoji)||"", nm:(identity&&identity.name)||"",
               c, n:Object.keys(answers).length, t:deck.length,
+              s:(window.LIVE&&LIVE.sid())||null,
               ts:firebase.database.ServerValue.TIMESTAMP});
+}
+function mpJoin(){
+  if(!mpSelf || mpJoined) return;
+  mpJoined=true;
+  mpSelf.onDisconnect().remove();
+  publishSelf();
+}
+function mpLeave(){                 // the sitting moved on without this tab
+  if(!mpSelf || !mpJoined) return;
+  mpJoined=false;
+  try{ mpSelf.onDisconnect().cancel(); }catch(e){}
+  mpSelf.remove();
 }
 // called by app.js react(): my ballot → anonymous tally + presence. No-op single-player.
 function mpVote(id,vote){
@@ -192,16 +225,15 @@ function mpInit(){
     mpTallies=db.ref(`rooms/${room}/tallies`);
     mpCov=db.ref(`rooms/${room}/cov`);
     // the moderator observes the room but is not a voter: no participant record,
-    // so ballots-in counts and "all present have cast" stay honest
+    // so ballots-in counts and "all present have cast" stay honest. Voters get
+    // a ref only — nothing is WRITTEN until the seat gate's tap (mpJoin).
     if(window.LIVE_ROLE!=="mod"){
       mpSelf=mpPart.child(mpPid);
-      mpSelf.onDisconnect().remove();
-      publishSelf();
     }
     mpPart.on("value",snap=>{
       const all=snap.val()||{};
       const prev={}; for(const k in PEERS){prev[k]=PEERS[k].n; delete PEERS[k];}
-      for(const k in all){ if(k!==mpPid) PEERS[k]={e:all[k].e||"",nm:all[k].nm||"",c:all[k].c||null,n:all[k].n||0,t:all[k].t||0}; }
+      for(const k in all){ if(k!==mpPid) PEERS[k]={e:all[k].e||"",nm:all[k].nm||"",c:all[k].c||null,n:all[k].n||0,t:all[k].t||0,s:all[k].s||null}; }
       renderStrip();
       for(const k in PEERS) if(prev[k]!=null && PEERS[k].n>prev[k]) activityTick(k);
       // new known ballots are new ROWS — they can tug everyone, so reposition

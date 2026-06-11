@@ -436,34 +436,53 @@ const ID_KEY="riot.identity.v1";
 try{localStorage.removeItem(ID_KEY);}catch(e){}
 let identity=null; try{identity=JSON.parse(sessionStorage.getItem(ID_KEY));}catch(e){}
 const JOIN_EMOJI=["🦊","🦉","🐢","🐝","🦋","🐙","🌻","🌿","🍊","🌙","⚡","🔥","💧","⭐","🍀","🎈"];
-function maybeShowJoin(){
-  // only gate when there IS a room to join (live multiplayer or simulated one)
-  if(window.LIVE_ROLE==="mod") return;       // the moderator runs the room, not a ballot
-  if(!(typeof roomActive==="function" && roomActive())) return;
-  if(identity && (identity.emoji||identity.name)){ updateMeBadge(); return; }
+/* The seat gate. One screen, one button — and the button is the JOIN: nothing
+   about this tab exists for the room until it's tapped (multiplayer.js
+   publishes presence only from the tap). live.js re-shows the gate for every
+   new sitting; a face picked earlier in this tab comes preselected, so
+   re-entry is one tap. */
+function gateShow(live){
   const grid=$("#joinGrid");
   $("#joinLogo").src=(CITIES.find(c=>c.id===CFG.id)||CITIES[0]).logo;
   $("#joinKicker").textContent=`Live session · ${CFG.name}`;
-  grid.innerHTML=JOIN_EMOJI.map(e=>`<button type="button" data-e="${e}">${e}</button>`).join("");
-  // preselect a random one so a single tap on "Enter the booth" is enough
-  const pre=grid.children[Math.floor(Math.random()*grid.children.length)];
+  if(!grid.dataset.built){
+    grid.dataset.built="1";
+    grid.innerHTML=JOIN_EMOJI.map(e=>`<button type="button" data-e="${e}">${e}</button>`).join("");
+    grid.addEventListener("click",e=>{
+      const b=e.target.closest("[data-e]"); if(!b)return;
+      grid.querySelectorAll(".sel").forEach(x=>x.classList.remove("sel"));
+      b.classList.add("sel");
+    });
+    $("#joinGo").addEventListener("click",gateGo);
+    $("#joinName").addEventListener("keydown",e=>{if(e.key==="Enter")gateGo();});
+  }
+  // preselect the face this tab already wears, else a random one — either way
+  // a single tap on the CTA is enough
+  grid.querySelectorAll(".sel").forEach(x=>x.classList.remove("sel"));
+  let pre=identity&&identity.emoji ? [...grid.children].find(b=>b.dataset.e===identity.emoji) : null;
+  if(!pre) pre=grid.children[Math.floor(Math.random()*grid.children.length)];
   if(pre)pre.classList.add("sel");
-  grid.addEventListener("click",e=>{
-    const b=e.target.closest("[data-e]"); if(!b)return;
-    grid.querySelectorAll(".sel").forEach(x=>x.classList.remove("sel"));
-    b.classList.add("sel");
-  });
+  if(identity&&identity.name) $("#joinName").value=identity.name;
+  $("#joinGo").textContent=live?"Take your seat":"Enter the booth";
   $("#join").hidden=false;
-  const go=()=>{
-    const sel=grid.querySelector(".sel");
-    identity={emoji:sel?sel.dataset.e:"", name:($("#joinName").value||"").trim().slice(0,14)};
-    try{sessionStorage.setItem(ID_KEY,JSON.stringify(identity));}catch(e){}
-    $("#join").hidden=true;
-    updateMeBadge();
-    if(typeof publishSelf==="function")publishSelf();
-  };
-  $("#joinGo").addEventListener("click",go);
-  $("#joinName").addEventListener("keydown",e=>{if(e.key==="Enter")go();});
+}
+function gateHide(){ $("#join").hidden=true; }
+function gateGo(){
+  const sel=$("#joinGrid").querySelector(".sel");
+  identity={emoji:sel?sel.dataset.e:"", name:($("#joinName").value||"").trim().slice(0,14)};
+  try{sessionStorage.setItem(ID_KEY,JSON.stringify(identity));}catch(e){}
+  gateHide();
+  updateMeBadge();
+  // live sitting: the tap takes the seat (presence + counts start here)
+  if(window.LIVE && typeof LIVE.seat==="function" && LIVE.seat()) return;
+  if(typeof publishSelf==="function")publishSelf();   // sim room: strip only
+}
+function maybeShowJoin(){
+  // boot-time gate: only the backendless sim room (?simroom) still gates here —
+  // real rooms gate per-sitting from live.js, and a sitting may not exist yet
+  if(window.LIVE_ROLE==="mod") return;       // the moderator runs the room, not a ballot
+  if(identity && (identity.emoji||identity.name)){ updateMeBadge(); return; }
+  if(typeof simOn!=="undefined" && simOn) gateShow(false);
 }
 /* the room "account": your chosen face top-right, for your own eyes — the
    room meets you through the strip / lobby faces / reveal piles instead.
