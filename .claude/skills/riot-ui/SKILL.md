@@ -154,8 +154,14 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   beat 2 (+900ms) the **room rains in as emoji piles** (`.piles`,
   `renderLivePiles`): every cast face drops onto its pile in button order
   (Against/Abstain/For), abstain quieter, my column violet, counts under the
-  rules, timeouts one muted "n didn't vote" line — no bars, no party detail
-  (that's the final reveal's). Pile directions come from cast markers (see
+  rules, timeouts one muted "n didn't vote" line — no bars. **The chamber
+  lands on the same piles** (Rob, 2026-06, always on): each party's
+  `party_votes_canon` direction drops its `logoEl` disc in a `.pl-chamber`
+  row beneath the faces — the room above, the institution under it; absent
+  tokens (single-chamber measures, the GHOST) don't land; the `.pl-n` count
+  stays room ballots only. Per-decision party positions are reveal-surface
+  data — affinity/map detail is still the final reveal's. Pile directions
+  come from cast markers (see
   doctrine); the **stage** (`#stage`) scales with `clamp()` for 5-metre
   legibility and reuses the piles enlarged. Voter chrome in live mode is
   stripped (no §, no ⚙ until the final reveal, city switch disabled).

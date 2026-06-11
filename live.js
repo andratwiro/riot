@@ -22,11 +22,14 @@
 
    Doctrine (amended by Rob, 2026-06): the per-card reveal leads with the
    chamber's official stamp (the real verdict), then the room lands as emoji
-   piles — each cast face on its pile. Directions are pseudonymous (emoji,
-   chosen in private) and surface only AFTER everyone on the card has cast or
-   timed out; nothing direction-shaped ever shows pre-vote. Party detail still
-   belongs to the final reveal and the minutes. Timeouts get no cast marker +
-   nothing in local `answers` ⇒ excluded from affinity automatically.
+   piles — each cast face on its pile, the chamber's party discs beneath them
+   on the same piles (Rob, 2026-06: always on — the firewall is per-decision,
+   and this card's ballot is closed by the time anything lands). Directions
+   are pseudonymous (emoji, chosen in private) and surface only AFTER everyone
+   on the card has cast or timed out; nothing direction-shaped ever shows
+   pre-vote. Affinity/map detail still belongs to the final reveal and the
+   minutes. Timeouts get no cast marker + nothing in local `answers` ⇒
+   excluded from affinity automatically.
 
    Roles: default URL = voter (radically simple). ?role=moderator = picks the
    deck by plenary session, starts/pauses/advances/ends; their screen is the
@@ -328,7 +331,11 @@ function verdictCopy(d){
 }
 /* the room as emoji piles: every cast face lands on its pile, in button order
    (Against / Abstain / For). Directions come from the cast markers — they are
-   pseudonymous and shown only here, after the card has closed. */
+   pseudonymous and shown only here, after the card has closed.
+   The chamber lands on the same piles (Rob, 2026-06): each party's canonical
+   direction drops its logo disc beneath the faces — the room above, the
+   institution under it, one glance says who voted what. Tokens absent from
+   party_votes_canon (single-chamber measures, the GHOST) simply don't land. */
 function renderLivePiles(el,id){
   const my=answers[id];
   const castMap=((lvS&&lvS.cast)||{})[id]||{};
@@ -340,12 +347,17 @@ function renderLivePiles(el,id){
     const p=PEERS[pid]||{};
     piles[v].push({e:p.e,nm:p.nm,me:false});
   }
+  const pvc=(byId[id]&&byId[id].party_votes_canon)||{};
+  const pp={against:[],abstain:[],for:[]};
+  for(const p of PARTIES){ const v=pp[pvc[p.token]]; if(v) v.push(p); }
   const ball=piles.against.length+piles.abstain.length+piles.for.length;
   const noBallot=Math.max(voterCount()-castCount(id),0);
   let i=0;                                       // global stagger across the three piles
   const stack=f=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${faceHTML(f.e,f.nm,f.me)}</span>`;
+  const pdisc=p=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${logoEl(p)}</span>`;
   const col=(k,lab)=>`<div class="pl-col${k==="abstain"?" quiet":""}${my===k?" mine":""}">
       <div class="pl-stack">${piles[k].map(stack).join("")||`<span class="pl-none">—</span>`}</div>
+      ${pp[k].length?`<div class="pl-stack pl-chamber">${pp[k].map(pdisc).join("")}</div>`:""}
       <span class="pl-lab">${lab}</span>
       <span class="pl-n">${piles[k].length}</span>
     </div>`;
@@ -834,11 +846,13 @@ function buildStageFinal(){
     <h1 class="sg-h">${X===0
       ? `On all ${N} decisions, this room landed where ${esc(CHAMBER)} did.`
       : `On ${X} of ${N} decisions, this room would have decided differently.`}</h1>`+
-    (X?`<div class="sg-rvlist">`+items.map(({d,rv})=>`<div class="rv-row">
+    (X?`<div class="sg-rvlist">`+items.map(({d,rv})=>{
+      const rm=marginPair(LIVE.tally(d.id)), cm=chamberMargin(d);   // same parallel margins as the voter list
+      return `<div class="rv-row">
         <span class="rv-t">${esc(d.headline||d.title)}</span>
-        <span class="rv-chips"><span class="badge ${rv==="approved"?"b-app":"b-rej"}">room: ${rv}</span>
-        <span class="badge ${d.outcome==="approved"?"b-app":"b-rej"}">${esc(CHAMBER.replace(/^the /,""))}: ${d.outcome}</span></span>
-      </div>`).join("")+`</div>`:"")+
+        <span class="rv-chips"><span class="badge ${rv==="approved"?"b-app":"b-rej"}">room: ${rv} ${rm}</span>
+        <span class="badge ${d.outcome==="approved"?"b-app":"b-rej"}">${esc(CHAMBER.replace(/^the /,""))}: ${d.outcome}${cm?" "+cm:""}</span></span>
+      </div>`;}).join("")+`</div>`:"")+
     `<p class="sg-sub">each phone now shows its own reveal — closest party, the map, the proxy.</p>`;
 }
 function renderStageCtl(st){

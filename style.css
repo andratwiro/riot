@@ -569,6 +569,11 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 .pl-stack .face{width:26px;height:26px;font-size:14px;margin:0}
 .pl-stack .face.init{font-size:10px}
 .pl-none{font:400 12px var(--f-mono);color:var(--rule)}
+/* the chamber on the same piles: party logo discs, always beneath the faces */
+.pl-chamber{min-height:0;margin-top:1px}
+.pl-stack .lg{width:22px;height:22px}
+.pl-stack .lg img{padding:2.5px}
+.pl-stack .lg.fb{font-size:7px;letter-spacing:0}
 .pl-lab{font:700 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink80);
   border-top:2px solid var(--ink);padding-top:5px;width:100%;text-align:center}
 .pl-n{font:700 13px var(--f-mono);color:var(--ink)}
@@ -683,6 +688,8 @@ html.lvhold .brand .ver{top:0}
 #stage .pl-stack .face.init{font-size:clamp(10px,1.2vw,16px)}
 #stage .pl-lab{font-size:clamp(12px,1.6vw,20px)}
 #stage .pl-n{font-size:clamp(14px,2.2vw,28px)}
+#stage .pl-stack .lg{width:clamp(24px,3vw,40px);height:clamp(24px,3vw,40px)}
+#stage .pl-stack .lg.fb{font-size:clamp(8px,1vw,13px)}
 #stage .pl-to{font-size:clamp(11px,1.4vw,16px)}
 #stage .lv-verdict{font-size:clamp(13px,2vw,22px);margin-top:14px}
 #stage .stamprow{margin-top:0;padding:0 0 8px;height:auto}  /* stage: in-flow (its own rhythm; no card to keep still) */
