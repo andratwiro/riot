@@ -311,13 +311,19 @@ function projJoint(){
   return {coords:partyRows.map(r=>score(r)||[0,0]),
           project:votes=>score(rowVec(votes,cols))};
 }
-// multiplayer.js (real room or sim) calls this when the room aggregate changes
-function jointDataChanged(cov){
-  JOINT_COV=cov;
-  delete PROJ_CACHE["joint"];
+// multiplayer.js (real room or sim) calls this when the room aggregate changes.
+// The data lands at once (any fresh getProj sees it); only the VISIBLE re-solve
+// is trailing-throttled — at the final reveal every finisher contributes within
+// seconds, and each contribution would otherwise re-run the full PCA on-screen.
+const jointResolve=throttleTrail(()=>{
   if(MAP_PROJ==="joint" && $("#resultMap") && $("#resultMap").innerHTML){
     applyProjection("joint"); repositionMap();
   }
+},300);
+function jointDataChanged(cov){
+  JOINT_COV=cov;
+  delete PROJ_CACHE["joint"];
+  jointResolve();
 }
 
 /* ---- the projection registry + current selection ----

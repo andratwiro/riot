@@ -124,6 +124,14 @@ const SPLIT_ON = QS.get("split")==="0" ? false : (CFG.live_split!==false);
 
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function esc(s){return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+// at most one run per `ms`, trailing edge — coalesces backend write bursts
+// (the final reveal: ~room-size near-simultaneous presence/cov events) into
+// a few paints instead of one map re-solve per event
+function throttleTrail(fn,ms){
+  let t=0,last=0;
+  return ()=>{ if(t) return;
+    t=setTimeout(()=>{ t=0; last=Date.now(); fn(); }, Math.max(0,ms-(Date.now()-last))); };
+}
 
 let deck = buildDeck();
 

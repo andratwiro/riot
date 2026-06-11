@@ -85,6 +85,10 @@ function renderPeersInto(el){
 function renderPeers(){
   const rm=document.getElementById("resultMap"); if(rm && rm.innerHTML) renderPeersInto(rm);
 }
+// presence-driven map refresh, coalesced (see the mpPart listener)
+const mapNudge=throttleTrail(()=>{
+  if(typeof repositionMap==="function") repositionMap(); else renderPeers();
+},300);
 
 /* ---- the room strip: faces + activity pulse + room progress ---- */
 const FACE_MAX=7;
@@ -187,7 +191,12 @@ function mpVote(id,vote){
   if(window.LIVE && LIVE.active()){
     LIVE.cast(id,vote);
     activityTick("me");
-    if(mpSelf) publishSelf(); else renderStrip();
+    renderStrip();
+    // live placement comes from cast markers, never presence — per-vote presence
+    // needs only the n bump (the strip's tick on other phones), not the full
+    // record + a re-scored coordinate (publishSelf stays the join shape)
+    if(mpSelf && mpJoined)
+      mpSelf.update({n:Object.keys(answers).length, ts:firebase.database.ServerValue.TIMESTAMP});
     return;
   }
   if(simOn){ simCastRoom(id); const t=roomTally(id); t[vote]=(t[vote]||0)+1; activityTick("me"); renderStrip(); return; }
@@ -239,8 +248,11 @@ function mpInit(){
       renderStrip();
       for(const k in PEERS) if(prev[k]!=null && PEERS[k].n>prev[k]) activityTick(k);
       // new known ballots are new ROWS — they can tug everyone, so reposition
-      // the whole map (it renders peers too), not just the peer dots
-      if(typeof repositionMap==="function") repositionMap(); else renderPeers();
+      // the whole map (it renders peers too), not just the peer dots.
+      // Trailing-throttled: at the final reveal every finisher's presence write
+      // lands within seconds; on a non-default projection each one re-runs a
+      // full SMACOF/t-SNE solve. Pre-reveal both calls no-op (no map yet).
+      mapNudge();
     });
     mpTallies.on("value",snap=>{
       TALLIES=snap.val()||{};
