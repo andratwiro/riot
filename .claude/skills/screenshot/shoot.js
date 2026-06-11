@@ -148,7 +148,9 @@ async function newPage(browser, desktop) {
     for (let i = 0; i < 200 && !(await isDone(page)); i++) await voteAndSettle(page, 'for', room);
     await sleep(1600);                     // let the reveal-map dots land
     await shot(page, '04-reveal-top');
-    await page.evaluate(() => { const s = document.querySelector('#done'); s.scrollTop = s.scrollHeight; });
+    // the reveal scrolls as the page (html.reveal releases the lock); old inner-box scroll kept as fallback
+    await page.evaluate(() => { const s = document.querySelector('#done'); s.scrollTop = s.scrollHeight;
+      const d = document.scrollingElement; d.scrollTop = d.scrollHeight; });
     await sleep(400);
     await shot(page, '05-reveal-bottom');
 

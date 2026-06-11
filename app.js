@@ -359,8 +359,19 @@ function finish(){
   renderResultMap();            // the map's first appearance — animated into place (map.js)
   renderExtremes(ranked,a);
   renderDoneParties(ranked,a);
-  $("#done").style.display="flex";
+  doneVis(true);
   updateDevBar();
+}
+
+/* The reveal scrolls as THE PAGE: html.reveal releases the viewer's
+   overflow:hidden page lock and #done leaves its absolute overlay (see
+   style.css), so wheel/touch anywhere — including outside the 680px column
+   on desktop — moves the results. One door for every show/hide so the page
+   lock can't leak into the booth. */
+function doneVis(on){
+  $("#done").style.display=on?"flex":"none";
+  document.documentElement.classList.toggle("reveal",on);
+  if(!on) window.scrollTo(0,0);
 }
 
 function collapseCard(card){
@@ -430,7 +441,7 @@ document.addEventListener("keydown",e=>{
 $("#restart").addEventListener("click",()=>{
   for(const k in answers)delete answers[k];
   deck=buildDeck(); idx=0; voting=false;
-  $("#done").style.display="none";
+  doneVis(false);
   renderStack();
   if(typeof publishSelf==="function")publishSelf();
 });

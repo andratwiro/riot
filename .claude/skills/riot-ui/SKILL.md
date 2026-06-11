@@ -76,7 +76,13 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   between header and card — don't add more.
 - Scroll regions: survey column on phones, expanded card's `.reveal`
   (vote buttons stay pinned below it — reading the brief is the
-  highest-intent voting moment), the reveal screen, full-screen overlays.
+  highest-intent voting moment), full-screen overlays. **The reveal screen
+  scrolls as THE PAGE** (Rob, 2026-06): `doneVis()` tags `html.reveal`,
+  which releases the body's `overflow:hidden` page lock and drops `#done`
+  out of its absolute overlay into flow — wheel/touch anywhere (including
+  outside the 680px column on desktop) scrolls the results, and header +
+  strip scroll away with the page. Hiding the reveal restores the lock and
+  `scrollTo(0,0)`; never show/hide `#done` except through `doneVis()`.
 - Fixed bottom elements pad with `env(safe-area-inset-bottom)`.
 - `hidden` attribute + a CSS `display` rule conflict: any element styled
   `display:flex|grid` needs an explicit `[hidden]{display:none}` override.

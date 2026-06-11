@@ -234,6 +234,15 @@ body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
 #done{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;
   justify-content:flex-start;text-align:center;padding:10px 16px 28px;
   overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--paper)}
+/* On the reveal the page IS the scroller (html.reveal, set by doneVis):
+   release the viewer's overflow:hidden page lock and let #done leave its
+   absolute overlay and flow, so wheel/touch anywhere — including outside the
+   680px column on desktop — scrolls the results, and header + strip scroll
+   away with the page. The booth's fixed no-scroll column is untouched. */
+html.reveal,html.reveal body{overflow:auto;height:auto}
+html.reveal .app{height:auto;min-height:100dvh}
+html.reveal #survey{overflow:visible}
+html.reveal #done{position:static;overflow:visible}
 .donek{margin:4px 0 2px;font:700 11px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink60)}
 #done h2{font-size:24px;line-height:1.25;margin:4px 0 6px;font-weight:650;letter-spacing:-.01em;max-width:560px}
 #done .doneSub{color:var(--ink60);margin:0 0 14px;font-size:14px;max-width:520px}

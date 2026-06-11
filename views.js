@@ -204,7 +204,7 @@ function applyImportedVotes(map){
   }
   deck=buildDeck(true);          // same deck mode, minus the imported ballots
   idx=0;                         // remainder → the booth; empty deck → renderStack lands on finish()
-  $("#done").style.display="none";
+  doneVis(false);
   renderStack();
   if(typeof publishSelf==="function")publishSelf();
   return applied;

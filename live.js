@@ -208,7 +208,7 @@ function liveEnded(){
     lvSeated=false; voting=false;
     if(typeof mpLeave==="function") mpLeave();
     if(showAI){ showAI=false; applyAiParty(false); }   // AI mode dies with the session
-    $("#done").style.display="none";
+    doneVis(false);
     lvWall(true);
   }
 }
@@ -229,7 +229,7 @@ function syncDeck(done){
   if(lvS.idx!==lvShownIdx){
     const fresh=lvShownIdx<0 || lvShownState==="lobby" || lvShownState==="ended" || lvShownState==="";
     lvShownIdx=lvS.idx; voting=false;
-    const land=()=>{ idx=lvS.idx; lvAdvancing=false; $("#done").style.display="none"; renderStack(); done(); };
+    const land=()=>{ idx=lvS.idx; lvAdvancing=false; doneVis(false); renderStack(); done(); };
     const top=$("#stack").lastChild;
     if(!fresh && top && !lvAdvancing){
       lvAdvancing=true;
