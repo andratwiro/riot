@@ -6,6 +6,8 @@ soul.*.md
 # (⧉ Copy votes → this file, re-imported to resume) stays off the repo —
 # the proxy must never be able to see it.
 data/rob_votes.json
+# Internal slide decks (company-internal material; this repo is public).
+deck/
 
 # --- large / re-fetchable source binaries ---
 # The .txt extractions ARE committed; PDFs are re-fetchable via fetch_sessions*.py.
