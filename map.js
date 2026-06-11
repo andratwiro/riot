@@ -323,17 +323,22 @@ function jointDataChanged(cov){
 /* ---- the projection registry + current selection ----
    note = the one-line explainer under the chips; cap = the map's caption
    (only shown when true for that view); min = minimum matrix rows. */
+/* note copy doctrine (Rob, 2026-06): written for a 12-year-old glancing at the
+   map — what you SEE and what it means for you, never how it's computed. Max
+   two short sentences; each note says what makes ITS view different in plain
+   words. Banned: matrix, axes, dimensions, projection, PCA, correlation,
+   vectors — and anything that needs a stats course or a second read. */
 const PROJECTIONS=[
   {k:"joint", n:"Room", cap:"Closer = votes more alike",
-   note:"Everyone in the room is a row of one matrix — you and the parties alike. The axes are the room's two main lines of disagreement; the more people vote, the more the map is the room's."},
+   note:"built from everyone's votes — you, the parties, the whole room. dots that sit close voted alike."},
   {k:"smacof", n:"Distances", cap:"Closer = votes more alike",
-   note:"The layout that best preserves everyone's true pairwise vote-distances (metric MDS)."},
+   note:"the gaps are the point here: the further apart two dots, the more differently they voted."},
   {k:"you", n:"You", cap:"Distance from you = how differently you vote",
-   note:"You at the centre — every dot sits at its exact vote-distance from you; directions carry over from Distances."},
+   note:"this one is built around you: you sit at the centre, and the closer a dot, the more it voted like you."},
   {k:"ca", n:"CA", cap:"Closer = votes more alike",
-   note:"Correspondence analysis — abstaining is its own kind of vote here, not a midpoint between for and against."},
-  {k:"tsne", n:"t-SNE", cap:"Blocs pull together — distances are local, not global", min:30,
-   note:"Local neighbourhoods first: voting blocs condense into camps. Offered only once the room is big enough to mean anything."},
+   note:"abstaining counts as its own kind of vote here, not half a yes. parties that abstain together pull together."},
+  {k:"tsne", n:"t-SNE", cap:"Groups mean something — the space between them doesn't", min:30,
+   note:"this view hunts for camps: dots that vote alike pull into tight groups. the space between groups doesn't mean much."},
 ];
 let MAP_PROJ="joint";          // the room map is the default; the rest are the bench
 let PROJ_CACHE={};
