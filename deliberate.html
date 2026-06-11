@@ -131,7 +131,7 @@ body{overflow:hidden}
 .band-n{font:800 13px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
 .band-h.cg .band-n{color:var(--moss)} .band-h.fl .band-n{color:var(--brick)}
 .band-h.cg{border-color:var(--moss)} .band-h.fl{border-color:var(--brick)}
-.band-sub{display:block;margin-top:3px;font:400 11px var(--f-mono);color:var(--ink60);letter-spacing:.02em}
+.band-sub{display:block;margin-top:3px;font:400 12px/1.45 var(--f-ui);color:var(--ink60)}
 .band-wrap{padding-top:10px}
 
 /* an argument with weight: mass carries scale */
@@ -160,7 +160,7 @@ body{overflow:hidden}
 .ax-track{flex:1 1 auto;height:7px;background:var(--card2);border-radius:2px;overflow:hidden}
 .ax-fill{display:block;height:100%;background:var(--ink);border-radius:2px}
 .ax-n{flex:0 0 72px;text-align:right;font:700 10.5px var(--f-mono);color:var(--ink)}
-.ax-note{margin:8px 0 0;font:400 11px/1.5 var(--f-mono);color:var(--ink80)}
+.ax-note{margin:8px 0 0;font:400 12px/1.5 var(--f-ui);color:var(--ink80)}
 /* carries across camps — the actionable finding */
 .a-cc{display:flex;align-items:baseline;gap:7px;margin:10px 0 0;
   font:400 11px/1.5 var(--f-mono);color:var(--moss)}
@@ -198,11 +198,10 @@ body{overflow:hidden}
 .sx-h{margin:0 0 8px;font:700 9.5px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink60)}
 .sx-h.hot{color:var(--brick)} .sx-h.cc{color:var(--moss)}
 .sx-w{display:flex;align-items:baseline;gap:9px;margin:0 0 7px}
-.sx-w .q{flex:1 1 auto;min-width:0;font:500 12.5px/1.45 var(--f-ui);color:var(--ink80);
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sx-w .q{flex:1 1 auto;min-width:0;font:500 12.5px/1.45 var(--f-ui);color:var(--ink80)}
 .sx-w .m{flex:0 0 auto;font:700 11px var(--f-mono);color:var(--ink);white-space:nowrap}
 .sx-q{margin:0 0 6px;font:500 13px/1.45 var(--f-ui);color:var(--ink)}
-.sx-d{margin:0;font:400 11px/1.55 var(--f-mono);color:var(--ink80)}
+.sx-d{margin:0;font:400 12.5px/1.5 var(--f-ui);color:var(--ink80)}
 .sx-d b{color:var(--ink)}
 .sx-f{margin:14px 0 0;padding:9px 0 0;border-top:1px solid var(--rule);
   font:400 9.5px/1.5 var(--f-mono);color:var(--ink60);letter-spacing:.04em;text-transform:uppercase}
@@ -221,7 +220,7 @@ body{overflow:hidden}
 .bal2-c.you .bal2-n{color:var(--stamp)}
 .bal2-c.you .bal2-n.idle{color:var(--ink60);font-weight:650}
 .bal2-gap{margin:11px 0 0;padding:9px 0 0;border-top:1px solid var(--rule);
-  font:400 11.5px/1.55 var(--f-mono);color:var(--ink80)}
+  font:400 12.5px/1.5 var(--f-ui);color:var(--ink80)}
 .bal2-gap b{color:var(--brick);font-weight:700}
 
 /* the immovable slab everything else negotiates around */
@@ -229,7 +228,7 @@ body{overflow:hidden}
 .slab-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
 .slab-n{font:650 15px/1.3 var(--f-ui);color:var(--paper)}
 .slab-amt{font:800 22px/1 var(--f-ui);letter-spacing:-.01em;white-space:nowrap}
-.slab-sub{margin:7px 0 0;font:400 10.5px/1.55 var(--f-mono);color:rgba(242,240,232,.72)}
+.slab-sub{margin:7px 0 0;font:400 12px/1.5 var(--f-ui);color:rgba(242,240,232,.75)}
 .slab-tag{display:inline-block;margin:0 0 8px;font:700 9px var(--f-mono);letter-spacing:.16em;
   text-transform:uppercase;color:var(--paper);border:1px solid rgba(242,240,232,.5);
   border-radius:3px;padding:3px 7px 2px}
@@ -241,7 +240,7 @@ body{overflow:hidden}
 .env-lead{flex:1 1 auto;border-bottom:1px dotted var(--rule);transform:translateY(-3px);min-width:12px}
 .env-amt{font:700 13.5px var(--f-mono);color:var(--ink);white-space:nowrap}
 .env-amt .delta{color:var(--stamp);font-weight:700;margin-left:5px}
-.env-sub{margin:3px 0 9px;font:400 10.5px/1.45 var(--f-mono);color:var(--ink60)}
+.env-sub{margin:3px 0 9px;font:400 12px/1.45 var(--f-ui);color:var(--ink60)}
 .env .a-bar{height:12px}
 .env .a-bar .d{background:var(--brick)} .env .a-bar .p{background:var(--card2)} .env .a-bar .a{background:var(--moss)}
 .env .a-leg{margin-top:6px}
@@ -274,7 +273,109 @@ body{overflow:hidden}
 
 .demo-note{margin:26px 0 0;text-align:center;font:400 10.5px/1.6 var(--f-mono);color:var(--ink60)}
 /* anchored scrolls clear the pinned decision header on mobile */
-@media (max-width:1079px){.band-h,.arg,.env,.bal2,.sx{scroll-margin-top:310px}}
+@media (max-width:1079px){.band-h,.arg,.env,.bal2,.sx,.slab,.tm,.omap,.gap{scroll-margin-top:310px}}
+
+/* ---- the opinion map: parties v. the people, one space ---- */
+.omap{margin:16px 0 4px}
+.om-k{margin:0 0 3px;font:800 12px var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.om-sub{margin:0 0 9px;font:400 12px/1.45 var(--f-ui);color:var(--ink60)}
+.om-stage{position:relative;border:1px solid var(--rule);border-radius:12px;background:var(--card);overflow:hidden}
+@media (max-width:559px){.omap .om-stage{border-radius:0;border-left:0;border-right:0;margin:0 -16px}}
+.om-stage canvas{display:block;width:100%;height:100%}
+/* party glyphs: ink markers with white halo — unmissable against the field */
+.om-party{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:0;margin:0;
+  cursor:pointer;z-index:6;width:44px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.om-party i{width:11px;height:11px;border-radius:50%;background:var(--ink);border:2.5px solid #fff;
+  box-shadow:0 0 0 1px rgba(28,27,23,.4),0 1px 3px rgba(28,27,23,.35);flex:0 0 auto}
+.om-party span{position:absolute;top:50%;left:50%;margin-top:8px;transform:translateX(-50%);
+  font:800 9px var(--f-mono);letter-spacing:.05em;color:var(--ink);white-space:nowrap;
+  text-shadow:0 0 3px var(--card),0 0 3px var(--card),0 0 4px var(--card),0 1px 3px var(--card)}
+.om-party.on i{background:var(--stamp);box-shadow:0 0 0 1px var(--stamp),0 1px 3px rgba(28,27,23,.35)}
+.om-party.on span{color:var(--stamp)}
+/* cluster callouts: a labeled box tethered to its centroid mark */
+.om-cx{position:absolute;transform:translate(-50%,-50%);z-index:4;font:800 12px var(--f-mono);color:var(--ink60);pointer-events:none}
+.om-cl{position:absolute;z-index:5;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:left;max-width:172px}
+.om-cl .clbox{display:block;background:rgba(251,250,246,.93);border:1px solid var(--ink);border-radius:6px;padding:5px 8px 4px}
+.om-cl .cln{display:block;font:800 9.5px var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink)}
+.om-cl .cls{display:block;font:700 9px var(--f-mono);letter-spacing:.04em;color:var(--ink60);margin-top:1px}
+.om-cl.on .clbox{border-color:var(--stamp);box-shadow:0 0 0 2px rgba(75,63,160,.18)}
+.om-cl.on .cln{color:var(--stamp)}
+.om-line{position:absolute;height:1px;background:var(--ink60);opacity:.6;z-index:3;transform-origin:0 0;pointer-events:none}
+/* you, projected through the same model */
+.om-you{position:absolute;transform:translate(-50%,-50%);z-index:7;pointer-events:none}
+.om-you i{display:block;width:13px;height:13px;border-radius:50%;background:var(--card);
+  border:3px solid var(--stamp);box-shadow:0 0 0 3px rgba(75,63,160,.22)}
+.om-you span{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:1px;
+  font:700 8.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--stamp);
+  text-shadow:0 0 3px var(--card),0 0 3px var(--card)}
+.om-note{margin:7px 0 0;font:400 10px/1.5 var(--f-mono);color:var(--ink60)}
+.om-hint{margin:6px 0 0;min-height:18px;font:700 11px var(--f-mono);color:var(--stamp)}
+.om-hint:empty{display:none}
+/* the representation gap, quantified */
+.gap{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0 0}
+@media (min-width:560px){.gap{grid-template-columns:5fr 4fr}}
+.gap-find{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--ink);border-radius:10px;padding:12px 14px}
+.gf-h{margin:0 0 6px;font:700 9.5px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink60)}
+.gf-n{font:800 34px/1 var(--f-ui);letter-spacing:-.02em;color:var(--ink)}
+.gf-t{margin:4px 0 0;font:400 12.5px/1.5 var(--f-ui);color:var(--ink80)}
+.gf-t b{color:var(--ink);font-weight:650}
+.gap-rank{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:12px 14px}
+.gr-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.gr-p{flex:0 0 44px;font:800 9.5px var(--f-mono);color:var(--ink)}
+.gr-track{flex:1 1 auto;height:6px;background:var(--card2);border-radius:2px;overflow:hidden}
+.gr-fill{display:block;height:100%;background:var(--ink);border-radius:2px}
+.gr-n{flex:0 0 22px;text-align:right;font:700 10px var(--f-mono);color:var(--ink)}
+.gr-note{margin:7px 0 0;font:400 9.5px/1.5 var(--f-mono);color:var(--ink60)}
+/* a party's stance, pinned on a statement's bar */
+.ppin{position:absolute;bottom:calc(100% + 3px);transform:translateX(-50%);z-index:4;white-space:nowrap;
+  font:800 8px var(--f-mono);letter-spacing:.05em;background:var(--ink);color:var(--card);
+  border-radius:3px;padding:2px 5px}
+.arg.pinned .a-bar{margin-top:18px}
+/* a cluster's defining statements, lit in the floor */
+.arg.hl{border-color:var(--stamp);box-shadow:0 0 0 2px rgba(75,63,160,.18)}
+
+/* ---- the treemap: bird's-eye of the money ---- */
+.tm{margin:12px 0 4px}
+.tm-bar{display:flex;gap:6px;margin:0 0 8px}
+.tm-bar .mp-chip{flex:1 1 0;justify-content:center;text-align:center}
+.tm-stage{position:relative;height:300px;border-radius:12px;overflow:hidden;border:1px solid var(--rule)}
+@media (max-width:559px){.tm-stage{height:252px}}
+.tm-tile{position:absolute;box-sizing:border-box;background:var(--card);border:1px solid var(--rule);
+  padding:7px 8px;overflow:hidden;cursor:pointer;text-align:left;margin:0;
+  transition:left .5s cubic-bezier(.2,.7,.3,1),top .5s cubic-bezier(.2,.7,.3,1),
+    width .5s cubic-bezier(.2,.7,.3,1),height .5s cubic-bezier(.2,.7,.3,1)}
+.tm-tile.alt{background:#F4F2E9}
+.tm-tile:active{filter:brightness(.97)}
+.tm-tile .tn{display:block;font:650 11.5px/1.25 var(--f-ui);color:var(--ink)}
+.tm-tile.big .tn{font:650 14px/1.25 var(--f-ui)}
+.tm-tile .ta{display:block;margin-top:2px;font:700 10.5px var(--f-mono);color:var(--ink80)}
+.tm-tile .tl{display:block;margin-top:1px;font:700 10px var(--f-mono);color:var(--ink60)}
+.tm-tile.locked{background:var(--ink);border-color:var(--ink);cursor:default}
+.tm-tile.locked .tn,.tm-tile.locked .ta{color:var(--paper)}
+.tm-tile.locked .tl{color:rgba(242,240,232,.7)}
+.tm-leg{margin:7px 0 0;font:400 10px/1.6 var(--f-mono);color:var(--ink60)}
+.tm-leg:empty{display:none}
+
+/* ---- the street accepts new signs: per-band entry point (demo-gated) ---- */
+.band-add{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;min-height:44px;
+  margin:2px 0 0;background:none;border:1px dashed var(--rule);border-radius:10px;color:var(--ink60);
+  font:700 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+
+/* ---- the left rail's job: full proposal + provenance (desktop) ---- */
+.dx-more{display:none}
+@media (min-width:1080px){
+  .decision{max-height:calc(100dvh - 24px);overflow-y:auto;scrollbar-width:none}
+  .decision::-webkit-scrollbar{display:none}
+  .dx-more{display:block;margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}
+  .dx-more .dm-h{margin:0 0 8px;font:700 9.5px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink60)}
+  .dx-more .brief{font-size:13px;line-height:1.55;color:var(--ink80)}
+  .dx-more .brief p{margin:0 0 9px}
+  .dx-more .brief ul{margin:0 0 9px;padding-left:16px}
+  .dx-more .brief li{margin:3px 0}
+  .dx-more .brief strong{color:var(--ink);font-weight:650}
+  .dx-prov{margin-top:10px;padding-top:9px;border-top:1px solid var(--rule);
+    font:400 9.5px/1.7 var(--f-mono);color:var(--ink60);letter-spacing:.04em;text-transform:uppercase}
+}
 
 /* ---- full proposal overlay (one idiom: fixed paper, ✕ closes) ---- */
 .ovl{position:fixed;inset:0;background:var(--paper);z-index:80;overflow-y:auto;-webkit-overflow-scrolling:touch}
@@ -308,7 +409,7 @@ body{overflow:hidden}
           <img class="rose" src="assets/logos/brussels_iris.svg" alt="" width="23" height="23">
           <span>Brussels</span>
         </span>
-        <span class="ver">v0.8</span>
+        <span class="ver">v0.82</span>
         <span class="previewtag">demo</span>
       </div>
       <div class="mass">
@@ -333,7 +434,8 @@ body{overflow:hidden}
         <aside class="decision"><div class="dx" id="dx0"></div></aside>
         <div class="floor">
           <div class="floor-rule"><span>The floor</span></div>
-          <p class="floor-meta">21,384 residents have taken a position · 13 statements · ≈260 responses/h</p>
+          <p class="floor-meta">21,384 ballots cast · 13 statements · ≈260 responses/h</p>
+          <div id="omap"></div>
           <div id="floor0"></div>
           <p class="demo-note">A design exploration — not connected to a live room. Figures illustrative.<br>The proposal is a real decision of the Brussels Parliament (A-103, CRI 10 Jul 2025).</p>
         </div>
@@ -349,6 +451,7 @@ body{overflow:hidden}
           <div class="floor-rule"><span>The floor</span></div>
           <p class="floor-meta">12,041 residents drafting the budget · 8 envelopes · figures illustrative</p>
           <div id="bal2"></div>
+          <div id="tmap"></div>
           <div id="floor1"></div>
           <p class="demo-note">A design exploration — not connected to a live room. Envelope figures are illustrative.<br>The text is a real decision of the Brussels Parliament (CRI, 27 Mar 2026).</p>
         </div>
@@ -364,8 +467,10 @@ body{overflow:hidden}
     <div class="ovl-body" id="ovlBody"></div>
   </div>
 
+<script src="deliberate-data.js"></script>
 <script>
-/* Demo-only. Floor data is precomputed below (effectively static JSON);
+/* Demo-only. Floor data is precomputed below + in deliberate-data.js
+   (generated by scripts/build_floor_map.py — simulated, illustrative);
    only the user's own positions persist (localStorage riot.delib.v1). */
 "use strict";
 const $=s=>document.querySelector(s);
@@ -378,6 +483,7 @@ const PAY={
   shortTitle:"Cut MPs' pay 5% — permanent, top-ups included.",
   headline:"Cut Brussels MPs' parliamentary indemnity by 5% on a permanent basis, applying the reduction not only to the base pay but also to the extra indemnities paid for special functions.",
   tally:{against:5983,abstain:1929,for:13472},
+  prov:"Source — Brussels Parliament, plenary CRI 10 Jul 2025 · doc A-103/1 2024/2025 · roll-call vote · figures illustrative · party positions inferred from public stances (demo)",
   brief:`<p>On the table is a standalone proposal to reduce the indemnity Brussels regional MPs draw by 5% as a lasting measure, and to push that cut further than the parallel cross-party text by also shaving 5% off the top-up indemnities paid to members who hold special functions (such as Bureau seats).</p>
 <ul><li><strong>What it changes:</strong> a 5% reduction on the base parliamentary indemnity, framed as permanent rather than time-limited, plus the same 5% applied to special-function indemnities.</li>
 <li><strong>The money cited:</strong> speakers describe a Brussels MP's net monthly pay as more than 7,000 euros, and special-function holders receiving roughly 2,500 euros extra.</li>
@@ -420,6 +526,7 @@ const BUD={
   shortTitle:"Adopt the 2026 spending budget — and its −957 M€ deficit.",
   headline:"Adopt the Region's 2026 spending budget, authorising the year's expenditure and the deficit that comes with it.",
   tally:{against:9804,abstain:2167,for:7118},
+  prov:"Source — Brussels Parliament, plenary CRI 27 Mar 2026 · budget général des dépenses 2026 · figures illustrative",
   brief:`<p>This is the spending side of the Region's 2026 budget — the credits each policy area is authorised to spend. Paired with the revenue text, it is the Region's first full initial budget after a long run on provisional twelfths.</p>
 <ul><li><strong>It sets the deficit.</strong> The 2026 budget is planned to close in the red, with the SEC/ESR balance fixed at under -957 million euros.</li>
 <li><strong>From stopgap to plan.</strong> For more than a year the Region spent through monthly provisional twelfths, which guaranteed continuity of public services but rolled deficits forward without a clear direction.</li>
@@ -427,20 +534,21 @@ const BUD={
 <li><strong>The rub:</strong> the only ways to shrink a 1.5-billion-euro deficit are to cut spending or raise revenue — and where the axe falls (employment, social programmes) is exactly what the budget is fought over.</li></ul>`
 };
 const BASE=-957;
+/* response counts thin out down the list — engagement drops with scroll depth */
 const ENVS=[
- {id:"stib",name:"Mobility & public transport",amt:1550,c:1612,k:5341,g:5047,
+ {id:"stib",name:"Mobility & public transport",amt:1550,c:1607,k:5325,g:5032,
   sub:"STIB operations + investment"},
- {id:"emp",name:"Employment & local economy",amt:800,c:1054,k:2711,g:8237,
+ {id:"emp",name:"Employment & local economy",amt:800,c:985,k:2533,g:7692,
   sub:"where the 2026 cuts land — Activa ended, ACS premiums reduced"},
- {id:"hous",name:"Housing",amt:150,c:786,k:2118,g:9096,
+ {id:"hous",name:"Housing",amt:150,c:688,k:1854,g:7944,
   sub:"investment budget; ~50,000 households on the social-housing list"},
- {id:"env",name:"Environment & climate",amt:450,c:2295,k:5109,g:4596,
+ {id:"env",name:"Environment & climate",amt:450,c:1735,k:3864,g:3473,
   sub:"Bruxelles Environnement programmes"},
- {id:"mun",name:"Support to the 19 municipalities",amt:600,c:3544,k:6210,g:2246,
+ {id:"mun",name:"Support to the 19 municipalities",amt:600,c:2469,k:4332,g:1564,
   sub:"general dotations"},
- {id:"cult",name:"Culture & heritage",amt:60,c:7612,k:3101,g:1287,
+ {id:"cult",name:"Culture & heritage",amt:60,c:4972,k:2026,g:843,
   sub:"incl. Kanal–Centre Pompidou"},
- {id:"adm",name:"Administration & e-government",amt:400,c:8309,k:2866,g:825,
+ {id:"adm",name:"Administration & e-government",amt:400,c:4994,k:1722,g:496,
   sub:"running the Region itself"}
 ];
 /* the floor's draft: majority position per envelope, ±10% notional */
@@ -493,7 +601,12 @@ function renderDX(view){
       ${pin}
     </div>
     <p class="dx-leg"${my?' style="margin-top:21px"':""}><b>${Math.round(b.pc.against)}%</b> against · <b>${Math.round(b.pc.abstain)}%</b> abstain · <b>${Math.round(b.pc.for)}%</b> for</p>
-    ${acts}`;
+    ${acts}
+    <div class="dx-more">
+      <p class="dm-h">The proposal in full</p>
+      <div class="brief">${D.brief}</div>
+      <p class="dx-prov">${D.prov}</p>
+    </div>`;
 }
 document.addEventListener("click",e=>{
   const v=e.target.closest("[data-vote]");
@@ -501,7 +614,7 @@ document.addEventListener("click",e=>{
     const view=v.closest(".panel")?.id==="panel1"||v.closest(".ovl-body")?.dataset.view==="1"?1:0;
     const key=view===0?"pay":"bud";
     if(!MY[key].vote){MY[key].vote=v.dataset.vote;save();renderDX(view);renderOvl();
-      if(view===0)renderSX0();else renderSX1();}
+      if(view===0){renderSX0();placeYou();}else renderSX1();}
     return;
   }
   const r=e.target.closest("[data-read]");
@@ -527,20 +640,31 @@ $("#ovlX").addEventListener("click",()=>{$("#ovl").hidden=true;ovlView=null;});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#ovl").hidden){$("#ovl").hidden=true;ovlView=null;}});
 
 /* =================== view 1 · argument floor =================== */
+/* map ↔ floor shared state (data from deliberate-data.js) */
+const FM=window.FLOOR_MAP||null;
+const CL={},PTY={};
+if(FM){for(const c of FM.clusters)CL[c.id]=c;for(const p of FM.parties)PTY[p.id]=p;}
+let activeParty=null,activeCluster=null;
 function tier(t){return t>=3000?"t3":t>=1500?"t2":"t1"}
-function argBar(d,p,a,mine,extra){
+function argBar(d,p,a,mine,extra,inbar){
   const t=d+p+a;
   const pd=100*d/t,pp=100*p/t,pa=100*a/t;
   const mid=mine==="d"?pd/2:mine==="p"?pd+pp/2:pd+pp+pa/2;
   const pin=mine?`<span class="youpin" style="left:${mid}%"><span class="yp-a"></span><span class="yp-t">you</span></span>`:"";
   return `<div class="a-bar">
-    <i class="d" style="width:${pd}%"></i><i class="p" style="width:${pp}%"></i><i class="a" style="width:${pa}%"></i>${pin}</div>
+    <i class="d" style="width:${pd}%"></i><i class="p" style="width:${pp}%"></i><i class="a" style="width:${pa}%"></i>${pin}${inbar||""}</div>
   <p class="a-leg"><b>${Math.round(pd)}%</b> disagree · <b>${Math.round(pp)}%</b> pass · <b>${Math.round(pa)}%</b> agree${extra||""}</p>`;
 }
 function stmtHTML(s){
   const mine=MY.pay.resp[s.id];
   const d=s.d+(mine==="d"?1:0),p=s.p+(mine==="p"?1:0),a=s.a+(mine==="a"?1:0);
   const tot=d+p+a;
+  // map ↔ floor: an active cluster lights its defining statements; an active
+  // party pins its inferred stance on every bar it has one for
+  const hl=activeCluster && (CL[activeCluster]?.stmts||[]).includes(s.id);
+  const pst=activeParty ? PTY[activeParty]?.st?.[s.id] : undefined;
+  const ppin=pst!==undefined && pst!==null
+    ? `<span class="ppin" style="left:${pst===-1?12:pst===0?50:88}%">${PTY[activeParty].name}</span>`:"";
   let nuance="";
   if(s.band==="fl"&&s.xF!==undefined){
     const note=s.xF>50&&s.xA>50?"":
@@ -558,10 +682,10 @@ function stmtHTML(s){
   }
   if(s.band==="cg"&&s.xF!==undefined)
     nuance=`<p class="a-cc">carries across camps — ${s.xF}% of For-voters and ${s.xA}% of Against-voters agree</p>`;
-  return `<div class="arg ${tier(tot)}${mine?" responded":""}" data-id="${s.id}">
+  return `<div class="arg ${tier(tot)}${mine?" responded":""}${hl?" hl":""}${ppin?" pinned":""}" data-id="${s.id}">
     <div class="arg-top"><span class="a-time">${s.time}</span><span class="a-mass">${fmt(tot)} responses</span></div>
     <p class="a-text">${s.text}</p>
-    ${argBar(d,p,a,mine)}
+    ${argBar(d,p,a,mine,"",ppin)}
     ${nuance}
     <div class="a-acts">
       <button class="btn a" data-r="d">Disagree</button>
@@ -579,6 +703,8 @@ function renderFloor0(){
     let list=STMTS.filter(s=>s.band===b.key);
     if(b.key!=="nf")list=[...list].sort((x,y)=>(y.d+y.p+y.a)-(x.d+x.p+x.a));
     let inner=list.map(stmtHTML).join("");
+    if(b.key!=="nf")
+      inner+=`<button class="band-add" type="button" disabled>+ Add your statement — submissions open in the next window</button>`;
     if(b.key==="nf"){
       if(MY.pay.stmt)
         inner=`<div class="arg t1 mine"><div class="arg-top"><span class="a-time">just now</span><span class="a-mass">1 response — yours</span></div>
@@ -600,7 +726,7 @@ $("#floor0").addEventListener("click",e=>{
   const b=e.target.closest("[data-r]");
   if(b){
     const id=b.closest(".arg").dataset.id;
-    if(!MY.pay.resp[id]){MY.pay.resp[id]=b.dataset.r;save();renderFloor0();}
+    if(!MY.pay.resp[id]){MY.pay.resp[id]=b.dataset.r;save();renderFloor0();placeYou();}
     return;
   }
   if(e.target.closest("#cSend")){
@@ -629,8 +755,163 @@ function renderSX0(){
       <p class="sx-q">“${cc.text}”</p>
       <p class="sx-d"><b>${cc.xF}% of For-voters · ${cc.xA}% of Against-voters.</b> Spending transparency is the actionable demand under the pay fight.</p>
     </div>
+    ${FM?`<div class="sx-sec"><p class="sx-h">The representation gap</p>
+      <p class="sx-d"><b>${FM.headline}</b> ${FM.gapShare}% of residents sit closer to no party than to any party — see the map.</p>
+    </div>`:""}
     <p class="sx-f">A-103 · CRI 10 Jul 2025 · the floor, Brussels · figures illustrative</p>`;
 }
+
+/* =================== view 1 · the opinion map ===================
+   Precomputed offline (scripts/build_floor_map.py): PCA over simulated
+   residents' 14-dim response vectors; the parties projected through the
+   SAME model — same space, same math. Canvas carries the mass (density
+   grid + 1,500 sampled residents); DOM carries the reading layer
+   (cluster callouts, party glyphs, you). */
+const CLPOS={g1:[0,-1],g2:[0,1],g3:[0,-1],g4:[0,1]};  // callout direction per cluster
+function omapShell(){
+  const host=$("#omap"); if(!host)return;
+  if(!FM){host.innerHTML="";return;}
+  host.innerHTML=`<div class="omap">
+    <p class="om-k">The opinion map — parties v. the people</p>
+    <p class="om-sub">Everyone's responses, flattened to one picture: closer means more alike. The crowd is the room; the black marks are the parties — placed by the same math.</p>
+    <div class="om-stage" id="omStage"><canvas id="omCanvas"></canvas><div id="omOvl"></div></div>
+    <p class="om-hint" id="omHint" aria-live="polite"></p>
+    <p class="om-note">Simulated room, illustrative. Party positions inferred from public stances on this proposal — not recorded votes on the statements.</p>
+    ${gapHTML()}
+  </div>`;
+  drawOMap();
+}
+function gapHTML(){
+  const ranked=[...FM.parties].sort((a,b)=>a.dist-b.dist);
+  const mx=Math.max(...ranked.map(p=>p.dist));
+  return `<div class="gap">
+    <div class="gap-find">
+      <p class="gf-h">The representation gap</p>
+      <span class="gf-n">${FM.gapShare}%</span>
+      <p class="gf-t">of residents sit closer to no party than to any party.</p>
+      <p class="gf-t"><b>${FM.headline}</b></p>
+    </div>
+    <div class="gap-rank">
+      <p class="gf-h">How far each party sits from the nearest crowd</p>
+      ${ranked.map(p=>`<div class="gr-row"><span class="gr-p">${p.name}</span>
+        <span class="gr-track"><span class="gr-fill" style="width:${Math.round(100*p.dist/mx)}%"></span></span></div>`).join("")}
+      <p class="gr-note">shorter bar = closer to a citizen group · illustrative</p>
+    </div>
+  </div>`;
+}
+function drawOMap(){
+  const stage=$("#omStage"); if(!stage)return;
+  const w=stage.clientWidth, h=Math.round(w*FM.gh/FM.gw);
+  stage.style.height=h+"px";
+  const cv=$("#omCanvas"), dpr=Math.min(window.devicePixelRatio||1,2);
+  cv.width=w*dpr; cv.height=h*dpr;
+  const ctx=cv.getContext("2d"); ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,w,h);
+  const cw=w/FM.gw;
+  for(const [i,j,v] of FM.density){           // the mass: soft ink
+    const x=(i+.5)*cw, y=(j+.5)*(h/FM.gh), r=cw*1.5;
+    const g=ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,`rgba(28,27,23,${.13*v})`);
+    g.addColorStop(1,"rgba(28,27,23,0)");
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill();
+  }
+  ctx.fillStyle="rgba(28,27,23,.34)";          // the texture: sampled residents
+  for(const [x,y] of FM.pts) ctx.fillRect(x*w-.75,y*h-.75,1.5,1.5);
+  renderOmOverlay(w,h);
+  placeYou();
+}
+function omLine(x1,y1,x2,y2){
+  const len=Math.hypot(x2-x1,y2-y1), ang=Math.atan2(y2-y1,x2-x1);
+  return `<span class="om-line" style="left:${x1}px;top:${y1}px;width:${len}px;transform:rotate(${ang}rad)"></span>`;
+}
+function renderOmOverlay(w,h){
+  const ov=$("#omOvl"); if(!ov)return;
+  let html="";
+  for(const c of FM.clusters){                 // callouts tethered to centroids
+    const x=c.cx*w, y=c.cy*h;
+    const [dx,dy]=CLPOS[c.id]||[0,-1];
+    let bx=x+dx*44, by=y+dy*40;
+    if(dx===0) bx=Math.max(84,Math.min(w-84,bx));   // keep the box inside the stage
+    by=Math.max(8,Math.min(h-46,by));
+    const tx=dx<0?"-100%":dx>0?"0":"-50%", ty=dy<0?"-100%":dy>0?"0":"-50%";
+    html+=omLine(x,y,bx,by);
+    html+=`<span class="om-cx" style="left:${x}px;top:${y}px">✕</span>`;
+    html+=`<button class="om-cl${activeCluster===c.id?" on":""}" type="button" data-cluster="${c.id}"
+      style="left:${bx}px;top:${by}px;transform:translate(${tx},${ty})">
+      <span class="clbox"><span class="cln">${c.label}</span><span class="cls">${c.share}% of the room</span></span></button>`;
+  }
+  html+=FM.parties.map(p=>`<button class="om-party${activeParty===p.id?" on":""}" type="button"
+    data-party="${p.id}" style="left:${p.x*w}px;top:${p.y*h}px" aria-label="${p.name}"><i></i><span>${p.name}</span></button>`).join("");
+  ov.innerHTML=html;
+  untangleLabels(ov);
+}
+/* party labels: keep the dot true, move only the label until none collide */
+function untangleLabels(ov){
+  const placed=[];
+  ov.querySelectorAll(".om-party span").forEach(s=>{
+    const tries=[[0,8],[0,-24],[18,8],[-18,8],[18,-24],[-18,-24],[0,22]];
+    for(const [ox,oy] of tries){
+      s.style.marginLeft=ox+"px"; s.style.marginTop=oy+"px";
+      const r=s.getBoundingClientRect();
+      const hit=placed.some(q=>!(r.right<q.left+2||r.left>q.right-2||r.bottom<q.top+2||r.top>q.bottom-2));
+      if(!hit){placed.push(r);return;}
+    }
+    placed.push(s.getBoundingClientRect());
+  });
+}
+function youXY(){
+  const resp=MY.pay.resp, vote=MY.pay.vote;
+  if(!vote && !Object.keys(resp).length) return null;
+  const code={d:-1,p:0,a:1};
+  let x=0,y=0;
+  FM.dims.forEach((dm,i)=>{
+    let v;
+    if(dm==="ballot") v=vote?(vote==="against"?-1:vote==="abstain"?0:1):FM.mean[i];
+    else v=resp[dm]!==undefined?code[resp[dm]]:FM.mean[i];
+    const c=v-FM.mean[i]; x+=c*FM.comps[0][i]; y+=c*FM.comps[1][i];
+  });
+  const B=FM.box,m=B.marg;
+  const nx=m+(x-B.mnx)/(B.mxx-B.mnx)*(1-2*m), ny=m+(y-B.mny)/(B.mxy-B.mny)*(1-2*m);
+  return [Math.min(.97,Math.max(.03,nx)),Math.min(.97,Math.max(.03,ny))];
+}
+function placeYou(){
+  const ov=$("#omOvl"); if(!ov||!FM)return;
+  const old=ov.querySelector(".om-you"); if(old)old.remove();
+  const xy=youXY(); if(!xy)return;
+  const stage=$("#omStage");
+  const d=document.createElement("div"); d.className="om-you";
+  d.style.left=(xy[0]*stage.clientWidth)+"px"; d.style.top=(xy[1]*stage.clientHeight)+"px";
+  d.innerHTML="<i></i><span>you</span>";
+  ov.appendChild(d);
+}
+function omapRefresh(){
+  const stage=$("#omStage"); if(!stage)return;
+  renderOmOverlay(stage.clientWidth,stage.clientHeight);
+  placeYou();
+}
+$("#omap").addEventListener("click",e=>{
+  const pb=e.target.closest("[data-party]");
+  if(pb){
+    activeParty=activeParty===pb.dataset.party?null:pb.dataset.party;
+    activeCluster=null;
+    omapRefresh(); renderFloor0();
+    $("#omHint").textContent=activeParty
+      ? `${PTY[activeParty].name}'s inferred stance is pinned on each statement below — tap again to clear.` : "";
+    return;
+  }
+  const cb=e.target.closest("[data-cluster]");
+  if(cb){
+    const id=cb.dataset.cluster;
+    activeCluster=activeCluster===id?null:id;
+    activeParty=null;
+    omapRefresh(); renderFloor0();
+    $("#omHint").textContent=activeCluster?`${CL[id].label} — its defining statements are lit below.`:"";
+    if(activeCluster){
+      const first=document.querySelector(`.arg[data-id="${CL[id].stmts[0]}"]`);
+      if(first) first.scrollIntoView({behavior:"smooth",block:"center"});
+    }
+  }
+});
 
 /* =================== view 2 · allocation floor =================== */
 function myDelta(){
@@ -668,7 +949,7 @@ function envHTML(e){
       <span class="env-amt">${e.amt.toLocaleString("en").replace(/,/g," ")} M€${delta?`<span class="delta">${delta}</span>`:""}</span></div>
     <p class="env-sub">${e.sub}</p>
     <div class="a-bar"><i class="d" style="width:${pd}%"></i><i class="p" style="width:${pp}%"></i><i class="a" style="width:${pa}%"></i>${pin}</div>
-    <p class="a-leg"><b>${Math.round(pd)}%</b> cut · <b>${Math.round(pp)}%</b> keep · <b>${Math.round(pa)}%</b> grow · ${fmt(tot)} positions</p>
+    <p class="a-leg"><b>${Math.round(pd)}%</b> cut · <b>${Math.round(pp)}%</b> keep · <b>${Math.round(pa)}%</b> grow · ${fmt(tot)} responses</p>
     <div class="env-acts">
       <button class="lbtn cut${mine==="cut"?" on":""}" data-c="cut">− <small>cut 10%</small></button>
       <button class="lbtn keep${mine==="keep"?" on":""}" data-c="keep">＝ <small>keep</small></button>
@@ -689,6 +970,109 @@ $("#panel1").addEventListener("click",e=>{
   if(MY.bud.lines[id]===b.dataset.c)return;
   MY.bud.lines[id]=b.dataset.c;save();
   renderFloor1();renderBal();
+});
+
+/* =================== view 2 · the treemap ===================
+   Squarified, hand-rolled. Area = M€. Two states: the official draft and
+   the floor's draft (majority position per envelope, ±10%) — toggling
+   animates tile areas: the people redrawing the budget, as motion.
+   Direction is carried by the ▲/▼ glyph, never by color. */
+let tmMode="official";
+const fmtA=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g," ");
+function envLean(e){return Math.round(100*(e.g-e.c)/(e.c+e.k+e.g));}
+function tmItems(){
+  const items=ENVS.map(e=>{
+    const top=Math.max(e.c,e.k,e.g);
+    const fl=Math.round(top===e.c?e.amt*.9:top===e.g?e.amt*1.1:e.amt);
+    return {id:e.id,name:e.name,off:e.amt,fl,lean:envLean(e)};
+  });
+  items.push({id:"debt",name:"Debt interest",off:500,fl:500,locked:true});
+  items.sort((a,b)=>b.off-a.off);   // stable order across the toggle
+  return items;
+}
+function squarifyLayout(items,W,H){
+  const total=items.reduce((s,i)=>s+i.v,0);
+  const sc=items.map(i=>({it:i,a:i.v/total*W*H}));
+  const rects=[]; let x=0,y=0,w=W,h=H,row=[],i=0;
+  const worst=(row,side)=>{
+    const s=row.reduce((t,r)=>t+r.a,0); let m=0;
+    for(const r of row){const q=Math.max(side*side*r.a/(s*s),(s*s)/(side*side*r.a)); if(q>m)m=q;}
+    return m;
+  };
+  const flush=()=>{
+    const s=row.reduce((t,r)=>t+r.a,0);
+    if(w>=h){const cw=s/h; let cy=y;
+      for(const r of row){const ch=r.a/cw; rects.push({it:r.it,x,y:cy,w:cw,h:ch}); cy+=ch;}
+      x+=cw; w-=cw;
+    }else{const ch=s/w; let cx=x;
+      for(const r of row){const cw2=r.a/ch; rects.push({it:r.it,x:cx,y,w:cw2,h:ch}); cx+=cw2;}
+      y+=ch; h-=ch;}
+    row=[];
+  };
+  while(i<sc.length){
+    const side=Math.min(w,h);
+    if(!row.length||worst(row.concat([sc[i]]),side)<=worst(row,side)) row.push(sc[i++]);
+    else flush();
+  }
+  if(row.length)flush();
+  return rects;
+}
+function renderTM(){
+  const host=$("#tmap"); if(!host)return;
+  const fd=floorDraft();
+  host.innerHTML=`<div class="tm">
+    <div class="tm-bar">
+      <button class="mp-chip${tmMode==="official"?" on":""}" data-tm="official" type="button">Official draft · −957 M€</button>
+      <button class="mp-chip${tmMode==="floor"?" on":""}" data-tm="floor" type="button">The floor's draft · ${fmtM(fd).replace("+","")} M€</button>
+    </div>
+    <div class="tm-stage" id="tmStage"></div>
+    <p class="tm-leg" id="tmLeg"></p>
+  </div>`;
+  layoutTM();
+}
+function layoutTM(){
+  const stage=$("#tmStage"); if(!stage)return;
+  const W=stage.clientWidth, H=stage.clientHeight;
+  if(!W||!H)return;
+  const items=tmItems().map(i=>({...i,v:tmMode==="official"?i.off:i.fl}));
+  const rects=squarifyLayout(items,W,H);
+  const leg=[];
+  for(const r of rects){
+    let t=stage.querySelector(`.tm-tile[data-id="${r.it.id}"]`);
+    if(!t){
+      t=document.createElement("button"); t.type="button"; t.dataset.id=r.it.id;
+      t.className="tm-tile"+(r.it.locked?" locked":"");
+      stage.appendChild(t);
+    }
+    const amt=tmMode==="official"?r.it.off:r.it.fl;
+    const showName=r.w>=88&&r.h>=42, showAmt=r.w>=50&&r.h>=26;
+    const lean=r.it.locked?"🔒 fixed":(r.it.lean<0?`▼ ${r.it.lean}`:`▲ +${r.it.lean}`);
+    t.classList.toggle("big",r.w>=170&&r.h>=84);
+    t.classList.toggle("alt",!r.it.locked&&["emp","env","cult"].includes(r.it.id));
+    t.innerHTML=(showName?`<span class="tn">${r.it.name}</span>`:"")+
+      (showAmt?`<span class="ta">${fmtA(amt)} M€</span>`:"")+
+      (showName&&r.h>=60?`<span class="tl">${lean}</span>`:"");
+    if(!showName) leg.push(`${r.it.name} ${fmtA(amt)} M€ ${r.it.locked?"🔒":(r.it.lean<0?"▼"+r.it.lean:"▲+"+r.it.lean)}`);
+    Object.assign(t.style,{left:r.x/W*100+"%",top:r.y/H*100+"%",width:r.w/W*100+"%",height:r.h/H*100+"%"});
+  }
+  $("#tmLeg").textContent=leg.length?"small tiles — "+leg.join(" · "):"";
+}
+$("#tmap").addEventListener("click",e=>{
+  const c=e.target.closest("[data-tm]");
+  if(c){
+    if(tmMode!==c.dataset.tm){
+      tmMode=c.dataset.tm;
+      document.querySelectorAll("#tmap .mp-chip").forEach(x=>x.classList.toggle("on",x===c));
+      layoutTM();
+    }
+    return;
+  }
+  const t=e.target.closest(".tm-tile");
+  if(!t)return;
+  const target=t.classList.contains("locked")
+    ? document.querySelector("#panel1 .slab")
+    : document.querySelector(`.env[data-id="${t.dataset.id}"]`);
+  if(target) target.scrollIntoView({behavior:"smooth",block:"center"});
 });
 
 /* =================== view 2 · synthesis =================== */
@@ -742,8 +1126,8 @@ bench.addEventListener("scroll",()=>{
 /* presence as mass: slow ticks, no fake precision */
 let here=1962,fresh=14;
 function massText(short){return short
-  ? `<b>${fmt(here)}</b> here · ≈260/h · <b>${fresh}</b> new in the last 2 min`
-  : `<b>${fmt(here)}</b> on the floor now · ≈260 responses/h · <b>${fresh}</b> new positions in the last 2 min`;}
+  ? `<b>${fmt(here)}</b> here · ≈260/h · <b>${fresh}</b> new responses in 2 min`
+  : `<b>${fmt(here)}</b> on the floor now · ≈260 responses/h · <b>${fresh}</b> new responses in the last 2 min`;}
 function renderMass(pulse){
   $("#massLine").innerHTML=massText(false);
   $("#massLineM").innerHTML=massText(true);
@@ -757,8 +1141,10 @@ setInterval(()=>{here+=1+Math.floor(Math.random()*3);renderMass(false);},26000);
 
 /* boot */
 renderDX(0);renderDX(1);
-renderFloor0();renderSX0();
-renderBal();renderFloor1();renderSX1();
+renderFloor0();renderSX0();omapShell();
+renderBal();renderTM();renderFloor1();renderSX1();
+let rsT=null;
+addEventListener("resize",()=>{clearTimeout(rsT);rsT=setTimeout(()=>{if(FM)drawOMap();layoutTM();},150);});
 </script>
 </body>
 </html>
