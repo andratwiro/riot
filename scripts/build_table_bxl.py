@@ -7,9 +7,12 @@ Pipeline:
   data/brussels/roster.json     (member -> political group)
   data/brussels/cards.json      (English card copy per decision; authored separately)
         -> aggregate names to GROUPS -> per-group canonical vote (for/against/abstain)
-        -> cities/brussels/data.js  (window.RIOT, same schema the viewer expects)
+        -> cities/brussels/data.js          (window.RIOT, same schema the viewer expects)
+        -> data/brussels/decisions_skeleton.json  (the same decisions[] as committed JSON —
+           the Brussels analogue of data/decisions.json; regenerated every build, never edited)
 
-Also prints a validation report: roster coverage (any unmapped voter is a bug) and
+An unmapped voter (a CRI name missing from roster.json) is FATAL — it would silently
+shrink that group's tally. Fix roster.json and re-run. Also prints a validation report:
 per-group bloc consistency (disciplined groups vote as one — low split-rate validates
 the roster). Run: python3 scripts/build_table_bxl.py
 """
@@ -133,6 +136,9 @@ def main():
             "curator_drop": bool(card.get("curator_drop")),
         })
 
+    if all_unmapped:
+        raise SystemExit("unmapped voters (add to roster.json, then re-run): "
+                         + ", ".join(sorted(all_unmapped)))
     used = sorted({g for d in decisions for g in d["party_votes_canon"]},
                   key=lambda t: [x[0] for x in GROUPS].index(t) if t in GROUP_NAME else 99)
     parties = [{"token": t, "name": GROUP_NAME.get(t, t),
@@ -156,7 +162,7 @@ def main():
     # ---- validation report ----
     print(f"decisions: {len(decisions)}   groups used: {len(parties)}   "
           f"English cards: {n_cards}/{len(decisions)}")
-    print(f"roster coverage: {'OK (all voters mapped)' if not all_unmapped else 'UNMAPPED -> ' + ', '.join(sorted(all_unmapped))}")
+    print("roster coverage: OK (all voters mapped)")   # unmapped is fatal above
     print(f"bloc consistency: {split_tally} group-splits across {group_votes} group-votes "
           f"({100*(group_votes-split_tally)/max(group_votes,1):.0f}% unanimous)")
     print("---")

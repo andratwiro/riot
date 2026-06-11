@@ -59,6 +59,11 @@ def main():
     explained = {}
     for ef in RAW.glob("explained_*.json"):
         for e in json.loads(ef.read_text()):
+            # Firewall guard: the legacy single "deep" field predates the facts/lectura
+            # split. If it ever reappears, opinion could reach the GHOST as facts — refuse.
+            if "deep" in e:
+                raise SystemExit(f"{ef.name}: {e['id']} carries legacy 'deep' — "
+                                 "split it into deep_facts/deep_lectura first")
             explained[e["id"]] = e
     rows = []
     for pf in sorted(RAW.glob("parsed_*.json")):
@@ -87,7 +92,7 @@ def main():
                 "source_brief": ex.get("brief"),   # voiced extended summary (human dive-in)
                 # deep = two parts: facts (neutral, cited — the ONLY deep the GHOST reads)
                 # + lectura (analyst inference, human-facing only, never fed to the ghost)
-                "deep_facts": ex.get("deep_facts") or ex.get("deep"),
+                "deep_facts": ex.get("deep_facts"),
                 "deep_lectura": ex.get("deep_lectura"),
                 "topic": ex.get("topic"),
                 "stake": ex.get("stake"),

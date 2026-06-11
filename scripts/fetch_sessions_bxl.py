@@ -31,7 +31,10 @@ def fetch(session, n):
         req = urllib.request.Request(url, headers={"User-Agent": "riot-bxl/1.0"})
         with urllib.request.urlopen(req, timeout=60) as r:
             data = r.read()
-        if len(data) < 2000 or not data[:5] == b"%PDF-":
+        if not data[:5] == b"%PDF-":
+            return False          # not a CRI — sequence number doesn't exist (HTML stub)
+        if len(data) < 2000:
+            print(f"  WARNING {n:05d}: PDF-shaped but only {len(data)} bytes — skipped, check {url}")
             return False
         (PDF / f"{n:05d}.pdf").write_bytes(data)
         return True

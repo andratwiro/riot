@@ -62,9 +62,9 @@ without it.
 | `data/ai_votes.json` | GHOST votes (mirror of `cities/reus/ai_votes.js`). |
 | `data/curator_marks.json`, `data/auto_discretion.json` | Human curator flags + auto-detected low-discretion proposals (Reus). |
 | `data/actas/*.txt` | Reus source plenary minutes (PDF → `pdftotext`). |
-| `data/raw/` | Reus pipeline intermediates + session index (`sessions.json`). **Audit trail — never delete.** |
+| `data/raw/` | Reus pipeline intermediates + session index (`sessions.json`). **Audit trail — never delete.** Live inputs to `build_table.py`: `parsed_*.json` (facts) + `explained_*.json` (the human layer — headline/body/brief/deep_facts/deep_lectura all live HERE). The `voice_*`, `deep_*`, `lectura_*` files and `vote_outcomes.json` are superseded intermediates from earlier authoring phases — read by nothing current, kept as history; don't extend them. |
 | `data/expedients/` | Reus source PDFs + per-decision metadata (re-fetchable). |
-| `data/brussels/` | The Brussels layer: `cri_txt/` (committed CRI text; `cri_pdf/` is gitignored, re-fetchable), `votes_raw.json` (per-MEMBER roll-calls), `roster.json` (member → political group), `cards.json` (English card copy, authored separately), `decisions_skeleton.json`. |
+| `data/brussels/` | The Brussels layer: `cri_txt/` (committed CRI text; `cri_pdf/` is gitignored, re-fetchable), `votes_raw.json` (per-MEMBER roll-calls), `roster.json` (member → political group), `cards.json` (English card copy keyed by decision id — **the authored source of truth**; the per-agent `cards_parts/` fragments were merged in and removed 2026-06, edit `cards.json` directly), `decisions_skeleton.json` (**build output** of `build_table_bxl.py` — the committed-JSON mirror of the decisions, Brussels' analogue of `data/decisions.json`; regenerated every build, never hand-edit). |
 | `data/congress/cards.json` | The Congress demo's source of truth: the 16 hand-authored cards WITH their `verification` audit blocks (official roll numbers, tallies, caucus breakdowns, package-vote impurity notes — e.g. TikTok/Ukraine Senate directions come from the bundled H.R. 815 vote). Each card also carries structured `tally_house`/`tally_senate` head-counts of the same decisive roll calls (these DO ship — they feed the reveal's margin subtitles; S4132 House = companion H.R. 3755, its Senate = the cloture vote, HR7521/HR8035 Senate = the bundled H.R. 815 package vote, HCONRES64 Senate = the analog S.J.Res. 90; single-chamber cards ship one labelled count). `cities/congress/data.js` is generated from it with `verification` stripped by `scripts/build_table_us.py` (assembly only — no extraction pipeline yet). |
 | `assets/logos/` | Party/group logos + brand assets. |
 | `assets/qrcode.min.js` | Vendored QR encoder (qrcode-generator 1.4.4, MIT) — the stage lobby's join QR (`qrSVG` in `live.js` draws it as inline ink SVG). |
@@ -109,9 +109,9 @@ python3 scripts/fetch_sessions_bxl.py
 # Parse "DÉTAIL DU VOTE NOMINATIF" annexes → data/brussels/votes_raw.json (per MEMBER)
 python3 scripts/extract_votes_bxl.py
 
-# Aggregate members → groups via roster.json, merge cards.json → cities/brussels/data.js.
-# Prints a validation report: roster coverage (any unmapped voter is a bug) and
-# per-group bloc consistency.
+# Aggregate members → groups via roster.json, merge cards.json → cities/brussels/data.js
+# + data/brussels/decisions_skeleton.json. An unmapped voter is FATAL (fix roster.json);
+# also prints a per-group bloc-consistency report.
 python3 scripts/build_table_bxl.py
 ```
 
@@ -161,7 +161,9 @@ decisions table.
   or deep layers, which un-blinds the user before they vote.
 - **Two-layer separation.** `deep_facts` = neutral, the GHOST's *only* deep
   input. `deep_lectura` = analyst opinion/inference, **human-facing only, never
-  an AI input.** Do not blur them.
+  an AI input.** Do not blur them. (`build_table.py` enforces this: an
+  `explained_*.json` entry carrying the pre-split legacy `deep` field fails the
+  build.)
 - **`taxonomy.py` is the single source of truth** for what a Reus Ple item legally
   is and therefore whether it is a votable decision. Don't fork that logic.
 - **Falsifiability first.** Every decision links back to its source acta/CRI; no
