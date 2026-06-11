@@ -160,8 +160,10 @@ asset itself — a near-miss yellow reads as a dirty ring (CUP, fixed #ffdd00).
   APPROVED / brick REJECTED, +4° (opposite the user's −8°), small chamber
   eyebrow (`CFG.chamber`), and under the verdict word the **margin subtitle**
   (`.st-m`, lowercase mono): winner-first head-count, `· N abstained` only
-  when nonzero, per-chamber pairs on bicameral decks, NO subtitle when tally
-  data is missing (never guess) — lands in the same `.stamprow` next to the
+  when nonzero, per-chamber pairs on bicameral decks, the word "unanimous"
+  when the acta records no count (unanimous actas ship an all-zero `tally` —
+  never print a fabricated 0–0), NO subtitle when tally data is missing
+  entirely (never guess) — lands in the same `.stamprow` next to the
   user's stamp; the final reveal's room-v-chamber badges carry the same
   margin format on BOTH sides (room from `LIVE.tally`) — parallel facts;
   beat 2 (+900ms) the **room rains in as emoji piles** (`.piles`,

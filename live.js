@@ -379,7 +379,11 @@ function marginPair(t){
   return `${Math.max(f,a)}–${Math.min(f,a)}`+(t.abstain?` · ${t.abstain} abstained`:"");
 }
 function chamberMargin(d){
-  if(d.tally) return marginPair(d.tally);
+  // unanimous actas carry no head-count (tally ships all-zero — "s'aprova per
+  // unanimitat" is the whole record): say that, never print a fabricated 0–0
+  if(d.tally) return (d.tally.for||d.tally.against||d.tally.abstain)
+    ? marginPair(d.tally)
+    : (d.decided==="unanimous"?"unanimous":"");
   // single-chamber measures (the other chamber never voted) carry only their
   // own labelled count — the label keeps it from reading as the whole Congress
   const h=d.tally_house?`house ${marginPair(d.tally_house)}`:"";
