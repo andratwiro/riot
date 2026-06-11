@@ -365,9 +365,11 @@ function marginPair(t){
 }
 function chamberMargin(d){
   if(d.tally) return marginPair(d.tally);
-  if(d.tally_house&&d.tally_senate)
-    return `house ${marginPair(d.tally_house)} · senate ${marginPair(d.tally_senate)}`;
-  return "";
+  // single-chamber measures (the other chamber never voted) carry only their
+  // own labelled count — the label keeps it from reading as the whole Congress
+  const h=d.tally_house?`house ${marginPair(d.tally_house)}`:"";
+  const s=d.tally_senate?`senate ${marginPair(d.tally_senate)}`:"";
+  return h&&s?`${h} · ${s}`:(h||s);
 }
 function stampOutcome(card,d){
   if(!d.outcome) return;

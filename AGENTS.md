@@ -20,14 +20,18 @@ jurisdiction-agnostic and now runs **three instances** behind one shared viewer:
   built for the Go Vocal demo. Real 2024–26 roll-call (nominal) votes parsed from
   the plenary CRIs, aggregated to political groups; English card copy over French
   source text.
-- **Congress** (`?city=congress`) — DEMO-grade US instance: 10 landmark roll-call
+- **Congress** (`?city=congress`) — DEMO-grade US instance: 16 landmark roll-call
   votes of the 117th–119th Congresses (TikTok, marriage, abortion (rejected), guns,
-  infrastructure, IRA, debt ceiling, Ukraine, Laken Riley, OBBBA), hand-authored
-  from the official record (clerk.house.gov / senate.gov / congress.gov) — no
-  Python pipeline yet. Parties are the **four floor caucuses** (House/Senate ×
-  Dem/GOP), so the map shows chamber splits (e.g. Ukraine aid: Senate GOP for,
-  House GOP against). Source of truth + per-card audit trail (roll numbers,
-  tallies, caucus breakdowns): `data/congress/cards.json`.
+  infrastructure, IRA, debt ceiling, Ukraine, Laken Riley, OBBBA, ICC sanctions
+  (rejected), campus antisemitism, Iran + Venezuela war powers (both rejected),
+  the 43-day-shutdown ender, the PBS/NPR defund), hand-authored from the official
+  record (clerk.house.gov / senate.gov / congress.gov) — no Python pipeline yet.
+  Parties are the **four floor caucuses** (House/Senate × Dem/GOP), so the map
+  shows chamber splits (e.g. Ukraine aid: Senate GOP for, House GOP against);
+  single-chamber measures (campus antisemitism = House only, Iran war powers =
+  Senate only) carry only the caucuses that actually voted — the viewer treats
+  absent tokens as "didn't vote comparably". Source of truth + per-card audit
+  trail (roll numbers, tallies, caucus breakdowns): `data/congress/cards.json`.
 
 It is a **static site** (`index.html` + per-city `cities/<id>/` bundles) on GitHub
 Pages, fed by **Python data pipelines** (`scripts/`). **No backend, no build step,
@@ -62,7 +66,7 @@ without it.
 | `data/raw/` | Reus pipeline intermediates + session index (`sessions.json`). **Audit trail — never delete.** |
 | `data/expedients/` | Reus source PDFs + per-decision metadata (re-fetchable). |
 | `data/brussels/` | The Brussels layer: `cri_txt/` (committed CRI text; `cri_pdf/` is gitignored, re-fetchable), `votes_raw.json` (per-MEMBER roll-calls), `roster.json` (member → political group), `cards.json` (English card copy, authored separately), `decisions_skeleton.json`. |
-| `data/congress/cards.json` | The Congress demo's source of truth: the 10 hand-authored cards WITH their `verification` audit blocks (official roll numbers, tallies, caucus breakdowns, package-vote impurity notes — e.g. TikTok/Ukraine Senate directions come from the bundled H.R. 815 vote). Each card also carries structured `tally_house`/`tally_senate` head-counts of the same decisive roll calls (these DO ship — they feed the reveal's margin subtitles; S4132 House = companion H.R. 3755, its Senate = the cloture vote, HR7521/HR8035 Senate = the bundled H.R. 815 package vote). `cities/congress/data.js` is generated from it with `verification` stripped by `scripts/build_table_us.py` (assembly only — no extraction pipeline yet). |
+| `data/congress/cards.json` | The Congress demo's source of truth: the 16 hand-authored cards WITH their `verification` audit blocks (official roll numbers, tallies, caucus breakdowns, package-vote impurity notes — e.g. TikTok/Ukraine Senate directions come from the bundled H.R. 815 vote). Each card also carries structured `tally_house`/`tally_senate` head-counts of the same decisive roll calls (these DO ship — they feed the reveal's margin subtitles; S4132 House = companion H.R. 3755, its Senate = the cloture vote, HR7521/HR8035 Senate = the bundled H.R. 815 package vote, HCONRES64 Senate = the analog S.J.Res. 90; single-chamber cards ship one labelled count). `cities/congress/data.js` is generated from it with `verification` stripped by `scripts/build_table_us.py` (assembly only — no extraction pipeline yet). |
 | `assets/logos/` | Party/group logos + brand assets. |
 | `assets/qrcode.min.js` | Vendored QR encoder (qrcode-generator 1.4.4, MIT) — the stage lobby's join QR (`qrSVG` in `live.js` draws it as inline ink SVG). |
 | `docs/` | Canonical working docs — see "Where to read more". |

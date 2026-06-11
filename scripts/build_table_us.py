@@ -27,12 +27,14 @@ cards = json.loads(SRC.read_text())["cards"]
 for c in cards:
     c.pop("verification", None)
     pv = c["party_votes_canon"]
-    assert set(pv) == TOKENS and set(pv.values()) <= LEGAL, c["id"]
+    # single-chamber measures carry only the caucuses that actually voted —
+    # the viewer treats absent tokens as "didn't vote comparably"
+    assert pv and set(pv) <= TOKENS and set(pv.values()) <= LEGAL, c["id"]
 
 table = {
     "generated_for": "riot.congress",
     "preview": False,
-    "note": "US Congress demo — 10 landmark roll-call votes of the 117th-119th "
+    "note": "US Congress demo — 16 landmark roll-call votes of the 117th-119th "
             "Congresses, hand-authored from the official record (clerk.house.gov / "
             "senate.gov / congress.gov) and aggregated to the four floor caucuses. "
             "Source of truth + audit trail: data/congress/cards.json.",

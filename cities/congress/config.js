@@ -1,4 +1,4 @@
-// US Congress instance config — DEMO. Ten landmark roll-call votes of the
+// US Congress instance config — DEMO. Sixteen landmark roll-call votes of the
 // 117th–119th Congresses, hand-authored from the official record
 // (congress.gov + clerk.house.gov / senate.gov roll calls) and aggregated to
 // the four floor caucuses (House/Senate × Dem/GOP). No Python pipeline yet:
@@ -27,17 +27,23 @@ window.CITY_CONFIG = {
     disclosure: "Decisions selected from the official roll-call record.",
     sittingOpenedFormula: "The House will come to order."
   },
-  // The DEMO deck — the full ten, pinned first in the moderator's session picker.
+  // The DEMO deck — the full sixteen, pinned first in the moderator's session picker.
   demo_deck: [
-    "US-118-HR7521",   // TikTok: divest or be banned
-    "US-119-HR1",      // the One Big Beautiful Bill (taxes, Medicaid, border)
-    "US-117-S2938",    // first federal gun bill in 30 years
-    "US-117-HR8404",   // write same-sex marriage into federal law
-    "US-117-S4132",    // codify the right to abortion (rejected)
-    "US-119-S5",       // Laken Riley: detain migrants charged with theft
-    "US-118-HR8035",   // $61bn for Ukraine
-    "US-118-HR3746",   // suspend the debt ceiling, cap spending
-    "US-117-HR5376",   // the climate-and-drug-prices megabill (IRA)
-    "US-117-HR3684"    // $1.2tn for roads, bridges, broadband
+    "US-118-HR7521",      // TikTok: divest or be banned
+    "US-119-HR1",         // the One Big Beautiful Bill (taxes, Medicaid, border)
+    "US-119-SJRES59",     // war powers: the strikes on Iran's nuclear sites (rejected)
+    "US-117-S2938",       // first federal gun bill in 30 years
+    "US-119-HR5371",      // reopen the government on day 43 of the longest shutdown
+    "US-117-HR8404",      // write same-sex marriage into federal law
+    "US-119-HR23",        // sanction the ICC over the Netanyahu warrants (rejected)
+    "US-117-S4132",       // codify the right to abortion (rejected)
+    "US-119-S5",          // Laken Riley: detain migrants charged with theft
+    "US-119-HR4",         // claw back $9bn: defund PBS/NPR + foreign aid
+    "US-118-HR8035",      // $61bn for Ukraine
+    "US-119-HCONRES64",   // war powers: the Venezuela campaign (rejected)
+    "US-118-HR3746",      // suspend the debt ceiling, cap spending
+    "US-118-HR6090",      // the IHRA antisemitism yardstick for campuses
+    "US-117-HR5376",      // the climate-and-drug-prices megabill (IRA)
+    "US-117-HR3684"       // $1.2tn for roads, bridges, broadband
   ]
 };
