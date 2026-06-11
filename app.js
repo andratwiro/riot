@@ -31,7 +31,7 @@ function applyGhostParty(on){
   if(AI){
     const has=PARTIES.some(p=>p.token==="GHOST");
     if(on && !has){
-      PARTIES.push({token:"GHOST",name:"GHOST",color:"var(--ghost-ink)",logo:null,ghost:true});
+      PARTIES.push({token:"GHOST",name:"Ghost",color:"var(--ghost-ink)",logo:null,ghost:true});
       for(const d of R.decisions){const rec=AI[d.id]; if(rec){(d.party_votes_canon=d.party_votes_canon||{})["GHOST"]=rec.vote;}}
     } else if(!on && has){
       const i=PARTIES.findIndex(p=>p.token==="GHOST"); if(i>=0) PARTIES.splice(i,1);
@@ -49,9 +49,10 @@ function applyGhostParty(on){
    the map's honesty pass can displace the shell while the core holds the true
    coordinate. opts.noCore renders the shell alone. */
 function ghostMark(size,opts){
-  const g = size>=34 ? {sw:2,  dash:"4.5 3.5", core:4.5}     // chip (~36–40px)
-          : size>=22 ? {sw:2,  dash:"3.2 2.5", core:3.5}     // list avatar (~28px)
-                     : {sw:1.6,dash:"2.8 2.2", core:2.6};    // map dot (~14–16px)
+  // ~8–10 visible dashes at every size (Rob: dashes LESS frequent, never a blur)
+  const g = size>=32 ? {sw:2,  dash:"6.6 4.4", core:4.5}     // chip (≥32px)
+          : size>=22 ? {sw:2,  dash:"7.2 5",   core:4.2}     // list / map (~28–30px)
+                     : {sw:1.8,dash:"7.8 5.6", core:4};      // anything smaller
   return `<svg class="ghostmark" viewBox="0 0 40 40" width="${size}" height="${size}" aria-hidden="true">`+
     `<circle class="g-shell" cx="20" cy="20" r="17" fill="none" stroke="var(--ghost-ink)" stroke-width="${g.sw}" stroke-dasharray="${g.dash}" stroke-linecap="round"/>`+
     ((opts&&opts.noCore)?"":`<circle class="g-core" cx="20" cy="20" r="${g.core}" fill="var(--ghost-ink)"/>`)+
@@ -317,13 +318,13 @@ function renderExtremes(ranked,a){
   ex.style.display="";
   const card=(cls,lab,p)=>`<button class="exc ${cls}" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">
     <span class="exlab">${lab}</span>${logoEl(p)}
-    <span class="exname${p.ghost?" gname":""}" title="${esc(p.name)}">${esc(p.name)}</span>
+    <span class="exname" title="${esc(p.name)}">${esc(p.name)}</span>
     <span class="expct">${a[p.token].pct}%</span></button>`;
   const most=ranked[0], least=ranked[ranked.length-1];
   ex.innerHTML = ranked.length===1
     ? card("most","Closest",most)
     : card("most","Closest",most)+card("least","Furthest",least);
-  decorateGhost(ex,40);
+  decorateGhost(ex,46);
 }
 function renderDoneParties(ranked,a){
   const el=$("#doneParties");
@@ -331,15 +332,14 @@ function renderDoneParties(ranked,a){
   el.style.display="";
   el.innerHTML=`<span class="dplabel">Every party · tap to compare your votes</span>`+
     ranked.map(p=>{const pct=a[p.token].pct;
-      // parties "vote with you"; the ghost "predicts you" — its row says what it is
-      const name=p.ghost?`<span class="dpname gname">GHOST <small class="gsub">· trained on you</small></span>`
-                        :`<span class="dpname">${esc(p.name)}</span>`;
+      // the ghost's row reads like any party row ("Ghost", same face); only its
+      // mark and the verb in its compare view say what it is
       return `<button class="dprow" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">${logoEl(p)}
-        <span class="dptx">${name}
+        <span class="dptx"><span class="dpname">${esc(p.name)}</span>
           <span class="dptrack"><span class="dpfill" style="width:${pct||0}%;background:${p.color}"></span></span></span>
         <span class="dppct">${pct==null?'—':pct+'%'}</span><span class="dpgo">›</span></button>`;
     }).join("");
-  decorateGhost(el,28);
+  decorateGhost(el,34);
 }
 // ink the GHOST mark into any empty ghost logo slots (reveal screen) at the
 // container's size tier — the slot stays a plain span so re-renders are cheap

@@ -47,15 +47,20 @@ minutes. No other families.
 (logo discs, affinity fills, map dots). **The GHOST** (the AI that predicts
 its keeper) deliberately owns NO colour: it wears `--ghost-ink` (an alias of
 `--stamp` — the YOU violet) as the "soul anchor" mark — a dashed shell + solid
-core SVG, ONE source of truth (`ghostMark(size)` in app.js, size-tiered dash
-pattern), no fill inside the ring, no opacity tricks, never a disc. Display
-name always GHOST, uppercase, mono. Verb doctrine: parties "vote with you"
-(representation), the ghost "predicts you" (fidelity) — same number format,
-never homogenized. The GHOST stamp (`.gstamp`, FOR/APPROVED construction in
-ghost ink) is large-surface decoration only — never at list or map scale. On
-the map the ghost defaults to the You projection only (bench chip elsewhere);
-in fan-outs the dashed shell is displaced while the solid core holds the true
-coordinate (it IS the ghost's anchor).
+core SVG, ONE source of truth (`ghostMark(size)` in app.js, ~8–10 dashes at
+every size — Rob: dashes sparse, never a blur), no fill inside the ring, no
+opacity tricks, never a disc — but always PARTY size (34px list slot, 30px
+map dot): spectral dress, first-class seat. In running UI rows the name is
+"Ghost" in the same face as party names (Rob, 2026-06-11); GHOST uppercase
+mono lives in the stamp and the token chips. Verb doctrine: parties "vote
+with you" (representation), the ghost "predicts you" (fidelity) — same number
+format, never homogenized. The GHOST stamp (`.gstamp`, FOR/APPROVED
+construction in ghost ink) is large-surface decoration only — never at list
+or map scale. On the map: seated = visible, every projection, NO toggle; the
+You view carries its one caption line; in fan-outs the dashed shell is
+displaced while the solid core holds the true coordinate (it IS the ghost's
+anchor). Party-disc backfills (`bg-<token>`) must be sampled from the logo
+asset itself — a near-miss yellow reads as a dirty ring (CUP, fixed #ffdd00).
 
 ## The booth doctrine (non-negotiable)
 

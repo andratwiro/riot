@@ -298,18 +298,11 @@ html.reveal #done{position:static;overflow:visible}
 /* the GHOST on the map: the bare mark, no disc — and its honesty contract:
    in a fan-out the dashed shell is what gets displaced; the solid core never
    leaves the true coordinate (.split hides the in-dot core, .mlay .gcore
-   re-inks it at the true point). .hide = off this projection (You-only default). */
+   re-inks it at the true point). */
 .mdot.ghost{z-index:3}
 .mdot.ghost .ghostmark{filter:drop-shadow(0 1px 2px rgba(28,27,23,.18))}
 .mdot.ghost.split .g-core{display:none}
-.mdot.hide{display:none}
 .mlay .gcore{fill:var(--ghost-ink)}
-/* ghost bench chip: the mark inline with the mono label */
-.mp-chip[hidden]{display:none}
-.mp-chip.gchip{gap:6px;color:var(--ghost-ink);border-color:rgba(75,63,160,.45)}
-.mp-chip.gchip.on{background:var(--ghost-ink);color:var(--card);border-color:var(--ghost-ink)}
-.mp-chip.gchip.on .ghostmark .g-shell{stroke:var(--card)}
-.mp-chip.gchip.on .ghostmark .g-core{fill:var(--card)}
 /* YOU pinned to the bottom edge: the "you" tag flips above the disc */
 .mdot.me.pinb .mtag{top:auto;bottom:calc(100% + 3px)}
 /* projection bench — one scrollable row of mono chips under the map: the same
@@ -327,7 +320,7 @@ html.reveal #done{position:static;overflow:visible}
 .mp-note{margin:6px 2px 0;font:400 10.5px/1.5 var(--f-mono);color:var(--ink60)}
 /* brand-colour backfill so square logos blend into their disc (no white corners) */
 .lg.bg-PSC,.mc.bg-PSC{background:#e2001a}
-.lg.bg-CUP,.mc.bg-CUP{background:#fff200}
+.lg.bg-CUP,.mc.bg-CUP{background:#ffdd00}   /* sampled from the logo PNG — the backfill must be invisible behind it */
 /* most / least affinity */
 .extremes{display:flex;gap:10px;width:100%;max-width:600px;margin:0 0 14px}
 .exc{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--rule);font:inherit;color:var(--ink);
@@ -367,11 +360,6 @@ html.reveal #done{position:static;overflow:visible}
    it must read spectral next to the parties' saturated solid discs. */
 .lg.ghost{background:none;border:0;overflow:visible}
 .lg.ghost .ghostmark,.ghostmark{display:block}
-/* GHOST wordmark — always uppercase mono (the stamp/label face), wherever the
-   name appears; "· trained on you" is the current secondary-text register */
-.gname{font:700 13px var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
-.gname .gsub{font:400 11.5px var(--f-mono);color:var(--ink60);letter-spacing:.02em;text-transform:none}
-.exc .exname.gname{font:700 14px var(--f-mono);letter-spacing:.14em}
 /* the GHOST stamp — same construction as FOR/APPROVED (rounded-rect border,
    mono, letterspaced, inset ring) at header scale; decoration for large
    surfaces only, never at list or map size. Static: no thunk — nothing landed. */
