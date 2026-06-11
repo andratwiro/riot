@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2F0E8">
+<title>RIOT — Deliberation bench</title>
+<link rel="icon" href="assets/logos/brussels_iris.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;650;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ============================================================
+   DELIBERATION BENCH — standalone design demo (no app logic).
+   Two real Brussels cards, each opening its own discussion
+   instrument below the ballot. Everything here is local to this
+   page; style.css provides the tokens + the card/stamp/split
+   idioms. Nothing connects to rooms or Firebase.
+   ============================================================ */
+body{overflow:hidden}
+.dlb{display:flex;flex-direction:column;height:100dvh;max-width:680px;margin:0 auto}
+/* header reuses the app idiom; the wordmark is static (no switcher on a demo) */
+.dlb header{flex:0 0 auto}
+.dlb .citysel{cursor:default}
+.dlb .citysel:hover{background:none}
+
+/* ---- bench nav: which card's floor you're on ---- */
+.bench-nav{flex:0 0 auto;padding:2px 16px 10px}
+.bench-k{margin:0 0 8px;font:700 10.5px var(--f-mono);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink60)}
+.bench-tabs{display:flex;gap:6px;align-items:center}
+.bench-tabs .mp-chip{flex:1 1 0;justify-content:center}
+.bench-hint{margin:7px 2px 0;font:400 10.5px var(--f-mono);color:var(--ink60)}
+
+/* ---- the two full-screen panels: native horizontal snap ---- */
+.bench{flex:1 1 auto;min-height:0;display:flex;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.bench::-webkit-scrollbar{display:none}
+.panel{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;
+  overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
+  padding:2px 16px calc(24px + env(safe-area-inset-bottom))}
+
+/* the ballot keeps the booth's collapsed rhythm; the floor is the star here */
+.panel .card{flex:0 0 auto}
+.panel .card .reveal{max-height:none;overflow:visible}
+
+/* ---- THE FLOOR: the rule under the ballot breaks open ---- */
+.floor{margin-top:22px}
+.floor-rule{display:flex;align-items:center;gap:12px;color:var(--ink60)}
+.floor-rule::before,.floor-rule::after{content:"";flex:1 1 auto;height:1px;background:var(--rule)}
+.floor-rule span{font:700 11px var(--f-mono);letter-spacing:.22em;text-transform:uppercase}
+.floor-meta{margin:9px 0 2px;text-align:center;font:400 11px var(--f-mono);color:var(--ink60)}
+.floor-intro{margin:14px 0 16px;color:var(--ink80);font-size:13.5px;line-height:1.5}
+.floor-intro strong{color:var(--ink);font-weight:650}
+
+/* sort chips (wikisurvey) — the projection-bench chip idiom */
+.sortrow{display:flex;gap:6px;overflow-x:auto;padding:2px;margin:0 -2px 12px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sortrow::-webkit-scrollbar{display:none}
+
+/* ---- statement slips ---- */
+.slip{background:var(--card);border:1px solid var(--rule);border-radius:10px;
+  padding:14px 14px 12px;margin:0 0 10px;display:flex;flex-direction:column}
+.slip-meta{display:flex;align-items:center;gap:8px;margin:0 0 8px}
+.slip-meta .face{margin-left:0}
+.s-name{font:700 11.5px var(--f-mono);color:var(--ink80);letter-spacing:.04em}
+.s-time{font:400 10.5px var(--f-mono);color:var(--ink60);margin-left:auto;white-space:nowrap}
+.s-text{margin:0;color:var(--ink);font-size:15px;line-height:1.45;font-weight:500}
+.s-acts{display:flex;gap:7px;margin-top:13px}
+.s-acts .btn{min-height:42px;padding:9px 4px;font-size:13px;border-radius:7px}
+.slip.voted .s-acts{opacity:.3;pointer-events:none;transition:opacity .2s}
+/* the response stamp — the booth's stamp, slip-sized */
+.stamp.sm{font-size:10.5px;letter-spacing:.14em;border-width:2px;border-radius:5px;
+  padding:4px 9px 3px;box-shadow:inset 0 0 0 1px var(--stamp);margin:0 2px -2px 8px}
+/* per-slip split: revealed only AFTER you respond (the floor never leans on you) */
+.s-split{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);animation:fadein .25s both}
+.s-split .sp-k{margin:0 0 7px;font:700 10px var(--f-mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink60)}
+.s-split .sp-l{flex:0 0 90px;white-space:nowrap}
+.s-split .sp-n{flex:0 0 30px}
+/* your own filed statement */
+.slip.minework .s-note{margin:11px 0 0;font:400 11px var(--f-mono);color:var(--stamp)}
+
+/* composer: one idea per slip */
+.composer{background:var(--card);border:1px dashed var(--rule);border-radius:10px;
+  padding:14px;margin:14px 0 0}
+.composer .c-k{margin:0 0 9px;font:700 10.5px var(--f-mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink60)}
+.composer textarea{width:100%;box-sizing:border-box;resize:none;background:var(--card2);
+  border:1px solid var(--rule);border-radius:7px;padding:10px 12px;min-height:72px;
+  font:400 14px/1.5 var(--f-ui);color:var(--ink)}
+.composer textarea::placeholder{color:var(--ink60)}
+.c-row{display:flex;align-items:center;gap:10px;margin-top:10px}
+.c-note{flex:1;font:400 10.5px var(--f-mono);color:var(--ink60)}
+.c-send{border:0;border-radius:8px;background:var(--ink);color:var(--card);cursor:pointer;
+  font:700 13px var(--f-ui);padding:0 16px;min-height:44px}
+.c-send:active{transform:scale(.97)}
+
+/* ---- the ledger bench (budget) ---- */
+.bal{position:sticky;top:0;z-index:6;background:var(--paper);padding:8px 0 10px;margin:0 0 6px}
+.bal-box{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:12px 14px}
+.bal-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.bal-l{font:700 10px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink60)}
+.bal-n{font:700 15px var(--f-mono);color:var(--ink)}
+.bal-row.you .bal-l,.bal-row.you .bal-n{color:var(--stamp)}
+.bal-row.you{margin-top:4px}
+.bal-d{font:400 11px var(--f-mono)}
+.bal-d.up{color:var(--moss)}.bal-d.down{color:var(--brick)}
+.ledger{margin:4px 0 0}
+.lrow{background:var(--card);border:1px solid var(--rule);border-radius:10px;
+  padding:12px 14px 11px;margin:0 0 9px}
+.l-head{display:flex;align-items:baseline;gap:8px}
+.l-name{font-size:14.5px;font-weight:650;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.l-lead{flex:1 1 auto;border-bottom:1px dotted var(--rule);transform:translateY(-3px);min-width:14px}
+.l-amt{font:700 13.5px var(--f-mono);color:var(--ink);white-space:nowrap}
+.l-amt .l-delta{color:var(--stamp);font-weight:700}
+.l-sub{margin:3px 0 0;font:400 11px var(--f-mono);color:var(--ink60)}
+.l-acts{display:flex;gap:7px;margin-top:11px}
+.l-acts .lbtn{flex:1;min-height:44px;border-radius:7px;cursor:pointer;background:transparent;
+  font:700 13px var(--f-mono);letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:7px;
+  transition:transform .08s,background .08s,color .08s}
+.l-acts .lbtn small{font:400 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.lbtn.cut,.lbtn.grow{border:2px solid var(--ink);color:var(--ink)}
+.lbtn.keep{border:1.5px solid var(--rule);color:var(--ink60)}
+.lbtn:active{transform:scale(.97)}
+.lbtn.on{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.lbtn.keep.on{background:var(--ink60);border-color:var(--ink60);color:var(--card)}
+.lrow.locked{background:var(--card2)}
+.lrow.locked .l-amt,.lrow.locked .l-name{color:var(--ink60)}
+.l-lock{margin:9px 0 0;font:400 11px var(--f-mono);color:var(--ink60)}
+.l-split{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);animation:fadein .25s both}
+.l-split .sp-k{margin:0 0 7px;font:700 10px var(--f-mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink60)}
+/* the floor's own draft — earned after you've taken a position on 3 envelopes */
+.floor-verdict{margin:14px 0 0;padding:12px 14px;background:var(--stamp-soft);
+  border:1px solid rgba(75,63,160,.3);border-radius:10px;animation:fadein .3s both}
+.floor-verdict[hidden]{display:none}
+.fv-k{margin:0 0 5px;font:700 10px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--stamp)}
+.fv-t{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink80)}
+.fv-t strong{color:var(--ink);font-weight:650}
+
+.demo-note{margin:26px 0 0;text-align:center;font:400 10.5px/1.6 var(--f-mono);color:var(--ink60)}
+</style>
+</head>
+<body class="dlb">
+  <header>
+    <div class="brand">
+      <span class="citysel">
+        <img class="rose" src="assets/logos/brussels_iris.svg" alt="" width="23" height="23">
+        <span>Brussels</span>
+      </span>
+      <span class="ver">v0.71</span>
+      <span class="previewtag">demo</span>
+    </div>
+    <div class="hdr-right"></div>
+  </header>
+
+  <div class="bench-nav">
+    <p class="bench-k">Deliberation bench</p>
+    <div class="bench-tabs" role="tablist">
+      <button class="mp-chip on" id="tab0" type="button" role="tab" aria-selected="true">1 · MP pay −5%</button>
+      <button class="mp-chip" id="tab1" type="button" role="tab" aria-selected="false">2 · Budget 2026</button>
+    </div>
+    <p class="bench-hint">every card opens its own floor · swipe between them</p>
+  </div>
+
+  <main class="bench" id="bench">
+
+    <!-- ============ PANEL 1 · the wikisurvey floor ============ -->
+    <section class="panel" id="panel0">
+      <article class="card">
+        <span class="topic">MP pay · Proposal for a decision</span>
+        <h2 class="long">Cut Brussels MPs' parliamentary indemnity by 5% on a permanent basis, applying the reduction not only to the base pay but also to the extra indemnities paid for special functions.</h2>
+        <button class="more" type="button">See more ▾</button>
+        <div class="reveal" hidden>
+          <div class="brief">
+            <p>On the table is a standalone proposal to reduce the indemnity Brussels regional MPs draw by 5% as a lasting measure, and to push that cut further than the parallel cross-party text by also shaving 5% off the top-up indemnities paid to members who hold special functions (such as Bureau seats).</p>
+            <ul>
+              <li><strong>What it changes:</strong> a 5% reduction on the base parliamentary indemnity, framed as permanent rather than time-limited, plus the same 5% applied to special-function indemnities.</li>
+              <li><strong>The money cited:</strong> speakers describe a Brussels MP's net monthly pay as more than 7,000 euros, and special-function holders receiving roughly 2,500 euros extra.</li>
+              <li><strong>The wider frame:</strong> it lands amid a regional budget described as a 1.6 to 1.9 billion euro deficit, with cuts cited to associations (15%) and family allowances.</li>
+              <li><strong>The rub:</strong> whether elected members should cut their own pay deeply and permanently as a credibility signal, or whether a 5% trim risks underpaying the job and should align with other parliaments rather than go furthest.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn a" data-v="against">Against</button>
+          <button class="btn ab" data-v="abstain">Abstain</button>
+          <button class="btn f" data-v="for">For</button>
+        </div>
+      </article>
+
+      <div class="floor">
+        <div class="floor-rule"><span>The floor</span></div>
+        <p class="floor-meta">142 residents deliberating · 9 statements · open until the vote</p>
+        <p class="floor-intro"><strong>One idea per slip.</strong> Respond to each statement — the floor's split on it appears only after your own response is in, the same way the room's tally waits for your ballot.</p>
+        <div class="sortrow" id="sortRow">
+          <button class="mp-chip on" data-sort="order" type="button">In order</button>
+          <button class="mp-chip" data-sort="common" type="button">Common ground</button>
+          <button class="mp-chip" data-sort="divided" type="button">Most divided</button>
+        </div>
+        <div id="slips"></div>
+        <div class="composer">
+          <p class="c-k">Add your voice</p>
+          <textarea id="cText" rows="3" maxlength="140" placeholder="One statement others can agree or disagree with — not a reply, not an essay."></textarea>
+          <div class="c-row">
+            <span class="c-note" id="cCount">140 left · filed under your session face</span>
+            <button class="c-send" id="cSend" type="button">File statement</button>
+          </div>
+        </div>
+        <p class="demo-note">A design exploration — this floor is not connected to a live room.<br>The card is a real decision of the Brussels Parliament (CRI, 10 Jul 2025).</p>
+      </div>
+    </section>
+
+    <!-- ============ PANEL 2 · the ledger floor ============ -->
+    <section class="panel" id="panel1">
+      <article class="card">
+        <span class="topic">Public finance · Budget</span>
+        <h2 class="long">Adopt the Region's 2026 spending budget, authorising the year's expenditure and the deficit that comes with it.</h2>
+        <button class="more" type="button">See more ▾</button>
+        <div class="reveal" hidden>
+          <div class="brief">
+            <p>This is the spending side of the Region's 2026 budget — the credits each policy area is authorised to spend. Paired with the revenue text, it is the Region's first full initial budget after a long run on provisional twelfths.</p>
+            <ul>
+              <li><strong>It sets the deficit.</strong> The 2026 budget is planned to close in the red, with the SEC/ESR balance fixed at under -957 million euros.</li>
+              <li><strong>From stopgap to plan.</strong> For more than a year the Region spent through monthly provisional twelfths, which guaranteed continuity of public services but rolled deficits forward without a clear direction.</li>
+              <li><strong>Savings land on real programmes.</strong> Debate flagged cuts touching employment measures — reduced subsidised-contract premiums and the end of the Activa scheme among them.</li>
+              <li><strong>The rub:</strong> the only ways to shrink a 1.5-billion-euro deficit are to cut spending or raise revenue — and where the axe falls (employment, social programmes) is exactly what the budget is fought over.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn a" data-v="against">Against</button>
+          <button class="btn ab" data-v="abstain">Abstain</button>
+          <button class="btn f" data-v="for">For</button>
+        </div>
+      </article>
+
+      <div class="floor">
+        <div class="floor-rule"><span>The floor</span></div>
+        <p class="floor-meta">138 residents deliberating · 8 envelopes · figures illustrative</p>
+        <p class="floor-intro"><strong>Where should the axe fall — and where shouldn't it?</strong> Take a position on each envelope: cut it, keep it, or grow it. Each choice moves a notional 10% of the line through your draft balance, and the floor's lean on that envelope appears once yours is in.</p>
+        <div class="bal">
+          <div class="bal-box">
+            <div class="bal-row"><span class="bal-l">Draft 2026 balance</span><span class="bal-n">−957 M€</span></div>
+            <div class="bal-row you"><span class="bal-l">Your version</span><span class="bal-n"><span id="balYou">−957 M€</span> <span class="bal-d" id="balDelta"></span></span></div>
+          </div>
+        </div>
+        <div class="ledger" id="ledger"></div>
+        <div class="floor-verdict" id="floorVerdict" hidden>
+          <p class="fv-k">The floor's draft so far</p>
+          <p class="fv-t">Averaging every resident's positions lands the floor at <strong>−921 M€</strong> — it cuts administration and culture, holds the municipalities, and grows housing and employment even at the price of a slower return to balance.</p>
+        </div>
+        <p class="demo-note">A design exploration — this floor is not connected to a live room.<br>Envelope figures are illustrative; the card is a real decision of the Brussels Parliament (CRI, 27 Mar 2026).</p>
+      </div>
+    </section>
+
+  </main>
+
+<script>
+/* Demo-only interactions. Everything is local to this page: no rooms, no
+   Firebase, no persistence — reload and the bench resets. */
+"use strict";
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+/* ---- shared: the ballot's See more + stamp beat (booth idioms, local) ---- */
+$$(".card .more").forEach(b=>b.addEventListener("click",()=>{
+  const r=b.parentElement.querySelector(".reveal");
+  r.hidden=!r.hidden;
+  b.textContent=r.hidden?"See more ▾":"See less ▴";
+}));
+const STAMP_TXT={for:"FOR",against:"AGAINST",abstain:"ABSTAIN"};
+$$(".card .acts .btn").forEach(b=>b.addEventListener("click",()=>{
+  const card=b.closest(".card");
+  if(card.classList.contains("voted"))return;
+  card.classList.add("voted");
+  let row=card.querySelector(".stamprow");
+  if(!row){row=document.createElement("div");row.className="stamprow";
+    card.insertBefore(row,card.querySelector(".acts"));}
+  const st=document.createElement("div");
+  st.className="stamp";st.textContent=STAMP_TXT[b.dataset.v];
+  row.appendChild(st);
+}));
+
+/* ---- bench navigation: tabs ↔ native horizontal snap ---- */
+const bench=$("#bench"), tabs=[$("#tab0"),$("#tab1")];
+tabs.forEach((t,i)=>t.addEventListener("click",()=>{
+  bench.scrollTo({left:i*bench.clientWidth,behavior:"smooth"});
+}));
+let benchTick=null;
+bench.addEventListener("scroll",()=>{
+  if(benchTick)return;
+  benchTick=requestAnimationFrame(()=>{
+    benchTick=null;
+    const i=Math.round(bench.scrollLeft/bench.clientWidth);
+    tabs.forEach((t,j)=>{t.classList.toggle("on",j===i);t.setAttribute("aria-selected",j===i?"true":"false");});
+  });
+});
+
+/* ================= PANEL 1 · wikisurvey ================= */
+/* Counts are illustrative. d/p/a = disagree / pass / agree. */
+const STATEMENTS=[
+ {id:"s1",face:"🦉",name:"chouette_21",time:"2h ago",d:22,p:18,a:102,
+  text:"Cutting their own pay is the only message that costs them something — everything else is a press release."},
+ {id:"s2",face:"🪴",name:"begonia_07",time:"3h ago",d:14,p:31,a:97,
+  text:"I'd trade the whole 5% gesture for the parliament publishing what it spends on itself, line by line."},
+ {id:"s3",face:"🚲",name:"velo_brux",time:"5h ago",d:26,p:21,a:95,
+  text:"€7,000 net a month in a region cutting family allowances is indefensible, whatever the workload."},
+ {id:"s4",face:"🌻",name:"zonnebloem",time:"5h ago",d:29,p:25,a:88,
+  text:"If the cut is temporary it will quietly lapse the moment we stop watching. Permanent, or it's theatre."},
+ {id:"s5",face:"🔧",name:"sleutel_9",time:"7h ago",d:31,p:30,a:81,
+  text:"Start with the €2,500 top-ups for special functions — leadership should feel it before backbenchers do."},
+ {id:"s6",face:"🎻",name:"alto_1060",time:"8h ago",d:33,p:36,a:73,
+  text:"If MPs take 5% as a credibility signal, ministers should take 10% — responsibility should scale."},
+ {id:"s7",face:"🦊",name:"renard_53",time:"9h ago",d:61,p:17,a:64,
+  text:"5% changes nothing for a €1.6 billion deficit. This is symbolism standing in for a real budget debate."},
+ {id:"s8",face:"📚",name:"lezer_04",time:"11h ago",d:70,p:14,a:58,
+  text:"Good pay is what lets a nurse or a teacher afford to run for office. Cut it and only the rich can sit."},
+ {id:"s9",face:"🌧",name:"drache_bxl",time:"12h ago",d:52,p:40,a:47,
+  text:"Align with the Chamber and Flanders instead of competing to cut deepest — races to the bottom are also theatre."}
+];
+const myResp={};           // id -> "d" | "p" | "a"
+let mySlip=null;           // the statement you filed, if any
+let sortMode="order";
+
+const R_TXT={d:"DISAGREE",p:"PASS",a:"AGREE"};
+function pct(n,t){return Math.round(100*n/t)}
+function splitHTML(s,mine){
+  const t=s.d+s.p+s.a;
+  return `<div class="s-split">
+    <p class="sp-k">The floor on this one · ${t} responses</p>
+    ${[["d","Disagree"],["p","Pass"],["a","Agree"]].map(([k,lab])=>`
+      <div class="sp-row${mine===k?" mine":""}">
+        <span class="sp-l">${lab}</span>
+        <span class="sp-track"><span class="sp-fill" style="width:${pct(s[k],t)}%"></span></span>
+        <span class="sp-n">${s[k]}</span>
+      </div>`).join("")}
+  </div>`;
+}
+function slipHTML(s){
+  const mine=myResp[s.id];
+  return `<div class="slip${mine?" voted":""}" data-id="${s.id}">
+    <div class="slip-meta">
+      <span class="face">${s.face}</span><span class="s-name">${s.name}</span>
+      <span class="s-time">${s.time}</span>
+    </div>
+    <p class="s-text">${s.text}</p>
+    ${mine?`<div class="stamprow"><div class="stamp sm">${R_TXT[mine]}</div></div>`:""}
+    <div class="s-acts">
+      <button class="btn a" data-r="d">Disagree</button>
+      <button class="btn ab" data-r="p">Pass</button>
+      <button class="btn f" data-r="a">Agree</button>
+    </div>
+    ${mine?splitHTML(s,mine):""}
+  </div>`;
+}
+function mySlipHTML(){
+  return `<div class="slip minework">
+    <div class="slip-meta">
+      <span class="face me">🙂</span><span class="s-name">you</span>
+      <span class="s-time">just now</span>
+    </div>
+    <p class="s-text">${mySlip}</p>
+    <p class="s-note">Filed to the floor — responses gather as others deliberate.</p>
+  </div>`;
+}
+function sortedStatements(){
+  const arr=[...STATEMENTS];
+  if(sortMode==="common")arr.sort((x,y)=>y.a/(y.d+y.p+y.a)-x.a/(x.d+x.p+x.a));
+  if(sortMode==="divided")arr.sort((x,y)=>Math.abs(x.a-x.d)-Math.abs(y.a-y.d));
+  return arr;
+}
+function renderSlips(){
+  $("#slips").innerHTML=(mySlip?mySlipHTML():"")+sortedStatements().map(slipHTML).join("");
+}
+$("#slips").addEventListener("click",e=>{
+  const b=e.target.closest("[data-r]");if(!b)return;
+  const slip=b.closest(".slip"), id=slip.dataset.id;
+  if(myResp[id])return;
+  myResp[id]=b.dataset.r;
+  const s=STATEMENTS.find(x=>x.id===id);
+  s[myResp[id]]+=1;                       // your response joins the counts
+  slip.classList.add("voted");
+  const row=document.createElement("div");row.className="stamprow";
+  slip.insertBefore(row,slip.querySelector(".s-acts"));
+  const st=document.createElement("div");st.className="stamp sm";st.textContent=R_TXT[myResp[id]];
+  row.appendChild(st);
+  slip.insertAdjacentHTML("beforeend",splitHTML(s,myResp[id]));
+});
+$("#sortRow").addEventListener("click",e=>{
+  const b=e.target.closest("[data-sort]");if(!b)return;
+  sortMode=b.dataset.sort;
+  $$("#sortRow .mp-chip").forEach(c=>c.classList.toggle("on",c===b));
+  renderSlips();
+});
+const cText=$("#cText");
+cText.addEventListener("input",()=>{
+  $("#cCount").textContent=`${140-cText.value.length} left · filed under your session face`;
+});
+$("#cSend").addEventListener("click",()=>{
+  const v=cText.value.trim();if(!v)return;
+  mySlip=v;cText.value="";
+  $("#cCount").textContent="140 left · filed under your session face";
+  renderSlips();
+  $("#slips").scrollIntoView({behavior:"smooth",block:"start"});
+});
+renderSlips();
+
+/* ================= PANEL 2 · ledger bench ================= */
+/* Envelope figures are illustrative orders of magnitude, not the ordinance's
+   own credit lines. cut/keep/grow = the floor's counts on each envelope. */
+const LINES=[
+ {id:"debt",name:"Debt interest",amt:500,locked:true,
+  sub:"fixed charge on the existing debt — not votable"},
+ {id:"stib",name:"Mobility & public transport",amt:1550,cut:18,keep:62,grow:58,
+  sub:"STIB operations + investment"},
+ {id:"emp",name:"Employment & local economy",amt:800,cut:12,keep:31,grow:95,
+  sub:"where the 2026 cuts land — Activa ended, ACS premiums reduced"},
+ {id:"hous",name:"Housing",amt:150,cut:9,keep:24,grow:105,
+  sub:"investment budget; ~50,000 households on the social-housing list"},
+ {id:"env",name:"Environment & climate",amt:450,cut:26,keep:58,grow:54,
+  sub:"Bruxelles Environnement programmes"},
+ {id:"mun",name:"Support to the 19 municipalities",amt:600,cut:41,keep:72,grow:25,
+  sub:"general dotations"},
+ {id:"cult",name:"Culture & heritage",amt:60,cut:88,keep:36,grow:14,
+  sub:"incl. Kanal–Centre Pompidou"},
+ {id:"adm",name:"Administration & e-government",amt:400,cut:96,keep:33,grow:9,
+  sub:"running the Region itself"}
+];
+const BASE=-957;
+const myLine={};            // id -> "cut" | "keep" | "grow"
+function fmt(n){return (n<0?"−":"+")+Math.abs(Math.round(n))+" M€"}
+function lineDelta(l){
+  const c=myLine[l.id];
+  return c==="cut"?+l.amt*.1:c==="grow"?-l.amt*.1:0;   // cuts improve the balance
+}
+function lSplitHTML(l,mine){
+  const t=l.cut+l.keep+l.grow;
+  return `<div class="l-split">
+    <p class="sp-k">The floor on this envelope · ${t} positions</p>
+    ${[["cut","Cut"],["keep","Keep"],["grow","Grow"]].map(([k,lab])=>`
+      <div class="sp-row${mine===k?" mine":""}">
+        <span class="sp-l">${lab}</span>
+        <span class="sp-track"><span class="sp-fill" style="width:${pct(l[k],t)}%"></span></span>
+        <span class="sp-n">${l[k]}</span>
+      </div>`).join("")}
+  </div>`;
+}
+function renderLedger(){
+  $("#ledger").innerHTML=LINES.map(l=>{
+    const mine=myLine[l.id];
+    const d=lineDelta(l);
+    const amt=`${l.amt.toLocaleString("en").replace(/,/g," ")} M€`+
+      (d?` <span class="l-delta">${mine==="cut"?"−":"+"}${Math.round(l.amt*.1)}</span>`:"");
+    return `<div class="lrow${l.locked?" locked":""}" data-id="${l.id}">
+      <div class="l-head"><span class="l-name">${l.name}</span><span class="l-lead"></span><span class="l-amt">${amt}</span></div>
+      <p class="l-sub">${l.sub}</p>
+      ${l.locked
+        ? `<p class="l-lock">🔒 fixed — cited in debate at ~500 M€ for 2026, more than three times the housing investment</p>`
+        : `<div class="l-acts">
+            <button class="lbtn cut${mine==="cut"?" on":""}" data-c="cut">− <small>cut 10%</small></button>
+            <button class="lbtn keep${mine==="keep"?" on":""}" data-c="keep">＝ <small>keep</small></button>
+            <button class="lbtn grow${mine==="grow"?" on":""}" data-c="grow">＋ <small>grow 10%</small></button>
+          </div>`+(mine?lSplitHTML(l,mine):"")}
+    </div>`;
+  }).join("");
+}
+function renderBalance(){
+  const delta=LINES.reduce((s,l)=>s+lineDelta(l),0);
+  const you=BASE+delta;
+  $("#balYou").textContent=`${you<0?"−":"+"}${Math.abs(Math.round(you))} M€`;
+  const d=$("#balDelta");
+  d.textContent=delta?`(${fmt(delta)})`:"(untouched)";
+  d.className="bal-d "+(delta>0?"up":delta<0?"down":"");
+  $("#floorVerdict").hidden=Object.keys(myLine).length<3;
+}
+$("#ledger").addEventListener("click",e=>{
+  const b=e.target.closest("[data-c]");if(!b)return;
+  const id=b.closest(".lrow").dataset.id;
+  const l=LINES.find(x=>x.id===id);
+  const prev=myLine[id];
+  if(prev===b.dataset.c)return;
+  if(prev)l[prev]-=1;                      // you changed your mind: move your position
+  myLine[id]=b.dataset.c;
+  l[myLine[id]]+=1;
+  renderLedger();renderBalance();
+});
+renderLedger();renderBalance();
+</script>
+</body>
+</html>

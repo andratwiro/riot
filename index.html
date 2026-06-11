@@ -10,14 +10,13 @@
 // end of body runs only after Three.js/city bundles/Firebase load — far too late
 // to hide the app chrome. This class lets CSS swap shell↔holding on frame one.
 if(!location.search){document.documentElement.classList.add("hold");document.title="RIOT";}
-// LIVE lobby refresh: this tab is seated in a live lobby (live.js keeps the
-// sessionStorage flag current). Re-seat it on frame one — the booth shell would
-// otherwise flash for the seconds Firebase needs to reconnect and deliver the
-// session snapshot. live.js retires the class once real session state lands.
+// Voter boots hold the paper from frame one: the voter URL is a live sitting's
+// entrance, so nothing (booth shell included) may paint until live.js learns
+// from the store whether a sitting exists — seat gate / silent re-seat / the
+// wall. live.js retires the class (single-player fallback retires it at boot).
 else try{
   var q=new URLSearchParams(location.search);
-  if((q.get("role")||"").toLowerCase()!=="moderator"
-     && sessionStorage.getItem("riot.liveLobby")===(q.get("city")||"reus").toLowerCase())
+  if((q.get("role")||"").toLowerCase()!=="moderator")
     document.documentElement.classList.add("lvhold");
 }catch(e){}
 </script>
@@ -34,7 +33,7 @@ else try{
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.70</span>
+      <span class="ver">v0.71</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -277,8 +276,8 @@ if(!location.search){
   $("#holding").hidden=false;
 }else{
   mpInit();
-  liveInit();             // LIVE SESSION: lockstep room state (no-op without a backend or ?simlive)
-  maybeShowJoin();        // room sessions: name/emoji gate before the first card (no-op single-player)
+  liveInit();             // LIVE SESSION: lockstep room state; voters resolve to gate/re-seat/wall here
+  maybeShowJoin();        // boot gate for the backendless sim room only — live sittings gate per-sid in live.js
   renderStack();
 }
 </script>
