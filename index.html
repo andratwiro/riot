@@ -14,9 +14,10 @@ if(!location.search){document.documentElement.classList.add("hold");document.tit
 // entrance, so nothing (booth shell included) may paint until live.js learns
 // from the store whether a sitting exists — seat gate / silent re-seat / the
 // wall. live.js retires the class (single-player fallback retires it at boot).
+// ?solo=1 is the deliberate solo entrance (no room, no live) — paint at once.
 else try{
   var q=new URLSearchParams(location.search);
-  if((q.get("role")||"").toLowerCase()!=="moderator")
+  if((q.get("role")||"").toLowerCase()!=="moderator" && q.get("solo")!=="1")
     document.documentElement.classList.add("lvhold");
 }catch(e){}
 </script>
@@ -33,7 +34,7 @@ else try{
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.83</span>
+      <span class="ver">v0.84</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -200,8 +201,8 @@ else try{
   </div>
   <div class="lwrap">
     <p class="muted" style="font-size:12.5px;margin-top:0">
-      Paste a votes JSON here (the one you copied from the final screen) to restore a session.
-      It replaces the current votes.
+      Paste a votes JSON here (from ⧉ Copy votes). It replaces this session's votes —
+      if cards are left unanswered, the booth picks up where you stopped.
     </p>
     <textarea id="importBox" placeholder='{ "v": 1, "votes": { "&lt;id&gt;": "for", … } }' spellcheck="false"></textarea>
     <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
@@ -221,9 +222,15 @@ else try{
       <span class="si-tx"><b>View the minutes</b><small>Verbatim source + real party votes</small></span>
       <span class="si-go">↗</span>
     </button>
+    <!-- The snapshot pair: copy to save a sitting mid-deck, import to resume it. -->
+    <button class="sheet-item" id="copyVotesSheet">
+      <span class="si-ic">⧉</span>
+      <span class="si-tx"><b id="copyVotesSheetTx">Copy votes</b><small>Your ballots so far, as JSON — keep it to continue later</small></span>
+      <span class="si-go">↗</span>
+    </button>
     <button class="sheet-item" id="importVotes">
       <span class="si-ic">⤓</span>
-      <span class="si-tx"><b>Import votes</b></span>
+      <span class="si-tx"><b>Import votes</b><small>Paste a saved JSON — picks up where you stopped</small></span>
       <span class="si-go">↗</span>
     </button>
     <!-- Room reset: curator mode only (the moderator toggles it in the Minutes page),
@@ -274,6 +281,9 @@ if(!location.search){
   // (no mpInit → no phantom presence from idle tabs parked on the root).
   document.title="RIOT";
   $("#holding").hidden=false;
+}else if(SOLO){
+  // ?solo=1 — the solo booth, nothing else: no room, no live, no presence.
+  renderStack();
 }else{
   mpInit();
   liveInit();             // LIVE SESSION: lockstep room state; voters resolve to gate/re-seat/wall here

@@ -19,6 +19,12 @@ const R = window.RIOT || {decisions:[], parties:[]};
 const AI = (window.AI_VOTES && window.AI_VOTES.votes) || null;
 const PARTIES = R.parties || [];
 const QS = new URLSearchParams(location.search);
+/* ?solo=1 — the deliberate solo entrance: the booth alone, full deck, no room,
+   no live resolution, no presence (the plain voter URL stays the sitting's
+   entrance and nothing else). Built for the self-experiment: vote at your own
+   pace, ⧉ Copy votes to save, import to resume. &ai=1 seats Proxy IA on the
+   reveal (solo only — in a sitting, AI mode belongs to the moderator's cfg). */
+const SOLO = QS.get("solo")==="1";
 // Add/remove the proxy as one more "party" (reveal map + compare view). Off by default; menu toggle.
 function applyAiParty(on){
   if(AI){
@@ -85,8 +91,9 @@ function dismissSuggest(id){if(!isDismissed(id)){dismissed.push(id);try{localSto
 // Minutes page. A persisted dev flag never activates on a plain voter URL.
 const IS_MOD=(QS.get("role")||"").toLowerCase()==="moderator";
 let devMode=false; try{devMode=IS_MOD&&localStorage.getItem(DEV_KEY)==="1";}catch(e){}
-// AI mode: the moderator enables it per live session (cfg.ai); live.js flips it from snapshots.
-let showAI=false;
+// AI mode: the moderator enables it per live session (cfg.ai); live.js flips it
+// from snapshots. Solo is the one self-serve entrance: ?solo=1&ai=1.
+let showAI=SOLO && !!AI && QS.get("ai")==="1";
 try{localStorage.removeItem("riot.ai.v1");}catch(e){}   // retire the old per-visitor toggle
 const isMarked=id=>marks.some(m=>m.id===id);
 let COORD = null, MX = {};

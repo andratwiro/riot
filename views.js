@@ -181,15 +181,20 @@ $("#marksList").addEventListener("click",e=>{
 function votesJSON(){
   return JSON.stringify({v:1,exported:new Date().toISOString(),n:Object.keys(answers).length,votes:{...answers}},null,2);
 }
-$("#copyVotes").addEventListener("click",()=>{
+function copyVotesFeedback(btn,label){
   const txt=votesJSON();
   if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>{
-    $("#copyVotes").textContent="✓ Copied";setTimeout(()=>$("#copyVotes").textContent="⧉ Copy votes",1500);
+    btn.innerHTML="✓ Copied";setTimeout(()=>{btn.innerHTML=label;},1500);
   });
-});
-// Replace the session with an imported set of votes and land straight on the reveal:
-// an import is a finished sitting brought back, not a resume — even a partial set
-// skips the remaining cards' rhythm. ↻ on the reveal still re-deals the full deck.
+}
+$("#copyVotes").addEventListener("click",e=>copyVotesFeedback(e.currentTarget,"⧉ Copy votes"));
+// The same snapshot from the options sheet — mid-deck is the whole point (save before you stop).
+$("#copyVotesSheet").addEventListener("click",()=>copyVotesFeedback($("#copyVotesSheetTx"),"Copy votes"));
+// Replace the session with an imported set of votes. A COMPLETE set is a
+// finished sitting brought back → straight to the reveal; a PARTIAL one
+// resumes the booth on the remaining cards (the multi-session ballot: copy
+// votes, come back later, keep answering). ↻ on the reveal still re-deals
+// the full deck — and discards the import with it.
 function applyImportedVotes(map){
   for(const k in answers)delete answers[k];
   let applied=0;
@@ -198,7 +203,7 @@ function applyImportedVotes(map){
     if(byId[id]&&(v==="for"||v==="against"||v==="abstain")){answers[id]=v;applied++;}
   }
   deck=buildDeck(true);          // same deck mode, minus the imported ballots
-  idx=applied?deck.length:0;     // past the remainder → renderStack lands on finish()
+  idx=0;                         // remainder → the booth; empty deck → renderStack lands on finish()
   $("#done").style.display="none";
   renderStack();
   if(typeof publishSelf==="function")publishSelf();
@@ -215,7 +220,7 @@ $("#loadVotes").addEventListener("click",()=>{
   if(!map||typeof map!=="object"||Array.isArray(map)){st.className="err";st.textContent="No votes found.";return;}
   const applied=applyImportedVotes(map);
   if(!applied){st.className="err";st.textContent="No valid votes (unknown ids?).";return;}
-  st.className="ok";st.textContent=`✓ ${applied} votes loaded.`;
+  st.className="ok";st.textContent=deck.length?`✓ ${applied} votes loaded · ${deck.length} left to answer.`:`✓ ${applied} votes loaded.`;
   setTimeout(()=>$("#importView").style.display="none",700);
 });
 

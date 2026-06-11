@@ -2,7 +2,10 @@
 # soul.md = Rob's private political profile (the AI proxy's only input).
 soul.md
 soul.*.md
-# (Rob's manual votes live in browser localStorage, never on disk.)
+# Rob's manual ballot: lives in the browser session; the exported snapshot
+# (⧉ Copy votes → this file, re-imported to resume) stays off the repo —
+# the proxy must never be able to see it.
+data/rob_votes.json
 
 # --- large / re-fetchable source binaries ---
 # The .txt extractions ARE committed; PDFs are re-fetchable via fetch_sessions*.py.
