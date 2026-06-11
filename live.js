@@ -354,6 +354,21 @@ function renderLivePiles(el,id){
     (noBallot?`<p class="pl-to">${noBallot} didn't vote</p>`:"")+
     `<p class="lv-verdict" hidden></p>`;
 }
+/* ---- margins: a verdict without one is half the information ----
+   Winner-first (the prevailing side's count leads), abstentions only when
+   nonzero. Reus/Brussels ship one seat-count `tally`; the bicameral Congress
+   deck ships `tally_house`/`tally_senate` (no single honest number exists for
+   a two-chamber decision). No tally data → verdict alone, never a guess. */
+function marginPair(t){
+  const f=t.for||0, a=t.against||0;
+  return `${Math.max(f,a)}–${Math.min(f,a)}`+(t.abstain?` · ${t.abstain} abstained`:"");
+}
+function chamberMargin(d){
+  if(d.tally) return marginPair(d.tally);
+  if(d.tally_house&&d.tally_senate)
+    return `house ${marginPair(d.tally_house)} · senate ${marginPair(d.tally_senate)}`;
+  return "";
+}
 function stampOutcome(card,d){
   if(!d.outcome) return;
   const ok=d.outcome==="approved";
@@ -361,7 +376,9 @@ function stampOutcome(card,d){
   // st-app / st-rej, NOT "app": a bare `app` class collides with the page root
   // (.app{height:100dvh}) and inflated every APPROVED stamp to viewport height
   st.className="stamp official "+(ok?"st-app":"st-rej");
-  st.innerHTML=`<small>${esc(CHAMBER)}</small>${ok?"APPROVED":"REJECTED"}`;
+  const m=chamberMargin(d);
+  st.innerHTML=`<small>${esc(CHAMBER)}</small>${ok?"APPROVED":"REJECTED"}`
+    +(m?`<small class="st-m">${m}</small>`:"");
   stampRow(card).appendChild(st);   // next to the user's stamp — two imprints, one glance
 }
 function runRevealBeats(top,d){
@@ -395,11 +412,14 @@ function buildRoomVerdict(){
     <h3 class="rv-h">${X===0
       ? `On all ${N} decisions, this room landed where ${esc(CHAMBER)} did.`
       : `On ${X} of ${N} decisions, this room would have decided differently.`}</h3>`+
-    (X?`<div class="rv-list">`+items.map(({d,rv})=>`<div class="rv-row">
+    (X?`<div class="rv-list">`+items.map(({d,rv})=>{
+      // both sides carry the same margin format — parallel facts, one glance
+      const rm=marginPair(LIVE.tally(d.id)), cm=chamberMargin(d);
+      return `<div class="rv-row">
         <span class="rv-t">${esc(d.headline||d.title)}</span>
-        <span class="rv-chips"><span class="badge ${rv==="approved"?"b-app":"b-rej"}">room: ${rv}</span>
-        <span class="badge ${d.outcome==="approved"?"b-app":"b-rej"}">${esc(CHAMBER.replace(/^the /,""))}: ${d.outcome}</span></span>
-      </div>`).join("")+`</div>`:"");
+        <span class="rv-chips"><span class="badge ${rv==="approved"?"b-app":"b-rej"}">room: ${rv} ${rm}</span>
+        <span class="badge ${d.outcome==="approved"?"b-app":"b-rej"}">${esc(CHAMBER.replace(/^the /,""))}: ${d.outcome}${cm?" "+cm:""}</span></span>
+      </div>`;}).join("")+`</div>`:"");
 }
 function renderFinal(){
   if(lvShownState==="final") return;

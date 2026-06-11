@@ -127,6 +127,7 @@ def main():
             "proposed_by": card.get("proposed_by", ""),   # metadata, never shown in the copy
             "doc_ref": v["doc_ref"],
             "outcome": outcome,                            # structured field (log/compare), not in copy
+            "tally": {"for": n_for, "against": n_against, "abstain": len(v["abst"])},  # MP head-counts — reveal margins only
             "source_url": f"http://weblex.brussels/data/crb/cri/{v['session']}/{v['cri']}/images.pdf",
             "party_votes_canon": pvc,
             "curator_drop": bool(card.get("curator_drop")),

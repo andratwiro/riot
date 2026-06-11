@@ -145,8 +145,13 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   reveal is two beats, **verdict first**: beat 1 the **official stamp**
   (`.stamp.official`, classes `st-app`/`st-rej`) — the chamber's imprint, moss
   APPROVED / brick REJECTED, +4° (opposite the user's −8°), small chamber
-  eyebrow (`CFG.chamber`) — lands in the same `.stamprow` next to the user's
-  stamp; beat 2 (+900ms) the **room rains in as emoji piles** (`.piles`,
+  eyebrow (`CFG.chamber`), and under the verdict word the **margin subtitle**
+  (`.st-m`, lowercase mono): winner-first head-count, `· N abstained` only
+  when nonzero, per-chamber pairs on bicameral decks, NO subtitle when tally
+  data is missing (never guess) — lands in the same `.stamprow` next to the
+  user's stamp; the final reveal's room-v-chamber badges carry the same
+  margin format on BOTH sides (room from `LIVE.tally`) — parallel facts;
+  beat 2 (+900ms) the **room rains in as emoji piles** (`.piles`,
   `renderLivePiles`): every cast face drops onto its pile in button order
   (Against/Abstain/For), abstain quieter, my column violet, counts under the
   rules, timeouts one muted "n didn't vote" line — no bars, no party detail

@@ -1,5 +1,5 @@
 {
-  "note": "US Congress demo deck — 10 landmark roll-call votes of the 117th-119th Congresses, hand-authored from the official record (clerk.house.gov XML / senate.gov via GovTrack mirrors / congress.gov) by card subagents following docs/CARD_STYLE.md + docs/DEEP_DIVE.md. party_votes_canon = majority direction of each floor caucus (HDEM/HGOP/SDEM/SGOP) on that chamber's decisive roll call. The verification objects are the audit trail (roll numbers, tallies, caucus breakdowns, impurity notes) and are STRIPPED from cities/congress/data.js. Demo-grade: no Python pipeline yet.",
+  "note": "US Congress demo deck — 10 landmark roll-call votes of the 117th-119th Congresses, hand-authored from the official record (clerk.house.gov XML / senate.gov via GovTrack mirrors / congress.gov) by card subagents following docs/CARD_STYLE.md + docs/DEEP_DIVE.md. party_votes_canon = majority direction of each floor caucus (HDEM/HGOP/SDEM/SGOP) on that chamber's decisive roll call. The verification objects are the audit trail (roll numbers, tallies, caucus breakdowns, impurity notes) and are STRIPPED from cities/congress/data.js. Demo-grade: no Python pipeline yet. tally_house/tally_senate = head-counts of the same decisive roll calls (S4132 House = companion H.R. 3755; S4132 Senate = the cloture vote; HR7521/HR8035 Senate = the bundled H.R. 815 package vote — see each card's verification notes).",
   "authored": "2026-06-11",
   "cards": [
     {
@@ -20,9 +20,27 @@
       "doc_ref": "H.R. 3684 (117th)",
       "outcome": "approved",
       "source_url": "https://www.congress.gov/bill/117th-congress/house-bill/3684",
-      "party_votes_canon": {"HDEM": "for", "HGOP": "against", "SDEM": "for", "SGOP": "against"},
+      "party_votes_canon": {
+        "HDEM": "for",
+        "HGOP": "against",
+        "SDEM": "for",
+        "SGOP": "against"
+      },
+      "tally_house": {
+        "for": 228,
+        "against": 206
+      },
+      "tally_senate": {
+        "for": 69,
+        "against": 30
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Roll 369, Nov 5 2021, 228-206 (clerk.house.gov/evs/2021/roll369.xml)", "senate_roll": "Vote 314, Aug 10 2021, 69-30, 1 not voting (senate.gov via GovTrack s314)", "caucus_breakdowns": "House: D 215-6, R 13-200; Senate: D 50-0 (incl. 2 I caucusing), R 19-30 (1 R not voting)", "notes": "Matches priors. Crossover both ways in House (13 R for, 6 D against) and 19 R for in Senate, but majority direction of each caucus is as canon: both D caucuses for, both R caucuses against."}
+      "verification": {
+        "house_roll": "Roll 369, Nov 5 2021, 228-206 (clerk.house.gov/evs/2021/roll369.xml)",
+        "senate_roll": "Vote 314, Aug 10 2021, 69-30, 1 not voting (senate.gov via GovTrack s314)",
+        "caucus_breakdowns": "House: D 215-6, R 13-200; Senate: D 50-0 (incl. 2 I caucusing), R 19-30 (1 R not voting)",
+        "notes": "Matches priors. Crossover both ways in House (13 R for, 6 D against) and 19 R for in Senate, but majority direction of each caucus is as canon: both D caucuses for, both R caucuses against."
+      }
     },
     {
       "id": "US-117-S4132",
@@ -42,9 +60,27 @@
       "doc_ref": "S. 4132 (117th)",
       "outcome": "rejected",
       "source_url": "https://www.congress.gov/bill/117th-congress/senate-bill/4132",
-      "party_votes_canon": {"HDEM": "for", "HGOP": "against", "SDEM": "for", "SGOP": "against"},
+      "party_votes_canon": {
+        "HDEM": "for",
+        "HGOP": "against",
+        "SDEM": "for",
+        "SGOP": "against"
+      },
+      "tally_house": {
+        "for": 218,
+        "against": 211
+      },
+      "tally_senate": {
+        "for": 49,
+        "against": 51
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Companion H.R. 3755: Roll 295, Sep 24 2021, 218-211 (GovTrack 117-2021/h295) — used for HDEM/HGOP per instructions", "senate_roll": "Vote #170, May 11 2022, 49-51 — formally 'Motion to Invoke Cloture Re: Motion to Proceed to S. 4132' (GovTrack 117-2022/s170)", "caucus_breakdowns": "House (H.R. 3755): D 218-1 (1 NV), R 0-210 (2 NV); Senate: D caucus (incl. I) 49-1, R 0-50", "notes": "Priors confirmed: one Democrat against in each chamber (Manchin in Senate, Cuellar in House), all Republicans against. Minor formal discrepancy vs prior: the decisive May 11 vote was cloture on the motion to proceed (60-vote threshold), not the bare motion to proceed."}
+      "verification": {
+        "house_roll": "Companion H.R. 3755: Roll 295, Sep 24 2021, 218-211 (GovTrack 117-2021/h295) — used for HDEM/HGOP per instructions",
+        "senate_roll": "Vote #170, May 11 2022, 49-51 — formally 'Motion to Invoke Cloture Re: Motion to Proceed to S. 4132' (GovTrack 117-2022/s170)",
+        "caucus_breakdowns": "House (H.R. 3755): D 218-1 (1 NV), R 0-210 (2 NV); Senate: D caucus (incl. I) 49-1, R 0-50",
+        "notes": "Priors confirmed: one Democrat against in each chamber (Manchin in Senate, Cuellar in House), all Republicans against. Minor formal discrepancy vs prior: the decisive May 11 vote was cloture on the motion to proceed (60-vote threshold), not the bare motion to proceed."
+      }
     },
     {
       "id": "US-117-S2938",
@@ -64,9 +100,27 @@
       "doc_ref": "S. 2938 (117th)",
       "outcome": "approved",
       "source_url": "https://www.congress.gov/bill/117th-congress/senate-bill/2938",
-      "party_votes_canon": {"HDEM": "for", "HGOP": "against", "SDEM": "for", "SGOP": "against"},
+      "party_votes_canon": {
+        "HDEM": "for",
+        "HGOP": "against",
+        "SDEM": "for",
+        "SGOP": "against"
+      },
+      "tally_house": {
+        "for": 234,
+        "against": 193
+      },
+      "tally_senate": {
+        "for": 65,
+        "against": 33
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Roll 299, Jun 24 2022, 234-193 (GovTrack 117-2022/h299)", "senate_roll": "Vote #242, Jun 23 2022, 65-33 (GovTrack 117-2022/s242) — NOT #244 as commonly misremembered (s244 is a DoD nomination)", "caucus_breakdowns": "House: D 220-0, R 14-193 (3 NV); Senate: D caucus (incl. I) 50-0, R 15-33 (2 NV)", "notes": "Priors confirmed (Senate R 15 for / majority against; House R 14 for). S. 2938 is a vehicle bill: its enacted LONG title still designates the Joseph Woodrow Hatchett U.S. Courthouse in Tallahassee, so the official SHORT title 'Bipartisan Safer Communities Act' is used as the title/source-wording field."}
+      "verification": {
+        "house_roll": "Roll 299, Jun 24 2022, 234-193 (GovTrack 117-2022/h299)",
+        "senate_roll": "Vote #242, Jun 23 2022, 65-33 (GovTrack 117-2022/s242) — NOT #244 as commonly misremembered (s244 is a DoD nomination)",
+        "caucus_breakdowns": "House: D 220-0, R 14-193 (3 NV); Senate: D caucus (incl. I) 50-0, R 15-33 (2 NV)",
+        "notes": "Priors confirmed (Senate R 15 for / majority against; House R 14 for). S. 2938 is a vehicle bill: its enacted LONG title still designates the Joseph Woodrow Hatchett U.S. Courthouse in Tallahassee, so the official SHORT title 'Bipartisan Safer Communities Act' is used as the title/source-wording field."
+      }
     },
     {
       "id": "US-117-HR5376",
@@ -86,9 +140,27 @@
       "doc_ref": "H.R. 5376 (117th)",
       "outcome": "approved",
       "source_url": "https://www.congress.gov/bill/117th-congress/house-bill/5376",
-      "party_votes_canon": {"HDEM": "for", "HGOP": "against", "SDEM": "for", "SGOP": "against"},
+      "party_votes_canon": {
+        "HDEM": "for",
+        "HGOP": "against",
+        "SDEM": "for",
+        "SGOP": "against"
+      },
+      "tally_house": {
+        "for": 220,
+        "against": 207
+      },
+      "tally_senate": {
+        "for": 51,
+        "against": 50
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Roll 420, Aug 12 2022, 220-207 (clerk.house.gov/evs/2022/roll420.xml)", "senate_roll": "Vote 325, Aug 7 2022, 51-50, VP Harris tie-break (senate.gov via GovTrack s325)", "caucus_breakdowns": "House: D 220-0, R 0-207 (4 R not voting); Senate: D 50-0 (incl. 2 I caucusing), R 0-50", "notes": "Matches priors exactly. Pure party line in both chambers. Short title struck in Senate scrub — official title is the reconciliation formula, used verbatim in title field."}
+      "verification": {
+        "house_roll": "Roll 420, Aug 12 2022, 220-207 (clerk.house.gov/evs/2022/roll420.xml)",
+        "senate_roll": "Vote 325, Aug 7 2022, 51-50, VP Harris tie-break (senate.gov via GovTrack s325)",
+        "caucus_breakdowns": "House: D 220-0, R 0-207 (4 R not voting); Senate: D 50-0 (incl. 2 I caucusing), R 0-50",
+        "notes": "Matches priors exactly. Pure party line in both chambers. Short title struck in Senate scrub — official title is the reconciliation formula, used verbatim in title field."
+      }
     },
     {
       "id": "US-117-HR8404",
@@ -108,9 +180,27 @@
       "doc_ref": "H.R. 8404 (117th)",
       "outcome": "approved",
       "source_url": "https://www.congress.gov/bill/117th-congress/house-bill/8404",
-      "party_votes_canon": {"HDEM": "for", "HGOP": "against", "SDEM": "for", "SGOP": "against"},
+      "party_votes_canon": {
+        "HDEM": "for",
+        "HGOP": "against",
+        "SDEM": "for",
+        "SGOP": "against"
+      },
+      "tally_house": {
+        "for": 258,
+        "against": 169
+      },
+      "tally_senate": {
+        "for": 61,
+        "against": 36
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Roll 513, Dec 8 2022 (On Motion to Concur in the Senate Amendment), 258-169 with 1 present (clerk.house.gov roll513.xml)", "senate_roll": "Vote #362, Nov 29 2022 (passage with amendment), 61-36 (GovTrack 117-2022/s362)", "caucus_breakdowns": "House: D 219-0, R 39-169 (1 present, 4 NV); Senate: D caucus (incl. I) 49-0 (1 NV), R 12-36 (2 NV)", "notes": "All priors confirmed exactly (R 39 for in House, R 12 for in Senate, majorities against in both GOP caucuses). Decisive House vote was the Dec 8 motion to concur, not the Jul 19 original passage (267-157)."}
+      "verification": {
+        "house_roll": "Roll 513, Dec 8 2022 (On Motion to Concur in the Senate Amendment), 258-169 with 1 present (clerk.house.gov roll513.xml)",
+        "senate_roll": "Vote #362, Nov 29 2022 (passage with amendment), 61-36 (GovTrack 117-2022/s362)",
+        "caucus_breakdowns": "House: D 219-0, R 39-169 (1 present, 4 NV); Senate: D caucus (incl. I) 49-0 (1 NV), R 12-36 (2 NV)",
+        "notes": "All priors confirmed exactly (R 39 for in House, R 12 for in Senate, majorities against in both GOP caucuses). Decisive House vote was the Dec 8 motion to concur, not the Jul 19 original passage (267-157)."
+      }
     },
     {
       "id": "US-118-HR3746",
@@ -130,9 +220,27 @@
       "doc_ref": "H.R. 3746 (118th)",
       "outcome": "approved",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3746",
-      "party_votes_canon": {"HDEM": "for", "HGOP": "for", "SDEM": "for", "SGOP": "against"},
+      "party_votes_canon": {
+        "HDEM": "for",
+        "HGOP": "for",
+        "SDEM": "for",
+        "SGOP": "against"
+      },
+      "tally_house": {
+        "for": 314,
+        "against": 117
+      },
+      "tally_senate": {
+        "for": 63,
+        "against": 36
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Roll Call 243, May 31 2023, 314-117 (4 NV) — clerk.house.gov/evs/2023/roll243.xml, verified directly", "senate_roll": "Senate Record Vote 146, Jun 1 2023, 63-36 (1 NV: Hagerty R) — senate.gov vote_118_1_00146", "caucus_breakdowns": "House: D 165-46, R 149-71. Senate: Dem caucus 46-5 (44 D + Sinema + King yea; 4 D + 1 I nay), R 17-31 — SGOP majority against.", "notes": "All tallies and caucus directions match priors exactly. No package impurity — both chambers voted the bill itself."}
+      "verification": {
+        "house_roll": "Roll Call 243, May 31 2023, 314-117 (4 NV) — clerk.house.gov/evs/2023/roll243.xml, verified directly",
+        "senate_roll": "Senate Record Vote 146, Jun 1 2023, 63-36 (1 NV: Hagerty R) — senate.gov vote_118_1_00146",
+        "caucus_breakdowns": "House: D 165-46, R 149-71. Senate: Dem caucus 46-5 (44 D + Sinema + King yea; 4 D + 1 I nay), R 17-31 — SGOP majority against.",
+        "notes": "All tallies and caucus directions match priors exactly. No package impurity — both chambers voted the bill itself."
+      }
     },
     {
       "id": "US-118-HR7521",
@@ -152,9 +260,27 @@
       "doc_ref": "H.R. 7521 (118th)",
       "outcome": "approved",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7521",
-      "party_votes_canon": {"HDEM": "for", "HGOP": "for", "SDEM": "for", "SGOP": "for"},
+      "party_votes_canon": {
+        "HDEM": "for",
+        "HGOP": "for",
+        "SDEM": "for",
+        "SGOP": "for"
+      },
+      "tally_house": {
+        "for": 352,
+        "against": 65
+      },
+      "tally_senate": {
+        "for": 79,
+        "against": 18
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Roll Call 86, Mar 13 2024, 352-65 (1 present, 14 NV) — clerk.house.gov/evs/2024/roll086.xml, verified directly", "senate_roll": "Senate Record Vote 154, Apr 23 2024, 79-18-3 — on the H.R. 815 national-security supplemental package containing PAFACA as Division H (senate.gov vote_118_2_00154)", "caucus_breakdowns": "House: D 155-50 (1 present), R 197-15. Senate (H.R. 815 package): Dem caucus 48-3 (46 D + 2 I yea; Merkley, Welch, Sanders nay), R 31-15.", "notes": "Matches priors exactly. Senate never voted the standalone bill — SDEM/SGOP taken from the H.R. 815 package vote (Ukraine/Israel/Indo-Pacific aid bundled with the TikTok divestiture), so Senate caucus direction is impure for this item. Text drift: House standalone had a 180-day divestiture window; enacted Division H is 270 days + one 90-day extension (deep_facts uses enacted figures and flags the difference)."}
+      "verification": {
+        "house_roll": "Roll Call 86, Mar 13 2024, 352-65 (1 present, 14 NV) — clerk.house.gov/evs/2024/roll086.xml, verified directly",
+        "senate_roll": "Senate Record Vote 154, Apr 23 2024, 79-18-3 — on the H.R. 815 national-security supplemental package containing PAFACA as Division H (senate.gov vote_118_2_00154)",
+        "caucus_breakdowns": "House: D 155-50 (1 present), R 197-15. Senate (H.R. 815 package): Dem caucus 48-3 (46 D + 2 I yea; Merkley, Welch, Sanders nay), R 31-15.",
+        "notes": "Matches priors exactly. Senate never voted the standalone bill — SDEM/SGOP taken from the H.R. 815 package vote (Ukraine/Israel/Indo-Pacific aid bundled with the TikTok divestiture), so Senate caucus direction is impure for this item. Text drift: House standalone had a 180-day divestiture window; enacted Division H is 270 days + one 90-day extension (deep_facts uses enacted figures and flags the difference)."
+      }
     },
     {
       "id": "US-118-HR8035",
@@ -174,9 +300,27 @@
       "doc_ref": "H.R. 8035 (118th)",
       "outcome": "approved",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8035",
-      "party_votes_canon": {"HDEM": "for", "HGOP": "against", "SDEM": "for", "SGOP": "for"},
+      "party_votes_canon": {
+        "HDEM": "for",
+        "HGOP": "against",
+        "SDEM": "for",
+        "SGOP": "for"
+      },
+      "tally_house": {
+        "for": 311,
+        "against": 112
+      },
+      "tally_senate": {
+        "for": 79,
+        "against": 18
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Roll Call 151, Apr 20 2024, 311-112 (1 present, 7 NV) — clerk.house.gov/evs/2024/roll151.xml, verified directly", "senate_roll": "Senate Record Vote 154, Apr 23 2024, 79-18-3 — H.R. 815 package incorporating H.R. 8035 as the Ukraine division (senate.gov vote_118_2_00154)", "caucus_breakdowns": "House: D 210-0 (3 NV), R 101-112 (1 present, 4 NV) — HGOP majority against. Senate (H.R. 815 package): Dem caucus 48-3, R 31-15 — SGOP majority for.", "notes": "Matches priors exactly. Senate direction comes from the bundled H.R. 815 vote (Ukraine + Israel + Indo-Pacific + TikTok divestiture), so SDEM/SGOP are package votes, not Ukraine-only — flagged as impurity. House sponsor is Appropriations Chair Tom Cole (introduced Apr 17 2024)."}
+      "verification": {
+        "house_roll": "Roll Call 151, Apr 20 2024, 311-112 (1 present, 7 NV) — clerk.house.gov/evs/2024/roll151.xml, verified directly",
+        "senate_roll": "Senate Record Vote 154, Apr 23 2024, 79-18-3 — H.R. 815 package incorporating H.R. 8035 as the Ukraine division (senate.gov vote_118_2_00154)",
+        "caucus_breakdowns": "House: D 210-0 (3 NV), R 101-112 (1 present, 4 NV) — HGOP majority against. Senate (H.R. 815 package): Dem caucus 48-3, R 31-15 — SGOP majority for.",
+        "notes": "Matches priors exactly. Senate direction comes from the bundled H.R. 815 vote (Ukraine + Israel + Indo-Pacific + TikTok divestiture), so SDEM/SGOP are package votes, not Ukraine-only — flagged as impurity. House sponsor is Appropriations Chair Tom Cole (introduced Apr 17 2024)."
+      }
     },
     {
       "id": "US-119-S5",
@@ -196,9 +340,27 @@
       "doc_ref": "S. 5 (119th)",
       "outcome": "approved",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5",
-      "party_votes_canon": {"HDEM": "against", "HGOP": "for", "SDEM": "against", "SGOP": "for"},
+      "party_votes_canon": {
+        "HDEM": "against",
+        "HGOP": "for",
+        "SDEM": "against",
+        "SGOP": "for"
+      },
+      "tally_house": {
+        "for": 263,
+        "against": 156
+      },
+      "tally_senate": {
+        "for": 64,
+        "against": 35
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Roll 23, Jan 22 2025, 263-156, On Passage of S. 5 (clerk.house.gov/evs/2025/roll023.xml)", "senate_roll": "Vote 7, Jan 20 2025, 64-35 (senate.gov via GovTrack s7)", "caucus_breakdowns": "House: R 217-0, D 46-156; Senate: R 52-0, D 12-35 (D caucus incl. independents; one R seat vacant pending Husted swearing-in)", "notes": "Prior said ~46 House Dems for — official clerk XML confirms exactly 46 (a Roll Call press piece said 48; official record wins). Senate prior of ~12 D for confirmed. Canon directions match priors."}
+      "verification": {
+        "house_roll": "Roll 23, Jan 22 2025, 263-156, On Passage of S. 5 (clerk.house.gov/evs/2025/roll023.xml)",
+        "senate_roll": "Vote 7, Jan 20 2025, 64-35 (senate.gov via GovTrack s7)",
+        "caucus_breakdowns": "House: R 217-0, D 46-156; Senate: R 52-0, D 12-35 (D caucus incl. independents; one R seat vacant pending Husted swearing-in)",
+        "notes": "Prior said ~46 House Dems for — official clerk XML confirms exactly 46 (a Roll Call press piece said 48; official record wins). Senate prior of ~12 D for confirmed. Canon directions match priors."
+      }
     },
     {
       "id": "US-119-HR1",
@@ -218,9 +380,27 @@
       "doc_ref": "H.R. 1 (119th)",
       "outcome": "approved",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1",
-      "party_votes_canon": {"HDEM": "against", "HGOP": "for", "SDEM": "against", "SGOP": "for"},
+      "party_votes_canon": {
+        "HDEM": "against",
+        "HGOP": "for",
+        "SDEM": "against",
+        "SGOP": "for"
+      },
+      "tally_house": {
+        "for": 218,
+        "against": 214
+      },
+      "tally_senate": {
+        "for": 51,
+        "against": 50
+      },
       "curator_drop": false,
-      "verification": {"house_roll": "Roll 190, Jul 3 2025, 218-214, On Motion to Concur in the Senate Amendment (clerk.house.gov/evs/2025/roll190.xml)", "senate_roll": "Vote 372, Jul 1 2025, 51-50, VP Vance tie-break (senate.gov via GovTrack s372)", "caucus_breakdowns": "House: R 218-2, D 0-212; Senate: R 50-3, D 0-47 (incl. independents caucusing)", "notes": "Matches priors: 3 R against in Senate (Collins, Paul, Tillis per contemporaneous reporting), 2 R against in House. Senate roll-call number confirmed as 372."}
+      "verification": {
+        "house_roll": "Roll 190, Jul 3 2025, 218-214, On Motion to Concur in the Senate Amendment (clerk.house.gov/evs/2025/roll190.xml)",
+        "senate_roll": "Vote 372, Jul 1 2025, 51-50, VP Vance tie-break (senate.gov via GovTrack s372)",
+        "caucus_breakdowns": "House: R 218-2, D 0-212; Senate: R 50-3, D 0-47 (incl. independents caucusing)",
+        "notes": "Matches priors: 3 R against in Senate (Collins, Paul, Tillis per contemporaneous reporting), 2 R against in House. Senate roll-call number confirmed as 372."
+      }
     }
   ]
 }
