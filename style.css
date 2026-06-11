@@ -1,6 +1,8 @@
 /* RIOT viewer — «l'acta» ballot-paper theme.
    The chrome is paper + print-ink + stamp-pad violet; saturated color is reserved
-   for DATA (party brand colors, the Her-coral AI mark) and never decorates chrome.
+   for DATA (party brand colors) and never decorates chrome. The GHOST is the one
+   non-party data mark and it deliberately wears YOUR ink (--ghost-ink = --stamp),
+   never a colour of its own.
    Booth rule: no valence color (green/red) before a vote is cast — For/Against
    differ by position and weight only. Valence (moss/brick) exists only in
    post-vote contexts: room splits, the reveal, the minutes. */
@@ -14,6 +16,7 @@
   --ink60:#6C685D;          /* secondary print */
   --stamp:#4B3FA0;          /* stamp-pad violet — the one chrome accent */
   --stamp-soft:rgba(75,63,160,.08);
+  --ghost-ink:var(--stamp); /* the GHOST's ink = the YOU ring's violet: spectral, chromatically yours */
   --moss:#3E6B4F;           /* post-vote only: for / agree / approved */
   --brick:#9C3D3D;          /* post-vote only: against / differ / rejected */
   --amber:#8A6A1F;          /* editorial provenance: AI reword, lectura, preview */
@@ -292,6 +295,21 @@ html.reveal #done{position:static;overflow:visible}
 .mlay .anchor{fill:none;stroke:var(--ink60);stroke-width:1.5}
 .mlay .anchor.you{stroke:var(--stamp);stroke-width:2}
 .mlay .ebar{fill:var(--ink60);opacity:.8}
+/* the GHOST on the map: the bare mark, no disc — and its honesty contract:
+   in a fan-out the dashed shell is what gets displaced; the solid core never
+   leaves the true coordinate (.split hides the in-dot core, .mlay .gcore
+   re-inks it at the true point). .hide = off this projection (You-only default). */
+.mdot.ghost{z-index:3}
+.mdot.ghost .ghostmark{filter:drop-shadow(0 1px 2px rgba(28,27,23,.18))}
+.mdot.ghost.split .g-core{display:none}
+.mdot.hide{display:none}
+.mlay .gcore{fill:var(--ghost-ink)}
+/* ghost bench chip: the mark inline with the mono label */
+.mp-chip[hidden]{display:none}
+.mp-chip.gchip{gap:6px;color:var(--ghost-ink);border-color:rgba(75,63,160,.45)}
+.mp-chip.gchip.on{background:var(--ghost-ink);color:var(--card);border-color:var(--ghost-ink)}
+.mp-chip.gchip.on .ghostmark .g-shell{stroke:var(--card)}
+.mp-chip.gchip.on .ghostmark .g-core{fill:var(--card)}
 /* YOU pinned to the bottom edge: the "you" tag flips above the disc */
 .mdot.me.pinb .mtag{top:auto;bottom:calc(100% + 3px)}
 /* projection bench — one scrollable row of mono chips under the map: the same
@@ -343,19 +361,25 @@ html.reveal #done{position:static;overflow:visible}
 .exc .lg{width:46px;height:46px}
 .exc .lg img{padding:5px}
 .exc .lg.fb{font-size:14px}
-/* the Her mark — AI proxy identity (coral is reserved for it) */
-.lg.her{background:#d1684e;border-color:rgba(255,255,255,.18);position:relative;padding:0}
-.lg.her canvas{position:absolute;inset:0;width:100%!important;height:100%!important;border-radius:50%;display:block}
-.lg.her.fallback{background:#d1684e url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 50c0-11 8-18 14-12l28 24c6 6 14-1 14-12s-8-18-14-12L36 62c-6 6-14-1-14-12z' fill='none' stroke='%23ffffff' stroke-width='3'/></svg>") center/64% no-repeat}
-.dprow .lg.her::after,.exc .lg.her::after{content:"";position:absolute;left:50%;top:50%;width:13px;height:13px;
-  transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%}
-.exc .lg.her::after{width:15px;height:15px}
-.mdot .mc.her{background:#d1684e;border-color:rgba(255,255,255,.25);position:relative}
-.mdot .mc.her::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;
-  transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%}
-.herHero{display:inline-flex;width:120px;height:120px;border-radius:50%;background:#d1684e;position:relative;overflow:hidden;flex:0 0 auto}
-.herHero canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
-.herHero.fallback{background:#d1684e url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M22 50c0-11 8-18 14-12l28 24c6 6 14-1 14-12s-8-18-14-12L36 62c-6 6-14-1-14-12z' fill='none' stroke='%23ffffff' stroke-width='3'/></svg>") center/64% no-repeat}
+/* the GHOST mark — "soul anchor": dashed shell + solid core, drawn by ghostMark()
+   in app.js (the single source of truth). Inked in --ghost-ink only; NO fill
+   inside the ring (the paper shows through), no disc chrome, no opacity tricks —
+   it must read spectral next to the parties' saturated solid discs. */
+.lg.ghost{background:none;border:0;overflow:visible}
+.lg.ghost .ghostmark,.ghostmark{display:block}
+/* GHOST wordmark — always uppercase mono (the stamp/label face), wherever the
+   name appears; "· trained on you" is the current secondary-text register */
+.gname{font:700 13px var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
+.gname .gsub{font:400 11.5px var(--f-mono);color:var(--ink60);letter-spacing:.02em;text-transform:none}
+.exc .exname.gname{font:700 14px var(--f-mono);letter-spacing:.14em}
+/* the GHOST stamp — same construction as FOR/APPROVED (rounded-rect border,
+   mono, letterspaced, inset ring) at header scale; decoration for large
+   surfaces only, never at list or map size. Static: no thunk — nothing landed. */
+.gstamp{display:inline-flex;align-items:center;transform:rotate(-4deg);white-space:nowrap;margin-right:8px;
+  font:800 14px var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ghost-ink);
+  border:2.5px solid var(--ghost-ink);border-radius:6px;padding:4px 10px 2px;
+  box-shadow:inset 0 0 0 1px var(--ghost-ink);background:rgba(251,250,246,.5);
+  mix-blend-mode:multiply;opacity:.92}
 /* action buttons */
 .doneActions{display:flex;gap:10px;width:100%;max-width:600px}
 .doneActions button{flex:1 1 0;border-radius:9px;padding:14px 12px;font:700 15px var(--f-ui);
@@ -409,7 +433,6 @@ html.reveal #done{position:static;overflow:visible}
 #partyView .lhrow{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:10px;width:100%}
 #pvHead{display:flex;align-items:center;gap:10px;min-width:0}
 #pvHead .lg{width:30px;height:30px;margin:0}
-#pvHead .herHero{width:30px;height:30px}
 #pvHead b{font-size:17px}
 #pvHead .pvpct{font:400 12.5px var(--f-mono);color:var(--ink60)}
 .pvrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
@@ -508,7 +531,7 @@ body.dev #sheet .devonly:not([hidden]){display:flex}
    (the moderator's screen on the projector) carries the room moment. */
 
 /* voter chrome: no settings, no minutes, no city switch — until the final
-   reveal, where ⚙ returns (the AI-proxy toggle lives there) */
+   reveal, where ⚙ returns */
 body.live-voter #quickLog,body.live-voter #menuBtn{display:none}
 body.live-voter.live-final #menuBtn{display:inline-flex}
 body.live-voter .citysel{pointer-events:none}
@@ -705,7 +728,7 @@ html.lvhold .brand .ver{top:0}
   display:flex;align-items:center;justify-content:center;padding:32px 28px}
 #holding[hidden]{display:none}
 /* html.hold is set by the tiny inline head script BEFORE first paint: the boot
-   block at the end of body only runs after Three.js/bundles/Firebase load — far
+   block at the end of body only runs after the bundles/Firebase load — far
    too late to hide the app chrome. These two rules swap shell↔holding on frame
    one; keep the [hidden] override AFTER #holding[hidden] so it out-ranks it. */
 html.hold .app{display:none}
@@ -713,7 +736,7 @@ html.hold #holding[hidden]{display:flex}
 .hd-riot{position:relative;margin:0;font-weight:800;line-height:1;
   font-size:clamp(13px,3.85vw,27px);letter-spacing:-.045em;color:var(--ink);
   user-select:none;-webkit-user-select:none}
-/* chromatic split: the word tears into a rose ghost (left) and a blue ghost
+/* chromatic split: the word tears into a rose echo (left) and a blue echo
    (right) — anaglyph misalignment, both layers fire on the SAME clock so the
    tricolour reads as one event, not two slips. Multiply keeps it print-like. */
 .hd-riot::before,.hd-riot::after{content:attr(data-text);position:absolute;
@@ -791,7 +814,7 @@ html.hold #holding[hidden]{display:flex}
 .ms-cfg label{display:flex;align-items:center;gap:8px;font:400 13px var(--f-mono);color:var(--ink80);flex-wrap:wrap}
 .ms-cfg input{width:68px;background:var(--card);border:1px solid var(--rule);border-radius:7px;
   padding:9px 6px;font:700 15px var(--f-mono);color:var(--ink);text-align:center;min-height:44px}
-.ms-cfg .switch input{width:0;min-height:0;padding:0;border:0}   /* the AI-proxy switch reuses the sheet idiom */
+.ms-cfg .switch input{width:0;min-height:0;padding:0;border:0}   /* the GHOST switch reuses the sheet idiom */
 .ms-cfg small{color:var(--ink60)}
 .ms-acts{display:flex;gap:10px}
 .ms-back{flex:0 0 auto;background:transparent;border:2px solid var(--ink);color:var(--ink);

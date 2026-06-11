@@ -16,7 +16,7 @@
          remaining: ms (only while paused)
          cfg:      {timer, reveal, bots, ai}   ← seconds; reveal 0 = manual advance;
                                                  bots = synthetic voters, moderator-staged;
-                                                 ai 1 = seat the AI proxy (Proxy IA) in the reveal
+                                                 ai 1 = seat the GHOST in the reveal
          cast/<id>/<pid>: dir                  ← ballot in, WITH direction (reveal-only)
          tallies/<id>/<dir>: n                 ← anonymous atomic increments
 
@@ -181,11 +181,11 @@ function liveInit(){
 /* ---- snapshot dispatch ---- */
 function onSnapshot(){
   if(!lvS) return;
-  if(LIVE_ROLE==="mod"){ liveSyncAI(); $("#modSetup").hidden=true; renderStage(); modAuthority(); simOnSnapshot(); return; }
+  if(LIVE_ROLE==="mod"){ liveSyncGhost(); $("#modSetup").hidden=true; renderStage(); modAuthority(); simOnSnapshot(); return; }
   const st=lvS.state;
   if(st==="ended"){ liveEnded(); modAuthority(); simOnSnapshot(); return; }
   if(!lvSeated){ showSeatGate(); modAuthority(); simOnSnapshot(); return; }   // the sitting asks before it seats
-  liveSyncAI();                            // AI mode is the session's, not the visitor's
+  liveSyncGhost();                         // ghost mode is the session's, not the visitor's
   document.body.classList.add("live-voter");
   if(st==="lobby"){ showLobby(); }
   else if(st==="final"){ hideLobby(); renderFinal(); }
@@ -210,16 +210,17 @@ function liveEnded(){
     lvShownState="ended"; lvShownIdx=-1; lvDeckSig="";
     lvSeated=false; voting=false;
     if(typeof mpLeave==="function") mpLeave();
-    if(showAI){ showAI=false; applyAiParty(false); }   // AI mode dies with the session
+    if(showGhost){ showGhost=false; applyGhostParty(false); }   // ghost mode dies with the session
     doneVis(false);
     lvWall(true);
   }
 }
-/* AI mode (cfg.ai): the moderator seats the proxy for the whole room — every
-   client mirrors the session flag (a voter on the final screen keeps it). */
-function liveSyncAI(){
+/* Ghost mode (cfg.ai — the wire key predates the name): the moderator seats
+   the GHOST for the whole room — every client mirrors the session flag (a
+   voter on the final screen keeps it). */
+function liveSyncGhost(){
   const on=!!(AI && lvS && lvS.cfg && lvS.cfg.ai);
-  if(on!==showAI){ showAI=on; applyAiParty(on); }
+  if(on!==showGhost){ showGhost=on; applyGhostParty(on); }
 }
 
 /* ---- lockstep deck/card sync (voter) ---- */
@@ -349,7 +350,9 @@ function renderLivePiles(el,id){
   }
   const pvc=(byId[id]&&byId[id].party_votes_canon)||{};
   const pp={against:[],abstain:[],for:[]};
-  for(const p of PARTIES){ const v=pp[pvc[p.token]]; if(v) v.push(p); }
+  // the chamber row is the institution: the GHOST (seated via cfg.ai) is
+  // neither room nor chamber — its predictions belong to the final reveal only
+  for(const p of PARTIES){ if(p.ghost) continue; const v=pp[pvc[p.token]]; if(v) v.push(p); }
   const ball=piles.against.length+piles.abstain.length+piles.for.length;
   const noBallot=Math.max(voterCount()-castCount(id),0);
   let i=0;                                       // global stagger across the three piles
@@ -597,7 +600,7 @@ function renderModSetup(){
       <label>ballot ceiling <input id="msTimer" type="number" inputmode="numeric" min="10" max="180" value="${modSel.timer}"> s</label>
       <label>auto-advance after reveal <input id="msReveal" type="number" inputmode="numeric" min="0" max="60" value="${modSel.reveal}"> s <small>0 = you advance</small></label>
       <label>synthetic voters <input id="msBots" type="number" inputmode="numeric" min="0" max="24" value="${modSel.bots}"> <small>fake people who vote at random</small></label>
-      ${AI?`<label>AI proxy <span class="switch"><input id="msAI" type="checkbox" ${modSel.ai?"checked":""}><span class="slider"></span></span> <small>seats Proxy IA in the reveal</small></label>`:""}
+      ${AI?`<label>GHOST <span class="switch"><input id="msGhost" type="checkbox" ${modSel.ai?"checked":""}><span class="slider"></span></span> <small>seats the ghost in the reveal</small></label>`:""}
     </div>
     <div class="ms-acts">
       <button class="ms-back" type="button">← Sessions</button>
@@ -620,7 +623,7 @@ function startSession(ids,cfg){
       modSel.timer=Math.max(10,parseInt($("#msTimer").value,10)||30);
       modSel.reveal=Math.max(0,parseInt($("#msReveal").value,10)||0);
       modSel.bots=Math.max(0,Math.min(24,parseInt($("#msBots").value,10)||0));
-      modSel.ai=(AI && $("#msAI") && $("#msAI").checked)?1:0;
+      modSel.ai=(AI && $("#msGhost") && $("#msGhost").checked)?1:0;
       const order=modSessions().find(x=>x.code===modSel.code).ids.filter(id=>modSel.ids.has(id));
       if(!order.length) return;
       el.hidden=true;
@@ -853,7 +856,7 @@ function buildStageFinal(){
         <span class="rv-chips"><span class="badge ${rv==="approved"?"b-app":"b-rej"}">room: ${rv} ${rm}</span>
         <span class="badge ${d.outcome==="approved"?"b-app":"b-rej"}">${esc(CHAMBER.replace(/^the /,""))}: ${d.outcome}${cm?" "+cm:""}</span></span>
       </div>`;}).join("")+`</div>`:"")+
-    `<p class="sg-sub">each phone now shows its own reveal — closest party, the map, the proxy.</p>`;
+    `<p class="sg-sub">each phone now shows its own reveal — closest party, the map, the ghost.</p>`;
 }
 function renderStageCtl(st){
   const c=$("#sgCtl"); if(!c) return;

@@ -85,8 +85,8 @@ def main():
                 "headline": ex.get("headline"),
                 "human_body": ex.get("body"),
                 "source_brief": ex.get("brief"),   # voiced extended summary (human dive-in)
-                # deep = two parts: facts (neutral, cited — the ONLY deep the AI proxy reads)
-                # + lectura (analyst inference, human-facing only, never fed to the proxy)
+                # deep = two parts: facts (neutral, cited — the ONLY deep the GHOST reads)
+                # + lectura (analyst inference, human-facing only, never fed to the ghost)
                 "deep_facts": ex.get("deep_facts") or ex.get("deep"),
                 "deep_lectura": ex.get("deep_lectura"),
                 "topic": ex.get("topic"),

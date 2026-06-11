@@ -344,6 +344,14 @@ const PROJECTIONS=[
 ];
 let MAP_PROJ="joint";          // the room map is the default; the rest are the bench
 let PROJ_CACHE={};
+/* the GHOST on the map: it renders by default ONLY on the You projection (the
+   egocentric view is where "predicts you" is the question); on every other
+   projection it hides behind a bench chip (the existing toggle idiom). The
+   toggle is session state, not persisted. */
+let GHOST_ON=false;
+const ghostSeated=()=>PARTIES.some(p=>p.ghost);
+const ghostVisible=()=>ghostSeated() && (MAP_PROJ==="you" || GHOST_ON);
+const GHOST_CAP="the dashed one is your ghost. it never saw your votes — it predicts them.";
 function projDef(k){ return PROJECTIONS.find(p=>p.k===k)||PROJECTIONS[0]; }
 // chips that make sense right now: You needs your ballot; t-SNE needs a crowd
 function availableProjections(){
@@ -459,10 +467,13 @@ function layoutMap(){
   _mapLayoutRetry=0;
   const dots=[];
   el.querySelectorAll(".mdot,.peer").forEach(d=>{
+    if(d.classList.contains("hide")) return;   // ghost off this projection — out of the geometry
     const tx=parseFloat(d.dataset.tx), ty=parseFloat(d.dataset.ty);
     if(!isFinite(tx)||!isFinite(ty)) return;
     const peer=d.classList.contains("peer"), me=d.classList.contains("me");
-    dots.push({d,me,peer,tx:tx/100*W,ty:ty/100*H,r:peer?8:me?21:16,fx:null,fy:null,line:null});
+    const ghost=d.classList.contains("ghost");
+    if(ghost) d.classList.remove("split");     // recomputed from scratch each pass
+    dots.push({d,me,peer,ghost,tx:tx/100*W,ty:ty/100*H,r:peer?8:me?21:ghost?10:16,fx:null,fy:null,line:null});
   });
   if(!dots.length) return;
   const geo=[];                                      // svg: hairlines, anchors, edge bars
@@ -487,6 +498,10 @@ function layoutMap(){
       o.fx=ax+rho*Math.cos(th); o.fy=ay+rho*Math.sin(th);
       o.line={t:"line",x1:o.tx,y1:o.ty};             // x2/y2 land after the clamp
       geo.push(o.line);
+      // the ghost's SOLID CORE never leaves its true coordinate: the displaced
+      // disc keeps only the dashed shell (.split hides its in-dot core) and the
+      // core is re-inked here, at the true point — same contract as the anchors
+      if(o.ghost){ o.d.classList.add("split"); geo.push({t:"gcore",x:o.tx,y:o.ty}); }
       if(!anchors.some(a=>Math.hypot(a.x-o.tx,a.y-o.ty)<2)) anchors.push({x:o.tx,y:o.ty,me:false});
       if(o.me) anchors.forEach(a=>{if(Math.hypot(a.x-o.tx,a.y-o.ty)<2)a.me=true;});
     });
@@ -516,6 +531,7 @@ function layoutMap(){
   svg.innerHTML=geo.map(g=>
     g.t==="line"  ? `<line x1="${g.x1}" y1="${g.y1}" x2="${g.x2}" y2="${g.y2}"/>`
    :g.t==="anchor"? `<circle class="anchor${g.me?" you":""}" cx="${g.x}" cy="${g.y}" r="${g.me?4.5:3.5}"/>`
+   :g.t==="gcore" ? `<circle class="gcore" cx="${g.x}" cy="${g.y}" r="3"/>`
                   : `<rect class="ebar" x="${g.x}" y="${g.y}" width="${g.w}" height="${g.h}" rx="1.5"/>`
   ).join("");
 }
@@ -531,9 +547,12 @@ function renderResultMap(){
   el.style.display="";
   const dots=PARTIES.map((p,i)=>{
     const [l,t]=toPct(COORD[i]);
-    const inner=p.her?`<span class="mc her"></span>`
-              : p.logo?`<span class="mc bg-${p.token}"><img src="${p.logo}" alt="${esc(p.name)}"></span>`
-                     :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
+    // the ghost is spectral: the bare dashed-ring mark, no disc, paper through
+    // the ring — it must never read as one more party. Hidden off-You unless toggled.
+    if(p.ghost)
+      return `<div class="mdot ghost${ghostVisible()?"":" hide"}" data-tx="${l}" data-ty="${t}" style="left:${l}%;top:${t}%;--d:${120+i*90}ms" title="GHOST">${ghostMark(16)}</div>`;
+    const inner=p.logo?`<span class="mc bg-${p.token}"><img src="${p.logo}" alt="${esc(p.name)}"></span>`
+                      :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
     return `<div class="mdot" data-tx="${l}" data-ty="${t}" style="left:${l}%;top:${t}%;--d:${120+i*90}ms" title="${esc(p.name)}">${inner}</div>`;
   }).join("");
   const uc=userCoord();
@@ -567,27 +586,48 @@ function repositionMap(){
   renderPeers();
   layoutMap();
 }
+// ghost visibility follow-through: the dot, its bench chip (off-You only) and
+// the You caption all track ghostVisible(); the layout pass re-runs because
+// a dot entering/leaving the panel changes the collision geometry.
+function syncGhostUI(){
+  const d=document.querySelector("#resultMap .mdot.ghost");
+  if(d) d.classList.toggle("hide",!ghostVisible());
+  const g=document.querySelector("#mapProj .gchip");
+  if(g){ g.hidden=(MAP_PROJ==="you"); g.classList.toggle("on",GHOST_ON); g.setAttribute("aria-pressed",String(GHOST_ON)); }
+  const n=document.querySelector("#mapProj .gnote");
+  if(n) n.hidden=(MAP_PROJ!=="you");
+  layoutMap();
+}
 function renderProjPicker(){
   const el=$("#mapProj"); if(!el) return;
   if(!COORD){el.hidden=true;return;}
   el.hidden=false;
+  // bench = projection chips + (ghost seated) its show/hide chip, the same chip
+  // idiom — hidden on You, where the ghost always renders and the caption explains it
+  const gchip=ghostSeated()
+    ? `<button type="button" class="mp-chip gchip${GHOST_ON?" on":""}"${MAP_PROJ==="you"?" hidden":""} data-ghost aria-pressed="${String(GHOST_ON)}">${ghostMark(14)}GHOST</button>`
+    : "";
   el.innerHTML=`<div class="mp-row">`+availableProjections().map(p=>
       `<button type="button" class="mp-chip${p.k===MAP_PROJ?" on":""}" data-proj="${p.k}">${p.n}</button>`
-    ).join("")+`</div>
-    <p class="mp-note">${projDef(MAP_PROJ).note}</p>`;
+    ).join("")+gchip+`</div>
+    <p class="mp-note">${projDef(MAP_PROJ).note}</p>`+
+    (ghostSeated()?`<p class="mp-note gnote"${MAP_PROJ==="you"?"":" hidden"}>${GHOST_CAP}</p>`:"");
 }
 (function(){
   const el=document.getElementById("mapProj"); if(!el)return;
   el.addEventListener("click",e=>{
+    const g=e.target.closest("[data-ghost]");
+    if(g){ GHOST_ON=!GHOST_ON; syncGhostUI(); return; }
     const b=e.target.closest("[data-proj]"); if(!b)return;
     if(b.dataset.proj===MAP_PROJ)return;
     applyProjection(b.dataset.proj);
     // update in place — rebuilding the row would reset its horizontal scroll
-    el.querySelectorAll(".mp-chip").forEach(c=>c.classList.toggle("on",c.dataset.proj===MAP_PROJ));
-    const cur=projDef(MAP_PROJ), note=el.querySelector(".mp-note");
+    el.querySelectorAll(".mp-chip[data-proj]").forEach(c=>c.classList.toggle("on",c.dataset.proj===MAP_PROJ));
+    const cur=projDef(MAP_PROJ), note=el.querySelector(".mp-note:not(.gnote)");
     if(note) note.textContent=cur.note;
     const tag=document.querySelector("#resultMap .maptag");
     if(tag) tag.textContent=cur.cap;
+    syncGhostUI();
     repositionMap();
   });
 })();

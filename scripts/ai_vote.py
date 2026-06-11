@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_vote.py — the RIOT AI proxy (Phase 4).
+ai_vote.py — the RIOT GHOST (Phase 4; display name GHOST — the AI that predicts its keeper's votes).
 
 Reads soul.md (Rob's private, general political profile) + each decision's
 *neutral, citizen-visible* context, and produces a blind vote (for/against/abstain)
@@ -43,7 +43,7 @@ OUT_JS = ROOT / "cities" / "reus" / "ai_votes.js"
 
 MODEL = "claude-opus-4-8"
 
-# The ONLY decision fields the proxy is allowed to read. Anything that reveals
+# The ONLY decision fields the ghost is allowed to read. Anything that reveals
 # how Rob, the parties, or the council actually voted is deliberately excluded.
 CONTEXT_FIELDS = [
     "id",
@@ -56,9 +56,12 @@ CONTEXT_FIELDS = [
     "headline",
     "human_body",
     "source_brief",
-    "deep_facts",       # neutral, cited — the ONLY "deep" layer the proxy reads
+    "deep_facts",       # neutral, cited — the ONLY "deep" layer the ghost reads
 ]
 
+# NOTE (GHOST rebrand, 2026-06): the prompt below still says "proxy" ON PURPOSE.
+# It is part of the vote computation — rewording it changes the votes and breaks
+# comparability with the committed 70-vote run. Brand lives in the UI, not here.
 SYSTEM_INSTRUCTIONS = """\
 You are an AI political proxy. Above is `soul.md` — a citizen's GENERAL political
 worldview. It is the only lens you have. For each council decision you are given, you
@@ -109,7 +112,7 @@ def main() -> int:
     args = ap.parse_args()
 
     if not SOUL.exists():
-        print(f"ERROR: {SOUL} not found. soul.md is the proxy's only input.", file=sys.stderr)
+        print(f"ERROR: {SOUL} not found. soul.md is the ghost's only input.", file=sys.stderr)
         return 1
 
     soul_text = SOUL.read_text()
@@ -181,7 +184,7 @@ def main() -> int:
         "model": MODEL,
         "soul_hash": soul_hash,
         "n_votes": len(votes),
-        "note": "AI proxy votes — blind from soul.md + each decision's neutral context. soul.md is private; only these outputs are committed.",
+        "note": "GHOST votes — blind from soul.md + each decision's neutral context. soul.md is private; only these outputs are committed.",
         "votes": votes,
     }
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=2))

@@ -7,7 +7,7 @@
 <title>REUS</title>
 <script>
 // Bare URL = the holding page, decided BEFORE first paint. The boot block at the
-// end of body runs only after Three.js/city bundles/Firebase load — far too late
+// end of body runs only after the city bundles/Firebase load — far too late
 // to hide the app chrome. This class lets CSS swap shell↔holding on frame one.
 if(!location.search){document.documentElement.classList.add("hold");document.title="RIOT";}
 // Voter boots hold the paper from frame one: the voter URL is a live sitting's
@@ -34,7 +34,7 @@ else try{
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v0.91</span>
+      <span class="ver">v0.92</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -242,8 +242,6 @@ else try{
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js"></script>
-<script src="her.js"></script>
 <!-- QR encoder (vendored qrcode-generator, MIT) — the stage lobby's join code -->
 <script src="assets/qrcode.min.js"></script>
 <script>
@@ -274,7 +272,7 @@ else try{
 <script src="live.js"></script>
 <script>
 // Boot — startup order: map coords (for the reveal) → room connect → live session → join gate → deal cards.
-applyAiParty(showAI);   // builds the reveal-map coords (AI mode is session cfg — off at boot)
+applyGhostParty(showGhost);   // builds the reveal-map coords (ghost mode is session cfg — off at boot)
 document.body.classList.toggle("dev",devMode);
 if(!location.search){
   // Bare URL = no entrance: hold the visitor, and never touch the room

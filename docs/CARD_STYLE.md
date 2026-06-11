@@ -19,9 +19,9 @@ have not seen how the council actually voted. Your job is to make them understan
    explanation: what it really is, why it's on the table, the real stake or fault line.
    Self-contained and opinionated. The first "Veure més".
 3. **deep** — the "Anàlisi completa", in two labelled parts (see `DEEP_DIVE.md`):
-   **`deep_facts`** (neutral, cited, ≈80% of the source doc — the ONLY part the AI proxy reads)
+   **`deep_facts`** (neutral, cited, ≈80% of the source doc — the ONLY part the GHOST reads)
    and **`deep_lectura`** (analyst inference: what it enables, hidden intentions — human-facing
-   only, never fed to the proxy). Both assume the brief was read; facts never re-explain the item.
+   only, never fed to the ghost). Both assume the brief was read; facts never re-explain the item.
 
 ## HARD RULES (non-negotiable)
 - **NEVER state the vote result.** No tallies, no "aprovada/rebutjada/per unanimitat", no
@@ -32,7 +32,7 @@ have not seen how the council actually voted. Your job is to make them understan
   tribe instead of by the issue. Describe the issue and the fault line impersonally
   ("la proposta sobre la taula és…", "el govern s'hi resisteix").
 - **Opinion lives in headline + brief only.** `deep` stays factual and neutral — it's what an
-  AI proxy reads to vote, so it must not inherit our slant.
+  GHOST reads to vote, so it must not inherit our slant.
 - **"Opinionated" = blunt and clarifying**, never partisan. Cut the bullshit, name the real
   stake, call out pure tràmit. NEVER say a party is good or bad.
 - **Facts only**, taken from the neutral dossier (`deep_<code>.json`). Invent nothing; figures

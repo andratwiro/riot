@@ -6,8 +6,8 @@ description: RIOT's concrete design system («l'acta» ballot-paper theme) — t
 # RIOT UI system — «l'acta»
 
 Hard constraints first: **vanilla HTML/CSS/JS, no framework, no build step, no
-npm for the site itself.** Three.js (CDN) exists solely for the Her mark
-(`her.js`); Google Fonts (CDN) provides Archivo + Courier Prime. One shared
+npm for the site itself.** Google Fonts (CDN) provides Archivo + Courier Prime;
+there is no other runtime dependency. One shared
 viewer serves every city; per-city differences come only from `cities/<id>/`
 bundles. Treat AGENTS.md as the source of truth for file paths; this skill is
 the source of truth for how the UI must look and behave.
@@ -20,9 +20,8 @@ visible version tag on every push (see AGENTS.md).
 
 The chrome is the world of ballots and minutes: paper, print-ink, the violet
 of an official stamp pad, typewritten numbers. Saturated color is reserved
-for **data** — party brand colors and the Her-coral AI mark — and never
-decorates chrome. The signature element is **the stamp**: casting a vote
-thunks a violet imprint onto the card.
+for **data** — party brand colors — and never decorates chrome. The signature
+element is **the stamp**: casting a vote thunks a violet imprint onto the card.
 
 ## Tokens (CSS custom properties)
 
@@ -44,10 +43,19 @@ the official-archive grotesque; `--f-mono` = **Courier Prime** — every number,
 count, label, eyebrow, and verbatim quote wears the typewritten face of the
 minutes. No other families.
 
-**Reserved palettes — never repurpose:** Her coral `#d1684e` (+ cream
-ring/lemniscate) is the AI proxy and nothing else (`HerOS1.mount/dispose`,
-SVG fallback, dispose on overlay close). Party hexes appear only as data
-(logo discs, affinity fills, map dots).
+**Reserved palettes — never repurpose:** party hexes appear only as data
+(logo discs, affinity fills, map dots). **The GHOST** (the AI that predicts
+its keeper) deliberately owns NO colour: it wears `--ghost-ink` (an alias of
+`--stamp` — the YOU violet) as the "soul anchor" mark — a dashed shell + solid
+core SVG, ONE source of truth (`ghostMark(size)` in app.js, size-tiered dash
+pattern), no fill inside the ring, no opacity tricks, never a disc. Display
+name always GHOST, uppercase, mono. Verb doctrine: parties "vote with you"
+(representation), the ghost "predicts you" (fidelity) — same number format,
+never homogenized. The GHOST stamp (`.gstamp`, FOR/APPROVED construction in
+ghost ink) is large-surface decoration only — never at list or map scale. On
+the map the ghost defaults to the You projection only (bench chip elsewhere);
+in fan-outs the dashed shell is displaced while the solid core holds the true
+coordinate (it IS the ghost's anchor).
 
 ## The booth doctrine (non-negotiable)
 

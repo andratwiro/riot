@@ -6,12 +6,12 @@
 **RIOT.** This build is the Reus instance, **riot.reus**. The engine is jurisdiction-agnostic — later instances (riot.brussels, …) run the same thing on a different council.
 
 ## The bet
-Can an AI proxy faithfully represent a citizen's political will on real council decisions? RIOT exists to prove it, then scale. It removes the monopoly on defining what citizens want by making representation **falsifiable** — you can check whether a proxy (or a party) actually votes the way you would. Part of the broader Cort project; RIOT is its citizen-facing end (the insider depth engine is a separate sibling, "Opposition Copilot").
+Can an AI ghost faithfully represent a citizen's political will on real council decisions? RIOT exists to prove it, then scale. It removes the monopoly on defining what citizens want by making representation **falsifiable** — you can check whether a proxy (or a party) actually votes the way you would. Part of the broader Cort project; RIOT is its citizen-facing end (the insider depth engine is a separate sibling, "Opposition Copilot").
 
 RIOT starts from the **citizen's question**, not the document: *what is the council deciding, do I agree, are they voting in my interest?* — with optional progressive depth behind each decision (the deep end is where it meets Cort's "Deliberative Spaces").
 
 ## Goal arc
-- **v1 — single-user proof (now):** Rob votes on real Reus council decisions; his AI proxy votes blind from `soul.md`; compare Rob vs each party vs the AI proxy; show affinity % + a Polis-style 2D map. **What this proves:** the AI predicts Rob's *unseen* votes (out-of-sample) — not that it beats the parties.
+- **v1 — single-user proof (now):** Rob votes on real Reus council decisions; his GHOST votes blind from `soul.md`; compare Rob vs each party vs the GHOST; show affinity % + a Polis-style 2D map. **What this proves:** the AI predicts Rob's *unseen* votes (out-of-sample) — not that it beats the parties.
 - **Later — citizen-scale:** citizens hook up their own proxies + identity verification → a live collective political map; abstract to other councils.
 
 ## Non-negotiables (these don't change; everything else can)

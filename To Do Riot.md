@@ -21,16 +21,16 @@ Phased build for Claude Code; each phase ends in something visible. The *why*, p
 - [ ] Card / stack interface; Rob votes for / against / abstain on each `counts=true` decision. Store his votes in `localStorage` (private, device-local, never committed).
 - [ ] A counter of decisions still to rank.
 
-## 4 · AI proxy
+## 4 · The GHOST (the AI proxy, rebranded 2026-06)
 - [ ] `soul.md` (gitignored, private) holds Rob's general political profile.
 - [ ] A script Rob triggers manually: read `soul.md` + each decision's context → AI votes for / against / abstain, blind to Rob's votes → write into the table. The AI is an extra "party".
 
 ## 5 · Comparison
-- [ ] Affinity % over `counts=true` decisions: Rob vs each party, and Rob vs his AI proxy.
+- [ ] Affinity % over `counts=true` decisions: Rob vs each party, and Rob vs his GHOST.
 - [ ] Position the parties (no clustering — too few).
 
 ## 6 · Map + proof
-- [ ] Polis-style 2D map (PCA on decisions × voters): plot the parties (logos), Rob, and the AI proxy.
+- [ ] Polis-style 2D map (PCA on decisions × voters): plot the parties (logos), Rob, and the GHOST.
 - [ ] Report the AI's out-of-sample hit-rate vs Rob's votes — the actual proof, reported separately from the affinity %.
 
 ## 7 · Ship

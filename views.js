@@ -70,36 +70,39 @@ $("#dlMarks").addEventListener("click",()=>{
 });
 function openParty(token){
   const p=PARTIES.find(x=>x.token===token); if(!p)return;
-  const isAI=token==="IA";
+  const isGhost=!!p.ghost;
   const rows=[];
   for(const id in answers){
     const d=byId[id]; if(!d)continue;
     const pv=(d.party_votes_canon||{})[token];
     const comparable=(pv==="for"||pv==="against"||pv==="abstain");
-    rows.push({d,pv,uv:answers[id],comparable,agree:comparable&&pv===answers[id],rationale:isAI&&AI&&AI[id]?AI[id].rationale:null,conf:isAI&&AI&&AI[id]?AI[id].confidence:null});
+    rows.push({d,pv,uv:answers[id],comparable,agree:comparable&&pv===answers[id],rationale:isGhost&&AI&&AI[id]?AI[id].rationale:null,conf:isGhost&&AI&&AI[id]?AI[id].confidence:null});
   }
   // rank: discrepancies first, then party didn't vote comparably, then agreements
   const rankOf=r=> r.comparable ? (r.agree?2:0) : 1;
   rows.sort((a,b)=>rankOf(a)-rankOf(b));
   const comp=rows.filter(r=>r.comparable), matches=comp.filter(r=>r.agree).length;
   const pct=comp.length?Math.round(100*matches/comp.length):null, disagrees=comp.length-matches;
-  const accord=isAI?"accuracy":"agreement";
-
-  const headMark=isAI?`<span class="herHero" id="herHero"></span>`:logoEl(p);
-  $("#pvHead").innerHTML=`${headMark}<div><b>${esc(p.name)}</b> <span class="pvpct">${
-    pct===null?"no comparison yet":pct+"% "+accord+" · "+disagrees+(disagrees===1?" disagreement":" disagreements")}</span></div>`;
-  if(iaHero){iaHero.dispose();iaHero=null;}
-  if(isAI){const hero=document.getElementById("herHero");
-    if(hero){ if(window.HerOS1&&HerOS1.supported) iaHero=HerOS1.mount(hero,{size:60}); else hero.classList.add("fallback"); }}
+  // deliberate verb split, same number format: a party's number measures
+  // REPRESENTATION ("votes with you"), the ghost's measures FIDELITY
+  // ("predicts you"). Never homogenize the two.
+  const accord = pct===null ? "no comparison yet"
+    : isGhost ? `predicts you ${pct}% · ${disagrees}${disagrees===1?" miss":" misses"}`
+              : `votes with you ${pct}% · ${disagrees}${disagrees===1?" disagreement":" disagreements"}`;
+  // ghost header: the mark + the GHOST stamp (the stamp is large-surface
+  // decoration only — it never appears at list or map scale)
+  $("#pvHead").innerHTML = isGhost
+    ? `<span class="lg ghost">${ghostMark(30)}</span><div><span class="gstamp">GHOST</span> <span class="pvpct">${accord}</span></div>`
+    : `${logoEl(p)}<div><b>${esc(p.name)}</b> <span class="pvpct">${accord}</span></div>`;
   $("#pvIntro").textContent=rows.length
-    ? (isAI
-        ? `Blind prediction: the proxy voted only from your profile and the neutral context of each decision — never seeing your votes, the parties' votes or the outcome. The ${rows.length} you voted, where it misses first.`
+    ? (isGhost
+        ? `Blind prediction: the ghost voted only from your profile and the neutral context of each decision — never seeing your votes, the parties' votes or the outcome. The ${rows.length} you voted, where it misses first.`
         : `The ${rows.length} decisions you voted, compared with ${p.name}. Where you differ first.`)
     : "You haven't reacted to any decision yet.";
   $("#pvList").innerHTML=rows.map(r=>{
     const badge=!r.comparable?`<span class="badge b-na">${VLAB[r.pv]||"no vote"}</span>`
-      :r.agree?`<span class="badge b-agree">${isAI?"MATCH":"AGREE"}</span>`:`<span class="badge b-disagree">${isAI?"MISS":"DIFFER"}</span>`;
-    const conf=isAI&&r.conf!=null?` · ${Math.round(r.conf*100)}%`:"";
+      :r.agree?`<span class="badge b-agree">${isGhost?"MATCH":"AGREE"}</span>`:`<span class="badge b-disagree">${isGhost?"MISS":"DIFFER"}</span>`;
+    const conf=isGhost&&r.conf!=null?` · ${Math.round(r.conf*100)}%`:"";
     const pchip=`<span class="pchip"><span class="dot d-${r.pv||"absent"}"></span>${p.token} ${VLAB[r.pv]||"no vote"}${conf}</span>`;
     const uchip=`<span class="pchip you"><span class="dot d-${r.uv}"></span>You ${VLAB[r.uv]||r.uv}</span>`;
     const why=r.rationale?`<div class="lm" style="margin-top:6px;font-style:italic">«${esc(r.rationale)}»</div>`:"";
@@ -113,7 +116,7 @@ function openParty(token){
 // reveal screen: the ranked party list + the closest/furthest cards open the same comparison view
 $("#doneParties").addEventListener("click",e=>{const b=e.target.closest(".dprow");if(b)openParty(b.dataset.token);});
 $("#extremes").addEventListener("click",e=>{const b=e.target.closest(".exc");if(b)openParty(b.dataset.token);});
-function closePartyView(){$("#partyView").style.display="none"; if(iaHero){iaHero.dispose();iaHero=null;}}
+function closePartyView(){$("#partyView").style.display="none";}
 $("#closeParty").addEventListener("click",closePartyView);
 
 /* ---- curator mode ---- */
@@ -177,7 +180,7 @@ $("#marksList").addEventListener("click",e=>{
   }
 });
 
-/* ---- export / import votes (simplified id->vote map; demo + AI comparison) ---- */
+/* ---- export / import votes (simplified id->vote map; demo + ghost comparison) ---- */
 function votesJSON(){
   return JSON.stringify({v:1,exported:new Date().toISOString(),n:Object.keys(answers).length,votes:{...answers}},null,2);
 }

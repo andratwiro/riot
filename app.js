@@ -16,29 +16,46 @@ const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo
 document.title=CFG.title||"RIOT";
 document.documentElement.lang=CFG.lang||"en";
 const R = window.RIOT || {decisions:[], parties:[]};
-// AI proxy's blind votes (id -> {vote,confidence,rationale}); null until ai_vote.py / the proxy run has produced them.
+// The GHOST's blind votes (id -> {vote,confidence,rationale}); null until ai_vote.py / the ghost run has produced them.
 const AI = (window.AI_VOTES && window.AI_VOTES.votes) || null;
 const PARTIES = R.parties || [];
 const QS = new URLSearchParams(location.search);
 /* ?solo=1 — the deliberate solo entrance: the booth alone, full deck, no room,
    no live resolution, no presence (the plain voter URL stays the sitting's
    entrance and nothing else). Built for the self-experiment: vote at your own
-   pace, ⧉ Copy votes to save, import to resume. &ai=1 seats Proxy IA on the
-   reveal (solo only — in a sitting, AI mode belongs to the moderator's cfg). */
+   pace, ⧉ Copy votes to save, import to resume. &ai=1 seats the GHOST on the
+   reveal (solo only — in a sitting, ghost mode belongs to the moderator's cfg). */
 const SOLO = QS.get("solo")==="1";
-// Add/remove the proxy as one more "party" (reveal map + compare view). Off by default; menu toggle.
-function applyAiParty(on){
+// Add/remove the GHOST as one more "party" (reveal map + compare view). Off by default; moderator cfg / &ai=1.
+function applyGhostParty(on){
   if(AI){
-    const has=PARTIES.some(p=>p.token==="IA");
+    const has=PARTIES.some(p=>p.token==="GHOST");
     if(on && !has){
-      PARTIES.push({token:"IA",name:"Proxy IA",color:"#d1684e",logo:null,her:true});
-      for(const d of R.decisions){const rec=AI[d.id]; if(rec){(d.party_votes_canon=d.party_votes_canon||{})["IA"]=rec.vote;}}
+      PARTIES.push({token:"GHOST",name:"GHOST",color:"var(--ghost-ink)",logo:null,ghost:true});
+      for(const d of R.decisions){const rec=AI[d.id]; if(rec){(d.party_votes_canon=d.party_votes_canon||{})["GHOST"]=rec.vote;}}
     } else if(!on && has){
-      const i=PARTIES.findIndex(p=>p.token==="IA"); if(i>=0) PARTIES.splice(i,1);
-      for(const d of R.decisions){ if(d.party_votes_canon) delete d.party_votes_canon["IA"]; }
+      const i=PARTIES.findIndex(p=>p.token==="GHOST"); if(i>=0) PARTIES.splice(i,1);
+      for(const d of R.decisions){ if(d.party_votes_canon) delete d.party_votes_canon["GHOST"]; }
     }
   }
   rebuildMap();      // PARTIES changed → recompute the reveal-map coordinates
+}
+/* ---- the GHOST mark — "soul anchor": a dashed ring (the shell) around a solid
+   dot (the soul). ONE source of truth, 40×40 viewBox, inked in --ghost-ink (the
+   same violet the YOU ring wears — the ghost is chromatically YOURS, never a
+   party colour). No fill inside the ring: the paper shows through. The dash
+   pattern re-tunes per size tier so the ring keeps readable dashes instead of
+   scaling into a blur; shell and core are separate nodes (.g-shell/.g-core) so
+   the map's honesty pass can displace the shell while the core holds the true
+   coordinate. opts.noCore renders the shell alone. */
+function ghostMark(size,opts){
+  const g = size>=34 ? {sw:2,  dash:"4.5 3.5", core:4.5}     // chip (~36–40px)
+          : size>=22 ? {sw:2,  dash:"3.2 2.5", core:3.5}     // list avatar (~28px)
+                     : {sw:1.6,dash:"2.8 2.2", core:2.6};    // map dot (~14–16px)
+  return `<svg class="ghostmark" viewBox="0 0 40 40" width="${size}" height="${size}" aria-hidden="true">`+
+    `<circle class="g-shell" cx="20" cy="20" r="17" fill="none" stroke="var(--ghost-ink)" stroke-width="${g.sw}" stroke-dasharray="${g.dash}" stroke-linecap="round"/>`+
+    ((opts&&opts.noCore)?"":`<circle class="g-core" cx="20" cy="20" r="${g.core}" fill="var(--ghost-ink)"/>`)+
+    `</svg>`;
 }
 const $ = s => document.querySelector(s);
 const VLAB = {for:"for", against:"against", abstain:"abstain", split:"split", absent:"absent"};
@@ -92,9 +109,9 @@ function dismissSuggest(id){if(!isDismissed(id)){dismissed.push(id);try{localSto
 // Minutes page. A persisted dev flag never activates on a plain voter URL.
 const IS_MOD=(QS.get("role")||"").toLowerCase()==="moderator";
 let devMode=false; try{devMode=IS_MOD&&localStorage.getItem(DEV_KEY)==="1";}catch(e){}
-// AI mode: the moderator enables it per live session (cfg.ai); live.js flips it
+// Ghost mode: the moderator enables it per live session (cfg.ai); live.js flips it
 // from snapshots. Solo is the one self-serve entrance: ?solo=1&ai=1.
-let showAI=SOLO && !!AI && QS.get("ai")==="1";
+let showGhost=SOLO && !!AI && QS.get("ai")==="1";
 try{localStorage.removeItem("riot.ai.v1");}catch(e){}   // retire the old per-visitor toggle
 const isMarked=id=>marks.some(m=>m.id===id);
 let COORD = null, MX = {};
@@ -126,11 +143,10 @@ function affinityFor(votes){
 }
 function affinity(){ return affinityFor(answers); }
 function logoEl(p){
-  if(p.her) return `<span class="lg her"></span>`;
+  if(p.ghost) return `<span class="lg ghost"></span>`;   // decorateGhost() inks the mark at the right size tier
   return p.logo ? `<span class="lg bg-${p.token}"><img src="${p.logo}" alt="${p.name}"></span>`
                 : `<span class="lg fb" style="background:${p.color}">${p.token}</span>`;
 }
-let iaHero=null;   // "Her" WebGL instance in the party-compare header (views.js)
 
 /* ---- progress: my thin ink line + a small violet tick where the room is ---- */
 function updateProgress(){
@@ -178,7 +194,7 @@ function renderStack(){
     const long = h2cls ? ` class="${h2cls}"` : "";
     const main = d.source_brief ? renderBrief(d.source_brief)
                : `<div class="body">${esc(d.human_body||"")}</div>`;
-    const dfacts = d.deep_facts || d.deep;   // neutral, cited (what the AI proxy reads)
+    const dfacts = d.deep_facts || d.deep;   // neutral, cited (what the ghost reads)
     const deep = dfacts
       ? `<button class="deepmore" type="button">Full analysis ▾</button>`+
         `<div class="deep" hidden>${renderBrief(dfacts)}`+
@@ -301,13 +317,13 @@ function renderExtremes(ranked,a){
   ex.style.display="";
   const card=(cls,lab,p)=>`<button class="exc ${cls}" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">
     <span class="exlab">${lab}</span>${logoEl(p)}
-    <span class="exname" title="${esc(p.name)}">${esc(p.name)}</span>
+    <span class="exname${p.ghost?" gname":""}" title="${esc(p.name)}">${esc(p.name)}</span>
     <span class="expct">${a[p.token].pct}%</span></button>`;
   const most=ranked[0], least=ranked[ranked.length-1];
   ex.innerHTML = ranked.length===1
     ? card("most","Closest",most)
     : card("most","Closest",most)+card("least","Furthest",least);
-  decorateHer(ex,44);
+  decorateGhost(ex,40);
 }
 function renderDoneParties(ranked,a){
   const el=$("#doneParties");
@@ -315,20 +331,20 @@ function renderDoneParties(ranked,a){
   el.style.display="";
   el.innerHTML=`<span class="dplabel">Every party · tap to compare your votes</span>`+
     ranked.map(p=>{const pct=a[p.token].pct;
+      // parties "vote with you"; the ghost "predicts you" — its row says what it is
+      const name=p.ghost?`<span class="dpname gname">GHOST <small class="gsub">· trained on you</small></span>`
+                        :`<span class="dpname">${esc(p.name)}</span>`;
       return `<button class="dprow" type="button" data-token="${p.token}" title="See where you and ${esc(p.name)} differ">${logoEl(p)}
-        <span class="dptx"><span class="dpname">${esc(p.name)}</span>
+        <span class="dptx">${name}
           <span class="dptrack"><span class="dpfill" style="width:${pct||0}%;background:${p.color}"></span></span></span>
         <span class="dppct">${pct==null?'—':pct+'%'}</span><span class="dpgo">›</span></button>`;
     }).join("");
-  decorateHer(el,34);
+  decorateGhost(el,28);
 }
-// mount the "Her" mark on any IA logo slots inside a container (reveal screen)
-function decorateHer(container,size){
-  if(AI&&window.HerOS1&&HerOS1.supported){
-    container.querySelectorAll('.lg.her').forEach(slot=>{
-      const m=HerOS1.mount(null,{size}); slot.appendChild(m.canvas);
-    });
-  }
+// ink the GHOST mark into any empty ghost logo slots (reveal screen) at the
+// container's size tier — the slot stays a plain span so re-renders are cheap
+function decorateGhost(container,size){
+  container.querySelectorAll('.lg.ghost:empty').forEach(slot=>{slot.innerHTML=ghostMark(size);});
 }
 // The finding, not a match score: even your closest list only votes like you X% of the time.
 // The headline stands alone — the map and the ranked field below carry the detail.
@@ -348,13 +364,16 @@ function revealCopy(ranked,a){
     pct>=60 ? `Even your closest party only votes with you ${pct}% of the time.` :
     `No party votes the way you do. ${top.name} comes closest, at ${pct}%.`;
 }
+// the headline measures REPRESENTATION — a party verb ("votes with you"). The
+// ghost measures fidelity ("predicts you") and never claims the finding.
+function rankedParties(ranked){ return ranked.filter(p=>!p.ghost); }
 function finish(){
   $("#stack").innerHTML="";
   $("#progressRow").style.display="none";
   voting=false; splitUpdate=null;
   const a=affinity();
   const ranked=PARTIES.filter(p=>a[p.token].comp).sort((x,y)=>a[y.token].pct-a[x.token].pct);
-  revealCopy(ranked,a);
+  revealCopy(rankedParties(ranked),a);
   if(typeof mpContributeCov==="function") mpContributeCov();   // add my ballot to the room's joint-map aggregate
   renderResultMap();            // the map's first appearance — animated into place (map.js)
   renderExtremes(ranked,a);

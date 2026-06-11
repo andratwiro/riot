@@ -43,15 +43,15 @@ downstream hangs off it. Open every gathered doc and synthesise the **neutral `d
   (3+) completeness critique — audit for any unopened doc / untyped figure / unsourced claim;
   repeat until a pass comes up dry (~2 dry passes max). Converged = stable, not verified.
 - **NEVER in the deep prose:** the vote result/outcome (it's a structured field, and a spoiler),
-  and **no opinion/lens** — neutral facts only. The deep feeds the AI proxy; it must not inherit
+  and **no opinion/lens** — neutral facts only. The deep feeds the GHOST; it must not inherit
   our slant.
 
 Output is **two separate fields** (both shown in-app under "Anàlisi completa"):
 - **`deep_facts`** — the dense, neutral, cited dossier (≈80% of the source doc, total coverage).
-  This is the **ONLY deep the AI proxy reads** — it votes from facts + the person's `soul.md`.
+  This is the **ONLY deep the GHOST reads** — it votes from facts + the person's `soul.md`.
 - **`deep_lectura`** — the analyst read: what the proposal *enables*, second-order effects, the
   coalition wedge, the unstated/likely-unconscious intentions. **Inference, explicitly labelled
-  as such, human-facing ONLY — never fed to the proxy** (else it inherits our read of motives).
+  as such, human-facing ONLY — never fed to the ghost** (else it inherits our read of motives).
   This is the most bias-prone content in the system; it wants Rob's review before it's trusted.
 
 Keeping them as distinct fields is what makes the "AI reads facts only" rule enforceable.
