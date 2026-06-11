@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F2F0E8">
-<title>RIOT — Deliberation bench</title>
+<title>RIOT — The floor</title>
 <link rel="icon" href="assets/logos/brussels_iris.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,279 +12,720 @@
 <link rel="stylesheet" href="style.css">
 <style>
 /* ============================================================
-   DELIBERATION BENCH — standalone design demo (no app logic).
-   Two real Brussels cards, each opening its own discussion
-   instrument below the ballot. Everything here is local to this
-   page; style.css provides the tokens + the card/stamp/split
-   idioms. Nothing connects to rooms or Firebase.
+   THE FLOOR — standalone design demo (no app logic, no backend).
+   The open debate between parties in parliament, rebuilt for the
+   people: the deliberation is the product, the decision card is a
+   fixture. Direction is visible by default everywhere — the
+   room's shape IS the message. Floor data is precomputed inline;
+   the user's own positions live in localStorage. Figures are
+   illustrative and labeled so. style.css provides the l'acta
+   tokens + base idioms; everything else is scoped here.
    ============================================================ */
 body{overflow:hidden}
-.dlb{display:flex;flex-direction:column;height:100dvh;max-width:680px;margin:0 auto}
-/* header reuses the app idiom; the wordmark is static (no switcher on a demo) */
-.dlb header{flex:0 0 auto}
-.dlb .citysel{cursor:default}
+.dlb{display:flex;flex-direction:column;height:100dvh}
+
+/* ---- header: brand · presence-as-mass · view tabs ---- */
+.dlb header{flex:0 0 auto;display:block;padding:10px 16px 8px;max-width:1280px;margin:0 auto;width:100%;box-sizing:border-box}
+.hd-row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.dlb .citysel{cursor:default;min-height:38px;padding:2px 0}
 .dlb .citysel:hover{background:none}
+/* the demonstration in progress: count · velocity · fresh positions */
+.mass{display:flex;align-items:center;gap:7px;min-width:0}
+.mass-pulse{width:7px;height:7px;border-radius:50%;background:var(--stamp);flex:0 0 auto;position:relative}
+.mass-pulse.tick::after{content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:1.5px solid var(--stamp);opacity:0;animation:facetick .7s ease-out}
+.mass-line{font:400 11px var(--f-mono);color:var(--ink60);letter-spacing:.03em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mass-line b{color:var(--ink);font-weight:700}
+.hd-tabs{display:flex;gap:6px;margin-top:8px}
+.hd-tabs .mp-chip{flex:1 1 0;justify-content:center;min-height:40px}
+@media (min-width:1080px){
+  .hd-tabs{margin-top:0;flex:0 0 auto}
+  .hd-tabs .mp-chip{flex:0 0 auto}
+  .hd-row .mass{margin-left:auto;margin-right:18px}
+}
+@media (max-width:1079px){
+  .hd-row{flex-wrap:wrap}
+  .hd-tabs{flex:1 1 100%}
+  .hd-row .mass{display:none}
+  .hd-mass-row{display:flex;align-items:flex-start;gap:7px;margin-top:6px}
+  .hd-mass-row .mass-pulse{margin-top:3px}
+  .hd-mass-row .mass-line{white-space:normal;overflow:visible;line-height:1.45}
+}
+@media (min-width:1080px){.hd-mass-row{display:none}}
 
-/* ---- bench nav: which card's floor you're on ---- */
-.bench-nav{flex:0 0 auto;padding:2px 16px 10px}
-.bench-k{margin:0 0 8px;font:700 10.5px var(--f-mono);letter-spacing:.16em;
-  text-transform:uppercase;color:var(--ink60)}
-.bench-tabs{display:flex;gap:6px;align-items:center}
-.bench-tabs .mp-chip{flex:1 1 0;justify-content:center}
-.bench-hint{margin:7px 2px 0;font:400 10.5px var(--f-mono);color:var(--ink60)}
-
-/* ---- the two full-screen panels: native horizontal snap ---- */
+/* ---- the two full-screen views: native horizontal snap ---- */
 .bench{flex:1 1 auto;min-height:0;display:flex;overflow-x:auto;overflow-y:hidden;
   scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .bench::-webkit-scrollbar{display:none}
 .panel{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;
   overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
-  padding:2px 16px calc(24px + env(safe-area-inset-bottom))}
+  padding:0 16px calc(28px + env(safe-area-inset-bottom))}
 
-/* the ballot keeps the booth's collapsed rhythm; the floor is the star here */
-.panel .card{flex:0 0 auto}
-.panel .card .reveal{max-height:none;overflow:visible}
+/* ---- panel grid: decision fixture · floor · synthesis ----
+   Mobile: pinned compact decision header → synthesis → floor.
+   Desktop: sticky decision rail · wide floor · pinned synthesis rail
+   (the politician's reading position). */
+.pgrid{display:grid;grid-template-columns:minmax(0,1fr);max-width:1280px;margin:0 auto}
+.decision{position:sticky;top:0;z-index:20}
+/* mobile reading order: pinned decision → synthesis → floor bands */
+@media (max-width:1079px){.decision{order:1}.synth{order:2}.floor{order:3}}
+@media (min-width:1080px){
+  .pgrid{grid-template-columns:300px minmax(0,1fr) 372px;gap:22px;align-items:start}
+  .decision,.synth{position:sticky;top:10px;z-index:20}
+  .synth{max-height:calc(100dvh - 140px);overflow-y:auto;scrollbar-width:none}
+  .synth::-webkit-scrollbar{display:none}
+}
 
-/* ---- THE FLOOR: the rule under the ballot breaks open ---- */
-.floor{margin-top:22px}
+/* ---- the decision fixture: compact, persistent, one tap to act ---- */
+.dx{background:var(--paper);padding:5px 0 8px;border-bottom:1px solid var(--rule)}
+@media (min-width:1080px){
+  .dx{background:var(--card);border:1px solid var(--rule);border-radius:12px;
+    padding:16px 16px 14px;box-shadow:0 1px 0 rgba(28,27,23,.04),0 10px 28px rgba(28,27,23,.08)}
+}
+.dx-krow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 4px}
+.dx-k{margin:0;font:700 10px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink60);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dx-read{flex:0 0 auto;background:none;border:0;cursor:pointer;padding:6px 0 6px 10px;
+  font:700 10px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--stamp)}
+.dx-t{margin:0 0 8px;font:650 15px/1.3 var(--f-ui);letter-spacing:-.01em;color:var(--ink)}
+@media (min-width:1080px){.dx-t{font-size:18px}}
+/* the room's standing position — direction visible by default */
+.dx-sk{margin:0 0 4px;font:700 9.5px var(--f-mono);letter-spacing:.13em;text-transform:uppercase;color:var(--ink60)}
+.dx-big{display:none;align-items:baseline;gap:8px;margin:2px 0 6px}
+.dx-big .n{font:800 46px/1 var(--f-ui);letter-spacing:-.02em;color:var(--ink)}
+.dx-big .n small{font-size:26px;font-weight:800}
+.dx-big .w{font:700 13px var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.dx-big .w.for{color:var(--moss)} .dx-big .w.against{color:var(--brick)}
+@media (min-width:1080px){.dx-big{display:flex}}
+.dx-bar{position:relative;display:flex;height:12px;border:1px solid var(--rule);border-radius:3px;
+  overflow:visible;background:var(--card)}
+.dx-bar i{display:block;height:100%}
+.dx-bar .sa{background:var(--brick)} .dx-bar .sb{background:var(--card2)} .dx-bar .sf{background:var(--moss)}
+.dx-bar .sa:first-child{border-radius:2px 0 0 2px} .dx-bar .sf:last-child{border-radius:0 2px 2px 0}
+.dx-leg{margin:6px 0 0;font:400 10.5px var(--f-mono);color:var(--ink60);letter-spacing:.02em}
+.dx-leg b{color:var(--ink);font-weight:700}
+/* you, pinned on top of the visible split */
+.youpin{position:absolute;top:100%;transform:translateX(-50%);text-align:center;pointer-events:none;z-index:3}
+.youpin .yp-a{display:block;width:0;height:0;margin:1px auto 0;
+  border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:6px solid var(--stamp)}
+.youpin .yp-t{display:block;font:700 8.5px var(--f-mono);letter-spacing:.14em;color:var(--stamp);text-transform:uppercase}
+.dx-acts{display:flex;gap:7px;margin-top:10px}
+.dx-acts .btn{min-height:40px;padding:7px 4px;font-size:13px;border-radius:7px}
+@media (min-width:1080px){.dx-acts{margin-top:14px}.dx-acts .btn{min-height:44px}}
+.dx-cast{display:flex;align-items:center;gap:10px;margin-top:12px;min-height:42px}
+.dx-cast .stamp{position:static;margin:0;font-size:12px;letter-spacing:.15em;border-width:2px;
+  border-radius:5px;padding:5px 10px 4px;box-shadow:inset 0 0 0 1px var(--stamp);animation:stampin .2s cubic-bezier(.2,1.6,.4,1) both}
+.dx-cast .c-l{font:400 10.5px/1.45 var(--f-mono);color:var(--ink60)}
+
+/* ---- the floor ---- */
+.floor{min-width:0;padding-top:14px}
 .floor-rule{display:flex;align-items:center;gap:12px;color:var(--ink60)}
 .floor-rule::before,.floor-rule::after{content:"";flex:1 1 auto;height:1px;background:var(--rule)}
-.floor-rule span{font:700 11px var(--f-mono);letter-spacing:.22em;text-transform:uppercase}
-.floor-meta{margin:9px 0 2px;text-align:center;font:400 11px var(--f-mono);color:var(--ink60)}
-.floor-intro{margin:14px 0 16px;color:var(--ink80);font-size:13.5px;line-height:1.5}
-.floor-intro strong{color:var(--ink);font-weight:650}
+.floor-rule span{font:700 11px var(--f-mono);letter-spacing:.24em;text-transform:uppercase}
+.floor-meta{margin:8px 0 18px;text-align:center;font:400 11px var(--f-mono);color:var(--ink60)}
 
-/* sort chips (wikisurvey) — the projection-bench chip idiom */
-.sortrow{display:flex;gap:6px;overflow-x:auto;padding:2px;margin:0 -2px 12px;
-  scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.sortrow::-webkit-scrollbar{display:none}
+/* bands: structure against pure popularity */
+.band-h{margin:26px 0 4px;padding:0 0 6px;border-bottom:2px solid var(--ink)}
+.band-h:first-of-type{margin-top:4px}
+.band-n{font:800 13px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+.band-h.cg .band-n{color:var(--moss)} .band-h.fl .band-n{color:var(--brick)}
+.band-h.cg{border-color:var(--moss)} .band-h.fl{border-color:var(--brick)}
+.band-sub{display:block;margin-top:3px;font:400 11px var(--f-mono);color:var(--ink60);letter-spacing:.02em}
+.band-wrap{padding-top:10px}
 
-/* ---- statement slips ---- */
-.slip{background:var(--card);border:1px solid var(--rule);border-radius:10px;
-  padding:14px 14px 12px;margin:0 0 10px;display:flex;flex-direction:column}
-.slip-meta{display:flex;align-items:center;gap:8px;margin:0 0 8px}
-.slip-meta .face{margin-left:0}
-.s-name{font:700 11.5px var(--f-mono);color:var(--ink80);letter-spacing:.04em}
-.s-time{font:400 10.5px var(--f-mono);color:var(--ink60);margin-left:auto;white-space:nowrap}
-.s-text{margin:0;color:var(--ink);font-size:15px;line-height:1.45;font-weight:500}
-.s-acts{display:flex;gap:7px;margin-top:13px}
-.s-acts .btn{min-height:42px;padding:9px 4px;font-size:13px;border-radius:7px}
-.slip.voted .s-acts{opacity:.3;pointer-events:none;transition:opacity .2s}
-/* the response stamp — the booth's stamp, slip-sized */
-.stamp.sm{font-size:10.5px;letter-spacing:.14em;border-width:2px;border-radius:5px;
-  padding:4px 9px 3px;box-shadow:inset 0 0 0 1px var(--stamp);margin:0 2px -2px 8px}
-/* per-slip split: revealed only AFTER you respond (the floor never leans on you) */
-.s-split{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);animation:fadein .25s both}
-.s-split .sp-k{margin:0 0 7px;font:700 10px var(--f-mono);letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink60)}
-.s-split .sp-l{flex:0 0 90px;white-space:nowrap}
-.s-split .sp-n{flex:0 0 30px}
-/* your own filed statement */
-.slip.minework .s-note{margin:11px 0 0;font:400 11px var(--f-mono);color:var(--stamp)}
+/* an argument with weight: mass carries scale */
+.arg{background:var(--card);border:1px solid var(--rule);border-radius:10px;
+  padding:13px 14px 12px;margin:0 0 10px}
+.arg-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 7px}
+.a-time{font:400 10px var(--f-mono);color:var(--ink60)}
+.a-mass{font:700 10.5px var(--f-mono);color:var(--ink80);letter-spacing:.04em}
+.a-text{margin:0 0 11px;color:var(--ink)}
+.arg.t1 .a-text{font:500 14px/1.45 var(--f-ui)}
+.arg.t2 .a-text{font:500 15.5px/1.42 var(--f-ui)}
+.arg.t3 .a-text{font:650 17.5px/1.38 var(--f-ui);letter-spacing:-.008em}
+.a-bar{position:relative;display:flex;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
+.arg.t1 .a-bar{height:8px} .arg.t2 .a-bar{height:12px} .arg.t3 .a-bar{height:16px}
+.a-bar i{display:block;height:100%}
+.a-bar .d{background:var(--brick)} .a-bar .p{background:var(--card2)} .a-bar .a{background:var(--moss)}
+.a-bar .d:first-child{border-radius:2px 0 0 2px} .a-bar .a:last-child{border-radius:0 2px 2px 0}
+.a-leg{margin:6px 0 0;font:400 10.5px var(--f-mono);color:var(--ink60)}
+.a-leg b{color:var(--ink);font-weight:700}
+.arg.responded .a-leg{margin-top:19px}   /* room for the you-pin under the bar */
+/* the camps on this — the cross-tabulation nuance engine */
+.a-x{margin:11px 0 0;padding:9px 11px 10px;background:var(--paper);border:1px solid var(--rule);border-radius:7px}
+.ax-k{margin:0 0 7px;font:700 9.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink60)}
+.ax-row{display:flex;align-items:center;gap:9px;margin:4px 0}
+.ax-l{flex:0 0 118px;font:700 9.5px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink80)}
+.ax-track{flex:1 1 auto;height:7px;background:var(--card2);border-radius:2px;overflow:hidden}
+.ax-fill{display:block;height:100%;background:var(--ink);border-radius:2px}
+.ax-n{flex:0 0 72px;text-align:right;font:700 10.5px var(--f-mono);color:var(--ink)}
+.ax-note{margin:8px 0 0;font:400 11px/1.5 var(--f-mono);color:var(--ink80)}
+/* carries across camps — the actionable finding */
+.a-cc{display:flex;align-items:baseline;gap:7px;margin:10px 0 0;
+  font:400 11px/1.5 var(--f-mono);color:var(--moss)}
+.a-cc::before{content:"✓";font-weight:700;flex:0 0 auto}
+.a-acts{display:flex;gap:7px;margin-top:12px}
+.a-acts .btn{min-height:40px;padding:8px 4px;font-size:12.5px;border-radius:7px}
+.arg.responded .a-acts{display:none}
+.arg.mine{border-color:rgba(75,63,160,.45)}
+.a-minenote{margin:10px 0 0;font:400 10.5px/1.5 var(--f-mono);color:var(--stamp)}
 
-/* composer: one idea per slip */
-.composer{background:var(--card);border:1px dashed var(--rule);border-radius:10px;
-  padding:14px;margin:14px 0 0}
-.composer .c-k{margin:0 0 9px;font:700 10.5px var(--f-mono);letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink60)}
+/* composer */
+.composer{background:var(--card);border:1px dashed var(--rule);border-radius:10px;padding:13px 14px;margin:4px 0 0}
+.composer .c-k{margin:0 0 8px;font:700 10px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink60)}
 .composer textarea{width:100%;box-sizing:border-box;resize:none;background:var(--card2);
-  border:1px solid var(--rule);border-radius:7px;padding:10px 12px;min-height:72px;
+  border:1px solid var(--rule);border-radius:7px;padding:10px 12px;min-height:64px;
   font:400 14px/1.5 var(--f-ui);color:var(--ink)}
 .composer textarea::placeholder{color:var(--ink60)}
-.c-row{display:flex;align-items:center;gap:10px;margin-top:10px}
+.c-row{display:flex;align-items:center;gap:10px;margin-top:9px}
 .c-note{flex:1;font:400 10.5px var(--f-mono);color:var(--ink60)}
 .c-send{border:0;border-radius:8px;background:var(--ink);color:var(--card);cursor:pointer;
   font:700 13px var(--f-ui);padding:0 16px;min-height:44px}
 .c-send:active{transform:scale(.97)}
 
-/* ---- the ledger bench (budget) ---- */
-.bal{position:sticky;top:0;z-index:6;background:var(--paper);padding:8px 0 10px;margin:0 0 6px}
-.bal-box{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:12px 14px}
-.bal-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.bal-l{font:700 10px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink60)}
-.bal-n{font:700 15px var(--f-mono);color:var(--ink)}
-.bal-row.you .bal-l,.bal-row.you .bal-n{color:var(--stamp)}
-.bal-row.you{margin-top:4px}
-.bal-d{font:400 11px var(--f-mono)}
-.bal-d.up{color:var(--moss)}.bal-d.down{color:var(--brick)}
-.ledger{margin:4px 0 0}
-.lrow{background:var(--card);border:1px solid var(--rule);border-radius:10px;
-  padding:12px 14px 11px;margin:0 0 9px}
-.l-head{display:flex;align-items:baseline;gap:8px}
-.l-name{font-size:14.5px;font-weight:650;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.l-lead{flex:1 1 auto;border-bottom:1px dotted var(--rule);transform:translateY(-3px);min-width:14px}
-.l-amt{font:700 13.5px var(--f-mono);color:var(--ink);white-space:nowrap}
-.l-amt .l-delta{color:var(--stamp);font-weight:700}
-.l-sub{margin:3px 0 0;font:400 11px var(--f-mono);color:var(--ink60)}
-.l-acts{display:flex;gap:7px;margin-top:11px}
-.l-acts .lbtn{flex:1;min-height:44px;border-radius:7px;cursor:pointer;background:transparent;
-  font:700 13px var(--f-mono);letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:7px;
+/* ---- reading the room: the synthesis a politician screenshots ---- */
+.synth{padding-top:14px}
+@media (min-width:1080px){.synth{padding-top:0;margin-top:10px}}
+.sx{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px 16px 13px;
+  border-top:3px solid var(--ink)}
+.sx-k{margin:0 0 10px;font:700 10px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--stamp)}
+.sx-line{margin:0 0 4px;font:650 21px/1.3 var(--f-ui);letter-spacing:-.012em;color:var(--ink)}
+.sx-line b{font-weight:800}
+.sx-line .for{color:var(--moss)} .sx-line .against{color:var(--brick)}
+.sx-sub{margin:0 0 6px;font:400 11px/1.5 var(--f-mono);color:var(--ink60)}
+.sx-sec{margin:13px 0 0;padding:11px 0 0;border-top:1px solid var(--rule)}
+.sx-h{margin:0 0 8px;font:700 9.5px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink60)}
+.sx-h.hot{color:var(--brick)} .sx-h.cc{color:var(--moss)}
+.sx-w{display:flex;align-items:baseline;gap:9px;margin:0 0 7px}
+.sx-w .q{flex:1 1 auto;min-width:0;font:500 12.5px/1.45 var(--f-ui);color:var(--ink80);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sx-w .m{flex:0 0 auto;font:700 11px var(--f-mono);color:var(--ink);white-space:nowrap}
+.sx-q{margin:0 0 6px;font:500 13px/1.45 var(--f-ui);color:var(--ink)}
+.sx-d{margin:0;font:400 11px/1.55 var(--f-mono);color:var(--ink80)}
+.sx-d b{color:var(--ink)}
+.sx-f{margin:14px 0 0;padding:9px 0 0;border-top:1px solid var(--rule);
+  font:400 9.5px/1.5 var(--f-mono);color:var(--ink60);letter-spacing:.04em;text-transform:uppercase}
+
+/* ---- view 2: the balance as a shared object ---- */
+.bal2{margin:16px 0 6px;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px 16px 13px}
+.bal2-k{margin:0 0 10px;font:700 10px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink60)}
+.bal2-row{display:flex;gap:8px}
+.bal2-c{flex:1 1 0;min-width:0}
+.bal2-l{margin:0 0 2px;font:700 9px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink60)}
+.bal2-n{font:800 24px/1.05 var(--f-ui);letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+@media (min-width:560px){.bal2-n{font-size:30px}}
+.bal2-n small{font:700 11px var(--f-mono);letter-spacing:0;margin-left:3px;color:var(--ink60)}
+.bal2-c.fl .bal2-l,.bal2-c.fl .bal2-n{color:var(--brick)}
+.bal2-c.you .bal2-l{color:var(--stamp)}
+.bal2-c.you .bal2-n{color:var(--stamp)}
+.bal2-c.you .bal2-n.idle{color:var(--ink60);font-weight:650}
+.bal2-gap{margin:11px 0 0;padding:9px 0 0;border-top:1px solid var(--rule);
+  font:400 11.5px/1.55 var(--f-mono);color:var(--ink80)}
+.bal2-gap b{color:var(--brick);font-weight:700}
+
+/* the immovable slab everything else negotiates around */
+.slab{background:var(--ink);color:var(--paper);border-radius:10px;padding:14px 16px;margin:0 0 12px}
+.slab-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.slab-n{font:650 15px/1.3 var(--f-ui);color:var(--paper)}
+.slab-amt{font:800 22px/1 var(--f-ui);letter-spacing:-.01em;white-space:nowrap}
+.slab-sub{margin:7px 0 0;font:400 10.5px/1.55 var(--f-mono);color:rgba(242,240,232,.72)}
+.slab-tag{display:inline-block;margin:0 0 8px;font:700 9px var(--f-mono);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--paper);border:1px solid rgba(242,240,232,.5);
+  border-radius:3px;padding:3px 7px 2px}
+
+/* envelopes: the people's budget visible from first paint */
+.env{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:13px 14px 12px;margin:0 0 10px}
+.env-head{display:flex;align-items:baseline;gap:8px}
+.env-n{font:650 15px/1.3 var(--f-ui);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.env-lead{flex:1 1 auto;border-bottom:1px dotted var(--rule);transform:translateY(-3px);min-width:12px}
+.env-amt{font:700 13.5px var(--f-mono);color:var(--ink);white-space:nowrap}
+.env-amt .delta{color:var(--stamp);font-weight:700;margin-left:5px}
+.env-sub{margin:3px 0 9px;font:400 10.5px/1.45 var(--f-mono);color:var(--ink60)}
+.env .a-bar{height:12px}
+.env .a-bar .d{background:var(--brick)} .env .a-bar .p{background:var(--card2)} .env .a-bar .a{background:var(--moss)}
+.env .a-leg{margin-top:6px}
+.env.responded .a-leg{margin-top:19px}
+.env-acts{display:flex;gap:7px;margin-top:11px}
+.env-acts .lbtn{flex:1;min-height:42px;border-radius:7px;cursor:pointer;background:transparent;
+  font:700 12px var(--f-mono);letter-spacing:.06em;display:flex;align-items:center;justify-content:center;gap:6px;
   transition:transform .08s,background .08s,color .08s}
-.l-acts .lbtn small{font:400 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.env-acts .lbtn small{font:400 9.5px var(--f-mono);letter-spacing:.05em;text-transform:uppercase}
 .lbtn.cut,.lbtn.grow{border:2px solid var(--ink);color:var(--ink)}
 .lbtn.keep{border:1.5px solid var(--rule);color:var(--ink60)}
 .lbtn:active{transform:scale(.97)}
 .lbtn.on{background:var(--ink);color:var(--card);border-color:var(--ink)}
 .lbtn.keep.on{background:var(--ink60);border-color:var(--ink60);color:var(--card)}
-.lrow.locked{background:var(--card2)}
-.lrow.locked .l-amt,.lrow.locked .l-name{color:var(--ink60)}
-.l-lock{margin:9px 0 0;font:400 11px var(--f-mono);color:var(--ink60)}
-.l-split{margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);animation:fadein .25s both}
-.l-split .sp-k{margin:0 0 7px;font:700 10px var(--f-mono);letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink60)}
-/* the floor's own draft — earned after you've taken a position on 3 envelopes */
-.floor-verdict{margin:14px 0 0;padding:12px 14px;background:var(--stamp-soft);
-  border:1px solid rgba(75,63,160,.3);border-radius:10px;animation:fadein .3s both}
-.floor-verdict[hidden]{display:none}
-.fv-k{margin:0 0 5px;font:700 10px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--stamp)}
-.fv-t{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink80)}
-.fv-t strong{color:var(--ink);font-weight:650}
+
+/* where the axe falls: diverging bars off the keep-line */
+.axe{margin:2px 0 0}
+.axe-row{display:flex;align-items:center;gap:8px;margin:6px 0}
+.axe-l{flex:0 0 96px;font:700 9.5px var(--f-mono);letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ink80);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.axe-track{flex:1 1 auto;position:relative;height:11px;background:var(--card2);border-radius:2px}
+.axe-track::before{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1.5px;background:var(--ink60)}
+.axe-bar{position:absolute;top:0;bottom:0}
+.axe-bar.cut{right:50%;background:var(--brick);border-radius:2px 0 0 2px}
+.axe-bar.grow{left:50%;background:var(--moss);border-radius:0 2px 2px 0}
+.axe-n{flex:0 0 40px;text-align:right;font:700 10px var(--f-mono);color:var(--ink)}
+.axe-cap{display:flex;justify-content:space-between;margin:7px 0 0;
+  font:700 8.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase}
+.axe-cap .c{color:var(--brick)} .axe-cap .g{color:var(--moss)}
 
 .demo-note{margin:26px 0 0;text-align:center;font:400 10.5px/1.6 var(--f-mono);color:var(--ink60)}
+/* anchored scrolls clear the pinned decision header on mobile */
+@media (max-width:1079px){.band-h,.arg,.env,.bal2,.sx{scroll-margin-top:310px}}
+
+/* ---- full proposal overlay (one idiom: fixed paper, ✕ closes) ---- */
+.ovl{position:fixed;inset:0;background:var(--paper);z-index:80;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.ovl[hidden]{display:none}
+.ovl-hd{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 16px;background:rgba(242,240,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);z-index:5}
+.ovl-k{font:700 10.5px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink60)}
+.ovl-x{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--rule);background:var(--card);
+  color:var(--ink);font-size:17px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.ovl-x:active{transform:scale(.94)}
+.ovl-body{max-width:640px;margin:0 auto;padding:18px 18px 40px}
+.ovl-body h2{font:650 22px/1.34 var(--f-ui);letter-spacing:-.012em;margin:6px 0 14px;color:var(--ink)}
+.ovl-body .brief{color:var(--ink80);font-size:15px;line-height:1.55}
+.ovl-body .brief p{margin:0 0 11px}
+.ovl-body .brief ul{margin:0 0 11px;padding-left:18px}
+.ovl-body .brief li{margin:4px 0}
+.ovl-body .brief strong{color:var(--ink);font-weight:650}
+.ovl-acts{display:flex;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid var(--rule)}
+.ovl-acts .btn{min-height:52px}
+.ovl-cast{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);
+  display:flex;align-items:center;gap:12px}
+.ovl-cast .stamp{position:static;margin:0;animation:none}
+.ovl-cast .c-l{font:400 11px/1.5 var(--f-mono);color:var(--ink60)}
 </style>
 </head>
 <body class="dlb">
   <header>
-    <div class="brand">
-      <span class="citysel">
-        <img class="rose" src="assets/logos/brussels_iris.svg" alt="" width="23" height="23">
-        <span>Brussels</span>
-      </span>
-      <span class="ver">v0.71</span>
-      <span class="previewtag">demo</span>
+    <div class="hd-row">
+      <div class="brand">
+        <span class="citysel">
+          <img class="rose" src="assets/logos/brussels_iris.svg" alt="" width="23" height="23">
+          <span>Brussels</span>
+        </span>
+        <span class="ver">v0.8</span>
+        <span class="previewtag">demo</span>
+      </div>
+      <div class="mass">
+        <span class="mass-pulse" id="massPulse" aria-hidden="true"></span>
+        <span class="mass-line" id="massLine"></span>
+      </div>
+      <div class="hd-tabs">
+        <button class="mp-chip on" id="tab0" type="button" role="tab" aria-selected="true">1 · MP pay −5%</button>
+        <button class="mp-chip" id="tab1" type="button" role="tab" aria-selected="false">2 · Budget 2026</button>
+      </div>
     </div>
-    <div class="hdr-right"></div>
+    <div class="hd-mass-row">
+      <span class="mass-pulse" id="massPulseM" aria-hidden="true"></span>
+      <span class="mass-line" id="massLineM"></span>
+    </div>
   </header>
 
-  <div class="bench-nav">
-    <p class="bench-k">Deliberation bench</p>
-    <div class="bench-tabs" role="tablist">
-      <button class="mp-chip on" id="tab0" type="button" role="tab" aria-selected="true">1 · MP pay −5%</button>
-      <button class="mp-chip" id="tab1" type="button" role="tab" aria-selected="false">2 · Budget 2026</button>
-    </div>
-    <p class="bench-hint">every card opens its own floor · swipe between them</p>
-  </div>
-
   <main class="bench" id="bench">
-
-    <!-- ============ PANEL 1 · the wikisurvey floor ============ -->
+    <!-- ============ VIEW 1 · the argument floor ============ -->
     <section class="panel" id="panel0">
-      <article class="card">
-        <span class="topic">MP pay · Proposal for a decision</span>
-        <h2 class="long">Cut Brussels MPs' parliamentary indemnity by 5% on a permanent basis, applying the reduction not only to the base pay but also to the extra indemnities paid for special functions.</h2>
-        <button class="more" type="button">See more ▾</button>
-        <div class="reveal" hidden>
-          <div class="brief">
-            <p>On the table is a standalone proposal to reduce the indemnity Brussels regional MPs draw by 5% as a lasting measure, and to push that cut further than the parallel cross-party text by also shaving 5% off the top-up indemnities paid to members who hold special functions (such as Bureau seats).</p>
-            <ul>
-              <li><strong>What it changes:</strong> a 5% reduction on the base parliamentary indemnity, framed as permanent rather than time-limited, plus the same 5% applied to special-function indemnities.</li>
-              <li><strong>The money cited:</strong> speakers describe a Brussels MP's net monthly pay as more than 7,000 euros, and special-function holders receiving roughly 2,500 euros extra.</li>
-              <li><strong>The wider frame:</strong> it lands amid a regional budget described as a 1.6 to 1.9 billion euro deficit, with cuts cited to associations (15%) and family allowances.</li>
-              <li><strong>The rub:</strong> whether elected members should cut their own pay deeply and permanently as a credibility signal, or whether a 5% trim risks underpaying the job and should align with other parliaments rather than go furthest.</li>
-            </ul>
-          </div>
+      <div class="pgrid">
+        <aside class="decision"><div class="dx" id="dx0"></div></aside>
+        <div class="floor">
+          <div class="floor-rule"><span>The floor</span></div>
+          <p class="floor-meta">21,384 residents have taken a position · 13 statements · ≈260 responses/h</p>
+          <div id="floor0"></div>
+          <p class="demo-note">A design exploration — not connected to a live room. Figures illustrative.<br>The proposal is a real decision of the Brussels Parliament (A-103, CRI 10 Jul 2025).</p>
         </div>
-        <div class="acts">
-          <button class="btn a" data-v="against">Against</button>
-          <button class="btn ab" data-v="abstain">Abstain</button>
-          <button class="btn f" data-v="for">For</button>
-        </div>
-      </article>
-
-      <div class="floor">
-        <div class="floor-rule"><span>The floor</span></div>
-        <p class="floor-meta">142 residents deliberating · 9 statements · open until the vote</p>
-        <p class="floor-intro"><strong>One idea per slip.</strong> Respond to each statement — the floor's split on it appears only after your own response is in, the same way the room's tally waits for your ballot.</p>
-        <div class="sortrow" id="sortRow">
-          <button class="mp-chip on" data-sort="order" type="button">In order</button>
-          <button class="mp-chip" data-sort="common" type="button">Common ground</button>
-          <button class="mp-chip" data-sort="divided" type="button">Most divided</button>
-        </div>
-        <div id="slips"></div>
-        <div class="composer">
-          <p class="c-k">Add your voice</p>
-          <textarea id="cText" rows="3" maxlength="140" placeholder="One statement others can agree or disagree with — not a reply, not an essay."></textarea>
-          <div class="c-row">
-            <span class="c-note" id="cCount">140 left · filed under your session face</span>
-            <button class="c-send" id="cSend" type="button">File statement</button>
-          </div>
-        </div>
-        <p class="demo-note">A design exploration — this floor is not connected to a live room.<br>The card is a real decision of the Brussels Parliament (CRI, 10 Jul 2025).</p>
+        <aside class="synth"><div class="sx" id="sx0"></div></aside>
       </div>
     </section>
 
-    <!-- ============ PANEL 2 · the ledger floor ============ -->
+    <!-- ============ VIEW 2 · the allocation floor ============ -->
     <section class="panel" id="panel1">
-      <article class="card">
-        <span class="topic">Public finance · Budget</span>
-        <h2 class="long">Adopt the Region's 2026 spending budget, authorising the year's expenditure and the deficit that comes with it.</h2>
-        <button class="more" type="button">See more ▾</button>
-        <div class="reveal" hidden>
-          <div class="brief">
-            <p>This is the spending side of the Region's 2026 budget — the credits each policy area is authorised to spend. Paired with the revenue text, it is the Region's first full initial budget after a long run on provisional twelfths.</p>
-            <ul>
-              <li><strong>It sets the deficit.</strong> The 2026 budget is planned to close in the red, with the SEC/ESR balance fixed at under -957 million euros.</li>
-              <li><strong>From stopgap to plan.</strong> For more than a year the Region spent through monthly provisional twelfths, which guaranteed continuity of public services but rolled deficits forward without a clear direction.</li>
-              <li><strong>Savings land on real programmes.</strong> Debate flagged cuts touching employment measures — reduced subsidised-contract premiums and the end of the Activa scheme among them.</li>
-              <li><strong>The rub:</strong> the only ways to shrink a 1.5-billion-euro deficit are to cut spending or raise revenue — and where the axe falls (employment, social programmes) is exactly what the budget is fought over.</li>
-            </ul>
-          </div>
+      <div class="pgrid">
+        <aside class="decision"><div class="dx" id="dx1"></div></aside>
+        <div class="floor">
+          <div class="floor-rule"><span>The floor</span></div>
+          <p class="floor-meta">12,041 residents drafting the budget · 8 envelopes · figures illustrative</p>
+          <div id="bal2"></div>
+          <div id="floor1"></div>
+          <p class="demo-note">A design exploration — not connected to a live room. Envelope figures are illustrative.<br>The text is a real decision of the Brussels Parliament (CRI, 27 Mar 2026).</p>
         </div>
-        <div class="acts">
-          <button class="btn a" data-v="against">Against</button>
-          <button class="btn ab" data-v="abstain">Abstain</button>
-          <button class="btn f" data-v="for">For</button>
-        </div>
-      </article>
-
-      <div class="floor">
-        <div class="floor-rule"><span>The floor</span></div>
-        <p class="floor-meta">138 residents deliberating · 8 envelopes · figures illustrative</p>
-        <p class="floor-intro"><strong>Where should the axe fall — and where shouldn't it?</strong> Take a position on each envelope: cut it, keep it, or grow it. Each choice moves a notional 10% of the line through your draft balance, and the floor's lean on that envelope appears once yours is in.</p>
-        <div class="bal">
-          <div class="bal-box">
-            <div class="bal-row"><span class="bal-l">Draft 2026 balance</span><span class="bal-n">−957 M€</span></div>
-            <div class="bal-row you"><span class="bal-l">Your version</span><span class="bal-n"><span id="balYou">−957 M€</span> <span class="bal-d" id="balDelta"></span></span></div>
-          </div>
-        </div>
-        <div class="ledger" id="ledger"></div>
-        <div class="floor-verdict" id="floorVerdict" hidden>
-          <p class="fv-k">The floor's draft so far</p>
-          <p class="fv-t">Averaging every resident's positions lands the floor at <strong>−921 M€</strong> — it cuts administration and culture, holds the municipalities, and grows housing and employment even at the price of a slower return to balance.</p>
-        </div>
-        <p class="demo-note">A design exploration — this floor is not connected to a live room.<br>Envelope figures are illustrative; the card is a real decision of the Brussels Parliament (CRI, 27 Mar 2026).</p>
+        <aside class="synth"><div class="sx" id="sx1"></div></aside>
       </div>
     </section>
-
   </main>
 
+  <!-- full proposal: one overlay, content swapped per view -->
+  <div class="ovl" id="ovl" hidden>
+    <div class="ovl-hd"><span class="ovl-k" id="ovlK"></span>
+      <button class="ovl-x" id="ovlX" type="button" aria-label="Close">✕</button></div>
+    <div class="ovl-body" id="ovlBody"></div>
+  </div>
+
 <script>
-/* Demo-only interactions. Everything is local to this page: no rooms, no
-   Firebase, no persistence — reload and the bench resets. */
+/* Demo-only. Floor data is precomputed below (effectively static JSON);
+   only the user's own positions persist (localStorage riot.delib.v1). */
 "use strict";
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString("en-US");
+const fmtM=n=>(n<0?"−":"+")+fmt(Math.abs(Math.round(n)));
 
-/* ---- shared: the ballot's See more + stamp beat (booth idioms, local) ---- */
-$$(".card .more").forEach(b=>b.addEventListener("click",()=>{
-  const r=b.parentElement.querySelector(".reveal");
-  r.hidden=!r.hidden;
-  b.textContent=r.hidden?"See more ▾":"See less ▴";
-}));
-const STAMP_TXT={for:"FOR",against:"AGAINST",abstain:"ABSTAIN"};
-$$(".card .acts .btn").forEach(b=>b.addEventListener("click",()=>{
-  const card=b.closest(".card");
-  if(card.classList.contains("voted"))return;
-  card.classList.add("voted");
-  let row=card.querySelector(".stamprow");
-  if(!row){row=document.createElement("div");row.className="stamprow";
-    card.insertBefore(row,card.querySelector(".acts"));}
-  const st=document.createElement("div");
-  st.className="stamp";st.textContent=STAMP_TXT[b.dataset.v];
-  row.appendChild(st);
-}));
+/* =================== precomputed floor =================== */
+const PAY={
+  kicker:"A-103 · Proposal for a decision",
+  shortTitle:"Cut MPs' pay 5% — permanent, top-ups included.",
+  headline:"Cut Brussels MPs' parliamentary indemnity by 5% on a permanent basis, applying the reduction not only to the base pay but also to the extra indemnities paid for special functions.",
+  tally:{against:5983,abstain:1929,for:13472},
+  brief:`<p>On the table is a standalone proposal to reduce the indemnity Brussels regional MPs draw by 5% as a lasting measure, and to push that cut further than the parallel cross-party text by also shaving 5% off the top-up indemnities paid to members who hold special functions (such as Bureau seats).</p>
+<ul><li><strong>What it changes:</strong> a 5% reduction on the base parliamentary indemnity, framed as permanent rather than time-limited, plus the same 5% applied to special-function indemnities.</li>
+<li><strong>The money cited:</strong> speakers describe a Brussels MP's net monthly pay as more than 7,000 euros, and special-function holders receiving roughly 2,500 euros extra.</li>
+<li><strong>The wider frame:</strong> it lands amid a regional budget described as a 1.6 to 1.9 billion euro deficit, with cuts cited to associations (15%) and family allowances.</li>
+<li><strong>The rub:</strong> whether elected members should cut their own pay deeply and permanently as a credibility signal, or whether a 5% trim risks underpaying the job and should align with other parliaments rather than go furthest.</li></ul>`
+};
+/* d/p/a = disagree/pass/agree counts; xF/xA = % agreeing among headline
+   For-voters / Against-voters (the cross-tabulation). band: cg | fl | nf */
+const STMTS=[
+ {id:"s1",band:"cg",time:"2h ago",d:505,p:421,a:3286,xF:84,xA:79,
+  text:"I'd trade the whole 5% gesture for the parliament publishing what it spends on itself, line by line."},
+ {id:"s3",band:"cg",time:"4h ago",d:576,p:474,a:2336,xF:73,xA:62,
+  text:"If MPs take 5% as a credibility signal, ministers should take 10% — responsibility should scale."},
+ {id:"s2",band:"cg",time:"6h ago",d:413,p:442,a:2093,xF:74,xA:66,
+  text:"Whatever the size, tie their pay to a public formula — the median Brussels wage — so it never needs a heroic gesture again."},
+ {id:"s7",band:"cg",time:"9h ago",d:457,p:361,a:1589,xF:69,xA:61,
+  text:"Start with the €2,500 top-ups for special functions — leadership should feel it before backbenchers do."},
+ {id:"s4",band:"fl",time:"3h ago",d:1601,p:586,a:1717,xF:31,xA:67,
+  text:"5% changes nothing for a €1.6 billion deficit. This is symbolism standing in for a real budget debate."},
+ {id:"s5",band:"fl",time:"5h ago",d:1662,p:506,a:1444,xF:28,xA:71,
+  text:"Good pay is what lets a nurse or a teacher afford to run for office. Cut it and only the rich can sit."},
+ {id:"s9",band:"fl",time:"8h ago",d:706,p:399,a:1966,xF:81,xA:33,
+  text:"€7,000 net a month in a region cutting family allowances is indefensible, whatever the workload."},
+ {id:"s6",band:"fl",time:"7h ago",d:1155,p:302,a:1293,xF:63,xA:24,
+  text:"If the cut is temporary it will quietly lapse the moment we stop watching. Permanent, or it's theatre."},
+ {id:"s8",band:"fl",time:"10h ago",d:738,p:378,a:776,xF:52,xA:27,
+  text:"Align with the Chamber and Flanders instead of competing to cut deepest — races to the bottom are also theatre."},
+ {id:"s12",band:"nf",time:"47 min ago",d:34,p:39,a:114,
+  text:"The end-of-term departure bonus is the real scandal — 5% of salary is noise next to it."},
+ {id:"s10",band:"nf",time:"1h ago",d:58,p:45,a:111,
+  text:"Pay them per attendance and published work, not per seat — presence is measurable."},
+ {id:"s11",band:"nf",time:"3h ago",d:123,p:51,a:167,
+  text:"Cut the number of MPs from 89 to 60 before touching anyone's pay — fewer seats, same work."},
+ {id:"s13",band:"nf",time:"22 min ago",d:32,p:22,a:42,
+  text:"Means-test nothing, cut nothing: freeze indemnities until the deficit is under 1%."}
+];
 
-/* ---- bench navigation: tabs ↔ native horizontal snap ---- */
-const bench=$("#bench"), tabs=[$("#tab0"),$("#tab1")];
+const BUD={
+  kicker:"CRI 27 Mar 2026 · Budget ordinance",
+  shortTitle:"Adopt the 2026 spending budget — and its −957 M€ deficit.",
+  headline:"Adopt the Region's 2026 spending budget, authorising the year's expenditure and the deficit that comes with it.",
+  tally:{against:9804,abstain:2167,for:7118},
+  brief:`<p>This is the spending side of the Region's 2026 budget — the credits each policy area is authorised to spend. Paired with the revenue text, it is the Region's first full initial budget after a long run on provisional twelfths.</p>
+<ul><li><strong>It sets the deficit.</strong> The 2026 budget is planned to close in the red, with the SEC/ESR balance fixed at under -957 million euros.</li>
+<li><strong>From stopgap to plan.</strong> For more than a year the Region spent through monthly provisional twelfths, which guaranteed continuity of public services but rolled deficits forward without a clear direction.</li>
+<li><strong>Savings land on real programmes.</strong> Debate flagged cuts touching employment measures — reduced subsidised-contract premiums and the end of the Activa scheme among them.</li>
+<li><strong>The rub:</strong> the only ways to shrink a 1.5-billion-euro deficit are to cut spending or raise revenue — and where the axe falls (employment, social programmes) is exactly what the budget is fought over.</li></ul>`
+};
+const BASE=-957;
+const ENVS=[
+ {id:"stib",name:"Mobility & public transport",amt:1550,c:1612,k:5341,g:5047,
+  sub:"STIB operations + investment"},
+ {id:"emp",name:"Employment & local economy",amt:800,c:1054,k:2711,g:8237,
+  sub:"where the 2026 cuts land — Activa ended, ACS premiums reduced"},
+ {id:"hous",name:"Housing",amt:150,c:786,k:2118,g:9096,
+  sub:"investment budget; ~50,000 households on the social-housing list"},
+ {id:"env",name:"Environment & climate",amt:450,c:2295,k:5109,g:4596,
+  sub:"Bruxelles Environnement programmes"},
+ {id:"mun",name:"Support to the 19 municipalities",amt:600,c:3544,k:6210,g:2246,
+  sub:"general dotations"},
+ {id:"cult",name:"Culture & heritage",amt:60,c:7612,k:3101,g:1287,
+  sub:"incl. Kanal–Centre Pompidou"},
+ {id:"adm",name:"Administration & e-government",amt:400,c:8309,k:2866,g:825,
+  sub:"running the Region itself"}
+];
+/* the floor's draft: majority position per envelope, ±10% notional */
+function floorDraft(){
+  let bal=BASE;
+  for(const e of ENVS){
+    const top=Math.max(e.c,e.k,e.g);
+    if(top===e.c)bal+=e.amt*.1; else if(top===e.g)bal-=e.amt*.1;
+  }
+  return bal;   // −1,006: the room chooses a deeper deficit
+}
+
+/* =================== my positions (localStorage) =================== */
+let MY={pay:{vote:null,resp:{},stmt:null},bud:{vote:null,lines:{}}};
+try{const raw=localStorage.getItem("riot.delib.v1");if(raw)MY=Object.assign(MY,JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem("riot.delib.v1",JSON.stringify(MY));}catch(e){}}
+
+/* =================== decision fixture =================== */
+const VOTE_TXT={for:"FOR",against:"AGAINST",abstain:"ABSTAIN"};
+function tallyBits(t,my){
+  const tot=t.against+t.abstain+t.for+(my?1:0);
+  const n={against:t.against+(my==="against"?1:0),abstain:t.abstain+(my==="abstain"?1:0),for:t.for+(my==="for"?1:0)};
+  const pc={against:100*n.against/tot,abstain:100*n.abstain/tot,for:100*n.for/tot};
+  const lead=pc.for>=pc.against?{w:"for",pc:pc.for}:{w:"against",pc:pc.against};
+  // pin sits at the midpoint of the user's segment
+  const mid=my==="against"?pc.against/2:my==="abstain"?pc.against+pc.abstain/2:pc.against+pc.abstain+pc.for/2;
+  return {tot,n,pc,lead,mid};
+}
+function renderDX(view){
+  const D=view===0?PAY:BUD, key=view===0?"pay":"bud";
+  const my=MY[key].vote;
+  const b=tallyBits(D.tally,my);
+  const pin=my?`<span class="youpin" style="left:${b.mid}%"><span class="yp-a"></span><span class="yp-t">you</span></span>`:"";
+  const acts=my
+    ? `<div class="dx-cast"><span class="stamp">${VOTE_TXT[my]}</span>
+       <span class="c-l">your ballot is one of the ${fmt(b.n[my])} ${my==="abstain"?"abstaining":my}</span></div>`
+    : `<div class="dx-acts">
+        <button class="btn a" data-vote="against">Against</button>
+        <button class="btn ab" data-vote="abstain">Abstain</button>
+        <button class="btn f" data-vote="for">For</button></div>`;
+  $("#dx"+view).innerHTML=`
+    <div class="dx-krow"><p class="dx-k">${D.kicker}</p>
+      <button class="dx-read" data-read="${view}" type="button">Proposal ▸</button></div>
+    <h2 class="dx-t">${D.shortTitle}</h2>
+    <p class="dx-sk">The room's standing position · ${fmt(b.tot)} ballots</p>
+    <div class="dx-big"><span class="n">${Math.round(b.lead.pc)}<small>%</small></span>
+      <span class="w ${b.lead.w}">${b.lead.w}</span></div>
+    <div class="dx-bar">
+      <i class="sa" style="width:${b.pc.against}%"></i><i class="sb" style="width:${b.pc.abstain}%"></i><i class="sf" style="width:${b.pc.for}%"></i>
+      ${pin}
+    </div>
+    <p class="dx-leg"${my?' style="margin-top:21px"':""}><b>${Math.round(b.pc.against)}%</b> against · <b>${Math.round(b.pc.abstain)}%</b> abstain · <b>${Math.round(b.pc.for)}%</b> for</p>
+    ${acts}`;
+}
+document.addEventListener("click",e=>{
+  const v=e.target.closest("[data-vote]");
+  if(v){
+    const view=v.closest(".panel")?.id==="panel1"||v.closest(".ovl-body")?.dataset.view==="1"?1:0;
+    const key=view===0?"pay":"bud";
+    if(!MY[key].vote){MY[key].vote=v.dataset.vote;save();renderDX(view);renderOvl();
+      if(view===0)renderSX0();else renderSX1();}
+    return;
+  }
+  const r=e.target.closest("[data-read]");
+  if(r)openOvl(Number(r.dataset.read));
+});
+
+/* =================== overlay =================== */
+let ovlView=null;
+function openOvl(view){ovlView=view;renderOvl();$("#ovl").hidden=false;}
+function renderOvl(){
+  if(ovlView===null)return;
+  const D=ovlView===0?PAY:BUD,key=ovlView===0?"pay":"bud",my=MY[key].vote;
+  $("#ovlK").textContent=D.kicker;
+  $("#ovlBody").dataset.view=String(ovlView);
+  $("#ovlBody").innerHTML=`<h2>${D.headline}</h2><div class="brief">${D.brief}</div>`+(my
+    ? `<div class="ovl-cast"><span class="stamp">${VOTE_TXT[my]}</span><span class="c-l">Your ballot is cast. The floor stays open.</span></div>`
+    : `<div class="ovl-acts">
+        <button class="btn a" data-vote="against">Against</button>
+        <button class="btn ab" data-vote="abstain">Abstain</button>
+        <button class="btn f" data-vote="for">For</button></div>`);
+}
+$("#ovlX").addEventListener("click",()=>{$("#ovl").hidden=true;ovlView=null;});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#ovl").hidden){$("#ovl").hidden=true;ovlView=null;}});
+
+/* =================== view 1 · argument floor =================== */
+function tier(t){return t>=3000?"t3":t>=1500?"t2":"t1"}
+function argBar(d,p,a,mine,extra){
+  const t=d+p+a;
+  const pd=100*d/t,pp=100*p/t,pa=100*a/t;
+  const mid=mine==="d"?pd/2:mine==="p"?pd+pp/2:pd+pp+pa/2;
+  const pin=mine?`<span class="youpin" style="left:${mid}%"><span class="yp-a"></span><span class="yp-t">you</span></span>`:"";
+  return `<div class="a-bar">
+    <i class="d" style="width:${pd}%"></i><i class="p" style="width:${pp}%"></i><i class="a" style="width:${pa}%"></i>${pin}</div>
+  <p class="a-leg"><b>${Math.round(pd)}%</b> disagree · <b>${Math.round(pp)}%</b> pass · <b>${Math.round(pa)}%</b> agree${extra||""}</p>`;
+}
+function stmtHTML(s){
+  const mine=MY.pay.resp[s.id];
+  const d=s.d+(mine==="d"?1:0),p=s.p+(mine==="p"?1:0),a=s.a+(mine==="a"?1:0);
+  const tot=d+p+a;
+  let nuance="";
+  if(s.band==="fl"&&s.xF!==undefined){
+    const note=s.xF>50&&s.xA>50?"":
+      s.xF>s.xA
+       ? `Carried by the For camp; the Against camp holds out.`
+       : `Even residents voting <b>Against</b> the cut back this more than For-voters do.`;
+    nuance=`<div class="a-x"><p class="ax-k">The camps on this</p>
+      <div class="ax-row"><span class="ax-l">For-voters</span>
+        <span class="ax-track"><span class="ax-fill" style="width:${s.xF}%"></span></span>
+        <span class="ax-n">${s.xF}% agree</span></div>
+      <div class="ax-row"><span class="ax-l">Against-voters</span>
+        <span class="ax-track"><span class="ax-fill" style="width:${s.xA}%"></span></span>
+        <span class="ax-n">${s.xA}% agree</span></div>
+      ${note?`<p class="ax-note">${note}</p>`:""}</div>`;
+  }
+  if(s.band==="cg"&&s.xF!==undefined)
+    nuance=`<p class="a-cc">carries across camps — ${s.xF}% of For-voters and ${s.xA}% of Against-voters agree</p>`;
+  return `<div class="arg ${tier(tot)}${mine?" responded":""}" data-id="${s.id}">
+    <div class="arg-top"><span class="a-time">${s.time}</span><span class="a-mass">${fmt(tot)} responses</span></div>
+    <p class="a-text">${s.text}</p>
+    ${argBar(d,p,a,mine)}
+    ${nuance}
+    <div class="a-acts">
+      <button class="btn a" data-r="d">Disagree</button>
+      <button class="btn ab" data-r="p">Pass</button>
+      <button class="btn f" data-r="a">Agree</button></div>
+  </div>`;
+}
+const BANDS=[
+ {key:"cg",cls:"cg",name:"Common ground",sub:"what both camps sign — high agreement among For- and Against-voters alike"},
+ {key:"fl",cls:"fl",name:"The fault line",sub:"where the room splits sharpest — by overall division or by camp"},
+ {key:"nf",cls:"nf",name:"Still forming",sub:"fresh voices, not yet weighed — respond before mass decides their fate"}
+];
+function renderFloor0(){
+  const html=BANDS.map(b=>{
+    let list=STMTS.filter(s=>s.band===b.key);
+    if(b.key!=="nf")list=[...list].sort((x,y)=>(y.d+y.p+y.a)-(x.d+x.p+x.a));
+    let inner=list.map(stmtHTML).join("");
+    if(b.key==="nf"){
+      if(MY.pay.stmt)
+        inner=`<div class="arg t1 mine"><div class="arg-top"><span class="a-time">just now</span><span class="a-mass">1 response — yours</span></div>
+          <p class="a-text">${MY.pay.stmt}</p>
+          <p class="a-minenote">On the floor. Fresh voices are weighed over the next hours.</p></div>`+inner;
+      inner+=`<div class="composer"><p class="c-k">Add your voice</p>
+        <textarea id="cText" rows="3" maxlength="140" placeholder="One statement others can agree or disagree with — not a reply, not an essay."></textarea>
+        <div class="c-row"><span class="c-note" id="cCount">140 left · filed anonymously</span>
+        <button class="c-send" id="cSend" type="button">File statement</button></div></div>`;
+    }
+    return `<div class="band-h ${b.cls}"><span class="band-n">${b.name}</span>
+      <span class="band-sub">${b.sub}</span></div><div class="band-wrap">${inner}</div>`;
+  }).join("");
+  $("#floor0").innerHTML=html;
+  const c=$("#cText");
+  if(c)c.addEventListener("input",()=>{$("#cCount").textContent=`${140-c.value.length} left · filed anonymously`;});
+}
+$("#floor0").addEventListener("click",e=>{
+  const b=e.target.closest("[data-r]");
+  if(b){
+    const id=b.closest(".arg").dataset.id;
+    if(!MY.pay.resp[id]){MY.pay.resp[id]=b.dataset.r;save();renderFloor0();}
+    return;
+  }
+  if(e.target.closest("#cSend")){
+    const v=$("#cText").value.trim();
+    if(v){MY.pay.stmt=v;save();renderFloor0();}
+  }
+});
+
+/* =================== view 1 · synthesis =================== */
+function renderSX0(){
+  const b=tallyBits(PAY.tally,MY.pay.vote);
+  const byAgree=[...STMTS].filter(s=>s.band!=="nf").sort((x,y)=>y.a-x.a).slice(0,3);
+  const tension=STMTS.find(s=>s.id==="s5"), cc=STMTS.find(s=>s.id==="s1");
+  $("#sx0").innerHTML=`
+    <p class="sx-k">Reading the room</p>
+    <p class="sx-line">${fmt(b.tot)} residents.<br><b class="${b.lead.w}">${Math.round(b.lead.pc)}% ${b.lead.w==="for"?"For":"Against"}.</b></p>
+    <p class="sx-sub">${Math.round(b.pc.against)}% against · ${Math.round(b.pc.abstain)}% abstain — the cut itself is not the argument. What follows is.</p>
+    <div class="sx-sec"><p class="sx-h">Top worries by mass</p>
+      ${byAgree.map(s=>`<div class="sx-w"><span class="q">“${s.text}”</span><span class="m">${fmt(s.a)} agree</span></div>`).join("")}
+    </div>
+    <div class="sx-sec"><p class="sx-h hot">The sharpest tension</p>
+      <p class="sx-q">“${tension.text}”</p>
+      <p class="sx-d"><b>${Math.round(100*tension.a/(tension.d+tension.p+tension.a))}% agree v. ${Math.round(100*tension.d/(tension.d+tension.p+tension.a))}% disagree</b> — and the camps invert it: ${tension.xF}% of For-voters agree, ${tension.xA}% of Against-voters do.</p>
+    </div>
+    <div class="sx-sec"><p class="sx-h cc">What they agree on even when they don't</p>
+      <p class="sx-q">“${cc.text}”</p>
+      <p class="sx-d"><b>${cc.xF}% of For-voters · ${cc.xA}% of Against-voters.</b> Spending transparency is the actionable demand under the pay fight.</p>
+    </div>
+    <p class="sx-f">A-103 · CRI 10 Jul 2025 · the floor, Brussels · figures illustrative</p>`;
+}
+
+/* =================== view 2 · allocation floor =================== */
+function myDelta(){
+  let d=0;
+  for(const e of ENVS){
+    const c=MY.bud.lines[e.id];
+    if(c==="cut")d+=e.amt*.1; else if(c==="grow")d-=e.amt*.1;
+  }
+  return d;
+}
+function renderBal(){
+  const fd=floorDraft();
+  const touched=Object.keys(MY.bud.lines).length;
+  const you=touched?BASE+myDelta():null;
+  $("#bal2").innerHTML=`<div class="bal2">
+    <p class="bal2-k">The balance · SEC 2026 · M€</p>
+    <div class="bal2-row">
+      <div class="bal2-c"><p class="bal2-l">Official draft</p><span class="bal2-n">−957</span></div>
+      <div class="bal2-c fl"><p class="bal2-l">The floor's draft</p><span class="bal2-n">${fmtM(fd).replace("+","")}</span></div>
+      <div class="bal2-c you"><p class="bal2-l">Your draft</p><span class="bal2-n${you===null?" idle":""}">${you===null?"—":fmtM(you).replace("+","")}</span></div>
+    </div>
+    <p class="bal2-gap">The floor's draft runs <b>${fmt(Math.abs(Math.round(fd-BASE)))} M€ deeper</b> into the red: the room buys housing and employment with cuts to administration and culture that don't cover them.</p>
+  </div>`;
+}
+function envHTML(e){
+  const mine=MY.bud.lines[e.id];
+  const c=e.c+(mine==="cut"?1:0),k=e.k+(mine==="keep"?1:0),g=e.g+(mine==="grow"?1:0);
+  const tot=c+k+g;
+  const delta=mine==="cut"?`−${Math.round(e.amt*.1)}`:mine==="grow"?`+${Math.round(e.amt*.1)}`:"";
+  const pd=100*c/tot,pp=100*k/tot,pa=100*g/tot;
+  const mid=mine==="cut"?pd/2:mine==="keep"?pd+pp/2:mine==="grow"?pd+pp+pa/2:null;
+  const pin=mid!==null?`<span class="youpin" style="left:${mid}%"><span class="yp-a"></span><span class="yp-t">you</span></span>`:"";
+  return `<div class="env${mine?" responded":""}" data-id="${e.id}">
+    <div class="env-head"><span class="env-n">${e.name}</span><span class="env-lead"></span>
+      <span class="env-amt">${e.amt.toLocaleString("en").replace(/,/g," ")} M€${delta?`<span class="delta">${delta}</span>`:""}</span></div>
+    <p class="env-sub">${e.sub}</p>
+    <div class="a-bar"><i class="d" style="width:${pd}%"></i><i class="p" style="width:${pp}%"></i><i class="a" style="width:${pa}%"></i>${pin}</div>
+    <p class="a-leg"><b>${Math.round(pd)}%</b> cut · <b>${Math.round(pp)}%</b> keep · <b>${Math.round(pa)}%</b> grow · ${fmt(tot)} positions</p>
+    <div class="env-acts">
+      <button class="lbtn cut${mine==="cut"?" on":""}" data-c="cut">− <small>cut 10%</small></button>
+      <button class="lbtn keep${mine==="keep"?" on":""}" data-c="keep">＝ <small>keep</small></button>
+      <button class="lbtn grow${mine==="grow"?" on":""}" data-c="grow">＋ <small>grow 10%</small></button></div>
+  </div>`;
+}
+function renderFloor1(){
+  $("#floor1").innerHTML=`
+    <div class="slab"><span class="slab-tag">🔒 Fixed</span>
+      <div class="slab-row"><span class="slab-n">Debt interest</span><span class="slab-amt">500 M€</span></div>
+      <p class="slab-sub">Interest on the existing debt — cited at more than three times the housing investment. Not votable. Every envelope below negotiates around this slab.</p>
+    </div>`+ENVS.map(envHTML).join("");
+}
+$("#panel1").addEventListener("click",e=>{
+  const b=e.target.closest("[data-c]");
+  if(!b)return;
+  const id=b.closest(".env").dataset.id;
+  if(MY.bud.lines[id]===b.dataset.c)return;
+  MY.bud.lines[id]=b.dataset.c;save();
+  renderFloor1();renderBal();
+});
+
+/* =================== view 2 · synthesis =================== */
+function renderSX1(){
+  const fd=floorDraft();
+  const leans=ENVS.map(e=>({name:e.name,lean:100*(e.g-e.c)/(e.c+e.k+e.g)}))
+    .sort((x,y)=>y.lean-x.lean);
+  const maxL=Math.max(...leans.map(l=>Math.abs(l.lean)));
+  const uncertain=[...leans].sort((x,y)=>Math.abs(x.lean)-Math.abs(y.lean))[0];
+  const b=tallyBits(BUD.tally,MY.bud.vote);
+  $("#sx1").innerHTML=`
+    <p class="sx-k">Reading the room</p>
+    <p class="sx-line">${fmt(12041)} residents redrew the budget.<br><b class="against">They chose a deeper deficit.</b></p>
+    <p class="sx-sub">On the ordinance itself: ${Math.round(b.pc.against)}% against, ${Math.round(b.pc.for)}% for — the room rejects the budget as drafted.</p>
+    <div class="sx-sec"><p class="sx-h hot">The gap</p>
+      <p class="sx-d"><b>−957 M€</b> official · <b>${fmtM(fd).replace("+","")} M€</b> the floor — <b>${fmt(Math.abs(Math.round(fd-BASE)))} M€ apart.</b> The cuts the room wants (administration, culture) don't pay for what it grows (housing, employment) — and it accepts that.</p>
+    </div>
+    <div class="sx-sec"><p class="sx-h">Where the axe falls — and where it doesn't</p>
+      <div class="axe">
+        ${leans.map(l=>{
+          const w=Math.abs(l.lean)/maxL*48;
+          return `<div class="axe-row"><span class="axe-l">${l.name}</span>
+            <span class="axe-track"><span class="axe-bar ${l.lean<0?"cut":"grow"}" style="width:${w}%"></span></span>
+            <span class="axe-n">${l.lean<0?"−":"+"}${Math.round(Math.abs(l.lean))}</span></div>`;
+        }).join("")}
+        <div class="axe-cap"><span class="c">◂ net cut</span><span class="g">net grow ▸</span></div>
+      </div>
+    </div>
+    <div class="sx-sec"><p class="sx-h">The most uncertain line</p>
+      <p class="sx-q">${uncertain.name}</p>
+      <p class="sx-d">The closest cut-v-grow split on the floor (net ${uncertain.lean<0?"−":"+"}${Math.round(Math.abs(uncertain.lean))}). This is the envelope the room hasn't decided.</p>
+    </div>
+    <p class="sx-f">Budget 2026 · CRI 27 Mar 2026 · the floor, Brussels · figures illustrative</p>`;
+}
+
+/* =================== view tabs & presence =================== */
+const bench=$("#bench"),tabs=[$("#tab0"),$("#tab1")];
 tabs.forEach((t,i)=>t.addEventListener("click",()=>{
   bench.scrollTo({left:i*bench.clientWidth,behavior:"smooth"});
 }));
@@ -298,195 +739,26 @@ bench.addEventListener("scroll",()=>{
   });
 });
 
-/* ================= PANEL 1 · wikisurvey ================= */
-/* Counts are illustrative. d/p/a = disagree / pass / agree. */
-const STATEMENTS=[
- {id:"s1",face:"🦉",name:"chouette_21",time:"2h ago",d:22,p:18,a:102,
-  text:"Cutting their own pay is the only message that costs them something — everything else is a press release."},
- {id:"s2",face:"🪴",name:"begonia_07",time:"3h ago",d:14,p:31,a:97,
-  text:"I'd trade the whole 5% gesture for the parliament publishing what it spends on itself, line by line."},
- {id:"s3",face:"🚲",name:"velo_brux",time:"5h ago",d:26,p:21,a:95,
-  text:"€7,000 net a month in a region cutting family allowances is indefensible, whatever the workload."},
- {id:"s4",face:"🌻",name:"zonnebloem",time:"5h ago",d:29,p:25,a:88,
-  text:"If the cut is temporary it will quietly lapse the moment we stop watching. Permanent, or it's theatre."},
- {id:"s5",face:"🔧",name:"sleutel_9",time:"7h ago",d:31,p:30,a:81,
-  text:"Start with the €2,500 top-ups for special functions — leadership should feel it before backbenchers do."},
- {id:"s6",face:"🎻",name:"alto_1060",time:"8h ago",d:33,p:36,a:73,
-  text:"If MPs take 5% as a credibility signal, ministers should take 10% — responsibility should scale."},
- {id:"s7",face:"🦊",name:"renard_53",time:"9h ago",d:61,p:17,a:64,
-  text:"5% changes nothing for a €1.6 billion deficit. This is symbolism standing in for a real budget debate."},
- {id:"s8",face:"📚",name:"lezer_04",time:"11h ago",d:70,p:14,a:58,
-  text:"Good pay is what lets a nurse or a teacher afford to run for office. Cut it and only the rich can sit."},
- {id:"s9",face:"🌧",name:"drache_bxl",time:"12h ago",d:52,p:40,a:47,
-  text:"Align with the Chamber and Flanders instead of competing to cut deepest — races to the bottom are also theatre."}
-];
-const myResp={};           // id -> "d" | "p" | "a"
-let mySlip=null;           // the statement you filed, if any
-let sortMode="order";
+/* presence as mass: slow ticks, no fake precision */
+let here=1962,fresh=14;
+function massText(short){return short
+  ? `<b>${fmt(here)}</b> here · ≈260/h · <b>${fresh}</b> new in the last 2 min`
+  : `<b>${fmt(here)}</b> on the floor now · ≈260 responses/h · <b>${fresh}</b> new positions in the last 2 min`;}
+function renderMass(pulse){
+  $("#massLine").innerHTML=massText(false);
+  $("#massLineM").innerHTML=massText(true);
+  if(pulse)for(const id of ["massPulse","massPulseM"]){
+    const el=$("#"+id);el.classList.remove("tick");void el.offsetWidth;el.classList.add("tick");
+  }
+}
+renderMass(false);
+setInterval(()=>{fresh=8+Math.floor(Math.random()*14);renderMass(true);},15000);
+setInterval(()=>{here+=1+Math.floor(Math.random()*3);renderMass(false);},26000);
 
-const R_TXT={d:"DISAGREE",p:"PASS",a:"AGREE"};
-function pct(n,t){return Math.round(100*n/t)}
-function splitHTML(s,mine){
-  const t=s.d+s.p+s.a;
-  return `<div class="s-split">
-    <p class="sp-k">The floor on this one · ${t} responses</p>
-    ${[["d","Disagree"],["p","Pass"],["a","Agree"]].map(([k,lab])=>`
-      <div class="sp-row${mine===k?" mine":""}">
-        <span class="sp-l">${lab}</span>
-        <span class="sp-track"><span class="sp-fill" style="width:${pct(s[k],t)}%"></span></span>
-        <span class="sp-n">${s[k]}</span>
-      </div>`).join("")}
-  </div>`;
-}
-function slipHTML(s){
-  const mine=myResp[s.id];
-  return `<div class="slip${mine?" voted":""}" data-id="${s.id}">
-    <div class="slip-meta">
-      <span class="face">${s.face}</span><span class="s-name">${s.name}</span>
-      <span class="s-time">${s.time}</span>
-    </div>
-    <p class="s-text">${s.text}</p>
-    ${mine?`<div class="stamprow"><div class="stamp sm">${R_TXT[mine]}</div></div>`:""}
-    <div class="s-acts">
-      <button class="btn a" data-r="d">Disagree</button>
-      <button class="btn ab" data-r="p">Pass</button>
-      <button class="btn f" data-r="a">Agree</button>
-    </div>
-    ${mine?splitHTML(s,mine):""}
-  </div>`;
-}
-function mySlipHTML(){
-  return `<div class="slip minework">
-    <div class="slip-meta">
-      <span class="face me">🙂</span><span class="s-name">you</span>
-      <span class="s-time">just now</span>
-    </div>
-    <p class="s-text">${mySlip}</p>
-    <p class="s-note">Filed to the floor — responses gather as others deliberate.</p>
-  </div>`;
-}
-function sortedStatements(){
-  const arr=[...STATEMENTS];
-  if(sortMode==="common")arr.sort((x,y)=>y.a/(y.d+y.p+y.a)-x.a/(x.d+x.p+x.a));
-  if(sortMode==="divided")arr.sort((x,y)=>Math.abs(x.a-x.d)-Math.abs(y.a-y.d));
-  return arr;
-}
-function renderSlips(){
-  $("#slips").innerHTML=(mySlip?mySlipHTML():"")+sortedStatements().map(slipHTML).join("");
-}
-$("#slips").addEventListener("click",e=>{
-  const b=e.target.closest("[data-r]");if(!b)return;
-  const slip=b.closest(".slip"), id=slip.dataset.id;
-  if(myResp[id])return;
-  myResp[id]=b.dataset.r;
-  const s=STATEMENTS.find(x=>x.id===id);
-  s[myResp[id]]+=1;                       // your response joins the counts
-  slip.classList.add("voted");
-  const row=document.createElement("div");row.className="stamprow";
-  slip.insertBefore(row,slip.querySelector(".s-acts"));
-  const st=document.createElement("div");st.className="stamp sm";st.textContent=R_TXT[myResp[id]];
-  row.appendChild(st);
-  slip.insertAdjacentHTML("beforeend",splitHTML(s,myResp[id]));
-});
-$("#sortRow").addEventListener("click",e=>{
-  const b=e.target.closest("[data-sort]");if(!b)return;
-  sortMode=b.dataset.sort;
-  $$("#sortRow .mp-chip").forEach(c=>c.classList.toggle("on",c===b));
-  renderSlips();
-});
-const cText=$("#cText");
-cText.addEventListener("input",()=>{
-  $("#cCount").textContent=`${140-cText.value.length} left · filed under your session face`;
-});
-$("#cSend").addEventListener("click",()=>{
-  const v=cText.value.trim();if(!v)return;
-  mySlip=v;cText.value="";
-  $("#cCount").textContent="140 left · filed under your session face";
-  renderSlips();
-  $("#slips").scrollIntoView({behavior:"smooth",block:"start"});
-});
-renderSlips();
-
-/* ================= PANEL 2 · ledger bench ================= */
-/* Envelope figures are illustrative orders of magnitude, not the ordinance's
-   own credit lines. cut/keep/grow = the floor's counts on each envelope. */
-const LINES=[
- {id:"debt",name:"Debt interest",amt:500,locked:true,
-  sub:"fixed charge on the existing debt — not votable"},
- {id:"stib",name:"Mobility & public transport",amt:1550,cut:18,keep:62,grow:58,
-  sub:"STIB operations + investment"},
- {id:"emp",name:"Employment & local economy",amt:800,cut:12,keep:31,grow:95,
-  sub:"where the 2026 cuts land — Activa ended, ACS premiums reduced"},
- {id:"hous",name:"Housing",amt:150,cut:9,keep:24,grow:105,
-  sub:"investment budget; ~50,000 households on the social-housing list"},
- {id:"env",name:"Environment & climate",amt:450,cut:26,keep:58,grow:54,
-  sub:"Bruxelles Environnement programmes"},
- {id:"mun",name:"Support to the 19 municipalities",amt:600,cut:41,keep:72,grow:25,
-  sub:"general dotations"},
- {id:"cult",name:"Culture & heritage",amt:60,cut:88,keep:36,grow:14,
-  sub:"incl. Kanal–Centre Pompidou"},
- {id:"adm",name:"Administration & e-government",amt:400,cut:96,keep:33,grow:9,
-  sub:"running the Region itself"}
-];
-const BASE=-957;
-const myLine={};            // id -> "cut" | "keep" | "grow"
-function fmt(n){return (n<0?"−":"+")+Math.abs(Math.round(n))+" M€"}
-function lineDelta(l){
-  const c=myLine[l.id];
-  return c==="cut"?+l.amt*.1:c==="grow"?-l.amt*.1:0;   // cuts improve the balance
-}
-function lSplitHTML(l,mine){
-  const t=l.cut+l.keep+l.grow;
-  return `<div class="l-split">
-    <p class="sp-k">The floor on this envelope · ${t} positions</p>
-    ${[["cut","Cut"],["keep","Keep"],["grow","Grow"]].map(([k,lab])=>`
-      <div class="sp-row${mine===k?" mine":""}">
-        <span class="sp-l">${lab}</span>
-        <span class="sp-track"><span class="sp-fill" style="width:${pct(l[k],t)}%"></span></span>
-        <span class="sp-n">${l[k]}</span>
-      </div>`).join("")}
-  </div>`;
-}
-function renderLedger(){
-  $("#ledger").innerHTML=LINES.map(l=>{
-    const mine=myLine[l.id];
-    const d=lineDelta(l);
-    const amt=`${l.amt.toLocaleString("en").replace(/,/g," ")} M€`+
-      (d?` <span class="l-delta">${mine==="cut"?"−":"+"}${Math.round(l.amt*.1)}</span>`:"");
-    return `<div class="lrow${l.locked?" locked":""}" data-id="${l.id}">
-      <div class="l-head"><span class="l-name">${l.name}</span><span class="l-lead"></span><span class="l-amt">${amt}</span></div>
-      <p class="l-sub">${l.sub}</p>
-      ${l.locked
-        ? `<p class="l-lock">🔒 fixed — cited in debate at ~500 M€ for 2026, more than three times the housing investment</p>`
-        : `<div class="l-acts">
-            <button class="lbtn cut${mine==="cut"?" on":""}" data-c="cut">− <small>cut 10%</small></button>
-            <button class="lbtn keep${mine==="keep"?" on":""}" data-c="keep">＝ <small>keep</small></button>
-            <button class="lbtn grow${mine==="grow"?" on":""}" data-c="grow">＋ <small>grow 10%</small></button>
-          </div>`+(mine?lSplitHTML(l,mine):"")}
-    </div>`;
-  }).join("");
-}
-function renderBalance(){
-  const delta=LINES.reduce((s,l)=>s+lineDelta(l),0);
-  const you=BASE+delta;
-  $("#balYou").textContent=`${you<0?"−":"+"}${Math.abs(Math.round(you))} M€`;
-  const d=$("#balDelta");
-  d.textContent=delta?`(${fmt(delta)})`:"(untouched)";
-  d.className="bal-d "+(delta>0?"up":delta<0?"down":"");
-  $("#floorVerdict").hidden=Object.keys(myLine).length<3;
-}
-$("#ledger").addEventListener("click",e=>{
-  const b=e.target.closest("[data-c]");if(!b)return;
-  const id=b.closest(".lrow").dataset.id;
-  const l=LINES.find(x=>x.id===id);
-  const prev=myLine[id];
-  if(prev===b.dataset.c)return;
-  if(prev)l[prev]-=1;                      // you changed your mind: move your position
-  myLine[id]=b.dataset.c;
-  l[myLine[id]]+=1;
-  renderLedger();renderBalance();
-});
-renderLedger();renderBalance();
+/* boot */
+renderDX(0);renderDX(1);
+renderFloor0();renderSX0();
+renderBal();renderFloor1();renderSX1();
 </script>
 </body>
 </html>
