@@ -98,7 +98,9 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
   injected elements must never reuse root/layout class names.)
 - **Room strip**: overlapping 28px faces (emoji or mono initials, me =
   violet ring, max 7 + `+N`), activity ring ticks (`facetick`, compositor
-  only — transform/opacity), mono label `N here · room X%`.
+  only — transform/opacity), mono label `N here` — presence only, no
+  percentages (the room's average progress shows solely as the progress
+  bar's violet tick; a number that needs explaining dies).
 - **Progress row**: 3px rule + ink fill + 2px violet room-average tick +
   mono `n / total`.
 - **Split panel** (`.split`): mono uppercase kicker, three label/track/count
