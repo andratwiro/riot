@@ -415,16 +415,17 @@ function blendCoord(votes,key){
   return (key!=null && P.byKey && P.byKey[key])||null;
 }
 function userCoord(){ return blendCoord(answers,"me"); }
-function toPctIn(c,mx){
+function toPctIn(c,mx,raw){
   // parties span [minx,maxx] → the inner [pad,1-pad] band; the pad margin is
-  // live space for ballots that land OUTSIDE the party frame. Clamp so a far
-  // dot pins to the map edge instead of rendering off-screen.
-  const pad=.17, cl=v=>Math.max(2,Math.min(98,v));
+  // live space for ballots that land OUTSIDE the party frame. raw=true keeps
+  // the unclamped percentage — the TRUE position; layoutMap() pixel-clamps at
+  // render and marks the dot, so "beyond the edge" never reads as a position.
+  const pad=.17, cl=v=>raw?v:Math.max(2,Math.min(98,v));
   const nx=(c[0]-mx.minx)/((mx.maxx-mx.minx)||1);
   const ny=(c[1]-mx.miny)/((mx.maxy-mx.miny)||1);
   return [cl((pad+nx*(1-2*pad))*100),cl((pad+(1-ny)*(1-2*pad))*100)];
 }
-function toPct(c){ return toPctIn(c,MX); }
+function toPct(c){ return toPctIn(c,MX,true); }
 // presence publishes a CANONICAL position so a peer's dot doesn't depend on which
 // projection this device is experimenting with: the Room frame — its axes are
 // the parties + the shared aggregate, identical on every device.
@@ -433,6 +434,93 @@ function publishCoord(){
   const uc=P.place?P.place(answers):(P.byKey&&P.byKey.me)||null;
   return uc?toPctIn(uc,P.mx):null;
 }
+
+/* ---- the layout pass: positions are data — never silently displace a dot ----
+   Runs over the live DOM after every render/morph/peer update and on resize,
+   reading each dot's TRUE position from data-tx/ty (unclamped %), in pixels:
+   · parties + YOU whose discs heavily occlude fan out evenly on a tight ring
+     around their shared spot. An anchor ring stays at the true point (violet
+     when YOU is in the cluster — sharing YOU's coordinate is the headline
+     fact, never buried) and every displaced disc keeps a 1px hairline back to
+     ITS OWN true coordinate, so near-ties stay exact. Fan order is DOM order
+     (parties then YOU) — deterministic, so projection morphs don't reshuffle.
+   · every dot (peers too) clamps fully inside the panel (pad ≥ its radius);
+     a dot whose true point lies beyond the band gets a flat bar pressed
+     against that border — reads "at or beyond this edge", not a position.
+   Geometry is recomputed from scratch each call: nothing accumulates. */
+let _mapLayoutRetry=0;
+function layoutMap(){
+  const el=$("#resultMap"); if(!el||!el.innerHTML) return;
+  const W=el.clientWidth, H=el.clientHeight;
+  if(!W||!H){   // first paint can run before doneVis() unhides the reveal — measure next frame
+    if(_mapLayoutRetry<5){_mapLayoutRetry++;requestAnimationFrame(layoutMap);}
+    return;
+  }
+  _mapLayoutRetry=0;
+  const dots=[];
+  el.querySelectorAll(".mdot,.peer").forEach(d=>{
+    const tx=parseFloat(d.dataset.tx), ty=parseFloat(d.dataset.ty);
+    if(!isFinite(tx)||!isFinite(ty)) return;
+    const peer=d.classList.contains("peer"), me=d.classList.contains("me");
+    dots.push({d,me,peer,tx:tx/100*W,ty:ty/100*H,r:peer?8:me?21:16,fx:null,fy:null,line:null});
+  });
+  if(!dots.length) return;
+  const geo=[];                                      // svg: hairlines, anchors, edge bars
+  // union-find the party/YOU discs whose centres sit deep inside each other
+  const main=dots.filter(o=>!o.peer);
+  const uf=main.map((_,i)=>i), find=i=>uf[i]===i?i:(uf[i]=find(uf[i]));
+  for(let i=0;i<main.length;i++)for(let j=i+1;j<main.length;j++)
+    if(Math.hypot(main[i].tx-main[j].tx,main[i].ty-main[j].ty)<.6*(main[i].r+main[j].r))
+      uf[find(i)]=find(j);
+  const clusters={};
+  main.forEach((o,i)=>{const k=find(i);(clusters[k]=clusters[k]||[]).push(o);});
+  for(const k in clusters){
+    const c=clusters[k]; if(c.length<2) continue;
+    let ax=0,ay=0; c.forEach(o=>{ax+=o.tx;ay+=o.ty;}); ax/=c.length; ay/=c.length;
+    const rmax=Math.max(...c.map(o=>o.r));
+    // ring radius: a 2px gap between neighbouring discs, never hugging the anchor
+    const rho=Math.max((rmax+1)/Math.sin(Math.PI/c.length), rmax+7);
+    const a0=Math.atan2(H/2-ay, W/2-ax);             // first slot leans inward
+    const anchors=[];                                // distinct true points (near-ties keep both)
+    c.forEach((o,i)=>{
+      const th=a0+i*2*Math.PI/c.length;
+      o.fx=ax+rho*Math.cos(th); o.fy=ay+rho*Math.sin(th);
+      o.line={t:"line",x1:o.tx,y1:o.ty};             // x2/y2 land after the clamp
+      geo.push(o.line);
+      if(!anchors.some(a=>Math.hypot(a.x-o.tx,a.y-o.ty)<2)) anchors.push({x:o.tx,y:o.ty,me:false});
+      if(o.me) anchors.forEach(a=>{if(Math.hypot(a.x-o.tx,a.y-o.ty)<2)a.me=true;});
+    });
+    anchors.forEach(a=>geo.push({t:"anchor",...a}));
+  }
+  for(const o of dots){
+    const lo=o.r+4;
+    const x=Math.max(lo,Math.min(W-lo,o.fx??o.tx)), y=Math.max(lo,Math.min(H-lo,o.fy??o.ty));
+    // edge bars mark the TRUE point overflowing, not a fan offset pushed back in
+    if(o.tx<lo-1)   geo.push({t:"bar",x:0,y:y-6,w:3,h:12});
+    if(o.tx>W-lo+1) geo.push({t:"bar",x:W-3,y:y-6,w:3,h:12});
+    if(o.ty<lo-1)   geo.push({t:"bar",x:x-6,y:0,w:12,h:3});
+    if(o.ty>H-lo+1) geo.push({t:"bar",x:x-6,y:H-3,w:12,h:3});
+    o.d.classList.toggle("pin", o.tx<lo-1||o.tx>W-lo+1||o.ty<lo-1||o.ty>H-lo+1);
+    o.d.classList.toggle("pinb", o.me && o.ty>H-lo+1);   // "you" tag flips above
+    if(o.line){o.line.x2=x;o.line.y2=y;}
+    o.d.style.left=(x/W*100)+"%"; o.d.style.top=(y/H*100)+"%";
+  }
+  let svg=el.querySelector(".mlay");
+  if(!svg){
+    svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
+    svg.setAttribute("class","mlay");
+    svg.style.animationDelay=(120+(PARTIES.length+1)*90+320)+"ms";  // after YOU lands
+    el.insertBefore(svg, el.querySelector(".mdot"));
+  }
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  svg.innerHTML=geo.map(g=>
+    g.t==="line"  ? `<line x1="${g.x1}" y1="${g.y1}" x2="${g.x2}" y2="${g.y2}"/>`
+   :g.t==="anchor"? `<circle class="anchor${g.me?" you":""}" cx="${g.x}" cy="${g.y}" r="${g.me?4.5:3.5}"/>`
+                  : `<rect class="ebar" x="${g.x}" y="${g.y}" width="${g.w}" height="${g.h}" rx="1.5"/>`
+  ).join("");
+}
+let _mapRsz=null;
+window.addEventListener("resize",()=>{clearTimeout(_mapRsz);_mapRsz=setTimeout(layoutMap,120);});
 
 /* ---- The reveal map: parties stagger in, YOU lands last (stamp-style), peers fade in behind. ---- */
 function renderResultMap(){
@@ -446,7 +534,7 @@ function renderResultMap(){
     const inner=p.her?`<span class="mc her"></span>`
               : p.logo?`<span class="mc bg-${p.token}"><img src="${p.logo}" alt="${esc(p.name)}"></span>`
                      :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
-    return `<div class="mdot" style="left:${l}%;top:${t}%;--d:${120+i*90}ms" title="${esc(p.name)}">${inner}</div>`;
+    return `<div class="mdot" data-tx="${l}" data-ty="${t}" style="left:${l}%;top:${t}%;--d:${120+i*90}ms" title="${esc(p.name)}">${inner}</div>`;
   }).join("");
   const uc=userCoord();
   let userDot="";
@@ -455,10 +543,11 @@ function renderResultMap(){
     const em=(identity&&identity.emoji)||"";
     const inner=em?`<span class="mc you">${esc(em)}</span><span class="mtag">you</span>`
                   :`<span class="mc fb">YOU</span>`;
-    userDot=`<div class="mdot me" style="left:${l}%;top:${t}%;--d:${120+PARTIES.length*90+260}ms">${inner}</div>`;}
+    userDot=`<div class="mdot me" data-tx="${l}" data-ty="${t}" style="left:${l}%;top:${t}%;--d:${120+PARTIES.length*90+260}ms">${inner}</div>`;}
   el.innerHTML=`<span class="maptag">${esc(projDef(MAP_PROJ).cap)}</span>
     <div class="axis x"></div><div class="axis y"></div>${dots}${userDot}`;
   renderPeers();
+  layoutMap();
   renderProjPicker();
 }
 // projection switch / row change: same dots, new coordinates — they morph, never re-enter
@@ -470,11 +559,13 @@ function repositionMap(){
   el.querySelectorAll(".mdot:not(.me)").forEach((d,i)=>{
     if(!COORD[i])return;
     const [l,t]=toPct(COORD[i]);
+    d.dataset.tx=l; d.dataset.ty=t;
     d.style.left=l+"%"; d.style.top=t+"%";
   });
   const me=el.querySelector(".mdot.me"), uc=userCoord();
-  if(me&&uc){const [l,t]=toPct(uc); me.style.left=l+"%"; me.style.top=t+"%";}
+  if(me&&uc){const [l,t]=toPct(uc); me.dataset.tx=l; me.dataset.ty=t; me.style.left=l+"%"; me.style.top=t+"%";}
   renderPeers();
+  layoutMap();
 }
 function renderProjPicker(){
   const el=$("#mapProj"); if(!el) return;

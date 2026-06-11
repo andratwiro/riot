@@ -160,6 +160,15 @@ SVG fallback, dispose on overlay close). Party hexes appear only as data
 - Layout moves: `cubic-bezier(.2,.7,.3,1)`, 280–550ms. Press: `:active`
   scale .92–.99. Card-advance timing: exit animation ↔ the ~260ms timeout in
   `react()` stay in sync.
+- **Map positions are data** (`layoutMap` in map.js — runs after every map
+  render/morph/peer update + resize): never silently displace a dot. Tied or
+  heavily-occluding party+YOU discs fan on a tight ring around their true
+  point — anchor ring AT the true point (violet when YOU shares it: that
+  co-location is the headline fact, never buried) + a 1px hairline from each
+  displaced disc to its OWN true coordinate, so near-ties stay exact. Every
+  dot (peers too) clamps fully inside the panel (pad ≥ its radius); a true
+  point beyond the edge gets a flat bar pressed against that border. New dot
+  kinds must carry `data-tx/ty` (true, unclamped %) or the pass skips them.
 - The reveal map is the payoff: dots stagger in via `--d` animation-delay
   (parties ~90ms apart, YOU last). YOU = the user's join emoji in a paper disc
   with a violet ring + a "you" paper pill below (`.mc.you`/`.mtag`; falls back

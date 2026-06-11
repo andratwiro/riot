@@ -281,6 +281,19 @@ html.reveal #done{position:static;overflow:visible}
   animation:dotin .5s both;animation-delay:var(--d,0ms)}
 .peer.emo{width:auto;height:auto;border:0;border-radius:0;opacity:.45;
   font:400 13px/1 var(--f-ui);filter:grayscale(.35)}
+/* the honesty layer (layoutMap): positions are data. Hairlines + anchor rings
+   sit at TRUE coordinates under fanned-out tied dots (violet anchor = YOU
+   shares that spot); flat edge bars mark a dot clamped in from beyond the
+   border. Above the peer texture, below the dots. */
+.mlay{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;
+  animation:mfade .5s both;animation-delay:var(--d,0ms)}
+@keyframes mfade{0%{opacity:0}100%{opacity:1}}
+.mlay line{stroke:var(--ink60);stroke-width:1;opacity:.65}
+.mlay .anchor{fill:none;stroke:var(--ink60);stroke-width:1.5}
+.mlay .anchor.you{stroke:var(--stamp);stroke-width:2}
+.mlay .ebar{fill:var(--ink60);opacity:.8}
+/* YOU pinned to the bottom edge: the "you" tag flips above the disc */
+.mdot.me.pinb .mtag{top:auto;bottom:calc(100% + 3px)}
 /* projection bench — one scrollable row of mono chips under the map: the same
    vote distances flattened eight ways; active = ink. Dots morph on switch. */
 #mapProj{width:100%;max-width:600px;margin:-6px 0 14px}
@@ -539,6 +552,9 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 .stamp.official{flex-direction:column;gap:1px;transform:rotate(4deg);
   font-size:19px;padding:6px 14px 4px;animation-name:stampoff}
 .stamp.official small{font:700 8.5px var(--f-mono);letter-spacing:.22em;text-transform:uppercase;opacity:.85}
+/* the margin subtitle — the real head-count under the verdict word, in the
+   minutes' typewritten lowercase (overrides the stamp's uppercase) */
+.stamp.official .st-m{font:400 9px var(--f-mono);letter-spacing:.06em;text-transform:none;opacity:.8;margin-top:1px}
 .stamp.official.st-app{color:var(--moss);border-color:var(--moss);box-shadow:inset 0 0 0 1.5px var(--moss)}
 .stamp.official.st-rej{color:var(--brick);border-color:var(--brick);box-shadow:inset 0 0 0 1.5px var(--brick)}
 @keyframes stampoff{0%{transform:rotate(4deg) scale(1.8);opacity:0}

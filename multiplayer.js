@@ -76,9 +76,11 @@ function renderPeersInto(el){
       d.style.setProperty("--d",(60+i*40)+"ms");
       el.appendChild(d);
     }
+    d.dataset.tx=c[0]; d.dataset.ty=c[1];          // TRUE pct — layoutMap pixel-clamps
     d.style.left=c[0]+"%"; d.style.top=c[1]+"%";
   }
   el.querySelectorAll(".peer").forEach(n=>{if(!seen.has(n.dataset.pid))n.remove();});
+  if(typeof layoutMap==="function") layoutMap();
 }
 function renderPeers(){
   const rm=document.getElementById("resultMap"); if(rm && rm.innerHTML) renderPeersInto(rm);
