@@ -1,0 +1,478 @@
+{
+ "note": "Weimar 29–33 — the Reichstag's final years, hand-authored over the verified fact base in research.json (which records sources, confidence and rejected candidates). Copy rules: docs/CARD_STYLE.md (strict). Tally conventions: real head-count where one survives; all-zero = unanimous/by acclamation; null = the count did not survive (verdict alone). Absent canon tokens = walkouts, boycotts, annulled mandates, splits with no documented majority.",
+ "authored": "2026-06-12",
+ "cards": [
+  {
+   "id": "DE-1929-freiheitsgesetz",
+   "session_code": "RT4",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1929-11-30",
+   "title": "Gesetz gegen die Versklavung des Deutschen Volkes („Freiheitsgesetz“)",
+   "type": "Volksbegehren bill",
+   "proposed_by": "Reichsausschuß für das deutsche Volksbegehren (DNVP / NSDAP / Stahlhelm)",
+   "doc_ref": "4. Wahlperiode · 30 Nov 1929",
+   "topic": "War guilt",
+   "headline": "Renounce Germany's signed admission of guilt for the World War, demand the foreign troops still on the Rhine leave now — and send to prison for treason any minister who signs Germany up to keep paying the war's victors.",
+   "source_brief": "A citizens' petition — signed by just over the **one-tenth of voters** the constitution requires — forces this bill onto parliament's floor. It declares the Versailles treaty's war-guilt clause (the line where Germany accepted blame for the World War) renounced, demands the occupied Rhineland be cleared, rejects any new payment burdens — and, the sharpest edge, makes it **high treason, punished with prison**, for ministers and officials to co-operate in collecting reparations, the payments Germany owes the war's victors.\n\n- **The money behind it:** Germany has paid since the defeat, and the freshly negotiated schedule now on Europe's table would keep the payments running **until 1988**.\n- **The legal edge is the treason paragraph:** the rest of the bill declares; this part criminalises. Ministers doing their treaty duty today would be defendants tomorrow.\n- **Rejecting it doesn't end it:** under the constitution, a petition bill the chamber votes down goes automatically to a **national referendum** — the campaign continues either way.\n- **The handle:** for — eleven years of paying for a dictated peace is enough, and only a hard stop forces real renegotiation; against — a state cannot threaten its own government with prison for honouring signed agreements, and a one-sided default invites credit collapse and sanctions, not relief.",
+   "deep_facts": "- Brought under Article 73 of the constitution: a Volksbegehren (citizens' initiative) signed by **10.02%** of eligible voters between 16 and 29 October 1929 — just above the 10% threshold that obliges the Reichstag to vote on the bill (de.wikipedia, Volksentscheid gegen den Young-Plan).\n- The bill's first paragraphs renounce the war-guilt acknowledgement resting on **Article 231** of the Treaty of Versailles, demand the immediate evacuation of the occupied areas, and repudiate the acceptance of new reparation burdens; **§4** threatens ministers and officials who sign such obligations with Zuchthaus — penitentiary — for treason (de.wikipedia, Volksentscheid gegen den Young-Plan; Verhandlungen des Reichstags, Bd. 426).\n- The renegotiated reparations schedule agreed by the international experts' conference in 1929 stretches annuities to a final instalment in **1988** (LeMO/DHM, Young-Plan).\n- Allied troops have stood in the Rhineland since the armistice; the Versailles timetable allows the occupation to run until **1935** (LeMO/DHM; de.wikipedia, Young-Plan).\n- The chamber debated the bill on 29–30 November 1929 and took the second reading **paragraph by paragraph** (weimarer-republik.net, November 1929; Verhandlungen des Reichstags, Bd. 426).\n- A bill rejected by the Reichstag after a successful Volksbegehren proceeds to a binding national referendum; because this bill is treated as touching the constitution, passing it there requires the consent of a **majority of all eligible voters**, not just of those who turn out (de.wikipedia, Volksentscheid gegen den Young-Plan).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The operative paragraph is the criminal one: the declarations Germany cannot enforce unilaterally, but §4 would chill every future negotiation by making the negotiators legally disposable — the target is the conference table, not the courtroom.\n- The petition route guarantees a second act: whatever the chamber does, a nationwide referendum campaign follows, so the floor vote is partly a stage — a device to force every deputy onto a public list of 'fulfilment politicians' for the posters.\n- The campaign fuses respectable nationalism's money and newspapers with the street movements' energy; the legitimacy can flow the other way, too — the louder, radical partner stands to pocket the respectability.\n- A default by declaration would not stop the payments machinery, which runs on international credit and enforcement; what it would certainly change is domestic politics, by redefining treaty compliance as betrayal of the nation.",
+   "raw_outcome": "Zweite Lesung des Gesetzentwurfs „Gesetz gegen die Versklavung des Deutschen Volkes“ („Freiheitsgesetz“), paragraphenweise Einzelabstimmung",
+   "source_url": "https://de.wikipedia.org/wiki/Volksentscheid_gegen_den_Young-Plan",
+   "outcome": "rejected",
+   "tally": null,
+   "party_votes_canon": {
+    "SPD": "against",
+    "Z": "against",
+    "BVP": "against",
+    "DDP": "against",
+    "DVP": "against",
+    "DNVP": "for",
+    "NSDAP": "for",
+    "KPD": "against"
+   },
+   "verification": {
+    "vote_record": "Second reading, 30 November 1929, taken paragraph by paragraph and rejected 'mit großer Mehrheit' (Gonschior chronicle 1928–30, verbatim: 'Der Reichstag lehnt mit großer Mehrheit den Entwurf des Gesetzes gegen die Versklavung des deutschen Volkes ab.'). NO numeric division count is retrievable from any accessible secondary source — all say 'large majority'; the exact figures sit in Verhandlungen des Reichstags Bd. 426 (30.11.1929), which was not pulled. tally is therefore shipped as null per deck rule: the viewer shows the verdict alone, never a guessed count. Seat arithmetic (research.json) puts the 'for' camp at roughly 80–90 of 491 (NSDAP 12 + DNVP ≤72 + völkisch splinters).",
+    "party_breakdown": "SPD, Z, DDP, DVP against — the Müller grand-coalition parties plus the SPD spoke and voted against (high; weimarer-republik.net November 1929; de.wikipedia Volksentscheid gegen den Young-Plan: government speakers Curtius/DVP and Eßer/Z led the attack). BVP against (upgraded from research.json's medium by own check 2026-06-12): the BVP sat in the Müller Reich government and, like the other Berlin coalition parties, called on its supporters to boycott the Volksbegehren — Historisches Lexikon Bayerns (Young-Plan article): 'Die BVP rief wie die übrigen Parteien der Berliner Koalition ihre Anhänger auf, das Volksbegehren zu boykottieren' (its objection was tactical, not principled — Schäffer said the party also rejected the 'Kriegsschuldlüge'). DNVP for = the documented majority faction: the faction voted for the first three paragraphs; on the contested §4 treason clause 52 of 72 members voted yes per de/en Wikipedia — Gonschior's chronicle says 53 of 72 (minor source split, both verified 2026-06-12); 12 deputies (incl. Treviranus, Schlange-Schöningen) left the party over it. NSDAP for (high). KPD against is the ONE direction not explicitly pinned: no fetched source states the KPD floor vote on this bill; it rests on the party's documented hostility to the Hugenberg bill and referendum plus seat arithmetic (the for-camp of ~80–90 leaves no room for the KPD's 54) — confidence medium, inherited from research.json and not improved by own searches (de.wikipedia and LeMO confirm only that the KPD opposed the Young Plan AND refused to support the referendum).",
+    "own_checks": "Re-verified 2026-06-12: BVP direction (Historisches Lexikon Bayerns, Young-Plan 1929/30-1932 — coalition membership + boycott call), DNVP §4 split (de.wikipedia Volksentscheid gegen den Young-Plan: 'Von 72 Fraktionsmitgliedern stimmten nur 52 mit Ja'; Gonschior: 53 of 72), the paragraph-by-paragraph second-reading procedure and the 'large majority' rejection (Gonschior; weimarer-republik.net). KPD floor vote: searched, not found stated explicitly anywhere accessible — flagged medium above.",
+    "caveats": "Weak tally (none survives in accessible sources — by design shipped null). DNVP internal yes-count on §4 wobbles 52 vs 53 of 72 across sources; the split itself is solid. KPD 'against' is inference-grade (medium).",
+    "notes": "Aftermath (kept out of copy): the mandatory referendum followed on 22 December 1929 and failed utterly (about 13.8% support of the required 50% of all eligible voters), but the campaign gave the radical right a national stage and the DNVP moderates' exodus began here.",
+    "sources": [
+     "https://de.wikipedia.org/wiki/Volksentscheid_gegen_den_Young-Plan",
+     "https://en.wikipedia.org/wiki/1929_German_Young_Plan_referendum",
+     "https://www.weimarer-republik.net/528-0-November-1929.html",
+     "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+     "https://www.dhm.de/lemo/kapitel/weimarer-republik/innenpolitik/volksentscheid-gegen-den-young-plan-1929",
+     "https://www.historisches-lexikon-bayerns.de/Lexikon/Young-Plan,_1929/30-1932"
+    ]
+   }
+  },
+  {
+   "id": "DE-1930-young-plan",
+   "session_code": "RT4",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1930-03-12",
+   "title": "Gesetz über das Abkommen von Den Haag vom 20. Januar 1930 (Young-Plan-Gesetze)",
+   "type": "Ratification law",
+   "proposed_by": "Reichsregierung (Kabinett Müller II)",
+   "doc_ref": "4. Wahlperiode · 12 Mar 1930",
+   "topic": "Reparations",
+   "headline": "Ratify the new war-payments deal struck at The Hague: yearly payments to the war's victors are cut, the foreign supervisor of German finances goes home, occupying troops leave the Rhineland five years early — and the payment schedule runs until 1988.",
+   "source_brief": "Since the defeat Germany has paid reparations — payments for the war's damage — under a plan supervised from outside: a foreign agent sits over German transfers, with railways and industry pledged as security. The settlement on the table replaces all of it: **lower yearly payments**, transfers handled by Germany itself through a new international bank, **foreign supervision abolished** — and the occupying troops leave the Rhineland **this summer**, five years before the treaty obliges them to.\n\n- **The relief is real:** the first years cost about **a third less** than the current schedule, and the controls — the foreign payments agent, the pledged railways — are wound up.\n- **The price is time:** the schedule runs to **1988**, fifty-nine more years. And the old plan's safety valve shrinks: a fixed share of each year's payment becomes unconditional — owed in full even in a slump.\n- **The handle:** for — pay less, govern your own money, get your own soil back, all without firing a shot; against — signing accepts the defeat's bill for two more generations, with its hardest core due precisely when crisis makes paying impossible.",
+   "deep_facts": "- Drawn up by an international committee of financial experts meeting in Paris from February 1929, and finalised at the Hague conferences of August 1929 and January 1930; the ratification law covers the agreement signed at The Hague on **20 January 1930** (LeMO/DHM, Young-Plan; de.wikipedia, Young-Plan).\n- Annuities average about **2.0 billion Reichsmark**, starting near 1.7 billion and rising over the schedule, against the standard annuity of **2.5 billion** under the current Dawes arrangement; the final instalment falls due in **1988** (LeMO/DHM, Young-Plan; de.wikipedia, Young-Plan).\n- Foreign controls end: the office of the Agent General for Reparation Payments is abolished and the securities pledged on the state railways and industry are released; a newly created **Bank for International Settlements** in Basel handles the transfers (LeMO/DHM, Young-Plan; de.wikipedia, Young-Plan).\n- Transfer protection narrows: under the Dawes arrangement payments abroad could be suspended in a crisis; under the new plan a fixed unconditional tranche of each annuity must be paid regardless, and only the remainder can be postponed, for at most two years (de.wikipedia, Young-Plan).\n- In exchange the Rhineland occupation ends by **30 June 1930** — the Versailles treaty would have allowed it to run to 1935 (LeMO/DHM, Jahreschronik 1930; Historisches Lexikon Bayerns, Young-Plan).\n- The package before the chamber comprises several laws taken in the same sitting; this is the third reading, after committee passage and a second reading the previous day (Gonschior, Chronik 1928–30; weimarer-republik.net, März 1930).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The settlement trades amount for certainty: lower annuities are bought by surrendering the suspension valve. The design works if the economy grows — in a slump, the unconditional core bites hardest exactly when paying is hardest.\n- The early evacuation converts a financial schedule into a sovereignty prize that can be shown to voters now; the payments stretch two generations. The gain is front-loaded to this government, the bill is inherited by every one that follows.\n- Ending foreign supervision does not end enforcement — it relocates it. The discipline moves from occupation and pledged railways to the credit markets: a Germany that must keep borrowing abroad polices its own compliance.\n- Sixty-year schedules assume sixty years of political continuity. The plan's deepest wager is not financial but constitutional: that the state signing it will still be there, and still willing, in 1988.",
+   "raw_outcome": "Dritte Lesung der Gesetze über das Abkommen von Den Haag vom 20. Januar 1930 (Young-Plan-Gesetze)",
+   "source_url": "https://www.dhm.de/lemo/jahreschronik/1930",
+   "outcome": "approved",
+   "tally": {
+    "for": 270,
+    "against": 192,
+    "abstain": 0
+   },
+   "party_votes_canon": {
+    "SPD": "for",
+    "Z": "for",
+    "BVP": "against",
+    "DDP": "for",
+    "DVP": "for",
+    "DNVP": "against",
+    "NSDAP": "against",
+    "KPD": "against"
+   },
+   "verification": {
+    "vote_record": "Third reading, 12 March 1930, adopted 270:192 per LeMO/DHM Jahreschronik 1930 ('Mit 270 zu 192 Stimmen billigt der Reichstag in dritter Lesung den Young-Plan.'). The package was several laws voted separately in the same sitting and counts varied slightly per law: Gonschior's chronicle records 265:192 with 3 abstentions for one of them ('Mit 265 (u.a. Mehrheit des Zentrum) zu 192 (u.a. BVP) Stimmen bei 3 Enthaltungen...') — per research.json this likely belongs to a companion law; 270:192:0 is the standard cited figure and is shipped. Date: 12 March 1930 (Hindenburg signed 13 March); de.wikipedia's Young-Plan article gives '23. März' for the 270:192 vote — an outlier against LeMO/Gonschior/EN day-chronicle, disregarded per research.json.",
+    "party_breakdown": "SPD, Z, DDP, DVP for — the Müller grand coalition carried it (high; LeMO; Gonschior). Z 'for' = majority of the faction (Gonschior notes 'Mehrheit des Zentrum' in the yes column — some Zentrum dissent existed). DNVP, NSDAP, KPD against (high; the 'national opposition' plus KPD; multiple sources). BVP AGAINST — this CORRECTS research.json, which carried BVP 'for' at high confidence: own check 2026-06-12 found Historisches Lexikon Bayerns (Young-Plan 1929/30-1932) stating the BVP faction abstained in the second reading and in the third reading on 12 March '11 der 17 Abgeordneten' voted against, with only one BVP deputy (Michael Bayersdörfer) voting yes; Gonschior's chronicle independently lists the BVP among the 192 nays ('zu 192 (u.a. BVP)'). Canon = the documented majority faction direction: against (11 of 17). Coalition arithmetic stays consistent without the BVP: SPD 153 + Z 61 + DDP 25 + DVP 45 = 284, covering 270 yes with normal absences and the Zentrum minority dissent.",
+    "own_checks": "Re-verified 2026-06-12: BVP direction (Historisches Lexikon Bayerns — second-reading abstention, third reading 11/17 against, 1 for; corroborated by Gonschior's '(u.a. BVP)' in the nay column) — research.json's BVP 'for' is overturned and the discrepancy documented here. Tally 270:192 (LeMO) vs 265:192:3 (Gonschior) re-confirmed as a per-law variance within the same sitting.",
+    "caveats": "The 270:192 figure is the standard citation but the sitting took several divisions; the BVP's internal 11/17 split means 5 of its 17 deputies were absent or abstaining — the canon token carries the documented majority only. Zentrum yes = faction majority, not unanimity.",
+    "notes": "Aftermath (kept out of copy): Hindenburg signed on 13 March 1930 despite the right's campaign for refusal. Fifteen days later the grand coalition shattered over unemployment-insurance financing; Müller resigned 27 March 1930 and the first presidential cabinet followed — the Reichstag never produced a working majority again.",
+    "sources": [
+     "https://www.dhm.de/lemo/jahreschronik/1930",
+     "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+     "https://www.dhm.de/lemo/kapitel/weimarer-republik/aussenpolitik/young-plan-1929",
+     "https://www.historisches-lexikon-bayerns.de/Lexikon/Young-Plan,_1929/30-1932",
+     "https://de.wikipedia.org/wiki/Young-Plan",
+     "https://en.wikipedia.org/wiki/March_1930"
+    ]
+   }
+  },
+  {
+   "id": "DE-1930-deckungsvorlage",
+   "session_code": "RT4",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1930-07-16",
+   "title": "Deckungsvorlage der Reichsregierung (Gesetzentwurf zur Deckung des Reichshaushalts 1930)",
+   "type": "Government bill",
+   "proposed_by": "Reichsregierung (Kabinett Brüning I)",
+   "doc_ref": "4. Wahlperiode · 16 Jul 1930",
+   "topic": "Austerity",
+   "headline": "Close the Reich's budget hole with austerity: create a new tax on every adult, take a slice off public-sector salaries, raise the wage deduction for unemployment insurance, and cut state spending — instead of borrowing more.",
+   "source_brief": "The slump has blown a hole in the Reich budget: tax receipts are falling while millions draw unemployment support. The government — in office without a parliamentary majority since spring — proposes to cover the deficit by **taking more and spending less**. And it has told the chamber plainly what follows a no: the same measures by **presidential emergency decree** under Article 48, the president's power to rule without parliament.\n\n- **Who pays:** every adult, through a new per-head 'citizen tax'; public servants, through a special levy on their salaries; insured workers, through unemployment contributions rising to **4.5%** of wages.\n- **Why now:** the unemployment-insurance fund is bleeding and the Reich must keep topping it up; without cover, the deficit rolls forward as short-term debt the Reich already finds hard and expensive to raise.\n- **The handle:** for — balance the books through parliament, on parliament's terms and with parliament's amendments, rather than hand the budget pen to the palace; against — the package reaches for wage-earners, the insured and flat per-head taxes while property and big capital go lightly, and squeezing a contracting economy can deepen the very slump that opened the hole.",
+   "deep_facts": "- The cover package combines new revenue and cuts: a **Bürgersteuer** (a per-head citizen tax, graduated by income, levied for the municipalities), a special solidarity levy on public-sector and other fixed salaries (the 'Notopfer der Festbesoldeten'), a rise in the unemployment-insurance contribution to **4.5%** of wages with tightened benefits, and reductions on the spending side (Akten der Reichskanzlei 1930, Sanierungspolitik, bundesarchiv.de).\n- The Reich budget for 1930 carries a deficit driven by collapsing tax receipts and rising subsidies to the unemployment-insurance fund; registered unemployment passed **three million** in the winter of 1929/30 (LeMO/DHM, Jahreschronik 1930; Akten der Reichskanzlei).\n- The cabinet has governed without a coalition majority since the end of March 1930, when the previous government broke apart over how to fund unemployment insurance (LeMO/DHM, Jahreschronik 1930).\n- **Article 48** of the constitution lets the Reich president enact measures with the force of law when public security and order are seriously endangered; under its third paragraph the Reichstag can demand their repeal by majority vote (Weimarer Reichsverfassung, Art. 48; documentArchiv.de).\n- The chancellor declared on the floor, before the division, that the government would resort to Article 48 if the cover bill failed (Akten der Reichskanzlei, Deckungsvorlagen und politische Lage, bundesarchiv.de).\n- The bill was already a fragile compromise inside the cabinet's own camp: the planned salary levy drew open resistance from civil-service organisations, and coalition-adjacent groups pressed to swap the new levies for a higher turnover tax (Akten der Reichskanzlei 1930, Sanierungspolitik, bundesarchiv.de).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- This is a budget bill doubling as a constitutional test. The announced decree route converts the question from 'this package, yes or no' into 'does parliament still write the budget at all': a yes binds the chamber to austerity it barely shaped; a no concedes the pen — and sets a precedent that the chamber is dispensable for the state's core business.\n- The chosen instruments — a flat per-head tax, a salary levy, higher wage-based contributions — sit heaviest on steady earners and the insured. The tilt reads less like doctrine than negotiation residue: property- and consumption-based alternatives were bargained away before the bill reached the floor.\n- The economics cut against themselves: raising levies and cutting spending into a contraction shrinks demand and, with it, the next year's tax receipts. The wager is that balanced books restore foreign credit faster than the squeeze deepens the slump.\n- A government that survives by threatening the emergency power has already half-moved into it; the threat works once as leverage, then becomes the routine.",
+   "raw_outcome": "Abstimmung über die Deckungsvorlage der Reichsregierung zur Deckung des Reichshaushalts 1930",
+   "source_url": "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1930/july-1930/",
+   "outcome": "rejected",
+   "tally": {
+    "for": 193,
+    "against": 256,
+    "abstain": 0
+   },
+   "party_votes_canon": {
+    "SPD": "against",
+    "Z": "for",
+    "BVP": "for",
+    "DDP": "for",
+    "DVP": "for",
+    "DNVP": "against",
+    "NSDAP": "against",
+    "KPD": "against"
+   },
+   "verification": {
+    "vote_record": "16 July 1930: the Deckungsvorlage rejected 256:193. Two independent chronicles carry the count: weimarer-republik.net (EN timeline, July 1930: 'The Reichstag rejects the Deckung draft legislation... with 256 votes to 193') and Gonschior (verbatim, re-fetched 2026-06-12: 'Der Reichstag lehnt mit 256 (KPD, SPD, DNVP und NSDAP) zu 193 Stimmen die von der Reichsregierung eingebrachte Vorlage ab.'). A search-summary variant attributes the 256:193 division specifically to the 'Notopfer der Festbesoldeten' measure within the package — the decisive revenue division; the count itself is not in dispute. NB per research.json: the often-quoted 256:193 belongs to THIS 16 July vote, not to the 18 July repeal division (236:221) — several summaries conflate the two.",
+    "party_breakdown": "Against (the 256): SPD, KPD, NSDAP — high, named in both LeMO ('Der Reichstag lehnt mit den Stimmen von KPD, SPD, DNVP und NSDAP... ab') and Gonschior — plus the DNVP, see below. For (the 193): the government side — Z (high), DDP (high), DVP and BVP (medium): no accessible source itemises the 193, but both chronicles name ONLY KPD/SPD/DNVP/NSDAP in the rejection bloc, and the arithmetic of the 193 requires the remaining government-aligned parties (Z 61 + DDP 25 + DVP 45 + BVP 17 + Wirtschaftspartei and conservative splinters, less absences). DVP and BVP internal friction is documented (DVP resistance to the Notopfer, BVP refusal of beer-tax rises — Akten der Reichskanzlei) but it played out in the pre-floor negotiation, not as recorded floor defection. DNVP 'against' = the documented majority (Hugenberg) wing: the party is named in both chronicles' rejection bloc; the faction was internally split, with the moderate wing already breaking toward the government — it seceded days later (Konservative Volkspartei, founded 23 July 1930) — and the internal headcount for 16 July is not retrievable. Supporting datum: two days later 32 DNVP deputies voted for the decree's repeal (Gonschior, 18 July entry). Arithmetic: SPD 153 + KPD 54 + NSDAP 12 = 219; the remaining ~37 of the 256 are the DNVP's Hugenberg loyalists (faction ~61–62 strong after the December 1929 exits), consistent with a majority-wing 'against'. Confidence: DNVP medium (direction documented, split documented, numbers not).",
+    "own_checks": "Re-verified 2026-06-12: the 256:193 count and the four-party rejection bloc (Gonschior verbatim quote above; weimarer-republik.net EN July 1930 page fetched directly); the package contents and the pre-announced Article 48 route (Akten der Reichskanzlei, Sanierungspolitik des Kabinetts Brüning I via bundesarchiv.de — contribution rise to 4.5%, Notopfer, Bürgersteuer, bachelor-tax draft element, DVP/BVP/Wirtschaftspartei friction). Not improvable online: per-party headcounts within the 256 and 193 — the stenographic record (Verhandlungen des Reichstags, 4. Wahlperiode, sitting of 16 July 1930) would be needed.",
+    "caveats": "Per-party headcounts are nowhere itemised in accessible sources; Z/DDP 'for' rests on chronicle attribution of the rejection bloc plus arithmetic, DVP/BVP 'for' on the same at medium confidence. DNVP token carries the documented majority (Hugenberg) wing's direction; roughly a third of the faction was in open revolt and seceded within the week. The bachelor-tax element appears in the June draft narrative (Akten der Reichskanzlei) and is kept out of copy as its survival into the final 16 July package is unverified.",
+    "notes": "Aftermath (kept out of copy): the same evening the government enacted the package's substance by Article 48 emergency decree; on 18 July the Reichstag voted 236:221 to repeal the decree and was dissolved within hours; the decree was reissued in sharpened form on 26 July, and the September 1930 election returned a radicalised chamber. Rule by decree became the norm.",
+    "sources": [
+     "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1930/july-1930/",
+     "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+     "https://www.dhm.de/lemo/jahreschronik/1930",
+     "https://www.bundesarchiv.de/aktenreichskanzlei/1919-1933/0000/bru/bru1p/kap1_1/para2_3.html",
+     "https://www.bundesarchiv.de/aktenreichskanzlei/1919-1933/11a/bru/bru1p/kap1_2/kap2_77/para3_1.html",
+     "https://de.wikipedia.org/wiki/Kabinett_Br%C3%BCning_I"
+    ]
+   }
+  },
+  {
+   "id": "DE-1930-art48-revolt",
+   "session_code": "RT4",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1930-07-18",
+   "title": "Antrag auf Aufhebung der Verordnung des Reichspräsidenten zur Behebung finanzieller, wirtschaftlicher und sozialer Notstände vom 16. Juli 1930 (Art. 48 Abs. 3 der Reichsverfassung)",
+   "type": "Decree-repeal motion (Article 48 §3)",
+   "proposed_by": "SPD parliamentary group (Reichstag faction)",
+   "doc_ref": "Reichstag, IV. Wahlperiode, sitting of 18 July 1930 — Antrag nach Art. 48 Abs. 3 WRV auf Aufhebung der Notverordnung vom 16. Juli 1930",
+   "topic": "Emergency powers",
+   "headline": "Strike down the President's emergency decree — signed under Article 48, his rule-by-decree power — that raises taxes and cuts spending without a parliamentary vote.",
+   "source_brief": "Germany is deep in the world slump and the Reich budget has a hole in it. The government's answer — higher taxes, lower spending — has become law not by parliament's vote but by the President's signature, under Article 48, his emergency rule-by-decree power. The constitution leaves the chamber one counter-move: demand the decree's repeal, and it must be scrapped. That demand is what you're voting on.\n\n- **What dies if you vote for:** the decree of 16 July — the whole austerity package, tax rises and spending cuts, enacted by signature instead of by vote.\n- **The principle:** the budget is parliament's oldest power. If a government can decree what the chamber declines to pass, every future 'no' on the floor can be overridden from above.\n- **The price:** the President also holds the power to dissolve parliament. Strike his decree down and the widely expected answer is dissolution — fresh elections in the middle of mass unemployment, a gamble for every party in the room.\n- **The handle:** for — a parliament that won't defend its own budget right has stopped being one; against — the deficit is real, the measures arguably unavoidable, and forcing an election in a slump may strengthen exactly the forces that want this chamber gone.",
+   "deep_facts": "- **Article 48(2)** of the Weimar constitution lets the Reich President take 'the necessary measures' with the force of law when public security and order are seriously endangered; **Article 48(3)** obliges him to notify the Reichstag at once and to revoke the measures 'auf Verlangen des Reichstags' — at the chamber's demand, by simple majority (Weimarer Reichsverfassung, Art. 48).\n- The decree under vote, the *Verordnung zur Behebung finanzieller, wirtschaftlicher und sozialer Notstände*, was signed on **16 July 1930** and reproduces in substance the deficit-covering bill (*Deckungsvorlage*) the government had put before the chamber (weimarer-republik.net, July 1930; Gonschior, Deutschland 1928–30).\n- Its content is the government's deficit-covering programme for the 1930 Reich budget: tax increases and spending cuts (weimarer-republik.net, July 1930; LeMO Jahreschronik 1930).\n- The cabinet in office since **30 March 1930** is the Republic's first 'presidential cabinet': formed without a parliamentary coalition behind it after the last majority government collapsed that month (LeMO Jahreschronik 1930).\n- President Ebert invoked Article 48 more than **130 times** in the Republic's crisis years up to 1925; the article had since fallen largely out of use (en.wikipedia, Article 48 of the Weimar Constitution).\n- **Article 25** gives the President the separate power to dissolve the Reichstag — 'jedoch nur einmal aus dem gleichen Anlaß' (only once for the same cause) — with new elections within sixty days (Weimarer Reichsverfassung, Art. 25).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The repeal right of Article 48(3) is parliament's only enforcement tool against decree rule, but it is wired to a tripwire: using it invites Article 25, so the chamber can defend its budget power only by betting its own existence.\n- Whichever way the division falls, the precedent that a rejected finance bill can simply be re-enacted by decree shifts the working constitution: the chamber's 'no' stops being final, and bargaining power moves from the floor to the President's anteroom.\n- Any majority for repeal is necessarily a marriage of opposites — deputies who want this decree gone for social reasons and deputies who want the parliamentary system itself discredited would have to vote the same word; a win for the motion is therefore not a win for any one programme.\n- For the government, losing may be the less bad outcome: dissolution resets the chamber while the decree machinery keeps running — emergency rule does not pause for an election campaign.",
+   "raw_outcome": "Dem Antrag auf Aufhebung der Notverordnung mit 236 gegen 221 Stimmen zugestimmt (FES Chronik der deutschen Sozialdemokratie; Gonschior: 236 zu 222)",
+   "source_url": "http://library.fes.de/fulltext/bibliothek/chronik/band2/e235f784.html",
+   "outcome": "approved",
+   "tally": {
+    "for": 236,
+    "against": 221,
+    "abstain": 0
+   },
+   "party_votes_canon": {
+    "SPD": "for",
+    "Z": "against",
+    "BVP": "against",
+    "DDP": "against",
+    "DVP": "against",
+    "NSDAP": "for",
+    "KPD": "for"
+   },
+   "verification": {
+    "vote_record": "Repeal motion adopted 18 July 1930, 236 to 221 — FES Chronik der deutschen Sozialdemokratie, verbatim re-fetched 2026-06-12: 'Am 16. Juli mit Hilfe des Artikels 48 als Notverordnung in Kraft gesetzt. Am 18. stimmt der Reichstag mit 236 gegen 221 Stimmen dem Antrag der SPD zu, die Notverordnung aufzuheben.' weimarer-republik.net concurs. Gonschior (re-fetched 2026-06-12) gives 236 to 222 and itemises the majority as 'SPD, KPD, NSDAP, 32 DNVP'. The 221-vs-222 nay split is unresolved without the stenographic record (Verhandlungen des Reichstags; reichstagsprotokolle.de).",
+    "party_canon": "SPD/NSDAP/KPD 'for' and Z/DDP 'against' at high confidence (de.wikipedia Kabinett Brüning I: the chamber's Art. 48 right exercised 'mit Stimmen von SPD, KPD, NSDAP und DNVP'; FES; Gonschior). BVP and DVP 'against' carried at medium confidence per research.json — government-supporting parties counted within the 221 by all chronicles; no per-party rolls retrievable.",
+    "omissions": "DNVP omitted: documented split — Gonschior counts 32 DNVP deputies in the repeal majority (the Hugenberg wing) while the moderates stayed with the government and seceded days later to found the Konservative Volkspartei (23 July 1930). No full internal breakdown is retrievable online, and neither direction is a clean majority on accessible evidence, so the token is dropped rather than guessed.",
+    "copy_notes": "ISLAND-RULE adjustment: DE-1930-deckungsvorlage ships in the same deck, so all copy was rewritten to avoid stating that bill's floor fate — the brief says the package 'has become law not by parliament's vote but by the President's signature', and deep_facts says the decree 'reproduces in substance' the bill the government 'had put before the chamber'; neither reveals the 16 July division. (Research.json treats 16 and 18 July as one two-act story.) The same-day dissolution under Article 25 and the sharpened reissue of the decree are consequences of THIS vote and are kept out of all three copy layers. WARNING preserved from research.json: the often-quoted 256–193 tally belongs to the 16 July Deckungsvorlage rejection, NOT to this 18 July division.",
+    "abstain_note": "No abstentions reported in any source; abstain=0 follows research.json.",
+    "sources": [
+     "http://library.fes.de/fulltext/bibliothek/chronik/band2/e235f784.html",
+     "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1930/july-1930/",
+     "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+     "https://de.wikipedia.org/wiki/Kabinett_Br%C3%BCning_I",
+     "http://www.documentarchiv.de/wr/1930/aufloesung-reichstag-reichspraesident_vo.html"
+    ]
+   }
+  },
+  {
+   "id": "DE-1930-toleration",
+   "session_code": "RT5",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1930-10-18",
+   "title": "Antrag, der Reichsregierung das Vertrauen zu entziehen (Misstrauensantrag gegen das Kabinett Brüning), verbunden mit Anträgen auf Aufhebung der Notverordnungen",
+   "type": "No-confidence motion",
+   "proposed_by": "NSDAP, KPD and DNVP parliamentary groups (separate motions)",
+   "doc_ref": "Reichstag, V. Wahlperiode, first working session, sittings of 13–18 October 1930 (division in the early hours of 19 October)",
+   "topic": "Confidence in the government",
+   "headline": "Bring down the Chancellor's cabinet: declare that the newly elected parliament has no confidence in the government ruling the slump by emergency decree, forcing its resignation on the spot.",
+   "source_brief": "The chamber elected in September meets for its first real working week, and the first item of substance is the government's head. The cabinet has been running the country by presidential emergency decree — Article 48, rule by the President's signature — and holds nowhere near a majority of its own. Motions on the table demand that parliament withdraw its confidence, which under the constitution forces the cabinet's resignation; sister motions would scrap its decrees with it.\n\n- **The new arithmetic:** September's election made the National Socialists the second-largest party — **107 seats**, up from 12 — and gave the Communists **77**; both fought the campaign against the Republic itself, and together they hold roughly a third of the chamber.\n- **What a yes sets off:** the cabinet falls, no alternative majority is in sight, and fresh elections in a deepening slump are the realistic sequel — a second roll of the dice, weeks after the first came up radical.\n- **What a no means:** a Chancellor who answers to the President rather than the chamber stays on, and austerity keeps arriving by decree; parliament's remaining role shrinks to deciding, periodically, not to stop him.\n- **The handle:** for — no parliament worth the name leaves a government it never chose ruling by signature; against — bring it down now and the next campaign belongs to the parties that want the building, not the budget.",
+   "deep_facts": "- The election of **14 September 1930** returned a chamber of **577 seats**: NSDAP 107 (up from 12), KPD 77, SPD 143 — still the largest party — with the parties of the governing middle losing ground across the board (en.wikipedia, 1930 German federal election).\n- **Article 54** of the constitution: the Chancellor and every minister require the Reichstag's confidence for the conduct of office and 'must resign if the Reichstag withdraws confidence by explicit resolution' (Weimarer Reichsverfassung, Art. 54).\n- The cabinet, in office since **30 March 1930**, is the Republic's first formed without a parliamentary coalition; it rests on the President's backing and has enacted its economic programme over the summer through Article 48 emergency decrees — the President's rule-by-decree power — including the consolidated decree of **26 July 1930** (LeMO Jahreschronik 1930; slpb, Die Kanzlerschaft Brünings).\n- At the constitutive sitting of **13 October** the 107 National Socialist deputies enter the chamber in party uniform (slpb, Die Kanzlerschaft Brünings).\n- The closing sitting of the opening week runs some **fourteen hours**, through the night of 18–19 October (en.wikipedia, October 1930).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The motion's real addressee is not the cabinet but the chamber's democratic majority: the question underneath is whether normal opposition is still affordable when the only majority that could replace this government is one that wants no government answerable to parliament at all.\n- A cabinet that survives confidence tests without ever winning a positive majority turns Article 54 into a one-way ratchet — the chamber can keep governments alive but no longer makes them — and each survived division normalises decree rule a little further.\n- For the radical movers, losing the division may serve as well as winning it: every vote that keeps the cabinet alive through forbearance rather than support is campaign material against the system itself.\n- Whoever tips this division decides more than a chancellorship: it settles whether September's verdict is read as a mandate to stop the machine, or as a warning never again to consult the voters in a slump.",
+   "raw_outcome": "Misstrauensanträge abgelehnt; die Vertrauensabstimmung geht 318 zu 236 für die Regierung aus (en.wikipedia Tageschronik; deutsche Chroniken bestätigen Ablehnung ohne Zahlen)",
+   "source_url": "https://en.wikipedia.org/wiki/October_1930",
+   "outcome": "rejected",
+   "tally": {
+    "for": 236,
+    "against": 318,
+    "abstain": 0
+   },
+   "party_votes_canon": {
+    "SPD": "against",
+    "Z": "against",
+    "BVP": "against",
+    "DDP": "against",
+    "DVP": "against",
+    "DNVP": "for",
+    "NSDAP": "for",
+    "KPD": "for"
+   },
+   "verification": {
+    "division_choice": "Multiple motions were voted at the close of the new Reichstag's first working session: no-confidence motions filed separately by NSDAP, KPD and DNVP, plus motions to repeal the Article 48 economic decrees. The card carries the PRINCIPAL recorded division — the confidence question that closed the sitting, the only one with a numeric count — framed from the motion side as one votable proposition: withdraw confidence from the cabinet. The decree-repeal motions failed along the same lines (slpb; de.wikipedia Kabinett Brüning I) and appear in copy only as accompanying business ('sister motions').",
+    "vote_record": "318–236 for the government, per the only accessible numeric source — en.wikipedia day-chronicle 'October 1930', re-fetched 2026-06-12: 'In an early morning vote capping a fourteen-hour session, Chancellor Heinrich Brüning passed a confidence motion, 318–236.' German chronicles (slpb: 'Die SPD-Fraktion schließt sich nicht an und sichert damit den Fortbestand der Kanzlerschaft Brünings'; weimarer-republik.net; Gonschior) confirm the event, the SPD's decisive support and the rejection of all motions, but print no count. TALLY REMAINS SINGLE-SOURCE / MEDIUM CONFIDENCE: a 2026-06-12 re-verification pass (multiple searches DE+EN, FES Chronik, Gonschior, weimarer-republik.net, bundesarchiv, slpb) found no second numeric source online; the stenographic record (Verhandlungen des Reichstags, V. Wahlperiode, via reichstagsprotokolle.de) would settle it. Because the card's question is the no-confidence motion, the tally is shown MIRRORED: for=236 (topple), against=318 (keep) — same division, motion-side perspective.",
+    "date_note": "The sitting of 18 October ran overnight; the division fell in the early hours of 19 October per the numeric source, and weimarer-republik.net files the event under 19 October. Card dated 1930-10-18 = the sitting day, per the deck brief; flagged here.",
+    "party_canon": "Directions are research.json's government-side encoding inverted to the motion side. NSDAP/KPD/DNVP 'for' = their own motions (high confidence). SPD 'against' = the documented toleration (slpb, high confidence). Z 'against' high; BVP/DDP/DVP 'against' medium confidence — government parties, consistent with the 318 by seat arithmetic (SPD 143 + Z 68 + DStP 20 + DVP 30 + BVP 19 + splinters ≈ 318; NSDAP 107 + KPD 77 + DNVP 41 + Landvolk ≈ 236). No token omitted.",
+    "copy_notes": "Proposer parties named only in metadata (proposed_by) and this verification, never in copy; copy says 'motions on the table'. The September election results (107/77 seats) are pre-vote external context, allowed under the island rule. The SPD's toleration — the result — is kept out of all three copy layers.",
+    "abstain_note": "Abstentions not separately reported anywhere; abstain=0 follows research.json and should be read as 'none recorded'.",
+    "sources": [
+     "https://en.wikipedia.org/wiki/October_1930",
+     "https://www.slpb.de/themen/geschichte/1918-bis-1933/die-kanzlerschaft-bruenings",
+     "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1930/october-1930/",
+     "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+     "https://de.wikipedia.org/wiki/Kabinett_Br%C3%BCning_I"
+    ]
+   }
+  },
+  {
+   "id": "DE-1931-geschaeftsordnung",
+   "session_code": "RT5",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1931-02-09",
+   "title": "Abänderung der Geschäftsordnung für den Reichstag (Deckungsvorlage bei Finanzanträgen, Einschränkung der Immunität)",
+   "type": "Standing-orders reform",
+   "proposed_by": "Cross-party motion of the majority factions (inter-party conference of 4 February 1931)",
+   "doc_ref": "Reichstag, V. Wahlperiode, sitting of 9 February 1931 — interfraktioneller Antrag vom 4. Februar 1931",
+   "topic": "Parliamentary procedure",
+   "headline": "Tighten parliament's own rulebook against obstruction: motions that spend money or repeal emergency decrees must say how they're paid for, and immunity narrows for deputies facing criminal cases.",
+   "source_brief": "Parliament is being worked to a standstill from inside. Since the new chamber met, the order paper has filled with serial demonstration motions — demands to repeal the President's emergency decrees, bids to spend money with no source named — each one forcing the house to stop, debate and vote. The proposal rewrites the Reichstag's own rulebook to make that game costly.\n\n- **The new rules:** a motion that raises spending or cuts revenue must name where the money comes from before it reaches the floor; motions to repeal emergency decrees are tied to the same discipline; and immunity protection narrows for deputies with criminal cases pending.\n- **Why now:** September's election filled the chamber with deputies who treat its procedures as a stage — keeping the house from working is, for them, a result in itself, and the motions have multiplied accordingly.\n- **The catch:** these rules are written by a majority to quiet opponents that millions of voters just sent in. Muting them on paper doesn't make them disappear; it may simply move the fight from the floor to the street.\n- **The handle:** for — without working rules there is soon no parliament left to obstruct; against — a majority that rewrites the rulebook to disarm an opposition it cannot out-argue teaches every future majority to do the same.",
+   "deep_facts": "- The reform originates in an inter-party conference of faction representatives on **4 February 1931**; the agreed motion reaches the floor five days later (Akten der Reichskanzlei, Kabinett Brüning I, 'Abänderung der Geschäftsordnung für den Reichstag').\n- Two instruments are targeted: **finance motions** — under the new text, motions to raise expenditure or reduce revenue require an accompanying funding proposal (*Deckungsvorlage*) — and **deputy immunity**, which is narrowed for members with pending criminal proceedings (Akten der Reichskanzlei, ibid.).\n- The repeal channel being disciplined sits in **Article 48(3)** of the constitution: presidential emergency decrees — the President's rule-by-decree power — must be revoked 'at the demand of the Reichstag', so any faction can put a repeal motion to the house at any sitting (Weimarer Reichsverfassung, Art. 48).\n- Since the chamber convened on **13 October 1930**, repeal and censure motions have arrived in series at each block of sittings; chronicles describe the change as aimed at obstruction through repeated motions (LeMO Jahreschronik 1931; weimarer-republik.net, February 1931).\n- The chamber counts **577 deputies** (en.wikipedia, 1930 German federal election).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- An anti-obstruction rule is also self-protection for the chamber's tolerating majority: every forced division on a decree is a night its members must publicly stand next to an austerity they only half-support, so fewer divisions means fewer wounds.\n- Requiring funding cover sounds like book-keeping but works as a filter on opposition speech: the cheapest way to oppose — the symbolic motion — is priced out, while the majority's own business passes untouched.\n- Rules that assume bad faith concede something larger: a standing order can keep a house orderly, but it cannot restore a shared purpose, and a parliament that functions only by restraining its loudest members has already shrunk from arena to administration.\n- The precedent cuts forward: once procedure has been redrawn to manage an unwanted opposition, the next majority — whoever it turns out to be — inherits both the tool and the justification.",
+   "raw_outcome": "Mit 297 Stimmen ohne Gegenstimmen angenommen (Akten der Reichskanzlei: 'Der Reichstag stimmte in der Sitzung vom 9. Februar dem Antrag mit 297 Stimmen ohne Gegenstimmen zu.')",
+   "source_url": "https://apps.bundesarchiv.de/aktenreichskanzlei/1919-1933/1120/bru/bru1p/kap1_2/kap2_234/para3_1.html",
+   "outcome": "approved",
+   "tally": {
+    "for": 297,
+    "against": 0,
+    "abstain": 0
+   },
+   "party_votes_canon": {
+    "SPD": "for",
+    "Z": "for",
+    "BVP": "for",
+    "DDP": "for",
+    "DVP": "for"
+   },
+   "verification": {
+    "vote_record": "Adopted 9 February 1931 with 297 votes, none opposed — Akten der Reichskanzlei (Bundesarchiv edition), document 'Abänderung der Geschäftsordnung für den Reichstag': 'Der Reichstag stimmte in der Sitzung vom 9. Februar dem Antrag mit 297 Stimmen ohne Gegenstimmen zu. Die NSDAP- und die KPD-Fraktion hatten vor der Abstimmung den RT aus Protest verlassen.' Re-verified 2026-06-12 via the edition's indexed text at two Bundesarchiv URL variants (apps.bundesarchiv.de and www.bundesarchiv.de paths); the document pages themselves return 503/redirect on direct fetch, so this remains effectively a SINGLE EDITION as numeric source — medium confidence. Roughly 280 of the chamber's 577 deputies were out of the room or not voting. The 4 February inter-party origin is from the same edition ('Am 4. Februar brachten die zu einer Besprechung hinzugezogenen Parteienvertreter einen Antrag zur Änderung der Reichstags-Geschäftsordnung ein').",
+    "omissions": "NSDAP and KPD omitted from canon: both factions left the chamber in protest BEFORE the division (Akten der Reichskanzlei, high confidence) — a walkout, not a comparable vote. DNVP omitted: no source records DNVP yes-votes within the 297, and the formal exit declaration of 151 NSDAP/DNVP/Landvolk deputies followed the NEXT day, 10 February (Gonschior, re-fetched 2026-06-12: 'Im Reichstag erklären 151 Abgeordnete von NSDAP, DNVP und Landvolk ihren Auszug aus dem Parlament'; LeMO concurs) — but DNVP behaviour on 9 February itself (absent vs abstaining in seat) is NOT pinned in any accessible source, so the token is dropped rather than guessed.",
+    "party_canon": "The 297 ayes = the tolerating majority: SPD + Z + BVP + DDP(DStP) + DVP plus splinter groups (research.json arithmetic against the 1930 seat table). SPD and Z 'for' at high confidence; BVP/DDP/DVP at medium — included as the only reading consistent with 297 ayes, the known NSDAP/KPD walkout and the right's boycott posture.",
+    "content_note": "The substance of the reform (Deckungsvorlage requirement for spending/repeal motions; immunity narrowed for deputies with pending cases) rests on the Akten der Reichskanzlei edition snippet plus research.json; the full document text could not be fetched (503). Some chronicles (LeMO paraphrase) describe the target as obstruction 'through repeated no-confidence motions' — the broader anti-obstruction purpose is multiply attested, the exact clause list is single-source.",
+    "copy_notes": "The walkout, the 297–0 figure and the 10 February exit of the 151 are all result-side and kept out of all three copy layers; the obstruction context is described impersonally, without naming which parties filed the serial motions.",
+    "abstain_note": "'Ohne Gegenstimmen' = no votes against; abstentions were not itemised in any retrieved source. abstain=0 follows research.json and should be read as 'none recorded', not as a counted zero.",
+    "sources": [
+     "https://apps.bundesarchiv.de/aktenreichskanzlei/1919-1933/1120/bru/bru1p/kap1_2/kap2_234/para3_1.html",
+     "https://www.dhm.de/lemo/jahreschronik/1931",
+     "https://www.gonschior.de/weimar/Deutschland/1931-33.html",
+     "https://en.wikipedia.org/wiki/February_1931",
+     "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1931/february-1931/"
+    ]
+   }
+  },
+  {
+   "id": "DE-1931-harzburg-misstrauen",
+   "session_code": "RT5",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1931-10-16",
+   "title": "Misstrauensanträge gegen das Kabinett Brüning II und Anträge auf Aufhebung der Notverordnungen",
+   "type": "No-confidence motion",
+   "proposed_by": "NSDAP, DNVP and KPD parliamentary groups (separate motions)",
+   "doc_ref": "Verhandlungen des Reichstags, 5. Wahlperiode, Sitzung vom 16. Oktober 1931",
+   "topic": "Confidence in the government",
+   "headline": "Bring down the Chancellor and his cabinet: declare no confidence in a government that has ruled for a year by presidential emergency decree, never through this chamber.",
+   "source_brief": "Germany is in its second year of government by decree. The cabinet has no majority here and does not pretend to: it governs on the President's signature, under Article 48, the constitution's emergency-rule clause, while the chamber stands adjourned for months at a time. Now — days after the nationalist opposition rallied at a Harz spa town to demand the government's head, and with the banks barely propped back up after a summer collapse — the motion on the table would sack the government and strike down its latest decrees with it.\n\n- **What the decrees do:** cut wages, benefits and prices by decree to defend the currency in the middle of a world slump — austerity imposed without a single vote of this house.\n- **A yes means:** the Chancellor and every minister must go. But this splintered chamber has no successor to offer, so the choice of the next government falls to the President and his circle — or to new elections in the depths of the crisis.\n- **The case for the axe:** if a parliament cannot remove a government it never approved, it is decoration. Every month of silent toleration makes decree rule more normal.\n- **The case for holding back:** the cabinet, whatever its method, is the last thing standing between the state and the parties of the street; topple it with no replacement ready and you may get something far worse than austerity.",
+   "deep_facts": "- The cabinet was re-formed on 9–10 October 1931 as Chancellor Heinrich Brüning's second; Brüning now also heads the Foreign Ministry (LeMO Jahreschronik 1931; Akten der Reichskanzlei, Kabinett Brüning II).\n- On 11 October 1931, at Bad Harzburg, the 'national opposition' — NSDAP, DNVP and the Stahlhelm veterans' league, with the Reichslandbund — rallied on Alfred Hugenberg's initiative and demanded the resignation of the Reich government and new elections (LeMO Jahreschronik 1931; 1000dokumente.de, Hauptresolution der Harzburger Tagung).\n- The day before the rally, 10 October 1931, President Hindenburg and the Chancellor received Adolf Hitler for talks, the government hoping cooperation would weaken the pressure of the 'national opposition' (LeMO Jahreschronik 1931).\n- The Reichstag reconvened on 13 October 1931 after standing adjourned since the end of March; the no-confidence and decree-repeal motions were debated for three days (Gonschior, chronicle of the Reich 1931–33; LeMO Jahreschronik 1931).\n- Article 48 of the constitution lets the President issue emergency decrees with the force of law; Article 48(3) lets the Reichstag demand their repeal by simple majority; Article 54 obliges the Chancellor and ministers to resign if the chamber withdraws its confidence; Article 25 lets the President dissolve the chamber (Weimarer Reichsverfassung, Art. 25, 48, 54).\n- On 13 July 1931 the Darmstädter und Nationalbank (Danat-Bank), the Reich's third-largest bank, collapsed after foreign credits were withdrawn, setting off a general banking crisis (LeMO Jahreschronik 1931).\n- Registered unemployment reaches 5.6 million by 31 December 1931 (LeMO Jahreschronik 1931).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The motion is less about this cabinet than about who appoints the next one: with the chamber splintered, removal would transfer the choice to the President and his advisers, not back to parliament — the house can destroy a government, but cannot currently build one.\n- A failed motion still pays its backers: every division forces whichever parties keep the cabinet alive to co-own its wage and benefit cuts in front of their own voters, while those demanding dissolution expect the slump to reward them at the polls.\n- Each survival the government buys this way also normalises the method: a chamber that matters only on the days it threatens to bring everything down, then adjourns for months, is teaching the country that governing happens elsewhere.",
+   "raw_outcome": "Misstrauensanträge gegen das Kabinett Brüning II und Anträge auf Aufhebung der Notverordnungen",
+   "source_url": "https://www.gonschior.de/weimar/Deutschland/1931-33.html",
+   "outcome": "rejected",
+   "tally": {
+    "for": 270,
+    "against": 295,
+    "abstain": 0
+   },
+   "party_votes_canon": {
+    "SPD": "against",
+    "Z": "against",
+    "BVP": "against",
+    "DDP": "against",
+    "DVP": "for",
+    "DNVP": "for",
+    "NSDAP": "for",
+    "KPD": "for"
+   },
+   "verification": {
+    "vote_record": "Decisive division 16 Oct 1931: the no-confidence motions rejected 295 to 270 (EN day-chronicle 'October 1931': Brüning 'survived a confidence vote in the Reichstag by a count of 295 to 270'). Gonschior, LeMO and slpb confirm the date and that ALL motions were rejected after a three-day debate, but print no count — 295:270 rests on a single accessible numeric source. 'for' in the tally = for the no-confidence motions.",
+    "bloc_breakdown": "Against the motions (pro-government): SPD, Zentrum, DStP/DDP and minor parties (bpb, Zerstörung der Demokratie: decisive were SPD votes; SPD, Zentrum, DDP and small parties against). BVP 'against' is inferred — it held ministers in the Brüning II cabinet (de.wikipedia, Kabinett Brüning II; kas.de BVP) and the 295 requires its 19 seats arithmetically — no itemised roll retrieved. For the motions: DNVP, NSDAP, KPD, and the MAJORITY of the DVP under Dingeldey; five DVP deputies, among them Wilhelm Kahl, consciously broke party discipline on 16 October to support Brüning (Jones, Vierteljahrshefte für Zeitgeschichte 25 (1977), Heft 3). Canon 'for' for DVP = majority direction of the bloc; research.json had marked it 'split' on medium confidence — upgraded with the Jones figure.",
+    "omissions": "No token omitted — all eight tracked blocs took part in the division.",
+    "discrepancies": "bpb's dossier (Zerstörung der Demokratie 1930–1932) dates the vote to '16. November 1931' — impossible, the Reichstag stood adjourned from 16 Oct 1931 until 23 Feb 1932; Gonschior, LeMO and the EN day-chronicle agree on 16 Oct. Several motions were voted that day; 295:270 is the reported decisive division. Exact per-motion counts are in Verhandlungen des Reichstags (reichstagsprotokolle.de), not pulled.",
+    "sources": [
+     "https://en.wikipedia.org/wiki/October_1931",
+     "https://www.gonschior.de/weimar/Deutschland/1931-33.html",
+     "https://www.dhm.de/lemo/jahreschronik/1931",
+     "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/39537/zerstoerung-der-demokratie-1930-1932/",
+     "https://www.ifz-muenchen.de/heftarchiv/1977_3_1_jones.pdf",
+     "https://www.1000dokumente.de/index.html?c=dokument_de&dokument=0206_har&l=de"
+    ]
+   }
+  },
+  {
+   "id": "DE-1932-papen-misstrauen",
+   "session_code": "RT6",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1932-09-12",
+   "title": "Antrag auf Aufhebung der Notverordnungen vom 4. und 5. September 1932 und Entziehung des Vertrauens von der Reichsregierung",
+   "type": "Decree repeal and no-confidence motion",
+   "proposed_by": "KPD parliamentary group",
+   "doc_ref": "Verhandlungen des Reichstags, 6. Wahlperiode, Sitzung vom 12. September 1932",
+   "topic": "Confidence in the government",
+   "headline": "Strike down the emergency decrees that let employers pay below the union-agreed wage, and withdraw parliament's confidence from the unelected 'cabinet of barons' that issued them.",
+   "source_brief": "The new chamber's first working day, and the only real question is whether the government survives it. The cabinet was hand-picked by the President in June — aristocrats, officers and senior officials, barely a party man among them — and it governs by emergency decree under Article 48, the constitution's emergency-rule clause. Its September decrees try to restart the economy by giving firms tax vouchers and the right to undercut union-agreed wages. One motion does both jobs at once: repeal the decrees, and declare this house has no confidence in the government.\n\n- **The decrees on trial:** tax vouchers to lighten business costs, plus permission to cut pay by up to a fifth on part of the working week for employers who take on extra staff — a jobs programme that businesses welcome and the unions call wage theft.\n- **A yes means:** the decrees fall and the cabinet must resign. But the Chancellor has arrived carrying the President's order dissolving this chamber — vote him down and you may simply be sent back to the voters within weeks, decrees intact.\n- **The case against the government:** a cabinet with almost no seats behind it, rewriting wage contracts by decree, is the constitution upside down. If parliament cannot say no to this, it can say no to nothing.\n- **The case for it:** somebody must govern, and this chamber — by its own arithmetic — contains no possible majority for any cabinet. Demolition without a successor means another election in a year of street violence and six-figure dole queues, and the decrees are the first attempt at job creation after years of pure austerity.",
+   "deep_facts": "- The cabinet was appointed on 1 June 1932 by President Hindenburg under Franz von Papen; its ministers are largely non-party aristocrats, officers and officials — the press dubs it the 'cabinet of barons' (LeMO, biography Franz von Papen).\n- The emergency decree of 4 September 1932 aims to lift the economy out of deflation by lowering the burden on businesses with tax vouchers; the supplementary decree of 5 September allows employers to lower wages by up to 20% for the thirty-first through fortieth weekly working hour, provided they actually hire additional workers (weimarer-republik.net, timeline September 1932).\n- Employee organisations attack the September programme as serving business interests; employers' organisations back it (weimarer-republik.net, timeline September 1932).\n- The chamber was elected on 31 July 1932 with 608 seats; the NSDAP holds 230 and the KPD 89 — between them, for the first time, a majority of seats belongs to parties committed against the parliamentary republic (en.wikipedia, July 1932 German federal election).\n- Under Article 54 of the constitution the Chancellor and ministers must resign if the Reichstag withdraws its confidence; under Article 48(3) the chamber can demand repeal of emergency decrees by simple majority; under Article 25 the President may dissolve the chamber (Weimarer Reichsverfassung, Art. 25, 48, 54).\n- Before the sitting the President signed an order dissolving the Reichstag; the Chancellor brings the order, in its red portfolio, to the chamber (Akten der Reichskanzlei, Kabinett von Papen; TIME, 'Germany: Reichstag in Revolt', 1932).\n- The motion's mover asks that it be taken immediately; the president of the chamber lets the division proceed while the Chancellor seeks the floor to announce the dissolution (weimarer-republik.net, timeline September 1932; TIME, 1932).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The motion fuses two questions so they cannot be split: a deputy who only wants the wage decrees gone must also execute the government, and one who would tolerate the cabinet must co-sign pay cuts decreed past parliament — maximum embarrassment is part of the design.\n- A government that answers the chamber with a dissolution order makes the constitutional duel circular: the house removes the cabinet, the President removes the house, and rule by decree continues through the gap — whichever way the division goes, the decision returns to the voters, not to this room.\n- Beneath the wage question sits a message to the President: that no cabinet without a party base can survive contact with this parliament, however its seats are sliced — a warning about every future government formed in the palace rather than in the chamber.",
+   "raw_outcome": "Antrag auf Aufhebung der Notverordnungen vom 4. und 5. September 1932 und Entziehung des Vertrauens von der Reichsregierung",
+   "source_url": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/39537/zerstoerung-der-demokratie-1930-1932/",
+   "outcome": "approved",
+   "tally": {
+    "for": 512,
+    "against": 42,
+    "abstain": 5
+   },
+   "party_votes_canon": {
+    "SPD": "for",
+    "Z": "for",
+    "BVP": "for",
+    "DDP": "for",
+    "DVP": "against",
+    "DNVP": "against",
+    "NSDAP": "for",
+    "KPD": "for"
+   },
+   "verification": {
+    "vote_record": "Official record 512 for, 42 against (bpb: 'Der Reichstag sprach ihm in seiner ersten Arbeitssitzung mit 512 gegen 42 Stimmen das Misstrauen aus'; Gonschior: '512 der 554 Abgeordneten'; weimarer-republik.net: 'Of the 560 votes counted, 512 members ... vote in favor of the KPD's motion'). Contemporary press tradition gives 513:32 with 5 abstentions (TIME; EN day-chronicle). Shipped tally uses the official 512:42; the 5 abstentions come from the press tradition and are the figure research.json carries — treat the abstain count as approximate.",
+    "bloc_breakdown": "Only DNVP (37 seats) and DVP (7 seats) stood by the Papen government — 'Nur DNVP und DVP standen zur Reichsregierung' (multiple sources via research.json; bpb; LeMO Papen biography); their combined 44 seats match the 42 nays minus absences. DVP 'against' the motion re-verified: every account names DNVP and DVP as the government's ONLY supporters. The 512 = all other factions: NSDAP (after the sitting was suspended half an hour so the faction could consult Hitler), SPD, KPD, Zentrum, BVP, DStP and splinters. Z/BVP/DStP individual headcounts are not itemised anywhere accessible — their 'for' derives from the unanimous two-party-loyalist reporting plus arithmetic.",
+    "omissions": "No token omitted — all eight tracked blocs took part.",
+    "discrepancies": "Two tally traditions (official 512:42 vs press 513:32:5); Gonschior's '554 Abgeordneten' vs weimarer-republik.net's '560 votes counted'. The question fused decree-repeal and no-confidence into one division; the dissolution order signed before the sitting made the result constitutionally moot (aftermath — kept out of copy). Exact roll in Verhandlungen des Reichstags, 6. Wahlperiode, not pulled.",
+    "sources": [
+     "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/39537/zerstoerung-der-demokratie-1930-1932/",
+     "https://www.gonschior.de/weimar/Deutschland/1931-33.html",
+     "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1932/september-1932/",
+     "https://www.dhm.de/lemo/biografie/franz-papen",
+     "https://time.com/archive/6749939/germany-reichstag-in-revolt/",
+     "https://en.wikipedia.org/wiki/September_1932"
+    ]
+   }
+  },
+  {
+   "id": "DE-1933-ermaechtigung",
+   "session_code": "RT8",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1933-03-23",
+   "title": "Gesetz zur Behebung der Not von Volk und Reich (Ermächtigungsgesetz)",
+   "type": "Constitution-amending law",
+   "proposed_by": "Reich government (Hitler cabinet)",
+   "doc_ref": "Verhandlungen des Reichstags, Bd. 457, Sitzung vom 23. März 1933; RGBl. 1933 I S. 141",
+   "topic": "Constitutional powers",
+   "headline": "Let the cabinet make laws on its own for four years — no vote of parliament needed, and the laws may depart from the constitution itself.",
+   "source_brief": "The chamber, meeting in an opera house because parliament's own building burned a month ago, is asked to hand its lawmaking power to the government. For four years the cabinet could enact any law by itself — including laws that deviate from the constitution — and conclude treaties without asking this house. The government calls it the cure for years of deadlock; the text contains no court, no veto, and almost no exceptions.\n\n- **The case made for it:** the chamber has produced no working majority for years, and governments have legislated by presidential emergency decree anyway — this at least puts a responsible cabinet, not one old man's signature, behind the laws. The powers expire on 1 April 1937, and lapse earlier if this cabinet is replaced. From the rostrum, the government promises to use them 'only in so far as essential' and to leave the chamber, the upper house, the President's rights, the states and the churches untouched.\n- **The case against:** every one of those promises is spoken, not written into the law. Once the house gives lawmaking away it keeps no lever to take it back, however the powers are used — and 'temporary' is policed by no one but the government itself.\n- **The room you vote in:** armed party troops line the corridors and ring the building, dozens of deputies are under arrest or fled, and one party's seats have simply been struck from the register.\n- **The bar:** as a law that changes the constitution it needs two thirds of the house present and two thirds of the votes cast — the constitution's fence around its own text.",
+   "deep_facts": "- The bill has five articles: Reich laws may be enacted by the government as well as by parliament (Art. 1); such laws may deviate from the constitution, so long as they do not touch the institutions of the Reichstag and Reichsrat as such or the rights of the President (Art. 2); laws issued by the government are drawn up by the Chancellor and take effect the day after publication (Art. 3); treaties with foreign states no longer need legislative assent (Art. 4); the law expires on 1 April 1937, and earlier if the present Reich government is replaced by another (Art. 5) (RGBl. 1933 I S. 141; bundestag.de Textarchiv, 23.3.1933).\n- As a constitution-amending law it falls under Article 76: two thirds of the chamber's members must be present, and two thirds of those present must assent (Weimarer Reichsverfassung, Art. 76; bpb, Hintergrund aktuell).\n- The Reichstag building burned on the night of 27–28 February 1933; the sitting takes place in the Kroll Opera House opposite (bundestag.de Textarchiv; LeMO, Ermächtigungsgesetz).\n- The 'Decree of the Reich President for the Protection of People and State' of 28 February 1933, issued under Article 48, the constitution's emergency-rule clause, suspended the core civil rights — personal liberty, free expression, press, assembly — indefinitely; mass arrests of the government's opponents followed (bpb, Hintergrund aktuell; LeMO).\n- The 81 mandates won by the KPD in the 5 March election were annulled; Communist deputies are under arrest or in hiding and take no part in the sitting (bundestag.de Textarchiv; bpb).\n- 26 of the SPD's 120 deputies are missing from the sitting — arrested or fled (de.wikipedia, Ermächtigungsgesetz vom 24. März 1933; bundestag.de Textarchiv).\n- Earlier in the same sitting the chamber changed its standing orders: deputies absent without excuse count as present, so arrests and flight do not break the two-thirds attendance quorum (das-parlament.de, 'Als der Reichstag sich faktisch selbst abschaffte'; de.wikipedia).\n- Uniformed SA and SS men stand in the aisles and corridors and surround the building during the debate (bundestag.de Textarchiv; DHM/LeMO).\n- Moving the bill, the Chancellor assures the chamber the government will use the powers only for vital measures, and that the existence of the Reichstag and Reichsrat, the position of the President, the states and the churches are not threatened (Verhandlungen des Reichstags, Bd. 457).\n- The government coalition formed on 30 January 1933 controls 340 of the 647 elected seats (NSDAP 288, Kampffront Schwarz-Weiß-Rot 52) — a majority, but short of two thirds of the elected chamber (en.wikipedia, March 1933 German federal election).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The two-thirds rule exists as the constitution's lock on itself; annulled mandates, mass arrests and the new count-the-absent-as-present arithmetic pick that lock before the key is even voted on — a yes ratifies the procedure as much as the text.\n- Every guarantee offered for the bill lives in a speech, not in the five articles: the law names no arbiter, so each promise depends entirely on the promisor's future self-restraint — and a government able to enact any law is also able to redefine what was promised.\n- The sunset clause cuts both ways: a four-year horizon makes assent feel provisional, but a cabinet that can rewrite electoral law, press law and the rules on parties could reshape the very country that would have to decide on renewal — the second decision would not be taken under the conditions of the first.",
+   "raw_outcome": "Gesetz zur Behebung der Not von Volk und Reich (Ermächtigungsgesetz)",
+   "source_url": "https://www.bundestag.de/dokumente/textarchiv/1933-03-23-ermaechtigungsgesetz-938540",
+   "outcome": "approved",
+   "tally": {
+    "for": 444,
+    "against": 94,
+    "abstain": 0
+   },
+   "party_votes_canon": {
+    "SPD": "against",
+    "Z": "for",
+    "BVP": "for",
+    "DDP": "for",
+    "DVP": "for",
+    "DNVP": "for",
+    "NSDAP": "for"
+   },
+   "verification": {
+    "vote_record": "444 for, 94 against, of 538 valid votes — official protocol figure, used by bundestag.de, bpb and de.wikipedia. The 94 nays were the SPD deputies present, the only No of the sitting.",
+    "bloc_breakdown": "Yes: NSDAP 288, DNVP/Kampffront Schwarz-Weiß-Rot 52, Zentrum 72 of 73 (1 excused; Brüning and Kaas among the yes), BVP 19, DStP 5 (incl. Theodor Heuss, under protest, bound by faction discipline), CSVD 4, DVP 1 (the party's second deputy ill), Bauernpartei/Landbund 3 (de.wikipedia; bundestag.de). No: SPD 94 present of 120 elected — 26 arrested or fled. DVP canon 'for' rests on a single deputy voting (1 of 2 seats); DDP token = Deutsche Staatspartei.",
+    "omissions": "KPD omitted: its 81 mandates were annulled under the Reichstag Fire Decree and its deputies were arrested or underground — the party never took these seats. Absence was exclusion by force, not a comparable parliamentary choice, so the viewer must not read a direction into it.",
+    "discrepancies": "Gonschior's chronicle gives '441 Stimmen' — outlier against the official protocol's 444:94, rejected. Zentrum appears as 73 seats (EN election article; matches 72 yes + 1 excused) or 74 in some references, with BVP 19/18 correspondingly. The standing-orders change counting unexcused absentees as present was itself adopted earlier in the sitting against the SPD's votes — no separate division count retrieved, kept out of copy as a result.",
+    "sources": [
+     "https://de.wikipedia.org/wiki/Erm%C3%A4chtigungsgesetz_vom_24._M%C3%A4rz_1933",
+     "https://www.bundestag.de/dokumente/textarchiv/1933-03-23-ermaechtigungsgesetz-938540",
+     "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/156904/1933-reichstag-verabschiedet-ermaechtigungsgesetz/",
+     "https://www.das-parlament.de/kultur/geschichte/als-der-reichstag-sich-faktisch-selbst-abschaffte",
+     "https://www.dhm.de/lemo/kapitel/ns-regime/etablierung-der-ns-herrschaft/ermaechtigungsgesetz",
+     "https://en.wikipedia.org/wiki/March_1933_German_federal_election"
+    ]
+   }
+  },
+  {
+   "id": "DE-1933-friedensresolution",
+   "session_code": "RT8",
+   "organ": "Reichstag",
+   "point": null,
+   "date": "1933-05-17",
+   "title": "Entschließung des Reichstags zur Regierungserklärung („Friedensresolution“)",
+   "type": "Resolution",
+   "proposed_by": "NSDAP, DNVP, Zentrum and BVP parliamentary groups (joint resolution)",
+   "doc_ref": "Verhandlungen des Reichstags, Bd. 457, Sitzung vom 17. Mai 1933",
+   "topic": "Foreign policy",
+   "headline": "Put parliament behind the government's declaration that Germany wants peace and equal armament rights — and will walk out of the Geneva disarmament talks and the League of Nations if the other powers refuse.",
+   "source_brief": "The Chancellor has just told the chamber — and through it, the world — that the new Germany renounces force, asks only for equality among nations, and will leave the Geneva disarmament conference and the League of Nations, the world body of the day, if equality is denied. The resolution on the table puts this house behind that declaration. The words are the mildest the regime has spoken; the room they are spoken in is not.\n\n- **What a yes endorses:** the declaration itself — peace professed, the armament limits of the Versailles peace treaty applied equally to everyone or to no one, and the threat to quit Geneva and the League if refused.\n- **Why a yes is thinkable for anyone:** equal treatment under Versailles is the one demand every German party has made for a decade. As a text, this could have come from any previous government.\n- **What a yes also does:** it hands a government that jails its critics a world-stage picture of national unity — and abroad, endorsement of the declaration will be read as endorsement of everything else done in its name.\n- **How the vote works:** no ballot papers. Assent is given by standing up, in the open, with dozens of opposition deputies already in prison or in exile — and word has come down from the interior ministry that the lives of the jailed may hang on how the house behaves.",
+   "deep_facts": "- The government declaration of 17 May 1933 addresses the Geneva disarmament conference, in session since February 1932: Germany demands equal rights in armaments, professes peace and rejects war as a means of solving Europe's problems, and announces it would leave the conference and the League of Nations if equality is denied (Verhandlungen des Reichstags, Bd. 457; bundestag.de, WD 1-013/24).\n- Contemporaries register the speech's moderation; the historian Heinrich August Winkler later calls it 'the most measured and peaceable he ever gave' (bundestag.de, WD 1-013/24, citing Winkler).\n- In the week before the sitting, the SPD's party buildings, newspapers and assets were seized (bundestag.de, WD 1-013/24).\n- The Communist deputies are entirely absent — exposed since the Reichstag fire of February to arrest, abduction and mistreatment; parts of the SPD caucus are missing too (bundestag.de, WD 1-013/24).\n- Of the SPD's 120 elected deputies, 65 can still be reached for the caucus meeting of 16 May; the party's executive, partly already in exile in Prague, urges the deputies to stay away from the sitting demonstratively (bundestag.de, WD 1-013/24; FES, Chronik der deutschen Sozialdemokratie).\n- In the council of elders, the Reich interior minister remarks: 'It is a matter of indifference to us whether the Social Democrats assent to the Reichstag's resolutions or not. In any case they may know that to us the life of the nation stands higher than the life of individual men' (Winkler, Der Weg in die Katastrophe, p. 934, via bundestag.de, WD 1-013/24).\n- No roll-call vote is scheduled: the president of the chamber asks deputies to rise from their seats to signal assent (bundestag.de, WD 1-013/24).\n- Unlike the constituent sitting of 21 March, the protocol of 17 May carries no attendance list; the Reichstag registry was later destroyed by wartime bombing, so no reliable record of who sat in the hall exists (bundestag.de, WD 1-013/24, citing Mergel).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- A resolution with no enacting force is pure signal, and its value to the government lies abroad: parliament's blessing converts one cabinet's promise into 'Germany speaks with one voice'. The procedure — standing, visible, countable by eye — is built to manufacture exactly that picture.\n- For a deputy opposed to the regime the calculus of voting is inverted: a no cannot change the text or the government, but may change what happens tonight to colleagues in the cells. The resolution functions as a loyalty oath dressed as foreign policy, with hostages attached.\n- The declaration's very moderation is doing the work: by demanding only what every previous government demanded, it makes assent cheap and refusal look unpatriotic — and it buys the regime respectability abroad precisely while it consolidates at home.",
+   "raw_outcome": "Entschließung des Reichstags zur Regierungserklärung („Friedensresolution“)",
+   "source_url": "https://www.bundestag.de/resource/blob/1015024/WD-1-013-24-pdf.pdf",
+   "outcome": "approved",
+   "tally": {
+    "for": 0,
+    "against": 0,
+    "abstain": 0
+   },
+   "party_votes_canon": {
+    "SPD": "for",
+    "Z": "for",
+    "BVP": "for",
+    "DNVP": "for",
+    "NSDAP": "for"
+   },
+   "verification": {
+    "vote_record": "No numeric division exists: adopted by acclamation — Reichstag President Göring asked deputies to rise, the protocol records that all deputies present rose, and unanimity was entered in the record; the chamber then sang the Deutschlandlied (bundestag.de WD 1-013/24, from the stenographic protocol, reichstagsprotokolle.de Blatt2_w8_bsb00000141_00051). The all-zero tally is the viewer's 'unanimous' rendering convention, NOT a count — never replace it with an invented number.",
+    "bloc_breakdown": "The resolution was tabled jointly by the NSDAP, DNVP (Deutschnationale), Zentrum and BVP factions (WD 1-013/24), which establishes those four blocs as present and assenting — together with the recorded unanimity, canon 'for'. SPD 'for': of 120 elected deputies 65 were reachable; the rump caucus decided on 16 May — 48 of the 65, after interior minister Frick's barely veiled threat against imprisoned Social Democrats, and against the Prague exile executive's plea to stay away — to attend and assent; per Winkler one of the 65 (Toni Pfülf) stayed away from the plenary. The SPD deputies present stood with the rest (WD 1-013/24; FES Chronik; de.wikipedia Friedensrede). The caucus's 48-vote figure is internal, not a floor tally.",
+    "omissions": "KPD omitted: 81 mandates annulled, deputies arrested or underground since the Reichstag fire — 'fehlten gänzlich' (WD 1-013/24); exclusion by force, not a vote. DDP (DStP) and DVP omitted: presence cannot be established — the 17 May protocol carries no attendance list, the Reichstag registry was destroyed in WW2, faction protocols survive only for DNVP and Zentrum, and the literature offers no reliable attendance figures (WD 1-013/24, citing Mergel). research.json marked both 'for' on medium confidence; downgraded to omission under the presence rule rather than asserted.",
+    "discrepancies": "None on the outcome itself — the acclamation, the unanimity entry and the SPD rump's participation are multiply documented (WD paper, FES, de.wikipedia). Gonschior's chronicle has no entry for 17 May 1933. Sebastian Haffner's claim that the Social Democrats also sang the Horst-Wessel-Lied is false per the protocol — only NSDAP members sang it, after the sitting closed (WD 1-013/24).",
+    "sources": [
+     "https://www.bundestag.de/resource/blob/1015024/WD-1-013-24-pdf.pdf",
+     "https://de.wikipedia.org/wiki/Friedensrede_vom_17._Mai_1933",
+     "http://library.fes.de/fulltext/bibliothek/chronik/band2/e235f1092.html",
+     "https://www.fes.de/news-detailansicht-1/sozialdemokratische-reichstagsfraktion-1933",
+     "https://www.reichstagsprotokolle.de/Blatt2_w8_bsb00000141_00051.html"
+    ]
+   }
+  }
+ ]
+}
