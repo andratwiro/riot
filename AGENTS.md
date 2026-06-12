@@ -76,10 +76,12 @@ without it.
 | `cities/<id>/config.js` | Per-city chrome + tunables: `window.CITY_CONFIG` (name, logo, document `lang`, source-document `srcLang` for the original-wording toggle, `chamber` for live-session copy, `lobby` — ALL live-lobby strings: live_chip / title / body_name / one_liner (`{count}`/`{body}`) / count_line / cta / about_label / docketInstitutionLine / docketCountLine (`{period}`/`{n}` computed from the active deck) / disclosure / sittingOpenedFormula, plus privacyLine which renders on the FIRST vote card, not the lobby; Reus is the Catalan reference, Brussels/Congress wording carries TODO(rob) markers, `mapGate`). |
 | `cities/<id>/data.js` | `window.RIOT = {...}` — that city's decisions table as a JS object (avoids CORS). **Generated** by `build_table.py` (Reus) / `build_table_bxl.py` (Brussels). |
 | `cities/<id>/ai_votes.js` | `window.AI_VOTES = {...}` — the GHOST's votes (Reus only so far). |
+| `cities/<id>/blank_votes.js` | `window.BLANK_VOTES = {...}` — the **BLANK control**: the same model voting the same neutral context with NO soul (Reus only; `null` stubs elsewhere). Exists to measure how much soul.md moves the GHOST off the model's prior (the Habermolt ρ=+0.15 question, with ground truth). Seats/clears WITH the ghost via `applyGhostParty` — same `--ghost-ink` dashed shell, **no core** (an anchor with no soul); rows read "Blank", its compare view stamps BLANK. |
 | `firebase-config.js` | `window.FIREBASE_CONFIG` — multiplayer backend config. Set to `null` for single-player. The apiKey is not a secret; access is governed by the DB rules. |
 | `scripts/` | The Python pipelines, Reus + `*_bxl.py` Brussels (see Commands). |
 | `data/decisions.json` | **The Reus core table** — top-level metadata + `decisions[]` (one row per decision). The committed source of truth. |
 | `data/ai_votes.json` | GHOST votes (mirror of `cities/reus/ai_votes.js`). |
+| `data/blank_votes.json` | BLANK control votes (mirror of `cities/reus/blank_votes.js`) — produced 2026-06-12 via Fable 5 subagents over the GHOST's exact 114-decision id set, same firewall minus soul.md. First reading: BLANK agrees with GHOST 97/114 (85%). |
 | `data/curator_marks.json`, `data/auto_discretion.json` | Human curator flags + auto-detected low-discretion proposals (Reus). |
 | `data/actas/*.txt` | Reus source plenary minutes (PDF → `pdftotext`). |
 | `data/raw/` | Reus pipeline intermediates + session index (`sessions.json`). **Audit trail — never delete.** Live inputs to `build_table.py`: `parsed_*.json` (facts) + `explained_*.json` (the human layer — headline/body/brief/deep_facts/deep_lectura all live HERE). The `voice_*`, `deep_*`, `lectura_*` files and `vote_outcomes.json` are superseded intermediates from earlier authoring phases — read by nothing current, kept as history; don't extend them. |
@@ -117,6 +119,11 @@ python3 scripts/build_table.py
 # Phase 4 — the GHOST. Reads soul.md + each decision's neutral context → blind vote.
 # Needs ANTHROPIC_API_KEY in env and soul.md present. Writes cities/reus/ai_votes.js.
 python3 scripts/ai_vote.py [--only-missing | --ids <id...> | --limit N | --dry-run]
+
+# The BLANK control — ai_vote.py minus the soul: the bare model votes the GHOST's
+# id set from the same neutral context. Writes cities/reus/blank_votes.js.
+# Keep its mechanics mirrored to ai_vote.py's; only the worldview may differ.
+python3 scripts/blank_vote.py [--only-missing | --ids <id...> | --limit N | --dry-run]
 
 # Curator gate — auto-flag low-discretion items (proposes drops; never disposes)
 python3 scripts/detect_discretion.py

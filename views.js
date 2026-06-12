@@ -71,12 +71,14 @@ $("#dlMarks").addEventListener("click",()=>{
 function openParty(token){
   const p=PARTIES.find(x=>x.token===token); if(!p)return;
   const isGhost=!!p.ghost;
+  // ghost-family rows carry a rationale + confidence; the blank's come from its own store
+  const STORE=isGhost ? (p.blank?BLANKV:AI) : null;
   const rows=[];
   for(const id in answers){
     const d=byId[id]; if(!d)continue;
     const pv=(d.party_votes_canon||{})[token];
     const comparable=(pv==="for"||pv==="against"||pv==="abstain");
-    rows.push({d,pv,uv:answers[id],comparable,agree:comparable&&pv===answers[id],rationale:isGhost&&AI&&AI[id]?AI[id].rationale:null,conf:isGhost&&AI&&AI[id]?AI[id].confidence:null});
+    rows.push({d,pv,uv:answers[id],comparable,agree:comparable&&pv===answers[id],rationale:STORE&&STORE[id]?STORE[id].rationale:null,conf:STORE&&STORE[id]?STORE[id].confidence:null});
   }
   // rank: discrepancies first, then party didn't vote comparably, then agreements
   const rankOf=r=> r.comparable ? (r.agree?2:0) : 1;
@@ -92,10 +94,12 @@ function openParty(token){
   // ghost header: the mark + the GHOST stamp (the stamp is large-surface
   // decoration only — it never appears at list or map scale)
   $("#pvHead").innerHTML = isGhost
-    ? `<span class="lg ghost">${ghostMark(30)}</span><div><span class="gstamp">GHOST</span> <span class="pvpct">${accord}</span></div>`
+    ? `<span class="lg ghost">${ghostMark(30,{noCore:!!p.blank})}</span><div><span class="gstamp">${p.blank?"BLANK":"GHOST"}</span> <span class="pvpct">${accord}</span></div>`
     : `${logoEl(p)}<div><b>${esc(p.name)}</b> <span class="pvpct">${accord}</span></div>`;
   $("#pvIntro").textContent=rows.length
-    ? (isGhost
+    ? (p.blank
+        ? `The control: the blank voted the same neutral context as the ghost but with NO profile at all — what the bare AI would do. The ${rows.length} you voted, where it misses first.`
+      : isGhost
         ? `Blind prediction: the ghost voted only from your profile and the neutral context of each decision — never seeing your votes, the parties' votes or the outcome. The ${rows.length} you voted, where it misses first.`
         : `The ${rows.length} decisions you voted, compared with ${p.name}. Where you differ first.`)
     : "You haven't reacted to any decision yet.";

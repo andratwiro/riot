@@ -354,7 +354,9 @@ let PROJ_CACHE={};
    projection, no toggle (Rob, 2026-06-11: it appears by default when enabled).
    The You projection carries its one caption line. */
 const ghostSeated=()=>PARTIES.some(p=>p.ghost);
+const blankSeated=()=>PARTIES.some(p=>p.blank);
 const GHOST_CAP="the dashed one is your ghost. it never saw your votes — it predicts them.";
+const BLANK_CAP=" the empty ring is the blank: the same AI given no profile at all.";
 function projDef(k){ return PROJECTIONS.find(p=>p.k===k)||PROJECTIONS[0]; }
 // chips that make sense right now: You needs your ballot; t-SNE needs a crowd
 function availableProjections(){
@@ -502,8 +504,10 @@ function layoutMap(){
       geo.push(o.line);
       // the ghost's SOLID CORE never leaves its true coordinate: the displaced
       // disc keeps only the dashed shell (.split hides its in-dot core) and the
-      // core is re-inked here, at the true point — same contract as the anchors
-      if(o.ghost){ o.d.classList.add("split"); geo.push({t:"gcore",x:o.tx,y:o.ty}); }
+      // core is re-inked here, at the true point — same contract as the anchors.
+      // The BLANK has no core to re-ink (an anchor with no soul) — the plain
+      // anchor ring below marks its true point like any party's.
+      if(o.ghost && !o.d.classList.contains("blank")){ o.d.classList.add("split"); geo.push({t:"gcore",x:o.tx,y:o.ty}); }
       if(!anchors.some(a=>Math.hypot(a.x-o.tx,a.y-o.ty)<2)) anchors.push({x:o.tx,y:o.ty,me:false});
       if(o.me) anchors.forEach(a=>{if(Math.hypot(a.x-o.tx,a.y-o.ty)<2)a.me=true;});
     });
@@ -552,7 +556,7 @@ function renderResultMap(){
     // the ghost is spectral: the bare dashed-ring mark, no disc, paper through
     // the ring — party-dot SIZE, never party-dot dress
     if(p.ghost)
-      return `<div class="mdot ghost" data-tx="${l}" data-ty="${t}" style="left:${l}%;top:${t}%;--d:${120+i*90}ms" title="Ghost">${ghostMark(30)}</div>`;
+      return `<div class="mdot ghost${p.blank?" blank":""}" data-tx="${l}" data-ty="${t}" style="left:${l}%;top:${t}%;--d:${120+i*90}ms" title="${p.blank?"Blank":"Ghost"}">${ghostMark(30,{noCore:!!p.blank})}</div>`;
     const inner=p.logo?`<span class="mc bg-${p.token}"><img src="${p.logo}" alt="${esc(p.name)}"></span>`
                       :`<span class="mc fb" style="background:${p.color}">${p.token}</span>`;
     return `<div class="mdot" data-tx="${l}" data-ty="${t}" style="left:${l}%;top:${t}%;--d:${120+i*90}ms" title="${esc(p.name)}">${inner}</div>`;
@@ -598,7 +602,7 @@ function renderProjPicker(){
     <p class="mp-note">${projDef(MAP_PROJ).note}</p>`+
     // the ghost's one caption line, You projection only — the egocentric view
     // is where "predicts you" is the question
-    (ghostSeated()?`<p class="mp-note gnote"${MAP_PROJ==="you"?"":" hidden"}>${GHOST_CAP}</p>`:"");
+    (ghostSeated()?`<p class="mp-note gnote"${MAP_PROJ==="you"?"":" hidden"}>${GHOST_CAP}${blankSeated()?BLANK_CAP:""}</p>`:"");
 }
 (function(){
   const el=document.getElementById("mapProj"); if(!el)return;

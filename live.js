@@ -629,7 +629,7 @@ function renderModSetup(){
       <label>ballot ceiling <input id="msTimer" type="number" inputmode="numeric" min="10" max="180" value="${modSel.timer}"> s</label>
       <label>auto-advance after reveal <input id="msReveal" type="number" inputmode="numeric" min="0" max="60" value="${modSel.reveal}"> s <small>0 = you advance</small></label>
       <label>synthetic voters <input id="msBots" type="number" inputmode="numeric" min="0" max="24" value="${modSel.bots}"> <small>fake people who vote at random</small></label>
-      ${AI?`<label>GHOST <span class="switch"><input id="msGhost" type="checkbox" ${modSel.ai?"checked":""}><span class="slider"></span></span> <small>seats the ghost in the reveal</small></label>`:""}
+      ${AI?`<label>GHOST <span class="switch"><input id="msGhost" type="checkbox" ${modSel.ai?"checked":""}><span class="slider"></span></span> <small>seats the ghost${BLANKV?" + its blank control":""} in the reveal</small></label>`:""}
     </div>
     <div class="ms-acts">
       <button class="ms-back" type="button">← Sessions</button>

@@ -60,8 +60,16 @@ construction in ghost ink) is large-surface decoration only — never at list
 or map scale. On the map: seated = visible, every projection, NO toggle; the
 You view carries its one caption line; in fan-outs the dashed shell is
 displaced while the solid core holds the true coordinate (it IS the ghost's
-anchor). Party-disc backfills (`bg-<token>`) must be sampled from the logo
-asset itself — a near-miss yellow reads as a dirty ring (CUP, fixed #ffdd00).
+anchor). **The BLANK** (Rob, 2026-06-12 — the no-soul control: the same model
+voting the same neutral context with no profile) wears the SAME branding minus
+the soul: the dashed shell with **no core dot** (`ghostMark(size,{noCore:true})`),
+same ghost ink, party size, row name "Blank", BLANK stamp in its compare view.
+It seats and clears WITH the ghost (one switch, `applyGhostParty`) and follows
+every ghost rule (excluded from the headline finding, never lands mid-deck or
+on the piles); in map fan-outs it gets the plain anchor ring at its true point —
+never a re-inked core, it has no soul to ink. Party-disc backfills (`bg-<token>`)
+must be sampled from the logo asset itself — a near-miss yellow reads as a
+dirty ring (CUP, fixed #ffdd00).
 
 ## The booth doctrine (non-negotiable)
 

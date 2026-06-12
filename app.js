@@ -23,6 +23,10 @@ document.documentElement.lang=CFG.lang||"en";
 const R = window.RIOT || {decisions:[], parties:[]};
 // The GHOST's blind votes (id -> {vote,confidence,rationale}); null until ai_vote.py / the ghost run has produced them.
 const AI = (window.AI_VOTES && window.AI_VOTES.votes) || null;
+// The BLANK's votes — the no-soul control: same neutral inputs, same mechanics, NO
+// worldview. It rides the ghost's seat switch: wherever the GHOST is seated, the
+// blank seats too (it only exists to be compared against the ghost and You).
+const BLANKV = (window.BLANK_VOTES && window.BLANK_VOTES.votes) || null;
 const PARTIES = R.parties || [];
 const QS = new URLSearchParams(location.search);
 /* ?solo=1 — the deliberate solo entrance: the booth alone, full deck, no room,
@@ -33,14 +37,18 @@ const QS = new URLSearchParams(location.search);
 const SOLO = QS.get("solo")==="1";
 // Add/remove the GHOST as one more "party" (reveal map + compare view). Off by default; moderator cfg / &ai=1.
 function applyGhostParty(on){
-  if(AI){
-    const has=PARTIES.some(p=>p.token==="GHOST");
+  // the GHOST and its BLANK control seat and clear together — one switch
+  const seats=[];
+  if(AI)     seats.push({token:"GHOST",name:"Ghost",store:AI,    extra:{}});
+  if(BLANKV) seats.push({token:"BLANK",name:"Blank",store:BLANKV,extra:{blank:true}});
+  for(const s of seats){
+    const has=PARTIES.some(p=>p.token===s.token);
     if(on && !has){
-      PARTIES.push({token:"GHOST",name:"Ghost",color:"var(--ghost-ink)",logo:null,ghost:true});
-      for(const d of R.decisions){const rec=AI[d.id]; if(rec){(d.party_votes_canon=d.party_votes_canon||{})["GHOST"]=rec.vote;}}
+      PARTIES.push({token:s.token,name:s.name,color:"var(--ghost-ink)",logo:null,ghost:true,...s.extra});
+      for(const d of R.decisions){const rec=s.store[d.id]; if(rec){(d.party_votes_canon=d.party_votes_canon||{})[s.token]=rec.vote;}}
     } else if(!on && has){
-      const i=PARTIES.findIndex(p=>p.token==="GHOST"); if(i>=0) PARTIES.splice(i,1);
-      for(const d of R.decisions){ if(d.party_votes_canon) delete d.party_votes_canon["GHOST"]; }
+      const i=PARTIES.findIndex(p=>p.token===s.token); if(i>=0) PARTIES.splice(i,1);
+      for(const d of R.decisions){ if(d.party_votes_canon) delete d.party_votes_canon[s.token]; }
     }
   }
   rebuildMap();      // PARTIES changed → recompute the reveal-map coordinates
@@ -157,7 +165,7 @@ function affinityFor(votes){
 }
 function affinity(){ return affinityFor(answers); }
 function logoEl(p){
-  if(p.ghost) return `<span class="lg ghost"></span>`;   // decorateGhost() inks the mark at the right size tier
+  if(p.ghost) return `<span class="lg ghost${p.blank?" blank":""}"></span>`;   // decorateGhost() inks the mark at the right size tier (blank = shell only, no core)
   return p.logo ? `<span class="lg bg-${p.token}"><img src="${p.logo}" alt="${p.name}"></span>`
                 : `<span class="lg fb" style="background:${p.color}">${p.token}</span>`;
 }
@@ -395,9 +403,12 @@ function renderDoneParties(ranked,a){
   decorateGhost(el,34);
 }
 // ink the GHOST mark into any empty ghost logo slots (reveal screen) at the
-// container's size tier — the slot stays a plain span so re-renders are cheap
+// container's size tier — the slot stays a plain span so re-renders are cheap.
+// The BLANK control wears the same ring with NO core: an anchor with no soul.
 function decorateGhost(container,size){
-  container.querySelectorAll('.lg.ghost:empty').forEach(slot=>{slot.innerHTML=ghostMark(size);});
+  container.querySelectorAll('.lg.ghost:empty').forEach(slot=>{
+    slot.innerHTML=ghostMark(size,{noCore:slot.classList.contains("blank")});
+  });
 }
 // The finding, not a match score: even your closest list only votes like you X% of the time.
 // The headline stands alone — the map and the ranked field below carry the detail.
