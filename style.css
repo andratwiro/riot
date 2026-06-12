@@ -741,6 +741,8 @@ html.cover header{position:sticky;top:0;z-index:5;background:var(--paper)}
   color:var(--card);border:0;border-radius:10px;padding:16px;
   font:700 16.5px var(--f-ui);cursor:pointer;min-height:54px}
 .sl-go:active{transform:scale(.98)}
+/* phones: the CTA spans the column edge to edge (the 300px cap is a desktop measure) */
+@media (max-width:680px){.sl-go{max-width:none}}
 .sl-note{margin:10px 0 0;font:400 11px/1.5 var(--f-mono);color:var(--ink60)}
 .sl-note[hidden]{display:none}
 
