@@ -31,8 +31,16 @@ have not seen how the council actually voted. Your job is to make them understan
   are **metadata** (stored in `proposed_by`), not copy. Naming the party primes the reader by
   tribe instead of by the issue. Describe the issue and the fault line impersonally
   ("la proposta sobre la taula és…", "el govern s'hi resisteix").
-- **Opinion lives in headline + brief only.** `deep` stays factual and neutral — it's what an
-  GHOST reads to vote, so it must not inherit our slant.
+- **HISTORY-DECK ADAPTATION of the rule above (Rob, 2026-06-12, born on the Weimar deck):**
+  in a historical instance the reader has no present-day tribe to be primed into, and
+  scrubbing the actors deletes the context a modern reader needs — the first Weimar draft
+  never said "Hitler" or "Nazi" and was unreadable without a history degree. So: **named
+  historical actors are required scene context** (Hitler, the Nazis, the SA, Brüning, Papen,
+  Hindenburg; Corbyn-era party names in Commons 2019 stay out per the live rule — 2019 is
+  still tribal). Every history-deck brief OPENS with a one-line scene-set: the date and who
+  governs ("It is 23 March 1933. Hitler has been Chancellor for seven weeks."). The narrow
+  proposer rule still holds (don't frame the headline as "Party X demands…"), and the
+  own-result + island rules are untouched: name the world, never the verdict.
 - **"Opinionated" = blunt and clarifying**, never partisan. Cut the bullshit, name the real
   stake, call out pure tràmit. NEVER say a party is good or bad.
 - **Facts only**, taken from the neutral dossier (`deep_<code>.json`). Invent nothing; figures

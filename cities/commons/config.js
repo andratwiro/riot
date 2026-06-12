@@ -19,8 +19,8 @@ window.CITY_CONFIG = {
     kicker: "The record · 2019",
     title: "The spring the House took the wheel.",
     lore: [
-      "Early 2019. The country has voted to leave the European Union; its Parliament must now choose how — and every road out crosses someone's red line. For three months the House of Commons votes on exits soft, hard and none at all, while the legal deadline counts down.",
-      "These are the real divisions of that spring. You vote on each one first, blind. Then the House votes back — party by party, exactly as recorded."
+      "Early 2019. The country has voted to leave the European Union; its Parliament must now choose how, and every road out crosses someone's red line. For three months the House of Commons votes on exits soft, hard and none at all, while the legal deadline counts down.",
+      "These are the real divisions of that spring. You vote on each one first, blind. Then the House votes back, party by party, exactly as recorded."
     ],
     meta: "{n} divisions · Jan–Apr 2019 · official CommonsVotes record",
     cta: "Open the record",

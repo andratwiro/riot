@@ -18,8 +18,8 @@ window.CITY_CONFIG = {
     kicker: "The record · 1929–1933",
     title: "The last votes of a republic.",
     lore: [
-      "Berlin, 1929. The Weimar Republic is ten years old — a democracy carrying the bill for a lost war, with a depression on its way and parties at both ends of the chamber that want the whole system gone.",
-      "Each card is a real Reichstag vote from its final years, in its own words. You vote first, blind, as if it were on your desk today. Then the chamber answers, party by party, exactly as recorded.",
+      "Berlin, 1929. The Weimar Republic is ten years old: a democracy carrying the bill for a lost war, with a depression on its way, Communists at one end of the chamber and Adolf Hitler's rising Nazi Party at the other. Both want the whole system gone.",
+      "Each card is a real Reichstag vote from the Republic's final years, in its own words. You vote first, blind, as if it were on your desk today. Then the chamber answers, party by party, exactly as recorded.",
       "The deck ends in March 1933. The chamber it shows never voted freely again."
     ],
     meta: "{n} recorded votes · 1929–1933 · Reichstag",
