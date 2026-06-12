@@ -520,7 +520,10 @@ const LB_FACES=8;                  // visible lobby avatars; the rest fold into 
 const lvFaceBorn=new Map();        // face key → first-seen ms: newcomers keep their pop
 function lobbyPresence(){          // through presence-ping re-renders (innerHTML rebuilds
   const lb=$("#lobby"); if(!lb||lb.hidden) return;   // would otherwise cut it at frame one)
-  $("#lobbyCount").textContent=voterCount();
+  // the gathering counts its watcher: you're in the room before you're in the
+  // record (presence WRITES stay seat-gated). Without the +1 the first arrivals
+  // all stare at "0 in the room" — a dead room that reads as broken multiplayer.
+  $("#lobbyCount").textContent=mpVisiblePids().length+1;
   const ppl=[];
   if(lvSeated) ppl.push({k:"me",e:identity&&identity.emoji,nm:(identity&&identity.name)||"you",me:true});
   for(const pid of mpVisiblePids()) ppl.push({k:pid,e:PEERS[pid].e,nm:PEERS[pid].nm,me:false});
@@ -538,9 +541,6 @@ function showLobby(){
   const lb=$("#lobby");
   if(lb.hidden){ lb.hidden=false; lvFaceBorn.clear(); }   // fresh gathering: everyone pops once
   const L=CFG.lobby||{};
-  // letterhead line: the app header is hidden here — city + version + glyph
-  $("#lobbyId").textContent=CFG.name+" · "+((($(".ver")||{}).textContent)||"");
-  const g=$("#lobbyGlyph"); if(g&&CFG.logo) g.src=CFG.logo;
   $("#lobbyChip").textContent=L.live_chip||"";
   $("#lobbyTitle").textContent=L.title||"";
   // pre-snapshot (refresh hold) there is no deck yet — leave the {count} lines
