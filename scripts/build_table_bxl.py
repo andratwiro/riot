@@ -32,7 +32,7 @@ GROUPS = [
     ("DEFI", "DéFI",          "#e6007e"),
     ("GRN",  "Groen",         "#8cc63f"),
     ("TFA",  "Team F. Ahidar","#6a4ea3"),
-    ("OVLD", "Open VLD",      "#2aa0e0"),
+    ("OVLD", "Open Vld · Anders.", "#2aa0e0"),   # the group renamed itself "Anders." in Sept 2025; one mandate, both names
     ("NVA",  "N-VA",          "#f0a500"),
     ("VOOR", "Vooruit",       "#ff5c39"),
     ("VB",   "Vlaams Belang", "#8b5e3c"),
@@ -67,16 +67,31 @@ def is_decision(v):
     return v.get("segment") == "Ensemble"
 
 
-def canonical(names_oui, names_non, names_abst, roster):
+def group_of(nm, roster, date):
+    """Resolve a member's group AT THE DATE OF THE VOTE. A plain-string roster
+    value is term-stable; a list of [from_date, group] pairs (ascending, first
+    entry "" = since always) handles the five members who crossed the floor
+    mid-corpus (Hoylaerts, de Magnanville, El Mokadem, Aït Baala, Maingain —
+    the 2026-06-12 demo audit). "IND" = independent: not a bloc, never
+    aggregated (the Commons rule)."""
+    g = roster.get(nm)
+    if isinstance(g, list):
+        g = [grp for frm, grp in g if frm <= date][-1]
+    return g
+
+
+def canonical(names_oui, names_non, names_abst, roster, date):
     """Per group: plurality of how its present members voted. Returns
     (party_votes_canon{token:for/against/abstain}, splits[list], unmapped[set])."""
     by_group = {}
     unmapped = set()
     for vote, lst in (("for", names_oui), ("against", names_non), ("abstain", names_abst)):
         for nm in lst:
-            g = roster.get(nm)
+            g = group_of(nm, roster, date)
             if not g:
                 unmapped.add(nm); continue
+            if g == "IND":
+                continue
             by_group.setdefault(g, {"for": 0, "against": 0, "abstain": 0})[vote] += 1
     pvc, splits = {}, []
     for g, c in by_group.items():
@@ -121,7 +136,7 @@ def main():
         card = cards.get(did)
         if card is None:
             continue
-        pvc, splits, unmapped = canonical(v["oui"], v["non"], v["abst"], roster)
+        pvc, splits, unmapped = canonical(v["oui"], v["non"], v["abst"], roster, v["date"])
         all_unmapped |= unmapped
         split_tally += len(splits)
         group_votes += len(pvc)
