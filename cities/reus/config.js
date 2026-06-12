@@ -14,7 +14,7 @@ window.CITY_CONFIG = {
   // here (no copy conditionals in live.js; Reus is the reference instance).
   // {count}/{body} in one_liner and {period}/{n} in docketCountLine are filled
   // from the live deck + this config at render time, never hardcoded.
-  // firstCardRule/privacyLine render on the FIRST vote card, not the lobby;
+  // privacyLine renders on the FIRST vote card, not the lobby;
   // cta labels the seat gate's button (the shared URL gates before the lobby).
   lobby: {
     live_chip: "SESSIÓ EN DIRECTE",
@@ -27,7 +27,6 @@ window.CITY_CONFIG = {
     docketInstitutionLine: "PLE DE L'AJUNTAMENT DE REUS",
     docketCountLine: "SESSIONS PLENÀRIES {period} · {n} DECISIONS A L'ORDRE DEL DIA",
     disclosure: "Decisions seleccionades de l'acta del ple.",
-    firstCardRule: "Votes a cegues: primer tu, després el ple.",
     privacyLine: "Els teus vots no surten d'aquest telèfon.",
     sittingOpenedFormula: "S'obre la sessió."
   },

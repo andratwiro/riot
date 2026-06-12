@@ -15,19 +15,18 @@ window.CITY_CONFIG = {
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and
   // {period}/{n} in docketCountLine are filled from the live deck + this config.
-  // firstCardRule/privacyLine render on the FIRST vote card, not the lobby.
+  // privacyLine renders on the FIRST vote card, not the lobby.
   lobby: {
     live_chip: "LIVE SESSION",
     title: "The House is convening.",
     body_name: "National Assembly of South Africa",
-    one_liner: "{count} real decisions of the {body}. You'll vote blind.",
+    one_liner: "{count} real decisions of the {body}. You vote the same order paper as the MPs, at the room's pace, and at the end you see who you agree with.",
     count_line: "in the room · waiting for the call to order",
     cta: "Take your seat",
     about_label: "about this session",
     docketInstitutionLine: "PARLIAMENT OF THE REPUBLIC OF SOUTH AFRICA",
     docketCountLine: "RECORDED VOTES {period} · {n} DECISIONS ON THE DOCKET",
     disclosure: "Decisions selected from the official record of the National Assembly.",
-    firstCardRule: "You vote blind: you first, then the House.",
     privacyLine: "Your votes never leave this phone.",
     sittingOpenedFormula: "Order, order. The House is in session."
   },

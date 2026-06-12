@@ -13,10 +13,10 @@ window.CITY_CONFIG = {
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and
   // {period}/{n} in docketCountLine are filled from the live deck + this config.
-  // firstCardRule/privacyLine render on the FIRST vote card, not the lobby;
+  // privacyLine renders on the FIRST vote card, not the lobby;
   // cta labels the seat gate's button (the shared URL gates before the lobby).
   // TODO(rob): provisional Brussels wording for the new lobby keys (live_chip,
-  // title, one_liner, count_line, cta, about_label, firstCardRule, privacyLine)
+  // title, one_liner, count_line, cta, about_label, privacyLine)
   // — carried over / lightly derived from the old convocation copy; confirm
   // before the Go Vocal demo.
   lobby: {
@@ -30,7 +30,6 @@ window.CITY_CONFIG = {
     docketInstitutionLine: "PARLIAMENT OF THE BRUSSELS-CAPITAL REGION",
     docketCountLine: "PLENARY SITTINGS {period} · {n} DECISIONS ON THE DOCKET",
     disclosure: "Decisions selected from the plenary record.",
-    firstCardRule: "You vote blind: you first, then the parliament.",
     privacyLine: "Your votes never leave this phone.",
     sittingOpenedFormula: "The sitting is opened."
   },

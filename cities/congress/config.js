@@ -16,7 +16,7 @@ window.CITY_CONFIG = {
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and
   // {period}/{n} in docketCountLine are filled from the live deck + this config.
-  // firstCardRule/privacyLine render on the FIRST vote card, not the lobby;
+  // privacyLine renders on the FIRST vote card, not the lobby;
   // cta labels the seat gate's button (the shared URL gates before the lobby).
   // TODO(rob): provisional Congress wording for the new lobby keys — carried
   // over / lightly derived from the old convocation copy; confirm.
@@ -31,7 +31,6 @@ window.CITY_CONFIG = {
     docketInstitutionLine: "CONGRESS OF THE UNITED STATES",
     docketCountLine: "ROLL-CALL VOTES {period} · {n} DECISIONS ON THE DOCKET",
     disclosure: "Decisions selected from the official roll-call record.",
-    firstCardRule: "You vote blind: you first, then Congress.",
     privacyLine: "Your votes never leave this phone.",
     sittingOpenedFormula: "The House will come to order."
   },

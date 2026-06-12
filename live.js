@@ -103,14 +103,13 @@ window.LIVE={
     return n?out:null;
   },
   afterCast(top){ voting=false; updateProgress(); showCastPanel(top); updateCastCounts(); },
-  // the lobby's moved copy (it kept none): the blind-vote rule + the privacy
-  // line surface ONCE — on the deck's first ballot, at the moment of voting.
-  // app.js renders them into the .acts row; both die with the first cast.
+  // the lobby's moved privacy line: surfaces ONCE — on the deck's first
+  // ballot, micro-type by the vote buttons (app.js) — and dies with the cast.
+  // (A blind-vote rule line rode along briefly; Rob cut it 2026-06-12.)
   cardNotes(id){
     if(!lvS || lvS.state!=="voting" || lvS.idx!==0 || !lvS.deck || lvS.deck[0]!==id) return null;
     const L=CFG.lobby||{};
-    if(!L.firstCardRule && !L.privacyLine) return null;
-    return {rule:L.firstCardRule||"", privacy:L.privacyLine||""};
+    return L.privacyLine ? {privacy:L.privacyLine} : null;
   }
 };
 

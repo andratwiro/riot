@@ -165,10 +165,11 @@ asset itself — a near-miss yellow reads as a dirty ring (CUP, fixed #ffdd00).
   capped at 8 + `+N` chip, newcomers scale in via `.lb-pop`, big mono count
   with `aria-live="polite"` counting peers + me — the room is never empty to
   the person standing in it). Session metadata folds into the tiny
-  `.lb-about` disclosure; the methodology pitch is GONE from the lobby — the
-  blind-vote rule + privacy line render on the FIRST vote card only
-  (`LIVE.cardNotes` → `.acts-rule` above / `.acts-priv` micro-type below the
-  vote buttons, dead after the first cast). ALL lobby copy comes from
+  `.lb-about` disclosure; the methodology pitch is GONE from the lobby — only
+  the privacy line renders on the FIRST vote card (`LIVE.cardNotes` →
+  `.acts-priv` micro-type below the vote buttons, dead after the first cast;
+  a blind-vote rule line above the buttons was tried and cut by Rob,
+  2026-06-12 — the blind mechanic explains itself when the reveal lands). ALL lobby copy comes from
   `CFG.lobby` (per-city; no copy conditionals in live.js), never hardcoded.
   On open the screen falls away and one line of the minutes remains — the
   chair's formula (`CFG.lobby.sittingOpenedFormula`, ~1.6s, voters who

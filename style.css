@@ -189,9 +189,8 @@ body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
 /* ---- vote buttons: ink on paper, zero valence. Position carries the meaning;
        Abstain is deliberately quieter; For/Against are exactly equal in weight. ---- */
 .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:16px;flex:0 0 auto}
-/* the lobby's moved copy — LIVE first ballot only: the blind-vote rule lands
-   at the moment of voting, the privacy line where the hesitation happens */
-.acts-rule{flex:1 1 100%;margin:0;text-align:center;font:400 12px var(--f-mono);color:var(--ink60)}
+/* the lobby's moved privacy line — LIVE first ballot only, micro-type under
+   the vote buttons, where the hesitation happens */
 .acts-priv{flex:1 1 100%;margin:0;text-align:center;font:400 10.5px var(--f-mono);color:var(--ink60)}
 .btn{flex:1;border-radius:8px;padding:14px 6px;min-height:52px;font:700 15.5px var(--f-ui);
   cursor:pointer;display:flex;align-items:center;justify-content:center;
@@ -628,11 +627,14 @@ html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
   transition:opacity .4s cubic-bezier(.2,.7,.3,1),transform .4s cubic-bezier(.2,.7,.3,1)}
 #lobby.opening .lb-doc{opacity:0;transform:translateY(-10px);pointer-events:none}
 .lb-hero{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;min-height:0;padding:18px 0}
-/* line-height 1 on the chip: the mono caps and the dot share one visual centre
-   (the inherited 1.5 line box floated the text above the dot) */
+/* chip alignment is OPTICAL, not box math: in a line-height:1 12px Courier
+   Prime span the caps' visual centre sits ~1px ABOVE the box centre (measured:
+   ascent 9 / descent 4 — the box hangs low for descenders the caps never use),
+   so the dot lifts 1px to sit on the caps' midline */
 .lb-chip{display:flex;align-items:center;gap:9px;margin:0 0 16px;line-height:1;
   font:700 12px/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--stamp)}
 .lb-pulse{width:8px;height:8px;border-radius:50%;background:var(--stamp);flex:0 0 auto;
+  transform:translateY(-1px);
   animation:lbpulse 1.6s ease-in-out infinite}   /* ambient, not alarming */
 @keyframes lbpulse{0%,100%{opacity:1}50%{opacity:.3}}
 .lb-title{margin:0 0 16px;font:800 clamp(34px,9.6vw,52px)/1.08 var(--f-ui);
