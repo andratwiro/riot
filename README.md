@@ -4,10 +4,13 @@
 RIOT exists to prove it, then scale. It makes political representation *falsifiable* — you can
 check whether the **GHOST** (the AI trained on you) — or a party — actually votes the way you would.
 
-The engine is jurisdiction-agnostic and currently runs three instances behind one shared viewer:
+The engine is jurisdiction-agnostic and currently runs five instances behind one shared viewer:
 **Reus** (`?city=reus`, city council — the original proof), **Brussels** (`?city=brussels`,
-the Brussels-Capital regional Parliament), and **Congress** (`?city=congress`, a demo-grade
-US instance: 16 landmark roll-call votes, the four floor caucuses as parties).
+the Brussels-Capital regional Parliament), **Congress** (`?city=congress`, a demo-grade
+US instance: 16 landmark roll-call votes, the four floor caucuses as parties),
+**South Africa** (`?city=southafrica`, demo-grade: 10 landmark votes of the democratic-era
+Parliament, 1996–2025), and **Tunisia** (`?city=tunisia`, demo-grade: 10 landmark votes of
+the post-revolution parliament, 2014–2018 — a memorial deck for the chamber locked in 2021).
 
 > 🔗 **Live:** https://andratwiro.github.io/riot/
 

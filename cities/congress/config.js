@@ -24,7 +24,7 @@ window.CITY_CONFIG = {
     live_chip: "LIVE SESSION",
     title: "Congress is convening.",
     body_name: "US Congress",
-    one_liner: "{count} real decisions of the {body}. You'll vote blind.",
+    one_liner: "{count} real decisions of the {body}. You vote the same docket as the members, at the room's pace, and at the end you see who you agree with.",
     count_line: "in the room · waiting for the call to order",
     cta: "Take your seat",
     about_label: "about this session",

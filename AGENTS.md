@@ -8,7 +8,7 @@
 
 **RIOT** asks a falsifiable question: *can an AI ghost faithfully represent a
 citizen's political will on real council decisions?* The engine is
-jurisdiction-agnostic and now runs **three instances** behind one shared viewer:
+jurisdiction-agnostic and now runs **five instances** behind one shared viewer:
 
 - **Reus** (`?city=reus`, the default) — the original proof. Rob votes manually on
   contested Reus city-council decisions (stored device-locally). The **GHOST** — the AI trained on him — votes
@@ -32,6 +32,23 @@ jurisdiction-agnostic and now runs **three instances** behind one shared viewer:
   Senate only) carry only the caucuses that actually voted — the viewer treats
   absent tokens as "didn't vote comparably". Source of truth + per-card audit
   trail (roll numbers, tallies, caucus breakdowns): `data/congress/cards.json`.
+- **South Africa** (`?city=southafrica`) — DEMO-grade, Congress convention: 10
+  landmark recorded votes of the democratic-era Parliament (the 1996 Constitution,
+  same-sex marriage 2006, the Secrecy Bill, the s25 land amendment (rejected),
+  Phala Phala impeachment report (rejected), NHI, the Israel-embassy motion, BELA,
+  the Expropriation Act, the 2025 GNU VAT budget), hand-authored from the official
+  record (Hansard / pmg.org.za) over independently verified vote facts. Parties:
+  ANC/DA/EFF/IFP/MK + era parties NP/DP (1996 card only); absent tokens = boycotts,
+  walkouts, not-yet-founded parties. Source of truth: `data/southafrica/cards.json`.
+- **Tunisia** (`?city=tunisia`) — DEMO-grade, Congress convention: 10 landmark
+  roll-calls of the post-revolution parliament (2014 Constitution + Article 1 +
+  the women's-rights article, the one-vote-short old-regime ban (rejected), the
+  2015 terror law, parliament firing PM Essid, the violence-against-women law,
+  the Ben Ali-officials amnesty, the anti-racism law — first in the Arab world —
+  and the decentralisation code), authored from majles.marsad.tn (Al Bawsala) +
+  press of record. Blocs: ENN/CPR/ETT (Constituent Assembly era), ENN/NIDA/FP
+  (ARP era). A memorial deck — the chamber Kais Saied locked in July 2021.
+  Source of truth: `data/tunisia/cards.json`.
 
 It is a **static site** (`index.html` + per-city `cities/<id>/` bundles) on GitHub
 Pages, fed by **Python data pipelines** (`scripts/`). **No backend, no build step,
@@ -45,7 +62,7 @@ without it.
 
 | Path | What it is |
 |------|------------|
-| `index.html` | The shared viewer's markup + loaders: a `?city=reus\|brussels\|congress` loader picks which `cities/<id>/` bundle to load (only data + config differ per city), then the app scripts below, then a small inline **boot** block (startup order: `applyGhostParty` → `mpInit` → `liveInit` → `renderStack`). The **bare URL (no query string) is not an entrance**: a tiny inline `<head>` script tags `html.hold` BEFORE first paint (CSS swaps shell↔holding on frame one — the end-of-body boot runs far too late to prevent a header flash while CDN scripts load; the same script tags `html.lvhold` on EVERY voter boot with a query string, holding clean paper until `live.js` resolves the URL to seat gate / silent re-seat / the wall — see `live.js`; the single-player fallback retires it at boot) and it shows a zero-info holding page (`#holding`: just the "RIOT" wordmark with an occasional chromatic-split glitch — rose echo left, blue echo right (a deliberate, user-directed exception to the chrome-accent palette, holding page only), static under reduced motion) and skips the whole boot — no `mpInit`, so parked tabs never appear in room presence. Carries the visible **version tag** (see Conventions). |
+| `index.html` | The shared viewer's markup + loaders: a `?city=reus\|brussels\|congress\|southafrica\|tunisia` loader picks which `cities/<id>/` bundle to load (only data + config differ per city), then the app scripts below, then a small inline **boot** block (startup order: `applyGhostParty` → `mpInit` → `liveInit` → `renderStack`). The **bare URL (no query string) is not an entrance**: a tiny inline `<head>` script tags `html.hold` BEFORE first paint (CSS swaps shell↔holding on frame one — the end-of-body boot runs far too late to prevent a header flash while CDN scripts load; the same script tags `html.lvhold` on EVERY voter boot with a query string, holding clean paper until `live.js` resolves the URL to seat gate / silent re-seat / the wall — see `live.js`; the single-player fallback retires it at boot) and it shows a zero-info holding page (`#holding`: just the "RIOT" wordmark with an occasional chromatic-split glitch — rose echo left, blue echo right (a deliberate, user-directed exception to the chrome-accent palette, holding page only), static under reduced motion) and skips the whole boot — no `mpInit`, so parked tabs never appear in room presence. Carries the visible **version tag** (see Conventions). |
 | `deliberate.html` | **Standalone design demo, no app logic** — "the floor": the open debate between parties, rebuilt for the people, on two real Brussels decisions (MP pay −5% / Budget 2026), full-viewport. The deliberation is the product; the decision is a compact sticky fixture (desktop: rail · floor · pinned "Reading the room" synthesis; mobile: pinned header → synthesis → floor). **Direction is visible by default everywhere** (a deliberate, user-directed exception to the booth doctrine — the room's shape IS the message; this page only, never the booth): every statement carries its split bar on first paint, mass scales type/bar weight, and one scrollable floor is banded structurally — Common ground (cross-camp agreement, the actionable findings) / The fault line (camp cross-tabs, the nuance engine) / Still forming (recency-protected fresh voices + composer). The pay view opens on **the opinion map** — parties v. the people in ONE projected space (canvas density + 1,500 sampled residents; party glyphs ink-on-halo; 4 labeled opinion clusters with shares; tap a cluster → its defining statements light below, tap a party → its inferred stance pins on every bar; a "representation gap" readout — 65% closer to no party than to any party). Map data is PRECOMPUTED by `scripts/build_floor_map.py` (stdlib PCA over a simulated 21k-resident room; party stances illustrative, labeled) → `deliberate-data.js`; the page projects only the USER through the shipped components. Budget view: official −957 v. the floor's −1,006 draft as the headline gap, a **squarified treemap** (hand-rolled; area = M€; debt = locked black tile; lean carried by ▲/▼ glyphs, never color) with an official↔floor toggle that animates the people redrawing the budget, cut/keep/grow per envelope (response counts thin down the list), debt as the immovable slab, a diverging "where the axe falls" chart. Presence rendered as mass (count tick, responses/h, fresh-responses pulse). Vocabulary lock: ballots (headline) · responses (statements/envelopes) · statements (the slips). Desktop left rail carries the full proposal + provenance block. Self-contained: links `style.css` for tokens/idioms, scoped styles + local JS, precomputed data at 20k-scale (illustrative, labeled), localStorage for the user's own positions only ("where am I in this room?" answerable on every surface once they participate), no Firebase. |
 | `style.css` | All viewer CSS — the «l'acta» ballot-paper theme (tokens + doctrine in `.claude/skills/riot-ui/SKILL.md`). |
 | `app.js` | Viewer core: city config/state, the booth (card stack, stamp + after-vote split beat, deck modes incl. `?deck=live`; roomless passes — solo/async, no tally — swap the split for the **chamber's per-card reveal** inherited from live sittings: `stampOutcome` (live.js) + `chamberPiles`/`renderChamberInto` land the official stamp and each party's disc on the Against/Abstain/For piles, ~2.6s tap-to-skip, post-vote per decision so the firewall holds; the GHOST never lands mid-deck — it would bias its keeper), **the solo entrance** (`?solo=1`, Rob's self-experiment rig: the booth alone — full deck, no `mpInit`/`liveInit`, no presence, no `lvhold`; pairs with ⧉ Copy votes / Import votes for the multi-session 100-decision ballot; `&ai=1` seats the GHOST on the solo reveal via the same `applyGhostParty` the moderator switch uses — solo only, a sitting's ghost mode stays the moderator's; `ghostMark(size)` here is the ONE source of the GHOST's dashed-shell + solid-core SVG mark, inked in `--ghost-ink`), the reveal screen, the **seat gate** (`gateShow`/`gateGo` — the emoji screen whose CTA is the JOIN: presence is published only from the tap; `live.js` re-shows it per sitting with the tab's face preselected, CTA "Take your seat"; the boot-time `maybeShowJoin` gates only the backendless `?simroom` rig), city switcher. Votes live in memory only. **Identity is per-TAB** (sessionStorage, like `mpPid`): every new browser session/window re-prompts the gate — the room never remembers who you were (the legacy localStorage copy is purged at load). Your chosen face renders top-right as the **me-badge** (`#meBadge`, `updateMeBadge()`, the `.face.me` idiom) — your own "account" mark, hidden on the lobby letterhead and moderator chrome. |
@@ -66,7 +83,8 @@ without it.
 | `data/expedients/` | Reus source PDFs + per-decision metadata (re-fetchable). |
 | `data/brussels/` | The Brussels layer: `cri_txt/` (committed CRI text; `cri_pdf/` is gitignored, re-fetchable), `votes_raw.json` (per-MEMBER roll-calls), `roster.json` (member → political group), `cards.json` (English card copy keyed by decision id — **the authored source of truth**; the per-agent `cards_parts/` fragments were merged in and removed 2026-06, edit `cards.json` directly), `decisions_skeleton.json` (**build output** of `build_table_bxl.py` — the committed-JSON mirror of the decisions, Brussels' analogue of `data/decisions.json`; regenerated every build, never hand-edit). |
 | `data/congress/cards.json` | The Congress demo's source of truth: the 16 hand-authored cards WITH their `verification` audit blocks (official roll numbers, tallies, caucus breakdowns, package-vote impurity notes — e.g. TikTok/Ukraine Senate directions come from the bundled H.R. 815 vote). Each card also carries structured `tally_house`/`tally_senate` head-counts of the same decisive roll calls (these DO ship — they feed the reveal's margin subtitles; S4132 House = companion H.R. 3755, its Senate = the cloture vote, HR7521/HR8035 Senate = the bundled H.R. 815 package vote, HCONRES64 Senate = the analog S.J.Res. 90; single-chamber cards ship one labelled count). `cities/congress/data.js` is generated from it with `verification` stripped by `scripts/build_table_us.py` (assembly only — no extraction pipeline yet). |
-| `assets/logos/` | Party/group logos + brand assets. The three city marks (`reus_rose_color`, `brussels_iris`, `us_capitol`) double as per-city favicons: app.js swaps the head's `#favicon` link to `CFG.logo` and sets `document.title = CFG.title` ("Reus Council" / "Brussels Parliament" / "US Congress") when a city boots. |
+| `data/southafrica/cards.json`, `data/tunisia/cards.json` | The South Africa / Tunisia demo decks' sources of truth — 10 hand-authored cards each WITH `verification` audit blocks (division records, full party/bloc breakdowns, whip rebellions and walkouts, threshold rules, announced-vs-Marsad tally discrepancies, aftermath kept out of copy). Single-chamber decks: each card ships one `tally` head-count. `cities/<id>/data.js` is generated with `verification` stripped by `scripts/build_table_za.py` / `build_table_tn.py` (assembly only, Congress convention). |
+| `assets/logos/` | Party/group logos + brand assets. The five city marks (`reus_rose_color`, `brussels_iris`, `us_capitol`, `za_protea`, `tn_crescent`) double as per-city favicons: app.js swaps the head's `#favicon` link to `CFG.logo` and sets `document.title = CFG.title` when a city boots — titles speak each instance's own language (Rob, 2026-06-12): "Ajuntament de Reus" / "Parlement bruxellois · Brussels Parlement" / "US Congress" / "Parliament of South Africa" / "البرلمان التونسي". |
 | `assets/favicon.svg` | Default tab icon — the GHOST soul-anchor mark on a paper tile (hardcoded `#4B3FA0`/`#F2F0E8`; a favicon can't read CSS vars). Shown on the bare-URL holding page; city boots replace it per the row above. |
 | `assets/qrcode.min.js` | Vendored QR encoder (qrcode-generator 1.4.4, MIT) — the stage lobby's join QR (`qrSVG` in `live.js` draws it as inline ink SVG). |
 | `docs/` | Canonical working docs — see "Where to read more". |
@@ -116,13 +134,24 @@ python3 scripts/extract_votes_bxl.py
 python3 scripts/build_table_bxl.py
 ```
 
+### Demo cities (Congress / South Africa / Tunisia)
+
+```bash
+# Assembly only — the cards are hand-authored; these strip `verification`,
+# attach the party table and write the window.RIOT bundle.
+python3 scripts/build_table_us.py    # data/congress/cards.json    → cities/congress/data.js
+python3 scripts/build_table_za.py    # data/southafrica/cards.json → cities/southafrica/data.js
+python3 scripts/build_table_tn.py    # data/tunisia/cards.json     → cities/tunisia/data.js
+```
+
 `scripts/taxonomy.py` is a library, not a CLI: the **canonical legal-category
 taxonomy** and votability gate, imported by the Reus extraction/build steps.
 (`enrich_tax_cards.py`, `rewrite_headlines.py` are domain-specific copy helpers.)
 
 **Deploy = push to `main`** — GitHub Pages serves the repo directly. After any
 change to `data/raw/` re-run `build_table.py`; after any change to
-`data/brussels/` re-run `build_table_bxl.py` — the committed JSON and the
+`data/brussels/` re-run `build_table_bxl.py`; after any change to a demo deck's
+`cards.json` re-run its `build_table_us/za/tn.py` — the committed JSON and the
 city `data.js` must stay in sync.
 
 ## Data model

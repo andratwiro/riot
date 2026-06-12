@@ -20,7 +20,7 @@ window.CITY_CONFIG = {
     live_chip: "SESSIÓ EN DIRECTE",
     title: "El ple s'està reunint.",
     body_name: "Ple de Reus",
-    one_liner: "{count} decisions reals del {body}. Votaràs a cegues.",
+    one_liner: "{count} decisions reals del {body}. Votes el mateix ordre del dia que els regidors, al ritme de la sala, i al final veus amb qui coincideixes.",
     count_line: "a la sala · esperant que s'obri",
     cta: "Ocupa el teu seient",
     about_label: "sobre aquesta sessió",

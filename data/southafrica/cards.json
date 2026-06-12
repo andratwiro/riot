@@ -1,0 +1,419 @@
+{
+ "note": "South Africa demo deck — 10 landmark recorded votes of the democratic-era Parliament (the 1996 Constitutional Assembly + the National Assembly through the GNU era), hand-authored from the official record (Hansard / pmg.org.za / parliament.gov.za press record) by card subagents following docs/CARD_STYLE.md + docs/DEEP_DIVE.md, over vote facts independently verified by a research subagent. party_votes_canon = majority direction of each tracked party bloc (ANC/DA/EFF/IFP/MK + era parties NP/DP on the 1996 card); absent tokens (boycotts, walkouts, parties not yet founded) are omitted — the viewer treats them as 'didn't vote comparably'. The verification objects are the audit trail (division records, full party breakdowns, whip rebellions, threshold rules, aftermath kept out of copy) and are STRIPPED from cities/southafrica/data.js. Demo-grade: no Python extraction pipeline. The 1996 tally ships without an abstain key (abstentions occurred; count not in the record).",
+ "authored": "2026-06-12",
+ "cards": [
+  {
+   "id": "ZA-1996-CONSTITUTION",
+   "date": "1996-05-08",
+   "session_code": "ZA_CA",
+   "point": null,
+   "organ": "Constitutional Assembly",
+   "type": "Constitution",
+   "topic": "Constitution",
+   "headline": "Adopt South Africa's final post-apartheid constitution — one supreme law with a bill of rights for everyone, courts that can strike down parliament, and a duty on the state to reverse apartheid-era land dispossession.",
+   "title": "Constitution of the Republic of South Africa Bill, 1996",
+   "raw_outcome": "Constitution of the Republic of South Africa Bill, 1996",
+   "source_brief": "Two years after the first election in which every South African could vote, the country's negotiated final constitution is on the table — the product of two years of cross-party talks and a public campaign that drew about **2 million** submissions, replacing the interim deal that ended apartheid.\n\n- **What it locks in:** a bill of rights for all — equality (the first national constitution in the world to ban discrimination by sexual orientation), plus rights to housing, health care, food, water and basic education the state must work toward.\n- **Who gets the last word:** the constitution itself, not parliament — a Constitutional Court can strike down any law or government act that breaks it.\n- **The land compromise:** property is protected, but the state may expropriate for land reform against compensation, and people stripped of their land under white rule get a right to restitution.\n- **The handle:** for — it turns a fragile truce into rights no future majority can strip away; against — it entrenches the compromises forever: protection for property acquired under apartheid, judges who outrank the elected parliament, and clauses (sexual orientation, language read as permitting abortion) that some communities reject.",
+   "deep_facts": "- Drafted by the Constitutional Assembly: the **490** members of the National Assembly and the Senate elected in the **1994** first universal-franchise election, sitting jointly; adoption required a **two-thirds** majority under the 1993 interim constitution (justice.gov.za, constitution history; SA History Online).\n- The process ran about **two years** and included a mass public-participation campaign — community meetings, a 'Constitutional Talk' newsletter and a talk line — that drew roughly **2 million** public submissions (Constitution Hill, adoption-day retrospective).\n- The equality clause (s9(3)) bars unfair discrimination on listed grounds including race, gender, religion, disability, belief, language and sexual orientation — the first national constitution in the world to name sexual orientation as a protected ground (Constitution text, justice.gov.za; SA History Online).\n- Socio-economic rights are justiciable but qualified: access to adequate housing (s26) and to health care, food, water and social security (s27) oblige the state to take 'reasonable legislative and other measures, within its available resources'; basic education (s29) carries no such qualifier (Constitution text, justice.gov.za).\n- The property clause (s25) forbids arbitrary deprivation and allows expropriation only under a law of general application, for a public purpose or in the public interest, against compensation balancing the public interest and the owner's interests; it obliges the state to foster equitable access to land and gives people dispossessed after **19 June 1913** a right to restitution or redress (Constitution text, s25, justice.gov.za).\n- The text declares itself the supreme law — any law or conduct inconsistent with it is invalid — with the Constitutional Court as final arbiter, and organises **nine** provinces under 'co-operative government' rather than a loose federation (Constitution text, ss1-2 and ch.3, justice.gov.za).\n- Under the interim constitution, the new text could not take effect until the Constitutional Court certified that it complied with the **34** Constitutional Principles agreed in the 1993 negotiations — judges checking the politicians' work before the law could live (interim Constitution of 1993, s71; SAFLII).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The two-thirds threshold plus compulsory court certification made the text a peace treaty as much as a law: every flank had to be bought in — strong property protection alongside a restitution duty, majority rule alongside counter-majoritarian courts — so the document's celebrated breadth is also a ledger of concessions.\n- Making socio-economic rights justiciable but hedged ('reasonable measures, within available resources') relocates the fight over delivery from the street to the bench: courts, not only budgets, become the arena where the housing and health-care promises get tested.\n- Entrenching contested moral ground — sexual orientation, reproductive decisions — in the supreme law deliberately places those questions beyond any future ordinary majority; the design bet is that locking them in now prevents backsliding later, at the price of asking dissenting constituencies to live under clauses they cannot outvote.",
+   "proposed_by": "Constitutional Assembly (chair: Cyril Ramaphosa)",
+   "doc_ref": "Constitution of the Republic of South Africa, 1996",
+   "outcome": "approved",
+   "source_url": "https://www.constitutionhill.org.za/blog/8-may-1996-the-story-of-the-day-that-the-constitution-was-adopted",
+   "party_votes_canon": {
+    "ANC": "for",
+    "NP": "for",
+    "DP": "for"
+   },
+   "tally": {
+    "for": 421,
+    "against": 2
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "Constitutional Assembly (National Assembly + Senate sitting jointly), 8 May 1996: 421 for, 2 against. Abstentions occurred but their count is not in the record — hence no abstain key in tally. Adoption required a two-thirds majority of the 490-member Assembly (327 votes).",
+    "party_breakdown": "ANC, NP and DP voted for. The 2 noes were the ACDP's two members, objecting to the reproductive-rights and sexual-orientation clauses. The Freedom Front abstained (count unrecorded). The IFP boycotted the Constitutional Assembly and was absent, so it is omitted from party_votes_canon.",
+    "notes": "Aftermath (kept out of copy): the Constitutional Court refused to certify the 8 May text in September 1996 (First Certification judgment, ZACC 26); the Assembly amended and re-adopted it on 11 October 1996; the Court certified the amended text on 4 December 1996; President Mandela signed it in December 1996 and it came into force on 4 February 1997.",
+    "sources": [
+     "https://www.constitutionhill.org.za/blog/8-may-1996-the-story-of-the-day-that-the-constitution-was-adopted",
+     "https://sahistory.org.za/article/south-african-constitution-1996",
+     "https://www.justice.gov.za/constitution/SAConstitution-web-eng.pdf",
+     "https://www.saflii.org/za/cases/ZACC/1996/26.html"
+    ]
+   }
+  },
+  {
+   "id": "ZA-2006-CIVILUNION",
+   "date": "2006-11-14",
+   "session_code": "ZA_3",
+   "point": null,
+   "organ": "National Assembly",
+   "type": "Bill",
+   "topic": "Marriage & rights",
+   "headline": "Let two people marry regardless of sex — as a 'marriage' or a 'civil partnership' with identical legal force — while allowing state marriage officers to refuse to perform same-sex ceremonies on grounds of conscience.",
+   "title": "To provide for the solemnisation of civil unions, by way of either a marriage or civil partnership; the legal consequences of civil unions; and to provide for matters incidental thereto.",
+   "raw_outcome": "To provide for the solemnisation of civil unions, by way of either a marriage or civil partnership; the legal consequences of civil unions; and to provide for matters incidental thereto.",
+   "source_brief": "A year ago the country's highest court ruled that locking same-sex couples out of marriage violates the constitution's equality clause, and gave Parliament **12 months** — until 1 December 2006 — to fix it. This bill is the fix: alongside the old Marriage Act, any two adults could register a union and choose what to call it — marriage or civil partnership — with the same legal consequences either way.\n\n- **The word is the fight:** the bill as first tabled offered same-sex couples only 'civil partnerships'; after stormy public hearings it was rewritten so couples may take the word **marriage** itself, and both forms opened to straight couples too.\n- **The conscience clause:** any state marriage officer can refuse in writing to marry a same-sex couple on grounds of conscience, religion or belief — the state must still deliver the marriage, but no individual official has to. Churches stay out entirely unless their denomination opts in.\n- **The continental stakes:** approval would make South Africa the first country in Africa — and only about the fifth in the world — where same-sex couples can marry, on a continent where most states criminalise homosexuality.\n- **The handle:** for — it delivers the equality the constitution promises, before the court's clock runs out; against — religious objectors call it marriage redefined under judicial duress, while some equality advocates see a separate statute with an official opt-out as second-class citizenship in legal dress.",
+   "deep_facts": "- In Minister of Home Affairs v Fourie (**1 December 2005**) the Constitutional Court unanimously held that the common-law definition of marriage and the Marriage Act's wedding formula unconstitutionally excluded same-sex couples, and suspended its order for **12 months** to let Parliament cure the defect (Constitutional Court, Fourie, CCT 60/04).\n- If Parliament passed nothing by **1 December 2006**, the court's order would automatically read the words 'or spouse' into the Marriage Act, opening it to same-sex couples by judicial default (Constitutional Court, Fourie, CCT 60/04).\n- The bill creates a voluntary union of two adults, registered at the couple's choice as either a marriage or a civil partnership; whichever name is chosen, the legal consequences are those of a marriage under the Marriage Act, with changes required by context (Civil Union Bill [B26-2006]; SAFLII, Act text).\n- As introduced in September 2006, the bill offered same-sex couples only 'civil partnerships' plus a scheme of unregistered domestic partnerships; after nationwide public hearings the Home Affairs committee rewrote it to include the word 'marriage', opened both forms to opposite-sex couples, and dropped the domestic-partnership chapter (PMG committee record, 2006; Wikipedia, Civil Union Act 2006).\n- Section 6 lets a civil marriage officer — a state employee, not clergy — object in writing on grounds of 'conscience, religion and belief' to solemnising a civil union between persons of the same sex, and bars compelling them; religious denominations perform civil unions only if they apply for designation, under their own rites (Civil Union Bill [B26-2006], ss5-6).\n- The Marriage Act of **1961** stays in force unchanged for opposite-sex couples, leaving two parallel marriage statutes on the books (SAFLII, Act text; Hogan Lovells, Marriages Act v Civil Unions Act).\n- At the time of the vote, same-sex marriage existed in **4** countries — the Netherlands, Belgium, Spain and Canada — plus the U.S. state of Massachusetts; no African country allowed it (contemporary reporting, 2006).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The architecture is a double hedge: a separate statute rather than an amended Marriage Act, plus a choose-your-own-name clause, satisfies the court's equality command while letting traditionalists say the 1961 act was never touched — each side is handed a sentence it can live with.\n- The section 6 opt-out moves the law's friction to the counter: in a small town with one or two marriage officers, a paper right can quietly become a long drive, and that is where the equality promise will actually be tested.\n- The court's reading-in deadline inverted the default: rejecting the bill would not preserve the status quo but hand the rewrite to the judges — so the live choice is whether Parliament authors the change with its carve-outs, or receives a starker version without them.",
+   "proposed_by": "Minister of Home Affairs (Nosiviwe Mapisa-Nqakula)",
+   "doc_ref": "Civil Union Bill [B26-2006]",
+   "outcome": "approved",
+   "source_url": "https://en.wikipedia.org/wiki/Civil_Union_Act,_2006",
+   "party_votes_canon": {
+    "ANC": "for",
+    "DA": "for",
+    "IFP": "against"
+   },
+   "tally": {
+    "for": 229,
+    "against": 41,
+    "abstain": 2
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "National Assembly, second reading, 14 November 2006: division record 229 for, 41 against, 2 abstentions (contemporary wire reports gave 230-41-3; the division record is canon).",
+    "party_breakdown": "ANC for under a three-line whip. DA allowed a free conscience vote and split 22 for - 12 against; canon records the caucus majority direction (for). IFP against; ACDP against.",
+    "notes": "Aftermath (kept out of copy): the NCOP passed the bill on 28 November 2006, 36-11-1; signed and in force 30 November 2006, one day before the Fourie deadline — making South Africa the first African country and roughly the fifth worldwide with same-sex marriage in law. The section 6 conscience opt-out for state marriage officers was repealed by the Civil Union Amendment Act, 2020.",
+    "sources": [
+     "https://en.wikipedia.org/wiki/Civil_Union_Act,_2006",
+     "https://pmg.org.za/committee-meeting/7422/",
+     "https://www.saflii.org/za/legis/num_act/cua2006139.pdf",
+     "https://www.hoganlovells.com/en/publications/the-marriages-act-v-the-civil-unions-act"
+    ]
+   }
+  },
+  {
+   "id": "ZA-2011-SECRECY",
+   "date": "2011-11-22",
+   "session_code": "ZA_4",
+   "point": null,
+   "organ": "National Assembly",
+   "type": "Bill",
+   "topic": "Press freedom",
+   "headline": "Let state security bodies stamp information secret in the name of national security: up to 25 years in prison for spying and leaking, jail for merely keeping a classified document, and no public-interest defence for journalists or whistleblowers.",
+   "title": "To provide for the protection of sensitive state information; to provide for a system of classification, reclassification and declassification of state information; to provide for the protection of certain valuable state information against alteration, destruction or loss or unlawful disclosure; to regulate the manner in which state information may be protected; to repeal the Protection of Information Act, 1982 (Act No. 84 of 1982); and to provide for matters connected therewith.",
+   "raw_outcome": "To provide for the protection of sensitive state information; to provide for a system of classification, reclassification and declassification of state information; to provide for the protection of certain valuable state information against alteration, destruction or loss or unlawful disclosure; to regulate the manner in which state information may be protected; to repeal the Protection of Information Act, 1982 (Act No. 84 of 1982); and to provide for matters connected therewith.",
+   "source_brief": "South Africa's secrecy rules still run on a law the apartheid state wrote in **1982**. The replacement on the table builds a modern classification system — confidential, secret, top secret — and arms it with heavy prison terms; what it leaves out is what the fight is about: someone who exposes wrongdoing using a classified document gets no general 'it was in the public interest' defence.\n\n- **What it does:** state security bodies could classify information whose disclosure would harm national security; espionage and 'hostile activity' offences carry **3 to 25 years**, and even keeping or failing to return a classified document means a fine or jail.\n- **What got softened — and what didn't:** a year of protest pushed the drafters to narrow the trigger from the vague 'national interest' to 'national security' and to trim who can classify, but the one demand newsrooms ranked first — a public-interest defence — was refused.\n- **Why the black clothes:** on the day of the vote, journalists and activists dressed in mourning dubbed it 'Black Tuesday', echoing 'Black Wednesday' 1977, when the apartheid government banned newspapers. Hundreds of civil-society groups, the country's editors and the governing party's own union ally lined up against the text.\n- **The handle:** for — a democracy cannot run its intelligence services on an apartheid-era statute, and stolen state secrets need real penalties; against — without a public-interest defence, the same prison terms built for spies can land on the reporter or whistleblower who exposes corruption.",
+   "deep_facts": "- Repeals and replaces the Protection of Information Act of **1982**, the apartheid government's secrecy law, with a system of classification, reclassification and declassification of state information plus a Classification Review Panel (Protection of State Information Bill [B6-2010], long title; freedominfo.org explainer, 2012).\n- After sustained objections, drafters removed the original, broader 'national interest' standard — classification must instead rest on demonstrable harm to 'national security' — and narrowed which organs of state may classify, centring the power on the security services (CPJ, Nov 2011; Wikipedia, Protection of State Information Bill).\n- Penalty ladder: espionage and 'hostile activity' offences carry **3 to 25 years**; intentionally accessing classified information up to **25 years**; disclosing or retaining information relating to the intelligence services up to **15 years**; ordinary unauthorised disclosure, or failing to report and return a classified document, a fine or up to **5 years** (bill text via PMG; freedominfo.org, 2012).\n- The bill contains no general public-interest defence: a journalist or whistleblower who publishes a classified document revealing wrongdoing can rely only on the narrow channels of the Protected Disclosures Act and the Companies Act (CPJ, Nov 2011; Mail & Guardian, 22 Nov 2011).\n- The government rejected demands to add such a defence, arguing the narrowed national-security scope was concession enough and that the state must be able to protect itself against espionage (CPJ, Nov 2011).\n- The opposing coalition spanned the Right2Know campaign (≈**400** civil-society organisations), the editors' forum SANEF, the ANC-allied trade-union federation COSATU, the Nelson Mandela Foundation, Nobel laureates including Nadine Gordimer and Archbishop Desmond Tutu, and international press-freedom groups (Mail & Guardian, 22 Nov 2011; Wikipedia).\n- On the day of the vote, protesters dressed in black outside Parliament and newsrooms dubbed it 'Black Tuesday' — an echo of 'Black Wednesday', **19 October 1977**, when the apartheid state banned The World newspaper and a swath of Black Consciousness organisations (Mail & Guardian, 22 Nov 2011; defenceWeb).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The bill's deepest question is who umpires 'national security': classification happens inside the security services and is contested through a state-appointed review panel, so the architecture trusts the classifier first and the courts late — precisely the kind of trust the apartheid precedent exhausted.\n- Without a public-interest defence, the chilling effect operates before publication: an editor must price a possible prison term into every leaked-document story, so the law's heaviest work would be done by stories that never run — a cost no statistic will ever record.\n- A liberation movement re-tooling its predecessor's secrecy machinery is the structural irony opponents organised around; that the coalition against it reached into the governing alliance's own union federation signals the fault line runs through the ruling camp, not merely between government and opposition.",
+   "proposed_by": "Minister of State Security (Siyabonga Cwele)",
+   "doc_ref": "Protection of State Information Bill [B6-2010]",
+   "outcome": "approved",
+   "source_url": "https://mg.co.za/article/2011-11-22-black-tuesday-secrecy-bill-passed-by-parliament",
+   "party_votes_canon": {
+    "ANC": "for",
+    "DA": "against",
+    "IFP": "against"
+   },
+   "tally": {
+    "for": 229,
+    "against": 107,
+    "abstain": 2
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "National Assembly, second reading, 22 November 2011: 229 for, 107 against, 2 abstentions.",
+    "party_breakdown": "ANC for; the 2 abstainers were ANC MPs Ben Turok and Gloria Borman. DA, IFP and all other opposition parties present voted against.",
+    "notes": "This NA vote sent the bill to the NCOP. Aftermath (kept out of copy): the bill was never signed into law — President Zuma referred it back to Parliament in 2013 over constitutionality concerns, and President Ramaphosa declined to sign it in 2020; it never took effect, so the 1982 act it was meant to replace remained in force.",
+    "sources": [
+     "https://mg.co.za/article/2011-11-22-black-tuesday-secrecy-bill-passed-by-parliament",
+     "https://en.wikipedia.org/wiki/Protection_of_State_Information_Bill",
+     "https://cpj.org/2011/11/south-africa-lower-house-passes-information-bill/",
+     "https://www.freedominfo.org/2012/12/south-africa-what-is-the-protection-of-state-information-bill/"
+    ]
+   }
+  },
+  {
+   "id": "ZA-2021-S25LAND",
+   "date": "2021-12-07",
+   "session_code": "ZA_6",
+   "point": null,
+   "organ": "National Assembly",
+   "type": "Constitutional amendment",
+   "topic": "Land",
+   "headline": "Amend South Africa's constitution so the state can take land for land reform and pay nothing for it — with a court deciding when zero compensation is just.",
+   "title": "Constitution Eighteenth Amendment Bill — to amend section 25 of the Constitution so as to provide that where land and any improvements thereon are expropriated for the purposes of land reform, the amount of compensation payable may be nil.",
+   "raw_outcome": "Constitution Eighteenth Amendment Bill — to amend section 25 of the Constitution so as to provide that where land and any improvements thereon are expropriated for the purposes of land reform, the amount of compensation payable may be nil.",
+   "source_brief": "Apartheid's founding land law of 1913 confined the Black majority to a sliver of the country, and the dispossession was never undone: nearly thirty years into democracy most farmland is still white-owned and restitution has crawled. The proposal writes the remedy into the constitution itself — when land is taken back for land reform, the price the state pays can be zero.\n\n- **What changes:** the property clause (Section 25) would say explicitly that a court may set compensation at **zero** when land is expropriated for land reform; a follow-up national law would spell out exactly when.\n- **The scoreboard:** a 2017 government audit found white South Africans — about **9%** of the population — own about **72%** of individually held farmland, and the post-apartheid target of transferring 30% by 2014 was missed.\n- **The bar:** this touches the Bill of Rights, so it needs a two-thirds supermajority — **267 of 400** MPs — not a simple majority.\n- **The handle:** for — the constitution names the wound of dispossession in its own preamble, so it should name the remedy, and 'zero' only happens when a judge calls it just; against — writing 'no compensation' into the property clause spooks the banks and investors who hold farm debt, and the real bottlenecks in land reform have been budgets and administration, not the constitution.",
+   "deep_facts": "- The **1913 Natives Land Act** reserved the bulk of the country for the white minority, initially limiting Black African land ownership to about **7%** of South Africa, extended to about **13%** in 1936 (South African History Online).\n- A **2017** government land audit found that white South Africans — about **9%** of the population — own about **72%** of individually held farmland (Government land audit, 2017).\n- Land transferred through restitution and redistribution since 1994 remained far below the **30%** target the government originally set itself for 2014 (Presidential Advisory Panel on Land Reform, 2019).\n- The existing Section 25 already permits expropriation in the public interest, against compensation that must be 'just and equitable', weighing factors including market value, the history of the property's acquisition and past state subsidies (Constitution of South Africa, s25(3)).\n- The bill inserts explicit wording that, where land and improvements are expropriated for land reform, a court may determine that the compensation payable is **nil**, and requires national legislation to set out the specific circumstances in which nil applies (parliament.gov.za, B18-2021).\n- Because it amends the Bill of Rights, passage requires a **two-thirds** National Assembly supermajority (**267 of 400** members) plus the support of at least **six of nine** provinces in the National Council of Provinces (Constitution of South Africa, s74(2)).\n- The process began with a **February 2018** National Assembly resolution; the constitutional review committee that followed received more than **700,000** public submissions before recommending an amendment in November 2018, after which an ad hoc committee drafted the bill (parliamentary record, 2018–2021).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- A two-thirds bar forces the broadest coalition in post-1994 politics; a text drafted to one party's internal compromise rather than to the chamber's supermajority arithmetic functions as a statement as much as a statute.\n- The bill is narrower than the loudest demands around it: it constitutionalises court-supervised nil compensation but stops short of state custodianship of all land — readable as a middle path built to reassure markets, and equally as one engineered to satisfy neither pole of the land debate.\n- Several constitutional scholars argue Section 25 as written already permits nil compensation in particular cases; on that reading the amendment is largely declaratory, and its real cargo is the political signal that the era of paying full price for dispossessed land is closing.",
+   "proposed_by": "Ad Hoc Committee to Initiate and Introduce Legislation Amending Section 25 of the Constitution",
+   "doc_ref": "Constitution Eighteenth Amendment Bill [B18-2021]",
+   "outcome": "rejected",
+   "source_url": "https://www.parliament.gov.za/news/national-assembly-fails-pass-constitution-eighteenth-amendment-bill",
+   "party_votes_canon": {
+    "ANC": "for",
+    "DA": "against",
+    "EFF": "against",
+    "IFP": "against"
+   },
+   "tally": {
+    "for": 204,
+    "against": 145,
+    "abstain": 0
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "National Assembly, 7 Dec 2021: 204 for, 145 against, 0 abstentions — short of the 267 votes (two-thirds of 400) required under s74(2) for a Bill of Rights amendment; the bill failed.",
+    "party_breakdown": "ANC for, joined by Al Jama-ah; DA, EFF, IFP, FF+, ACDP, GOOD, NFP and COPE against.",
+    "notes": "Key nuance: the EFF voted against because it judged the amendment TOO WEAK — it wanted state custodianship of all land, not court-adjudicated nil compensation; the DA opposed on property-rights grounds. The 2018 review process that led to the bill was triggered by an EFF motion as amended by the ANC. Section 74(2) would also have required NCOP approval by 6 of 9 provinces, a stage never reached.",
+    "sources": [
+     "https://www.parliament.gov.za/news/national-assembly-fails-pass-constitution-eighteenth-amendment-bill",
+     "https://www.parliament.gov.za/storage/app/media/Bills/2021/B18_2021_Constitution_Eighteenth_Amendment_Bill/B18_2021_Constitution_Eighteenth_Amendment_Bill.pdf"
+    ]
+   }
+  },
+  {
+   "id": "ZA-2022-PHALAPHALA",
+   "date": "2022-12-13",
+   "session_code": "ZA_6",
+   "point": null,
+   "organ": "National Assembly",
+   "type": "Motion",
+   "topic": "Accountability",
+   "headline": "Adopt the independent panel's report on the foreign cash stolen from President Ramaphosa's game farm — and open the first impeachment process against a sitting South African president.",
+   "title": "Motion for the consideration and adoption of the Report of the Section 89 Independent Panel into the Phala Phala matter.",
+   "raw_outcome": "Motion for the consideration and adoption of the Report of the Section 89 Independent Panel into the Phala Phala matter.",
+   "source_brief": "In February 2020, burglars stole at least **$580,000** in US banknotes hidden inside a sofa on President Cyril Ramaphosa's game farm. The theft was never reported to the police. A panel of senior jurists led by a retired Chief Justice has now found preliminary evidence that the president may have seriously violated the constitution — and this vote decides whether Parliament acts on it.\n\n- **What the panel found:** prima facie evidence — untested, but enough to answer for — on where the foreign cash came from, on the president doing paid work on the side, and on keeping the burglary away from the police while his own protection chief investigated it off the books.\n- **What a yes does:** adopting the report opens a formal impeachment inquiry, the first ever against a sitting South African president. It does not remove him — that would take a two-thirds vote at the very end of the process.\n- **The president's answer:** he denies any wrongdoing, says the cash was a legitimate sale of buffalo, and calls the panel's findings deeply flawed.\n- **The handle:** for — findings this serious from a retired Chief Justice deserve a full inquiry, and shelving them tells every future president the rules are soft; against — 'prima facie' is not proof, the panel cross-examined no one, and adopting the report turns an untested document into a political weapon while the central bank, the tax authority and other watchdogs are still investigating the same facts.",
+   "deep_facts": "- On **9 February 2020**, burglars stole at least **$580,000** in US banknotes concealed inside a sofa at the president's Phala Phala game farm in Limpopo province (Section 89 Independent Panel report, Nov 2022).\n- The cash had been handed over in **December 2019** by Sudanese businessman Hazim Mustafa as payment for **20 buffalo**; the animals were never collected (Section 89 Independent Panel report, Nov 2022).\n- The burglary was never reported to the South African Police Service and no case number was opened; the president instead informed Maj-Gen Wally Rhoode, the head of his protection unit, whose off-the-record investigation extended into Namibia (Section 89 Independent Panel report, Nov 2022).\n- The matter became public in **June 2022**, when former State Security Agency director-general Arthur Fraser filed a criminal complaint alleging the theft and a cover-up (news reports, June 2022).\n- The three-member panel — retired Chief Justice Sandile Ngcobo, retired judge Thokozile Masipa and advocate Mahlape Sello — reported on **30 November 2022** that there is prima facie evidence the president may have committed serious violations of sections **96(2)(a)** and **96(2)(b)** of the Constitution and of anti-corruption law (PRECCA s34(1)), citing the source of the foreign currency, undisclosed paid work and the failure to report the theft (Section 89 Independent Panel report, Nov 2022).\n- Procedure: adopting the report by simple majority establishes an impeachment committee under section 89; eventual removal from office would require a **two-thirds** majority. This is the first time the panel mechanism, created by Assembly rules in 2018 after a court ruling, has reached a plenary vote (Constitution s89; NA Rules).\n- The president denies wrongdoing, maintains the money was the proceeds of a lawful game sale, and has called the panel's findings flawed (presidential response to the panel report, Dec 2022).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The vote lands days before the governing party's elective conference, where the president is seeking a second term as party leader — the roll call doubles as a confidence ballot in all but name, and every member voting knows it.\n- The choice of an open ballot is itself load-bearing: each MP's vote is visible to the party hierarchy that controls their place on the electoral list, so the procedure may weigh on the outcome as much as the merits do.\n- The asymmetry is stark either way: a yes puts a sitting president in an impeachment dock for the first time on findings no one has cross-examined; a no must defend leaving a retired Chief Justice's prima facie findings unexamined — and the underlying questions stay alive regardless, since the central bank, the tax authority and the Public Protector each hold a piece of the same matter.",
+   "proposed_by": "African Transformation Movement (Vuyolwethu Zungula)",
+   "doc_ref": "Report of the Section 89 Independent Panel (Phala Phala)",
+   "outcome": "rejected",
+   "source_url": "https://www.timeslive.co.za/politics/2022-12-14-phala-phala-who-voted-yes-who-voted-no-and-who-was-just-confused/",
+   "party_votes_canon": {
+    "ANC": "against",
+    "DA": "for",
+    "EFF": "for",
+    "IFP": "for"
+   },
+   "tally": {
+    "for": 148,
+    "against": 214,
+    "abstain": 2
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "National Assembly, 13 Dec 2022: 148 for, 214 against, 2 abstentions — the motion to adopt the report failed, so no impeachment committee was established.",
+    "party_breakdown": "ANC against (whipped); DA, EFF and IFP for; COPE and Al Jama-ah voted with the ANC; GOOD abstained.",
+    "notes": "Four ANC MPs defied the party whip and voted for adoption: Nkosazana Dlamini-Zuma, Mervyn Dirks, Supra Mahumapelo and Mosebenzi Zwane. The motion was sponsored by the ATM (Vuyolwethu Zungula), whose request for a secret ballot was refused; the vote was taken openly. Aftermath: Ramaphosa was re-elected ANC leader at the party conference days later; in May 2026 the Constitutional Court set aside the open-ballot procedure as unconstitutional and returned the matter to Parliament, without changing the 2022 result.",
+    "sources": [
+     "https://www.timeslive.co.za/politics/2022-12-14-phala-phala-who-voted-yes-who-voted-no-and-who-was-just-confused/",
+     "https://www.parliament.gov.za/storage/app/media/Links/2022/november/30-11-2022/33659%20SECTION%2089%20INDEPENDENT%20PANEL%20Volume%201.pdf"
+    ]
+   }
+  },
+  {
+   "id": "ZA-2023-NHI",
+   "date": "2023-06-13",
+   "session_code": "ZA_6",
+   "point": null,
+   "organ": "National Assembly",
+   "type": "Bill",
+   "topic": "Health",
+   "headline": "Create a single state-run fund that buys healthcare for all South Africans, free at the point of care — and bar private medical schemes from covering anything the fund covers.",
+   "title": "National Health Insurance Bill — to achieve universal access to quality health care services in the Republic in accordance with section 27 of the Constitution; to establish a National Health Insurance Fund and to set out its powers, functions and governance structures; and to provide for matters connected herewith.",
+   "raw_outcome": "National Health Insurance Bill — to achieve universal access to quality health care services in the Republic in accordance with section 27 of the Constitution; to establish a National Health Insurance Fund and to set out its powers, functions and governance structures; and to provide for matters connected herewith.",
+   "source_brief": "South Africa runs two health systems side by side: roughly **16%** of people have private medical-scheme cover and spend about as much on care as the other **84%** combined, who rely on understaffed public hospitals. The bill replaces that with one state fund that buys care for everyone — free when you walk in — and bars private schemes from covering anything the fund already pays for.\n\n- **How it works:** the NHI Fund becomes the country's single buyer of healthcare; you register, you get treated, the fund pays — financed from taxes, with a payroll levy and an income-tax surcharge envisaged.\n- **The lock-in:** once the system is declared fully running, medical schemes may sell only top-up cover for what the fund doesn't pay — money can no longer buy a separate queue for covered care.\n- **The open question:** the bill carries no full price tag; outside estimates often start at **R200 billion** (about $11 billion) a year in extra funding, and the start dates are left to the health minister.\n- **The handle:** for — one queue for all is the only way to end a system where a sixth of the country buys multiples of everyone else's care; against — handing every rand of health purchasing to a single state fund, given the public sector's staffing, maintenance and corruption record, gambles everyone's care on one institution working.",
+   "deep_facts": "- The bill establishes the NHI Fund as the country's single public purchaser of health services, free at the point of care for registered users, buying care from accredited public and private providers (parliament.gov.za, B11-2019).\n- Section 33: once the Minister of Health determines that NHI is fully implemented, medical schemes may only offer complementary cover for services the Fund does not reimburse — duplicate cover for funded services is barred (B11-2019, s33).\n- Envisaged funding sources include general tax revenue, reallocation of the existing medical-scheme tax credits, a payroll tax on employers and employees, and a surcharge on personal income tax, all requiring separate money legislation (B11-2019, memorandum).\n- Medical schemes cover about **16%** of the population; private per-person health spending runs roughly **five times** the public level — about **R22,891** (~$1,242) versus **R4,667** (~$253) per capita in 2019 (Stats SA General Household Survey; national health-expenditure data, 2019).\n- Roughly **79%** of South Africa's doctors work in the private sector, which serves the insured minority (Helen Suzman Foundation, NHI briefs).\n- The bill contains no updated costing; the 2017 NHI White Paper projected ≈**R256 billion** a year by 2025 in 2010 prices, and independent estimates of the additional revenue required commonly start above **R200 billion** a year — all figures contested (NHI White Paper, 2017; subsequent analyses).\n- Public participation on the bill ran from 2019 to 2022: hearings in **33** municipalities across all nine provinces drew **11,564** attendees and **961** oral submissions, and the committee received approximately **338,891** written submissions (parliament.gov.za).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The vote commits the country to a destination while deferring every hard number: the taxes that would pay for the Fund need separate money legislation, and the trigger dates — including when private cover gets restricted — sit with the minister, so the binding choice is direction, not a financed plan.\n- Section 33 is the load-bearing clause: barring duplicate private cover conscripts the insured minority into the same system as everyone else — that single sentence is both the solidarity mechanism and the flight risk, for medical professionals and for capital.\n- The design concentrates one of the largest purchasing budgets in the state inside a single new entity; the governance record of other large public institutions is the unspoken benchmark against which both the hopes and the fears are priced.",
+   "proposed_by": "Minister of Health (Dr Zweli Mkhize, introduced 2019)",
+   "doc_ref": "National Health Insurance Bill [B11-2019]",
+   "outcome": "approved",
+   "source_url": "https://www.parliament.gov.za/press-releases/press-release-national-assembly-passes-national-health-insurance-bill-and-land-court-bill",
+   "party_votes_canon": {
+    "ANC": "for",
+    "DA": "against",
+    "EFF": "against",
+    "IFP": "against"
+   },
+   "tally": {
+    "for": 205,
+    "against": 125,
+    "abstain": 0
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "National Assembly, 13 Jun 2023: 205 for, 125 against, 0 abstentions — second reading of B11-2019 passed.",
+    "party_breakdown": "ANC for, joined by GOOD, NFP, AIC and PAC; DA, EFF, IFP, FF+, ACDP and ATM against.",
+    "notes": "The EFF opposed over implementation and state capacity — EFF MP Chirwa called the bill 'one of the biggest scams' — not against universal coverage in principle; the IFP opposed on the funding burden. Aftermath: signed by the President in May 2024 as the National Health Insurance Act 20 of 2023; funding legislation and court challenges followed.",
+    "sources": [
+     "https://www.parliament.gov.za/press-releases/press-release-national-assembly-passes-national-health-insurance-bill-and-land-court-bill",
+     "https://www.gov.za/sites/default/files/gcis_document/201908/national-health-insurance-bill-b-11-2019.pdf"
+    ]
+   }
+  },
+  {
+   "id": "ZA-2023-ISRAEL",
+   "date": "2023-11-21",
+   "session_code": "ZA_6",
+   "point": null,
+   "organ": "National Assembly",
+   "type": "Motion",
+   "topic": "Foreign policy",
+   "headline": "Call on the government to shut Israel's embassy in Pretoria and suspend all diplomatic relations with Israel until it agrees to a ceasefire in Gaza and commits to binding UN-facilitated peace negotiations.",
+   "title": "Draft resolution calling on the Government to close the Israeli Embassy in South Africa and suspend all diplomatic relations with Israel until a ceasefire is agreed and Israel commits to binding United Nations-facilitated negotiations",
+   "raw_outcome": "Draft resolution calling on the Government to close the Israeli Embassy in South Africa and suspend all diplomatic relations with Israel until a ceasefire is agreed and Israel commits to binding United Nations-facilitated negotiations",
+   "source_brief": "Six weeks into the Israel-Hamas war, South Africa's Parliament is asked to go further than almost any other country: shut Israel's embassy and freeze the diplomatic relationship itself. The government has already pulled its own diplomats out of Tel Aviv; this is the next rung on the ladder. And the charge runs deeper than one war — South Africa's governing tradition reads the Palestinian cause through its own struggle against apartheid, which the world helped end by isolating Pretoria.\n\n- **What a yes actually does:** nothing automatic. This is a non-binding House resolution — Parliament can demand, but only the executive can close an embassy. You are approving the demand, not executing it.\n- **It has an exit:** the suspension is conditional, not forever — it lifts when Israel agrees to a ceasefire and commits to binding UN-facilitated negotiations toward a lasting peace.\n- **Relations are already at a low:** South Africa recalled all its diplomats from Tel Aviv two weeks earlier, and its embassy there has been a downgraded liaison office without an ambassador since 2019.\n- **The handle:** for — diplomatic isolation is the strongest peaceful pressure a state can apply, the same tool that helped end apartheid; against — closing the channel surrenders any influence, punishes a whole relationship for a war, and embassies exist precisely for talking to governments you condemn.",
+   "deep_facts": "- Operative text as adopted for decision: the House \"calls upon the government to close the Israeli Embassy in South Africa and suspend all diplomatic relations with Israel until a ceasefire is agreed to by Israel and Israel commits to binding United Nations-facilitated negotiations whose outcome must be a just, sustainable and lasting peace\" (parliament.gov.za, NA press release, 21 Nov 2023).\n- As originally tabled the motion demanded outright closure and suspension; an amendment adopted in the House added the conditionality — relief tied to a ceasefire and a commitment to binding UN-facilitated negotiations (Daily Maverick, 21 Nov 2023).\n- The resolution is non-binding: the conduct of foreign relations, including the closure of an embassy, vests in the national executive, and it was made clear in the House that a draft resolution of this kind is politically persuasive rather than legally compulsory (parliament.gov.za; Daily Maverick, 21 Nov 2023).\n- On **6 November 2023** the cabinet recalled all South African diplomats from Tel Aviv \"for consultation\", citing the killing of civilians in Gaza; Israel had likewise recalled its ambassador to Pretoria before the sitting (CNN, 6 Nov 2023; as reported).\n- South Africa's embassy in Tel Aviv was already downgraded: since **2019** the country has maintained only a liaison office there, without an ambassador (as reported).\n- War context at the date of the vote: the 7 October 2023 Hamas-led attack killed about **1,200** people in Israel with roughly **240** taken hostage; by the week of the vote the Gaza health ministry's reported death toll had passed **13,000** (as reported at the time).\n- The anti-apartheid linkage is long-standing state rhetoric: \"We know too well that our freedom is incomplete without the freedom of the Palestinians\" (Nelson Mandela, International Day of Solidarity with the Palestinian People, 4 Dec 1997).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- Non-bindingness is the design, not a defect: the House gets to stake out the maximal moral position while the executive keeps discretion over the irreversible step — a structure that lets the state signal solidarity at full volume without yet paying the diplomatic price.\n- The amendment converts a rupture into a lever: by attaching an exit condition (ceasefire plus UN-facilitated talks), the demand becomes coercive diplomacy with a stated off-ramp rather than a permanent severance — which both softens it and makes it easier to vote for.\n- The deeper audience is domestic: in South Africa the Palestinian question doubles as a test of anti-apartheid credentials, so a vote on an embassy seven thousand kilometres away is also a vote about who carries the liberation struggle's moral inheritance at home.",
+   "proposed_by": "EFF motion (Julius Malema), as amended by the ANC",
+   "doc_ref": "NA draft resolution, 21 Nov 2023",
+   "outcome": "approved",
+   "source_url": "https://www.parliament.gov.za/press-releases/national-assembly-adopts-motion-suspend-diplomatic-relations-israel",
+   "party_votes_canon": {
+    "ANC": "for",
+    "EFF": "for",
+    "DA": "against",
+    "IFP": "against"
+   },
+   "tally": {
+    "for": 248,
+    "against": 91,
+    "abstain": 0
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "NA plenary, 21 Nov 2023, draft resolution adopted 248-91, 0 abstentions (parliament.gov.za press release; Al Jazeera 21 Nov 2023)",
+    "party_breakdown": "For: ANC, EFF, NFP, Al Jama-ah, ATM, PAC. The 91 noes: DA, IFP, ACDP, FF+. Canon tracks the four tracked parties: ANC/EFF for, DA/IFP against.",
+    "notes": "Motion tabled by EFF leader Julius Malema; the conditionality ('until a ceasefire... and binding UN-facilitated negotiations') was the ANC amendment moved by Chief Whip Pemmy Majodina. Non-binding House resolution — foreign policy is the executive's call. Aftermath (kept out of copy): the embassy was never actually closed and formal relations were never severed; South Africa instead filed the ICJ genocide case against Israel in December 2023.",
+    "sources": [
+     "https://www.parliament.gov.za/press-releases/national-assembly-adopts-motion-suspend-diplomatic-relations-israel",
+     "https://www.aljazeera.com/news/2023/11/21/south-african-parliament-votes-for-motion-calling-to-close-israeli-embassy",
+     "https://www.dailymaverick.co.za/article/2023-11-21-national-assembly-votes-to-cut-diplomatic-ties-with-israel-and-shut-embassy-but-its-symbolic-until-government-acts/",
+     "https://www.cnn.com/2023/11/06/africa/south-africa-chad-recall-diplomats-from-israel-intl/index.html"
+    ]
+   }
+  },
+  {
+   "id": "ZA-2024-EXPROPRIATION",
+   "date": "2024-03-27",
+   "session_code": "ZA_6",
+   "point": null,
+   "organ": "National Assembly",
+   "type": "Bill",
+   "topic": "Land",
+   "headline": "Replace the apartheid-era law on state seizure of property: compensation becomes 'just and equitable' instead of automatic market value, and defined categories of land — abandoned, or held purely to speculate — can be taken for zero.",
+   "title": "Expropriation Bill [B23D-2020]",
+   "raw_outcome": "Expropriation Bill [B23D-2020]",
+   "source_brief": "When the state needs property for a dam, a road — or for land reform — what does it owe the owner? South Africa's current rulebook dates from 1975, written under apartheid, and centres on market value. The replacement says compensation must be 'just and equitable': it can be less than market value, and for land in defined cases, nothing at all. It lands in a country where, three decades after apartheid, white South Africans still own 72% of the farmland held by individuals — and after sixteen years of failed drafts of this very law.\n\n- **What 'just and equitable' weighs:** market value is one factor among several — how the property is used, how it was acquired, how much the state itself invested in it. Disputes end up in court, not at an official's desk.\n- **The zero option is narrow on paper:** nil compensation applies only to land, only in the public interest, and only in listed cases — abandoned land, land held purely for speculation, unused state land, or land the state effectively already paid for.\n- **Not a constitutional change:** this is an ordinary statute under the existing property clause, and the state must first try to buy on agreed terms — expropriation is the last resort, not the opening move.\n- **The handle:** for — apartheid's dispossession can't be undone if the dispossessed's own state must buy every hectare back at full price; against — once zero is a lawful answer, every owner's security rests on how officials and judges read four open-ended words, and capital prices that risk into everything.",
+   "deep_facts": "- Repeals and replaces the Expropriation Act of **1975**, re-basing state takings on section 25 of the 1996 Constitution; expropriation is allowed for a public purpose or in the public interest, which expressly includes commitments to land reform (Expropriation Bill B23D-2020; parliament.gov.za).\n- Compensation must be \"just and equitable, reflecting an equitable balance between the public interest and the interests of the expropriated owner\" — market value is one listed factor among several, alongside the property's current use, the history of its acquisition, and the extent of direct state investment or subsidy in it (B23D-2020, compensation clauses; s25(3) of the Constitution).\n- Nil compensation: may be just and equitable for **land only**, expropriated in the public interest, in listed circumstances — land not in use and held purely for speculative appreciation; land abandoned by an owner capable of controlling it; state-held land not needed for state functions and acquired at no cost; and land whose market value is at or below the state's own direct investment in acquiring and improving it (B23D-2020, clause 12(3); CMS legal analysis).\n- A further nil-compensation route covers labour tenants — families who live and farm on land they historically worked for the owner — where compensation is determined by a court or arbitrator under the **1996** land-reform legislation (B23D-2020, clause 12(4); Land Reform (Labour Tenants) Act 3 of 1996).\n- Process safeguards: the expropriating authority must first attempt to reach agreement on reasonable terms with the owner; expropriation proceeds only through a formal notice-and-objection sequence, mediation is available, and disputed compensation is decided by the courts (B23D-2020, clauses 5-21; Werksmans analysis).\n- Legislative history: a **2008** predecessor was withdrawn over constitutionality concerns; a version passed in **2016** was returned to Parliament in 2017 over flawed public participation; the current bill was introduced in October **2020** — sixteen years in the making (Daily Maverick, 27 Mar 2024).\n- A parallel political track has pressed to amend section 25 of the Constitution itself to make expropriation without compensation explicit; this bill takes the other route — an ordinary statute under the property clause as it stands (as reported).\n- Land backdrop: the government's 2017 land audit found white South Africans own **72%** of farmland held by individuals, about **26.7 million hectares** (Land Audit Report, Nov 2017; Africa Check).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The nil-compensation clause is narrower than both its champions and its critics say: confined to land, hedged by 'just and equitable', gated by court review — its likeliest everyday effect is negotiating leverage, pulling settlement prices down toward what the state argues is equitable, rather than a wave of zero-rand takings.\n- Sixteen years of redrafting reveal the binding constraint: constitutional survivability. Each rewrite traded radical reach for litigation-proofing — the wager being that a defensible statute that moves slowly beats a bold one struck down whole.\n- The law's heaviest payload is symbolic-institutional: it retires one of the last apartheid-era statutes still governing property, and plants the state's compensation philosophy in ordinary law — but how much land actually changes hands will be set by budgets, administrative appetite and court readings, none of which the text controls.",
+   "proposed_by": "Minister of Public Works and Infrastructure (Patricia de Lille)",
+   "doc_ref": "Expropriation Bill [B23D-2020]",
+   "outcome": "approved",
+   "source_url": "https://www.dailymaverick.co.za/article/2024-03-27-expropriation-bill-ends-16-year-legislative-journey-to-presidential-in-tray/",
+   "party_votes_canon": {
+    "ANC": "for",
+    "DA": "against",
+    "EFF": "against",
+    "IFP": "against"
+   },
+   "tally": {
+    "for": 205,
+    "against": 108,
+    "abstain": 0
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "NA, 27 Mar 2024 — concurrence with NCOP amendments to the Expropriation Bill [B23D-2020], the decisive final vote. TALLY CAVEAT (medium confidence): Daily Maverick reports 205-108; the ANC caucus statement claims 208-108; the official division record was unretrievable. 205-108 carried as canon.",
+    "party_breakdown": "ANC for; DA, EFF, IFP, FF+, ACDP against — for opposite reasons: the EFF voted against as TOO WEAK (it would not restore dispossessed land and keeps compensation as the default), the DA against as 'expropriation through the back door'.",
+    "notes": "Aftermath (verification only): assented 23 Jan 2025 as the Expropriation Act 13 of 2024; in Feb 2025 it triggered the US executive order and aid cut-off under President Trump, premised on characterisations of the Act widely disputed by South African legal analysts. The Dec 2021 s25 constitutional amendment is a different measure — it is its own card in this deck, so its outcome is kept out of this card's copy (the original draft's deep_facts bullet stating its failure was rewritten outcome-neutral at assembly).",
+    "sources": [
+     "https://www.dailymaverick.co.za/article/2024-03-27-expropriation-bill-ends-16-year-legislative-journey-to-presidential-in-tray/",
+     "https://www.parliament.gov.za/project-event-details/1670",
+     "https://cms.law/en/zaf/legal-updates/the-expropriation-act-13-of-2024",
+     "https://werksmans.com/expropriation-act-deconstructed-and-demystified/",
+     "https://africacheck.org/fact-checks/factsheets/frequently-asked-questions-about-land-ownership-and-demand-south-africa"
+    ]
+   }
+  },
+  {
+   "id": "ZA-2024-BELA",
+   "date": "2024-05-16",
+   "session_code": "ZA_6",
+   "point": null,
+   "organ": "National Assembly",
+   "type": "Bill",
+   "topic": "Education",
+   "headline": "Give provincial education chiefs the final say over every public school's admissions and language rules, overriding the parent-elected boards that set them today. School also becomes compulsory a year earlier, from the reception year at about age five.",
+   "title": "Basic Education Laws Amendment Bill [B2-2022]",
+   "raw_outcome": "Basic Education Laws Amendment Bill [B2-2022]",
+   "source_brief": "Every South African public school is run under a governing body its parents elect — and that board currently writes the rules on who gets in and in which language children are taught. This proposal moves the final word on both up to the provincial education department. The live wire is language: schools teaching in Afrikaans fear being forced to convert, and see the boards as the last line defending mother-tongue schooling. The counter-case: single-language admission rules have been used to keep schools exclusive — half-empty classrooms behind a language gate while overcrowded neighbouring schools turn children away.\n\n- **The power shift:** boards still draft admissions and language policy, but the provincial head of department can override both — including directing a school to add another language of instruction where practicable.\n- **School starts earlier:** the reception year (Grade R, around age five) becomes compulsory, not optional — moving the legal start of schooling down from age seven.\n- **Parents on the hook:** keeping a child of school age out of class without just cause becomes a criminal offence, punishable by up to 12 months in jail; homeschooling must be registered, with the curriculum declared and progress independently assessed.\n- **The handle:** for — the state becomes the guarantor that no child is locked out of a public school by a language or admission rule written by insiders; against — it strips the people closest to each school of their final say and hands it to provincial bureaucracies with a patchy record of running anything well.",
+   "deep_facts": "- Amends the South African Schools Act of **1996**, the post-apartheid statute that gave every public school an elected school governing body — in which parents must hold the majority — with power over admission policy, language policy, codes of conduct and school funds (SA Schools Act 84 of 1996; pmg.org.za, B2-2022).\n- Admissions: the governing body still determines the school's admission policy, but the provincial Head of Department holds final administrative authority over a learner's admission and can overturn a school's refusal, subject to an appeal procedure (B2-2022, clause 4; pmg.org.za).\n- Language: governing bodies must submit their language policy and any amendment for departmental approval, which must take account of the language needs of the broader community, not only the school's current parents; the provincial head may direct a school to adopt an additional language of instruction where reasonably practicable (B2-2022, clause 5; Africa Check explainer).\n- Compulsory schooling is extended downward from Grade 1 (around age **7**) to Grade R, the reception year at around age **5** (B2-2022; The Conversation, 2024).\n- A parent or guardian who without just cause keeps a child of compulsory school age out of school commits an offence punishable by a fine or imprisonment of up to **12 months**, or both (B2-2022 penalty provisions; GroundUp explainer).\n- Home education is formalised: registration with the provincial department is required, the curriculum followed must be declared, and the learner's progress is independently assessed (B2-2022 home-education clause; pmg.org.za).\n- The draft drew more than **29,000** public comments; ahead of the vote, AfriForum and the Solidarity union campaigned against the admissions and language clauses as a takeover of community schools, while groups such as Equal Education backed them as a guard against exclusionary policies (Africa Check explainer; as reported).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The real question is who a public school belongs to: a parent-elected board answers to the families already inside it, the provincial head to everyone outside it — and admissions and language are precisely where those two constituencies collide, which is why two technical clauses carry the whole fight.\n- Language operates as a proxy for access: a single-language admission rule can preserve a culture and filter a community at the same time, and moving the veto upward re-ranks those functions — both camps understand that the same clause does both jobs, which is why neither will concede the other's framing.\n- The new compulsions — Grade R, jail-backed attendance, registered homeschooling — extend the state's reach into the family at both ends of childhood; whether any of it changes classrooms depends on provincial enforcement capacity, the system's weakest link, so the gap between the law's text and its effect could be wide.",
+   "proposed_by": "Minister of Basic Education (Angie Motshekga)",
+   "doc_ref": "Basic Education Laws Amendment Bill [B2-2022]",
+   "outcome": "approved",
+   "source_url": "https://pmg.org.za/bill/1055/",
+   "party_votes_canon": {
+    "ANC": "for",
+    "EFF": "for",
+    "IFP": "for",
+    "DA": "against"
+   },
+   "tally": {
+    "for": 223,
+    "against": 78,
+    "abstain": 0
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "NA, 16 May 2024 — concurrence with NCOP amendments to the BELA Bill [B2-2022], the decisive final passage vote: 223-78, 0 abstentions.",
+    "party_breakdown": "ANC, EFF, IFP for; DA, FF+, ACDP against. Canon carries the four tracked parties.",
+    "notes": "This card's vote is the 16 May 2024 concurrence with NCOP amendments; the original NA passage was 26 Oct 2023 (procedural history kept out of copy). Aftermath (verification only): assented 13 Sep 2024 as the Basic Education Laws Amendment Act 32 of 2024; at signing, President Ramaphosa delayed the operation of the contested admissions and language clauses (4 and 5) for a three-month consultation inside the GNU after coalition objections, before the Act was brought fully into force in December 2024 (as reported — commencement detail medium confidence).",
+    "sources": [
+     "https://pmg.org.za/bill/1055/",
+     "https://africacheck.org/fact-checks/blog/explainer-controversy-surrounding-south-africas-bela-act",
+     "https://groundup.org.za/article/understanding-the-bela-act-and-its-controversies/",
+     "https://theconversation.com/south-africa-has-a-new-education-law-some-love-it-some-hate-it-education-expert-explains-why-239406"
+    ]
+   }
+  },
+  {
+   "id": "ZA-2025-BUDGET",
+   "date": "2025-04-02",
+   "session_code": "ZA_7",
+   "point": null,
+   "organ": "National Assembly",
+   "type": "Budget",
+   "topic": "Budget",
+   "headline": "Unlock the national budget by raising VAT — the tax on most things everyone buys — from 15% to 15.5%, with another half-point the next year and income-tax brackets frozen, rather than cut services or borrow more.",
+   "title": "Report of the Standing Committee on Finance on the 2025 Fiscal Framework and Revenue Proposals",
+   "raw_outcome": "Report of the Standing Committee on Finance on the 2025 Fiscal Framework and Revenue Proposals",
+   "source_brief": "Until this framework is adopted, South Africa has no budget — none of the year's spending or tax bills can move. The plan on the table plugs a revenue hole with a VAT rise (15% to 15.5% now, the same again next year) plus a freeze on income-tax brackets, instead of cutting health and education or borrowing more — interest already eats about 22 cents of every tax rand. It is the first budget since the ANC lost its 30-year majority and a ten-party coalition took over, and the coalition's own partners openly disagreed about it: an earlier version with a bigger VAT jump collapsed in February, postponing the budget speech for the first time since apartheid ended.\n\n- **Who pays:** VAT lands on most things everyone buys, so it is argued to hit the poor hardest — softened by a list of untaxed staple foods, which this budget extends to more basics like tinned vegetables and cheap cuts of meat.\n- **The quiet second tax:** income-tax brackets won't move with inflation, so an ordinary cost-of-living raise pushes workers into higher tax without anyone announcing an increase.\n- **The escape clause:** the committee attached a non-binding recommendation that the finance minister come back within 30 days with alternatives to the VAT rise — so a yes adopts the number while keeping a door open to replace it.\n- **The handle:** for — the least-bad arithmetic: a half-point on consumption beats cutting clinics and classrooms or feeding a debt bill that already devours a fifth of revenue; against — a tax blind to income, raised before the state has cut its own spending, carried by the people with the least room in their budgets.",
+   "deep_facts": "- The gate mechanics: under the Money Bills Amendment Procedure Act of **2009**, Parliament must adopt the fiscal framework — the budget's overall revenue and spending envelope — before any appropriation or tax bill can proceed; adopting this committee report is that step (Money Bills Act 9 of 2009; parliament.gov.za).\n- The framework raises VAT from **15% to 15.5%** on 1 May 2025 and to **16%** on 1 April 2026; together with leaving income-tax brackets unadjusted for inflation, the measures are budgeted to raise about **R28 billion** extra in 2025/26 and **R14.5 billion** in 2026/27 (National Treasury, 2025 Budget Review).\n- The first draft proposed a **2-percentage-point** VAT jump, estimated at roughly **R60 billion** a year; the 19 February 2025 budget speech was postponed — the first such postponement since 1994 — and the budget was re-tabled on 12 March with the half-point version (National Treasury; as reported).\n- Debt-service costs consume about **22 cents** of every rand of tax revenue collected, among the fastest-growing items in the budget (2025 Budget Review; as reported).\n- Cushioning for low-income households: the zero-rated staple-food list (bread, maize meal, rice, vegetables, eggs and others) is expanded to add tinned and bottled vegetables, dairy liquid blends and certain organ meats, and the fuel levy is not increased (2025 Budget Review, ch. 4).\n- The committee's report recommends — non-bindingly — that the National Treasury return within **30 days** with alternative revenue or expenditure-saving options to substitute for the VAT increase (Standing Committee on Finance report, ATC250401, 1 Apr 2025).\n- Coalition backdrop: the May 2024 election left the largest party at about **40%** of the vote — the first time since 1994 that no party held a parliamentary majority — and a ten-party Government of National Unity was formed; this is its first full budget (IEC 2024 results; as reported).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- A consumption-tax rise is the path of least administrative resistance: VAT collects itself efficiently and immediately, while every alternative — spending cuts, corporate or wealth taxes, more debt — has a constituency or a bond market that bites back faster; the half-point-twice design also splits one painful announcement into two smaller ones.\n- The non-binding 30-day rider is coalition budgeting's signature device: it makes it possible to adopt the framework and contest its core measure simultaneously, converting a binary yes/no into a yes-with-an-asterisk — and shifting the next round of the fight from the chamber to the Treasury.\n- The first post-majority budget turns arithmetic into a stress test of the new politics: when no party can pass a budget alone, every revenue line becomes a negotiation with named price-setters outside the old governing party, and whatever precedent this vote sets — on who must be bought, and with what — governs every fiscal fight that follows.",
+   "proposed_by": "Standing Committee on Finance report on the 2025 Budget (Minister of Finance Enoch Godongwana)",
+   "doc_ref": "2025 Fiscal Framework and Revenue Proposals",
+   "outcome": "approved",
+   "source_url": "https://www.parliament.gov.za/news/national-assembly-debates-and-adopts-fiscal-framework-and-revenue-proposals-report",
+   "party_votes_canon": {
+    "ANC": "for",
+    "IFP": "for",
+    "DA": "against",
+    "EFF": "against",
+    "MK": "against"
+   },
+   "tally": {
+    "for": 194,
+    "against": 182,
+    "abstain": 0
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "NA, 2 Apr 2025 — adoption of the Standing Committee on Finance report on the 2025 Fiscal Framework and Revenue Proposals: 194-182, 0 abstentions.",
+    "party_breakdown": "For: ANC, IFP, plus ActionSA (NOT a GNU member — supplied the decisive support), PA, BOSA, PAC, GOOD, Rise Mzansi. Against: DA, EFF, MK, FF+, ACDP. Canon carries the five tracked parties: ANC/IFP for; DA/EFF/MK against. The DA voted against from inside the governing coalition.",
+    "notes": "The committee report (ATC250401, 1 Apr 2025) adopted the framework unchanged with the non-binding 30-day alternatives recommendation — that recommendation predates the vote and is used as neutral context in copy. Aftermath (verification only): the DA challenged the adoption in court; Finance Minister Godongwana withdrew the VAT increase on 24 April 2025; on 27 April 2025 the Western Cape High Court, by agreed order, suspended the increase and set aside the adoption resolutions.",
+    "sources": [
+     "https://www.parliament.gov.za/news/national-assembly-debates-and-adopts-fiscal-framework-and-revenue-proposals-report",
+     "https://pmg.org.za/tabled-committee-report/6101/",
+     "https://www.treasury.gov.za/documents/National%20Budget/2025May/review/Chapter%204.pdf",
+     "https://www.da.org.za/2025/02/da-defeats-2-vat-increase-as-budget-is-postponed",
+     "https://businesstech.co.za/news/government/822445/vat-hike-officially-suspended-in-south-africa/"
+    ]
+   }
+  }
+ ]
+}

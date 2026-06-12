@@ -1,0 +1,421 @@
+{
+ "note": "Tunisia demo deck — 10 landmark roll-call votes of the post-revolution parliament (the 2011-14 National Constituent Assembly + the 2014-21 Assembly of the Representatives of the People), hand-authored from the record (majles.marsad.tn / Al Bawsala vote pages + press of record) by card subagents following docs/CARD_STYLE.md + docs/DEEP_DIVE.md, over vote facts independently verified by a research subagent against Marsad. party_votes_canon = majority direction of each tracked bloc (ENN/CPR/ETT in the NCA, ENN/NIDA/FP in the ARP); walkouts and era-absent blocs are omitted — the viewer treats them as 'didn't vote comparably'. The chamber Kais Saied locked in July 2021 — a memorial deck. The verification objects are the audit trail (Marsad vote ids, bloc breakdowns incl. the Ennahdha splits on Art 45 and Art 167, announced-vs-Marsad tally discrepancies on the 2015 terror law and 2017 amnesty, threshold rules, aftermath kept out of copy) and are STRIPPED from cities/tunisia/data.js. Demo-grade: no Python extraction pipeline.",
+ "authored": "2026-06-12",
+ "cards": [
+  {
+   "id": "TN-2014-ART1",
+   "date": "2014-01-04",
+   "session_code": "TN_NCA",
+   "point": null,
+   "organ": "National Constituent Assembly",
+   "type": "Constitutional article",
+   "topic": "Religion & state",
+   "headline": "Keep the 1959 founding sentence, word for word, as Article 1 of the new constitution: 'Tunisia is a free, independent and sovereign state; Islam is its religion, Arabic its language and the Republic its regime.'",
+   "title": "Projet de Constitution, article premier (Draft Constitution, Article 1)",
+   "raw_outcome": "Projet de Constitution, article premier (Draft Constitution, Article 1)",
+   "source_brief": "One sentence has anchored Tunisia's constitutional order since the founding charter of 1959 — and nobody agrees on what it means. The drafters propose to open the new constitution with it untouched. Is Islam the religion of the state, or simply of the country? The grammar doesn't say, and that ambiguity is exactly what's on the table.\n\n- **The ambiguity is the design:** since Bourguiba's day, secularists have read the sentence as plain description — Tunisians happen to be Muslim — while Islamists read it as a commitment that the state itself is Islamic. Keeping it verbatim lets each side keep its reading.\n- **The live fight:** in the chamber and the street, one camp wants the constitution to name Islamic law (sharia) as a source of legislation; the other wants an explicitly civil state with religion kept out of lawmaking. Amendments pushing the first view sit on the table at the same sitting.\n- **What a yes means:** no sharia clause, no secular declaration — the 55-year-old compromise, word for word, as the foundation stone.\n- **The handle:** for — it is the one sentence both camps have lived with for half a century, and reopening it could unravel the whole draft; against — it constitutionalises an evasion, leaving whichever question you care most about to be answered later by judges rather than by the people writing the constitution.",
+   "deep_facts": "- The 1959 constitution, promulgated **1 June 1959** under Habib Bourguiba three years after independence from France, opened with the identical sentence; Tunisian jurists have disputed ever since whether 'Islam is its religion' attaches to the state or merely describes the country (Danish Institute for Human Rights, 2015; Legal Agenda).\n- Roughly **99%** of Tunisians are Sunni Muslim (CIA World Factbook).\n- Proposals to name sharia 'the main source of legislation' circulated in **2012** amid competing street demonstrations for and against, but the wording entered none of the published drafts; all four full drafts (August 2012 to June 2013) carry Article 1 verbatim from 1959 (Islamic Law Blog, 2017; ConstitutionNet draft texts).\n- The draft pairs Article 1 with an Article 2 declaring Tunisia 'a civil state based on citizenship, the will of the people, and the supremacy of law'; the drafters propose that both articles be unamendable (Draft Constitution; Venice Commission translation).\n- The 1959 formula sat at the heart of an unusual settlement: Bourguiba's republic kept Islam in the opening article while building one of the region's most secular legal codes, including the **1956** Personal Status Code (Religious Freedom Institute; Brandeis Crown Center).\n- Under the assembly's adoption rules, each article of the draft requires an absolute majority of the **217** members, and the finished text then needs a two-thirds vote of the whole assembly to avoid a referendum (constituent law of 16 December 2011; NCA rules of procedure).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- Keeping a 55-year-old sentence verbatim converts a drafting question into a loyalty test of the 1959 settlement: nobody has to win the religion-and-state argument, both sides only have to agree not to fight it here.\n- The ambiguity transfers power forward: whoever later controls constitutional interpretation — courts, future assemblies — inherits the authority to decide what 'Islam is its religion' requires, which is precisely why each camp can accept it now.\n- Word-for-word continuity also does identity work: it frames the revolution as restoring the republic rather than refounding it, reassuring both the religious mainstream and the secular establishment that the new order is not a rupture aimed at them.",
+   "proposed_by": "NCA drafting committee (draft constitution, Article 1)",
+   "doc_ref": "Draft Constitution, Article 1",
+   "outcome": "approved",
+   "source_url": "https://anc.majles.marsad.tn/fr/vote/52c9ba0712bdaa7f9b90f436",
+   "party_votes_canon": {
+    "ENN": "for",
+    "CPR": "for",
+    "ETT": "for"
+   },
+   "tally": {
+    "for": 146,
+    "against": 1,
+    "abstain": 2
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "Article 1 adopted 4 Jan 2014: 146 for, 1 against, 2 abstentions (Marsad ANC, vote 52c9ba0712bdaa7f9b90f436)",
+    "bloc_breakdown": "Ennahdha 74-0-0; CPR 11-0-0; Ettakatol 8-0-0 — unanimous across the Troika blocs",
+    "notes": "The same sitting rejected amendment n°42, which would have made 'the Quran and the Sunna the principal sources of legislation' — kept out of copy. Aftermath: the 1959 wording entered the final constitution unchanged as Article 1, declared unamendable.",
+    "sources": [
+     "https://anc.majles.marsad.tn/fr/vote/52c9ba0712bdaa7f9b90f436",
+     "https://english.legal-agenda.com/delineating-religion-in-the-tunisian-constitution/",
+     "https://www.humanrights.dk/files/media/migrated/2015.9._mattersofconcern_islam_and_human_rights_-_the_constitutional_debate_in_tunisia_2015.pdf"
+    ]
+   }
+  },
+  {
+   "id": "TN-2014-ART46",
+   "date": "2014-01-09",
+   "session_code": "TN_NCA",
+   "point": null,
+   "organ": "National Constituent Assembly",
+   "type": "Constitutional article",
+   "topic": "Women's rights",
+   "headline": "Write women's rights into the new constitution: the state commits to protect the rights women have already won, guarantees equal opportunity with men in every field, works toward parity in elected assemblies and acts to eradicate violence against women.",
+   "title": "Projet de Constitution, article 45 — droits de la femme (Draft Constitution, Article 45 — women's rights)",
+   "raw_outcome": "Projet de Constitution, article 45 — droits de la femme (Draft Constitution, Article 45 — women's rights)",
+   "source_brief": "Tunisia carries the Arab world's oldest women's-rights tradition — the 1956 Personal Status Code banned polygamy and gave women divorce rights — and the constitution's women's article has already detonated once: an earlier draft calling women 'complementary to men' brought thousands into the street in 2012 and was withdrawn. This replacement text is now up for the vote.\n\n- **What the state would commit to:** protecting the rights women have already won, guaranteeing equal opportunity with men in every responsibility and field, working toward parity between women and men in elected assemblies, and taking measures to eradicate violence against women.\n- **The fight over one word:** 'achieved rights' ('acquis') — supporters say it locks the Code's gains in forever; critics want the plain word 'equality' and read 'acquis' as a ceiling that protects only what already exists.\n- **The parity question:** writing a 50/50 goal for elected bodies into a constitution would be a world rarity — pioneering to some, an override of voters' free choice to others.\n- **The handle:** for — it makes rolling back sixty years of women's gains unconstitutional and points the law toward more; against — depending on where you stand, it either stops short of declaring full equality or goes too far by hard-coding parity into the state's founding text.",
+   "deep_facts": "- The draft article commits the state to protect women's acquired rights and to support and develop them; guarantees equality of opportunity between women and men in access to all levels of responsibility in all fields; states that the state shall strive toward parity between women and men in elected assemblies; and obliges the state to take measures to eradicate violence against women (Draft Constitution, Art. 45; constitutionnet.org).\n- The **1956** Personal Status Code, decreed months after independence, banned polygamy, abolished unilateral repudiation by husbands and created judicial divorce; Tunisian women have voted since **1957** (Brandeis Crown Center brief no. 131; HRW).\n- In **August 2012**, a committee draft describing women as 'complementary to men within the family' drew protests by thousands in Tunis on **13 August** — National Women's Day, the Code's anniversary — and the wording was dropped from subsequent drafts (Legal Agenda; UN Women).\n- The assembly itself was elected under an **April 2011** decree requiring every candidate list to alternate women and men from top to bottom; in practice most lists were headed by men, which capped the number of women elected (HRW, Aug. 2011; AWID).\n- A separate draft article guarantees that all citizens, male and female, have equal rights and duties and are equal before the law without discrimination (Draft Constitution, equality article; Venice Commission translation).\n- A constitutional commitment to parity in elected bodies would place Tunisia among a handful of states worldwide with such a clause (Legal Agenda; UN Women).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- 'Acquis' is a ratchet word: it constitutionalises the Bourguiba-era code against rollback without forcing the chamber to vote on the bare word 'equality' — protecting the past becomes the proxy for the unresolved fight about the future.\n- The parity clause is drafted as an obligation of effort — 'works toward' — not a quota: strong enough for future electoral laws to lean on, soft enough that it reassigns no seat by itself; the vagueness is what makes the text votable for hesitant members of every bloc.\n- After the 2012 'complementarity' uproar, the wording is addressed to the street as much as to the courts: each camp will read this article as the verdict on whose revolution this is — the Code's heirs or its challengers.",
+   "proposed_by": "NCA drafting committee (draft constitution, Article 45)",
+   "doc_ref": "Draft Constitution, Article 45 (final Article 46)",
+   "outcome": "approved",
+   "source_url": "https://anc.majles.marsad.tn/fr/vote/52cf062a12bdaa77218c8818",
+   "party_votes_canon": {
+    "ENN": "for",
+    "CPR": "for",
+    "ETT": "for"
+   },
+   "tally": {
+    "for": 127,
+    "against": 43,
+    "abstain": 24
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "Draft Article 45 (women's rights) adopted as amended, 9 Jan 2014: 127 for, 43 against, 24 abstentions (Marsad ANC, vote 52cf062a12bdaa77218c8818)",
+    "bloc_breakdown": "Genuinely contested: Ennahdha split 49 for / 20 against / 13 abstain; CPR 9 for / 3 against; Ettakatol unanimous for",
+    "notes": "Two votes that day: the consensual amendment passed 116-40-32, then the article as amended passed 127-43-24 (the tally used here). Aftermath: draft Article 45 became Article 46 in the final renumbering — kept out of copy.",
+    "sources": [
+     "https://anc.majles.marsad.tn/fr/vote/52cf062a12bdaa77218c8818",
+     "https://www.unwomen.org/en/news/stories/2014/2/tunisias-new-constitution",
+     "https://english.legal-agenda.com/gender-equality-in-the-new-tunisian-constitution-gains-and-goals/",
+     "https://www.hrw.org/news/2011/08/09/tunisian-election-law-gives-women-equal-chance"
+    ]
+   }
+  },
+  {
+   "id": "TN-2014-CONSTITUTION",
+   "date": "2014-01-26",
+   "session_code": "TN_NCA",
+   "point": null,
+   "organ": "National Constituent Assembly",
+   "type": "Constitution",
+   "topic": "Constitution",
+   "headline": "Adopt Tunisia's new post-revolution constitution in its entirety. The charter declares a civil state — Islam stays in the first article, freedom of conscience is guaranteed — with equal rights for women and men and power split between president and parliament.",
+   "title": "Constitution de la République tunisienne — vote sur l'ensemble du projet (Constitution of the Tunisian Republic — vote on the entire draft)",
+   "raw_outcome": "Constitution de la République tunisienne — vote sur l'ensemble du projet (Constitution of the Tunisian Republic — vote on the entire draft)",
+   "source_brief": "Three years after street protests toppled Ben Ali and set off the Arab Spring, Tunisia's elected assembly votes on its new constitution as one whole text. Getting here nearly broke the country: two opposition politicians were assassinated in 2013, mass sit-ins demanded the assembly dissolve, and a 'national dialogue' brokered by the big trade union, the employers, the lawyers and the human-rights league pulled the process back from collapse.\n\n- **What's inside:** a civil state that keeps Islam in its first article yet guarantees freedom of conscience; equal rights for women and men; an independent judiciary with a constitutional court; and power split between an elected president and a government answering to parliament.\n- **Why one vote on everything:** the text is a package of trades hammered out by a consensus commission — religious and secular camps each gave up their maximal demands to get a charter both can sign.\n- **The rule:** approval by two-thirds of the 217 members — 145 votes — adopts it outright; falling short would push the text toward a national referendum.\n- **The handle:** for — the most rights-heavy charter in the region and the only deal on the table after three years of crisis; against — its deliberate ambiguities (a state at once civil and guardian of religion) paper over the deepest disputes and hand them, unresolved, to future courts.",
+   "deep_facts": "- The text comprises a preamble and **149 articles**: Article 2 declares 'a civil state based on citizenship, the will of the people, and the supremacy of law'; Article 6 makes the state 'guardian of religion' while guaranteeing freedom of conscience and belief and the political neutrality of mosques; Article 21 gives male and female citizens equal rights and duties (Final Constitution of the Tunisian Republic, constitutionnet.org).\n- Executive power is split semi-presidentially: a directly elected president steers defense, foreign affairs and national security, while a head of government accountable to parliament runs domestic policy (Constitution, executive-power chapter; constituteproject.org).\n- Article 45 obliges the state to guarantee 'a sound climate', making Tunisia the **third** country to write climate protection into its constitution, after Ecuador and the Dominican Republic (TIME, Jan. 2014).\n- The assembly of **217** members was elected on **23 October 2011** with a one-year drafting mandate; the work ran more than two years through four successive full drafts (August 2012, December 2012, April 2013, June 2013) before a consensus commission reconciled the contested articles (ConstitutionNet; EUSPRING working paper no. 2).\n- The assassinations of opposition politicians Chokri Belaïd (**6 February 2013**) and Mohamed Brahmi (**25 July 2013**) twice froze the assembly's work; a National Dialogue convened by the UGTT trade-union federation with the employers' confederation, the bar association and the Tunisian Human Rights League restarted the process and fixed the January timetable (Britannica).\n- Under the constituent law of 16 December 2011 on the provisional organisation of public powers, the whole text is adopted if **two-thirds** of members (**145 of 217**) approve; after two failed readings it would go to a national referendum (constituent law of 16 December 2011; ConstitutionNet).\n- The chamber debated and voted the draft article by article from **3 January 2014** before this single vote on the entirety (Marsad, ANC records).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The single vote on the whole text is designed as a ratification of a package deal: the consensus commission's trades — civil state next to guardian-of-religion, no sharia clause next to Islam in the first article — hold only if nobody can reopen one article without losing the rest.\n- The two-thirds bar is about legitimacy as much as arithmetic: adoption inside the chamber keeps the text out of a referendum campaign in which each camp would mobilise against the other's concessions, on streets that nearly broke the process in 2013.\n- The charter's hardest questions are deferred by construction — a state at once civil and guardian of the sacred — so its real meaning will be fixed later by institutions it only sketches, above all the constitutional court it promises.",
+   "proposed_by": "National Constituent Assembly (consensus commission chaired by Speaker Mustapha Ben Jaafar)",
+   "doc_ref": "Constitution of the Tunisian Republic (2014)",
+   "outcome": "approved",
+   "source_url": "https://anc.majles.marsad.tn/fr/vote/52e598b212bdaa593ad566f2",
+   "party_votes_canon": {
+    "ENN": "for",
+    "CPR": "for",
+    "ETT": "for"
+   },
+   "tally": {
+    "for": 200,
+    "against": 12,
+    "abstain": 4
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "Plenary vote on the constitution in its entirety, 26 Jan 2014: 200 for, 12 against, 4 abstentions (Marsad ANC, vote 52e598b212bdaa593ad566f2)",
+    "bloc_breakdown": "Marsad per-bloc: Ennahdha 85 for / 1 against / 1 abstain; CPR 13-1-0; Ettakatol 12-0-0",
+    "notes": "200 votes cleared the two-thirds threshold (145 of 217) required to adopt without a referendum. Aftermath (kept out of copy): signed by President Moncef Marzouki on 27 Jan 2014; the National Dialogue Quartet that unblocked the drafting process won the 2015 Nobel Peace Prize.",
+    "sources": [
+     "https://anc.majles.marsad.tn/fr/vote/52e598b212bdaa593ad566f2",
+     "https://constitutionnet.org/sites/default/files/2014.01.26_-_final_constitution_english_idea_final.pdf",
+     "https://en.wikipedia.org/wiki/Tunisian_Constitution_of_2014",
+     "https://science.time.com/2014/01/29/tunisia-recognizes-climate-change-in-its-constitution/"
+    ]
+   }
+  },
+  {
+   "id": "TN-2014-EXCLUSION",
+   "date": "2014-04-30",
+   "session_code": "TN_NCA",
+   "point": null,
+   "organ": "National Constituent Assembly",
+   "type": "Law article",
+   "topic": "Old regime",
+   "headline": "Ban senior figures of Ben Ali's dictatorship — bosses of his dissolved RCD party, his ministers, and anyone who publicly urged him to run yet again — from standing in Tunisia's first elections under its new constitution.",
+   "title": "Article 167 du projet de loi organique relative aux élections et aux référendums — « immunisation de la révolution » (Article 167 of the draft organic law on elections and referendums — exclusion of former-regime officials from candidacy)",
+   "raw_outcome": "Article 167 du projet de loi organique relative aux élections et aux référendums — « immunisation de la révolution » (Article 167 of the draft organic law on elections and referendums — exclusion of former-regime officials from candidacy)",
+   "source_brief": "Three years after Tunisians chased their dictator out, his old guard is organising again — new parties, serious polling — just months before the first regular elections under the hard-won new constitution. On the table: write a lock into the electoral law itself, what supporters call 'immunising the revolution'.\n\n- **Who it catches:** anyone who held senior responsibility in the RCD — Ben Ali's ruling party, dissolved by court order after his fall — or in his governments, plus anyone who signed public appeals for him to seek yet another term in 2014.\n- **The precedent:** other transitions purged the old elite — lustration laws in Eastern Europe, de-Baathification in Iraq — and Tunisia itself barred RCD officials from the 2011 constituent-assembly vote.\n- **The objection:** a ban by category punishes without a trial, and the months-old constitution promises equality before the law and the right to stand for office.\n- **The handle:** lock the people who ran the police state out of the democracy built against them — or trust the ballot box: if the old guard really has support, the democratic answer is to beat them with votes, not bans.",
+   "deep_facts": "- Article 167 bars from legislative candidacy persons who exercised senior responsibility within the RCD or in the governments of the Ben Ali era, as well as those who publicly called on Ben Ali to stand for a new term in 2014 (Marsad ANC vote record; NCA debate, April 2014).\n- As an article of an organic law, adoption requires an absolute majority of all members — **109 of 217** — not merely a majority of those voting (NCA rules of procedure; ConstitutionNet, 2014).\n- Ben Ali ruled from **1987** until he fled on **14 January 2011** after weeks of nationwide protest; the RCD was dissolved by court order in **March 2011** (court record; news archives, 2011).\n- Precedent: the 2011 constituent-assembly election already excluded senior RCD officials and those who had petitioned Ben Ali to run again in 2014, under decree-law 2011-35 (Carter Center, 2011 election report).\n- A broader stand-alone 'immunisation of the revolution' bill debated in 2013 would have banned former-regime figures from a wide range of public functions; Human Rights Watch described it as 'sweeping political exclusion' (HRW, June 2013).\n- The constitution adopted in January 2014 guarantees equality before the law (Article 21) and the rights to vote and stand for election (Article 34) (Constitution of Tunisia, 2014).\n- Legislative elections — the first under the new constitution — were scheduled for October 2014, with several new parties founded or staffed by former officials registering and polling competitively (Atlantic Council, May 2014).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The fight is about October's ballot structure as much as about justice: old-regime networks retain money, local notables and administrative know-how, so exclusion changes which lists can mount a competitive campaign — not only who is punished.\n- The category's edges are elastic by design: 'senior responsibility' and a signature on a petition are very different acts, and bundling them makes the list of the banned long, contestable, and immediately litigable under the new constitution's rights articles — moving the fight from the assembly to judges weeks before the election.\n- The absolute-majority rule quietly changes what abstention means: with 109 of all 217 members required, abstaining works arithmetically as a vote against — the rule lets a member oppose the ban's effect while never being recorded as defending the old regime.",
+   "proposed_by": "NCA electoral-law amendment (Article 167, 'immunisation of the revolution')",
+   "doc_ref": "Draft organic law on elections and referendums, Article 167",
+   "outcome": "rejected",
+   "source_url": "https://anc.majles.marsad.tn/fr/vote/53613d2912bdaa078ab82503",
+   "party_votes_canon": {
+    "ENN": "for",
+    "CPR": "for",
+    "ETT": "for"
+   },
+   "tally": {
+    "for": 108,
+    "against": 23,
+    "abstain": 43
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "30 April 2014: 108 for, 23 against, 43 abstain — failed by ONE vote against the absolute-majority threshold of 109 of 217 required for an electoral-law article (Marsad ANC vote 53613d2912bdaa078ab82503).",
+    "bloc_breakdown": "Ennahdha was the swing and split 39 for / 5 against / 26 abstain, with its leadership opposing exclusion; CPR voted 13-0-0 for and Ettakatol 12-0-0 for, both unanimous. party_votes_canon records each bloc's majority direction despite the Ennahdha split.",
+    "notes": "Aftermath (verification only): deputies sang the national anthem after the result was announced; a re-vote in early May gathered ~100 votes and failed again, so the electoral law (loi organique 2014-16, adopted 1 May 2014 by 132-11 with 9 abstentions) passed without any exclusion clause, and former regime figures ran in the October 2014 elections.",
+    "sources": [
+     "https://anc.majles.marsad.tn/fr/vote/53613d2912bdaa078ab82503",
+     "https://constitutionnet.org/news/tunisias-new-election-law-and-consolidation-new-constitutional-order",
+     "https://www.atlanticcouncil.org/blogs/menasource/electoral-law-brings-tunisia-one-step-closer-to-completing-transition/",
+     "https://www.hrw.org/news/2013/06/15/tunisia-sweeping-political-exclusion-law",
+     "https://www.loc.gov/item/global-legal-monitor/2014-05-07/tunisia-parliament-passes-new-election-laws/"
+    ]
+   }
+  },
+  {
+   "id": "TN-2015-TERROR",
+   "date": "2015-07-25",
+   "session_code": "TN_ARP1",
+   "point": null,
+   "organ": "Assembly of the Representatives of the People",
+   "type": "Bill",
+   "topic": "Security",
+   "headline": "Adopt a sweeping new anti-terrorism law weeks after two massacres of tourists: broader terror offences, the death penalty for terrorist killings, police custody stretched to 15 days without a lawyer, and wider phone and internet surveillance.",
+   "title": "Loi organique n°2015-26 relative à la lutte contre le terrorisme et à la répression du blanchiment d'argent (Organic law on combating terrorism and the repression of money laundering)",
+   "raw_outcome": "Loi organique n°2015-26 relative à la lutte contre le terrorisme et à la répression du blanchiment d'argent (Organic law on combating terrorism and the repression of money laundering)",
+   "source_brief": "Gunmen killed 22 people at the Bardo museum — next door to this very parliament — in March, then 38 tourists on a Sousse beach in June. Tourism, the economy's lifeline, is in free fall. On the table: replace the dictatorship's notorious 2003 anti-terror law with a tougher one written by the democracy itself.\n\n- **What changes:** broad new terrorism offences, phone and internet surveillance powers, closed hearings with witnesses kept anonymous, and custody for terror suspects stretched to **15 days** without a lawyer or family contact (it was 6).\n- **Death penalty on paper:** terrorist killings become capital crimes — though Tunisia hasn't executed anyone since 1991.\n- **The warning:** Human Rights Watch, Amnesty and Tunisian rights leagues say the definitions are vague enough to catch protest and dissent — four years after a police state fell to street protest.\n- **The handle:** arm the state against the people machine-gunning its visitors, or refuse to hand a young democracy the same loosely worded powers a dictatorship just abused — thousands were prosecuted under the law this replaces.",
+   "deep_facts": "- The law replaces the 2003 counter-terrorism law, under which well over **3,000** people were prosecuted in the Ben Ali era; the UN special rapporteur on human rights while countering terrorism said the 2003 law 'was widely abused as a tool of oppression against any form of political dissent' (HRW, 2013; UN special rapporteur Martin Scheinin).\n- Police custody for terrorism suspects is extended from **6** to up to **15 days** incommunicado, renewable with a prosecutor's consent and without appearing before a judge; during that period the suspect has no access to a lawyer and no contact with family (HRW, 31 July 2015).\n- The law provides the death penalty for terrorist acts resulting in death, expanding the list of capital offences; Tunisia has observed a de facto moratorium on executions since **1991** (HRW, July 2015; Amnesty International, 2015).\n- Courts may close hearings to the public and allow witnesses to remain anonymous to defendants; security services gain broad telephone and internet interception and surveillance powers (HRW, 31 July 2015; loi organique 2015-26 text).\n- Context: the Bardo Museum attack of 18 March 2015 killed **22** people at the museum adjoining the parliament compound; the Sousse beach attack of 26 June 2015 killed **38** tourists, the deadliest attack in modern Tunisian history (news record, 2015).\n- Travel and tourism directly contributed **7.4%** of GDP in 2014 (≈**15%** counting indirect effects); in the weeks after Sousse, several foreign governments advised against travel to Tunisia and tour operators repatriated thousands of visitors (WTTC, 2015; Euronews, June 2015).\n- Bill n°22/2015 pairs the terrorism offences with an anti-money-laundering framework, criminalising terrorist financing alongside laundering (Library of Congress, Global Legal Monitor, Aug 2015).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The scheduling is itself a message: bringing the bill to the floor on Republic Day, the anniversary of a political assassination, frames the law as the state reclaiming the calendar from the gunmen — and makes opposing it, weeks after a massacre, easy to cast as softness, narrowing the space for objections about vague wording to live anywhere but in speeches and reservations.\n- With the execution moratorium intact, the death-penalty articles are expressive rather than operative: sentences can be pronounced but not carried out, so the clause's real work is signalling severity — unless a future government revisits the moratorium itself, at which point the statute is already in place.\n- Emergency laws set permanent baselines: definitions written in the shadow of an attack become the ordinary toolkit of police and prosecutors long after the emergency passes — exactly the trajectory critics trace from the 2003 law this one replaces.",
+   "proposed_by": "Government bill n°22/2015 (presented by the Essid government)",
+   "doc_ref": "Loi organique n°2015-26 relative à la lutte contre le terrorisme et à la répression du blanchiment d'argent",
+   "outcome": "approved",
+   "source_url": "https://majles.marsad.tn/fr/legislation/vote/141",
+   "party_votes_canon": {
+    "ENN": "for",
+    "NIDA": "for",
+    "FP": "for"
+   },
+   "tally": {
+    "for": 174,
+    "against": 0,
+    "abstain": 10
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "Voted at dawn on 25 July 2015 — Republic Day and the 2nd anniversary of Mohamed Brahmi's assassination. Announced tally 174-0-10; Marsad's totality page records 172-0-10 — a one-line discrepancy, both far above the threshold (Marsad vote 141).",
+    "bloc_breakdown": "The 10 abstainers per Al Bawsala: 4 CPR, 3 Courant démocratique, 2 Mouvement du peuple, 1 Voix des agriculteurs. Nidaa Tounes and Ennahdha voted for; the Front Populaire voted for despite its civil-liberties criticisms.",
+    "notes": "Promulgated as loi organique n°2015-26 of 7 August 2015, replacing the 2003 anti-terror law. HRW/Amnesty/ICJ criticisms of vague definitions and the 15-day incommunicado custody were published around the vote and after promulgation.",
+    "sources": [
+     "https://majles.marsad.tn/fr/legislation/vote/141",
+     "https://www.hrw.org/news/2015/07/31/tunisia-counterterror-law-endangers-rights",
+     "https://www.loc.gov/item/global-legal-monitor/2015-08-18/tunisia-parliament-passes-anti-terrorism-law",
+     "https://www.icj.org/resource/tunisia-revise-counter-terrorism-law-to-conform-to-international-standards/",
+     "https://www.hrw.org/news/2013/05/29/tunisia-amend-counterterrorism-law"
+    ]
+   }
+  },
+  {
+   "id": "TN-2016-ESSID",
+   "date": "2016-07-30",
+   "session_code": "TN_ARP1",
+   "point": null,
+   "organ": "Assembly of the Representatives of the People",
+   "type": "Confidence vote",
+   "topic": "Government",
+   "headline": "Renew confidence in Prime Minister Habib Essid's government — a vote he demanded himself after the President pushed to replace his cabinet with a 'national unity government'. Losing it fells the government and clears the way for a new one.",
+   "title": "Vote de renouvellement de confiance au gouvernement de Habib Essid (Vote to renew confidence in the government of Habib Essid)",
+   "raw_outcome": "Vote de renouvellement de confiance au gouvernement de Habib Essid (Vote to renew confidence in the government of Habib Essid)",
+   "source_brief": "Eighteen months into the job, Tunisia's low-key technocrat prime minister faces a vote he asked for. The presidential palace wants his cabinet replaced by a 'national unity government' — and rather than resign quietly, Habib Essid is asking parliament to settle it on the record.\n\n- **The record:** security has improved — no attack on the scale of 2015's massacres — but the economy is stalled: growth near **1%**, unemployment around **15%** and over **30%** for young graduates, after January's job protests spread from Kasserine across the country.\n- **The push:** the President publicly campaigned to replace the cabinet; his son leads the largest party in parliament, and critics read the 'unity government' plan as the palace reasserting control over a prime minister it once picked.\n- **The rule:** confidence needs an absolute majority — 109 of the 217 seats. Anything less and the government falls.\n- **The handle:** keeping Essid defends the principle that parliaments, not palaces, make and unmake governments; voting him down says a stalled economy needs a broader coalition with a fresh mandate, whatever the manoeuvring behind it.",
+   "deep_facts": "- Habib Essid, a technocrat without his own party base, took office in February 2015 heading a coalition spanning Nidaa Tounes, Ennahdha, Afek Tounes and the UPL — together a large majority of the **217** seats (parliament record; news archives, 2015).\n- On 2 June 2016 President Béji Caïd Essebsi publicly proposed replacing the cabinet with a 'national unity government' backed by political parties and the UGTT trade-union federation; Essid declined to resign and instead asked the Assembly for a confidence vote (Al Jazeera, July 2016).\n- Economic growth slowed to **0.8%** in 2015 from **2.3%** in 2014; unemployment stood near **15%** nationally and above **30%** among young graduates (official statistics via Reuters/Al Jazeera, 2016).\n- In January 2016, protests over jobs began in Kasserine after the death of a young jobseeker and spread to multiple governorates; the government imposed a nationwide curfew (news record, January 2016).\n- Security: after three mass-casualty attacks in 2015 (Bardo museum, the Sousse beach, the presidential-guard bus bombing in Tunis), no comparable attack on civilians followed in the first half of 2016, and a March 2016 cross-border assault on the town of Ben Guerdane was repelled by security forces (news record, 2016).\n- Under the 2014 constitution, a confidence renewal requires an absolute majority — **109 of 217** members; failing that, the government is deemed to have resigned (Constitution of Tunisia, 2014).\n- It is the first time under the 2014 constitution that a sitting head of government has put his own cabinet to a confidence-renewal vote (news record, July 2016).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- By demanding the vote instead of resigning, the prime minister converts a palace manoeuvre into constitutional precedent: whichever way members go, the act itself establishes that governments are made and unmade in the chamber, on the record — not in back-room phone calls.\n- The 'unity government' label reframes the question: on paper the vote is about one man's cabinet, but the prize underneath is a reset that redistributes portfolios — every party in the chamber has something to gain from a reshuffle, which makes the prime minister's personal record only half the calculation.\n- Under the 109-of-217 rule, absence and abstention do silent work: a member can shape the government's fate without a recorded yes or no — the quiet option in a vote staged as a loyalty test between parliament and palace.",
+   "proposed_by": "Prime Minister Habib Essid (requested the confidence vote himself)",
+   "doc_ref": "Vote de renouvellement de confiance au gouvernement Essid",
+   "outcome": "rejected",
+   "source_url": "https://majles.marsad.tn/fr/legislation/vote/2220",
+   "party_votes_canon": {
+    "ENN": "against",
+    "NIDA": "against"
+   },
+   "tally": {
+    "for": 3,
+    "against": 118,
+    "abstain": 27
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "30 July 2016: 3 for, 118 against, 27 abstaining; 191 of 217 deputies present. Confidence denied — 109 votes for were required. First government felled by a confidence vote under the 2014 constitution (Marsad vote 2220).",
+    "bloc_breakdown": "The four ruling-coalition parties — Nidaa Tounes, Ennahdha, Afek Tounes, UPL — announced in advance they would vote against. The Front Populaire's 15 deputies refused to take part, denouncing a stage-managed process; they are omitted from party_votes_canon as not voting comparably.",
+    "notes": "Essid told the chamber beforehand he had not come to collect the 109 votes but 'to expose things to the people and to members of parliament'. Aftermath (verification only): on 3 August 2016 President Essebsi nominated Youssef Chahed, who formed the next government.",
+    "sources": [
+     "https://majles.marsad.tn/fr/legislation/vote/2220",
+     "https://www.aljazeera.com/news/2016/7/30/tunisia-pm-essid-faces-no-confidence-vote",
+     "https://www.middleeasteye.net/news/tunisian-prime-minister-essid-unseated-loss-confidence-vote",
+     "https://www.atlanticcouncil.org/blogs/menasource/why-did-tunisia-s-parliament-oust-prime-minister-habib-essid/",
+     "https://fanack.com/politics/features-insights/tunisia-after-vote-of-no-confidence-in-prime-minister~72339/"
+    ]
+   }
+  },
+  {
+   "id": "TN-2017-VAW",
+   "date": "2017-07-26",
+   "session_code": "TN_ARP1",
+   "point": null,
+   "organ": "Assembly of the Representatives of the People",
+   "type": "Bill",
+   "topic": "Women's rights",
+   "headline": "Criminalise violence against women in all its forms — physical, sexual, economic, and inside marriage — and scrap the penal-code loophole that lets a man who raped a minor escape prosecution by marrying her. The state would have to fund shelters, hotlines and specialised police units.",
+   "title": "Loi organique relative à l'élimination de la violence à l'égard des femmes (Organic law on the elimination of violence against women, bill n°60/2016)",
+   "raw_outcome": "Loi organique relative à l'élimination de la violence à l'égard des femmes (Organic law on the elimination of violence against women, bill n°60/2016)",
+   "source_brief": "Tunisia has the Arab world's oldest women's-rights tradition — its 1956 Personal Status Code banned polygamy and gave women divorce rights — yet its penal code still lets a man who raped a minor erase the crime at the altar, and roughly half of Tunisian women say they have experienced violence. After decades of feminist campaigning, the proposal on the table writes the whole problem into one law: new crimes, a repealed escape hatch, and standing obligations on the state.\n\n- **New crimes:** rape inside marriage becomes prosecutable, sexual harassment in the street becomes an offence, and \"economic violence\" — controlling a woman's money or pay — is named alongside physical, moral, sexual and political violence.\n- **The repeal:** Article 227 bis of the penal code dies — the notorious clause under which a man who raped a minor could escape prosecution by marrying her.\n- **What the state must do:** fund shelters, hotlines and specialised police units for women filing complaints, and stop pushing domestic-violence victims into \"mediation\" with their aggressors.\n- **The handle:** for supporters, violence at home finally becomes a public matter the state must answer for; sceptics ask whether a cash-strapped state will ever fund the shelters and units, and conservatives bridle at the law reaching inside marriage — a paper revolution if the budget never follows.",
+   "deep_facts": "- Defines and criminalises **five** forms of violence against women — physical, moral, sexual, political and economic — and applies regardless of the perpetrator's relationship to the victim, including inside marriage (loi organique 2017-58 text; UN Women, Aug 2017).\n- Repeals **Article 227 bis** of the penal code, under which a man who had sexual relations with a minor could end prosecution or suspend a conviction by marrying her — a mechanism feminist organisations had fought for more than **20 years** (HRW, 27 Jul 2017; OHCHR, Aug 2017).\n- Makes rape within marriage prosecutable by removing the marital exemption from the definition of rape (HRW, 27 Jul 2017).\n- Criminalises sexual harassment in public space and broadens the legal definition of harassment beyond the workplace (UN Women, Aug 2017).\n- Obliges the state to fund shelters and hotlines for victims and to create specialised units within the security forces to receive women filing complaints; bars pressuring victims of domestic violence into mediation (HRW, 27 Jul 2017; Nawaat, Feb 2018).\n- **47%** of Tunisian women reported having experienced violence in their lifetime in the national survey by the Office National de la Famille et de la Population (ONFP national survey, 2010).\n- Tunisia's **1956** Personal Status Code — the oldest comprehensive women's-rights statute in the Arab world — banned polygamy and established judicial divorce; campaigners including the ATFD framed the violence bill as its unfinished half (UN Women, Aug 2017; Cairn, Cahiers d'études africaines, 2021).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- Naming economic and political violence moves the law beyond bruises into wages, money and public life — the categories hardest to prove in court and the likeliest test of whether judges treat the text as a charter or a gesture.\n- Repealing 227 bis costs the treasury nothing and signals everything; the shelters, hotlines and specialised units are the opposite — standing obligations whose real life will be decided in budget lines and police training, not in the penal code.\n- For a state mid-transition, a pioneering women's-rights law is also foreign-policy capital: it renews Tunisia's claim to regional exceptionalism at a moment when the democratic experiment is courting international goodwill.",
+   "proposed_by": "Government bill n°60/2016 (Minister of Women Néziha Labidi)",
+   "doc_ref": "Loi organique n°2017-58 relative à l'élimination de la violence à l'égard des femmes",
+   "outcome": "approved",
+   "source_url": "https://majles.marsad.tn/fr/legislation/votes/2016/60",
+   "party_votes_canon": {
+    "ENN": "for",
+    "NIDA": "for",
+    "FP": "for"
+   },
+   "tally": {
+    "for": 146,
+    "against": 0,
+    "abstain": 0
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "146 for, 0 against, 0 abstain — 146 of 217 members, plenary of 26 Jul 2017 (Marsad, majles.marsad.tn/fr/legislation/votes/2016/60)",
+    "bloc_breakdown": "All blocs voted for (Ennahdha, Nidaa Tounes, Popular Front). The 71-member gap to 217 is absences, not dissent.",
+    "notes": "Widely reported as a unanimous vote of those present — the unanimity framing is kept out of all copy. Aftermath (verification only): promulgated 11 Aug 2017 as loi organique 2017-58; entered into force February 2018.",
+    "sources": [
+     "https://majles.marsad.tn/fr/legislation/votes/2016/60",
+     "https://www.hrw.org/news/2017/07/27/tunisia-landmark-step-shield-women-violence",
+     "https://www.unwomen.org/en/news/stories/2017/8/news-tunisia-law-on-ending-violence-against-women",
+     "https://nawaat.org/2018/02/12/violence-against-women-new-tunisian-law-in-effect-will-it-be-effective/"
+    ]
+   }
+  },
+  {
+   "id": "TN-2017-AMNESTY",
+   "date": "2017-09-13",
+   "session_code": "TN_ARP1",
+   "point": null,
+   "organ": "Assembly of the Representatives of the People",
+   "type": "Bill",
+   "topic": "Old regime",
+   "headline": "Grant amnesty to Ben Ali-era civil servants accused of administrative wrongdoing while executing orders — provided they took no bribe — and pull their cases out of the courts and the transitional-justice process.",
+   "title": "Loi organique relative à la réconciliation dans le domaine administratif (Organic law on reconciliation in the administrative field, bill n°49/2015)",
+   "raw_outcome": "Loi organique relative à la réconciliation dans le domaine administratif (Organic law on reconciliation in the administrative field, bill n°49/2015)",
+   "source_brief": "Six years after a revolution against a corrupt police state, the question on the table is what to do with the people who made that state run. The proposal grants amnesty to Ben Ali-era civil servants accused of administrative wrongdoing committed while executing orders — so long as they pocketed nothing — and pulls their files out of the courts and out of the truth commission now hearing the dictatorship's victims in public.\n\n- **Who walks:** officials who signed, stamped and executed orders without personal enrichment; prosecutions end and convictions are wiped. Bribe-takers and the personally enriched stay prosecutable.\n- **The pitch:** thousands of experienced administrators are frozen, afraid any old signature is a future indictment — turn the page so the state can function and investment can flow.\n- **How it shrank:** the original 2015 version also amnestied businessmen who returned stolen money; two years of street protest under the banner \"Manich Msamah\" (\"I will not forgive\") forced it down to officials only.\n- **The handle:** if a state cannot run while its whole administrative class is under suspicion, this is the price of governing; if obeying a dictatorship should cost something, this teaches the next dictatorship's clerks that it costs nothing.",
+   "deep_facts": "- Amnesties public officials and assimilated persons accused of harming the administration through acts committed **in execution of orders**, where they drew **no personal benefit**: prosecutions end, pending trials stop, convictions are erased (draft-law analysis, HRW, 23 May 2017).\n- The line the law draws is personal enrichment: officials who took bribes or embezzled for their own gain remain outside the amnesty (HRW, 23 May 2017).\n- Amnestied cases leave the transitional-justice track: the Truth and Dignity Commission, created by the 2013 transitional-justice law, was at the time holding televised public hearings of dictatorship-era victims (ICTJ, 2017; HRW, 23 May 2017).\n- The original 2015 draft also covered businessmen who returned misappropriated funds through an arbitration mechanism in exchange for closed cases; successive rewrites in **2016** and **2017** stripped it back to officials only (Participedia, Manich Msamah case study; Middle East Eye, 2017).\n- The \"Manich Msamah\" (\"I will not forgive\") movement staged roughly **70** mobilisations against the bill between **August 2015 and September 2017** (Participedia, Manich Msamah case study).\n- The Venice Commission's interim opinion on the original draft (CDL-AD(2015)032, Oct 2015) raised concerns about its compatibility with Tunisia's transitional-justice framework and the role left to the judiciary (Venice Commission, Oct 2015).\n- Supporters' stated case: fear of prosecution for old paperwork paralyses administrative decision-making and deters investment; opponents' stated case, made in protests and in committee, is that amnesty without truth-telling guts accountability for the dictatorship years (Al-Monitor, Sep 2017; HRW, 23 May 2017).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- What reaches the floor is the residue protest could not strip away — so the vote doubles as a test of whether the transitional-justice track is the only legitimate door for dictatorship-era cases, or one door among several the majority may close.\n- The line between \"executed orders\" and \"benefited personally\" is administratively almost unfindable in a state where favours, not invoices, were the currency; the law's category does the amnesty work before any judge ever looks at a file.\n- The investment-climate pitch makes economics carry a political load: nothing in the text links amnestied officials to growth — the bet is psychological, that fear of prosecution rather than banking, bureaucracy or security is what froze the administration.",
+   "proposed_by": "Presidential initiative (Béji Caïd Essebsi, bill n°49/2015, narrowed in committee)",
+   "doc_ref": "Loi organique n°2017-62 relative à la réconciliation dans le domaine administratif",
+   "outcome": "approved",
+   "source_url": "https://majles.marsad.tn/fr/legislation/vote/3721",
+   "party_votes_canon": {
+    "ENN": "for",
+    "NIDA": "for"
+   },
+   "tally": {
+    "for": 117,
+    "against": 9,
+    "abstain": 1
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "Announced tally 117 for, 9 against, 1 abstain, sitting of 13 Sep 2017. Marsad's per-member page records 116-9-1 — a one-vote discrepancy; both figures are far above the 109-vote absolute majority (of 217) that organic laws require (Marsad, majles.marsad.tn/fr/legislation/vote/3721).",
+    "bloc_breakdown": "Ennahdha and Nidaa Tounes voted for. Popular Front and Bloc Démocrate deputies disrupted the sitting — singing the anthem, chanting martyrs' slogans; the session was suspended — and did not take part in the final vote. They are omitted from party_votes_canon as not voting comparably.",
+    "notes": "Manich Msamah protested outside the Bardo during the vote. HRW criticism (May 2017) and the Venice Commission interim opinion on the original broader draft (CDL-AD(2015)032, Oct 2015) predate the vote and are the only criticism used in copy. Aftermath (verification only): promulgated as loi organique 2017-62 in October 2017; HRW and others continued to criticise the enacted law.",
+    "sources": [
+     "https://majles.marsad.tn/fr/legislation/vote/3721",
+     "https://www.hrw.org/news/2017/05/23/law-could-be-final-blow-tunisias-transition",
+     "https://www.hrw.org/news/2017/10/02/new-reconciliation-law-threatens-tunisias-democracy",
+     "https://participedia.net/case/6252",
+     "https://www.venice.coe.int/webforms/documents/?pdf=CDL-AD(2015)032-e",
+     "https://www.al-monitor.com/originals/2017/09/tunisia-administrative-reconciliation-law-social-movement.html"
+    ]
+   }
+  },
+  {
+   "id": "TN-2018-COMMUNES",
+   "date": "2018-04-26",
+   "session_code": "TN_ARP1",
+   "point": null,
+   "organ": "Assembly of the Representatives of the People",
+   "type": "Code",
+   "topic": "Decentralisation",
+   "headline": "Move real power out of the capital: give elected municipal councils their own budgets, local taxes and decisions, replacing the interior ministry's prior approval with after-the-fact legality review. The country's first free local elections are ten days away.",
+   "title": "Loi organique relative au Code des collectivités locales (Organic law on the Code of Local Collectivities, bill n°48/2017)",
+   "raw_outcome": "Loi organique relative au Code des collectivités locales (Organic law on the Code of Local Collectivities, bill n°48/2017)",
+   "source_brief": "Under the old regime, mayors were effectively appointed and every town was run from Tunis — and the interior regions that started the 2011 revolution were starved by exactly that arrangement. The 2014 constitution devotes an entire chapter to decentralisation, but it is dead letter without this code. The first free municipal elections in the country's history are ten days away, and candidates are already campaigning for councils whose powers this vote defines.\n\n- **What towns get:** their own competences, budgets and room to levy local taxes; \"free administration\" — councils act first and an administrative judge checks legality afterwards, instead of asking the ministry's permission first.\n- **What citizens get:** open council meetings, petition rights and participatory budgeting, plus a national High Council of Local Collectivities to speak for the towns.\n- **The fear:** 350 municipalities, many newly created with barely a tax base — centralists and fiscal hawks warn of unfunded mandates and towns handed duties without money.\n- **The handle:** the constitution commands decentralisation and the neglected interior is the revolution's unpaid debt — that is the push; if you think real money will never follow the new powers, you are voting 350 town halls into a promise the budget can't keep.",
+   "deep_facts": "- A **392-article** code replacing the 1975 municipal-governance law — one of the longest and most complex texts in Tunisia's legislative history, taken through a marathon article-by-article reading (Africanews, May 2018; Arab Reform Initiative, 2019).\n- Establishes \"free administration\": the interior ministry's prior approval (tutelle) over municipal decisions gives way to after-the-fact review of legality, implementing Chapter 7 of the **2014** constitution, which mandates decentralisation and elected local councils (code text, legislation-securite.tn; Constitution of Tunisia, ch. 7).\n- Sorts municipal powers into three categories — own competences, competences shared with the central state, and competences transferred from it — with transferred competences to be accompanied by corresponding resources (code text, legislation-securite.tn).\n- Gives citizens participatory mechanisms: open council sessions, petition rights and participatory budgeting (code text; Carnegie Endowment, May 2018).\n- Creates a High Council of Local Collectivities composed of commune presidents — one per region, elected by their peers — as the towns' national voice (code text, legislation-securite.tn).\n- The territory was fully municipalised ahead of the vote: **86** new municipalities created and **187** extended in 2016, bringing the total to **350** — meaning every Tunisian would live in an elected commune for the first time (Arab Reform Initiative, 2019).\n- The first free municipal elections in the country's history are scheduled for **6 May 2018**, with about **5.3 million** registered voters choosing among more than **2,000** candidate lists (Africanews, May 2018; Carter Center, Feb 2018).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The calendar is the real whip: with candidates already campaigning, delay means electing thousands of councillors into a legal vacuum — the timing converts a constitutional obligation into an emergency, and squeezes the space for opponents to demand a slower, better-funded design.\n- After-the-fact review does not make the centre disappear; it changes costume, from ministry desk to administrative courtroom — and since the finance ministry still controls transfers, \"free administration\" is in practice as free as the next budget line.\n- The code creates demand for capacity — engineers, accountants, tax rolls — that dozens of brand-new municipalities do not have; the gap between legal power and administrative muscle is where this decentralisation will actually be judged.",
+   "proposed_by": "Government bill n°48/2017 (Ministry of Local Affairs, Riadh Mouakher)",
+   "doc_ref": "Loi organique n°2018-29 relative au Code des collectivités locales",
+   "outcome": "approved",
+   "source_url": "https://majles.marsad.tn/fr/legislation/vote/4694",
+   "party_votes_canon": {
+    "ENN": "for",
+    "NIDA": "for",
+    "FP": "for"
+   },
+   "tally": {
+    "for": 147,
+    "against": 0,
+    "abstain": 10
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "147 for, 0 against, 10 abstain, plenary of 26 Apr 2018, after a marathon article-by-article reading — confirmed by Marsad totality vote 4694 and TAP/Webdo coverage (majles.marsad.tn/fr/legislation/vote/4694).",
+    "bloc_breakdown": "Ennahdha, Nidaa Tounes and the Popular Front all voted for; the 10 abstainers are not bloc-attributed in press coverage. Carnegie and Jeune Afrique analyses describe Ennahdha and the Popular Front as the most pro-decentralisation blocs, Nidaa Tounes more reluctant but voting for.",
+    "notes": "Aftermath (verification only): promulgated 9 May 2018 as loi organique 2018-29; the 6 May 2018 municipal elections went ahead as scheduled — kept out of copy, which treats the elections as upcoming.",
+    "sources": [
+     "https://majles.marsad.tn/fr/legislation/vote/4694",
+     "https://legislation-securite.tn/latest-laws/loi-organique-n-2018-29-du-9-mai-2018-relative-au-code-des-collectivites-locales/",
+     "https://www.africanews.com/2018/05/01/tunisia-s-parliament-adopts-new-local-govt-code-just-days-before-municipal-polls/",
+     "https://www.arab-reform.net/publication/the-tunisian-experience-of-decentralization-since-2014/",
+     "https://carnegieendowment.org/research/2018/05/decentralization-in-tunisia-empowering-towns-engaging-people?lang=en",
+     "https://www.cartercenter.org/news/pr/tunisia-021518.html"
+    ]
+   }
+  },
+  {
+   "id": "TN-2018-RACISM",
+   "date": "2018-10-09",
+   "session_code": "TN_ARP1",
+   "point": null,
+   "organ": "Assembly of the Representatives of the People",
+   "type": "Bill",
+   "topic": "Discrimination",
+   "headline": "Make racism a crime for the first time in the Arab world: prison and fines for racist speech, heavier penalties for incitement to racial hatred, and a court path for victims of racial discrimination.",
+   "title": "Loi organique relative à l'élimination de toutes les formes de discrimination raciale (Organic law on the elimination of all forms of racial discrimination, bill n°11/2018)",
+   "raw_outcome": "Loi organique relative à l'élimination de toutes les formes de discrimination raciale (Organic law on the elimination of all forms of racial discrimination, bill n°11/2018)",
+   "source_brief": "Tunisia abolished slavery in 1846, before most of the world — and has never once named racism a crime. Black Tunisians, an estimated one person in eight, describe entrenched everyday exclusion; sub-Saharan students and migrants face street harassment, and a knife attack on Congolese students in Tunis turned a long civil-society campaign into the bill now on the table — the Arab world's first law of its kind.\n\n- **What becomes criminal:** racist insults and acts (a month to a year in prison plus a fine); up to three years for incitement to racial hatred, spreading ideas of racial superiority, or backing a racist organisation.\n- **What victims get:** a legal definition of racial discrimination matching the international convention, a complaint path to court, and support — none of which exists today.\n- **What it doesn't touch:** the deeper machinery — hiring, housing, slavery-era surnames still carried in official papers — is left to a new national commission's recommendations, not the criminal code.\n- **The handle:** a state that has never named the harm cannot punish it — that is the case for; the case against is prison time for words in a young democracy still learning free speech, attached to a law sceptics fear will be celebrated abroad and unenforced at home.",
+   "deep_facts": "- Racist words or acts are punishable by **1 month to 1 year** in prison and a fine of **500–1,000 dinars**, or one of the two penalties (loi organique 2018-50, art. 8, legislation-securite.tn).\n- Incitement to hatred, racist threats, spreading or defending racist ideas of superiority, and founding or joining an organisation that clearly and repeatedly supports discrimination carry **1 to 3 years** and **1,000–3,000 dinars** — fines reaching roughly **$1,000** (loi organique 2018-50, art. 9; Arab Reform Initiative, 2019).\n- Penalties double when the victim is vulnerable — advanced age, disability, visible pregnancy, migrant or refugee status — or when the offender holds authority over the victim (loi organique 2018-50, art. 8).\n- Defines racial discrimination in line with the 1965 UN International Convention on the Elimination of All Forms of Racial Discrimination, and creates a national commission against racial discrimination, attached to the ministry responsible for human rights, to collect data and propose public policy (loi organique 2018-50; Arab Reform Initiative, 2019).\n- Black Tunisians are estimated at **10–15%** of the population; the national census collects no data on race, so no official count exists (Arab Reform Initiative, 2019; Al Jazeera, Oct 2018).\n- A **December 2016** knife attack on Congolese students in central Tunis galvanised the campaign, led by the Mnemty association and a civil-society coalition (Inkyfada, Apr 2018; France 24, Oct 2018).\n- Tunisia abolished slavery in **1846**, decades before the United States or Brazil, yet no statute had ever made racism an offence (Arab Reform Initiative, 2019).",
+   "deep_lectura": "**Analyst read** *(inference — not stated verbatim in the record)*\n- The criminal code is the loudest instrument the state owns, but the harms most reported by Black Tunisians — hiring, housing, the inherited surnames of slavery — are civil and administrative, reached only through the new commission's policy mandate; the prison clauses may prove the least-used part of the text.\n- With no official race statistics, the commission would have to build the evidence base from zero — meaning the law's effect will be measured for years in anecdotes and test cases, and a single prominent conviction or acquittal will come to define it.\n- A first-in-the-region statute carries export value for a transition courting international goodwill; the risk inside that incentive is a law that exists to be cited abroad rather than enforced at home.",
+   "proposed_by": "Government bill n°11/2018 (after a civil-society campaign led by Mnemty)",
+   "doc_ref": "Loi organique n°2018-50 relative à l'élimination de toutes les formes de discrimination raciale",
+   "outcome": "approved",
+   "source_url": "https://majles.marsad.tn/fr/legislation/vote/5236",
+   "party_votes_canon": {
+    "ENN": "for",
+    "NIDA": "for",
+    "FP": "for"
+   },
+   "tally": {
+    "for": 125,
+    "against": 1,
+    "abstain": 5
+   },
+   "curator_drop": false,
+   "verification": {
+    "vote_record": "125 for, 1 against, 5 abstain, plenary of 9 Oct 2018 — Marsad totality vote 5236 matches (majles.marsad.tn/fr/legislation/vote/5236).",
+    "bloc_breakdown": "Cross-bloc support: Ennahdha, Nidaa Tounes and the Popular Front all voted for. The lone 'against' is not attributed by name in press coverage.",
+    "notes": "Aftermath (verification only): promulgated 23 Oct 2018 as loi organique 2018-50; later assessments (MERIP 2021, Arab Reform Initiative) found enforcement limited — none of this appears in copy.",
+    "sources": [
+     "https://majles.marsad.tn/fr/legislation/vote/5236",
+     "https://legislation-securite.tn/latest-laws/loi-organique-n-2018-50-du-23-octobre-2018-relative-a-lelimination-de-toutes-les-formes-de-discrimination-raciale/",
+     "https://www.arab-reform.net/publication/tunisias-law-against-racial-discrimination-the-mixed-results-of-a-pioneering-legislation/",
+     "https://inkyfada.com/fr/2018/04/13/tunisie-loi-racisme/",
+     "https://www.france24.com/fr/20181010-tunisie-adopte-premiere-loi-discriminations-raciales-racisme-anti-noir"
+    ]
+   }
+  }
+ ]
+}

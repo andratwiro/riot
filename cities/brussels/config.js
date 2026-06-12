@@ -23,7 +23,7 @@ window.CITY_CONFIG = {
     live_chip: "LIVE SESSION",
     title: "The room is gathering.",
     body_name: "Brussels Parliament",
-    one_liner: "{count} real decisions of the {body}. You'll vote blind.",
+    one_liner: "{count} real decisions of the {body}. You vote the same agenda as the MPs, at the room's pace, and at the end you see who you agree with.",
     count_line: "in the room · waiting for the sitting to open",
     cta: "Take your seat",
     about_label: "about this sitting",
