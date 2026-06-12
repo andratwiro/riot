@@ -4,7 +4,7 @@
 window.CITY_CONFIG = {
   id: "brussels",
   name: "Brussels",
-  title: "Brussels Parliament",
+  title: "Parlement bruxellois · Brussels Parlement",   // tab title — bilingual, the region's own languages
   lang: "en",
   srcLang: "fr",                       // original proposal wording (CRI source) is French
   logo: "assets/logos/brussels_iris.svg",

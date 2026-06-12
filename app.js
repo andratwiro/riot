@@ -12,7 +12,7 @@ const CITIES=[
   {id:"brussels",name:"Brussels",logo:"assets/logos/brussels_iris.svg"},
   {id:"congress",name:"Congress",logo:"assets/logos/us_capitol.svg"},
   {id:"southafrica",name:"South Africa",logo:"assets/logos/za_protea.svg"},
-  {id:"tunisia",name:"Tunisia",logo:"assets/logos/tn_crescent.svg"}
+  {id:"tunisia",name:"Tunisia 14–18",logo:"assets/logos/tn_crescent.svg"}
 ];
 const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo:"assets/logos/reus_rose_color.svg"};
 document.title=CFG.title||"RIOT";
