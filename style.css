@@ -323,7 +323,7 @@ html.reveal #done{position:static;overflow:visible}
 .mp-note{margin:6px 2px 0;font:400 10.5px/1.5 var(--f-mono);color:var(--ink60)}
 /* brand-colour backfill so square logos blend into their disc (no white corners) */
 .lg.bg-PSC,.mc.bg-PSC{background:#e2001a}
-.lg.bg-CUP,.mc.bg-CUP{background:#ffdd00}   /* sampled from the logo PNG — the backfill must be invisible behind it */
+.lg.bg-CUP,.mc.bg-CUP{background:#f2cb05}   /* sampled from the 2026 logo PNG — the backfill must be invisible behind it */
 /* most / least affinity */
 .extremes{display:flex;gap:10px;width:100%;max-width:600px;margin:0 0 14px}
 .exc{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--rule);font:inherit;color:var(--ink);
