@@ -41,7 +41,10 @@ element is **the stamp**: casting a vote thunks a violet imprint onto the card.
 Type roles: `--f-ui` = **Archivo** (statements 650, buttons 700, body 400) —
 the official-archive grotesque; `--f-mono` = **Courier Prime** — every number,
 count, label, eyebrow, and verbatim quote wears the typewritten face of the
-minutes. No other families.
+minutes. One scoped exception (Rob, 2026-06-12): `--f-serif` = **Libre Caslon
+Text 700** — the proclamation face, the live lobby's display voice ONLY (the
+hero title + the chair's formula). It never enters the booth, the reveal, or
+any chrome label. No other families.
 
 **Reserved palettes — never repurpose:** party hexes appear only as data
 (logo discs, affinity fills, map dots). **The GHOST** (the AI that predicts
@@ -145,18 +148,31 @@ asset itself — a near-miss yellow reads as a dirty ring (CUP, fixed #ffdd00).
   <30s. **The CTA tap IS the join**: nothing about the tab exists for the
   room (presence, counts, faces) until it's tapped, and every new sitting
   re-asks — one tap back in. A voter URL with no sitting behind it shows the
-  holding page, not the booth.
+  holding page, not the booth; a sitting still gathering shows the LOBBY
+  first (un-seated, watching the room fill) and its CTA opens this gate — a
+  sitting already voting gates immediately.
 - **Live-session idioms** (`live.js` + the `LIVE SESSION` block in style.css):
-  the **voter lobby is the convocation document** — left-aligned like the
-  cards: eyebrow → headline → body → the **docket block** (`.lb-docket`, the
-  order-paper header: institution line over a rule, sittings period +
-  decision count, small-print disclosure) → faces + a mono count/status line
-  with the violet pulse → privacy footnote. ALL lobby copy comes from
-  `CFG.lobby` (per-city; no copy conditionals in live.js); the docket line's
-  `{period}`/`{n}` are computed from the active deck's metadata, never
-  hardcoded. On open the document falls away and one line of the minutes
-  remains — the chair's formula (`CFG.lobby.sittingOpenedFormula`, ~1.6s,
-  voters who witnessed the gathering only) — then the first card lands;
+  the **voter lobby is three glanceable zones** (Rob, 2026-06-12: nobody
+  reads; its only jobs are "something is about to happen / people are
+  arriving / wait for it") — letterhead line (`.lb-top`: CITY · version in
+  small mono + the city glyph; the app header hides here), hero (`.lb-hero`,
+  vertically centred: pulsing live chip in stamp violet ~1.6s opacity cycle,
+  huge serif title in `--f-serif` — the ONE serif surface in the app — and a
+  single muted one-liner whose `{count}` is the live deck's length), presence
+  (`.lb-presence`, bottom: overlapping 38px faces capped at 8 + `+N` chip,
+  newcomers scale in via `.lb-pop`, big mono count with `aria-live="polite"`,
+  full-width ink pill CTA carrying the seat metaphor — it opens the seat
+  gate, whose tap stays THE join; once seated the CTA retires). An un-seated
+  tab watches the gathering too (presence is read-on-load, written only by
+  the gate's tap). Session metadata folds into the tiny `.lb-about`
+  disclosure; the methodology pitch is GONE from the lobby — the blind-vote
+  rule + privacy line render on the FIRST vote card only (`LIVE.cardNotes` →
+  `.acts-rule` above / `.acts-priv` micro-type below the vote buttons, dead
+  after the first cast). ALL lobby copy comes from `CFG.lobby` (per-city; no
+  copy conditionals in live.js), never hardcoded. On open the screen falls
+  away and one line of the minutes remains — the chair's formula
+  (`CFG.lobby.sittingOpenedFormula`, ~1.6s, serif, voters who witnessed the
+  gathering only) — then the first card lands;
   the **countdown** is one ink bar closing from both edges toward the centre
   (`scaleX`, origin centre; stamp-violet under 5s) — a ceiling, not a clock;
   **ballot cast** shows a mono `n/m` count, never the split; the per-card

@@ -22,6 +22,7 @@
   --amber:#8A6A1F;          /* editorial provenance: AI reword, lectura, preview */
   --f-ui:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --f-mono:"Courier Prime","Courier New",ui-monospace,monospace;
+  --f-serif:"Libre Caslon Text",Georgia,serif;  /* lobby display only — the proclamation face */
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%}
@@ -188,7 +189,11 @@ body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
 
 /* ---- vote buttons: ink on paper, zero valence. Position carries the meaning;
        Abstain is deliberately quieter; For/Against are exactly equal in weight. ---- */
-.acts{display:flex;gap:8px;margin-top:auto;padding-top:16px;flex:0 0 auto}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:16px;flex:0 0 auto}
+/* the lobby's moved copy — LIVE first ballot only: the blind-vote rule lands
+   at the moment of voting, the privacy line where the hesitation happens */
+.acts-rule{flex:1 1 100%;margin:0;text-align:center;font:400 12px var(--f-mono);color:var(--ink60)}
+.acts-priv{flex:1 1 100%;margin:0;text-align:center;font:400 10.5px var(--f-mono);color:var(--ink60)}
 .btn{flex:1;border-radius:8px;padding:14px 6px;min-height:52px;font:700 15.5px var(--f-ui);
   cursor:pointer;display:flex;align-items:center;justify-content:center;
   background:transparent;transition:transform .08s,background .08s,color .08s}
@@ -525,14 +530,9 @@ body.live-voter.live-final #menuBtn{display:inline-flex}
 body.live-voter .citysel{pointer-events:none}
 body.live-voter .citychev{display:none}
 body.live-lobby #survey,body.live-lobby #roomstrip{display:none}
-/* lobby only: the header becomes the convocation's letterhead — the seal
-   centred above the city name, the version as small print beneath. Everywhere
-   else the brand stays left (the switch is disabled in live mode anyway). */
-body.live-lobby header{justify-content:center}
-body.live-lobby .brand{flex-direction:column;gap:0}
-body.live-lobby .citysel{flex-direction:column;gap:5px;padding-bottom:2px}
-body.live-lobby .citysel .rose{height:30px;width:30px}
-body.live-lobby .brand .ver{top:0}
+/* lobby only: the app header retires — the lobby's own letterhead line
+   (.lb-top: CITY · vN + glyph) is the only chrome on this screen */
+body.live-lobby header{display:none}
 body.live-mod #survey,body.live-mod #roomstrip,body.live-mod #join{display:none}
 body.live-mod .app{max-width:none}
 
@@ -602,55 +602,73 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 .lv-verdict.tie{color:var(--ink60)}
 .lv-verdict[hidden]{display:none}
 
-/* ---- voter lobby: the convocation document ----
-   A seat in a real sitting, not a quiz waiting room: left-aligned like the
-   cards; the docket block is the order-paper header (institution over a rule,
-   sittings period + decision count, small-print disclosure). All copy from
-   CFG.lobby. On open (.opening) the document falls away and one line of the
-   minutes remains — the chair's formula — before the first card lands. */
-#lobby{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:20px;min-height:0;position:relative}
+/* ---- voter lobby: nobody reads ----
+   Three zones: letterhead line (CITY · vN + glyph) → hero (live chip, huge
+   serif title, one-liner) → presence (overlapping faces, big count, CTA).
+   The screen's only jobs: something is about to happen / people are arriving /
+   wait for it. Session metadata lives in the tiny "about" disclosure; the
+   methodology pitch and the privacy line moved to the first vote card. All
+   copy from CFG.lobby. On open (.opening) the screen falls away and one line
+   of the minutes remains — the chair's formula — before the first card lands. */
+#lobby{flex:1 1 auto;display:flex;min-height:0;position:relative;
+  padding:14px 20px calc(16px + env(safe-area-inset-bottom))}
 #lobby[hidden]{display:none}
 /* html.lvhold: set by the inline head script BEFORE first paint when this tab
    is seated in a live lobby (sessionStorage flag, kept current by live.js) —
-   a refresh re-paints the convocation document on frame one instead of
-   flashing the booth shell while Firebase reconnects. Mirrors the
-   body.live-lobby letterhead + .live-voter chrome strip above; live.js
-   retires the class as soon as real session state lands. */
+   a refresh re-paints the lobby on frame one instead of flashing the booth
+   shell while Firebase reconnects. Mirrors the body.live-lobby chrome strip
+   above; live.js retires the class as soon as real session state lands. */
 html.lvhold #survey,html.lvhold #roomstrip{display:none}
 html.lvhold #lobby[hidden]{display:flex}
 html.lvhold #quickLog,html.lvhold #menuBtn{display:none}
-/* seal, city name and lobby copy are JS-set — until the boot prefill runs the
-   held frame is clean paper, never the wrong city's letterhead (the static
-   markup defaults to Reus). visibility keeps layout, so nothing jumps. */
-html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
-html.lvhold header{justify-content:center}
-html.lvhold .brand{flex-direction:column;gap:0}
-html.lvhold .citysel{flex-direction:column;gap:5px;padding-bottom:2px}
-html.lvhold .citysel .rose{height:30px;width:30px}
-html.lvhold .brand .ver{top:0}
-.lb-doc{width:100%;max-width:480px;text-align:left;
+html.lvhold header{display:none}
+/* lobby copy is JS-set — until the boot prefill runs the held frame is clean
+   paper, never the wrong city's letterhead (the static markup is empty anyway).
+   visibility keeps layout, so nothing jumps. */
+html.lvhold .lb-doc{visibility:hidden}
+.lb-doc{flex:1 1 auto;display:flex;flex-direction:column;width:100%;max-width:520px;
+  margin:0 auto;min-height:0;text-align:left;
   transition:opacity .4s cubic-bezier(.2,.7,.3,1),transform .4s cubic-bezier(.2,.7,.3,1)}
 #lobby.opening .lb-doc{opacity:0;transform:translateY(-10px);pointer-events:none}
+.lb-top{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:4px 0 0}
+.lb-id{font:700 12px var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink60)}
+.lb-glyph{width:26px;height:26px;display:block;object-fit:contain}
+.lb-hero{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;min-height:0;padding:18px 0}
+.lb-chip{display:flex;align-items:center;gap:9px;margin:0 0 16px;
+  font:700 12px var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--stamp)}
+.lb-pulse{width:8px;height:8px;border-radius:50%;background:var(--stamp);flex:0 0 auto;
+  animation:lbpulse 1.6s ease-in-out infinite}   /* ambient, not alarming */
+@keyframes lbpulse{0%,100%{opacity:1}50%{opacity:.3}}
+.lb-title{margin:0 0 16px;font:700 clamp(38px,10.5vw,58px)/1.08 var(--f-serif);
+  letter-spacing:-.01em;color:var(--ink)}
+.lb-one{margin:0;font:400 16px/1.55 var(--f-ui);color:var(--ink60);max-width:32ch}
+.lb-presence{flex:0 0 auto}
+.lb-faces{display:flex;align-items:center;flex-wrap:wrap;margin:0 0 12px;min-height:38px}
+#lobbyFaces .face{width:38px;height:38px;font-size:19px;margin:0 -9px 0 0;border-width:2px}
+#lobbyFaces .face:not(.me):not(.lb-ovf){border-color:var(--paper)}  /* overlap ring; me keeps the violet */
+#lobbyFaces .face.init{font-size:13px}
+#lobbyFaces .face.lb-ovf{font:700 12px var(--f-mono);color:var(--ink60);border-color:var(--rule)}
+.face.lb-pop{animation:lbpop .4s cubic-bezier(.2,1.4,.4,1) both}  /* a newcomer scales in */
+@keyframes lbpop{0%{transform:scale(.2);opacity:0}100%{transform:scale(1);opacity:1}}
+.lb-count{display:flex;align-items:baseline;gap:10px;margin:0 0 16px;
+  font:400 13px var(--f-mono);color:var(--ink60)}
+.lb-count b{font:700 32px/1 var(--f-mono);color:var(--ink)}
+.lb-cta{display:block;width:100%;border:0;border-radius:999px;background:var(--ink);color:var(--card);
+  font:700 17px var(--f-ui);padding:17px 20px;min-height:56px;cursor:pointer}
+.lb-cta:active{transform:scale(.98)}
+.lb-cta[hidden]{display:none}
+/* session metadata, folded away: the only reading on this screen is opt-in */
+.lb-about{margin:14px 0 0;font:400 11px/1.6 var(--f-mono);color:var(--ink60)}
+.lb-about[hidden]{display:none}
+.lb-about summary{cursor:pointer;display:inline-block;list-style:none;
+  text-decoration:underline;text-underline-offset:2px}
+.lb-about summary::-webkit-details-marker{display:none}
+.lb-inst{margin:9px 0 0;font:700 11px/1.5 var(--f-mono);letter-spacing:.1em;color:var(--ink80)}
+.lb-dl{margin:2px 0 0;letter-spacing:.04em}
+.lb-disc{margin:2px 0 0}
+/* the formula: one line of the minutes, centred where the screen stood */
 .lb-k{margin:0 0 6px;font:700 11px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--stamp)}
-.lb-h{margin:0 0 12px;font-size:29px;line-height:1.15;font-weight:800;letter-spacing:-.015em}
-.lb-body{margin:0 0 20px;font:400 15px/1.55 var(--f-ui);color:var(--ink80)}
-.lb-docket{background:var(--card);border:1px solid var(--rule);border-radius:10px;
-  padding:13px 15px;margin:0 0 22px}
-.lb-inst{margin:0 0 9px;padding:0 0 9px;border-bottom:1px solid var(--rule);
-  font:700 11.5px/1.5 var(--f-mono);letter-spacing:.12em;color:var(--ink)}
-.lb-dl{margin:0;font:400 11px/1.6 var(--f-mono);letter-spacing:.06em;color:var(--ink60)}
-.lb-disc{margin:7px 0 0;font:400 11px/1.5 var(--f-mono);color:var(--ink60)}
-.lb-faces{display:flex;flex-wrap:wrap;margin:0 0 10px}
-#lobbyFaces .face{width:34px;height:34px;font-size:17px;margin:0 -8px 4px 0}
-#lobbyFaces .face.init{font-size:12px}
-.lb-status{display:flex;align-items:center;gap:8px;margin:0;font:400 12px var(--f-mono);color:var(--ink60)}
-.lb-status b{font:700 15px var(--f-mono);color:var(--ink)}
-.lb-pulse{width:7px;height:7px;border-radius:50%;background:var(--stamp);flex:0 0 auto;
-  animation:lbpulse 2.4s ease-in-out infinite}
-@keyframes lbpulse{0%,100%{opacity:1}50%{opacity:.35}}
-.lb-note{margin:20px 0 0;font:400 11px/1.5 var(--f-mono);color:var(--ink60)}
-/* the formula: one line of the minutes, centred where the document stood */
+.lb-formula{margin:0;font:700 30px/1.25 var(--f-serif);letter-spacing:-.01em}
 .lb-open{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
   justify-content:center;text-align:center;padding:20px;opacity:0;transform:translateY(8px)}
 .lb-open[hidden]{display:none}

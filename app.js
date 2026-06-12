@@ -214,11 +214,16 @@ function renderStack(){
         `</div>`
       : "";
     const body = main+deep;
+    // LIVE first ballot only: the lobby's moved copy — the blind-vote rule at
+    // the moment of voting, the privacy line where the hesitation happens
+    const notes = depth===0 && window.LIVE && LIVE.cardNotes ? LIVE.cardNotes(d.id) : null;
     const acts = depth===0
       ? `<div class="acts">
+          ${notes&&notes.rule?`<p class="acts-rule">${esc(notes.rule)}</p>`:""}
           <button class="btn a" data-v="against">Against</button>
           <button class="btn ab" data-v="abstain">Abstain</button>
           <button class="btn f" data-v="for">For</button>
+          ${notes&&notes.privacy?`<p class="acts-priv">${esc(notes.privacy)}</p>`:""}
         </div>`
       : "";
     const hasOrig = depth===0 && d.title && d.title!==d.headline;

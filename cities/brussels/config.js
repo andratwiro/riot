@@ -11,17 +11,26 @@ window.CITY_CONFIG = {
   chamber: "the parliament",                 // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
-  // here (no copy conditionals in live.js). {period} and {n} in docketCountLine
-  // are computed from the active deck's metadata at render time.
+  // here (no copy conditionals in live.js). {count}/{body} in one_liner and
+  // {period}/{n} in docketCountLine are filled from the live deck + this config.
+  // firstCardRule/privacyLine render on the FIRST vote card, not the lobby.
+  // TODO(rob): provisional Brussels wording for the new lobby keys (live_chip,
+  // title, one_liner, count_line, cta, about_label, firstCardRule, privacyLine)
+  // — carried over / lightly derived from the old convocation copy; confirm
+  // before the Go Vocal demo.
   lobby: {
-    eyebrow: "LIVE SESSION · BRUSSELS",
-    headline: "The room is gathering.",
-    body: "A seat in the Brussels Parliament has been opened for you. The decisions are real, taken from actual plenary sittings. The elected members have already voted on every one of them. You'll vote the same docket, blind, and then see where you and they part ways.",
+    live_chip: "LIVE SESSION",
+    title: "The room is gathering.",
+    body_name: "Brussels Parliament",
+    one_liner: "{count} real decisions of the {body}. You'll vote blind.",
+    count_line: "in the room · waiting for the sitting to open",
+    cta: "Take your seat",
+    about_label: "about this sitting",
     docketInstitutionLine: "PARLIAMENT OF THE BRUSSELS-CAPITAL REGION",
     docketCountLine: "PLENARY SITTINGS {period} · {n} DECISIONS ON THE DOCKET",
-    statusWaiting: "waiting for the sitting to open",
-    privacyLine: "Your votes stay on this phone. The room only ever sees counts.",
     disclosure: "Decisions selected from the plenary record.",
+    firstCardRule: "You vote blind: you first, then the parliament.",
+    privacyLine: "Your votes never leave this phone.",
     sittingOpenedFormula: "The sitting is opened."
   },
   // ?deck=live → curated room-session deck (~15 contested cards; same SET for the

@@ -102,7 +102,16 @@ window.LIVE={
     for(const id in cast){const v=cast[id]&&cast[id][pid]; if(v){out[id]=v;n++;}}
     return n?out:null;
   },
-  afterCast(top){ voting=false; updateProgress(); showCastPanel(top); updateCastCounts(); }
+  afterCast(top){ voting=false; updateProgress(); showCastPanel(top); updateCastCounts(); },
+  // the lobby's moved copy (it kept none): the blind-vote rule + the privacy
+  // line surface ONCE — on the deck's first ballot, at the moment of voting.
+  // app.js renders them into the .acts row; both die with the first cast.
+  cardNotes(id){
+    if(!lvS || lvS.state!=="voting" || lvS.idx!==0 || !lvS.deck || lvS.deck[0]!==id) return null;
+    const L=CFG.lobby||{};
+    if(!L.firstCardRule && !L.privacyLine) return null;
+    return {rule:L.firstCardRule||"", privacy:L.privacyLine||""};
+  }
 };
 
 /* ---- stores: same tiny interface over Firebase RTDB or an in-memory sim ---- */
@@ -139,6 +148,10 @@ function liveInit(){
   if(SIMLIVE){ lvStore=simStore(); }
   else if(window.mpDb){ lvStore=fbStore(); }
   else { lvHold(false); if(LIVE_ROLE==="mod") modNoBackend(); return; }   // single-player: no live mode
+  // the lobby CTA carries the seat metaphor — it opens the seat gate, whose
+  // tap stays THE join (presence is published only from the gate's button)
+  const lbCta=$("#lobbyCta");
+  if(lbCta) lbCta.addEventListener("click",()=>{ if(!lvSeated) showSeatGate(); });
   if(LIVE_ROLE==="mod"){ lvHold(false); document.body.classList.add("live-mod"); }
   else {
     // every voter boot holds the paper (html.lvhold, set before first paint)
@@ -184,7 +197,15 @@ function onSnapshot(){
   if(LIVE_ROLE==="mod"){ liveSyncGhost(); $("#modSetup").hidden=true; renderStage(); modAuthority(); simOnSnapshot(); return; }
   const st=lvS.state;
   if(st==="ended"){ liveEnded(); modAuthority(); simOnSnapshot(); return; }
-  if(!lvSeated){ showSeatGate(); modAuthority(); simOnSnapshot(); return; }   // the sitting asks before it seats
+  if(!lvSeated){
+    // the gathering is public: an un-seated tab watches the lobby fill (presence
+    // is read-on-load, written only by the gate's tap) and its CTA opens the
+    // seat gate. Any other state still gates immediately — the sitting is on.
+    if(st==="lobby"){ lvWall(false); document.body.classList.add("live-voter"); showLobby(); }
+    else { hideLobby(); showSeatGate(); }
+    if(typeof renderStrip==="function") renderStrip();
+    modAuthority(); simOnSnapshot(); return;
+  }
   liveSyncGhost();                         // ghost mode is the session's, not the visitor's
   document.body.classList.add("live-voter");
   if(st==="lobby"){ showLobby(); }
@@ -495,32 +516,50 @@ function showSeatGate(){
   document.body.classList.add("live-voter");
   if(typeof gateShow==="function") gateShow(true);
 }
-function lobbyPresence(){
-  const lb=$("#lobby"); if(!lb||lb.hidden) return;
+const LB_FACES=8;                  // visible lobby avatars; the rest fold into a +N chip
+const lvFaceBorn=new Map();        // face key → first-seen ms: newcomers keep their pop
+function lobbyPresence(){          // through presence-ping re-renders (innerHTML rebuilds
+  const lb=$("#lobby"); if(!lb||lb.hidden) return;   // would otherwise cut it at frame one)
   $("#lobbyCount").textContent=voterCount();
-  const faces=[faceHTML(identity&&identity.emoji,(identity&&identity.name)||"you",true)];
-  for(const pid of mpVisiblePids()) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false));
-  $("#lobbyFaces").innerHTML=faces.join("");
+  const ppl=[];
+  if(lvSeated) ppl.push({k:"me",e:identity&&identity.emoji,nm:(identity&&identity.name)||"you",me:true});
+  for(const pid of mpVisiblePids()) ppl.push({k:pid,e:PEERS[pid].e,nm:PEERS[pid].nm,me:false});
+  const vis=ppl.slice(0,LB_FACES), more=ppl.length-vis.length, now=Date.now();
+  $("#lobbyFaces").innerHTML=vis.map(p=>{
+    if(!lvFaceBorn.has(p.k)) lvFaceBorn.set(p.k,now);
+    const f=faceHTML(p.e,p.nm,p.me);
+    return now-lvFaceBorn.get(p.k)<450 ? f.replace('class="face','class="face lb-pop') : f;
+  }).join("")+(more>0?`<span class="face init lb-ovf">+${more}</span>`:"");
 }
 function showLobby(){
   lvShownState="lobby"; lvShownIdx=-1;
   document.body.classList.remove("live-final");
   document.body.classList.add("live-lobby");
-  const lb=$("#lobby"); lb.hidden=false;
+  const lb=$("#lobby");
+  if(lb.hidden){ lb.hidden=false; lvFaceBorn.clear(); }   // fresh gathering: everyone pops once
   const L=CFG.lobby||{};
-  $("#lobbyKicker").textContent=L.eyebrow||"";
-  $("#lobbyHead").textContent=L.headline||"";
-  $("#lobbyBody").textContent=L.body||"";
+  // letterhead line: the app header is hidden here — city + version + glyph
+  $("#lobbyId").textContent=CFG.name+" · "+((($(".ver")||{}).textContent)||"");
+  const g=$("#lobbyGlyph"); if(g&&CFG.logo) g.src=CFG.logo;
+  $("#lobbyChip").textContent=L.live_chip||"";
+  $("#lobbyTitle").textContent=L.title||"";
+  // pre-snapshot (refresh hold) there is no deck yet — leave the {count} lines
+  // blank rather than printing "0 decisions"; the first snapshot fills them
+  $("#lobbyOne").textContent=lvS ? (L.one_liner||"")
+    .replace("{count}",(lvS.deck||[]).length).replace("{body}",L.body_name||"") : "";
+  $("#lobbyCountLine").textContent=L.count_line||"";
+  // the CTA is the seat metaphor: it opens the seat gate (whose tap IS the join);
+  // once seated it retires — your face in the row is the confirmation
+  const cta=$("#lobbyCta"); cta.textContent=L.cta||""; cta.hidden=lvSeated;
+  // session metadata, folded away behind one small line
+  $("#lobbyAboutLbl").textContent=L.about_label||"";
+  $("#lobbyAbout").hidden=!L.about_label;
   $("#lobbyInst").textContent=L.docketInstitutionLine||"";
-  // pre-snapshot (refresh hold) there is no deck yet — leave the count line
-  // blank rather than printing "0 decisions"; the first snapshot fills it
   $("#lobbyDocketLine").textContent=lvS ? (L.docketCountLine||"")
     .replace("{period}",deckPeriod()).replace("{n}",(lvS.deck||[]).length) : "";
   $("#lobbyDisc").textContent=L.disclosure||"";
-  $("#lobbyStatus").textContent=L.statusWaiting||"";
-  $("#lobbyPrivacy").textContent=L.privacyLine||"";
   lobbyPresence();
-  lvHold(true);
+  lvHold(lvSeated);                // gated ≠ seated: only a seated tab re-paints on refresh
 }
 /* peers arrive over presence, not session snapshots — keep the gathering live
    (both the voter lobby AND the moderator's stage: nothing writes to the session
@@ -546,8 +585,9 @@ function openSitting(){
   if(!L.sittingOpenedFormula){ hideLobby(); syncDeck(()=>applyPhase()); return; }
   lvOpening=true;
   const lb=$("#lobby"), op=$("#lobbyOpen");
-  $("#lobbyOpenK").textContent=L.eyebrow||"";
+  $("#lobbyOpenK").textContent=L.live_chip||"";
   $("#lobbyFormula").textContent=L.sittingOpenedFormula;
+  lb.hidden=false;                 // the formula's canvas (a tab that seated mid-open has it hidden)
   op.hidden=false;
   lb.classList.add("opening");
   setTimeout(()=>{

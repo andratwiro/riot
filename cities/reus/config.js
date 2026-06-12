@@ -11,17 +11,23 @@ window.CITY_CONFIG = {
   chamber: "the council",                 // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
-  // here (no copy conditionals in live.js). {period} and {n} in docketCountLine
-  // are computed from the active deck's metadata at render time.
+  // here (no copy conditionals in live.js; Reus is the reference instance).
+  // {count}/{body} in one_liner and {period}/{n} in docketCountLine are filled
+  // from the live deck + this config at render time, never hardcoded.
+  // firstCardRule/privacyLine render on the FIRST vote card, not the lobby.
   lobby: {
-    eyebrow: "SESSIÓ EN DIRECTE · REUS",
-    headline: "El ple s'està reunint.",
-    body: "T'hem reservat un seient al Ple de l'Ajuntament de Reus. Les decisions són reals, extretes de sessions plenàries reals. Els regidors electes ja han votat cadascuna d'elles. Votaràs el mateix ordre del dia, a cegues, i després veuràs en què tu i ells us separeu.",
+    live_chip: "SESSIÓ EN DIRECTE",
+    title: "El ple s'està reunint.",
+    body_name: "Ple de Reus",
+    one_liner: "{count} decisions reals del {body}. Votaràs a cegues.",
+    count_line: "a la sala · esperant que s'obri",
+    cta: "Ocupa el teu seient",
+    about_label: "sobre aquesta sessió",
     docketInstitutionLine: "PLE DE L'AJUNTAMENT DE REUS",
     docketCountLine: "SESSIONS PLENÀRIES {period} · {n} DECISIONS A L'ORDRE DEL DIA",
-    statusWaiting: "esperant que s'obri la sessió",
-    privacyLine: "Els teus vots es queden en aquest telèfon. La sala només veu recomptes.",
     disclosure: "Decisions seleccionades de l'acta del ple.",
+    firstCardRule: "Votes a cegues: primer tu, després el ple.",
+    privacyLine: "Els teus vots no surten d'aquest telèfon.",
     sittingOpenedFormula: "S'obre la sessió."
   },
   // The DEMO deck — pinned first in the moderator's session picker ("the curated

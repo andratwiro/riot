@@ -14,17 +14,24 @@ window.CITY_CONFIG = {
   chamber: "the Congress",             // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
-  // here (no copy conditionals in live.js). {period} and {n} in docketCountLine
-  // are computed from the active deck's metadata at render time.
+  // here (no copy conditionals in live.js). {count}/{body} in one_liner and
+  // {period}/{n} in docketCountLine are filled from the live deck + this config.
+  // firstCardRule/privacyLine render on the FIRST vote card, not the lobby.
+  // TODO(rob): provisional Congress wording for the new lobby keys — carried
+  // over / lightly derived from the old convocation copy; confirm.
   lobby: {
-    eyebrow: "LIVE SESSION · U.S. CONGRESS",
-    headline: "The room is gathering.",
-    body: "A seat in the United States Congress has been opened for you. The decisions are real — landmark votes taken on the floor of the House and the Senate. The elected members have already voted on every one of them. You'll vote the same docket, blind, and then see where you and they part ways.",
+    live_chip: "LIVE SESSION",
+    title: "Congress is convening.",
+    body_name: "US Congress",
+    one_liner: "{count} real decisions of the {body}. You'll vote blind.",
+    count_line: "in the room · waiting for the call to order",
+    cta: "Take your seat",
+    about_label: "about this session",
     docketInstitutionLine: "CONGRESS OF THE UNITED STATES",
     docketCountLine: "ROLL-CALL VOTES {period} · {n} DECISIONS ON THE DOCKET",
-    statusWaiting: "waiting for the session to be called to order",
-    privacyLine: "Your votes stay on this phone. The room only ever sees counts.",
     disclosure: "Decisions selected from the official roll-call record.",
+    firstCardRule: "You vote blind: you first, then Congress.",
+    privacyLine: "Your votes never leave this phone.",
     sittingOpenedFormula: "The House will come to order."
   },
   // The DEMO deck — the full sixteen, pinned first in the moderator's session picker.
