@@ -12,7 +12,9 @@ const CITIES=[
   {id:"brussels",name:"Brussels",logo:"assets/logos/brussels_iris.svg"},
   {id:"congress",name:"Congress",logo:"assets/logos/us_capitol.svg"},
   {id:"southafrica",name:"South Africa",logo:"assets/logos/za_protea.svg"},
-  {id:"tunisia",name:"Tunisia 14–18",logo:"assets/logos/tn_crescent.svg"}
+  {id:"tunisia",name:"Tunisia 14–18",logo:"assets/logos/tn_crescent.svg"},
+  {id:"commons",name:"Commons 2019",logo:"assets/logos/uk_portcullis.svg"},
+  {id:"weimar",name:"Weimar 29–33",logo:"assets/logos/de_eagle.svg"}
 ];
 const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo:"assets/logos/reus_rose_color.svg"};
 document.title=CFG.title||"RIOT";
@@ -514,6 +516,7 @@ $("#stack").addEventListener("click",e=>{
 document.addEventListener("keydown",e=>{
   if(!$("#join").hidden)return;
   if($("#lobby")&&!$("#lobby").hidden)return;          // live session not started yet
+  if($("#solo")&&!$("#solo").hidden)return;            // solo cover — the deck isn't dealt yet
   if($("#sheet").classList.contains("open")||$("#log").style.display==="block"||$("#partyView").style.display==="block"||$("#marksView").style.display==="block"||$("#importView").style.display==="block")return;
   const exp=$("#stack").querySelector(".card.expanded");
   if(exp){if(e.key==="Escape")collapseCard(exp);return;}
@@ -619,3 +622,36 @@ function updateMeBadge(){
     const u=new URL(location.href); u.searchParams.set("city",b.dataset.city); location.href=u.toString();});
   document.addEventListener("click",e=>{if(!e.target.closest(".brand"))close();});
 })();
+
+/* ---- the solo cover (?solo=1) — the record's first page ----
+   One screen between the URL and the booth: what this record IS, then one
+   button deals the deck. Evergreen: every solo entrance opens here; the copy
+   comes from CFG.solo_lobby (kicker / title / lore[] / meta / cta / note —
+   all optional, {n} = deck length), and a city without one gets the plain
+   cover (name + count). Historical instances put the process's story in
+   lore — solo is the one entrance where the visitor came to READ. No room,
+   no presence, nothing live: a static cover, never a pulsing chip. */
+function soloEnter(){
+  const sl=CFG.solo_lobby||{};
+  const fill=s=>String(s).replace(/\{n\}/g,deck.length);
+  document.body.classList.add("solo-cover");
+  $("#soloKicker").textContent=fill(sl.kicker||CFG.title||CFG.name||"");
+  $("#soloTitle").textContent=fill(sl.title||CFG.name||"");
+  const lore=$("#soloLore"), ps=Array.isArray(sl.lore)?sl.lore:[];
+  lore.innerHTML=ps.map(p=>`<p>${esc(fill(p))}</p>`).join("");
+  lore.hidden=!ps.length;
+  $("#soloMeta").textContent=fill(sl.meta||"{n} decisions on the docket");
+  $("#soloGo").textContent=sl.cta||"Enter the booth";
+  const note=$("#soloNote"); note.hidden=!sl.note;
+  if(sl.note) note.textContent=fill(sl.note);
+  $("#soloGo").addEventListener("click",soloStart,{once:true});
+  $("#solo").hidden=false;
+}
+function soloStart(){
+  $("#solo").classList.add("away");                 // the cover falls away…
+  setTimeout(()=>{
+    $("#solo").hidden=true;
+    document.body.classList.remove("solo-cover");   // …and the booth is dealt
+    renderStack();
+  },380);
+}

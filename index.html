@@ -35,7 +35,7 @@ else try{
         <img class="rose" id="cityLogo" src="assets/logos/reus_rose_color.svg" alt="" width="23" height="23">
         <span id="cityName">Reus</span><span class="citychev">▾</span>
       </button>
-      <span class="ver">v1.00</span>
+      <span class="ver">v1.01</span>
       <div class="citymenu" id="cityMenu" role="menu"></div>
     </div>
     <div class="hdr-right">
@@ -112,6 +112,25 @@ else try{
     <div class="lb-open" id="lobbyOpen" hidden>
       <p class="lb-k" id="lobbyOpenK"></p>
       <h1 class="lb-formula" id="lobbyFormula"></h1>
+    </div>
+  </div>
+
+  <!-- SOLO · the cover page: ?solo=1 opens here, not in the booth. The record
+       introduces itself (CFG.solo_lobby — kicker/title/lore/meta/cta, all
+       optional; a city without one gets the plain cover: name + deck count),
+       then one button deals the deck. No room, no presence — paper only. -->
+  <div id="solo" hidden>
+    <div class="sl-doc">
+      <div class="sl-hero">
+        <p class="sl-k" id="soloKicker"></p>
+        <h1 class="sl-title" id="soloTitle"></h1>
+        <div class="sl-lore" id="soloLore"></div>
+      </div>
+      <div class="sl-foot">
+        <p class="sl-meta" id="soloMeta"></p>
+        <button class="sl-go" id="soloGo" type="button"></button>
+        <p class="sl-note" id="soloNote" hidden></p>
+      </div>
     </div>
   </div>
 
@@ -254,7 +273,7 @@ else try{
 <!-- QR encoder (vendored qrcode-generator, MIT) — the stage lobby's join code -->
 <script src="assets/qrcode.min.js"></script>
 <script>
-// City loader: ?city=reus|brussels|congress|southafrica|tunisia selects which bundle to load. The viewer is
+// City loader: ?city=reus|brussels|congress|southafrica|tunisia|commons|weimar selects which bundle to load. The viewer is
 // shared; only data + config differ per city. document.write keeps the bundles
 // parser-synchronous so window.CITY_CONFIG/RIOT/AI_VOTES exist before the app runs.
 (function(){
@@ -291,7 +310,8 @@ if(!location.search){
   $("#holding").hidden=false;
 }else if(SOLO){
   // ?solo=1 — the solo booth, nothing else: no room, no live, no presence.
-  renderStack();
+  // The cover page (app.js soloEnter) introduces the record; its button deals.
+  soloEnter();
 }else{
   mpInit();
   liveInit();             // LIVE SESSION: lockstep room state; voters resolve to gate/re-seat/wall here

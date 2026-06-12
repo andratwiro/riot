@@ -147,6 +147,18 @@ dirty ring (CUP, fixed #ffdd00).
   except the party view's back-arrow which returns to the reveal).
 - **Party identity**: white disc + logo via `logoEl()` (brand backfills for
   square logos); never hand-roll an avatar.
+- **Solo cover** (`#solo`/`.sl-*`, app.js `soloEnter`): `?solo=1` opens on the
+  record's first page, not in the booth — kicker / big Archivo 800 title /
+  lore paragraphs / mono meta line / one ink CTA, all from `CFG.solo_lobby`
+  (`{n}` = deck length; absent config = the plain cover: name + count). Same
+  skeleton as the live lobby so it reads as the same room, with two deliberate
+  differences: the eyebrow is STATIC stamp-violet mono (never a pulsing chip —
+  nothing is live; the history decks are memorials), and the lore wears body
+  ink (`--ink80`, max 54ch) not the lobby's muted grey — solo is the one
+  entrance where the visitor came to READ. `body.solo-cover` hides
+  #survey/#roomstrip AND the §/⚙ header buttons until the CTA deals the deck
+  (the sheet and minutes belong to the booth). The cover must never leak a
+  card's own outcome; the era's arc is lore, a single division's result is not.
 - **Join screen (the seat gate)**: kicker (violet mono) → Archivo 800 headline
   → 4×4 emoji grid (≥44px targets, one preselected — the tab's own face when
   it has one) → optional mono name field → single ink CTA (live sittings:

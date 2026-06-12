@@ -669,6 +669,43 @@ html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
 #lobby.opening .lb-open{opacity:1;transform:none;
   transition:opacity .45s cubic-bezier(.2,.7,.3,1) .25s,transform .45s cubic-bezier(.2,.7,.3,1) .25s}
 
+/* ============================  SOLO COVER  ============================
+   ?solo=1 opens on the record's first page, not in the booth: what this
+   record IS (CFG.solo_lobby — kicker/title/lore/meta/cta), one ink CTA into
+   the deck. Same skeleton as the live lobby (eyebrow → big title → foot)
+   so it reads as the same room — but nothing here is live: a static violet
+   eyebrow, never a pulsing chip, no faces, no count. Solo is the one
+   entrance where the visitor came to READ, so the lore paragraphs wear
+   body ink (--ink80), not the lobby's muted one-liner grey. */
+body.solo-cover #survey,body.solo-cover #roomstrip{display:none}
+/* no §/⚙ until the deck is dealt — the sheet/minutes belong to the booth */
+body.solo-cover #quickLog,body.solo-cover #menuBtn{display:none}
+#solo{flex:1 1 auto;display:flex;min-height:0;
+  padding:14px 20px calc(16px + env(safe-area-inset-bottom))}
+#solo[hidden]{display:none}
+.sl-doc{flex:1 1 auto;display:flex;flex-direction:column;width:100%;max-width:520px;
+  margin:0 auto;min-height:0;text-align:left;
+  transition:opacity .36s cubic-bezier(.2,.7,.3,1),transform .36s cubic-bezier(.2,.7,.3,1)}
+#solo.away .sl-doc{opacity:0;transform:translateY(-10px);pointer-events:none}
+.sl-hero{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;
+  min-height:0;padding:18px 0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.sl-k{margin:0 0 16px;font:700 12px/1.4 var(--f-mono);letter-spacing:.24em;
+  text-transform:uppercase;color:var(--stamp)}
+.sl-title{margin:0 0 16px;font:800 clamp(30px,8.6vw,46px)/1.1 var(--f-ui);
+  letter-spacing:-.02em;color:var(--ink)}
+.sl-lore p{margin:0 0 12px;font:400 15.5px/1.55 var(--f-ui);color:var(--ink80);max-width:54ch}
+.sl-lore p:last-child{margin-bottom:0}
+.sl-lore[hidden]{display:none}
+.sl-foot{flex:0 0 auto;padding-top:14px}
+.sl-meta{margin:0 0 14px;font:700 11px/1.6 var(--f-mono);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink60)}
+.sl-go{display:block;width:100%;max-width:300px;margin:0;background:var(--ink);
+  color:var(--card);border:0;border-radius:10px;padding:16px;
+  font:700 16.5px var(--f-ui);cursor:pointer;min-height:54px}
+.sl-go:active{transform:scale(.98)}
+.sl-note{margin:10px 0 0;font:400 11px/1.5 var(--f-mono);color:var(--ink60)}
+.sl-note[hidden]{display:none}
+
 /* ---- room verdict on the final reveal (closes the page, after the personal finding) ---- */
 #roomVerdict{width:100%;max-width:600px;margin:18px 0 6px;background:var(--card);
   border:1px solid var(--rule);border-radius:12px;padding:16px 16px 10px;text-align:left}

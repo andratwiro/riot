@@ -1,0 +1,243 @@
+{
+  "researched": "2026-06-12",
+  "era": "Reichstag 1929–33 — how German democracy died: a working parliament → rule by decree → mutual destruction → the Enabling Act",
+  "method_note": "Verification researcher pass. Only votes pinned to an actual division are included as entries; tallies come from contemporary chronicles (LeMO/DHM, FES Chronik der deutschen Sozialdemokratie, weimarer-republik.net, Gonschior, Akten der Reichskanzlei footnotes, Wikipedia DE/EN day-chronicles cross-checked). Party directions derive from tally arithmetic against the verified seat tables plus at least two independent secondary sources unless flagged. Where the numeric division count could not be retrieved online, this is stated explicitly in tally.notes and caveats — the stenographic record (Verhandlungen des Reichstags, reichstagsprotokolle.de scans) has the exact figures and should be pulled before any card copy quotes a number not given here.",
+  "party_tokens": ["SPD", "Z", "BVP", "DDP", "DVP", "DNVP", "NSDAP", "KPD"],
+  "party_token_notes": "DDP token covers the party's 1930 rebrand as Deutsche Staatspartei (DStP). Z = Zentrum. DNVP token covers the 1933 'Kampffront Schwarz-Weiß-Rot' list. Splinters (Wirtschaftspartei, Landvolk, CSVD, Volkskonservative, Bauernpartei, Landbund) are NOT aggregated into these tokens; where they decide a margin it is said in notes.",
+  "seat_tables": {
+    "1928 (4. Wahlperiode, elected 1928-05-20, 491 seats)": {"SPD": 153, "Z": 61, "BVP": 17, "DDP": 25, "DVP": 45, "DNVP": 73, "NSDAP": 12, "KPD": 54, "notes": "Wirtschaftspartei 23; rest splinters. Source: en.wikipedia 1928 German federal election."},
+    "1930 (5. Wahlperiode, elected 1930-09-14, 577 seats)": {"SPD": 143, "Z": 68, "BVP": 19, "DDP": 20, "DVP": 30, "DNVP": 41, "NSDAP": 107, "KPD": 77, "notes": "DDP figure = DStP. Wirtschaftspartei 23, Landvolk 19; rest splinters. Source: en.wikipedia 1930 German federal election."},
+    "1932-07 (6. Wahlperiode, elected 1932-07-31, 608 seats)": {"SPD": 133, "Z": 75, "BVP": 22, "DDP": 4, "DVP": 7, "DNVP": 37, "NSDAP": 230, "KPD": 89, "notes": "DDP figure = DStP. Source: en.wikipedia July 1932 German federal election."},
+    "1932-11 (7. Wahlperiode, elected 1932-11-06, 584 seats)": {"SPD": 121, "Z": 70, "BVP": 20, "DDP": 2, "DVP": 11, "DNVP": 51, "NSDAP": 196, "KPD": 100, "notes": "DDP figure = DStP. Source: en.wikipedia November 1932 German federal election."},
+    "1933-03 (8. Wahlperiode, elected 1933-03-05, 647 seats)": {"SPD": 120, "Z": 73, "BVP": 19, "DDP": 5, "DVP": 2, "DNVP": 52, "NSDAP": 288, "KPD": 81, "notes": "DDP figure = DStP; DNVP ran as Kampffront Schwarz-Weiß-Rot; CSVD 4, others 3. Some references give Z 74 / BVP 18 — the 73/19 split is per en.wikipedia March 1933 German federal election and matches the Enabling-Act yes-vote breakdown (Zentrum 72 yes + 1 excused). KPD's 81 mandates were annulled before the Reichstag ever sat. Source: en.wikipedia March 1933 German federal election."}
+  },
+  "votes": [
+    {
+      "id": "DE-1929-freiheitsgesetz",
+      "date": "1929-11-30",
+      "question_as_voted": "Second reading, paragraph by paragraph, of the Hugenberg/Hitler referendum bill 'Gesetz gegen die Versklavung des Deutschen Volkes' (the so-called Freiheitsgesetz): renounce the war-guilt clause, demand evacuation of occupied territories, repudiate the Young Plan reparations — and (§4) make it criminal treason (Zuchthaus) for ministers and officials to sign reparations agreements.",
+      "official_title_de": "Gesetz gegen die Versklavung des Deutschen Volkes („Freiheitsgesetz“)",
+      "tally": {"for": null, "against": null, "abstain": 0, "notes": "NO numeric division count retrievable online. Multiply attested as 'mit großer Mehrheit' rejected in second reading, paragraph by paragraph, on 30 Nov 1929. The one hard recorded number: on §4 only 52 of the DNVP's 72 deputies voted yes. Seat arithmetic puts the 'for' camp at roughly 80–90 of 491 (NSDAP 12 + DNVP ≤72 + völkisch splinters). Exact figures are in Verhandlungen des Reichstags Bd. 426 (30.11.1929) — pull before quoting a number."},
+      "outcome": "rejected",
+      "party_directions": {"SPD": "against", "Z": "against", "BVP": "against", "DDP": "against", "DVP": "against", "DNVP": "split", "NSDAP": "for", "KPD": "against"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "medium", "DDP": "high", "DVP": "high", "DNVP": "high", "NSDAP": "high", "KPD": "medium"},
+      "party_direction_notes": "DNVP split is the documented drama: the faction voted for §§1–3, but on the §4 treason clause only 52 of 72 followed Hugenberg; 12 deputies (incl. Treviranus, Schlange-Schöningen) left the party over it. Government parties (Z, DDP, DVP, BVP — the Müller grand coalition) and SPD spoke and voted against. KPD 'against' is from its general war on the Hugenberg referendum ('faschistisch'); no fetched source states the KPD floor vote explicitly — hence medium.",
+      "what_it_was": "Hugenberg's DNVP, Hitler's NSDAP and the Stahlhelm forced a referendum bill into the Reichstag rejecting the Young Plan and threatening prison for any minister who cooperated with reparations. Parliament debated it 29–30 November 1929 and crushed it paragraph by paragraph. It was the first time the NSDAP rode a national stage supplied by the establishment right — and the vote split the DNVP itself.",
+      "consequences": "The mandatory referendum followed on 22 December 1929 and failed utterly (13.8% turnout of the required 50%), but the campaign gave Hitler nationwide respectability and Hugenberg's press. The DNVP moderates' exodus began here.",
+      "sources": [
+        "https://de.wikipedia.org/wiki/Volksentscheid_gegen_den_Young-Plan",
+        "https://en.wikipedia.org/wiki/1929_German_Young_Plan_referendum",
+        "https://www.weimarer-republik.net/528-0-November-1929.html",
+        "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+        "https://www.dhm.de/lemo/kapitel/weimarer-republik/innenpolitik/volksentscheid-gegen-den-young-plan-1929"
+      ],
+      "caveats": "Weak tally: no for/against count found in any accessible secondary source (all say 'große Mehrheit'); the 52/72 DNVP figure on §4 is solid (DE+EN Wikipedia, independent of each other in wording). If the deck must show numbers, either pull Bd. 426 from reichstagsprotokolle.de or display 'rejected by a large majority'."
+    },
+    {
+      "id": "DE-1930-young-plan",
+      "date": "1930-03-12",
+      "question_as_voted": "Third reading of the Young Plan laws (Gesetz über das Haager Abkommen): adopt the new reparations schedule — 112bn RM over 59 years, foreign financial controls lifted, Rhineland evacuated five years early.",
+      "official_title_de": "Gesetz über das Abkommen von Den Haag vom 20. Januar 1930 (Young-Plan-Gesetze)",
+      "tally": {"for": 270, "against": 192, "abstain": 0, "notes": "270:192 per LeMO (DHM): 'Mit 270 zu 192 Stimmen billigt der Reichstag in dritter Lesung den Young-Plan.' The package was several laws voted separately; counts varied slightly per law — Gonschior records 265:192 with 3 abstentions for one of them. Second reading passed 11 March (EN day-chronicle), third reading 12 March, Hindenburg signed 13 March."},
+      "outcome": "approved",
+      "party_directions": {"SPD": "for", "Z": "for", "BVP": "for", "DDP": "for", "DVP": "for", "DNVP": "against", "NSDAP": "against", "KPD": "against"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "high", "DDP": "high", "DVP": "high", "DNVP": "high", "NSDAP": "high", "KPD": "high"},
+      "party_direction_notes": "Müller grand coalition (SPD, Z, DDP, DVP, BVP) carried it; the 'national opposition' (DNVP, NSDAP) and the KPD voted no. Coalition arithmetic: coalition held ~301 seats, 270 yes is consistent with normal absences.",
+      "what_it_was": "The last great act of the last majority government of the Republic: the grand coalition under SPD chancellor Hermann Müller ratified the renegotiated reparations plan after months of referendum warfare against it. Reparations were cut and stretched, and the Allies left the Rhineland early in exchange.",
+      "consequences": "Fifteen days later the coalition shattered over unemployment-insurance pennies; Müller resigned 27 March 1930 and Brüning formed the first presidential cabinet. The Reichstag never produced a working majority again.",
+      "sources": [
+        "https://www.dhm.de/lemo/jahreschronik/1930",
+        "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+        "https://www.dhm.de/lemo/kapitel/weimarer-republik/aussenpolitik/young-plan-1929",
+        "https://en.wikipedia.org/wiki/March_1930",
+        "https://de.wikipedia.org/wiki/Young-Plan"
+      ],
+      "caveats": "270:192 is the standard cited figure (LeMO and most references); Gonschior's 265:192:3 likely belongs to a companion law in the same sitting. de.wikipedia's Young-Plan article gives '23. März 1930' for the 270:192 vote — an outlier against LeMO/Gonschior/EN-chronicle/Hindenburg's 13 March signature; treat 12 March as the date."
+    },
+    {
+      "id": "DE-1930-deckungsvorlage",
+      "date": "1930-07-16",
+      "question_as_voted": "The Brüning government's Deckungsvorlage: cover the Reich budget deficit with tax increases and spending cuts (the austerity program).",
+      "official_title_de": "Deckungsvorlage der Reichsregierung (Gesetzentwurf zur Deckung des Reichshaushalts 1930)",
+      "tally": {"for": 193, "against": 256, "abstain": 0, "notes": "Rejected 256:193 (weimarer-republik.net: 'with 256 votes to 193'; Gonschior 1928–30 chronicle identical). Same day Brüning enacted the substance by Art. 48 emergency decree."},
+      "outcome": "rejected",
+      "party_directions": {"SPD": "against", "Z": "for", "BVP": "for", "DDP": "for", "DVP": "for", "DNVP": "split", "NSDAP": "against", "KPD": "against"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "medium", "DDP": "high", "DVP": "medium", "DNVP": "medium", "NSDAP": "high", "KPD": "high"},
+      "party_direction_notes": "LeMO: 'Der Reichstag lehnt mit den Stimmen von KPD, SPD, DNVP und NSDAP die ... Vorlage zur Deckung des Defizits ab.' SPD 153 + KPD 54 + NSDAP 12 = 219, so a sizable DNVP contingent supplied the rest of the 256; a moderate DNVP minority around Westarp/Schlange-Schöningen was already breaking toward the government (the party split formally weeks later) — hence DNVP 'split', exact numbers unknown. Government side (Z, DDP, DVP, BVP, Wirtschaftspartei, Volkskonservative) = the 193.",
+      "what_it_was": "Brüning, governing without a majority since March, put his deficit-covering austerity package to the chamber and told it plainly the alternative was Article 48. A negative coalition of SPD, KPD, NSDAP and Hugenberg's DNVP — parties that agreed on nothing else — voted it down, and the chancellor signed the same measures into force as an emergency decree that evening.",
+      "consequences": "Two days later the Reichstag struck the decree down — and was dissolved for it (see DE-1930-art48-revolt).",
+      "sources": [
+        "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1930/july-1930/",
+        "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+        "https://www.dhm.de/lemo/jahreschronik/1930",
+        "https://de.wikipedia.org/wiki/Kabinett_Br%C3%BCning_I"
+      ],
+      "caveats": "Per-party headcounts within the 256 are not itemized anywhere accessible; DNVP 'split' is inferred from arithmetic plus the documented July 1930 secession (Konservative Volkspartei). Deck authors: this card and DE-1930-art48-revolt are one two-act story — consider using only the 18 July act."
+    },
+    {
+      "id": "DE-1930-art48-revolt",
+      "date": "1930-07-18",
+      "question_as_voted": "SPD motion under Article 48(3) of the constitution: demand the repeal (Aufhebung) of the emergency decree of 16 July 1930 'zur Behebung finanzieller, wirtschaftlicher und sozialer Notstände' — the decree by which Brüning had enacted the austerity package parliament had just rejected.",
+      "official_title_de": "Antrag der SPD-Fraktion auf Aufhebung der Notverordnung vom 16. Juli 1930 (Art. 48 Abs. 3 WRV)",
+      "tally": {"for": 236, "against": 221, "abstain": 0, "notes": "236:221 per FES Chronik der deutschen Sozialdemokratie ('Am 18. stimmt der Reichstag mit 236 gegen 221 Stimmen dem Antrag der SPD zu, die Notverordnung aufzuheben') and weimarer-republik.net; Gonschior gives 236:222. The repeal majority = SPD + KPD + NSDAP + DNVP-Hugenberg wing."},
+      "outcome": "approved",
+      "party_directions": {"SPD": "for", "Z": "against", "BVP": "against", "DDP": "against", "DVP": "against", "DNVP": "split", "NSDAP": "for", "KPD": "for"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "medium", "DDP": "high", "DVP": "medium", "DNVP": "high", "NSDAP": "high", "KPD": "high"},
+      "party_direction_notes": "de.wikipedia (Kabinett Brüning I): the chamber used its Art. 48 right 'mit ... Stimmen von SPD, KPD, NSDAP und DNVP'. DNVP 'split' is high-confidence as a fact (the Hugenberg majority voted to repeal; the moderates who stayed with the government left the party days later, founding the Konservative Volkspartei on 23 July), but the internal numbers are not retrievable. Government parties Z, DDP, DVP, BVP plus Wirtschaftspartei/Volkskonservative = the 221.",
+      "what_it_was": "THE hinge vote of the Republic. Parliament exercised its constitutional right to strike down Brüning's Article 48 decree — the SPD, Communists, Nazis and Hugenberg nationalists together, 236 to 221. Within hours Hindenburg dissolved the Reichstag under Article 25 and the cabinet reissued the decree in sharpened form; the chamber's last successful act of self-defense triggered its own removal.",
+      "consequences": "The 14 September 1930 election returned 107 Nazis (from 12) and 77 Communists. Government by decree became the norm: 5 Notverordnungen in 1930, around 60 by 1932, while laws passed by parliament collapsed.",
+      "sources": [
+        "http://library.fes.de/fulltext/bibliothek/chronik/band2/e235f784.html",
+        "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1930/july-1930/",
+        "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+        "https://de.wikipedia.org/wiki/Kabinett_Br%C3%BCning_I",
+        "http://www.documentarchiv.de/wr/1930/aufloesung-reichstag-reichspraesident_vo.html"
+      ],
+      "caveats": "Minor source split on the nay count (221 vs 222). NB the often-quoted '256–193' belongs to the 16 July Deckungsvorlage rejection, NOT to this 18 July repeal vote — several summaries (and the original deck brief) conflate the two."
+    },
+    {
+      "id": "DE-1930-toleration",
+      "date": "1930-10-18",
+      "question_as_voted": "The decisive division closing the new Reichstag's first working session: confidence in the Brüning government — rejection of the no-confidence motions filed by NSDAP, KPD and DNVP and of their motions to repeal the new Article 48 economic decrees.",
+      "official_title_de": "Ablehnung der Misstrauensanträge von NSDAP, KPD und DNVP gegen die Regierung Brüning (Vertrauensabstimmung)",
+      "tally": {"for": 318, "against": 236, "abstain": 0, "notes": "318:236 for the government, per the EN day-chronicle: 'In an early morning vote capping a fourteen-hour session, Chancellor Heinrich Brüning passed a confidence motion, 318–236' — the all-night sitting of 18 Oct ran into the small hours, so the division is dated 18 or 19 Oct depending on source. German chronicles (Gonschior, slpb, weimarer-republik.net) confirm the event and party lineup without the count; tally therefore medium confidence."},
+      "outcome": "rejected",
+      "party_directions": {"SPD": "for", "Z": "for", "BVP": "for", "DDP": "for", "DVP": "for", "DNVP": "against", "NSDAP": "against", "KPD": "against"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "medium", "DDP": "medium", "DVP": "medium", "DNVP": "high", "NSDAP": "high", "KPD": "high"},
+      "party_direction_notes": "Directions given for the government's side ('for' = backing Brüning, i.e. against the no-confidence/repeal motions; outcome 'rejected' refers to those motions). SPD toleration is the documented heart of it: 'Die Fraktionen von KPD, DNVP und NSDAP stellen Misstrauensanträge … Die SPD-Fraktion schließt sich nicht an und sichert damit den Fortbestand der Kanzlerschaft Brünings' (slpb). Arithmetic: SPD 143 + Z 68 + DStP 20 + DVP 30 + BVP 19 + Wirtschaftspartei/splinters ≈ 318; NSDAP 107 + KPD 77 + DNVP 41 + Landvolk ≈ 236.",
+      "what_it_was": "The first test of the radicalized chamber elected in September 1930: 107 Nazi deputies entered in uniform, and Nazi, Communist and Hugenberg motions of no confidence and decree-repeal hit the floor at once. The SPD — fresh from losing a tenth of its voters — swallowed Brüning's austerity and voted to keep him, beginning the Tolerierungspolitik: democracy's biggest party propping up rule by decree as the lesser evil.",
+      "consequences": "The Reichstag adjourned itself until December; from here on it met rarely and decided little, while the streets and the decrees did the governing.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/October_1930",
+        "https://www.gonschior.de/weimar/Deutschland/1928-30.html",
+        "https://www.slpb.de/themen/geschichte/1918-bis-1933/die-kanzlerschaft-bruenings",
+        "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1930/october-1930/",
+        "https://de.wikipedia.org/wiki/Kabinett_Br%C3%BCning_I"
+      ],
+      "caveats": "The 318:236 figure rests on one accessible source (EN day-chronicle); German chronicles confirm everything but the numbers. Multiple divisions were taken that night (several motions); 318:236 is reported as the confidence division. Date wobbles 18/19 Oct (overnight sitting); weimarer-republik.net files it under 19 Oct."
+    },
+    {
+      "id": "DE-1931-geschaeftsordnung",
+      "date": "1931-02-09",
+      "question_as_voted": "Reform of the Reichstag's standing orders (Geschäftsordnung): spending and decree-repeal motions must name budget cover, immunity protections narrowed for deputies with pending cases — a brake on the NSDAP/KPD tactic of serial repeal and no-confidence motions.",
+      "official_title_de": "Abänderung der Geschäftsordnung des Reichstags (Anträge auf Deckungsvorlage, Immunität)",
+      "tally": {"for": 297, "against": 0, "abstain": 0, "notes": "Adopted 9 Feb 1931 'mit 297 Stimmen ohne Opposition' — 297 votes with no opposing votes — after the NSDAP and KPD factions left the chamber in protest before the division (Akten der Reichskanzlei, doc. on the GO-Änderung). Chamber strength 577: roughly 280 deputies were out of the room or abstaining."},
+      "outcome": "approved",
+      "party_directions": {"SPD": "for", "Z": "for", "BVP": "for", "DDP": "for", "DVP": "for", "DNVP": "absent", "NSDAP": "absent", "KPD": "absent"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "medium", "DDP": "medium", "DVP": "medium", "DNVP": "medium", "NSDAP": "high", "KPD": "high"},
+      "party_direction_notes": "'For' bloc = the toleration majority (SPD through DVP plus splinters) summing to 297. NSDAP and KPD walked out before the vote (high confidence). DNVP marked absent on medium confidence: the day after (10 Feb) 151 deputies of NSDAP, DNVP and Landvolk declared their formal exit from parliamentary work (LeMO; EN chronicle: the 107 Nazis plus DNVP began the boycott), and no source records DNVP yes-votes in the 297.",
+      "what_it_was": "Parliament's answer to its own paralysis: the pro-toleration majority rewrote the standing orders so the radicals could no longer flood the floor with cost-free repeal motions and shelter behind immunity. It passed 297 to nothing — because the Nazis and Communists had already stormed out — and the next day 151 deputies of the right declared a boycott of the Reichstag altogether.",
+      "consequences": "With the NSDAP, DNVP and Landvolk benches empty from 10 February, the rump chamber briefly worked — then adjourned in late March until October. Germany's parliament had begun functioning only in the radicals' absence.",
+      "sources": [
+        "https://apps.bundesarchiv.de/aktenreichskanzlei/1919-1933/1120/bru/bru1p/kap1_2/kap2_234/para3_1.html",
+        "https://www.dhm.de/lemo/jahreschronik/1931",
+        "https://en.wikipedia.org/wiki/February_1931",
+        "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1931/february-1931/"
+      ],
+      "caveats": "The 297-without-opposition figure comes via the Akten der Reichskanzlei edition (search snippet; the document page itself returned 503 on fetch) — single accessible source, medium confidence. Sequence note: the GO vote was 9 Feb; the formal Auszug declaration of the 151 was 10 Feb. DNVP behavior on 9 Feb itself (absent vs abstaining in seat) is not pinned."
+    },
+    {
+      "id": "DE-1931-harzburg-misstrauen",
+      "date": "1931-10-16",
+      "question_as_voted": "No-confidence motions against the second Brüning cabinet (and repeal motions against its emergency decrees), filed by NSDAP, DNVP and KPD five days after the Harzburg Front rally — the 'national opposition's' first attempt to bring the government down on the floor.",
+      "official_title_de": "Misstrauensanträge von NSDAP, DNVP und KPD gegen das Kabinett Brüning II",
+      "tally": {"for": 270, "against": 295, "abstain": 0, "notes": "Decisive division 295:270 for the government (EN day-chronicle: Brüning 'survived a confidence vote in the Reichstag by a count of 295 to 270'; German chronicles — Gonschior, LeMO, slpb — confirm all motions rejected on 16 Oct after a three-day debate, 'knapp', without printing the count). 'for'/'against' here = for/against the no-confidence motions."},
+      "outcome": "rejected",
+      "party_directions": {"SPD": "against", "Z": "against", "BVP": "against", "DDP": "against", "DVP": "split", "DNVP": "for", "NSDAP": "for", "KPD": "for"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "medium", "DDP": "medium", "DVP": "medium", "DNVP": "high", "NSDAP": "high", "KPD": "high"},
+      "party_direction_notes": "bpb (Zerstörung der Demokratie): the DNVP/NSDAP motion was joined by 'die DVP und die KPD'; ausschlaggebend were SPD votes against. DVP marked split on medium confidence — sources say the majority of the shrunken DVP (30 seats) went with the opposition after Stresemann's death, not necessarily all. Arithmetic check: NSDAP 107 + KPD 77 + DNVP 41 + most DVP + Landvolk/splinters ≈ 270; SPD 143 + Z 68 + BVP 19 + DStP 20 + remainder ≈ 295.",
+      "what_it_was": "Days after Hugenberg, Hitler and the Stahlhelm staged the Harzburg Front to demand the government's head, the Reichstag reconvened for the first time since March. Brüning, freshly reshuffled into his second cabinet, faced the united no-confidence motions of the entire right plus the Communists — and survived by 25 votes, on the strength of Social Democratic toleration.",
+      "consequences": "The chamber adjourned the same day until 23 February 1932 — a parliament now surviving by not meeting. Brüning governed another seven months purely on Hindenburg's signature, until the president dropped him in May 1932.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/October_1931",
+        "https://www.gonschior.de/weimar/Deutschland/1931-33.html",
+        "https://www.dhm.de/lemo/jahreschronik/1931",
+        "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/39537/zerstoerung-der-demokratie-1930-1932/",
+        "https://en.wikipedia.org/wiki/Harzburg_Front"
+      ],
+      "caveats": "bpb's dossier misdates the vote to '16. November 1931' — impossible, the Reichstag stood adjourned from 16 Oct 1931 to Feb 1932; Gonschior/LeMO/EN-chronicle agree on 16 Oct. The 295:270 count rests on the EN day-chronicle (single accessible numeric source, medium-high). Several motions were voted; 295:270 is the reported decisive division."
+    },
+    {
+      "id": "DE-1932-papen-misstrauen",
+      "date": "1932-09-12",
+      "question_as_voted": "KPD motion, taken as the first and only substantive act of the newly elected Reichstag: repeal the Papen government's emergency economic decree of 4/5 September (wage-cutting Wirtschaftsprogramm) and withdraw confidence from the Reich government.",
+      "official_title_de": "Antrag der KPD auf Aufhebung der Notverordnungen vom 4./5. September 1932 und Entziehung des Vertrauens (Misstrauensvotum gegen die Regierung von Papen)",
+      "tally": {"for": 512, "against": 42, "abstain": 5, "notes": "Official record 512:42 (bpb: 'Der Reichstag sprach ihm in seiner ersten Arbeitssitzung mit 512 gegen 42 Stimmen das Misstrauen aus'; Gonschior: '512 der 554 Abgeordneten'). Contemporary press tallied it 513:32 with 5 abstentions (TIME/EN day-chronicle) — use 512:42, noting ~5 abstentions and a handful of invalid/absent among 560 counted.",
+        "counted": 560},
+      "outcome": "approved",
+      "party_directions": {"SPD": "for", "Z": "for", "BVP": "for", "DDP": "for", "DVP": "against", "DNVP": "against", "NSDAP": "for", "KPD": "for"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "medium", "DDP": "medium", "DVP": "high", "DNVP": "high", "NSDAP": "high", "KPD": "high"},
+      "party_direction_notes": "Only DNVP (37) and DVP (7) stood by Papen — their combined 44 seats match the 42 nays minus absences (multiple sources: 'Nur DNVP und DVP standen zur Reichsregierung'). The 512 = everyone else: the NSDAP (after Göring suspended the sitting half an hour so Hitler could decide), SPD, KPD, Zentrum, BVP, DStP and splinters — a 92% majority that existed only to destroy. Z/BVP/DStP individual headcounts not itemized; directions from the two-party-loyalist accounts, hence medium for the small ones.",
+      "what_it_was": "The July 1932 Reichstag — the first with a Nazi-Communist negative majority — met for its first working day and voted on a Communist motion to strike down Papen's decrees and the chancellor with them. Papen arrived with Hindenburg's dissolution order in the famous red folder; Göring, presiding, looked past him and let the division run. 512 to 42: Nazis, Social Democrats, Communists and Catholics in one lobby against a government of barons.",
+      "consequences": "The dissolution order was held valid, the vote constitutionally moot; new elections followed on 6 November 1932. No Weimar government ever faced the Reichstag and won again — the chamber's largest-ever majority was purely for demolition.",
+      "sources": [
+        "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/dossier-nationalsozialismus/39537/zerstoerung-der-demokratie-1930-1932/",
+        "https://www.gonschior.de/weimar/Deutschland/1931-33.html",
+        "https://www.dhm.de/lemo/biografie/franz-papen",
+        "https://en.wikipedia.org/wiki/September_1932",
+        "https://www.weimarer-republik.net/en/weimar-gateway/timeline-of-the-weimar-republic/1932/september-1932/",
+        "https://time.com/archive/6749939/germany-reichstag-in-revolt/"
+      ],
+      "caveats": "Two tally traditions: official 512:42 (use this) vs contemporary press 513:32:5. The exact composition of the 42 (DNVP 37 + DVP 5-of-7, or guests) is inferred from seat counts plus the unanimous 'only DNVP and DVP' reporting — individual rolls not retrieved. The question fused decree-repeal and no-confidence; Göring put the KPD motion to an immediate division to outrun the dissolution order."
+    },
+    {
+      "id": "DE-1933-ermaechtigung",
+      "date": "1933-03-23",
+      "question_as_voted": "The Enabling Act: for four years the Reich government (Hitler's cabinet) may enact laws without the Reichstag and Reichsrat, deviating from the constitution; treaties need no parliamentary assent. A constitution-amending law requiring a two-thirds quorum and two-thirds of votes cast.",
+      "official_title_de": "Gesetz zur Behebung der Not von Volk und Reich (Ermächtigungsgesetz), 24. März 1933",
+      "tally": {"for": 444, "against": 94, "abstain": 0, "notes": "444:94 of 538 valid votes (official protocol). The 94 nays were the SPD deputies present — the only No of the sitting. 26 of the SPD's 120 were missing: arrested or already fled. The KPD's 81 mandates had been annulled under the Reichstag Fire Decree, its deputies arrested or underground; the KPD never took these seats."},
+      "outcome": "approved",
+      "party_directions": {"SPD": "against", "Z": "for", "BVP": "for", "DDP": "for", "DVP": "for", "DNVP": "for", "NSDAP": "for", "KPD": "absent"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "high", "DDP": "high", "DVP": "high", "DNVP": "high", "NSDAP": "high", "KPD": "high"},
+      "party_direction_notes": "Yes-breakdown (de.wikipedia, bundestag.de): NSDAP 288, DNVP/Kampffront 52, Zentrum 72 of 73 (1 excused; Brüning and Kaas among the yes), BVP 19, DStP 5 (incl. Theodor Heuss, under protest, bound by faction), CSVD 4, DVP 1 (the second deputy ill), Bauernpartei/Landbund 3. KPD marked 'absent' = excluded by force: 81 mandates annulled, deputies arrested/in hiding — not a parliamentary choice.",
+      "what_it_was": "In the Kroll Opera House, ringed inside and out by SA and SS, the Reichstag voted itself out of existence. The two-thirds quorum had been pre-rigged: the chamber had just amended its own standing orders so deputies 'absent without excuse' — the arrested, the fled — counted as present, and the 81 Communist seats were simply annulled. Otto Wels, for the SPD, spoke the last free words of the chamber ('Freiheit und Leben kann man uns nehmen, die Ehre nicht'); Hitler answered with open threats; every party except the SPD then voted yes.",
+      "consequences": "Promulgated 24 March 1933, the Act was the legal foundation of the dictatorship; within four months all parties but the NSDAP were banned or dissolved. The two-thirds threshold would have been met even without the annulled KPD mandates — the bourgeois parties supplied it freely.",
+      "sources": [
+        "https://de.wikipedia.org/wiki/Erm%C3%A4chtigungsgesetz_vom_24._M%C3%A4rz_1933",
+        "https://www.bundestag.de/dokumente/textarchiv/1933-03-23-ermaechtigungsgesetz-938540",
+        "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/156904/1933-reichstag-verabschiedet-ermaechtigungsgesetz/",
+        "https://www.das-parlament.de/kultur/geschichte/als-der-reichstag-sich-faktisch-selbst-abschaffte",
+        "https://www.dhm.de/lemo/kapitel/ns-regime/etablierung-der-ns-herrschaft/ermaechtigungsgesetz"
+      ],
+      "caveats": "Gonschior's chronicle says '441 Stimmen' — outlier; official protocol figure is 444:94 (538 valid votes), used by bundestag.de/bpb/Wikipedia. Zentrum seat count appears as 73 (EN election article, matching 72 yes + 1 excused) or 74 (some references); BVP 19 vs 18 correspondingly. The Geschäftsordnung manipulation (unexcused absentees counted as present) was itself voted through by all parties except the SPD earlier in the sitting — a possible companion beat, no separate division count retrieved."
+    },
+    {
+      "id": "DE-1933-friedensresolution",
+      "date": "1933-05-17",
+      "question_as_voted": "Government resolution endorsing Hitler's 'peace speech' on foreign policy: Germany demands equality of rights, professes peace, and threatens to leave the disarmament conference and League if denied — the Reichstag's blessing on the regime's foreign policy.",
+      "official_title_de": "Entschließung des Reichstags zur Regierungserklärung (sog. „Friedensresolution“) vom 17. Mai 1933",
+      "tally": {"for": null, "against": 0, "abstain": 0, "notes": "NO numeric division: adopted 'einstimmig' — unanimously, by standing, with the chamber then singing the anthem; Göring had unanimity entered in the protocol. Of the SPD's 120 deputies only 65 could attend (the rest arrested, fled, or in hiding); the rump faction had decided the evening before — by 48 votes, against the exile leadership's plea — to take part and vote yes, under Frick's open threat of 'murder and terror' against rejection or abstention."},
+      "outcome": "approved",
+      "party_directions": {"SPD": "for", "Z": "for", "BVP": "for", "DDP": "for", "DVP": "for", "DNVP": "for", "NSDAP": "for", "KPD": "absent"},
+      "confidence": {"SPD": "high", "Z": "high", "BVP": "medium", "DDP": "medium", "DVP": "medium", "DNVP": "high", "NSDAP": "high", "KPD": "high"},
+      "party_direction_notes": "Unanimity of all deputies present is the recorded fact (Reichstag protocol via bundestag.de WD paper; FES Chronik; de.wikipedia Friedensrede). The chilling datum is the SPD rump standing with the Nazis six weeks after Wels' No. KPD: excluded/annulled, marked absent. Small bourgeois parties were present in remnant numbers — medium only because individual attendance is unverified.",
+      "what_it_was": "The last Reichstag sitting in which the old Weimar parties existed. Hitler delivered his conciliatory 'peace speech' for foreign consumption, and the chamber — including the 65 reachable Social Democrats, voting under explicit death threats and hoping to protect their imprisoned comrades — approved the government's resolution unanimously, handing the regime a propaganda image of total national unity.",
+      "consequences": "It bought the SPD nothing: the party was banned on 22 June 1933; by mid-July the NSDAP was the only legal party. The unanimity photo travelled the world as proof the 'new Germany' spoke with one voice.",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/1015024/WD-1-013-24-pdf.pdf",
+        "https://de.wikipedia.org/wiki/Friedensrede_vom_17._Mai_1933",
+        "http://library.fes.de/fulltext/bibliothek/chronik/band2/e235f1092.html",
+        "https://www.fes.de/news-detailansicht-1/sozialdemokratische-reichstagsfraktion-1933"
+      ],
+      "caveats": "DELIBERATE EXCEPTION to the recorded-division rule: there is no count — adoption was by acclamation/standing, 'einstimmig' per the official protocol. Included only as a possible coda card because the question, date, attendance (65 of 120 SPD) and unanimity are all multiply documented; if the deck format requires a numeric tally, drop this card. The faction's internal 48-vote decision of 16 May is a caucus figure, not a floor tally."
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "candidate": "Panzerkreuzer A halt motion (SPD), Reichstag 15/16 Nov 1928 — the 'still working parliament' opener with the SPD chancellor voting for his own faction's motion against his own cabinet decision",
+      "reason": "Real recorded division, vividly documented politically (Fraktionszwang forced Chancellor Müller and the SPD ministers to vote for the halt; rejected by the bürgerliche majority) — but NO tally retrievable from any accessible source, and even the date wobbles between 15, 16 and 17 Nov 1928 (LeMO says 16 Nov; de.wikipedia Panzerkreuzer-Debatte says 15 Nov). Needs Verhandlungen des Reichstags Bd. 423 before it can carry numbers. Sources checked: de.wikipedia Panzerkreuzer-Debatte, LeMO Jahreschronik 1928, gonschior.de 1928-30, EN November 1928 day-chronicle, GRIN."
+    },
+    {
+      "candidate": "26 Feb / 12 May 1932 no-confidence motions against Brüning (the 'days before his fall' beat)",
+      "reason": "Both divisions happened (Gonschior: 26.02. NSDAP/DNVP/DVP motion on economic policy fails; 12.05. motions of NSDAP, DNVP, KPD rejected 'mit den Stimmen der SPD'), but no count was found in any accessible source for either, and the event that actually felled Brüning's era that week — Groener's 12 May resignation, then Hindenburg's withdrawal of support on 29/30 May — was palace intrigue, not a division. A stray '335 gegen 233' surfaced in one search synthesis but could not be attributed to a specific motion/date; do not use it."
+    },
+    {
+      "candidate": "9 Dec 1932 (Schleicher era): amnesty law + repeal of the Papen wage-cut decree provisions + adjournment",
+      "reason": "The session is real (Reichstag sat 6–9 Dec 1932, passed the political-amnesty law — promulgated as Gesetz über Straffreiheit, 20 Dec 1932, RGBl. I S. 559 — unwound parts of Papen's September decree, and adjourned indefinitely, letting Schleicher govern unthreatened), but no division counts or per-party floor positions were retrievable from accessible sources (de.wikipedia Straffreiheitsgesetz gives only the law's citation; the 44:19 count found is the Reichsrat, not the Reichstag). Fails the tally test."
+    },
+    {
+      "candidate": "Using '256–193' as the 18 July 1930 revocation tally (as in the original brief)",
+      "reason": "Source conflation, not a failed vote: 256:193 is the 16 July 1930 rejection of the Deckungsvorlage; the 18 July Art. 48 revocation passed 236:221(–222). Both are included above as separate verified entries."
+    }
+  ]
+}
