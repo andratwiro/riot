@@ -259,12 +259,8 @@ decisions table.
   the new version in the commit message. **On every bump, check whether this
   file (AGENTS.md) is still accurate** — if the change added/moved/renamed
   anything described here (paths, scripts, commands, conventions), update it
-  in the same commit.
-  - **HOLD AT v0.99 (maintainer rule):** the tag is currently pinned at
-    `v0.99`. Do **not** auto-bump past it — keep it at `v0.99` on every push
-    until the maintainer explicitly says to switch to `v1.0`. The +0.01-per-push
-    rule above is suspended until then. (You should still mention what changed
-    in the commit message; just leave the version number alone.)
+  in the same commit. (The v0.99 maintainer hold was lifted 2026-06-12 when the
+  tag crossed to v1.00 — normal +0.01 bumping applies again.)
 - **No linters or formatters configured; no automated tests.** Validation is
   manual: cross-check the tables against the source actas/CRIs (the Brussels
   build prints its own roster/bloc-consistency report), curator review of copy
