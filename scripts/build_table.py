@@ -43,7 +43,7 @@ PARTY_META = [
      "blurb": "Junts per Reus: independentistes de centredreta, van governar la ciutat fins al 2023."},
     {"token": "ERC", "name": "ERC",  "color": "#ffb232", "logo": "assets/logos/ERC_mark.svg",
      "blurb": "Esquerra Republicana: el partit històric de l'esquerra independentista."},
-    {"token": "CUP", "name": "CUP",  "color": "#fff200", "logo": "assets/logos/CUP.png",
+    {"token": "CUP", "name": "CUP",  "color": "#f2cb05", "logo": "assets/logos/CUP.png",  # 2026 rebrand yellow
      "blurb": "Esquerra independentista i assembleària, feta des dels barris i els municipis."},
     {"token": "VOX", "name": "Vox",  "color": "#63be21", "logo": "assets/logos/VOX.svg",
      "blurb": "La dreta nacional espanyola, contrària a l'estat de les autonomies."},
