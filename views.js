@@ -100,7 +100,7 @@ function openParty(token){
     ? (p.blank
         ? `The control: the blank voted the same neutral context as the ghost but with NO profile at all — what the bare AI would do. The ${rows.length} you voted, where it misses first.`
       : isGhost
-        ? `Blind prediction: the ghost voted only from your profile and the neutral context of each decision — never seeing your votes, the parties' votes or the outcome. The ${rows.length} you voted, where it misses first.`
+        ? `Blind prediction: the ghost voted only from your profile and the neutral context of each decision. It never saw your votes, the parties' votes or the outcome. The ${rows.length} you voted, where it misses first.`
         : `The ${rows.length} decisions you voted, compared with ${p.name}. Where you differ first.`)
     : "You haven't reacted to any decision yet.";
   $("#pvList").innerHTML=rows.map(r=>{
@@ -136,7 +136,7 @@ function updateDevBar(){
   const d=(idx<deck.length)?deck[idx]:null, btn=$("#markBtn");
   if(d){const on=isMarked(d.id);
     btn.disabled=false; btn.classList.toggle("on",on);
-    btn.textContent=on?"✓ Flagged — tap to remove":"🚩 Not worth voting";
+    btn.textContent=on?"✓ Flagged · tap to remove":"🚩 Not worth voting";
   }else{btn.disabled=true; btn.classList.remove("on"); btn.textContent="🚩 Not worth voting";}
   $("#markReview").textContent=`${marks.length} flagged`;
 }

@@ -589,7 +589,7 @@ function modNoBackend(){
   const el=$("#modSetup"); el.hidden=false;
   el.querySelector(".ms-wrap").innerHTML=`<p class="ms-k">Moderator</p>
     <h2 class="ms-h">Multiplayer is off.</h2>
-    <p class="ms-sub">FIREBASE_CONFIG is null — a live session needs the shared room. Use ?simlive=15 to rehearse without a backend.</p>`;
+    <p class="ms-sub">FIREBASE_CONFIG is null: a live session needs the shared room. Use ?simlive=15 to rehearse without a backend.</p>`;
 }
 function modSessions(){
   const by={};
@@ -819,7 +819,7 @@ function renderStage(){
       main=SIMLIVE
         ? `<div class="sg-lobby">
             <p class="sg-k">Live session · ${esc(CFG.name)} · rehearsal</p>
-            <h1 class="sg-h">Sim room — ${SIMLIVE} fake voters, this tab only.</h1>
+            <h1 class="sg-h">Sim room: ${SIMLIVE} fake voters, this tab only.</h1>
             <p class="sg-sub">phones can't join a rehearsal · drop ?simlive=${SIMLIVE} from your URL for the real room</p>
             <div class="sg-faces" id="sgFaces"></div>
             <p class="sg-inlab"><b id="sgHere">0</b> in the room</p>
@@ -828,7 +828,7 @@ function renderStage(){
             <p class="sg-k">Live session · ${esc(CFG.name)}</p>
             ${qrSVG(location.protocol+"//"+joinUrl)}
             <h1 class="sg-join">${esc(joinUrl)}</h1>
-            <p class="sg-sub">scan it — or type it · pick a face · take your seat</p>
+            <p class="sg-sub">scan it or type it · pick a face · take your seat</p>
             <div class="sg-faces" id="sgFaces"></div>
             <p class="sg-inlab"><b id="sgHere">0</b> in the room</p>
           </div>`;
@@ -885,7 +885,7 @@ function buildStageFinal(){
         <span class="rv-chips"><span class="badge ${rv==="approved"?"b-app":"b-rej"}">room: ${rv} ${rm}</span>
         <span class="badge ${d.outcome==="approved"?"b-app":"b-rej"}">${esc(CHAMBER.replace(/^the /,""))}: ${d.outcome}${cm?" "+cm:""}</span></span>
       </div>`;}).join("")+`</div>`:"")+
-    `<p class="sg-sub">each phone now shows its own reveal — closest party, the map, the ghost.</p>`;
+    `<p class="sg-sub">each phone now shows its own reveal: closest party, the map, the ghost.</p>`;
 }
 function renderStageCtl(st){
   const c=$("#sgCtl"); if(!c) return;

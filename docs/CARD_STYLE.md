@@ -59,6 +59,12 @@ have not seen how the council actually voted. Your job is to make them understan
   If you can't give the reader a handle to push one way or the other, the card has failed.
 - **The result does not help anyone vote** — telling them "unanimitat" or who won only biases
   the blind vote. This is why vote outcomes are banned (see above), restated because it slips.
+- **NO EM DASHES (—) in card copy. Ever.** (Rob, 2026-06-12.) Applies to every reader-facing
+  layer: headline, brief, deep_facts, deep_lectura, topic, and lobby/cover strings. Use a colon,
+  a comma, parentheses, or two short sentences instead — the em dash reads as a breathless
+  aside, and the booth wants short declarative print. En dashes in ranges (1929–33, 292–280)
+  stay; verbatim layers (`title`, `raw_outcome`, quoted source text) are never edited for this
+  or any style rule.
 
 ## Headlines — the two tests
 Every headline must pass BOTH:
@@ -95,10 +101,10 @@ BAD (real misfires we fixed):
 - *"Hi seguim posant diners o en sortim?"* → unvotable question.
 
 ## Gold standard (full triple)
-**headline:** Apugen el sou als treballadors de l'Ajuntament amb els teus impostos — i Reus no hi pot fer res, ho mana Madrid.
+**headline:** Apugen el sou als treballadors de l'Ajuntament amb els teus impostos. I Reus no hi pot fer res: ho mana Madrid.
 **brief:** L'Estat ha apujat el sou a **tot** el sector públic (+2,5% el 2025, +1,5% el 2026) i l'Ajuntament està **obligat** a aplicar-ho; aquí, al personal de Reus Promoció. Reus no decideix ni el quant ni el si: només firma.
 
-- **Surt de la caixa municipal** — és a dir, dels teus impostos.
+- **Surt de la caixa municipal**, és a dir, dels teus impostos.
 - És **un de quatre punts idèntics**: el mateix per a l'Ajuntament, Reus Cultura i Mas Carandell.
 - **El fons:** el sou dels empleats públics es decideix a Madrid, no a la plaça del Mercadal.
 
