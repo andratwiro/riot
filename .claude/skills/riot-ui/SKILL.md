@@ -141,39 +141,38 @@ asset itself — a near-miss yellow reads as a dirty ring (CUP, fixed #ffdd00).
   square logos); never hand-roll an avatar.
 - **Join screen (the seat gate)**: kicker (violet mono) → Archivo 800 headline
   → 4×4 emoji grid (≥44px targets, one preselected — the tab's own face when
-  it has one) → optional mono name field → single ink CTA ("Take your seat"
-  in live sittings, "Enter the booth" in sim rooms). One screen, one button,
-  <30s. **The CTA tap IS the join**: nothing about the tab exists for the
-  room (presence, counts, faces) until it's tapped, and every new sitting
-  re-asks — one tap back in. A voter URL with no sitting behind it shows the
-  holding page, not the booth; a sitting still gathering shows the LOBBY
-  first (un-seated, watching the room fill) and its CTA opens this gate — a
-  sitting already voting gates immediately.
+  it has one) → optional mono name field → single ink CTA (live sittings:
+  `CFG.lobby.cta`, the seat metaphor in the city's own language — Reus "Ocupa
+  el teu seient", fallback "Take your seat"; sim rooms: "Enter the booth").
+  One screen, one button, <30s. **The CTA tap IS the join**: nothing about
+  the tab exists for the room (presence, counts, faces) until it's tapped,
+  and every new sitting re-asks — one tap back in. The shared voter URL leads
+  STRAIGHT here whatever the sitting's state (Rob, 2026-06-12: the gate must
+  trigger on the URL itself — a lobby-first variant was tried and rolled back
+  same day; un-seated watchers are invisible to each other, so the gathering
+  read as broken). A voter URL with no sitting behind it shows the holding
+  page, not the booth.
 - **Live-session idioms** (`live.js` + the `LIVE SESSION` block in style.css):
-  the **voter lobby is three glanceable zones** (Rob, 2026-06-12: nobody
-  reads; its only jobs are "something is about to happen / people are
-  arriving / wait for it") — the app's OWN header on top (left-aligned brand,
+  the **voter lobby is the seated waiting room, glanceable** (Rob,
+  2026-06-12: nobody reads; its only jobs are "something is about to happen /
+  people are arriving / wait for it"; the shared URL gates FIRST — see the
+  join screen above) — the app's OWN header on top (left-aligned brand,
   exactly as everywhere; no bespoke letterhead), hero (`.lb-hero`, vertically
   centred: pulsing live chip in stamp violet ~1.6s opacity cycle with the dot
   and the mono caps on one visual centre — `line-height:1` on the chip; huge
   Archivo 800 title; a single muted one-liner whose `{count}` is the live
   deck's length), presence (`.lb-presence`, bottom: overlapping 38px faces
   capped at 8 + `+N` chip, newcomers scale in via `.lb-pop`, big mono count
-  with `aria-live="polite"`, full-width ink pill CTA carrying the seat
-  metaphor — it opens the seat gate, whose tap stays THE join; once seated
-  the CTA retires). An un-seated tab watches the gathering too (presence is
-  read-on-load, written only by the gate's tap), and **the count includes
-  the watcher** (`mpVisiblePids().length+1`): you're in the room before
-  you're in the record — without the +1 the first arrivals all stare at "0
-  in the room", which reads as broken multiplayer. Session metadata folds
-  into the tiny `.lb-about` disclosure; the methodology pitch is GONE from
-  the lobby — the blind-vote rule + privacy line render on the FIRST vote
-  card only (`LIVE.cardNotes` → `.acts-rule` above / `.acts-priv` micro-type
-  below the vote buttons, dead after the first cast). ALL lobby copy comes
-  from `CFG.lobby` (per-city; no copy conditionals in live.js), never
-  hardcoded. On open the screen falls away and one line of the minutes
-  remains — the chair's formula (`CFG.lobby.sittingOpenedFormula`, ~1.6s,
-  voters who witnessed the gathering only) — then the first card lands;
+  with `aria-live="polite"` counting peers + me — the room is never empty to
+  the person standing in it). Session metadata folds into the tiny
+  `.lb-about` disclosure; the methodology pitch is GONE from the lobby — the
+  blind-vote rule + privacy line render on the FIRST vote card only
+  (`LIVE.cardNotes` → `.acts-rule` above / `.acts-priv` micro-type below the
+  vote buttons, dead after the first cast). ALL lobby copy comes from
+  `CFG.lobby` (per-city; no copy conditionals in live.js), never hardcoded.
+  On open the screen falls away and one line of the minutes remains — the
+  chair's formula (`CFG.lobby.sittingOpenedFormula`, ~1.6s, voters who
+  witnessed the gathering only) — then the first card lands;
   the **countdown** is one ink bar closing from both edges toward the centre
   (`scaleX`, origin centre; stamp-violet under 5s) — a ceiling, not a clock;
   **ballot cast** shows a mono `n/m` count, never the split; the per-card

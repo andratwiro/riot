@@ -553,7 +553,9 @@ function gateShow(live){
   if(!pre) pre=grid.children[Math.floor(Math.random()*grid.children.length)];
   if(pre)pre.classList.add("sel");
   if(identity&&identity.name) $("#joinName").value=identity.name;
-  $("#joinGo").textContent=live?"Take your seat":"Enter the booth";
+  // live sittings: the button label carries the seat metaphor in the city's
+  // own language (CFG.lobby.cta — e.g. Reus "Ocupa el teu seient")
+  $("#joinGo").textContent=live?((CFG.lobby&&CFG.lobby.cta)||"Take your seat"):"Enter the booth";
   $("#join").hidden=false;
 }
 function gateHide(){ $("#join").hidden=true; }

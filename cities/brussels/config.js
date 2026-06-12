@@ -13,7 +13,8 @@ window.CITY_CONFIG = {
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and
   // {period}/{n} in docketCountLine are filled from the live deck + this config.
-  // firstCardRule/privacyLine render on the FIRST vote card, not the lobby.
+  // firstCardRule/privacyLine render on the FIRST vote card, not the lobby;
+  // cta labels the seat gate's button (the shared URL gates before the lobby).
   // TODO(rob): provisional Brussels wording for the new lobby keys (live_chip,
   // title, one_liner, count_line, cta, about_label, firstCardRule, privacyLine)
   // — carried over / lightly derived from the old convocation copy; confirm

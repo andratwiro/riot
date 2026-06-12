@@ -82,14 +82,15 @@ else try{
     </div>
   </div>
 
-  <!-- LIVE SESSION · voter lobby: nobody reads. Three zones — letterhead line,
-       hero (live chip / serif title / one-liner), presence (faces, count, CTA).
-       ALL copy comes from CFG.lobby (per-city); live.js fills it in showLobby().
-       {count} in the one-liner is the live deck's length, never hardcoded; the
-       session metadata folds into the small "about" disclosure at the foot. An
-       un-seated tab sees the gathering too — the CTA opens the seat gate (the
-       gate's tap stays THE join). On open, the screen falls away and one line of
-       the minutes remains (CFG.lobby.sittingOpenedFormula) before the first card. -->
+  <!-- LIVE SESSION · voter lobby: nobody reads. The seated waiting room (the
+       shared URL gates first — app.js #join — and its tap is the join). Two
+       zones under the app's own header: hero (live chip / title / one-liner)
+       and presence (faces, count). ALL copy comes from CFG.lobby (per-city);
+       live.js fills it in showLobby(). {count} in the one-liner is the live
+       deck's length, never hardcoded; session metadata folds into the small
+       "about" disclosure at the foot. On open, the screen falls away and one
+       line of the minutes remains (CFG.lobby.sittingOpenedFormula) before the
+       first card. -->
   <div id="lobby" hidden>
     <div class="lb-doc">
       <div class="lb-hero">
@@ -100,7 +101,6 @@ else try{
       <div class="lb-presence">
         <div class="lb-faces" id="lobbyFaces"></div>
         <p class="lb-count"><b id="lobbyCount" aria-live="polite">0</b><span id="lobbyCountLine"></span></p>
-        <button class="lb-cta" id="lobbyCta" type="button"></button>
         <details class="lb-about" id="lobbyAbout">
           <summary id="lobbyAboutLbl"></summary>
           <p class="lb-inst" id="lobbyInst"></p>

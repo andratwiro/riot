@@ -649,10 +649,6 @@ html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
 .lb-count{display:flex;align-items:baseline;gap:10px;margin:0 0 16px;
   font:400 13px var(--f-mono);color:var(--ink60)}
 .lb-count b{font:700 32px/1 var(--f-mono);color:var(--ink)}
-.lb-cta{display:block;width:100%;border:0;border-radius:999px;background:var(--ink);color:var(--card);
-  font:700 17px var(--f-ui);padding:17px 20px;min-height:56px;cursor:pointer}
-.lb-cta:active{transform:scale(.98)}
-.lb-cta[hidden]{display:none}
 /* session metadata, folded away: the only reading on this screen is opt-in */
 .lb-about{margin:14px 0 0;font:400 11px/1.6 var(--f-mono);color:var(--ink60)}
 .lb-about[hidden]{display:none}

@@ -148,10 +148,6 @@ function liveInit(){
   if(SIMLIVE){ lvStore=simStore(); }
   else if(window.mpDb){ lvStore=fbStore(); }
   else { lvHold(false); if(LIVE_ROLE==="mod") modNoBackend(); return; }   // single-player: no live mode
-  // the lobby CTA carries the seat metaphor — it opens the seat gate, whose
-  // tap stays THE join (presence is published only from the gate's button)
-  const lbCta=$("#lobbyCta");
-  if(lbCta) lbCta.addEventListener("click",()=>{ if(!lvSeated) showSeatGate(); });
   if(LIVE_ROLE==="mod"){ lvHold(false); document.body.classList.add("live-mod"); }
   else {
     // every voter boot holds the paper (html.lvhold, set before first paint)
@@ -197,15 +193,10 @@ function onSnapshot(){
   if(LIVE_ROLE==="mod"){ liveSyncGhost(); $("#modSetup").hidden=true; renderStage(); modAuthority(); simOnSnapshot(); return; }
   const st=lvS.state;
   if(st==="ended"){ liveEnded(); modAuthority(); simOnSnapshot(); return; }
-  if(!lvSeated){
-    // the gathering is public: an un-seated tab watches the lobby fill (presence
-    // is read-on-load, written only by the gate's tap) and its CTA opens the
-    // seat gate. Any other state still gates immediately — the sitting is on.
-    if(st==="lobby"){ lvWall(false); document.body.classList.add("live-voter"); showLobby(); }
-    else { hideLobby(); showSeatGate(); }
-    if(typeof renderStrip==="function") renderStrip();
-    modAuthority(); simOnSnapshot(); return;
-  }
+  // the sitting asks before it seats: the shared URL leads straight to the
+  // emoji gate (Rob, 2026-06-12 — the gate must trigger on the URL itself,
+  // not behind a lobby tap); the lobby is the seated waiting room
+  if(!lvSeated){ hideLobby(); showSeatGate(); modAuthority(); simOnSnapshot(); return; }
   liveSyncGhost();                         // ghost mode is the session's, not the visitor's
   document.body.classList.add("live-voter");
   if(st==="lobby"){ showLobby(); }
@@ -520,9 +511,7 @@ const LB_FACES=8;                  // visible lobby avatars; the rest fold into 
 const lvFaceBorn=new Map();        // face key → first-seen ms: newcomers keep their pop
 function lobbyPresence(){          // through presence-ping re-renders (innerHTML rebuilds
   const lb=$("#lobby"); if(!lb||lb.hidden) return;   // would otherwise cut it at frame one)
-  // the gathering counts its watcher: you're in the room before you're in the
-  // record (presence WRITES stay seat-gated). Without the +1 the first arrivals
-  // all stare at "0 in the room" — a dead room that reads as broken multiplayer.
+  // peers + me: the room is never empty to the person standing in it
   $("#lobbyCount").textContent=mpVisiblePids().length+1;
   const ppl=[];
   if(lvSeated) ppl.push({k:"me",e:identity&&identity.emoji,nm:(identity&&identity.name)||"you",me:true});
@@ -548,9 +537,6 @@ function showLobby(){
   $("#lobbyOne").textContent=lvS ? (L.one_liner||"")
     .replace("{count}",(lvS.deck||[]).length).replace("{body}",L.body_name||"") : "";
   $("#lobbyCountLine").textContent=L.count_line||"";
-  // the CTA is the seat metaphor: it opens the seat gate (whose tap IS the join);
-  // once seated it retires — your face in the row is the confirmation
-  const cta=$("#lobbyCta"); cta.textContent=L.cta||""; cta.hidden=lvSeated;
   // session metadata, folded away behind one small line
   $("#lobbyAboutLbl").textContent=L.about_label||"";
   $("#lobbyAbout").hidden=!L.about_label;
@@ -559,7 +545,7 @@ function showLobby(){
     .replace("{period}",deckPeriod()).replace("{n}",(lvS.deck||[]).length) : "";
   $("#lobbyDisc").textContent=L.disclosure||"";
   lobbyPresence();
-  lvHold(lvSeated);                // gated ≠ seated: only a seated tab re-paints on refresh
+  lvHold(true);                    // gate-first: a tab in the lobby is a seated (or held) tab
 }
 /* peers arrive over presence, not session snapshots — keep the gathering live
    (both the voter lobby AND the moderator's stage: nothing writes to the session
