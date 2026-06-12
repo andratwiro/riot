@@ -163,7 +163,12 @@ dirty ring (CUP, fixed #ffdd00).
   `--ink60`; fallback-chip font drops to 7.5px so 5-char tokens like NSDAP fit;
   mono section label from `solo_lobby.parties_label`). Blurbs are IDENTITY
   ONLY — who they are, never their stance on the deck's questions: the reveal
-  owns directions. The hero centres via auto-margin pseudos, NOT
+  owns directions. Scroll structure (Rob, 2026-06-12): ONE scroller, the
+  whole `.sl-doc`, never an inner hero scroll — an inner middle-scroll only
+  bites when the pointer happens to be over it; the foot (meta + CTA + note)
+  pins via `position:sticky;bottom:0` on opaque paper, and because sticky
+  children belong to the scroll container, wheel/drag over the CTA still
+  scrolls the cover. The hero centres via auto-margin pseudos, NOT
   justify-content:center (a centred flex column that overflows clips its top
   above the scroll reach — the party rows made long covers real). The cover
   must never leak a card's own outcome; the era's arc is lore, a single

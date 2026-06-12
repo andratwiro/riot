@@ -682,19 +682,23 @@ html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
 body.solo-cover #survey,body.solo-cover #roomstrip{display:none}
 /* no §/⚙ until the deck is dealt — the sheet/minutes belong to the booth */
 body.solo-cover #quickLog,body.solo-cover #menuBtn{display:none}
-#solo{flex:1 1 auto;display:flex;min-height:0;
-  padding:14px 20px calc(16px + env(safe-area-inset-bottom))}
+#solo{flex:1 1 auto;display:flex;min-height:0;padding:14px 20px 0}
 #solo[hidden]{display:none}
+/* ONE scroller: the whole doc, not the hero — wheel/drag anywhere on screen
+   moves the cover (Rob, 2026-06-12: an inner middle-scroll only bites when
+   the pointer happens to be over it). The foot stays pinned via sticky:
+   sticky children belong to the scroll container, so scrolling works even
+   with the cursor over the CTA. */
 .sl-doc{flex:1 1 auto;display:flex;flex-direction:column;width:100%;max-width:520px;
   margin:0 auto;min-height:0;text-align:left;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
   transition:opacity .36s cubic-bezier(.2,.7,.3,1),transform .36s cubic-bezier(.2,.7,.3,1)}
 #solo.away .sl-doc{opacity:0;transform:translateY(-10px);pointer-events:none}
 /* centering via auto-margin pseudos, NOT justify-content:center — a centered
    flex column that overflows clips its top above the scroll reach (the party
    rows made long covers real); auto margins collapse to 0 under overflow so
    short covers centre and long ones scroll from the kicker down */
-.sl-hero{flex:1 1 auto;display:flex;flex-direction:column;
-  min-height:0;padding:18px 0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.sl-hero{flex:1 1 auto;display:flex;flex-direction:column;padding:18px 0}
 .sl-hero::before,.sl-hero::after{content:"";flex:0 0 auto;margin:auto}
 .sl-k{margin:0 0 16px;font:700 12px/1.4 var(--f-mono);letter-spacing:.24em;
   text-transform:uppercase;color:var(--stamp)}
@@ -716,7 +720,11 @@ body.solo-cover #quickLog,body.solo-cover #menuBtn{display:none}
 .sl-prow .lg.fb{font-size:7.5px;letter-spacing:0}  /* 5-char tokens (NSDAP) must fit the 26px disc */
 .sl-ptx{font:400 13px/1.45 var(--f-ui);color:var(--ink60);min-width:0}
 .sl-ptx b{display:block;font:650 13.5px/1.3 var(--f-ui);color:var(--ink)}
-.sl-foot{flex:0 0 auto;padding-top:14px}
+/* pinned foot: opaque paper so the lore slides under it, bottom padding
+   (incl. the safe area) lives here now that #solo's own bottom padding is
+   gone — sticky to the doc's bottom edge, not the padded box above it */
+.sl-foot{flex:0 0 auto;position:sticky;bottom:0;z-index:2;background:var(--paper);
+  padding:14px 0 calc(16px + env(safe-area-inset-bottom))}
 .sl-meta{margin:0 0 14px;font:700 11px/1.6 var(--f-mono);letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink60)}
 .sl-go{display:block;width:100%;max-width:300px;margin:0;background:var(--ink);
