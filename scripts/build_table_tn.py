@@ -17,12 +17,20 @@ OUT = ROOT / "cities" / "tunisia" / "data.js"
 # CPR/Ettakatol sat only in the 2011-14 Constituent Assembly, Nidaa Tounes and
 # the Popular Front only in the 2014-21 ARP; the viewer treats absent tokens
 # as "didn't vote comparably".
+# `blurb` = who they are in a few words, shown on the solo cover's "who sits
+# here" rows. Identity only — never their direction on the deck's votes:
+# that is exactly what the reveal is for.
 PARTIES = [
-    {"token": "ENN",  "name": "Ennahdha",                 "color": "#1B5FAA", "logo": None},
-    {"token": "CPR",  "name": "Congress for the Republic","color": "#D98E04", "logo": None},
-    {"token": "ETT",  "name": "Ettakatol",                "color": "#8E3B6B", "logo": None},
-    {"token": "NIDA", "name": "Nidaa Tounes",             "color": "#C03A2B", "logo": None},
-    {"token": "FP",   "name": "Popular Front",            "color": "#6E1420", "logo": None},
+    {"token": "ENN",  "name": "Ennahdha",                 "color": "#1B5FAA", "logo": None,
+     "blurb": "The Islamist movement banned under the dictatorship, legalised by the revolution."},
+    {"token": "CPR",  "name": "Congress for the Republic","color": "#D98E04", "logo": None,
+     "blurb": "The secular centre-left party of Moncef Marzouki, the revolution's first president."},
+    {"token": "ETT",  "name": "Ettakatol",                "color": "#8E3B6B", "logo": None,
+     "blurb": "Social democrats; their leader chaired the assembly that wrote the constitution."},
+    {"token": "NIDA", "name": "Nidaa Tounes",             "color": "#C03A2B", "logo": None,
+     "blurb": "The big-tent secular party built by Béji Caïd Essebsi, winner of the 2014 election."},
+    {"token": "FP",   "name": "Popular Front",            "color": "#6E1420", "logo": None,
+     "blurb": "An alliance of left parties that lost two of its leaders to assassination in 2013."},
 ]
 LEGAL = {"for", "against", "abstain"}
 TOKENS = {p["token"] for p in PARTIES}

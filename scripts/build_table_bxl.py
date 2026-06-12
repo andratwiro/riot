@@ -40,6 +40,25 @@ GROUPS = [
 ]
 GROUP_NAME = {t: n for t, n, _ in GROUPS}
 
+# `blurb` = who they are in a few words, shown on the solo cover's "who sits
+# here" rows. Identity only — never their direction on the deck's votes:
+# that is exactly what the reveal is for.
+BLURBS = {
+    "MR":    "French-speaking liberals: the largest group since the 2024 election.",
+    "PS":    "French-speaking socialists, long the leading party of the region's politics.",
+    "PTB":   "The radical left: one bloc across both languages, PTB and PVDA.",
+    "LE":    "Les Engagés: French-speaking centrists, heirs of the Christian democrats.",
+    "Ecolo": "The French-speaking greens.",
+    "DEFI":  "A Brussels-born liberal party, founded to defend the city's French speakers.",
+    "GRN":   "The Dutch-speaking greens, Ecolo's sister party.",
+    "TFA":   "A new Brussels list, founded for the 2024 election by ex-Vooruit deputy Fouad Ahidar.",
+    "OVLD":  "The Flemish liberals.",
+    "NVA":   "Flemish nationalists, campaigning to reshape Belgium along its language line.",
+    "VOOR":  "The Flemish socialists.",
+    "VB":    "The Flemish far right; the other parties rule out governing with it.",
+    "CDV":   "The Flemish Christian democrats.",
+}
+
 # Only these segments are real "decisions" (skip amendments / single articles / tirets /
 # procedural ordre-du-jour-pur-et-simple).
 def is_decision(v):
@@ -142,7 +161,8 @@ def main():
     used = sorted({g for d in decisions for g in d["party_votes_canon"]},
                   key=lambda t: [x[0] for x in GROUPS].index(t) if t in GROUP_NAME else 99)
     parties = [{"token": t, "name": GROUP_NAME.get(t, t),
-                "color": dict((x[0], x[2]) for x in GROUPS).get(t, "#888"), "logo": None}
+                "color": dict((x[0], x[2]) for x in GROUPS).get(t, "#888"), "logo": None,
+                "blurb": BLURBS.get(t)}
                for t in used]
     n_cards = sum(1 for d in decisions if d["source_brief"])
     out = {

@@ -10,6 +10,20 @@ window.CITY_CONFIG = {
   logo: "assets/logos/reus_rose_color.svg",
   chamber: "the council",                 // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
+  // SOLO cover (?solo=1): the record's first page — the lore, then the booth.
+  // Catalan, like everything the Reus instance shows. {n} = deck length.
+  solo_lobby: {
+    kicker: "El registre · mandat 2023–2027",
+    title: "Tu què hauries votat?",
+    lore: [
+      "Reus, 2026. Vint-i-set regidors decideixen sobre l'aigua, els impostos, l'habitatge, els solars i les festes de la ciutat. Cada decisió queda escrita a l'acta del ple, vot a vot.",
+      "Cada carta és una votació real del ple municipal, amb les seves pròpies paraules. Tu votes primer, a cegues, com si la decisió fos avui sobre la teva taula. Després respon el ple, grup a grup, exactament com consta a l'acta."
+    ],
+    parties_label: "Qui seu al ple",
+    meta: "{n} decisions · mandat 2023–2027 · Ple de l'Ajuntament de Reus",
+    cta: "Entra a la cabina",
+    note: "Els teus vots no surten d'aquest telèfon."
+  },
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js; Reus is the reference instance).
   // {count}/{body} in one_liner and {period}/{n} in docketCountLine are filled

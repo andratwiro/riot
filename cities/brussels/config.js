@@ -10,6 +10,20 @@ window.CITY_CONFIG = {
   logo: "assets/logos/brussels_iris.svg",
   chamber: "the parliament",                 // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
+  // SOLO cover (?solo=1): the record's first page — the lore, then the booth.
+  // {n} = deck length.
+  solo_lobby: {
+    kicker: "The record · 2024–2026",
+    title: "A parliament without a government.",
+    lore: [
+      "Brussels, 2026. The region has just lived through the longest government formation in its history: after the June 2024 election, caretaker ministers minded the shop for more than six hundred days while no majority could agree on a government. Through all of it the parliament kept sitting, and kept voting.",
+      "Its 89 seats split between two language communities, French-speaking and Dutch-speaking, across thirteen groups. Each card is a real roll-call vote from the plenary record. You vote first, blind, as if it were on your desk today. Then the chamber answers, group by group, exactly as recorded."
+    ],
+    parties_label: "Who sits in this parliament",
+    meta: "{n} roll-call votes · 2024–2026 · Brussels-Capital Parliament",
+    cta: "Enter the booth",
+    note: "Your votes stay on this phone."
+  },
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and
   // {period}/{n} in docketCountLine are filled from the live deck + this config.

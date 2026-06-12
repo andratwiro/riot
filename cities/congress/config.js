@@ -13,6 +13,20 @@ window.CITY_CONFIG = {
   logo: "assets/logos/us_capitol.svg",
   chamber: "the Congress",             // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
+  // SOLO cover (?solo=1): the record's first page — the lore, then the booth.
+  // {n} = deck length.
+  solo_lobby: {
+    kicker: "The record · 117th–119th Congresses",
+    title: "The votes the whole country argued about.",
+    lore: [
+      "Washington, the 2020s. Congresses split close to the middle take up TikTok, guns, marriage, the border, war powers and the debt ceiling. On the big questions the clerk calls the roll, and every member's yes or no goes into the record by name.",
+      "Each card is a real roll-call vote from that record. You vote first, blind, as if it were on your desk today. Then the floor answers, caucus by caucus, exactly as recorded."
+    ],
+    parties_label: "Who votes on these floors",
+    meta: "{n} roll calls · 2021–2025 · official House and Senate record",
+    cta: "Enter the booth",
+    note: "Your votes stay on this phone."
+  },
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and
   // {period}/{n} in docketCountLine are filled from the live deck + this config.

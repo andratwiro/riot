@@ -16,14 +16,24 @@ OUT = ROOT / "cities" / "southafrica" / "data.js"
 
 # Era parties (NP, DP) appear only on the 1996 Constitutional Assembly card;
 # the viewer treats absent tokens as "didn't vote comparably".
+# `blurb` = who they are in a few words, shown on the solo cover's "who sits
+# here" rows. Identity only — never their direction on the deck's votes:
+# that is exactly what the reveal is for.
 PARTIES = [
-    {"token": "ANC", "name": "African National Congress", "color": "#C9A227", "logo": None},
-    {"token": "DA",  "name": "Democratic Alliance",       "color": "#005BAA", "logo": None},
-    {"token": "EFF", "name": "Economic Freedom Fighters", "color": "#D6231F", "logo": None},
-    {"token": "IFP", "name": "Inkatha Freedom Party",     "color": "#8B1E3F", "logo": None},
-    {"token": "MK",  "name": "uMkhonto weSizwe",          "color": "#1F5C40", "logo": None},
-    {"token": "NP",  "name": "National Party",            "color": "#E07B39", "logo": None},
-    {"token": "DP",  "name": "Democratic Party",          "color": "#4B89C8", "logo": None},
+    {"token": "ANC", "name": "African National Congress", "color": "#C9A227", "logo": None,
+     "blurb": "The liberation movement turned governing party, in office since the first free election in 1994."},
+    {"token": "DA",  "name": "Democratic Alliance",       "color": "#005BAA", "logo": None,
+     "blurb": "The liberal party, for most of this era the official opposition."},
+    {"token": "EFF", "name": "Economic Freedom Fighters", "color": "#D6231F", "logo": None,
+     "blurb": "Julius Malema's breakaway left: the red overalls of the chamber."},
+    {"token": "IFP", "name": "Inkatha Freedom Party",     "color": "#8B1E3F", "logo": None,
+     "blurb": "Mangosuthu Buthelezi's party, rooted among Zulu voters in KwaZulu-Natal."},
+    {"token": "MK",  "name": "uMkhonto weSizwe",          "color": "#1F5C40", "logo": None,
+     "blurb": "Jacob Zuma's party, new in 2024 and straight onto the opposition benches."},
+    {"token": "NP",  "name": "National Party",            "color": "#E07B39", "logo": None,
+     "blurb": "The party that ran apartheid, by 1996 negotiating the transition out of it."},
+    {"token": "DP",  "name": "Democratic Party",          "color": "#4B89C8", "logo": None,
+     "blurb": "A small liberal opposition party of the 1990s, forerunner of today's Democratic Alliance."},
 ]
 LEGAL = {"for", "against", "abstain"}
 TOKENS = {p["token"] for p in PARTIES}

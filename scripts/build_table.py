@@ -33,13 +33,22 @@ def canon(token: str) -> str:
 # Party display metadata (token -> name, brand colour, logo file or null=colored fallback).
 # Affinity bar shows these, in this order. Minor groups (A, no_adscrit_*) still count in
 # party_votes but aren't given a logo slot here.
+# `blurb` = who they are in a few words (Catalan, the instance's language), shown on the
+# solo cover's "who sits here" rows. Identity only — never their direction on the deck's
+# votes: that is exactly what the reveal is for.
 PARTY_META = [
-    {"token": "PSC", "name": "PSC",  "color": "#e2001a", "logo": "assets/logos/PSC.svg"},
-    {"token": "JxR", "name": "Junts", "color": "#00c3b2", "logo": "assets/logos/JxR.svg"},
-    {"token": "ERC", "name": "ERC",  "color": "#ffb232", "logo": "assets/logos/ERC_mark.svg"},
-    {"token": "CUP", "name": "CUP",  "color": "#fff200", "logo": "assets/logos/CUP.png"},
-    {"token": "VOX", "name": "Vox",  "color": "#63be21", "logo": "assets/logos/VOX.svg"},
-    {"token": "PP",  "name": "PP",   "color": "#1a4f8b", "logo": None},
+    {"token": "PSC", "name": "PSC",  "color": "#e2001a", "logo": "assets/logos/PSC.svg",
+     "blurb": "Els socialistes: el grup de l'alcaldessa, governen la ciutat des del 2023."},
+    {"token": "JxR", "name": "Junts", "color": "#00c3b2", "logo": "assets/logos/JxR.svg",
+     "blurb": "Junts per Reus: independentistes de centredreta, van governar la ciutat fins al 2023."},
+    {"token": "ERC", "name": "ERC",  "color": "#ffb232", "logo": "assets/logos/ERC_mark.svg",
+     "blurb": "Esquerra Republicana: el partit històric de l'esquerra independentista."},
+    {"token": "CUP", "name": "CUP",  "color": "#fff200", "logo": "assets/logos/CUP.png",
+     "blurb": "Esquerra independentista i assembleària, feta des dels barris i els municipis."},
+    {"token": "VOX", "name": "Vox",  "color": "#63be21", "logo": "assets/logos/VOX.svg",
+     "blurb": "La dreta nacional espanyola, contrària a l'estat de les autonomies."},
+    {"token": "PP",  "name": "PP",   "color": "#1a4f8b", "logo": None,
+     "blurb": "Els populars: el gran partit conservador espanyol."},
 ]
 
 def main():

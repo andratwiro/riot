@@ -14,11 +14,18 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "data" / "congress" / "cards.json"
 OUT = ROOT / "cities" / "congress" / "data.js"
 
+# `blurb` = who they are in a few words, shown on the solo cover's "who sits
+# here" rows. Identity only — never their direction on the deck's votes:
+# that is exactly what the reveal is for.
 PARTIES = [
-    {"token": "HDEM", "name": "House Democrats",    "color": "#16437F", "logo": None},
-    {"token": "HGOP", "name": "House Republicans",  "color": "#7E1623", "logo": None},
-    {"token": "SDEM", "name": "Senate Democrats",   "color": "#4079CE", "logo": None},
-    {"token": "SGOP", "name": "Senate Republicans", "color": "#C9303E", "logo": None},
+    {"token": "HDEM", "name": "House Democrats",    "color": "#16437F", "logo": None,
+     "blurb": "The Democratic caucus of the House of Representatives, where a simple majority rules."},
+    {"token": "HGOP", "name": "House Republicans",  "color": "#7E1623", "logo": None,
+     "blurb": "The Republican conference of the House: 435 members, all elected every two years."},
+    {"token": "SDEM", "name": "Senate Democrats",   "color": "#4079CE", "logo": None,
+     "blurb": "The Democratic caucus of the Senate: 100 seats, two per state, six-year terms."},
+    {"token": "SGOP", "name": "Senate Republicans", "color": "#C9303E", "logo": None,
+     "blurb": "The Republican conference of the Senate, where most laws need sixty votes to advance."},
 ]
 LEGAL = {"for", "against", "abstain"}
 TOKENS = {p["token"] for p in PARTIES}

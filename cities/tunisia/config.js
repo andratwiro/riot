@@ -13,6 +13,22 @@ window.CITY_CONFIG = {
   logo: "assets/logos/tn_crescent.svg",
   chamber: "the Assembly",             // live-session copy: "the room v. ..."
   live_split: true,                    // after-vote room split (only renders post-vote)
+  // SOLO cover (?solo=1): the record's first page — the lore, then the booth.
+  // A memorial deck, like Weimar: the lore carries the era's arc and its end.
+  // {n} = deck length.
+  solo_lobby: {
+    kicker: "The record · 2014–2018",
+    title: "The Arab Spring's one democracy, vote by vote.",
+    lore: [
+      "Tunis, 2014. Three years after a street vendor's death set off a revolution, Tunisia is the one country of the Arab Spring still building a democracy: a new constitution on the table, Islamists and secularists in the same room, terror attacks testing it from outside.",
+      "Each card is a real vote of that parliament, tracked seat by seat by the watchdog Al Bawsala. You vote first, blind, as if it were on your desk today. Then the assembly answers, bloc by bloc, exactly as recorded.",
+      "The deck ends in 2018. In July 2021 the president froze this parliament; the next year he dissolved it."
+    ],
+    parties_label: "Who sits in this assembly",
+    meta: "{n} recorded votes · 2014–2018 · the Assembly, Bardo Palace",
+    cta: "Open the record",
+    note: "Your votes stay on this phone."
+  },
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and
   // {period}/{n} in docketCountLine are filled from the live deck + this config.
