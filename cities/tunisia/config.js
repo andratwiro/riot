@@ -6,8 +6,8 @@
 // deck. No Python pipeline: demo-grade by design, same convention as Congress.
 window.CITY_CONFIG = {
   id: "tunisia",
-  name: "Tunisia",
-  title: "البرلمان التونسي",          // tab title — Arabic, the instance's own language
+  name: "Tunisia 14–18",          // era-stamped: the deck is 2014–2018 and the chamber is gone — must never read as current
+  title: "البرلمان التونسي 2014–2018",   // tab title — Arabic, the instance's own language, era-stamped
   lang: "en",
   srcLang: "fr",                       // source wording (JORT / Marsad) is French
   logo: "assets/logos/tn_crescent.svg",
