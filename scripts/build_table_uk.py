@@ -28,14 +28,24 @@ DIVS = ROOT / "data" / "commons" / "divisions"
 SRC = ROOT / "data" / "commons" / "cards.json"
 OUT = ROOT / "cities" / "commons" / "data.js"
 
+# `blurb` = who they are in a few words, shown on the solo cover's "who sits
+# here" rows. Identity only — never their stance on the deck's questions:
+# that is exactly what the reveal is for.
 PARTIES = [
-    {"token": "CON", "name": "Conservative",       "color": "#1C66AE", "logo": None},
-    {"token": "LAB", "name": "Labour",             "color": "#BE1322", "logo": None},
-    {"token": "SNP", "name": "SNP",                "color": "#C7A500", "logo": None},
-    {"token": "LD",  "name": "Liberal Democrats",  "color": "#E08C00", "logo": None},
-    {"token": "DUP", "name": "DUP",                "color": "#8C2433", "logo": None},
-    {"token": "PC",  "name": "Plaid Cymru",        "color": "#0A7A4A", "logo": None},
-    {"token": "GRN", "name": "Green",              "color": "#4D8A1E", "logo": None},
+    {"token": "CON", "name": "Conservative",       "color": "#1C66AE", "logo": None,
+     "blurb": "The governing party, in office since 2010 and openly divided over Europe."},
+    {"token": "LAB", "name": "Labour",             "color": "#BE1322", "logo": None,
+     "blurb": "The official Opposition: the party of the unions and the big cities."},
+    {"token": "SNP", "name": "SNP",                "color": "#C7A500", "logo": None,
+     "blurb": "Scottish nationalists: govern Scotland, campaign for independence from the UK."},
+    {"token": "LD",  "name": "Liberal Democrats",  "color": "#E08C00", "logo": None,
+     "blurb": "Centrist liberals and the most openly pro-European party in the House."},
+    {"token": "DUP", "name": "DUP",                "color": "#8C2433", "logo": None,
+     "blurb": "Northern Irish unionists; their ten votes keep the government in office."},
+    {"token": "PC",  "name": "Plaid Cymru",        "color": "#0A7A4A", "logo": None,
+     "blurb": "Welsh nationalists, four seats."},
+    {"token": "GRN", "name": "Green",              "color": "#4D8A1E", "logo": None,
+     "blurb": "The Green Party's single MP."},
 ]
 TOKENS = {p["token"] for p in PARTIES}
 PARTY_MAP = {

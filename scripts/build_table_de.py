@@ -24,15 +24,26 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "data" / "weimar" / "cards.json"
 OUT = ROOT / "cities" / "weimar" / "data.js"
 
+# `blurb` = who they are in a few words, shown on the solo cover's "who sits
+# here" rows. Identity only — never their direction on the deck's votes:
+# that is exactly what the reveal is for.
 PARTIES = [
-    {"token": "SPD",   "name": "SPD",               "color": "#C8242E", "logo": None},
-    {"token": "Z",     "name": "Zentrum",           "color": "#4A4036", "logo": None},
-    {"token": "BVP",   "name": "BVP",               "color": "#2C5F8A", "logo": None},
-    {"token": "DDP",   "name": "DDP / Staatspartei","color": "#C99700", "logo": None},
-    {"token": "DVP",   "name": "DVP",               "color": "#B86A1F", "logo": None},
-    {"token": "DNVP",  "name": "DNVP",              "color": "#1F3864", "logo": None},
-    {"token": "NSDAP", "name": "NSDAP",             "color": "#5C4023", "logo": None},
-    {"token": "KPD",   "name": "KPD",               "color": "#7E1020", "logo": None},
+    {"token": "SPD",   "name": "SPD",               "color": "#C8242E", "logo": None,
+     "blurb": "Social Democrats: the workers' party that founded the Republic and still defends it."},
+    {"token": "Z",     "name": "Zentrum",           "color": "#4A4036", "logo": None,
+     "blurb": "The Catholic centre party, part of nearly every governing coalition since 1919."},
+    {"token": "BVP",   "name": "BVP",               "color": "#2C5F8A", "logo": None,
+     "blurb": "The Zentrum's Bavarian sister party: Catholic, conservative, fiercely federalist."},
+    {"token": "DDP",   "name": "DDP / Staatspartei","color": "#C99700", "logo": None,
+     "blurb": "Left-liberal democrats, co-authors of the constitution, shrinking with every election."},
+    {"token": "DVP",   "name": "DVP",               "color": "#B86A1F", "logo": None,
+     "blurb": "Right-liberals of business and industry, drifting rightward after Stresemann's death."},
+    {"token": "DNVP",  "name": "DNVP",              "color": "#1F3864", "logo": None,
+     "blurb": "German Nationals: monarchist conservatives under press baron Hugenberg, hostile to the Republic."},
+    {"token": "NSDAP", "name": "NSDAP",             "color": "#5C4023", "logo": None,
+     "blurb": "Adolf Hitler's National Socialists: a street movement against the Republic itself, surging from 1930."},
+    {"token": "KPD",   "name": "KPD",               "color": "#7E1020", "logo": None,
+     "blurb": "Communists, loyal to Moscow, fighting the Republic from the left."},
 ]
 LEGAL = {"for", "against", "abstain"}
 TOKENS = {p["token"] for p in PARTIES}

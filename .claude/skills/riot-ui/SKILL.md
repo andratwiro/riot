@@ -157,8 +157,17 @@ dirty ring (CUP, fixed #ffdd00).
   ink (`--ink80`, max 54ch) not the lobby's muted grey — solo is the one
   entrance where the visitor came to READ. `body.solo-cover` hides
   #survey/#roomstrip AND the §/⚙ header buttons until the CTA deals the deck
-  (the sheet and minutes belong to the booth). The cover must never leak a
-  card's own outcome; the era's arc is lore, a single division's result is not.
+  (the sheet and minutes belong to the booth). **Who-sits-here rows** (Rob,
+  2026-06-12): parties carrying a `blurb` in the data layer render as compact
+  rows under the lore (26px `logoEl` disc, bold name, one line of identity in
+  `--ink60`; fallback-chip font drops to 7.5px so 5-char tokens like NSDAP fit;
+  mono section label from `solo_lobby.parties_label`). Blurbs are IDENTITY
+  ONLY — who they are, never their stance on the deck's questions: the reveal
+  owns directions. The hero centres via auto-margin pseudos, NOT
+  justify-content:center (a centred flex column that overflows clips its top
+  above the scroll reach — the party rows made long covers real). The cover
+  must never leak a card's own outcome; the era's arc is lore, a single
+  division's result is not.
 - **Join screen (the seat gate)**: kicker (violet mono) → Archivo 800 headline
   → 4×4 emoji grid (≥44px targets, one preselected — the tab's own face when
   it has one) → optional mono name field → single ink CTA (live sittings:

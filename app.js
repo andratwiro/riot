@@ -640,6 +640,15 @@ function soloEnter(){
   const lore=$("#soloLore"), ps=Array.isArray(sl.lore)?sl.lore:[];
   lore.innerHTML=ps.map(p=>`<p>${esc(fill(p))}</p>`).join("");
   lore.hidden=!ps.length;
+  // who sits here — parties carrying a `blurb` (identity in a few words, set
+  // in the build scripts' party tables). Identity only, never direction: the
+  // booth doctrine holds on the cover. No blurbs anywhere → no section.
+  const who=PARTIES.filter(p=>!p.ghost&&p.blurb);
+  const pwrap=$("#soloParties"); pwrap.hidden=!who.length;
+  if(who.length){
+    pwrap.innerHTML=`<p class="sl-plabel">${esc(sl.parties_label||"Who sits here")}</p>`+
+      who.map(p=>`<div class="sl-prow">${logoEl(p)}<span class="sl-ptx"><b>${esc(p.name)}</b>${esc(p.blurb)}</span></div>`).join("");
+  }
   $("#soloMeta").textContent=fill(sl.meta||"{n} decisions on the docket");
   $("#soloGo").textContent=sl.cta||"Enter the booth";
   const note=$("#soloNote"); note.hidden=!sl.note;

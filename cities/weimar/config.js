@@ -22,6 +22,7 @@ window.CITY_CONFIG = {
       "Each card is a real Reichstag vote from the Republic's final years, in its own words. You vote first, blind, as if it were on your desk today. Then the chamber answers, party by party, exactly as recorded.",
       "The deck ends in March 1933. The chamber it shows never voted freely again."
     ],
+    parties_label: "Who sits in this chamber",
     meta: "{n} recorded votes · 1929–1933 · Reichstag",
     cta: "Open the record",
     note: "Your votes stay on this phone."

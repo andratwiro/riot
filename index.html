@@ -125,6 +125,10 @@ else try{
         <p class="sl-k" id="soloKicker"></p>
         <h1 class="sl-title" id="soloTitle"></h1>
         <div class="sl-lore" id="soloLore"></div>
+        <!-- who sits here: one row per party (disc + name + a few words), from
+             each party's `blurb` in the data layer — identity only, never a
+             direction; cities without blurbs never show the section -->
+        <div class="sl-parties" id="soloParties" hidden></div>
       </div>
       <div class="sl-foot">
         <p class="sl-meta" id="soloMeta"></p>
