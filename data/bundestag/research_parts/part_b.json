@@ -1,0 +1,207 @@
+{
+  "votes": [
+    {
+      "id": "BT-2026-politikerbeleidigung",
+      "official_title": "Entwurf eines Gesetzes zur Abschaffung des § 188 des Strafgesetzbuchs – Stärkung der Meinungsfreiheit und Gleichheit vor dem Gesetz",
+      "doc_refs": {
+        "gesetzentwurf": "BT-Drucksache 21/652 (26.06.2025)",
+        "beschlussempfehlung": "BT-Drucksache 21/3901 (Rechtsausschuss)",
+        "drucksache_pdf": "https://dserver.bundestag.de/btd/21/006/2100652.pdf"
+      },
+      "proposed_by": "Fraktion der AfD (Gesetzentwurf der Abgeordneten Stephan Brandner u. a. und der Fraktion der AfD) — CONFIRMED from the Drucksache 21/652 title page itself",
+      "form": "2. Beratung, namentliche Abstimmung über den Gesetzentwurf; der Ausschuss empfahl Ablehnung. Sitzung vom Donnerstag, 29.01.2026, nach rund 30-minütiger Debatte. Abgelehnt 133 ja / 440 nein / 0 Enthaltungen (matches ground-truth XLSX; textarchiv reports identical totals).",
+      "what_a_ja_approves": "§ 188 StGB wird ersatzlos gestrichen: Beleidigung, üble Nachrede und Verleumdung gegen Politikerinnen und Politiker wären nur noch nach den allgemeinen Ehrdelikten strafbar, ohne Sonderschutz und ohne erhöhten Strafrahmen.",
+      "substance": [
+        {
+          "fact": "§ 188 StGB (heutige Fassung) stellt die gegen 'eine im politischen Leben des Volkes stehende Person' öffentlich, in einer Versammlung oder durch Verbreiten eines Inhalts begangene Beleidigung unter Strafe, wenn die Tat mit der Stellung des Beleidigten im öffentlichen Leben zusammenhängt und geeignet ist, 'sein öffentliches Wirken erheblich zu erschweren': Freiheitsstrafe bis zu drei Jahren oder Geldstrafe (Abs. 1).",
+          "source": "https://www.gesetze-im-internet.de/stgb/__188.html"
+        },
+        {
+          "fact": "Üble Nachrede gegen Personen des politischen Lebens wird unter denselben Voraussetzungen mit Freiheitsstrafe von drei Monaten bis zu fünf Jahren bestraft, Verleumdung mit sechs Monaten bis zu fünf Jahren (§ 188 Abs. 2 StGB). Zum Vergleich: einfache Beleidigung (§ 185) ist mit bis zu einem Jahr (bzw. zwei Jahren bei Verbreitung von Inhalten) bedroht.",
+          "source": "https://www.gesetze-im-internet.de/stgb/__188.html"
+        },
+        {
+          "fact": "Gesetzestext: 'Das politische Leben des Volkes reicht bis hin zur kommunalen Ebene.' Der Schutz erfasst also ausdrücklich auch Bürgermeister, Gemeinde- und Stadträte.",
+          "source": "https://www.gesetze-im-internet.de/stgb/__188.html"
+        },
+        {
+          "fact": "Die heutige Schärfe stammt aus dem 'Gesetz zur Bekämpfung des Rechtsextremismus und der Hasskriminalität' (in Kraft seit 3. April 2021): Es dehnte § 188 auf einfache Beleidigungen aus (vorher nur üble Nachrede und Verleumdung, Tatbestand von 1998/2000er-Fassung) und schrieb den Schutz bis zur kommunalen Ebene fest. Zudem kann seither die Staatsanwaltschaft auch ohne Strafantrag von Amts wegen einschreiten, wenn sie ein besonderes öffentliches Interesse bejaht.",
+          "source": "https://www.bmjv.de/SharedDocs/Pressearchiv/Pressemitteilungen/2021/0401_Hasskriminalitaet.html (plus https://de.wikipedia.org/wiki/Gesetz_zur_Bek%C3%A4mpfung_des_Rechtsextremismus_und_der_Hasskriminalit%C3%A4t)"
+        },
+        {
+          "fact": "Die AfD-Begründung im Gesetzentwurf zieht die Parallele zur 2017/2018 einstimmig beschlossenen Streichung des § 103 StGB ('Majestätsbeleidigung', Böhmermann-Fall) und argumentiert, mit der 2021er-Erweiterung sei 'ein Sonderrecht für Personen des politischen Lebens geschaffen' worden; Kernsatz im textarchiv: 'Wenn Bürger mächtige Personen aus Angst vor Strafverfolgung nicht mehr effektiv kritisieren dürfen, gerät die Demokratie selbst in Gefahr.'",
+          "source": "https://dserver.bundestag.de/btd/21/006/2100652.pdf und https://www.bundestag.de/dokumente/textarchiv/2026/kw05-de-strafgesetzbuch-1139542"
+        },
+        {
+          "fact": "Prominente dokumentierte § 188-Fälle: ein Nutzer nannte Robert Habeck 'Schwachkopf' (Hausdurchsuchung, bundesweite Debatte), Friedrich Merz wurde 'Suffkopf', Cem Özdemir 'Drecksack' genannt (Özdemir erhielt Schadensersatz). Strafrechtler Prof. Jahn (zitiert bei ZDF): belastbare Verurteilungszahlen für die junge Norm kaum erhältlich, aber die Zahl staatsanwaltschaftlicher Ermittlungsverfahren sei 'durchaus beachtlich'; die meisten enden mit Einstellung oder Strafbefehl.",
+          "source": "https://www.zdfheute.de/politik/deutschland/politiker-beleidigung-strafanzeigen-verfahren-100.html"
+        },
+        {
+          "fact": "Hintergrund der Verteidiger der Norm: Laut einer (bei ZDF zitierten, unveröffentlichten) BKA-Studie erlebt über ein Drittel der Kommunalpolitikerinnen und Kommunalpolitiker Hass, Anfeindungen oder Gewalt; Kommunalpolitiker haben anders als Spitzenpolitiker keinen 'großen staatlichen Schutzapparat'.",
+          "source": "https://www.zdfheute.de/politik/deutschland/politiker-beleidigung-strafanzeigen-verfahren-100.html (BKA-Studie dort als unveröffentlicht referenziert)"
+        }
+      ],
+      "fault_lines": "The ja side (AfD alone, 133/133) framed it as equality before the law and free speech: a special, harsher honour-offence for officeholders inverts the democratic relationship; citizens must be able to criticise the powerful harshly, and the 2021 tightening came amid pandemic-era protest policing of speech. The nein side (all other Fraktionen, 440 votes, zero defections) framed § 188 as protection of democratic office-holding itself, not of politicians' feelings: hate campaigns, especially against unpaid local politicians, drive people out of public office, and the norm only bites where an attack is capable of 'erheblich erschweren' someone's public work. A systemic free-speech critique of § 188 also exists OUTSIDE the AfD (Jens Spahn (CDU) had publicly called for abolishing it; legal scholars question criminal law as the tool) — but no other Fraktion was willing to repeal without replacement, and reform-open voices (per Apollo News, Union and SPD signalled openness to reform while rejecting abolition).",
+      "stories": "A perfect five-bloc vote: every Fraktion voted unanimously (AfD 133 ja; CDU/CSU 195, SPD 113, Grüne 73, Linke 58 nein; zero Enthaltungen). The documented tension sits inside the Union: Jens Spahn had earlier called for § 188's abolition (ZDF), yet CDU/CSU delivered 195 nein. The bill itself is rhetorically built on the Böhmermann/§ 103 precedent, daring the chamber to apply its own 2017 unanimity to domestic politicians.",
+      "aftermath": "The Bundestag debated § 188 again on 11 June 2026: another AfD bill demanding abolition got its first reading (textarchiv kw24-de-stgb188-1183588). A Forsa poll (reported by ms-aktuell.de) found a majority of Germans want to keep § 188.",
+      "sources": [
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw05-de-strafgesetzbuch-1139542",
+        "https://dserver.bundestag.de/btd/21/006/2100652.pdf",
+        "https://www.gesetze-im-internet.de/stgb/__188.html",
+        "https://www.bmjv.de/SharedDocs/Pressearchiv/Pressemitteilungen/2021/0401_Hasskriminalitaet.html",
+        "https://www.zdfheute.de/politik/deutschland/politiker-beleidigung-strafanzeigen-verfahren-100.html",
+        "https://www.bundestag.de/dokumente/textarchiv/2025/kw37-de-abschaffung-188-1108618",
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw24-de-stgb188-1183588",
+        "https://www.abgeordnetenwatch.de/bundestag/21/abstimmungen/streichung-des-straftatbestandes-der-politikerbeleidigung",
+        "https://apollo-news.net/union-und-spd-im-bundestag-gegen-abschaffung-von-188-stgb-offen-fr-reformen/"
+      ],
+      "flags": [
+        "Committee name: the textarchiv extraction returned 'Ausschuss für Recht und Verbraucherschutz' for Beschlussempfehlung 21/3901; in the 21. Wahlperiode the committee is usually styled 'Rechtsausschuss'. Drucksache number 21/3901 is what matters; verify the committee's exact WP21 styling before printing it on a card.",
+        "Whether the vote was formally '2. Beratung' only (a rejected bill gets no 3. Beratung) vs. announced as '2./3. Lesung': the textarchiv extraction said 2./3.; procedural label should be checked in Plenarprotokoll 21/56 if it appears on the card.",
+        "Sitzung number 56 (ground truth) not independently re-confirmed, but nothing found contradicting it.",
+        "Forsa poll sourced only via ms-aktuell.de aggregation, not a press-of-record original; treat as weak.",
+        "BKA 'over one-third of local politicians' figure is from a study ZDF describes as unpublished; cite as reported-by-ZDF, not as BKA primary."
+      ]
+    },
+    {
+      "id": "BT-2026-geas",
+      "official_title": "Entwurf eines Gesetzes zur Anpassung des nationalen Rechts an die Reform des Gemeinsamen Europäischen Asylsystems (GEAS-Anpassungsgesetz)",
+      "doc_refs": {
+        "gesetzentwurf": "BT-Drucksachen 21/1848 (Regierungsentwurf), 21/2460",
+        "weitere": "21/2669 Nr. 17, 21/4345 (per textarchiv listing; role of 21/4345 not independently verified)",
+        "beschlussempfehlung": "BT-Drucksache 21/4321 (Innenausschuss)",
+        "plenarprotokoll": "Plenarprotokoll 21/60, https://www.bundestag.de/dokumente/protokolle/vorlaeufig/21060-1150644"
+      },
+      "proposed_by": "Bundesregierung — CONFIRMED (textarchiv and abgeordnetenwatch both list it as a government bill; first reading 9 October 2025)",
+      "form": "2./3. Beratung mit namentlicher Abstimmung (Schlussabstimmung), Beschlussempfehlung des Innenausschusses (21/4321). 60. Sitzung, Freitag, 27.02.2026. Angenommen 309 ja / 260 nein / 2 Enthaltungen (matches ground-truth XLSX; 59 MPs did not take part per abgeordnetenwatch). A companion government bill amending the Ausländerzentralregistergesetz passed the same day with coalition votes.",
+      "what_a_ja_approves": "Das deutsche Asylrecht wird an die EU-Asylreform (GEAS) angepasst: verpflichtende Grenzverfahren an den Außengrenzen, neue Gewahrsamsregeln, Sekundärmigrationszentren mit Aufenthaltsbeschränkung für Dublin-Fälle und ein Ende des Familienasyls werden deutsches Recht.",
+      "substance": [
+        {
+          "fact": "Grenzverfahren werden verpflichtend für bestimmte Gruppen: Antragstellende, die über ihre Identität getäuscht haben, die als Sicherheitsrisiko gelten, oder die aus Staaten mit einer EU-weiten Schutzquote von 20 Prozent oder weniger kommen. Das neue Grenzverfahren (§ 18a AsylG neu) ersetzt das bisherige Flughafenverfahren.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw41-de-geas-anpassungsgesetz-1111764 und https://www.asyl.net/view/geas-anpassungsgesetz-im-bundesgesetzblatt-erschienen"
+        },
+        {
+          "fact": "Neue 'Sekundärmigrationszentren' (§§ 44, 68 AsylG): Einrichtungen für Asylsuchende, die bereits in einem anderen EU-Staat registriert sind und auf Überstellung warten. Pilotprojekte existieren in Eisenhüttenstadt und Hamburg; die Zentren waren zunächst als 'Dublin-Zentren' geplant.",
+          "source": "https://www.asyl.net/view/geas-anpassungsgesetz-im-bundesgesetzblatt-erschienen und https://taz.de/GEAS-Asylreform-wird-umgesetzt/!6157920/"
+        },
+        {
+          "fact": "Aufenthalts-/Bewegungsbeschränkung für Dublin-Fälle: bis zu zwölf Monate Verbleib in den Zentren ('Zwölf Monate Hausarrest', taz-Framing); für Familien mit Kindern wurde die Höchstdauer im parlamentarischen Verfahren auf 6 statt 12 Monate begrenzt. Die Türen sind nicht verschlossen, rechtlich also keine Haft: 'dauerhafter Hausarrest' ohne formale Haftanordnung.",
+          "source": "https://taz.de/GEAS-Asylreform-wird-umgesetzt/!6157920/"
+        },
+        {
+          "fact": "Neue Gewahrsamstatbestände: Asylverfahrensgewahrsam (§§ 69, 70, 70a AsylG) und Gewahrsam im Rückkehr-Grenzverfahren (§ 70b AsylG); zudem Screening neu ankommender Personen (§§ 14a, 15 AufenthG) und neue Regeln für Stellung und Registrierung von Asylanträgen (§§ 13a, 14 AsylG).",
+          "source": "https://www.asyl.net/view/geas-anpassungsgesetz-im-bundesgesetzblatt-erschienen"
+        },
+        {
+          "fact": "Abschaffung des Familienasyls mit Neuregelung der Anträge von Familienangehörigen (§ 26 AsylG).",
+          "source": "https://www.asyl.net/view/geas-anpassungsgesetz-im-bundesgesetzblatt-erschienen"
+        },
+        {
+          "fact": "Arbeitsmarktzugang: Wartefrist für Asylbewerber sinkt von 6 auf 3 Monate (Koalitions-Änderung im parlamentarischen Verfahren); ausgenommen bleiben Menschen aus sicheren Herkunftsstaaten und Dublin-Fälle. Geflüchtete Kinder erhalten Zugang zum regulären Gesundheitssystem (bisher eingeschränkter Zugang in den ersten 36 Monaten).",
+          "source": "https://taz.de/GEAS-Asylreform-wird-umgesetzt/!6157920/ und https://www.bundestag.de/dokumente/textarchiv/2026/kw09-de-geas-1149762"
+        },
+        {
+          "fact": "Eurodac wird von einer Fingerabdruck-Datenbank zu einer umfassenden Migrationsdatenbank ausgebaut (Erfassung irregulärer Migration und Sekundärbewegungen).",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw41-de-geas-anpassungsgesetz-1111764"
+        },
+        {
+          "fact": "Zeitrahmen: Die EU-GEAS-Reform (beschlossen Mai 2024) gilt EU-weit ab Mitte 2026; das deutsche Anpassungsgesetz wurde am 28. April 2026 verkündet (BGBl. 2026 I Nr. 111 und 112) und trat am 12. Juni 2026 in Kraft.",
+          "source": "https://www.asyl.net/view/geas-anpassungsgesetz-im-bundesgesetzblatt-erschienen und https://www.abgeordnetenwatch.de/bundestag/21/abstimmungen/anpassung-des-nationalen-rechts-an-die-reform-des-gemeinsamen-europaeischen-asylsystems-geas-anpassungsgesetz"
+        }
+      ],
+      "fault_lines": "Three-way split, with BOTH flanks voting nein for opposite reasons. Government side (CDU/CSU 203 ja, SPD 106 ja): Germany must implement binding EU law before it applies in June 2026; the reform brings 'Ordnung und Humanität' (Eichwede, SPD), faster procedures at the external border, less secondary migration; Dobrindt: policy gets 'schärfen und härten' through 'Kooperation, Konsequenz und Klarheit'. AfD nein (128): the reform is a 'Mogelpackung' that fails against 'unkontrollierte Zuwanderung durch faktisch offene Grenzen' and, per Baumann, locks Germany into EU distribution mechanisms — i.e. not restrictive enough / wrong instrument. Grüne nein (83): 'größte Asylrechtsverschärfung seit 1993' (Benner); the coalition maximised harshness at every discretionary point in the EU rules; centres are de-facto detention. Linke nein (48): a 'europäisches Abschottungsregime' bringing 'Haft, Lager und Entrechtung' (Bünger); practices 'tested in misery camps on Greek islands' arrive in Germany; constitutional concerns ('verfassungsrechtlich höchst bedenklich'). Systemic frames: EU-law compliance and procedural control vs. sovereignty-based rejection vs. fundamental-rights rejection.",
+      "stories": "Documented SPD dissent at the vote: Carolin Wagner voted nein; Jan Dieren and Rasha Nasr abstained (the 1 nein + 2 Enthaltungen in the ground truth; named by abgeordnetenwatch and reported in press aggregation). The discomfort was broader and on the record: SPD-MP Hakan Demir said the law 'would have looked different if the SPD had written it alone'; the coalition negotiated for months, and the SPD points to extracted concessions (families max 6 months in the centres instead of 12, work access after 3 months, centres optional for Länder per Pawlik at first reading; a coalition Entschließungsantrag on education access and vulnerable-group protections accompanied the vote). House-wide, 59 of 630 MPs did not take part, but no source of record documents an organised SPD absence; treat any 'absence story' beyond the named three as unverified.",
+      "aftermath": "Promulgated in BGBl. 2026 I Nr. 111 and 112 on 28 April 2026; entered into force 12 June 2026, the day the EU-wide GEAS rules begin to apply. The SVR (Sachverständigenrat für Integration und Migration) published an assessment of the extended GEAS implementation package.",
+      "sources": [
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw09-de-geas-1149762",
+        "https://www.bundestag.de/dokumente/textarchiv/2025/kw41-de-geas-anpassungsgesetz-1111764",
+        "https://www.bundestag.de/dokumente/protokolle/vorlaeufig/21060-1150644",
+        "https://www.asyl.net/view/geas-anpassungsgesetz-im-bundesgesetzblatt-erschienen",
+        "https://taz.de/GEAS-Asylreform-wird-umgesetzt/!6157920/",
+        "https://www.abgeordnetenwatch.de/bundestag/21/abstimmungen/anpassung-des-nationalen-rechts-an-die-reform-des-gemeinsamen-europaeischen-asylsystems-geas-anpassungsgesetz",
+        "https://www.bundestag.de/presse/hib/kurzmeldungen-1150038",
+        "https://www.svr-migration.de/presse/erweitertes-geas-umsetzungspaket/",
+        "https://www.nds-fluerat.org/63677/aktuelles/spd-linke-und-gruene-gegen-dobrindts-geas-plaene/"
+      ],
+      "flags": [
+        "No capacity numbers (e.g. places in Grenzverfahren or Sekundärmigrationszentren) could be verified from the sources fetched; the EU-level 30,000-capacity figure was NOT confirmed for the German law — do not use without further verification.",
+        "Role of Drucksache 21/4345 (listed by the textarchiv extraction alongside 21/2669 Nr. 17) not independently verified.",
+        "The '12 months' residence restriction is taz's characterisation ('Hausarrest'); the statutory mechanism is an Aufenthalts-/Bewegungsbeschränkung tied to the Sekundärmigrationszentren, not formal Haft. Card copy should not call it detention.",
+        "Same-day companion vote on the Ausländerzentralregistergesetz amendment was a separate (non-named or separate) vote; keep the card strictly to Abstimmung 1.",
+        "SPD dissenter names (Wagner nein; Dieren, Nasr Enthaltung) come via abgeordnetenwatch and a news aggregator; consistent with ground-truth 106/1/2 but cross-check against the official XLSX names before printing names on a card."
+      ]
+    },
+    {
+      "id": "BT-2026-grundsicherung",
+      "official_title": "Entwurf eines Dreizehnten Gesetzes zur Änderung des Zweiten Buches Sozialgesetzbuch und anderer Gesetze (Umgestaltung des Bürgergelds zur neuen Grundsicherung)",
+      "doc_refs": {
+        "gesetzentwurf": "BT-Drucksachen 21/3541 (Regierungsentwurf), 21/4087 (Unterrichtung/Stellungnahme Bundesrat)",
+        "beschlussempfehlung": "BT-Drucksache 21/4522 (Ausschuss für Arbeit und Soziales)",
+        "haushaltsausschuss": "BT-Drucksache 21/4523 (Bericht gem. § 96 GO)",
+        "abgelehnte_oppositionsantraege": "AfD 21/2222, 21/3605; Grüne 21/3606; Linke 21/3604"
+      },
+      "proposed_by": "Bundesregierung — CONFIRMED (textarchiv and abgeordnetenwatch list it as a government bill with Bundesrat statement)",
+      "form": "2./3. Beratung mit namentlicher Abstimmung, Beschlussempfehlung des Ausschusses für Arbeit und Soziales (21/4522), nach einstündiger Aussprache. Donnerstag, 05.03.2026 (62. Sitzung per ground truth). Angenommen 320 ja / 268 nein / 2 Enthaltungen (matches ground-truth XLSX and textarchiv; abgeordnetenwatch: 40 did not take part).",
+      "what_a_ja_approves": "Das Bürgergeld wird zur neuen Grundsicherung umgebaut: strengere Mitwirkungspflichten, schnellere und härtere Leistungskürzungen bis zum vollständigen Entzug, weniger Schonvermögen und Vorrang der Arbeitsvermittlung.",
+      "substance": [
+        {
+          "fact": "Betroffen sind rund 5,5 Millionen Bürgergeld-Bezieherinnen und -Bezieher; die Leistung heißt künftig 'Grundsicherungsgeld'.",
+          "source": "https://www.zdfheute.de/politik/deutschland/buergergeld-reform-grundsicherung-bundestag-100.html und https://www.bundesregierung.de/breg-de/aktuelles/bundesrat-neue-grundsicherung-2399562"
+        },
+        {
+          "fact": "Sanktionsleiter Termine: erster versäumter Jobcenter-Termin ohne Folgen; ab dem zweiten versäumten Termin Minderung um 30 Prozent für einen Monat; bei drei aufeinanderfolgenden Terminversäumnissen gestuftes Verfahren bis zur vollständigen Streichung der Leistungen einschließlich der Wohnkosten.",
+          "source": "https://www.bundesregierung.de/breg-de/aktuelles/bundesrat-neue-grundsicherung-2399562 und https://www.bundestag.de/dokumente/textarchiv/2026/kw10-de-grundsicherung-1150460"
+        },
+        {
+          "fact": "Sanktionsleiter Pflichtverletzungen: Abbruch einer Maßnahme oder Nichtbewerbung kostet 30 Prozent für jeweils drei Monate; bei Ablehnung zumutbarer Arbeit kann das Grundsicherungsgeld 'mindestens für einen Monat entzogen werden, insgesamt weiterhin für maximal zwei Monate'; bei dauerhafter Verweigerung droht der vollständige Leistungsentzug (Totalsanktion).",
+          "source": "https://www.bundesregierung.de/breg-de/aktuelles/bundesrat-neue-grundsicherung-2399562"
+        },
+        {
+          "fact": "Vermögen: die einjährige Karenzzeit beim Vermögen wird abgeschafft; die Höhe des Schonvermögens wird an das Lebensalter gekoppelt (gestaffelt). Wohnkosten: Schutz in der Karenzzeit wird auf die anderthalbfache Höhe der allgemeinen Angemessenheitsgrenze gedeckelt, mit Kostensenkungspflicht bei unverhältnismäßig hohen Ausgaben.",
+          "source": "https://www.bundesregierung.de/breg-de/aktuelles/bundesrat-neue-grundsicherung-2399562"
+        },
+        {
+          "fact": "Vermittlungsvorrang: schnelle Aufnahme von Arbeit hat wieder Vorrang vor Weiterbildung ('Vermittlungsvorrang'; Qualifizierung dort, wo sie 'wirklich nützt', Linnemann). Eltern müssen ab dem 14. Lebensmonat des Kindes Arbeit aufnehmen, sofern Kinderbetreuung verfügbar ist (bisher ab dem 3. Geburtstag).",
+          "source": "https://www.bundesregierung.de/breg-de/aktuelles/bundesrat-neue-grundsicherung-2399562 und https://www.bundestag.de/dokumente/textarchiv/2026/kw10-de-grundsicherung-1150460"
+        },
+        {
+          "fact": "Regelsatz: bleibt 2026 bei 563 Euro für Alleinstehende (eine rechnerisch mögliche Absenkung wird durch Besitzschutzregeln verhindert; 'Nullrunde').",
+          "source": "https://www.buerger-geld.org/news/grundsicherung/grundsicherungsgeld-2026-alle-wichtigen-aenderungen-beim-frueheren-buergergeld-im-ueberblick/ (siehe flags: Fachportal, nicht Presse of record)"
+        },
+        {
+          "fact": "Einsparungen: kurzfristig klein; ZDF: erwartete Einsparungen 'maximal zweistellige Millionensummen' pro Jahr (für 2026 wurden rund 86 Millionen Euro genannt); keine Milliarden-Sparziele im Gesetz dokumentiert.",
+          "source": "https://www.zdfheute.de/politik/deutschland/buergergeld-reform-grundsicherung-bundestag-100.html (86-Mio.-Zahl via buerger-geld.org, siehe flags)"
+        },
+        {
+          "fact": "Größenordnung der Sanktionspraxis: Sanktionen treffen im Schnitt weniger als 30.000 Personen monatlich; SPD-Redner Peick: 97 Prozent der Beziehenden sind von Sanktionen gar nicht betroffen, die Reform sei 'kein Systemwechsel'. Schutzregeln: Menschen mit psychischen Erkrankungen sind von Sanktionen ausgenommen; vor einer Totalsanktion muss das Jobcenter eine persönliche Anhörung anbieten.",
+          "source": "https://www.zdfheute.de/politik/deutschland/buergergeld-reform-grundsicherung-bundestag-100.html und https://www.bundestag.de/dokumente/textarchiv/2026/kw10-de-grundsicherung-1150460"
+        },
+        {
+          "fact": "Verfassungsrahmen: Das Bundesverfassungsgericht entschied 2019, dass Kürzungen von mehr als 30 Prozent des Regelsatzes verfassungswidrig sind, weil sie das menschenwürdige Existenzminimum gefährden; ob die neue Totalsanktion am Ende einer 'Sanktionskaskade' damit vereinbar ist, ist umstritten. Arbeitsministerin Bas: 'Wir sind fest davon überzeugt: Das ist verfassungsrechtlich sicher.'",
+          "source": "https://correctiv.org/faktencheck/hintergrund/2025/06/11/koalitionsplaene-zu-totalsanktionen-beim-buergergeld-sind-rechtlich-umstritten/"
+        }
+      ],
+      "fault_lines": "Government side (CDU/CSU 206 ja, SPD 113 ja): restore 'Fördern und Fordern' — state support tied more strongly to personal responsibility; clear, enforceable rules; work placement first; fairness toward those who fund the system. SPD's own framing was defensive: it 'sharpens' the existing system, is 'no systemic change', and 97% of recipients are never sanctioned. Opposition left (Grüne 80 nein, Linke 55 nein): the law legislates 'mistrust' and 'stigmatization' (Dzienus), destroys the welfare state's 'security promise' and builds a 'threat climate' that disciplines low-wage workers too (Pellmann); social associations (Caritas, Paritätischer) warned the full-withdrawal regime collides with the BVerfG's 2019 ruling that cuts above 30% of the subsistence minimum are unconstitutional. AfD (132 nein): opposite direction — measures insufficient, overly bureaucratic, taxpayer relief minimal (Huy). Systemic frames: conditionality-as-fairness vs. unconditional subsistence minimum as constitutional floor vs. not-strict-enough.",
+      "stories": "Two SPD members abstained: Jan Dieren (his second visible dissent in a week after his GEAS abstention) and Ruppert Stüwe; no SPD nein votes. SPD speakers conceded the strain openly: Annika Klose: 'Dieses Gesetz ist ein Kompromiss. Hätten wir es alleine geschrieben, manches sähe vielleicht anders aus.' The constitutional question shadowed the whole debate: the coalition placed the Totalsanktion at the end of a graduated cascade with a mandatory offer of a personal hearing precisely to survive the 2019 Karlsruhe ruling, while welfare associations and the left opposition called it unconstitutional regardless.",
+      "aftermath": "The Bundesrat approved the law on 27 March 2026; the bulk enters into force step by step from 1 July 2026 (per buerger-geld.org, the 100%-sanction provisions already from 23 April 2026, with further stages to 2029).",
+      "sources": [
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw10-de-grundsicherung-1150460",
+        "https://www.bundesregierung.de/breg-de/aktuelles/bundesrat-neue-grundsicherung-2399562",
+        "https://www.zdfheute.de/politik/deutschland/buergergeld-reform-grundsicherung-bundestag-100.html",
+        "https://www.abgeordnetenwatch.de/bundestag/21/abstimmungen/umge-staltung-des-buergergelds-zur-neuen-grundsicherung-sgb-ii",
+        "https://correctiv.org/faktencheck/hintergrund/2025/06/11/koalitionsplaene-zu-totalsanktionen-beim-buergergeld-sind-rechtlich-umstritten/",
+        "https://www.vorwaerts.de/inland/grundsicherung-beschlossen-auf-diese-details-hat-sich-schwarz-rot-geeinigt",
+        "https://www.buerger-geld.org/news/grundsicherung/grundsicherungsgeld-2026-alle-wichtigen-aenderungen-beim-frueheren-buergergeld-im-ueberblick/",
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw03-de-grundsicherung-1134298"
+      ],
+      "flags": [
+        "VOTE-TOTAL DISCREPANCY (minor): ZDF and vorwärts report '321 für'; the official textarchiv, abgeordnetenwatch and the ground-truth XLSX all say 320 ja. Treat 320-268-2 as authoritative; do not cite the 321 figure.",
+        "Regelsatz 563 euros and the 86-million-euro 2026 savings figure are sourced from buerger-geld.org (a benefits-focused portal, not press of record); the ZDF formulation 'maximal zweistellige Millionensummen' is the safer savings claim. Verify 563 against the Regelbedarfsstufen ordinance before using on a card.",
+        "Parental work obligation: bundesregierung.de says from the child's '14. Lebensmonat'; the textarchiv extraction paraphrased it as 'after the child's first birthday'. Use the 14.-Lebensmonat wording.",
+        "The '100% sanctions in force from 23 April 2026' staging claim rests only on buerger-geld.org; verify in the BGBl before using.",
+        "Sitzung number 62 (ground truth) not independently re-confirmed; nothing found contradicting it.",
+        "Official short framing 'Umgestaltung des Bürgergelds zur neuen Grundsicherung' is the textarchiv/abgeordnetenwatch headline; the statute's formal title is the Dreizehntes SGB-II-Änderungsgesetz wording given above."
+      ]
+    }
+  ]
+}

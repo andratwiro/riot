@@ -1,0 +1,207 @@
+{
+  "votes": [
+    {
+      "id": "BT-2025-mietwucher",
+      "official_title": "Entwurf eines Gesetzes zur besseren Bekämpfung überhöhter Mieten (Mietwuchergesetz)",
+      "doc_refs": {
+        "gesetzentwurf": "BT-Drucksache 21/134 (12.05.2025)",
+        "beschlussempfehlung": "BT-Drucksache 21/2168 (Rechtsausschuss / Ausschuss für Recht und Verbraucherschutz)",
+        "dip_vorgang": "https://dip.bundestag.de/vorgang/gesetz-zur-besseren-bek%C3%A4mpfung-%C3%BCberh%C3%B6hter-mieten-mietwuchergesetz/321692"
+      },
+      "proposed_by": "Fraktion Die Linke (signed Heidi Reichinnek, Sören Pellmann und Fraktion, Berlin, den 7. Mai 2025)",
+      "form": "Namentliche Abstimmung über den Gesetzentwurf in 2./3. Beratung am 6. November 2025 (Sitzung 37); Rechtsausschuss had recommended rejection. Rejected 131 ja / 440 nein / 0 Enthaltungen.",
+      "what_a_ja_approves": "Vermieter, die bei knappem Wohnungsangebot mehr als 20 Prozent über der ortsüblichen Miete verlangen, können leichter mit einem Bußgeld von bis zu 100.000 Euro belegt werden: der bisher kaum beweisbare Nachweis, dass sie die Wohnungsnot gezielt 'ausgenutzt' haben, entfällt.",
+      "substance": [
+        {
+          "fact": "Current law (§ 5 Wirtschaftsstrafgesetz 1954, 'Mietpreisüberhöhung') already prohibits, as an Ordnungswidrigkeit, demanding rents that 'infolge der Ausnutzung eines geringen Angebots an vergleichbaren Räumen die üblichen Entgelte um mehr als 20 vom Hundert übersteigen'. Fine today: 'Geldbuße bis zu fünfzigtausend Euro'.",
+          "source": "https://www.gesetze-im-internet.de/wistrg_1954/__5.html"
+        },
+        {
+          "fact": "The bill's core change is two word-swaps in § 5 WiStrG 1954: in Absatz 2 Satz 1 'infolge der Ausnutzung' is replaced by 'bei Vorliegen' (a low supply of comparable housing must merely EXIST, the landlord no longer needs to be proven to have exploited it), and in Absatz 3 'fünfzigtausend' becomes 'einhunderttausend' (maximum fine doubles from 50.000 to 100.000 Euro).",
+          "source": "https://dserver.bundestag.de/btd/21/001/2100134.pdf"
+        },
+        {
+          "fact": "Justification in the Drucksache: § 5 WiStrG 1954 'ist in der Praxis weitgehend wirkungslos geworden', because Bundesgerichtshof case law sets 'sehr hohe Anforderungen' for proving Ausnutzung; 'Eine \"Ausnutzung\" lässt sich in der Praxis deshalb kaum je nachweisen'.",
+          "source": "https://dserver.bundestag.de/btd/21/001/2100134.pdf"
+        },
+        {
+          "fact": "The Drucksache also argues the 50.000-Euro fine cap is 'nicht mehr zeitgemäß' and no longer has sufficient deterrent (generalpräventive) effect.",
+          "source": "https://dserver.bundestag.de/btd/21/001/2100134.pdf"
+        },
+        {
+          "fact": "Side effect spelled out in the bill: rent agreements violating § 5 are partially void (teilnichtig, § 134 BGB), so easier proof would also let tenants reclaim overpaid rent in civil proceedings (Rückforderungsansprüche nach §§ 812 ff. BGB).",
+          "source": "https://dserver.bundestag.de/btd/21/001/2100134.pdf"
+        },
+        {
+          "fact": "Transitional rule (new § 22 WiStrG): the sharpened § 5 would apply only to tenancies begun after the law takes effect; older tenancies keep the old law. Law would take effect the day after promulgation.",
+          "source": "https://dserver.bundestag.de/btd/21/001/2100134.pdf"
+        },
+        {
+          "fact": "Vote on 6 November 2025 after a half-hour debate: 131 ja, 440 nein, no abstentions. Grüne and Linke voted ja; CDU/CSU, SPD and AfD voted nein.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw45-de-mietwuchergesetz-1116746"
+        },
+        {
+          "fact": "Union counter-argument with figures (Jan-Marco Luczak, CDU, Unionsfraktion speaker for Wohnen und Bauen): weak enforcement is 'ein Vollzugsdefizit, aber kein Mangel des Gesetzes'; § 5 is already 'ein scharfes Schwert'; in Frankfurt am Main roughly 1.400 Verfahren in three years produced over 300.000 Euro in fines, proof the existing law works when authorities use it.",
+          "source": "https://www.city-news.de/union-gegen-gesetzesverschaerfungen-bei-mietwucher/225466/"
+        }
+      ],
+      "fault_lines": "The ja side argues a protective rule that exists on paper but is almost never enforceable is no protection: when courts demand proof of a landlord's inner exploitation of scarcity, the burden becomes impossible and the 20-percent line is toothless, so the objective fact of scarcity should suffice. The nein side argues the failure is in enforcement, not in the statute: authorities that actually pursue cases get results (the Frankfurt figures), and stripping the Ausnutzung element converts an anti-abuse rule into near-strict liability for pricing in any tight market, shifting risk onto every landlord rather than targeting bad actors, while doing nothing to add housing supply, which is the underlying scarcity problem. There is also a pure procedural-power layer: an opposition bill that governing parties rarely pass regardless of content.",
+      "stories": "A clean opposition-only split: every Grüne (75) and Linke (55) present voted ja, every CDU/CSU (196), SPD (116) and AfD (128) MP present voted nein, with zero abstentions. Notable because the SPD has historically campaigned on tenant protection and sharpening Mietwucher rules, but as junior coalition partner voted the bill down with the Union; the debate had SPD speakers (Hakan Demir, Angelika Glöckner) on the record. The bill itself dates from May 2025, one of Die Linke's first Gesetzentwürfe of the 21. Wahlperiode (its first reading was in May, kw21), and took half a year to reach the final vote.",
+      "aftermath": "The bill is definitively rejected; the legislative procedure (DIP Vorgang 321692) is closed. The underlying dispute continues as an enforcement question: proponents continue to point to the near-zero number of successful § 5 cases nationally, opponents to local successes like Frankfurt.",
+      "sources": [
+        "https://www.bundestag.de/dokumente/textarchiv/2025/kw45-de-mietwuchergesetz-1116746",
+        "https://dserver.bundestag.de/btd/21/001/2100134.pdf",
+        "https://www.gesetze-im-internet.de/wistrg_1954/__5.html",
+        "https://dip.bundestag.de/vorgang/gesetz-zur-besseren-bek%C3%A4mpfung-%C3%BCberh%C3%B6hter-mieten-mietwuchergesetz/321692",
+        "https://www.bundestag.de/dokumente/textarchiv/2025/kw21-de-mietwuchergesetz-1067408",
+        "https://www.city-news.de/union-gegen-gesetzesverschaerfungen-bei-mietwucher/225466/"
+      ],
+      "flags": [
+        "Party-split sums (ja: 75 Grüne + 55 Linke = 130) are one short of the official 131 ja total; the extra ja almost certainly comes from a fraktionslose/r Abgeordnete/r not covered by the five-party split. Did not identify the individual; the official roll-call page (bundestag.de abstimmung id=966) or XLSX would name them. Not a contradiction of the ground-truth party tallies.",
+        "The 20-percent threshold is EXISTING law (§ 5 Abs. 2 WiStrG), not something the bill introduces; the bill leaves the percentage untouched and changes only the Ausnutzung element and the fine cap. Card copy must not present 20% as the bill's invention.",
+        "Floor-debate arguments of SPD, AfD and Grüne speakers on 6 Nov 2025 could not be sourced verbatim (textarchiv page lists speakers but not speech content; Plenarprotokoll not fetched). Luczak's Union argument is sourced via dpa-syndicated press, not bundestag.de.",
+        "Some textarchiv/press wording frames the decisive vote as 2. Beratung (rejection there ends the procedure, no 3. Beratung for rejected bills); the form field follows the textarchiv framing '2./3. Beratung'. Authors should say 'final vote / Schlussabstimmung über den Entwurf' loosely rather than over-specify."
+      ]
+    },
+    {
+      "id": "BT-2025-wehrdienst",
+      "official_title": "Entwurf eines Gesetzes zur Modernisierung des Wehrdienstes (Wehrdienst-Modernisierungsgesetz - WDModG)",
+      "doc_refs": {
+        "gesetzentwurf": "BT-Drucksache 21/1853 (Bundesregierung)",
+        "beschlussempfehlung": "BT-Drucksache 21/3076 (Verteidigungsausschuss)",
+        "bundesrat": "BR-Drucksache 731/25 (05.12.2025)"
+      },
+      "proposed_by": "Bundesregierung (Gesetzentwurf des Bundesministeriums der Verteidigung, Minister Boris Pistorius, SPD)",
+      "form": "Namentliche Abstimmung in 2./3. Beratung am 5. Dezember 2025 (Sitzung 48), in der vom Verteidigungsausschuss geänderten Fassung. Passed 323 ja / 272 nein / 1 Enthaltung.",
+      "what_a_ja_approves": "Ein neuer, zunächst freiwilliger Wehrdienst startet: ab 2026 müssen alle 18-jährigen Männer einen Fragebogen der Bundeswehr beantworten und ab Jahrgang 2008 zur Musterung, und nur wenn Freiwillige fehlen, kann der Bundestag per Gesetz eine Wehrpflicht aktivieren.",
+      "substance": [
+        {
+          "fact": "The law creates a 'neuer, attraktiver und grundsätzlich freiwilliger Wehrdienst' starting 2026. From Anfang 2026 all 18-year-olds receive a digital questionnaire on motivation and fitness: answering is mandatory (Pflicht) for men, voluntary for women.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-wehrdienst-1128220"
+        },
+        {
+          "fact": "Mandatory Musterung (medical assessment) returns, ending the post-2011 suspension practice: compulsory for men born from 1 January 2008 onward, phased in from 1 January 2026 (the original ministry plan had scheduled mandatory Musterung only from 2027; the coalition compromise pulled it forward).",
+          "source": "https://augengeradeaus.net/2025/11/koalition-einigt-sich-auf-neues-wehrdienstmodell-fruehe-musterung-bedarfswehrpflicht-mit-losverfahren/"
+        },
+        {
+          "fact": "Pay: volunteer Wehrdienstleistende receive a minimum of about 2.600 Euro brutto per month; soldiers on fixed-term contracts about 2.700 Euro brutto including accommodation; plus a Führerschein (driving licence) subsidy for those committing to at least one year.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-wehrdienst-1128220"
+        },
+        {
+          "fact": "Minimum service duration is six months, with longer commitments up to regular Zeitsoldat terms chosen individually.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-wehrdienst-1128220"
+        },
+        {
+          "fact": "Bedarfswehrpflicht: if volunteer numbers fall short of need, conscription can be activated, but ONLY by a separate new law passed by the Bundestag ('insbesondere wenn die verteidigungspolitische Lage oder die Personallage der Streitkräfte dies erforderlich macht'). 'Einen Automatismus zur Aktivierung der Wehrpflicht wird es nicht geben.'",
+          "source": "https://augengeradeaus.net/2025/11/koalition-einigt-sich-auf-neues-wehrdienstmodell-fruehe-musterung-bedarfswehrpflicht-mit-losverfahren/"
+        },
+        {
+          "fact": "Losverfahren (lottery): the heavily disputed random selection survived only as ultima ratio INSIDE an activated Bedarfswehrpflicht, applicable when more fit conscripts exist than are needed; a lottery BEFORE Musterung (the earlier draft idea that triggered the coalition crisis) is explicitly excluded from the law.",
+          "source": "https://www.lto.de/recht/nachrichten/n/einigung-ueber-wehrdienst-nach-langem-streit-union-spd"
+        },
+        {
+          "fact": "Growth targets (Aufwuchspfad) attached to the compromise: roughly 255.000 to 270.000 active soldiers (planned size around 260.000) plus a strengthened reserve; the Bundeswehr currently has far fewer, which is the gap the law is meant to close.",
+          "source": "https://augengeradeaus.net/2025/11/koalition-einigt-sich-auf-neues-wehrdienstmodell-fruehe-musterung-bedarfswehrpflicht-mit-losverfahren/"
+        },
+        {
+          "fact": "Vote on 5 December 2025: 323 ja, 272 nein, 1 Enthaltung. Coalition (CDU/CSU, SPD) for; AfD, Grüne and Linke against, from opposite directions.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-wehrdienst-1128220"
+        },
+        {
+          "fact": "In force 1. Januar 2026; Bundesrat handled it on 19 December 2025 (BR-Drs. 731/25), presidential signature followed at the turn of the year.",
+          "source": "https://www.bmvg.de/de/presse/neuer-wehrdienst-6054404"
+        }
+      ],
+      "fault_lines": "For ja: the security environment (Russia's war, NATO commitments) requires a much larger force, money and materiel alone do not produce soldiers, and a voluntary-first system with mandatory data (questionnaire) and Musterung builds the machinery to scale up while keeping the actual draft decision with parliament. For nein, three incompatible directions shared one lobby door: one position holds that the law re-normalises compulsion (mandatory questionnaire and Musterung for men only) while calling itself voluntary, and that conscription has no place in a free society (this side urged conscientious objection and removing Wehrpflicht from the Grundgesetz); a second position holds that the law is security-policy half-work: no civil-defence build-up, no service options beyond the military, a questionnaire blind to gender and generation equity; a third position holds the opposite, that a pay-incentivised volunteer force is too soft an answer and the state needs committed defenders, not recruits attracted by salary. Cross-cutting fairness question on all sides: obligations fall on young men born after 2007, decided by a parliament they barely populate.",
+      "stories": "Exactly one coalition defector: Jan Dieren (SPD, left wing, Krefeld) voted nein, the only SPD nein; he is the SPD's consistent anti-rearmament vote (also the lone SPD nein on the March 2025 rearmament Grundgesetz amendment) and defended the Gegenstimme publicly afterwards. Exactly one Enthaltung in the whole house: Paula Piechotta (Grüne, Leipzig), against her party's closed nein. The law itself almost died twice before the vote: the coalition publicly fought for months over Pistorius' draft, the Union demanding automatic conscription triggers and a lottery, the SPD insisting on Freiwilligkeit; a planned first vote was pulled, and the November compromise (early mandatory Musterung for Jahrgang 2008+, lottery only as last resort inside a future Bedarfswehrpflicht law) is what passed.",
+      "aftermath": "In force since 1 January 2026. In April 2026 reporting (correctiv) revealed a drafting Panne: the adopted text obliges men aged 17 to 45 to report to the Bundeswehr before longer stays abroad even in peacetime (the pre-2011 rule had applied only in tension/defence situations), a constraint with fundamental-rights problems that apparently went unnoticed through hearings; per a senior SPD politician the end-phase 'lief keinen geregelten Gang'.",
+      "sources": [
+        "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-wehrdienst-1128220",
+        "https://www.bundestag.de/resource/blob/1129378/20251205_1.pdf",
+        "https://augengeradeaus.net/2025/11/koalition-einigt-sich-auf-neues-wehrdienstmodell-fruehe-musterung-bedarfswehrpflicht-mit-losverfahren/",
+        "https://www.lto.de/recht/nachrichten/n/einigung-ueber-wehrdienst-nach-langem-streit-union-spd",
+        "https://www.abgeordnetenwatch.de/bundestag/21/abstimmungen/modernisierung-des-wehrdienstes",
+        "https://www.bmvg.de/de/presse/neuer-wehrdienst-6054404",
+        "https://www.bundesrat.de/drs.html?id=731-25",
+        "https://correctiv.org/aktuelles/sicherheit-und-verteidigung/2026/04/10/das-lief-keinen-geregelten-gang-wie-es-zur-panne-um-das-wehrdienstgesetz-kam-verteidigungsministerium-pistorius-bundeswehr-wehrpflicht/",
+        "https://www.jungewelt.de/artikel/515284.antimilitarismus-in-der-spd-stehen-sie-noch-zu-ihrer-gegenstimme.html"
+      ],
+      "flags": [
+        "Party-split sums (nein: 1 SPD + 138 AfD + 77 Grüne + 55 Linke = 271) are one short of the official 272; the extra nein is presumably a fraktionslose/r MP. Individual not identified; check the official roll-call (abstimmung id=984 / PDF 20251205_1.pdf).",
+        "Losverfahren nuance rests on press-of-record reporting of the November compromise (LTO, Augen geradeaus, taz), not on a verbatim quote of the adopted statutory text in Beschlussempfehlung 21/3076; the bundestag.de textarchiv summary does not mention a lottery at all. Confident in the substance (lottery only as ultima ratio within a future Bedarfswehrpflicht law, never before Musterung), but the exact paragraph wording was not fetched. Authors should phrase the lottery cautiously.",
+        "The 255.000-270.000 / 260.000 soldier targets come from compromise reporting (Aufwuchspfad agreed alongside the law); whether the numeric Zielmarken stand in the statute itself versus accompanying planning documents was not verified.",
+        "Jan Dieren's specific stated reason for the Wehrdienst nein is documented via abgeordnetenwatch Q&A and a junge Welt interview (Jan 2026) framing it as anti-militarism / social-spending priority; no tagesschau/FAZ-grade single source captured his exact quote."
+      ]
+    },
+    {
+      "id": "BT-2025-rentenpaket",
+      "official_title": "Entwurf eines Gesetzes zur Stabilisierung des Rentenniveaus und zur vollständigen Gleichstellung der Kindererziehungszeiten",
+      "doc_refs": {
+        "gesetzentwurf": "BT-Drucksache 21/1929 (01.10.2025, Bundesregierung)",
+        "beschlussempfehlung": "BT-Drucksache 21/3112 (Ausschuss für Arbeit und Soziales); Bericht nach § 96 GO: 21/3113; abgelehnter Entschließungsantrag Die Linke: 21/3115",
+        "bundesrat": "Bundesrat 1060. Sitzung, 19.12.2025, TOP 4a (gebilligt)"
+      },
+      "proposed_by": "Bundesregierung (federführend Bundesministerium für Arbeit und Soziales, Ministerin Bärbel Bas, SPD)",
+      "form": "Namentliche Abstimmung in 3. Beratung am 5. Dezember 2025 (Sitzung 48); Entwurf unverändert angenommen. Passed 318 ja / 225 nein / 53 Enthaltungen. Kanzlermehrheit (316) reached with 318, two votes to spare, from coalition ranks alone.",
+      "what_a_ja_approves": "Das Rentenniveau bleibt bis 2031 gesetzlich bei 48 Prozent gesichert, und Mütter bekommen ab 2027 auch für ihre vor 1992 geborenen Kinder drei volle Jahre Erziehungszeit auf die Rente angerechnet.",
+      "substance": [
+        {
+          "fact": "Haltelinie: the Rentenniveau (ratio of standard pension to average wage) is guaranteed at 48 Prozent beyond its 2025 expiry until 2031; pensions thereby track wages and cannot decouple downward.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-rentenpaket-1128720"
+        },
+        {
+          "fact": "Mütterrente III: Kindererziehungszeiten for children born before 1992 are extended by six months to a full three years (36 months), completing equal treatment with post-1992 children; start moved forward one year to 2027, with retroactive payment if technical implementation (Rentenversicherung IT) needs longer.",
+          "source": "https://www.bundesrat.de/DE/plenum/bundesrat-kompakt/25/1060/04a.html"
+        },
+        {
+          "fact": "The extra costs of the Haltelinie and the Mütterrente are to be reimbursed to the Rentenversicherung from the federal budget (tax money), to avoid pushing the contribution rate; Mütterrente III alone is put at around 5 Milliarden Euro per year from 2027.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-rentenpaket-1128720"
+        },
+        {
+          "fact": "The contested post-2031 clause: per the Gesetzesbegründung, holding the line until 2031 lifts the entire subsequent trajectory, so the Rentenniveau stays roughly one percentage point higher after 2031 than under previous law, permanently tax-financed. Deutsche Rentenversicherung put this post-2031 effect at roughly 117 Milliarden Euro for 2032 to 2040.",
+          "source": "https://www.sonntagsblatt.de/artikel/gesellschaft/streit-um-rentenpaket-was-haltelinie-kosten-und-folgen-konkret-bedeuten"
+        },
+        {
+          "fact": "It was exactly this post-2031 baseline effect, not the 48% line itself (which stands in the Koalitionsvertrag), that the Junge Gruppe of the CDU/CSU (18 MPs under 35 at the start of the Wahlperiode) publicly rebelled against for weeks, threatening the coalition's 12-seat working majority.",
+          "source": "https://www.lto.de/recht/nachrichten/n/abstimmung-bundestag-rentenpaket-kanzlermehrheit"
+        },
+        {
+          "fact": "The Entwurf was adopted UNVERÄNDERT (unchanged): the rebels won no textual concession; instead the coalition flanked it with a promised Rentenkommission to propose post-2031 reform, plus the separate Aktivrentengesetz (tax-free earnings up to 2.000 Euro/month for working pensioners, from 1.1.2026) and the Zweites Betriebsrentenstärkungsgesetz, both passed the same day by simple coalition majority.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-rentenpaket-1128720"
+        },
+        {
+          "fact": "Vote: 318 ja / 225 nein / 53 Enthaltungen. Kanzlermehrheit threshold was 316; the coalition cleared it by 2 votes from its own ranks.",
+          "source": "https://www.lto.de/recht/nachrichten/n/abstimmung-bundestag-rentenpaket-kanzlermehrheit"
+        },
+        {
+          "fact": "Seven of 208 present Union MPs voted nein: Pascal Reddig (chair of the Junge Gruppe), Johannes Winkel (Junge Union national chair), Yannick Bury, Marvin Schulz, Johannes Volkmann, Johannes Wiegelmann, Nicolas Zippelius (all but Zippelius members of the Junge Gruppe). Two Union abstentions: Nicklas Kappe and Konrad Körner, both Junge Gruppe.",
+          "source": "https://www.t-online.de/nachrichten/deutschland/id_101032180/rentenpaket-sieben-unionsabgeordnete-stimmen-gegen-rentenpaket.html"
+        },
+        {
+          "fact": "Die Linke abstained as a bloc (50 Enthaltungen): the party supports the Mütterrente and opposes letting the level drop, but called the package far too small, demanding a Rentenniveau of 53 Prozent and inclusion of all earners (Selbständige, Beamte, Abgeordnete) in the gesetzliche Rentenversicherung; its Entschließungsantrag (21/3115) was rejected.",
+          "source": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-rentenpaket-1128720"
+        }
+      ],
+      "fault_lines": "For ja: 48 percent is a social-state promise with broad public support, pension certainty for 21 million pensioners and for workers near retirement, financed via the federal budget precisely so contributions do not jump, with structural reform delegated to a commission. For nein from the demographic-cost direction: every year of Haltelinie plus the baked-in post-2031 uplift shifts tens of billions onto a shrinking cohort of contributors and taxpayers, the bill buys today's calm with tomorrow's budgets, and a commission is a promise, not a law. For nein from the scope direction: extending a line and adding Mütterrente is not the structural reform (capital elements, broader insured base, retirement-age honesty) the system needs either way. The abstention position splits the difference: real improvements for mothers and against level cuts, but a refusal to bless a package that leaves the level at 48 rather than raising it and leaves privileged groups outside the system. Underneath all of it: a generational ledger question, who pays for stability, the cohort drawing it or the cohort funding it.",
+      "stories": "The biggest coalition rebellion of the young Wahlperiode, and it came from the government's own benches: the Junge Gruppe (18 young Union MPs) spent weeks refusing the unchanged Entwurf over the post-2031 sentence in the Begründung, enough heads to erase the coalition's 12-vote majority, forcing Kanzler Merz and Fraktionschef Spahn into open whip-counting; in the end the bill passed unchanged with 318 votes, two above Kanzlermehrheit, because most rebels folded. Seven Union MPs still voted nein (Reddig, Winkel, Bury, M. Schulz, Volkmann, Wiegelmann, Zippelius), two abstained (Kappe, Körner): nine visible defections, zero on the SPD side. Reddig said the bill violated his fundamental convictions on generational justice. Die Linke produced the day's tactical curiosity: 50 abstentions that mathematically eased the coalition's path while withholding endorsement. The SPD framed the day as proof the Sozialstaat delivers; the AfD voted closed nein (141).",
+      "aftermath": "Bundesrat approved (gebilligt) on 19 December 2025 (1060. Sitzung); core provisions in force 1 January 2026, Mütterrente III from 2027 with retroactive payment if the pension insurers' systems need until 2028. The promised Rentenkommission for post-2031 reform became the next arena; the Junge Gruppe's cost argument (DRV: ~117 Mrd. Euro 2032-2040) frames that debate.",
+      "sources": [
+        "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-rentenpaket-1128720",
+        "https://dserver.bundestag.de/btd/21/019/2101929.pdf",
+        "https://www.lto.de/recht/nachrichten/n/abstimmung-bundestag-rentenpaket-kanzlermehrheit",
+        "https://www.t-online.de/nachrichten/deutschland/id_101032180/rentenpaket-sieben-unionsabgeordnete-stimmen-gegen-rentenpaket.html",
+        "https://www.tagesspiegel.de/politik/liveblog/bundestag-verabschiedet-rentengesetz-sieben-unionsabgeordnete-stimmen-dagegen-15018173.html",
+        "https://www.bundesrat.de/DE/plenum/bundesrat-kompakt/25/1060/04a.html",
+        "https://www.sonntagsblatt.de/artikel/gesellschaft/streit-um-rentenpaket-was-haltelinie-kosten-und-folgen-konkret-bedeuten",
+        "https://www.deutsche-handwerks-zeitung.de/trotz-rebellion-in-der-union-bundestag-beschliesst-rentenpaket-372360/"
+      ],
+      "flags": [
+        "Enthaltung sums (2 CDU/CSU + 50 Linke = 52) are one short of the official 53; the extra abstention is presumably a fraktionslose/r MP, not identified here. Check the official roll-call (abstimmung id=985).",
+        "LTO's article states 224 nein; the official figure (and ground truth) is 225. Treat LTO's count as an article error; all other facts from LTO cross-check.",
+        "Cost figures vary by source and horizon and must not be mixed in card copy: ~5 Mrd. Euro/year Mütterrente from 2027 (Gesetzentwurf/textarchiv); ~117 Mrd. Euro for the post-2031 effect 2032-2040 (Deutsche Rentenversicherung, via press); 'rund 15 Mrd. jährlich' (Junge Gruppe's framing per LTO); larger sums circulating ('~200 Mrd. over 15 years', '479 Mrd. through 2050') come from secondary press summaries and were NOT verified against a primary document. Recommend using only the 48%/2031, 3-Jahre/2027 and 5-Mrd-per-year figures in copy, plus '117 Mrd. 2032-2040 (DRV-Schätzung)' if a rebellion number is needed.",
+        "The 'one percentage point higher after 2031' characterisation of the trajectory clause is from press summaries of the BMAS Gesetzesbegründung, not quoted verbatim from Drucksache 21/1929 (PDF located but not text-extracted).",
+        "Ground truth says 3. Beratung vote (Abstimmung 2, Sitzung 48) which matches textarchiv ('in dritter Beratung', namentlich, unverändert angenommen). The same sitting also passed the Aktivrentengesetz and Betriebsrentengesetz by hand-vote; cards must not attribute Aktivrente's 2.000-Euro tax-free allowance to THIS roll call."
+      ]
+    }
+  ]
+}

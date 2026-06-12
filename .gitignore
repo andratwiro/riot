@@ -14,6 +14,9 @@ deck/
 data/actas/*.pdf
 # Brussels CRI PDFs — re-fetchable via fetch_sessions_bxl.py; .txt audit trail is kept.
 data/brussels/cri_pdf/
+# Bundestag official XLSX ballots — re-fetchable via fetch_votes_bt.py; the
+# parsed per-MP JSON (data/bundestag/rollcalls/) is the committed audit trail.
+data/bundestag/xlsx/
 
 # --- junk ---
 .DS_Store

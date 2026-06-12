@@ -14,7 +14,8 @@ const CITIES=[
   {id:"southafrica",name:"South Africa",logo:"assets/logos/za_protea.svg"},
   {id:"tunisia",name:"Tunisia 14–18",logo:"assets/logos/tn_crescent.svg"},
   {id:"commons",name:"Commons 2019",logo:"assets/logos/uk_portcullis.svg"},
-  {id:"weimar",name:"Weimar 29–33",logo:"assets/logos/de_eagle.svg"}
+  {id:"weimar",name:"Weimar 29–33",logo:"assets/logos/de_eagle.svg"},
+  {id:"bundestag",name:"Bundestag",logo:"assets/logos/de_dome.svg"}
 ];
 const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo:"assets/logos/reus_rose_color.svg"};
 document.title=CFG.title||"RIOT";

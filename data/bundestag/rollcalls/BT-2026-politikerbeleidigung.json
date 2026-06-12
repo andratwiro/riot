@@ -1,0 +1,3802 @@
+{
+ "id": "BT-2026-politikerbeleidigung",
+ "what": "Streichung des § 188 StGB, Politikerbeleidigung (29 Jan 2026)",
+ "date": "2026-01-29",
+ "wahlperiode": "21",
+ "sitzung": "56",
+ "abstimmnr": "2",
+ "source_xlsx": "https://www.bundestag.de/resource/blob/1140520/20260129_2_xls.xlsx",
+ "source_list": "https://www.bundestag.de/parlament/plenum/abstimmung/liste",
+ "abgeordnetenwatch_poll": 6391,
+ "crosschecked": "per-Fraktion counts checked against abgeordnetenwatch API v2 (poll 6391, 630 members) at fetch time",
+ "crosscheck_discrepancies": [],
+ "totals": {
+  "ja": 133,
+  "nein": 440,
+  "Enthaltung": 0,
+  "ungültig": 0,
+  "nichtabgegeben": 57
+ },
+ "members": [
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Abraham",
+   "vorname": "Knut",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Aeikens",
+   "vorname": "Anna",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Albani",
+   "vorname": "Stephan",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Altenkamp",
+   "vorname": "Norbert Maria",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Amthor",
+   "vorname": "Philipp",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Asghari",
+   "vorname": "Reza",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Ataoğlu",
+   "vorname": "Tijen",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Auernhammer",
+   "vorname": "Artur",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Aumer",
+   "vorname": "Peter",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Babendererde",
+   "vorname": "Cornell-Anette",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bär",
+   "vorname": "Dorothee",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bareiß",
+   "vorname": "Thomas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Baumgartner",
+   "vorname": "Günter",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Beek",
+   "vorname": "Sascha",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bernstein",
+   "vorname": "Melanie",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Beyer",
+   "vorname": "Peter",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Biadacz",
+   "vorname": "Marc",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bilger",
+   "vorname": "Steffen",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bilic",
+   "vorname": "Florian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bodin",
+   "vorname": "Leif Erik",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Borchardt",
+   "vorname": "Simone",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bosbach",
+   "vorname": "Caroline",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bouffier",
+   "vorname": "Frederik",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Brand (Fulda)",
+   "vorname": "Michael",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Brandl",
+   "vorname": "Reinhard",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Breher",
+   "vorname": "Silvia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Brinkhaus",
+   "vorname": "Ralph",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Brinkmann",
+   "vorname": "Lutz",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Brodesser",
+   "vorname": "Carsten",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bröhr",
+   "vorname": "Marlon",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Büdenbender",
+   "vorname": "Benedikt",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Bury",
+   "vorname": "Yannick",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Carstensen",
+   "vorname": "Sandra",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Connemann",
+   "vorname": "Gitta",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Dahler",
+   "vorname": "Wolfgang",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Demuth",
+   "vorname": "Ellen",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Dobrindt",
+   "vorname": "Alexander",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Donth",
+   "vorname": "Michael",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Dorn",
+   "vorname": "Florian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Düber",
+   "vorname": "Hülya",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Durz",
+   "vorname": "Hansjörg",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Ebmeyer",
+   "vorname": "Joachim",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Edelhäußer",
+   "vorname": "Ralph",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Ehm",
+   "vorname": "Lars",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Engelhard",
+   "vorname": "Alexander",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Englhardt-Kopf",
+   "vorname": "Martina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Erndl",
+   "vorname": "Thomas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Ernst",
+   "vorname": "Bastian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Färber",
+   "vorname": "Hermann",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Feiler",
+   "vorname": "Uwe",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Frauenpreiß",
+   "vorname": "Christoph",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Frei",
+   "vorname": "Thorsten",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Frieser",
+   "vorname": "Michael",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Gebhard",
+   "vorname": "Wilhelm",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Gebhart",
+   "vorname": "Thomas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Geissler",
+   "vorname": "Jonas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Gramling",
+   "vorname": "Fabian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Grasse",
+   "vorname": "Adrian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Gräßle",
+   "vorname": "Inge",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Gregosz",
+   "vorname": "David",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Güler",
+   "vorname": "Serap",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Günther",
+   "vorname": "Georg",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Güntzler",
+   "vorname": "Fritz",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Gutting",
+   "vorname": "Olav",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Haase",
+   "vorname": "Christian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hahn",
+   "vorname": "Florian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hain",
+   "vorname": "Heiko",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hardt",
+   "vorname": "Jürgen",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hauer",
+   "vorname": "Matthias",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Heil",
+   "vorname": "Mechthild",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Helfrich",
+   "vorname": "Mark",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Henrichmann",
+   "vorname": "Marc",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Herbstreuth",
+   "vorname": "Diana",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Heveling",
+   "vorname": "Ansgar",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hierl",
+   "vorname": "Susanne",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hiller",
+   "vorname": "Matthias",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hirte",
+   "vorname": "Christian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hoffmann",
+   "vorname": "Alexander",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hoffmann",
+   "vorname": "Philip M. A.",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hoppenstedt",
+   "vorname": "Hendrik",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hoppermann",
+   "vorname": "Franziska",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Hose",
+   "vorname": "Michael",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Janssen",
+   "vorname": "Anne",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Jarzombek",
+   "vorname": "Thomas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Jordan",
+   "vorname": "Alexander",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Jung",
+   "vorname": "Andreas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Kappe",
+   "vorname": "Nicklas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Karliczek",
+   "vorname": "Anja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Kemmer",
+   "vorname": "Ronja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Kiesewetter",
+   "vorname": "Roderich",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Kießling",
+   "vorname": "Michael",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Kippels",
+   "vorname": "Georg",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Klein",
+   "vorname": "Ottilie",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Klöckner",
+   "vorname": "Julia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Knoerig",
+   "vorname": "Axel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Kölbl",
+   "vorname": "Daniel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Koller",
+   "vorname": "Hans",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "König",
+   "vorname": "Anne",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Koob",
+   "vorname": "Markus",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Korbach",
+   "vorname": "Stefan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Körber",
+   "vorname": "Carsten",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Körner",
+   "vorname": "Konrad",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Krichbaum",
+   "vorname": "Gunther",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Krieger",
+   "vorname": "Lukas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Krings",
+   "vorname": "Günter",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Kuban",
+   "vorname": "Tilman",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Lange",
+   "vorname": "Ulrich",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Laschet",
+   "vorname": "Armin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Launert",
+   "vorname": "Silke",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Lehmann",
+   "vorname": "Jens",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Lenz",
+   "vorname": "Andreas",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Lindholz",
+   "vorname": "Andrea",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Linnemann",
+   "vorname": "Carsten",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Lips",
+   "vorname": "Patricia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Luczak",
+   "vorname": "Jan-Marco",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Ludwig",
+   "vorname": "Daniela",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Ludwig",
+   "vorname": "Saskia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Mack",
+   "vorname": "Klaus",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Mattfeldt",
+   "vorname": "Andreas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Mayer (Altötting)",
+   "vorname": "Stephan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Mayer-Lay",
+   "vorname": "Volker",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Meister",
+   "vorname": "Michael",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Merz",
+   "vorname": "Friedrich",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Metzler",
+   "vorname": "Jan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Middelberg",
+   "vorname": "Mathias",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Moser",
+   "vorname": "Christian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Müller",
+   "vorname": "Axel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Müller",
+   "vorname": "Florian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Müller",
+   "vorname": "Sepp",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Müller (Braunschweig)",
+   "vorname": "Carsten",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Nacke",
+   "vorname": "Stefan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Oellers",
+   "vorname": "Wilfried",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Oest",
+   "vorname": "Florian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Orthey",
+   "vorname": "Harald",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Oßner",
+   "vorname": "Florian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Oster",
+   "vorname": "Josef",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Pauls",
+   "vorname": "Thomas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Pilsinger",
+   "vorname": "Stephan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Ploß",
+   "vorname": "Christoph",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Plum",
+   "vorname": "Martin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Pohlmann",
+   "vorname": "Jan-Wilhelm",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Pöpsel",
+   "vorname": "Oliver",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Preisendanz",
+   "vorname": "David",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Rachel",
+   "vorname": "Thomas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Radomski",
+   "vorname": "Kerstin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Radwan",
+   "vorname": "Alexander",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Rainer",
+   "vorname": "Alois",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Reddig",
+   "vorname": "Pascal",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Rehbaum",
+   "vorname": "Henning",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Reichel",
+   "vorname": "Markus",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Rohwer",
+   "vorname": "Lars",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Rothenberger",
+   "vorname": "Johannes",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Röttgen",
+   "vorname": "Norbert",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Rouenhoff",
+   "vorname": "Stefan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Röwekamp",
+   "vorname": "Thomas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Rupprecht",
+   "vorname": "Albert",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Santos-Wintz",
+   "vorname": "Catarina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Sassenrath",
+   "vorname": "Carl-Philipp",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Schenderlein",
+   "vorname": "Christiane",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Schmidt",
+   "vorname": "Henri",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Schmidt",
+   "vorname": "Sebastian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Schnieder",
+   "vorname": "Patrick",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Schreiner",
+   "vorname": "Felix",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Schulz",
+   "vorname": "Marvin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Seif",
+   "vorname": "Detlef",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Seitz",
+   "vorname": "Nora",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Silberhorn",
+   "vorname": "Thomas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Simon",
+   "vorname": "Björn",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Sorge",
+   "vorname": "Tino",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Spahn",
+   "vorname": "Jens",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Staffler",
+   "vorname": "Katrin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Stefinger",
+   "vorname": "Wolfgang",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Stegemann",
+   "vorname": "Albert",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Steineke",
+   "vorname": "Sebastian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Steiniger",
+   "vorname": "Johannes",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Stetten",
+   "vorname": "Christian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Stier",
+   "vorname": "Dieter",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Stracke",
+   "vorname": "Stephan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Strauss-Köster",
+   "vorname": "Katja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Streeck",
+   "vorname": "Hendrik",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Stumpp",
+   "vorname": "Christina",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Tauschwitz",
+   "vorname": "Vivian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Theis",
+   "vorname": "Roland",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Theiss",
+   "vorname": "Hans",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Throm",
+   "vorname": "Alexander",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Timmermann-Fechter",
+   "vorname": "Astrid",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Vieregge",
+   "vorname": "Kerstin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Vogt",
+   "vorname": "Oliver",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Volkmann",
+   "vorname": "Johannes",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Vries",
+   "vorname": "Christoph",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Wadephul",
+   "vorname": "Johann David",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Walch",
+   "vorname": "Siegfried",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Warken",
+   "vorname": "Nina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Weisgerber",
+   "vorname": "Anja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Weiss",
+   "vorname": "Maria-Lena",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Whittaker",
+   "vorname": "Kai",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Wiegelmann",
+   "vorname": "Johannes",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Wiener",
+   "vorname": "Klaus",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Willsch",
+   "vorname": "Klaus-Peter",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Winkel",
+   "vorname": "Johannes",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Winkelmeier-Becker",
+   "vorname": "Elisabeth",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Winkler",
+   "vorname": "Tobias",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Wittmann",
+   "vorname": "Mechthilde",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Wulf",
+   "vorname": "Mareike Lotte",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Zeulner",
+   "vorname": "Emmi",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Ziemiak",
+   "vorname": "Paul",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Zippelius",
+   "vorname": "Nicolas",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "CDU/CSU",
+   "name": "Zobel",
+   "vorname": "Vanessa",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Arpaschi",
+   "vorname": "Alexander",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Bachmann",
+   "vorname": "Carolin",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Balten",
+   "vorname": "Adam",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Baum",
+   "vorname": "Christina",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Baumann",
+   "vorname": "Bernd",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Becker",
+   "vorname": "Carsten",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Bernhard",
+   "vorname": "Marc",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Bessin",
+   "vorname": "Birgit",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Birghan",
+   "vorname": "Christoph",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Bleck",
+   "vorname": "Andreas",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Bloch",
+   "vorname": "Joachim",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Blos",
+   "vorname": "Michael",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Bochmann",
+   "vorname": "René",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Boehringer",
+   "vorname": "Peter",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Bohnhof",
+   "vorname": "Peter",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Bollmann",
+   "vorname": "Gereon",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Braga",
+   "vorname": "Torben",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Brandes",
+   "vorname": "Dirk",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Brandner",
+   "vorname": "Stephan",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Brucker",
+   "vorname": "Erhard",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Bühl",
+   "vorname": "Marcus",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Chrupalla",
+   "vorname": "Tino",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Curio",
+   "vorname": "Gottfried",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Dietz",
+   "vorname": "Thomas",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Douglas",
+   "vorname": "Christian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Drößler",
+   "vorname": "Christopher",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Ebenberger",
+   "vorname": "Tobias",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Espendiller",
+   "vorname": "Michael",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Fehre",
+   "vorname": "Micha",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Felser",
+   "vorname": "Peter",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Feser",
+   "vorname": "Jan",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Fetsch",
+   "vorname": "Thomas",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Finger",
+   "vorname": "Hauke",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Frohnmaier",
+   "vorname": "Markus",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Frömming",
+   "vorname": "Götz",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Galla",
+   "vorname": "Rainer",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Gamanov",
+   "vorname": "Boris",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Gauland",
+   "vorname": "Alexander",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Giersch",
+   "vorname": "Alexis L.",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Gläser",
+   "vorname": "Ronald",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Gnauck",
+   "vorname": "Hannes",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Goßner",
+   "vorname": "Hans-Jürgen",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Gottschalk",
+   "vorname": "Kay",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Grimm",
+   "vorname": "Christoph",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Groß",
+   "vorname": "Rainer",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Hahn",
+   "vorname": "Ingo",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Haise",
+   "vorname": "Lars",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Hanker",
+   "vorname": "Mirco",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Haug",
+   "vorname": "Jochen",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Helferich",
+   "vorname": "Matthias",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Hemmelgarn",
+   "vorname": "Udo Theodor",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Henze",
+   "vorname": "Stefan",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Hess",
+   "vorname": "Martin",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Hess",
+   "vorname": "Nicole",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Hilmer",
+   "vorname": "Olaf",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Hilse",
+   "vorname": "Karsten",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Höchst",
+   "vorname": "Nicole",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Holm",
+   "vorname": "Leif-Erik",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Huy",
+   "vorname": "Gerrit",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Jacobi",
+   "vorname": "Fabian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Janich",
+   "vorname": "Steffen",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Jünger",
+   "vorname": "Robin",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Kaufmann",
+   "vorname": "Malte",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Kaufmann",
+   "vorname": "Michael",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Kempf",
+   "vorname": "Martina",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Keuter",
+   "vorname": "Stefan",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Kever",
+   "vorname": "Rocco",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Kleinschmidt",
+   "vorname": "Kurt",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Kneller",
+   "vorname": "Maximilian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Koch",
+   "vorname": "Heinrich",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Koegel",
+   "vorname": "Jürgen",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Köhler",
+   "vorname": "Achim",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Komning",
+   "vorname": "Enrico",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "König",
+   "vorname": "Jörn",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Korell",
+   "vorname": "Thomas",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Kotré",
+   "vorname": "Steffen",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Kraft",
+   "vorname": "Rainer",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Krah",
+   "vorname": "Maximilian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Krauthausen",
+   "vorname": "Manuel",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Ladzinski",
+   "vorname": "Thomas",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Lamely",
+   "vorname": "Pierre",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Lensing",
+   "vorname": "Sascha",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Lucassen",
+   "vorname": "Rüdiger",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Maack",
+   "vorname": "Sebastian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Martel",
+   "vorname": "Johann",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Matzerath",
+   "vorname": "Markus",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Mayer",
+   "vorname": "Andreas",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Meiners",
+   "vorname": "Danny",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Meyer-Soltau",
+   "vorname": "Knuth",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Minich",
+   "vorname": "Sergej",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Mixl",
+   "vorname": "Reinhard",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Möller",
+   "vorname": "Stefan",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Moosdorf",
+   "vorname": "Matthias",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Münzenmaier",
+   "vorname": "Sebastian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Naujok",
+   "vorname": "Edgar",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Nieland",
+   "vorname": "Iris",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Nolte",
+   "vorname": "Jan Ralf",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Otten",
+   "vorname": "Gerold",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Paul",
+   "vorname": "Andreas",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Pauli",
+   "vorname": "Denis",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Peterka",
+   "vorname": "Tobias Matthias",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Protschka",
+   "vorname": "Stephan",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Przygodda",
+   "vorname": "Kerstin",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Queckemeyer",
+   "vorname": "Marcel",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Rathert",
+   "vorname": "Anna",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Raue",
+   "vorname": "Arne",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Reck",
+   "vorname": "Christian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Rehm",
+   "vorname": "Lukas",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Reichardt",
+   "vorname": "Martin",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Renner",
+   "vorname": "Martin Erwin",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Rentzsch",
+   "vorname": "Matthias",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Rothfuß",
+   "vorname": "Rainer",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Rudzka",
+   "vorname": "Angela",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Rupp",
+   "vorname": "Ruben",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schattner",
+   "vorname": "Bernd",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Scheirich",
+   "vorname": "Raimond",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Scheurell",
+   "vorname": "Volker",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schielke-Ziesing",
+   "vorname": "Ulrike",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schieske",
+   "vorname": "Lars",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schießl",
+   "vorname": "Carina",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schiller",
+   "vorname": "Manfred",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schmidt",
+   "vorname": "Jan Wenzel",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schmidt",
+   "vorname": "Julian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schmidt",
+   "vorname": "Paul",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schröder",
+   "vorname": "Stefan",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schroeter",
+   "vorname": "Georg",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schuhmann",
+   "vorname": "Bernd",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Schulz",
+   "vorname": "Uwe",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Seifert",
+   "vorname": "Dario",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Sichert",
+   "vorname": "Martin",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Springer",
+   "vorname": "René",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Stephan",
+   "vorname": "Thomas",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Storch",
+   "vorname": "Beatrix",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Strauß",
+   "vorname": "Otto",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Teich",
+   "vorname": "Tobias",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Teske",
+   "vorname": "Robert",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Treuheit",
+   "vorname": "Bastian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Uhr",
+   "vorname": "Martina",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Weidel",
+   "vorname": "Alice",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Weiser",
+   "vorname": "Mathias",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Weiss",
+   "vorname": "Claudia",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Wendorf",
+   "vorname": "Sven",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Wiehle",
+   "vorname": "Wolfgang",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Wirth",
+   "vorname": "Christian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Wolf",
+   "vorname": "Alexander",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Zaum",
+   "vorname": "Christian",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Zerbin",
+   "vorname": "Daniel",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Ziegler",
+   "vorname": "Kay-Uwe",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Zimmer",
+   "vorname": "Diana",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Zirwes",
+   "vorname": "Jörg",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "AfD",
+   "name": "Zons",
+   "vorname": "Ulrich",
+   "vote": "ja"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Abdi",
+   "vorname": "Sanae",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Ahmetović",
+   "vorname": "Adis",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Alabali Radovan",
+   "vorname": "Reem",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Baldy",
+   "vorname": "Daniel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Bartol",
+   "vorname": "Sören",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Bas",
+   "vorname": "Bärbel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Behrens",
+   "vorname": "Jens",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Bettermann",
+   "vorname": "Daniel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Blankenburg",
+   "vorname": "Jakob",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Bollmann",
+   "vorname": "Hendrik",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Cademartori",
+   "vorname": "Isabel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Castellucci",
+   "vorname": "Lars",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Coße",
+   "vorname": "Jürgen",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Demir",
+   "vorname": "Hakan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Dieren",
+   "vorname": "Jan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Dilcher",
+   "vorname": "Esther",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Dittmar",
+   "vorname": "Sabine",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Döring",
+   "vorname": "Felix",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Droßmann",
+   "vorname": "Falko",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Eichwede",
+   "vorname": "Sonja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Esdar",
+   "vorname": "Wiebke",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Esken",
+   "vorname": "Saskia",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Faeser",
+   "vorname": "Nancy",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Fechner",
+   "vorname": "Johannes",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Fiedler",
+   "vorname": "Sebastian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Gerster",
+   "vorname": "Martin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Glöckner",
+   "vorname": "Angelika",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Griese",
+   "vorname": "Kerstin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Hagedorn",
+   "vorname": "Bettina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Hakverdi",
+   "vorname": "Metin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Hartmann",
+   "vorname": "Sebastian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Heil (Peine)",
+   "vorname": "Hubertus",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Heiligenstadt",
+   "vorname": "Frauke",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Heinrich",
+   "vorname": "Gabriela",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Heselhaus",
+   "vorname": "Nadine",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Heubach",
+   "vorname": "Heike",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Hostert",
+   "vorname": "Jasmina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Hubertz",
+   "vorname": "Verena",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Junge",
+   "vorname": "Frank",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Kaczmarek",
+   "vorname": "Oliver",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Kaiser",
+   "vorname": "Elisabeth",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Karaahmetoğlu",
+   "vorname": "Macit",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Kersten",
+   "vorname": "Franziska",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Kleebank",
+   "vorname": "Helmut",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Klingbeil",
+   "vorname": "Lars",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Klose",
+   "vorname": "Annika",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Klüssendorf",
+   "vorname": "Tim",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Kofler",
+   "vorname": "Bärbel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Kramme",
+   "vorname": "Anette",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Kreiser",
+   "vorname": "Dunja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Kröber",
+   "vorname": "Martin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Lauterbach",
+   "vorname": "Karl",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Limbacher",
+   "vorname": "Esra",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Lindh",
+   "vorname": "Helge",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Lugk",
+   "vorname": "Bettina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Machalet",
+   "vorname": "Tanja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Mackensen-Geis",
+   "vorname": "Isabel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Mann",
+   "vorname": "Holger",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Marvi",
+   "vorname": "Parsa",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Mast",
+   "vorname": "Katja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Michel",
+   "vorname": "Kathrin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Miersch",
+   "vorname": "Matthias",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Mieves",
+   "vorname": "Matthias David",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Moll",
+   "vorname": "Claudia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Möller",
+   "vorname": "Siemtje",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Mützenich",
+   "vorname": "Rolf",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Nasr",
+   "vorname": "Rasha",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Ortleb",
+   "vorname": "Josephine",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Özdemir (Duisburg)",
+   "vorname": "Mahmut",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Özoğuz",
+   "vorname": "Aydan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Pantazis",
+   "vorname": "Christos",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Pawlik",
+   "vorname": "Natalie",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Peick",
+   "vorname": "Jens",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Pistorius",
+   "vorname": "Boris",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Poschmann",
+   "vorname": "Sabine",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Rabanus",
+   "vorname": "Martin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Reichardt",
+   "vorname": "Truels",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Rinkert",
+   "vorname": "Daniel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Rohde",
+   "vorname": "Dennis",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Roloff",
+   "vorname": "Sebastian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Rottwilm",
+   "vorname": "Philipp",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Rudolph",
+   "vorname": "Thorsten",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Rump",
+   "vorname": "Daniela",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Rützel",
+   "vorname": "Bernd",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Saathoff",
+   "vorname": "Johann",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schätzl",
+   "vorname": "Johannes",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Scheer",
+   "vorname": "Nina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schmid",
+   "vorname": "Christoph",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schmid",
+   "vorname": "Nils",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schmidt",
+   "vorname": "Uwe",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schmidt (Wetzlar)",
+   "vorname": "Dagmar",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schneider (Erfurt)",
+   "vorname": "Carsten",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Scholz",
+   "vorname": "Olaf",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schraps",
+   "vorname": "Johannes",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schrodi",
+   "vorname": "Michael",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schulze",
+   "vorname": "Svenja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schwabe",
+   "vorname": "Frank",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schwartze",
+   "vorname": "Stefan",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schwarz",
+   "vorname": "Andreas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Schwarzelühr-Sutter",
+   "vorname": "Rita",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Seitzl",
+   "vorname": "Lina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Stadler",
+   "vorname": "Svenja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Stegner",
+   "vorname": "Ralf",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Stüwe",
+   "vorname": "Ruppert",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Thews",
+   "vorname": "Michael",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Töns",
+   "vorname": "Markus",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Träger",
+   "vorname": "Carsten",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Troff-Schaffarzyk",
+   "vorname": "Anja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Türk-Nachbaur",
+   "vorname": "Derya",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Vogel",
+   "vorname": "Ingo",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Völlers",
+   "vorname": "Marja-Liisa",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Vöpel",
+   "vorname": "Dirk",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Wagner",
+   "vorname": "Carolin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Wallstein",
+   "vorname": "Maja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Walter",
+   "vorname": "Daniel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Wegge",
+   "vorname": "Carmen",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Wiese",
+   "vorname": "Dirk",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Yüksel",
+   "vorname": "Serdar",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Zierke",
+   "vorname": "Stefan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "SPD",
+   "name": "Zorn",
+   "vorname": "Armand",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Alhamwi",
+   "vorname": "Alaa",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Al-Wazir",
+   "vorname": "Tarek",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Amtsberg",
+   "vorname": "Luise",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Asar",
+   "vorname": "Ayse",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Audretsch",
+   "vorname": "Andreas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Badum",
+   "vorname": "Lisa",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Banaszak",
+   "vorname": "Felix",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Bär",
+   "vorname": "Karl",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Beck",
+   "vorname": "Katharina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Benner",
+   "vorname": "Lukas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Brantner",
+   "vorname": "Franziska",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Broßart",
+   "vorname": "Victoria",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Brugger",
+   "vorname": "Agnieszka",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Dahmen",
+   "vorname": "Janosch",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Detzer",
+   "vorname": "Sandra",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Dillschneider",
+   "vorname": "Jeanne",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Dröge",
+   "vorname": "Katharina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Düring",
+   "vorname": "Deborah",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Dzienus",
+   "vorname": "Timon",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Ebner",
+   "vorname": "Harald",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Eckert",
+   "vorname": "Leon",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Emmerich",
+   "vorname": "Marcel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Fischer",
+   "vorname": "Simone",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Gambir",
+   "vorname": "Schahina",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Gastel",
+   "vorname": "Matthias",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Gesenhues",
+   "vorname": "Jan-Niclas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Göring-Eckardt",
+   "vorname": "Katrin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Grau",
+   "vorname": "Armin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Gumnior",
+   "vorname": "Lena",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Haßelmann",
+   "vorname": "Britta",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Heitmann",
+   "vorname": "Linda",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Heuberger",
+   "vorname": "Moritz",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Hofreiter",
+   "vorname": "Anton",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Joswig",
+   "vorname": "Julian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Kaddor",
+   "vorname": "Lamya",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Kappert-Gonther",
+   "vorname": "Kirsten",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Kellner",
+   "vorname": "Michael",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Khan",
+   "vorname": "Misbah",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Kopf",
+   "vorname": "Chantal",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Lang",
+   "vorname": "Ricarda",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Lehmann",
+   "vorname": "Sven",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Lemke",
+   "vorname": "Steffi",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Lenhard",
+   "vorname": "Rebecca",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Limburg",
+   "vorname": "Helge",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Loop",
+   "vorname": "Denise",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Lübcke",
+   "vorname": "Andrea",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Lucks",
+   "vorname": "Max",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Lührmann",
+   "vorname": "Anna",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Mayer",
+   "vorname": "Zoe",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Michaelsen",
+   "vorname": "Swantje Henrike",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Mihalic",
+   "vorname": "Irene",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Mijatović",
+   "vorname": "Boris",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Müller",
+   "vorname": "Claudia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Müller",
+   "vorname": "Sascha",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Nanni",
+   "vorname": "Sara",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Nick",
+   "vorname": "Ophelia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Notz",
+   "vorname": "Konstantin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Nouripour",
+   "vorname": "Omid",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Otte",
+   "vorname": "Karoline",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Paus",
+   "vorname": "Lisa",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Piechotta",
+   "vorname": "Paula",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Polat",
+   "vorname": "Filiz",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Reinalter",
+   "vorname": "Anja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Rietenberg",
+   "vorname": "Sylvia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Roth",
+   "vorname": "Claudia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Rüffer",
+   "vorname": "Corinna",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Schäfer",
+   "vorname": "Jamila",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Schäfer",
+   "vorname": "Sebastian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Schauws",
+   "vorname": "Ulle",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Schmidt",
+   "vorname": "Stefan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Schneider",
+   "vorname": "Julia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Schönberger",
+   "vorname": "Marlene",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Slawik",
+   "vorname": "Nyke",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Steffen",
+   "vorname": "Till",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Stein",
+   "vorname": "Sandra",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Steinmüller",
+   "vorname": "Hanna",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Taher Saleh",
+   "vorname": "Kassem",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Tesfaiesus",
+   "vorname": "Awet",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Uhlig",
+   "vorname": "Katrin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Verlinden",
+   "vorname": "Julia",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Vriesema",
+   "vorname": "Mayra",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Wagener",
+   "vorname": "Niklas",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Wagener",
+   "vorname": "Robin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Wagner",
+   "vorname": "Johannes",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "BÜ90/GR",
+   "name": "Winklmann",
+   "vorname": "Tina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Achelwilm",
+   "vorname": "Doris",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Akbulut",
+   "vorname": "Gökay",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Aken",
+   "vorname": "Jan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Arndt",
+   "vorname": "Michael",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Bartsch",
+   "vorname": "Dietmar",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Bauer",
+   "vorname": "Marcel",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Becker",
+   "vorname": "Desiree",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Beutin",
+   "vorname": "Lorenz Gösta",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Bock",
+   "vorname": "Violetta",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Bosch",
+   "vorname": "Jorrit",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Böttger",
+   "vorname": "Janina",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Bremer",
+   "vorname": "Anne-Mieke",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Brückner",
+   "vorname": "Maik",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Bünger",
+   "vorname": "Clara",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Cezanne",
+   "vorname": "Jörg",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Conrad",
+   "vorname": "Agnes",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Edis",
+   "vorname": "Mirze",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Eißing",
+   "vorname": "Mandy",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Fahl",
+   "vorname": "Fabian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Fey",
+   "vorname": "Katrin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Gebel",
+   "vorname": "Kathrin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Gennburg",
+   "vorname": "Katalin",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Glaser",
+   "vorname": "Vinzenz",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Gohlke",
+   "vorname": "Nicole",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Görke",
+   "vorname": "Christian",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Gürpinar",
+   "vorname": "Ates",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Gysi",
+   "vorname": "Gregor",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Hermeier",
+   "vorname": "Mareike",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Hoß",
+   "vorname": "Luke",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Ince",
+   "vorname": "Cem",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Kaminski",
+   "vorname": "Maren",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Koçak",
+   "vorname": "Ferat",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Köktürk",
+   "vorname": "Cansin",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Köstering",
+   "vorname": "Jan",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Latendorf",
+   "vorname": "Ina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Lay",
+   "vorname": "Caren",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Lemke",
+   "vorname": "Sonja",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Mazzi",
+   "vorname": "Tamara",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Meiser",
+   "vorname": "Pascal",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Merendino",
+   "vorname": "Stella",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Mirow",
+   "vorname": "Sahra",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Neuhäuser",
+   "vorname": "Charlotte Antonia",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Özdemir",
+   "vorname": "Cansu",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Pantisano",
+   "vorname": "Luigi",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Pellmann",
+   "vorname": "Sören",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Ramelow",
+   "vorname": "Bodo",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Reichinnek",
+   "vorname": "Heidi",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Reisner",
+   "vorname": "Lea",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Salihović",
+   "vorname": "Zada",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Schliesing",
+   "vorname": "David",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Schötz",
+   "vorname": "Evelyn",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Schubert",
+   "vorname": "Lisa",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Schwerdtner",
+   "vorname": "Ines",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Stange",
+   "vorname": "Julia-Christina",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Thoden",
+   "vorname": "Ulrich",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Trabert",
+   "vorname": "Gerhard",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Valent",
+   "vorname": "Aaron",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Vandre",
+   "vorname": "Isabelle",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Vogtschmidt",
+   "vorname": "Donata",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Vollath",
+   "vorname": "Sarah",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Wagner",
+   "vorname": "Sascha",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Willnat",
+   "vorname": "Christin",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Wissler",
+   "vorname": "Janine",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Die Linke",
+   "name": "Zerr",
+   "vorname": "Anne",
+   "vote": "nein"
+  },
+  {
+   "fraktion": "Fraktionslos",
+   "name": "Knodel",
+   "vorname": "Sieghard",
+   "vote": "nichtabgegeben"
+  },
+  {
+   "fraktion": "Fraktionslos",
+   "name": "Seidler",
+   "vorname": "Stefan",
+   "vote": "nein"
+  }
+ ]
+}

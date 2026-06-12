@@ -1,0 +1,184 @@
+{
+  "votes": [
+    {
+      "id": "BT-2026-energiesteuer",
+      "official_title": "Zweites Gesetz zur Änderung des Energiesteuergesetzes zur temporären Absenkung der Energiesteuer für Kraftstoffe (2. Energiesteuersenkungsgesetz)",
+      "doc_refs": ["Gesetzentwurf: Drucksache 21/5321", "Beschlussempfehlung des Finanzausschusses: Drucksache 21/5546"],
+      "proposed_by": "Fraktionen CDU/CSU und SPD (Koalitionsfraktionen)",
+      "form": "2./3. Beratung (Schlussabstimmung in der vom Finanzausschuss geänderten Fassung), namentliche Abstimmung, 24.04.2026, Sitzung 75",
+      "what_a_ja_approves": "Ein Ja senkt die Energiesteuer auf Benzin und Diesel vom 1. Mai bis 30. Juni 2026 um 14,04 Cent je Liter; mit dem Mehrwertsteueranteil sind das rund 17 Cent je Liter an der Zapfsäule.",
+      "substance": [
+        {"fact": "The law cuts the energy tax rates on petrol (Benzin) and diesel by 14,04 Cent je Liter, temporarily.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-de-energiesteuersenkung-1165890"},
+        {"fact": "Including the VAT share on the cut, the intended relief at the pump is approximately 17 Cent je Liter.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-de-energiesteuersenkung-1165890"},
+        {"fact": "The cut is time-limited to two months: 1 May 2026 through 30 June 2026.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-de-energiesteuersenkung-1165890"},
+        {"fact": "Fiscal cost: about 1,6 Milliarden Euro in foregone tax revenue for 2026.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-de-energiesteuersenkung-1165890"},
+        {"fact": "Passed 451 ja, 134 nein, 1 Enthaltung (matches the official XLSX ground truth).", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-de-energiesteuersenkung-1165890"},
+        {"fact": "The Bundesrat approved the law in a special session the same day (1064. Sitzung, 24 April 2026), so it could take effect on 1 May.", "source": "https://www.das-parlament.de/wirtschaft/finanzen/bundestag-und-bundesrat-billigen-tankrabatt"},
+        {"fact": "In the committee stage a separate, voluntary 'Entlastungsprämie' of up to 1.000 Euro (tax- and contribution-free, payable by employers until 30 June 2027) was added via a DIFFERENT bill (Steuerberatungsgesetz package) and voted separately the same day - it is NOT part of this roll call.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-pa-finanzen-1166336"},
+        {"fact": "The Beschlussempfehlung covering both fuel-tax and the Grünen electricity-tax bill was Drucksache 21/5546 (Finanzausschuss).", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-pa-finanzen-1166336"}
+      ],
+      "fault_lines": {
+        "ja_side": "Fast, broad relief while fuel prices are high: the coalition argued the 17-cent cut relieves consumers by 1,6 Milliarden Euro, dampens inflation and protects jobs (SPD, Michael Thews); CDU/CSU (Matthias Hiller) stressed commuters in rural areas, lower-income households, families and businesses (trades, logistics, agriculture). AfD voted ja on the logic that any quick relief is better than none (Kay Gottschalk: agreed 'reluctantly, because quick relief effects are useful'), while calling it too small and too short.",
+        "nein_side": "A price subsidy on fossil fuel that may not reach drivers: Grüne (Andreas Audretsch) called it counterproductive - the law itself acknowledges it increases fossil fuel consumption - and pointed to blocked renewables instead; Linke (Doris Achelwilm) said it 'kopiert gescheiterte Maßnahmen aus Ampelzeiten', mainly benefits oil companies via pass-through failure (Mitnahmeeffekte), and demanded a windfall profit tax instead.",
+        "systemic": "Classic tension between immediate, visible relief at the pump (regressive-but-fast tax instrument, repeat of the 2022 Tankrabatt) and the risks that the cut is captured by sellers rather than consumers and that it subsidizes exactly the consumption climate law tries to reduce."
+      },
+      "stories": [
+        "The AfD voted WITH the coalition: the 451 ja combine CDU/CSU (201), SPD (113) and the whole AfD (136). AfD speaker Kay Gottschalk said they agreed 'reluctantly', called the cut 'ein Tropfen auf den heißen Stein' because it lasts only two months and expires right at the start of the holiday season, and demanded a commuter allowance of 50 cents per kilometre instead.",
+        "taz headlined the day 'Union, SPD und AfD machen Mineralöl-Konzernen eine Freude' - immediately after the decision, pump prices jumped more sharply than any midday spike since the 12-o'clock pricing rule began (E10 +14,1 Cent, Diesel +16,3 Cent), and Finance Minister Klingbeil publicly urged oil companies to pass the roughly 17 cents on to consumers.",
+        "It was a double-header day: the same sitting first passed the coalition's fuel-tax cut by roll call, then rejected the Grünen electricity-tax bill in a second roll call minutes later."
+      ],
+      "aftermath": [
+        "In force 1 May 2026; the Bundeskartellamt's Markttransparenzstelle monitored pass-through. In the first week pump prices fell ~12 Cent (E5/E10) and ~15 Cent (Diesel) while wholesale prices fell ~17 and ~24 Cent net - ADAC and ifo analyses found the rebate was not fully passed on; vzbv called it 'völlig inakzeptabel'.",
+        "Economists (e.g. Marcel Fratzscher) criticized the subsidy as expensive, economically inefficient and climate-politically irresponsible."
+      ],
+      "sources": [
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-de-energiesteuersenkung-1165890",
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-pa-finanzen-1166336",
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw16-de-energiesteuer-koalition-1165318",
+        "https://www.das-parlament.de/wirtschaft/finanzen/bundestag-und-bundesrat-billigen-tankrabatt",
+        "https://taz.de/Steuerfreie-1000-Euro-Entlastungspraemie/!6173634/",
+        "https://www.vzbv.de/pressemitteilungen/voellig-inakzeptabel-tankrabatt-kommt-nicht",
+        "https://www.bundeskartellamt.de/DE/Aufgaben/MarkttransparenzstelleFuerKraftstoffe/Tankrabatt/Tankrabatt_node.html",
+        "https://www.bundesrat.de/DE/plenum/bundesrat-kompakt/26/1064/1064-node.html"
+      ],
+      "flags": [
+        "Press accounts conflate the two same-day votes: taz describes the Grünen as abstaining and only the Linke as voting against the Tankrabatt, but the official XLSX (ground truth) has Grüne 76 nein and Linke 57 nein on this roll call, with the single Enthaltung from CDU/CSU. The abstain-pattern (Koalition ja, AfD+Linke nein, Grüne Enthaltung) belongs to the separate, non-roll-call vote on the 1.000-Euro-Entlastungsprämie the same day. Official tally stands; no textarchiv contradiction found.",
+        "Totals 451/134 exceed the five-party sums (450/133) by one each - consistent with fraktionslose MPs voting; not a discrepancy.",
+        "One earlier summary claimed the Entlastungsprämie bill was 'rejected by Bundesrat on May 8, 2026' - not independently verified; it concerns the other bill, not this roll call. Treat as unverified."
+      ]
+    },
+    {
+      "id": "BT-2026-stromsteuer",
+      "official_title": "Entwurf eines Gesetzes zur Änderung des Stromsteuergesetzes und weiterer Vorschriften",
+      "doc_refs": ["Gesetzentwurf: Drucksache 21/5320", "Beschlussempfehlung des Finanzausschusses: Drucksache 21/5546"],
+      "proposed_by": "Fraktion BÜNDNIS 90/DIE GRÜNEN",
+      "form": "2. Beratung / Schlussabstimmung nach Beschlussempfehlung des Finanzausschusses (Ablehnung empfohlen), namentliche Abstimmung, 24.04.2026, Sitzung 75",
+      "what_a_ja_approves": "Ein Ja senkt die Stromsteuer für alle Verbraucherinnen, Verbraucher und Unternehmen auf das europarechtlich zulässige Minimum: 1 Euro je Megawattstunde für nichtbetriebliche und 0,50 Euro je Megawattstunde für betriebliche Verwendung.",
+      "substance": [
+        {"fact": "The Grünen bill would cut the electricity tax for ALL consumers to the EU-law minimum: 1 Euro/MWh (= 0,1 Cent/kWh) for non-business use and 0,50 Euro/MWh (= 0,05 Cent/kWh) for business use.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw16-de-stromsteuer-1165322"},
+        {"fact": "Estimated fiscal cost: rund 6 Milliarden Euro per year in lost federal tax revenue.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw16-de-stromsteuer-1165322"},
+        {"fact": "Stated purpose: relieve consumers facing rising energy prices and create incentives to use electricity instead of fossil fuels (electrification of heat and transport).", "source": "https://www.bundestag.de/presse/hib/kurzmeldungen-1165458"},
+        {"fact": "Rejected 270 ja to 310 nein with 0 Enthaltungen, on the Finanzausschuss recommendation to reject - the closest division of these four votes.", "source": "https://www.bundestag.de/parlament/plenum/abstimmung/abstimmung?id=1000"},
+        {"fact": "The 270 ja came from Grüne, AfD and Linke together; the 310 nein were the coalition (CDU/CSU and SPD).", "source": "https://www.das-parlament.de/wirtschaft/finanzen/bundestag-und-bundesrat-billigen-tankrabatt"},
+        {"fact": "It was voted the same morning as, and as a counter-model to, the coalition's fossil-fuel tax cut: tax electricity less rather than petrol less.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-de-energiesteuersenkung-1165890"}
+      ],
+      "fault_lines": {
+        "ja_side": "Cheap electricity as the cleaner relief: Grüne (Julia Verlinden) called it 'echte Entlastung' on 'die sauberste Energie, die wir haben', benefiting every household and business and speeding electrification. AfD and Linke each voted ja from their own angle - both favour cutting the electricity tax burden on consumers - producing a rare AfD+Grüne+Linke alignment.",
+        "nein_side": "Unfunded promise: CDU/CSU (Stefan Korbach) said the bill offers 'keine Antwort, wie die Gegenfinanzierung aussehen soll', calling 6 Milliarden Euro a 'relevante Größenordnung' under current budget constraints; SPD (Michael Thews) dismissed it as a 'Schaufensterantrag' that is 'nicht finanzierbar' and 'nicht praxistauglich'.",
+        "systemic": "Both camps claim the consumer-relief mantle; the split is over which energy carrier to make cheaper (electricity vs fuel) and over fiscal room: a permanent 6-billion-per-year cut versus a temporary 1,6-billion one."
+      },
+      "stories": [
+        "The deck's oddest coalition: the entire AfD (136), Grüne (75) and Linke (57) all pressed ja on a Grünen bill, while the governing CDU/CSU and SPD voted it down 310 to 270 - the narrowest margin of these four votes.",
+        "The whiplash optics of the morning: the same parliament that had just cut the tax on petrol and diesel by roughly 17 cents rejected cutting the tax on electricity to the EU minimum within the hour.",
+        "AfD's ja made the arithmetic close: without any one of the three opposition blocs the vote would not have been close at all; with all three it still fell 40 votes short."
+      ],
+      "aftermath": [
+        "The rejection left the general electricity tax unchanged for households; in a later committee hearing the ADAC publicly backed cutting the Stromsteuer (arguing cheaper power helps e-mobility).",
+        "Pressure on the coalition over electricity prices continued - the Bundestag had already held a heated debate in February/March 2026 over missed climate targets and high energy prices."
+      ],
+      "sources": [
+        "https://www.bundestag.de/parlament/plenum/abstimmung/abstimmung?id=1000",
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw16-de-stromsteuer-1165322",
+        "https://www.bundestag.de/presse/hib/kurzmeldungen-1165458",
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-pa-finanzen-1166336",
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw17-de-energiesteuersenkung-1165890",
+        "https://www.das-parlament.de/wirtschaft/finanzen/bundestag-und-bundesrat-billigen-tankrabatt",
+        "https://www.bundestag.de/presse/hib/kurzmeldungen-1166548",
+        "https://www.abgeordnetenwatch.de/bundestag/21/abstimmungen/aenderung-des-stromsteuergesetzes-und-weiterer-vorschriften"
+      ],
+      "flags": [
+        "AfD's own floor rationale for voting ja was not found in the fetched debate excerpts (the kw16 first-reading article records no AfD position on the electricity tax); their ja is certain from the tally, the reasoning above ('relief, own angle') is inferred from their general relief rhetoric in the parallel fuel-tax debate - authors should not put a specific AfD quote on this card.",
+        "270 ja exceeds the three-party sum (268) by two - fraktionslose MPs; not a discrepancy.",
+        "The same Beschlussempfehlung Drucksache 21/5546 covered both the coalition fuel-tax bill (acceptance) and this bill (rejection)."
+      ]
+    },
+    {
+      "id": "BT-2026-bafoeg",
+      "official_title": "Beschlussempfehlung des Ausschusses für Forschung, Technologie, Raumfahrt und Technikfolgenabschätzung zu dem Antrag der Fraktion BÜNDNIS 90/DIE GRÜNEN 'Bildung bezahlbar machen – BAföG-Reform jetzt'",
+      "doc_refs": ["Antrag: Drucksache 21/2234 (15.10.2025)", "Beschlussempfehlung: Drucksache 21/5130"],
+      "proposed_by": "Antrag der Fraktion BÜNDNIS 90/DIE GRÜNEN (Asar, Lübcke, Müller, Reinalter, Khan, Dzienus, Steinmüller u.a.); zur Abstimmung stand die Beschlussempfehlung des Forschungsausschusses (Empfehlung: Ablehnung)",
+      "form": "Namentliche Abstimmung über die Beschlussempfehlung (Ablehnung des Antrags empfohlen), 11.06.2026, Sitzung 83. SEMANTICS: Ja = der Beschlussempfehlung folgen = den Antrag ABLEHNEN; the Grünen themselves requested the roll call.",
+      "what_a_ja_approves": "Ein Ja folgt dem Ausschuss und lehnt den Antrag der Grünen ab, der die Bundesregierung zu einem Gesetzentwurf für eine umfassende BAföG-Reform ab dem Sommersemester 2026 auffordert. Ein Ja beerdigt also die Reformforderung.",
+      "substance": [
+        {"fact": "The Antrag demands a BAföG bill 'ab dem Sommersemester 2026' raising the Grundbedarf for students 'von 475 Euro auf 563 Euro' - to the level of the Bürgergeld-Regelsatz - with Schüler-BAföG, AFBG and Berufsausbildungsbeihilfe raised analogously, plus an automatic coupling mechanism to the Bürgergeld rate.", "source": "https://dserver.bundestag.de/btd/21/022/2102234.pdf"},
+        {"fact": "It demands the Wohnkostenpauschale be 'dynamisch an das regionale Mietniveau angepasst', following the tiers of the Wohngeldverordnung. Context in the Antrag: the flat rate sits at 380 Euro while an average WG room costs 505 Euro, and 650-750 Euro in Berlin or Munich.", "source": "https://dserver.bundestag.de/btd/21/022/2102234.pdf"},
+        {"fact": "It demands 'eine monatliche 100-Euro-Pauschale' for training costs (Fachbücher, Kopien, Schreibwaren, Labormaterialien, digitale Geräte).", "source": "https://dserver.bundestag.de/btd/21/022/2102234.pdf"},
+        {"fact": "Further demands: parental/spousal income allowances raised by another 10 Prozent; two Flexibilitätssemester beyond the Förderhöchstdauer; subject change without penalty; part-time study eligible; loan repayment cap lowered to 38 instalments (knapp 5.000 Euro); one-time fully digital application with automatic, application-free renewals; orphan's pension up to 520 Euro/month exempt from means-testing.", "source": "https://dserver.bundestag.de/btd/21/022/2102234.pdf"},
+        {"fact": "Background figures in the Antrag: only ~11,5 Prozent of students receive BAföG (612.800 recipients in 2024, lowest since 2000, -3,6 Prozent year-on-year) while 36 Prozent of students are at risk of poverty; the 2026 draft budget CUTS the BAföG line by 250 Mio. Euro despite the Koalitionsvertrag promising a comprehensive reform.", "source": "https://dserver.bundestag.de/btd/21/022/2102234.pdf"},
+        {"fact": "The Beschlussempfehlung (21/5130, Forschungsausschuss) recommended rejection; the roll call adopted it 442 ja to 141 nein, 0 Enthaltungen - CDU/CSU, SPD and AfD together buried the reform demand against Grüne and Linke.", "source": "https://www.abgeordnetenwatch.de/bundestag/21/abstimmungen/ablehnung-einer-umfassenden-bafoeg-reform-beschlussempfehlung"},
+        {"fact": "A second, newer Grünen BAföG-Antrag (21/5780, filed 5 May 2026: regional rent adjustment, cost-of-living-aligned rates, opening the 1.000-Euro Studienstarthilfe to BAföG recipients) was rejected the same day by simple vote.", "source": "https://www.forschung-und-lehre.de/politik/bundestag-lehnt-antraege-ab-7742"}
+      ],
+      "fault_lines": {
+        "ja_side": "(= reject the Antrag) The coalition argued the government, not opposition motions, will deliver the reform: SPD speakers (Saskia Esken: the government needs 'no tutoring' from the Greens; Lina Seitzl: 'we will adjust amounts... less bureaucracy and faster digital procedures') insisted the rise is coming and must be properly funded; CDU/CSU argued the real problem is bureaucracy and information, citing that ~70 percent of eligible non-claimants wrongly believe they are ineligible. AfD also voted to reject.",
+        "nein_side": "(= keep the reform demand alive) Grüne: state support is failing - two of three students work to finance their studies, every third lives in poverty (Misbah Khan) - and the budget cut breaks the coalition's own promise. Linke voted against rejection while arguing the Grünen demands do not even go far enough (basic-security levels inadequate).",
+        "systemic": "A vote about sequencing and credibility: whether parliament should bind the government to figures now (Bürgergeld-level 563 Euro, regional rents) or wait for the coalition's own reform under a budget that currently cuts BAföG; austerity (Finanzierungsvorbehalt) versus the Koalitionsvertrag promise."
+      },
+      "stories": [
+        "Documented coalition unease: the Koalitionsvertrag promised BAföG rises in steps from the coming winter semester, but government spokesman Stefan Kornelius put everything under 'Finanzierungsvorbehalt', Union faction leader Jens Spahn said state benefits incl. BAföG likely cannot be raised, and Research Minister Dorothee Bär (CSU) voiced doubts - while SPD MPs (Esken, Seitzl, Wiebke Esdar) publicly kept pushing for the agreed increase days before the vote.",
+        "The Grünen forced the issue on record: deputy faction chief Misbah Khan announced 'werden wir Grüne im Bundestag in dieser Sitzungswoche eine namentliche Abstimmung über eine Bafög-Erhöhung beantragen' - so that the coalition's words would have to meet its votes. Every SPD MP present then voted ja, i.e. to reject the reform demand they rhetorically supported.",
+        "The semantics trap: a JA here is a vote AGAINST the BAföG reform demand (it adopts the committee's rejection recommendation) - the card headline must not invert this."
+      ],
+      "aftermath": [
+        "The coalition's own BAföG increase remained announced but unscheduled and under funding reservation; the 2026 draft budget kept the 250-Mio-Euro reduction in the BAföG line.",
+        "Die Linke had tabled its own, further-reaching Antrag ('Ein BAföG, von dem man leben und studieren kann', 21/6359: full grant without repayment, inflation indexing, rent subsidy analogous to Wohngeld), debated 11 June and referred to committee - the dispute continues."
+      ],
+      "sources": [
+        "https://dserver.bundestag.de/btd/21/022/2102234.pdf",
+        "https://www.abgeordnetenwatch.de/bundestag/21/abstimmungen/ablehnung-einer-umfassenden-bafoeg-reform-beschlussempfehlung",
+        "https://www.forschung-und-lehre.de/politik/bundestag-lehnt-antraege-ab-7742",
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw24-de-bafoeg-1183818",
+        "https://www.ad-hoc-news.de/politik/die-von-union-und-spd-urspruenglich-vereinbarten-bafoeg-erhoehungen/69504538"
+      ],
+      "flags": [
+        "The brief asked whether the Antrag demands 'elternunabhängige Förderung': it does NOT. Verified against the full text of Drucksache 21/2234 - the 14 demands include higher parental income allowances (+10 Prozent) but no parent-independent BAföG. Do not claim it on the card.",
+        "The Antrag is from the GRÜNE (not Linke). The Linke Antrag 21/6359 debated the same day is a separate, un-roll-called item - do not mix them.",
+        "Beschlussempfehlung date: forschung-und-lehre says the committee recommendation 21/5130 dates from 31 March 2026; not double-checked against the PDF itself.",
+        "Party tallies (442 = 196+107+137 +2 fraktionslos; 141 = 79+61 +1) are consistent with the ground-truth XLSX; no contradiction found in any official article."
+      ]
+    },
+    {
+      "id": "BT-2026-emissionsmengen",
+      "official_title": "Verordnung zur Überführung der jährlichen Minderungsziele in Jahresemissionsgesamtmengen für die Jahre 2031 bis 2040 (Jahresemissionsgesamtmengen-Verordnung 2031-2040 – JEGMV 2031-2040)",
+      "doc_refs": ["Verordnung der Bundesregierung: Drucksachen 21/5069, 21/5428 Nr. 2", "Beschlussempfehlung des Umweltausschusses: Drucksache 21/6124 (22.05.2026)"],
+      "proposed_by": "Bundesregierung (Verordnung; Zustimmung des Bundestages erforderlich nach § 4 Bundes-Klimaschutzgesetz)",
+      "form": "Namentliche Abstimmung über die Beschlussempfehlung des Ausschusses für Umwelt, Klimaschutz, Naturschutz und nukleare Sicherheit (Empfehlung: Zustimmung zur Verordnung), 11.06.2026, Sitzung 83",
+      "what_a_ja_approves": "Ein Ja stimmt der Verordnung zu, die Deutschlands jährliche Emissionsobergrenzen für 2031 bis 2040 verbindlich festschreibt: schrittweise sinkend von 409 Millionen Tonnen CO2-Äquivalenten im Jahr 2031 auf 150 Millionen Tonnen im Jahr 2040.",
+      "substance": [
+        {"fact": "The Verordnung converts the percentage annual reduction targets written into the Bundes-Klimaschutzgesetz (KSG) for 2031-2040 into absolute caps in CO2-Äquivalenten, falling 'in grundsätzlich gleichmäßigen Schritten' as § 4 Absatz 4 Satz 1 KSG requires.", "source": "https://dserver.bundestag.de/btd/21/061/2106124.pdf"},
+        {"fact": "The trajectory: 409 Millionen Tonnen CO2-Äquivalente in 2031, 294 Millionen Tonnen in 2035, 150 Millionen Tonnen in 2040.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw24-de-jahresemissionen-1181928"},
+        {"fact": "Legal frame: Germany is 'völker-, unions- und verfassungsrechtlich verpflichtet' to reach net greenhouse-gas neutrality, by 2045 under § 3 Absatz 2 Satz 1 KSG; the KSG sets the interim targets the Verordnung translates (KSG § 3: minus 65 Prozent by 2030 and minus 88 Prozent by 2040, versus 1990).", "source": "https://dserver.bundestag.de/btd/21/061/2106124.pdf and https://www.gesetze-im-internet.de/ksg/BJNR251310019.html"},
+        {"fact": "Government rationale: making 'konkret absehbar, welche Emissionsminderungen in welchem Zieljahr zu erreichen sind' as the basis for 'prospektiven, effizienten und freiheitsschützenden Klimaschutz'.", "source": "https://dserver.bundestag.de/btd/21/061/2106124.pdf"},
+        {"fact": "Adopted in plenary 303 ja (CDU/CSU + SPD), 188 nein (AfD + Linke), 74 Enthaltungen (the entire Grünen bloc abstaining), 11 June 2026.", "source": "https://www.bundestag.de/dokumente/textarchiv/2026/kw24-de-jahresemissionen-1181928"},
+        {"fact": "Days before the vote, the independent Expertenrat für Klimafragen delivered a scathing Prüfbericht: even with full implementation, the Klimaschutzprogramm 2026 cannot reach the legal targets to 2030 - let alone 2040 - projecting the 2030 budget to be missed by 60 bis 100 Millionen Tonnen CO2-Äquivalente, with government projections 'schöngerechnet' especially in the buildings and energy sectors.", "source": "https://dserver.bundestag.de/btd/21/061/2106124.pdf (Bericht, Fraktion BÜNDNIS 90/DIE GRÜNEN and Die Linke statements)"},
+        {"fact": "The LULUCF sector (forests/land use) is deteriorating from an indispensable carbon sink into a lasting source of emissions, further undermining the trajectory.", "source": "https://dserver.bundestag.de/btd/21/061/2106124.pdf"}
+      ],
+      "fault_lines": {
+        "ja_side": "Execution of existing law: CDU/CSU argued the Verordnung simply 'vollzieht' the Klimaschutzgesetz - the percentages were already legislated, this only casts them into tonnes ('nicht um eine besondere Angelegenheit'). SPD added the substantive case: climate damage is already here (Ahrtal-Flut 2021, heat, droughts hitting water-dependent industry), and the caps are the yardstick for checking whether targets are met.",
+        "nein_side_afd": "AfD rejected the principle of emission caps altogether: a 409-to-150 path 'schaffe zwangsläufig Druck für weitere politische und gesetzliche Eingriffe', amounting to 'staatlich gelenkte Transformationspolitik' and 'planwirtschaftliche Zielpfade' amid high energy prices and deindustrialization; they demanded technology-openness instead of 'abstrakter Reduktionslogik'.",
+        "nein_side_linke": "Linke refused to rubber-stamp numbers the government is not on course to meet: 'Bekenntnisse zu Gesamtmengen bleiben abstrakt' - new gas plants cut against the targets, the Klimaschutzprogramm 2026 'werde voraussichtlich erneut verfassungswidrig sein', and parts of the CDU/CSU even discuss scrapping the climate targets.",
+        "enthaltung_gruene": "Grüne abstained on a too-weak-to-endorse, too-lawful-to-oppose logic: the government had 'die Prozentvorgaben des Klimaschutzgesetzes formvollendet in Zahlen gegossen' (no reason to vote no - the numbers ARE the law they support), but the figures are 'Makulatur' and 'mathematische Kosmetik' without measures, given the Expertenrat's verdict and the 60-100 Mt gap (no reason to vote yes)."
+      },
+      "stories": [
+        "The bloc abstention: all 74 voting Grünen abstained - the party most identified with climate targets refused to bless its own targets' codification, calling it 'mathematische Kosmetik' while demanding the government rework the Klimaschutzprogramm 2026 to close the gap. Linke, facing the same dilemma, chose nein instead: same diagnosis (Expertenrat: no legal target reachable to 2040), different verdict.",
+        "In the lead committee on 20 May, AfD and Linke had merely ABSTAINED (recommendation passed with CDU/CSU+SPD votes, all three opposition factions abstaining); by the plenary roll call on 11 June both had hardened to nein - only the Grünen kept the abstention.",
+        "A Linke speaker called it 'absurd', bordering on 'Klimawandelleugnung', that Agriculture Minister Alois Rainer had welcomed the forest report finding that a fifth of trees are still healthy."
+      ],
+      "aftermath": [
+        "With Bundestag consent given, the caps 409→150 Mt CO2-eq become the binding national emissions budget architecture for 2031-2040 under the KSG.",
+        "The open question carried forward from the debate: whether the government will rework the Klimaschutzprogramm 2026 as the Expertenrat recommended, and how, without sector targets, responsibility for overshoots is assigned among ministries."
+      ],
+      "sources": [
+        "https://dserver.bundestag.de/btd/21/061/2106124.pdf",
+        "https://www.bundestag.de/dokumente/textarchiv/2026/kw24-de-jahresemissionen-1181928",
+        "https://www.bundestag.de/presse/hib/kurzmeldungen-1161502",
+        "https://www.gesetze-im-internet.de/ksg/BJNR251310019.html"
+      ],
+      "flags": [
+        "Abstention count discrepancy in official pages: one rendering of the textarchiv article gives totals as 303/188/73 (sum 564), another and the hib summary give 74 abstentions (sum 565). Ground-truth XLSX has Grüne 74 enth; treat 74 as correct, but the textarchiv body text may print 73 - check before quoting a total.",
+        "The intermediate-year caps (2032-2034, 2036-2039) were not published in any fetched source; only 2031 (409), 2035 (294) and 2040 (150) are verified. The full year-by-year table is in Verordnung 21/5069 itself (not fetched as readable text) - do not invent intermediate figures.",
+        "The -65%/2030 and -88%/2040 percentages are from the KSG itself (§ 3), not restated in the committee report; sourced to gesetze-im-internet. The brief's mention of the EU Climate Law: the report cites 'unions­rechtlich verpflichtet' generically but names no EU regulation; keep EU framing soft.",
+        "Grüne plenary abstention rationale is documented via their committee statement (21/6124 Bericht); no separate plenary-speech quote was captured (plenary speakers incl. Nouripour and Badum, transcripts not fetched)."
+      ]
+    }
+  ]
+}
