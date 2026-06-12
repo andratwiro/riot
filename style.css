@@ -684,14 +684,24 @@ body.solo-cover #survey,body.solo-cover #roomstrip{display:none}
 body.solo-cover #quickLog,body.solo-cover #menuBtn{display:none}
 #solo{flex:1 1 auto;display:flex;min-height:0;padding:14px 20px 0}
 #solo[hidden]{display:none}
-/* ONE scroller: the whole doc, not the hero — wheel/drag anywhere on screen
-   moves the cover (Rob, 2026-06-12: an inner middle-scroll only bites when
-   the pointer happens to be over it). The foot stays pinned via sticky:
-   sticky children belong to the scroll container, so scrolling works even
-   with the cursor over the CTA. */
+/* The cover scrolls as THE PAGE (html.cover — set by soloEnter, cleared by
+   soloStart): the same release as html.reveal, because anything less is a
+   middle-scroll. A .sl-doc-level scroller was tried first (Rob, 2026-06-12)
+   and failed the same way the hero-level one did — the wheel only bit inside
+   the 520px column; on desktop most of the screen is OUTSIDE it. With the
+   document as the one scroller, wheel/touch anywhere works natively. The app
+   header pins (Rob likes it sticky; the reveal lets it scroll away — the
+   cover does not) and the foot pins via its own sticky bottom. */
+/* body must be overflow:VISIBLE here, not auto (the reveal's release uses
+   auto and lets its header scroll away, so it never noticed): an overflow:auto
+   body is itself a scroll container, so the sticky header pins to body's box
+   and rides off-screen with it instead of pinning to the viewport. */
+html.cover{overflow:auto;height:auto}
+html.cover body{overflow:visible;height:auto}
+html.cover .app{height:auto;min-height:100dvh}
+html.cover header{position:sticky;top:0;z-index:5;background:var(--paper)}
 .sl-doc{flex:1 1 auto;display:flex;flex-direction:column;width:100%;max-width:520px;
   margin:0 auto;min-height:0;text-align:left;
-  overflow-y:auto;-webkit-overflow-scrolling:touch;
   transition:opacity .36s cubic-bezier(.2,.7,.3,1),transform .36s cubic-bezier(.2,.7,.3,1)}
 #solo.away .sl-doc{opacity:0;transform:translateY(-10px);pointer-events:none}
 /* centering via auto-margin pseudos, NOT justify-content:center — a centered

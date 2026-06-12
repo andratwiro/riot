@@ -635,6 +635,7 @@ function soloEnter(){
   const sl=CFG.solo_lobby||{};
   const fill=s=>String(s).replace(/\{n\}/g,deck.length);
   document.body.classList.add("solo-cover");
+  document.documentElement.classList.add("cover");   // the cover scrolls as THE PAGE (see style.css)
   $("#soloKicker").textContent=fill(sl.kicker||CFG.title||CFG.name||"");
   $("#soloTitle").textContent=fill(sl.title||CFG.name||"");
   const lore=$("#soloLore"), ps=Array.isArray(sl.lore)?sl.lore:[];
@@ -661,6 +662,8 @@ function soloStart(){
   setTimeout(()=>{
     $("#solo").hidden=true;
     document.body.classList.remove("solo-cover");   // …and the booth is dealt
+    document.documentElement.classList.remove("cover");  // restore the booth's page lock
+    window.scrollTo(0,0);
     renderStack();
   },380);
 }
