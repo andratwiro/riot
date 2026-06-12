@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <!-- GHOST soul-anchor mark on ballot paper. Hand-tuned for 16px tabs:
+       heavier stroke + bigger core than ghostMark(size) in app.js, same
+       ~8-dash shell + solid core construction, same stamp violet. -->
+  <rect width="40" height="40" rx="9" fill="#F2F0E8"/>
+  <circle cx="20" cy="20" r="14.5" fill="none" stroke="#4B3FA0" stroke-width="3" stroke-dasharray="7.1 4.3" stroke-linecap="round"/>
+  <circle cx="20" cy="20" r="5.5" fill="#4B3FA0"/>
+</svg>

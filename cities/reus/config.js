@@ -4,7 +4,7 @@
 window.CITY_CONFIG = {
   id: "reus",
   name: "Reus",
-  title: "REUS",
+  title: "Reus Council",
   lang: "ca",                          // Reus cards stay in Catalan (source language)
   srcLang: "ca",                       // original proposal wording is also Catalan
   logo: "assets/logos/reus_rose_color.svg",

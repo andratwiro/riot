@@ -14,6 +14,9 @@ const CITIES=[
 ];
 const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo:"assets/logos/reus_rose_color.svg"};
 document.title=CFG.title||"RIOT";
+// In-city tabs wear the city's icon; the bare-URL holding page keeps the
+// default GHOST soul-anchor favicon (assets/favicon.svg).
+if(location.search&&CFG.logo){const fv=document.getElementById("favicon");if(fv)fv.href=CFG.logo;}
 document.documentElement.lang=CFG.lang||"en";
 const R = window.RIOT || {decisions:[], parties:[]};
 // The GHOST's blind votes (id -> {vote,confidence,rationale}); null until ai_vote.py / the ghost run has produced them.

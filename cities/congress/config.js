@@ -7,7 +7,7 @@
 window.CITY_CONFIG = {
   id: "congress",
   name: "Congress",
-  title: "CONGRESS",
+  title: "US Congress",
   lang: "en",
   srcLang: "en",                       // source wording = the bill's official title (English)
   logo: "assets/logos/us_capitol.svg",

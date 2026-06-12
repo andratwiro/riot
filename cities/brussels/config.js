@@ -4,7 +4,7 @@
 window.CITY_CONFIG = {
   id: "brussels",
   name: "Brussels",
-  title: "BRUSSELS",
+  title: "Brussels Parliament",
   lang: "en",
   srcLang: "fr",                       // original proposal wording (CRI source) is French
   logo: "assets/logos/brussels_iris.svg",
