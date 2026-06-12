@@ -98,6 +98,12 @@ function buildDeck(excludeAnswered){
   let pool=R.decisions.filter(votable);
   if(DECK_MODE==="live"){const ids=new Set(liveDeckIds()); pool=pool.filter(d=>ids.has(d.id));}
   if(excludeAnswered) pool=pool.filter(d=>!(d.id in answers));
+  // Solo reads as history: oldest sitting first, agenda order within a
+  // sitting (point is null on the demo decks — stable sort keeps source
+  // order there). Rooms stay shuffled per person.
+  if(SOLO) return pool.slice().sort((a,b)=>
+    (a.date||"").localeCompare(b.date||"") ||
+    ((parseFloat(a.point)||0)-(parseFloat(b.point)||0)));
   return shuffle(pool);
 }
 
