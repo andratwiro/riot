@@ -664,10 +664,20 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 .pl-lab{grid-row:2;align-self:start;font:700 11px var(--f-mono);text-transform:uppercase;
   letter-spacing:.06em;color:var(--ink80);border-top:2px solid var(--ink);padding-top:5px;
   width:100%;text-align:center}
-/* the room, summarised below the line: cast faces (you first) + the count */
-.pl-foot{grid-row:3;align-self:start;display:flex;flex-wrap:wrap;justify-content:center;
-  align-items:center;gap:3px 6px;padding-top:7px}
-.pl-faces{flex-wrap:wrap;min-height:0}
+/* the room, summarised below the line: up to 3 OVERLAPPING faces (you first,
+   on top) + the count beside them — the number shows the lean, the cluster
+   stays a fixed glance whatever the size (Rob, 2026-06-13). */
+.pl-foot{grid-row:3;align-self:start;display:flex;flex-wrap:nowrap;justify-content:center;
+  align-items:center;gap:6px;padding-top:7px}
+.pl-faces{display:flex;align-items:center}
+.pl-faces .face{width:26px;height:26px;font-size:14px;margin:0}
+.pl-faces .face.init{font-size:10px}
+.pl-faces .pl-drop{position:relative}
+.pl-faces .pl-drop + .pl-drop{margin-left:-9px}     /* overlap, as the strip does up top */
+.pl-faces .pl-drop:nth-child(1){z-index:3}          /* you (first) stays on top — violet ring visible */
+.pl-faces .pl-drop:nth-child(2){z-index:2}
+.pl-faces .pl-drop:nth-child(3){z-index:1}
+.pl-faces .face:not(.me){border-color:var(--paper)} /* paper ring separates the overlap cleanly */
 .pl-n{font:700 13px var(--f-mono);color:var(--ink)}
 .pl-col.quiet .pl-lab{color:var(--ink60);border-top-color:var(--rule)}
 .pl-col.quiet .pl-n{color:var(--ink60)}
@@ -898,9 +908,10 @@ html.cover header{position:sticky;top:0;z-index:5;background:var(--paper)}
 #stage .sp-k{font-size:clamp(11px,1.4vw,16px)}
 #stage .piles{gap:clamp(10px,2vw,28px)}
 #stage .pl-stack{gap:clamp(2px,.4vw,6px)}
-#stage .pl-stack .face{width:clamp(28px,3.4vw,46px);height:clamp(28px,3.4vw,46px);
+#stage .pl-faces .face{width:clamp(28px,3.4vw,46px);height:clamp(28px,3.4vw,46px);
   font-size:clamp(15px,1.9vw,26px);margin:0}   /* beat the id-strength #stage .face overlap margin */
-#stage .pl-stack .face.init{font-size:clamp(10px,1.2vw,16px)}
+#stage .pl-faces .face.init{font-size:clamp(10px,1.2vw,16px)}
+#stage .pl-faces .pl-drop + .pl-drop{margin-left:clamp(-14px,-1.5vw,-9px)}  /* overlap scales with face */
 #stage .pl-lab{font-size:clamp(12px,1.6vw,20px)}
 #stage .pl-n{font-size:clamp(14px,2.2vw,28px)}
 #stage .pl-stack .lg{width:clamp(24px,3vw,40px);height:clamp(24px,3vw,40px)}

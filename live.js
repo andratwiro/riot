@@ -369,12 +369,13 @@ function renderLivePiles(el,id){
   const stack=f=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${faceHTML(f.e,f.nm,f.me)}</span>`;
   const pdisc=p=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${logoEl(p)}</span>`;
   // the chamber stays on the line (parties on top); the room is summarised
-  // below the rule as a face cluster (you first) + its count (Rob, 2026-06-13).
+  // below the rule as up to 3 OVERLAPPING faces (you first) + the count beside
+  // them — the number carries the lean, not the cluster size (Rob, 2026-06-13).
   const col=(k,lab)=>`<div class="pl-col${k==="abstain"?" quiet":""}${my===k?" mine":""}">
       ${pp[k].length?`<div class="pl-stack pl-chamber">${pp[k].map(pdisc).join("")}</div>`:""}
       <span class="pl-lab">${lab}</span>
       <div class="pl-foot">
-        <div class="pl-stack pl-faces">${piles[k].map(stack).join("")||`<span class="pl-none">—</span>`}</div>
+        <div class="pl-faces">${piles[k].slice(0,3).map(stack).join("")||`<span class="pl-none">—</span>`}</div>
         <span class="pl-n">${piles[k].length}</span>
       </div>
     </div>`;
