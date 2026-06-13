@@ -27,10 +27,15 @@
 (function(){
   const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const COLX = {against:0.16, abstain:0.5, for:0.84};   // column centres (fraction of width)
-  const WAVE_ZONE = 80;                                  // band reserved at the very bottom (screen edge): the wave hand + where the undecided peep
+  const WAVE_ZONE = 80;                                  // height budget for the lower band the crowd now SHARES with the wave hand (was a reserved empty band) + where the undecided peep
   let el=null, on=false, raf=0, W=320, H=150;
   const bodies=new Map();                                // pid -> body
   let curId=null, mode="cluster";                        // mode: cluster | piles
+  // a soft breath of clear space around the floating wave hand. Read its ACTUAL
+  // rendered centre (host-local px) so the one pass is correct in both states —
+  // below the single heap, and in the between-piles gap. null = no hand on screen.
+  let handX=null, handY=null, curD=38;                   // hand centre + current body diameter (the bubble is 1.5x a body)
+  const HAND_PUSH=7;                                     // max outward nudge (px) at the centre, falling to 0 at the bubble edge
 
   function host(){ return el || (el=document.getElementById("roomfloor")); }
   // size by count, mirroring the lobby's step (diameter px) — big when few,
@@ -53,7 +58,20 @@
     h.style.height = Math.round(Math.max(lo, Math.min(want, Math.max(lo, avail)))) + "px";
   }
   function measure(){ const h=host(); if(!h) return; sizeFloor(); const r=h.getBoundingClientRect();
-    W=r.width||W; H=r.height||H; }
+    W=r.width||W; H=r.height||H; measureHand(); }
+  // the wave hand floats fixed at the screen foot (style.css #waveBtn). Cache its
+  // centre in host-local coords; null unless it's actually on screen (only a
+  // seated voter mid-sitting gets one). Recomputed on every measure() — i.e. on
+  // each state change / resize — not per frame, so no layout thrash in step().
+  function measureHand(){
+    const h=host(), btn=document.getElementById("waveBtn");
+    // the hand is position:fixed (offsetParent is always null for those) — test
+    // the rendered box instead: display:none (no can-wave) gives a zero rect.
+    const br=btn&&btn.getBoundingClientRect();
+    if(!h || !br || !br.width){ handX=handY=null; return; }
+    const hr=h.getBoundingClientRect();
+    handX=(br.left+br.right)/2-hr.left; handY=(br.top+br.bottom)/2-hr.top;
+  }
 
   // the room as the footer sees it: me first (it owns the violet ring), then
   // every peer seated in this sitting — exactly the lobby's roster.
@@ -71,7 +89,7 @@
   function sync(){
     const h=host(); if(!h) return;
     const list=roster(), N=Math.max(list.length,1);
-    const d=diam(N), seen=new Set();
+    const d=diam(N), seen=new Set(); curD=d;
     for(const {pid,e} of list){
       seen.add(pid);
       let b=bodies.get(pid);
@@ -129,7 +147,7 @@
     const list=[...bodies.values()].sort((a,b)=>a.pid<b.pid?-1:a.pid>b.pid?1:0);
     for(const b of list){ const dir=dirOf(b,curId);
       if(dir && groups[dir]) groups[dir].push(b); else none.push(b); }
-    const d=(list[0]?list[0].r*2:34), spX=d*0.66, spY=d*0.62, floorY=H-WAVE_ZONE-d/2-3;  // heaps rest on the floor, above the wave zone
+    const d=(list[0]?list[0].r*2:34), spX=d*0.66, spY=d*0.62, floorY=H-d/2-3;  // heaps rest on the screen floor, level with the wave hand (the bubble parts them)
     const maxBase=Math.max(2,Math.floor((W*0.32)/spX));        // keep each heap inside its third
     for(const k in groups){
       const arr=groups[k], cx=W*COLX[k], n=arr.length;
@@ -177,8 +195,8 @@
       b.vx=Math.max(-MAXV,Math.min(MAXV,b.vx)); b.vy=Math.max(-MAXV,Math.min(MAXV,b.vy));
       b.x+=b.vx; b.y+=b.vy;
       // undecided sink to the SCREEN bottom and peep ~40% over the edge (clipped);
-      // everyone else rests on the floor, held above the wave zone
-      const yhi=b.noVote ? H+b.r*0.2 : H-WAVE_ZONE-b.r;
+      // everyone else rests on the screen floor, sharing the wave hand's level
+      const yhi=b.noVote ? H+b.r*0.2 : H-b.r;
       b.x=Math.max(b.r,Math.min(W-b.r,b.x)); b.y=Math.max(b.r,Math.min(yhi,b.y));
       if(b.pop>0.01) b.pop*=0.84; else b.pop=0;
       place(b);
@@ -186,7 +204,18 @@
     raf=requestAnimationFrame(step);
   }
   function place(b){ const s=1+b.pop;
-    b.el.style.transform=`translate(${(b.x-b.r).toFixed(2)}px,${(b.y-b.r).toFixed(2)}px) scale(${s.toFixed(3)})`; }
+    let ox=b.x-b.r, oy=b.y-b.r;
+    // one repulsion pass off the hand's actual centre and this body's actual
+    // position, so it just works whichever state produced that position. A
+    // bounded RENDER offset, not a velocity force: it can't accumulate or fight
+    // the cluster<->pile reorg, and decays to nothing at the bubble edge. Sparse
+    // cards keep the hand in clear space, so nothing is near it and nothing moves.
+    if(handX!=null){
+      const bub=curD*1.5, dx=b.x-handX, dy=b.y-handY, d=Math.hypot(dx,dy);
+      if(d<bub){ const push=(1-d/bub)*HAND_PUSH;
+        if(d>0.01){ ox+=dx/d*push; oy+=dy/d*push; } else { oy-=push; } }
+    }
+    b.el.style.transform=`translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px) scale(${s.toFixed(3)})`; }
   function placeStatic(){ for(const b of bodies.values()){ b.x=b.tx; b.y=b.ty; place(b); } }
   function perfNow(){ return (window.performance&&performance.now)?performance.now():0; }
 

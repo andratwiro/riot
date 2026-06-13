@@ -694,11 +694,12 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
    owns each body's transform (translate + a wave-pop scale); CSS owns only the
    disc, the violet ME ring, and an opacity fade-in on spawn (NEVER a transform
    animation — that would fight the per-frame JS placement). Presence is the
-   footer now, so the top strip retires in live. The band leaves room beneath it
-   for the floating wave hand. */
+   footer now, so the top strip retires in live. The crowd fills down to the foot
+   and shares the floating wave hand's level; a soft repulsion bubble keeps a
+   breath of clear space around the hand (roomfloor.js place()). */
 #roomfloor{display:none}
 body.live-floor #roomfloor{display:block;position:relative;flex:0 0 auto;overflow:hidden;
-  height:150px;margin:0 14px}  /* runs to the screen bottom; height set live by roomfloor.js; overflow clips the undecided peeping over the bottom edge (the wave zone is reserved inside) */
+  height:150px;margin:0 14px}  /* runs to the screen bottom; height set live by roomfloor.js; overflow clips the undecided peeping over the bottom edge. The crowd now fills down to the foot, level with the floating wave hand (a soft bubble parts the emoji around the hand — roomfloor.js place()), no longer a reserved empty band */
 body.live-voter #roomstrip{display:none}
 /* the footer is the SAME paper as the booth — don't let #survey clip the card's
    drop shadow at its edge (that hard line broke the card→crowd transition), and

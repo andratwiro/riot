@@ -69,6 +69,17 @@ So the animation is fan-out, hold, regroup-on-advance. Not a momentary flourish.
 - **Your emoji** keeps its purple ring and stays identifiable everywhere. The
   wave still bops it: in the cluster and in the pile, a wave is an upward
   impulse on your body.
+- **The crowd shares the wave hand's level** (v1.21). The hand no longer gets a
+  reserved empty band beneath the crowd (which read as two stacked rows): the
+  bodies fill all the way down to the foot, level with the floating hand. A very
+  soft repulsion keeps a breath of clear space around the hand so it never gets
+  buried: one pass off the hand's actual rendered centre, nudging any nearby body
+  a few px outward, decaying to nothing at ~1.5× a body's width. It works the
+  same in both states (below the single cluster, in the gap between the three
+  piles) because it keys off the hand's real centre and each body's real
+  position. It's insurance, not a constant effect: on a sparse card nothing is
+  near the hand and nothing moves; it only shows when a heap balloons enough to
+  crowd it (a near-unanimous pile, a full pre-tally cluster).
 
 ## What this touches when we wire it in (later)
 
