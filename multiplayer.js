@@ -109,26 +109,49 @@ function faceHTML(e,nm,me,pid){
    hop (applied before the echo of their own write lands) would be wiped without
    re-applying it after each render — applyWaves() is called at the end of every
    face render (renderStrip, lobbyPresence, the stage). */
-const wavingUntil=new Map();          // pid -> {until, big}: a normal hop, or the
-                                      // three-tap "super" (bigger hop + a full spin)
+const waveState=new Map();            // pid -> {until, big, queued}: the hop in flight,
+                                      // and whether the three-tap flip waits to follow it
 function hopFace(pid,big,force){
   const cls=big?"wavebig":"wave", ms=big?940:780;
   document.querySelectorAll(`.face[data-pid="${CSS.escape(pid)}"]`).forEach(f=>{
     if(f.dataset.waving && !force) return;   // mid-hop & this is just a re-render — leave it
     f.classList.remove("wave","wavebig"); void f.offsetWidth; f.classList.add(cls);
     f.dataset.waving="1";
-    clearTimeout(f._waveT);                  // a fresh gesture supersedes the old timer
+    clearTimeout(f._waveT);
     f._waveT=setTimeout(()=>{ f.classList.remove("wave","wavebig"); delete f.dataset.waving; },ms);
   });
 }
-// a new gesture: force-restart (a third tap upgrades a hop already in flight)
-function bounceFace(pid,big){ wavingUntil.set(pid,{until:Date.now()+(big?960:820),big:!!big}); hopFace(pid,!!big,true); }
-// re-apply after a face re-render: only to faces not already animating
+function playHop(pid,big){ waveState.set(pid,{until:Date.now()+(big?940:780),big:!!big,queued:false}); hopFace(pid,!!big,true); }
+/* a new wave gesture. Smoothness rule: while a hop is already playing on this
+   avatar a further wave is DROPPED — never restarted, never queued — with one
+   exception, the three-tap flip (big), which waits and plays once the current
+   hop finishes (so a three-tap during a bounce reads as bounce-then-flip). */
+// the wave button gently bobs whenever someone ELSE waves — a tiny presence
+// indicator (it also idles with a slow wiggle in CSS). Not for my own waves.
+function bobWaveBtn(){
+  const b=document.getElementById("waveBtn"); if(!b) return;
+  b.classList.remove("bob"); void b.offsetWidth; b.classList.add("bob");
+  clearTimeout(b._bobT); b._bobT=setTimeout(()=>b.classList.remove("bob"),700);
+}
+function bounceFace(pid,big){
+  if(pid!=="me") bobWaveBtn();              // someone else waved → the button reacts
+  const now=Date.now(), st=waveState.get(pid);
+  if(st && now<st.until){                    // a hop is in progress
+    if(big && !st.queued){                    // only the flip follows on
+      st.queued=true;
+      setTimeout(()=>{ const s=waveState.get(pid); if(s&&s.queued){ s.queued=false; playHop(pid,true); } },(st.until-now)+20);
+    }
+    return;                                   // a plain wave mid-hop is dropped
+  }
+  playHop(pid,big);
+}
+// re-apply an in-progress hop to a freshly rebuilt element (the lobby rebuilds its
+// faces on every presence ping) — never starts or restarts, just re-attaches
 function applyWaves(){
   const now=Date.now();
-  for(const [pid,w] of wavingUntil){
-    if(w.until<now){ wavingUntil.delete(pid); continue; }
-    hopFace(pid,w.big,false);
+  for(const [pid,st] of waveState){
+    if(now<st.until) hopFace(pid,st.big,false);
+    else if(!st.queued) waveState.delete(pid);
   }
 }
 function renderStrip(){

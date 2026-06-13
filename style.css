@@ -579,19 +579,28 @@ body.live-lobby #survey,body.live-lobby #roomstrip{display:none}
 body.live-mod #survey,body.live-mod #roomstrip,body.live-mod #join{display:none}
 body.live-mod .app{max-width:none}
 
-/* the wave button: a quiet paper disc at the foot of the screen, offered only
-   to a seated voter mid-sitting (body.can-wave; lobby → per-card reveal). One
-   tap bounces your avatar on every phone in the room — the hand tips on press. */
+/* the wave: just the bare hand at the foot of the screen, no disc/border/shadow —
+   it sits on the page (--paper). Offered only to a seated voter mid-sitting
+   (body.can-wave; lobby → per-card reveal). One tap hops your avatar on every
+   phone. The icon earns the missing label by being quietly alive: a slow,
+   occasional idle wiggle, plus a gentle bob whenever someone ELSE waves — a tiny
+   presence indicator before you ever touch it. */
 #waveBtn{display:none}
 body.can-wave #waveBtn{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));
   transform:translateX(-50%);z-index:40;display:inline-flex;align-items:center;justify-content:center;
-  width:54px;height:54px;border:1.5px solid var(--rule);border-radius:50%;
-  background:var(--card);color:var(--ink60);
-  box-shadow:0 2px 12px rgba(28,27,23,.1);cursor:pointer;
-  transition:transform .12s cubic-bezier(.2,.7,.3,1),border-color .12s,color .12s}
-body.can-wave #waveBtn:hover{border-color:var(--ink60);color:var(--ink80)}
-body.can-wave #waveBtn:active{transform:translateX(-50%) scale(.92)}
-#waveBtn .wv-hand{width:24px;height:24px;flex:0 0 auto;transform-origin:75% 90%}
+  width:54px;height:54px;border:0;background:var(--paper);color:var(--ink60);
+  cursor:pointer;transition:transform .12s cubic-bezier(.2,.7,.3,1),color .12s}
+body.can-wave #waveBtn:hover{color:var(--ink80)}
+body.can-wave #waveBtn:active{transform:translateX(-50%) scale(.9)}
+/* someone else waved (multiplayer.js bobWaveBtn) — keep the translateX centring */
+body.can-wave #waveBtn.bob{animation:wvbob .62s cubic-bezier(.3,.7,.3,1)}
+@keyframes wvbob{0%,100%{transform:translateX(-50%) translateY(0)}
+  35%{transform:translateX(-50%) translateY(-6px)}65%{transform:translateX(-50%) translateY(0)}}
+#waveBtn .wv-hand{width:25px;height:25px;flex:0 0 auto;transform-origin:72% 88%;
+  animation:wvidle 7s ease-in-out infinite}
+/* a brief wave near the end of each long cycle — present, not fidgety */
+@keyframes wvidle{0%,80%,100%{transform:rotate(0)}
+  84%{transform:rotate(-9deg)}88%{transform:rotate(8deg)}92%{transform:rotate(-5deg)}96%{transform:rotate(2deg)}}
 #waveBtn:active .wv-hand{animation:wvtip .5s ease}
 @keyframes wvtip{0%,100%{transform:rotate(0)}25%{transform:rotate(-16deg)}75%{transform:rotate(12deg)}}
 
