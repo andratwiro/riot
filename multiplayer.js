@@ -109,18 +109,26 @@ function faceHTML(e,nm,me,pid){
    hop (applied before the echo of their own write lands) would be wiped without
    re-applying it after each render — applyWaves() is called at the end of every
    face render (renderStrip, lobbyPresence, the stage). */
-const wavingUntil=new Map();          // pid -> ms the hop should still show
-function bounceFace(pid){ wavingUntil.set(pid,Date.now()+820); applyWaves(); }
+const wavingUntil=new Map();          // pid -> {until, big}: a normal hop, or the
+                                      // three-tap "super" (bigger hop + a full spin)
+function hopFace(pid,big,force){
+  const cls=big?"wavebig":"wave", ms=big?940:780;
+  document.querySelectorAll(`.face[data-pid="${CSS.escape(pid)}"]`).forEach(f=>{
+    if(f.dataset.waving && !force) return;   // mid-hop & this is just a re-render — leave it
+    f.classList.remove("wave","wavebig"); void f.offsetWidth; f.classList.add(cls);
+    f.dataset.waving="1";
+    clearTimeout(f._waveT);                  // a fresh gesture supersedes the old timer
+    f._waveT=setTimeout(()=>{ f.classList.remove("wave","wavebig"); delete f.dataset.waving; },ms);
+  });
+}
+// a new gesture: force-restart (a third tap upgrades a hop already in flight)
+function bounceFace(pid,big){ wavingUntil.set(pid,{until:Date.now()+(big?960:820),big:!!big}); hopFace(pid,!!big,true); }
+// re-apply after a face re-render: only to faces not already animating
 function applyWaves(){
   const now=Date.now();
-  for(const [pid,until] of wavingUntil){
-    if(until<now){ wavingUntil.delete(pid); continue; }
-    document.querySelectorAll(`.face[data-pid="${CSS.escape(pid)}"]`).forEach(f=>{
-      if(f.dataset.waving) return;     // already hopping on this element — don't restart
-      f.dataset.waving="1";
-      f.classList.remove("wave"); void f.offsetWidth; f.classList.add("wave");
-      setTimeout(()=>{ f.classList.remove("wave"); delete f.dataset.waving; },780);
-    });
+  for(const [pid,w] of wavingUntil){
+    if(w.until<now){ wavingUntil.delete(pid); continue; }
+    hopFace(pid,w.big,false);
   }
 }
 function renderStrip(){
@@ -273,12 +281,14 @@ function mpInit(){
     }
     mpPart.on("value",snap=>{
       const all=snap.val()||{};
-      const prev={},prevW={}; for(const k in PEERS){prev[k]=PEERS[k].n; prevW[k]=PEERS[k].w||0; delete PEERS[k];}
-      for(const k in all){ if(k!==mpPid) PEERS[k]={e:all[k].e||"",nm:all[k].nm||"",c:all[k].c||null,n:all[k].n||0,t:all[k].t||0,s:all[k].s||null,w:all[k].w||0}; }
+      const prev={},prevW={},prevWS={};
+      for(const k in PEERS){prev[k]=PEERS[k].n; prevW[k]=PEERS[k].w||0; prevWS[k]=PEERS[k].ws||0; delete PEERS[k];}
+      for(const k in all){ if(k!==mpPid) PEERS[k]={e:all[k].e||"",nm:all[k].nm||"",c:all[k].c||null,n:all[k].n||0,t:all[k].t||0,s:all[k].s||null,w:all[k].w||0,ws:all[k].ws||0}; }
       renderStrip();
       for(const k in PEERS){
         if(prev[k]!=null && PEERS[k].n>prev[k]) activityTick(k);
-        if(prevW[k]!=null && PEERS[k].w>prevW[k]) bounceFace(k);   // they waved
+        if(prevWS[k]!=null && PEERS[k].ws>prevWS[k]) bounceFace(k,true);    // a three-tap super wave
+        else if(prevW[k]!=null && PEERS[k].w>prevW[k]) bounceFace(k);       // a normal wave
       }
       // new known ballots are new ROWS — they can tug everyone, so reposition
       // the whole map (it renders peers too), not just the peer dots.

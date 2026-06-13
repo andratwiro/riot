@@ -588,15 +588,23 @@ function openSitting(){
    my own avatar instantly on this phone and bumps a wave counter on my presence
    record; every other phone animates the matching face (multiplayer.js
    bounceFace, driven off the mpPart listener). No direction crosses the wire. */
-let lvWaveAt=0;
+let lvWaveAt=0, lvWaveTaps=[];
 function sendWave(){
-  bounceFace("me");                         // my avatar bounces now, on this phone
   const t=Date.now();
-  if(t-lvWaveAt<450) return;                // the bounce stays instant; throttle the wire
-  lvWaveAt=t;
-  if(typeof mpSelf!=="undefined" && mpSelf && mpJoined && window.firebase)
-    mpSelf.update({w:firebase.database.ServerValue.increment(1),
+  lvWaveTaps=lvWaveTaps.filter(x=>t-x<650); lvWaveTaps.push(t);   // three quick taps = a super wave
+  const big=lvWaveTaps.length>=3; if(big) lvWaveTaps=[];          // consume the combo
+  bounceFace("me",big);                     // my avatar reacts now, on this phone
+  if(!(typeof mpSelf!=="undefined" && mpSelf && mpJoined && window.firebase)) return;
+  if(big){                                  // the super always goes out (it's rare); bump its own counter
+    lvWaveAt=t;
+    mpSelf.update({ws:firebase.database.ServerValue.increment(1),
                    ts:firebase.database.ServerValue.TIMESTAMP});
+    return;
+  }
+  if(t-lvWaveAt<450) return;                // the bounce stays instant; throttle the ordinary wire
+  lvWaveAt=t;
+  mpSelf.update({w:firebase.database.ServerValue.increment(1),
+                 ts:firebase.database.ServerValue.TIMESTAMP});
 }
 function updateWaveBtn(){
   const st=lvS&&lvS.state;

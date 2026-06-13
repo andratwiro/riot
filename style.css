@@ -104,6 +104,13 @@ body.live-mod   .citysel #cityName{white-space:normal;overflow:visible;text-over
 .face.wave{animation:facewave .76s cubic-bezier(.3,.7,.3,1);z-index:6}
 @keyframes facewave{0%{transform:translateY(0)}28%{transform:translateY(-10px)}
   52%{transform:translateY(0)}70%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+/* the three-tap super wave: a bigger hop and one full turn of the avatar */
+.face.wavebig{animation:facewavebig .94s cubic-bezier(.3,.7,.3,1);z-index:7}
+@keyframes facewavebig{0%{transform:translateY(0) rotate(0)}
+  28%{transform:translateY(-18px) rotate(200deg)}
+  56%{transform:translateY(0) rotate(360deg)}
+  74%{transform:translateY(-6px) rotate(360deg)}
+  100%{transform:translateY(0) rotate(360deg)}}
 .rs-right{display:flex;align-items:center;gap:7px;min-width:0;flex-shrink:1}
 .rs-label{font:400 11px var(--f-mono);color:var(--ink60);letter-spacing:.3px;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis}
