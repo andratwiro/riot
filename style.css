@@ -100,12 +100,14 @@ body.live-mod   .citysel #cityName{white-space:normal;overflow:visible;text-over
   border:2px solid var(--stamp);opacity:0;animation:facetick .7s ease-out}
 @keyframes facetick{0%{transform:scale(.6);opacity:.7}100%{transform:scale(1.15);opacity:0}}
 /* the wave: a person says hello — their avatar hops, on every phone in the room.
-   Compositor-only (transform); raised above its overlapping neighbours mid-hop. */
-.face.wave{animation:facewave .76s cubic-bezier(.3,.7,.3,1);z-index:6}
+   Compositor-only (transform). No z-index lift: the faces overlap by a few px and
+   a discrete z-change mid-hop reads as the hopping disc snapping over its neighbour
+   and back. Keeping the resting stack order means it just rises and falls in place. */
+.face.wave{animation:facewave .76s cubic-bezier(.3,.7,.3,1)}
 @keyframes facewave{0%{transform:translateY(0)}28%{transform:translateY(-10px)}
   52%{transform:translateY(0)}70%{transform:translateY(-4px)}100%{transform:translateY(0)}}
 /* the three-tap super wave: a bigger hop and one full turn of the avatar */
-.face.wavebig{animation:facewavebig .94s cubic-bezier(.3,.7,.3,1);z-index:7}
+.face.wavebig{animation:facewavebig .94s cubic-bezier(.3,.7,.3,1)}
 @keyframes facewavebig{0%{transform:translateY(0) rotate(0)}
   28%{transform:translateY(-18px) rotate(200deg)}
   56%{transform:translateY(0) rotate(360deg)}
