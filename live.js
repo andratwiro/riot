@@ -449,7 +449,8 @@ function renderVoterChamber(el,id){
       <div class="pl-stack pl-chamber">${pp[k].map(pdisc).join("")||`<span class="pl-none">—</span>`}</div>
       <span class="pl-lab">${lab}</span>
     </div>`;
-  el.innerHTML=`<div class="piles">${col("against","Against")}${col("abstain","Abstain")}${col("for","For")}</div>`;
+  el.innerHTML=`<div class="piles">${col("against","Against")}${col("abstain","Abstain")}${col("for","For")}</div>`+
+    `<p class="lv-verdict" hidden></p>`;   // the room's one-line verdict stays on the card (Rob, 2026-06-13)
 }
 function runRevealBeats(top,d){
   top.dataset.revealed="1";
@@ -459,6 +460,8 @@ function runRevealBeats(top,d){
     if(!top.isConnected) return;
     const slot=top.querySelector(".castp")||top.querySelector(".acts");
     if(slot){ slot.className="split"; renderVoterChamber(slot,d.id); }
+    const v=top.querySelector(".lv-verdict");        // "the room agrees / would have decided differently"
+    if(v){ const c=verdictCopy(d); v.hidden=false; v.classList.add(c.cls); v.textContent=c.tx; }
     if(window.RF) RF.piles(d.id);                    // the footer room rains into Against / Abstain / For
   },900);
 }

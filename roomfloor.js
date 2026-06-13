@@ -89,10 +89,24 @@
   }
   function setTargets(){
     const now=perfNow();
+    if(mode==="cluster"){
+      // a loose crowd resting on the FLOOR (gravity-down feel, not a centre
+      // well). The live sim applies real gravity in step(); these targets are
+      // only the reduced-motion / static fallback: centred rows piling up from
+      // the floor, spread across the width.
+      const list=[...bodies.values()];
+      const d=(list[0]?list[0].r*2:38)*0.98;
+      const per=Math.max(1,Math.floor((W-6)/d));
+      list.forEach((b,i)=>{
+        const row=Math.floor(i/per), col=i%per;
+        const rowN=Math.min(per,list.length-row*per), rowW=rowN*d;
+        b.tx=(W-rowW)/2+col*d+d/2; b.ty=H-b.r-row*d*0.92;
+        b.delay=0; b.noVote=false;
+      });
+      return;
+    }
     for(const b of bodies.values()){
-      if(mode==="cluster"){
-        b.tx=W/2; b.ty=H*0.52; b.delay=0; b.noVote=false;
-      } else {
+      {
         const dir=dirOf(b,curId);
         if(dir && COLX[dir]!=null){
           b.tx=W*COLX[dir]; b.ty=H-b.r-5;             // heap up from the floor of the column
@@ -110,13 +124,18 @@
 
   /* ---- the loop ---- */
   function step(){
-    // piles commit harder than the loose cluster, so the fan-out reads decisive
-    const ATTRACT=(mode==="piles"?0.045:0.020), DAMP=0.86, JIT=(mode==="piles"?0.035:0.10), MAXV=7, now=perfNow();
+    const DAMP=0.86, MAXV=7, now=perfNow();
+    const GRAV=0.30, COHX=0.005;                         // cluster: gravity to the floor + gentle horizontal cohesion
+    const PILE_K=0.045, JIT=(mode==="piles"?0.035:0.06);
     for(const b of bodies.values()){
-      const live = mode==="cluster" || now>=b.delay;     // hold until the rain-in delay
       let ax=0, ay=0;
-      if(live){ const k=b.noVote?ATTRACT*0.55:ATTRACT;
-        ax+=(b.tx-b.x)*k; ay+=(b.ty-b.y)*k; }
+      if(mode==="cluster"){
+        ay+=GRAV;                                        // settle onto the floor — extended, never a centre well
+        ax+=(W/2-b.x)*COHX;                              // weak cohesion; repulsion does the sideways spreading
+      } else if(now>=b.delay){                           // piles: pull to the column once the rain-in delay elapses
+        const k=b.noVote?PILE_K*0.55:PILE_K;
+        ax+=(b.tx-b.x)*k; ay+=(b.ty-b.y)*k;
+      }
       ax+=(Math.random()-0.5)*JIT; ay+=(Math.random()-0.5)*JIT;
       b._ax=ax; b._ay=ay;
     }
@@ -124,7 +143,7 @@
     for(let i=0;i<arr.length;i++) for(let j=i+1;j<arr.length;j++){
       const a=arr[i], c=arr[j];
       let dx=c.x-a.x, dy=c.y-a.y, dist=Math.hypot(dx,dy)||0.01;
-      const min=(a.r+c.r)*0.86;                          // 14% overlap tolerated → busy, colliding
+      const min=(a.r+c.r)*0.92;                          // ~8% overlap tolerated (eased from 14% — Rob)
       if(dist<min){ const push=(min-dist)/min*0.9, ux=dx/dist, uy=dy/dist;
         a._ax-=ux*push; a._ay-=uy*push; c._ax+=ux*push; c._ay+=uy*push; }
     }
