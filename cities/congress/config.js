@@ -7,6 +7,8 @@
 window.CITY_CONFIG = {
   id: "congress",
   name: "Congress",
+  masthead: "US Congress",   // header (single/async) — short; fits beside §/⚙
+  masthead_full: "United States Congress",   // header (live) — chrome stripped
   title: "US Congress",
   lang: "en",
   srcLang: "en",                       // source wording = the bill's official title (English)

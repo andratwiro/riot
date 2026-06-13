@@ -4,6 +4,7 @@
 window.CITY_CONFIG = {
   id: "reus",
   name: "Reus",
+  masthead: "Ajuntament de Reus",   // header label — the instance's own institution name, in its own language
   title: "Ajuntament de Reus",   // tab title — in the instance's own language
   lang: "ca",                          // Reus cards stay in Catalan (source language)
   srcLang: "ca",                       // original proposal wording is also Catalan

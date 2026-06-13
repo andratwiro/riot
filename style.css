@@ -33,10 +33,29 @@ body{background:var(--paper);color:var(--ink);
 /* ---- header ---- */
 header{display:flex;align-items:center;justify-content:space-between;
   padding:12px 14px 4px;flex:0 0 auto}
-.brand{position:relative;display:flex;align-items:center;gap:7px}
+.brand{position:relative;display:flex;align-items:center;gap:7px;min-width:0}
 .citysel{display:flex;align-items:center;gap:8px;background:none;border:0;cursor:pointer;
-  color:var(--ink);font:inherit;font-weight:800;font-size:17px;letter-spacing:.4px;
-  padding:6px 8px;border-radius:8px;min-height:44px}
+  color:var(--ink);font:inherit;font-weight:800;font-size:16px;letter-spacing:.4px;
+  padding:6px 8px;border-radius:8px;min-height:44px;min-width:0}
+/* the masthead carries the instance's own institution name — one line,
+   ellipsised rather than wrapped if it runs past the brand's share of the row */
+.citysel #cityName{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* two forms: the SHORT name in single/async mode (§/⚙ + switcher share the
+   header), the FULL institution name in live mode (chrome stripped by the
+   body.live-* rules below — the brand owns the whole row) */
+#cityName .cn-f{display:none}
+body.live-voter #cityName .cn-s,
+body.live-lobby #cityName .cn-s,
+body.live-mod   #cityName .cn-s{display:none}
+body.live-voter #cityName .cn-f,
+body.live-lobby #cityName .cn-f,
+body.live-mod   #cityName .cn-f{display:inline}
+/* live mode owns the whole row but a long full name (e.g. Brussels' bilingual)
+   can still pass 390px — wrap to a second line rather than ellipsise, the
+   header has the vertical room here (no §/⚙ to hold it to one line) */
+body.live-voter .citysel #cityName,
+body.live-lobby .citysel #cityName,
+body.live-mod   .citysel #cityName{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.18}
 .citysel:hover{background:var(--card)}
 .citysel .rose{height:23px;width:23px;flex:0 0 auto;display:block;object-fit:contain}
 .citysel .citychev{color:var(--ink60);font-size:11px;font-weight:600;margin-left:1px}
@@ -61,14 +80,6 @@ header{display:flex;align-items:center;justify-content:space-between;
   display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;font-family:var(--f-mono)}
 .hbtn:hover{border-color:var(--ink60);background:var(--card)}
 .hbtn:active{transform:scale(.94)}
-/* the room "account": your own chosen face, top-right — visible to you whenever
-   you carry a room identity. Not on the lobby letterhead (your face already
-   leads the gathering there) and not on the moderator's chrome. */
-#meBadge{display:inline-flex}
-#meBadge[hidden]{display:none}
-#meBadge .face{width:36px;height:36px;font-size:18px;margin:0}
-body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
-
 /* ---- the room strip: activity, never direction ---- */
 #roomstrip{display:flex;align-items:center;justify-content:space-between;gap:10px;
   padding:2px 14px 8px;flex:0 0 auto;min-height:36px}
@@ -141,6 +152,15 @@ body.live-lobby #meBadge,body.live-mod #meBadge{display:none}
 .card .deep ul{margin:0 0 9px;padding-left:18px}
 .card .deep li{margin:3px 0}
 .card .deep strong{color:var(--ink);font-weight:650}
+/* the kicker now leads the detail view (moved off the booth face) — eyebrow */
+.card .reveal>.topic{display:inline-block;margin:0 0 12px;align-self:auto}
+/* verbatim source disclosure: provenance is amber (the editorial idiom), the
+   wording itself wears the mono "minutes" face like any source quote */
+.card .srcmore{align-self:flex-start;margin:12px 0 0;background:none;border:0;color:var(--amber);
+  font:700 11px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;cursor:pointer;padding:10px 0;min-height:40px}
+.card .srcmore:active{transform:scale(.98)}
+.card .srcorig{margin-top:8px;padding:11px 12px;border-radius:6px;background:var(--card2);
+  border:1px solid rgba(138,106,31,.25);font:400 13.5px/1.6 var(--f-mono);color:var(--ink80)}
 /* analyst read — editorial (amber) layer, visually apart from the neutral facts */
 .card .lectura{margin-top:12px;padding:11px 12px;border-radius:6px;
   background:rgba(138,106,31,.07);border:1px solid rgba(138,106,31,.25)}
@@ -480,6 +500,9 @@ body.dev .app{padding-bottom:66px}
 .sheet-item.danger{border-color:rgba(156,61,61,.5)}
 .sheet-item.danger b{color:var(--brick)}
 .sheet-item.danger.armed{background:rgba(156,61,61,.08);border-color:var(--brick)}
+/* version tag — moved off the masthead into the options sheet (Rob, 2026-06-13) */
+.sheet-ver{margin:16px 4px 2px;text-align:center;font:700 10.5px var(--f-mono);
+  color:var(--ink60);letter-spacing:.5px}
 #sheet .devonly{display:none}
 body.dev #sheet .devonly:not([hidden]){display:flex}
 .si-ic{font-size:19px;line-height:1;flex:0 0 auto;font-family:var(--f-mono)}

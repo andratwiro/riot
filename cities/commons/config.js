@@ -7,6 +7,8 @@
 window.CITY_CONFIG = {
   id: "commons",
   name: "Commons 2019",
+  masthead: "Commons · 2019",   // header (single/async) — short, era-stamped; fits beside §/⚙
+  masthead_full: "House of Commons · 2019",   // header (live) — chrome stripped, era-stamped
   title: "House of Commons · 2019",
   lang: "en",
   srcLang: "en",                       // original wording = the division's official title

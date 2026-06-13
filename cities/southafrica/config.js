@@ -6,6 +6,8 @@
 window.CITY_CONFIG = {
   id: "southafrica",
   name: "South Africa",
+  masthead: "Parliament of SA",   // header (single/async) — short; fits beside §/⚙
+  masthead_full: "Parliament of South Africa",   // header (live) — chrome stripped, full name
   title: "Parliament of South Africa",   // tab title — English is the House's own working language
   lang: "en",
   srcLang: "en",                       // source wording = the bill's official title (English)

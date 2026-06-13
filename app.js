@@ -118,6 +118,13 @@ function aiflagLabel(showOrig){
   const src=CFG.srcLang && CFG.srcLang!==(CFG.lang||"") ? ` · ${CFG.srcLang}` : "";
   return (showOrig?`Original${src}`:"✨ AI-reworded")+'<span class="aifswap">⇄</span>';
 }
+// Card detail-view "View source" disclosure label (booth only; the Minutes page
+// keeps aiflagLabel above). Reveals the verbatim source wording inside See more
+// — the source-language tag (· fr) shows only when it differs from the display.
+function sourceLabel(open){
+  const src=CFG.srcLang && CFG.srcLang!==(CFG.lang||"") ? ` · ${CFG.srcLang}` : "";
+  return open ? `Hide source${src} ▴` : `View source${src} ▾`;
+}
 const answers = {};
 /* curator marks + dev mode — persist across sessions in localStorage */
 const MARK_KEY="riot.marks.v1", DEV_KEY="riot.dev.v1", DISMISS_KEY="riot.dismissed.v1";
@@ -215,16 +222,19 @@ function renderStack(){
     const el=document.createElement("div");
     el.className="card"+(depth===1?" behind1":depth===2?" behind2":"");
     const topic = esc(d.topic||"Decision");
-    // The headline is an AI-reworded version of the proposal; the ✨ flag toggles back to
-    // the original wording (d.title — the source's own name/text) per card.
-    const showOrig = origShown.has(d.id);
-    const headTxt = showOrig ? (d.title||d.headline) : d.headline;
-    const head = esc(headTxt);
-    // .orig = verbatim source wording → mono "minutes" face, capped height
-    const h2cls = [showOrig?"orig":"", (headTxt||"").length>110?"long":""].filter(Boolean).join(" ");
-    const long = h2cls ? ` class="${h2cls}"` : "";
+    // The booth face carries the AI-reworded headline alone (Rob, 2026-06-13):
+    // the kicker and the verbatim source wording moved into the detail view.
+    const head = esc(d.headline);
+    const long = (d.headline||"").length>110 ? ` class="long"` : "";
     const main = d.source_brief ? renderBrief(d.source_brief)
                : `<div class="body">${esc(d.human_body||"")}</div>`;
+    // verbatim source wording — the institution's own words, one tap inside See
+    // more behind "View source". Amber/editorial idiom; mono "minutes" face.
+    const srcText = d.title && d.title!==d.headline ? d.title : null;
+    const srcBlock = srcText
+      ? `<button class="srcmore" type="button" aria-expanded="false">${sourceLabel(false)}</button>`+
+        `<div class="srcorig" hidden${CFG.srcLang?` lang="${esc(CFG.srcLang)}"`:""}>${esc(srcText)}</div>`
+      : "";
     const dfacts = d.deep_facts || d.deep;   // neutral, cited (what the ghost reads)
     const deep = dfacts
       ? `<button class="deepmore" type="button">Full analysis ▾</button>`+
@@ -232,7 +242,8 @@ function renderStack(){
         (d.deep_lectura?`<div class="lectura">${renderBrief(d.deep_lectura)}</div>`:"")+
         `</div>`
       : "";
-    const body = main+deep;
+    // See more carries the kicker, the brief, the verbatim source, then analysis
+    const body = `<span class="topic">${topic}</span>`+main+srcBlock+deep;
     // LIVE first ballot only: the lobby's moved privacy line, in micro-type
     // under the buttons — where the hesitation happens
     const notes = depth===0 && window.LIVE && LIVE.cardNotes ? LIVE.cardNotes(d.id) : null;
@@ -244,10 +255,6 @@ function renderStack(){
           ${notes&&notes.privacy?`<p class="acts-priv">${esc(notes.privacy)}</p>`:""}
         </div>`
       : "";
-    const hasOrig = depth===0 && d.title && d.title!==d.headline;
-    const aiflag = hasOrig
-      ? `<button class="aiflag${showOrig?' on':''}" type="button" data-id="${esc(d.id)}" aria-pressed="${showOrig?'true':'false'}"><span class="aifpill">${aiflagLabel(showOrig)}</span></button>`
-      : "";
     const showSug = depth===0 && devMode && d.auto_suggest && !isMarked(d.id) && !isDismissed(d.id);
     const suggest = showSug
       ? `<div class="suggest"><span class="stxt">🤖 Suggested: not worth voting</span>`+
@@ -255,10 +262,8 @@ function renderStack(){
         `<button class="sugNo" type="button">Dismiss</button></div>`
       : "";
     el.innerHTML=`<button class="closex" type="button" aria-label="Close">✕</button>
-      ${aiflag}
       ${suggest}
-      <span class="topic">${topic}</span>
-      <h2${long}${showOrig&&CFG.srcLang?` lang="${esc(CFG.srcLang)}"`:""} title="${esc(d.title||"")}">${head}</h2>
+      <h2${long}>${head}</h2>
       <button class="more" type="button">See more ▾</button>
       <div class="reveal" hidden>${body}</div>
       ${acts}`;
@@ -502,6 +507,15 @@ $("#stack").addEventListener("click",e=>{
     else{blk.setAttribute("hidden","");dm.textContent="Full analysis ▾";}
     return;
   }
+  const sm=e.target.closest(".srcmore");
+  if(sm){
+    const blk=sm.nextElementSibling;
+    const open=blk.hasAttribute("hidden");
+    if(open)blk.removeAttribute("hidden"); else blk.setAttribute("hidden","");
+    sm.setAttribute("aria-expanded",String(open));
+    sm.textContent=sourceLabel(open);
+    return;
+  }
   const af=e.target.closest(".aiflag");
   if(af){
     const id=af.dataset.id, h2=af.closest(".card").querySelector("h2"), d=byId[id];
@@ -618,7 +632,13 @@ function updateMeBadge(){
   // use the CITIES entry (lives in index.html) for the header logo so it can't desync from
   // the dropdown if a per-city config.js is stale in cache.
   const cityEntry=CITIES.find(c=>c.id===CFG.id);
-  logo.src=(cityEntry&&cityEntry.logo)||CFG.logo||CITIES[0].logo; name.textContent=CFG.name||"";
+  logo.src=(cityEntry&&cityEntry.logo)||CFG.logo||CITIES[0].logo;
+  // Two masthead forms: the short name when §/⚙ + the switcher share the header
+  // (single/async), the full institution name in live mode where the chrome is
+  // stripped and the brand owns the row (CSS swaps them by body class).
+  const nShort=CFG.masthead||CFG.name||"", nFull=CFG.masthead_full||nShort;
+  const cnS=name.querySelector(".cn-s"), cnF=name.querySelector(".cn-f");
+  if(cnS&&cnF){cnS.textContent=nShort; cnF.textContent=nFull;} else name.textContent=nShort;
   if(CFG.preview){const t=document.createElement("span");t.className="previewtag";t.textContent="preview";btn.after(t);}
   menu.innerHTML=CITIES.map(c=>`<button type="button" role="menuitem" data-city="${c.id}" class="${c.id===CFG.id?'active':''}">
     <img src="${c.logo}" alt="">${c.name}${c.id===CFG.id?'<span class="tick">✓</span>':''}</button>`).join("");

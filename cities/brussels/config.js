@@ -4,6 +4,8 @@
 window.CITY_CONFIG = {
   id: "brussels",
   name: "Brussels",
+  masthead: "Parlement bruxellois",   // header (single/async) — French short form; fits beside §/⚙
+  masthead_full: "Parlement bruxellois · Brussels Parlement",   // header (live) — chrome stripped, room for the full bilingual name
   title: "Parlement bruxellois · Brussels Parlement",   // tab title — bilingual, the region's own languages
   lang: "en",
   srcLang: "fr",                       // original proposal wording (CRI source) is French
