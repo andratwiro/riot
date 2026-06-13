@@ -607,7 +607,7 @@ function closeRoster(instant){
 }
 (function(){
   const btn=$("#lobbyWhoBtn"); if(btn) btn.addEventListener("click",openRoster);
-  const back=$("#rosterBack"); if(back) back.addEventListener("click",closeRoster);
+  const back=$("#rosterBack"); if(back) back.addEventListener("click",()=>closeRoster());  // bare call — the click Event must NOT land as the `instant` arg
   document.addEventListener("keydown",e=>{ if(e.key==="Escape" && $("#rosterSheet")&&$("#rosterSheet").classList.contains("open")) closeRoster(); });
   // pull-down to dismiss: a drag that starts with the list at its top follows
   // the finger and dismisses past a threshold; otherwise the list scrolls.
