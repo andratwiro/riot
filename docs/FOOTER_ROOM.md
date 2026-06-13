@@ -80,6 +80,15 @@ So the animation is fan-out, hold, regroup-on-advance. Not a momentary flourish.
   position. It's insurance, not a constant effect: on a sparse card nothing is
   near the hand and nothing moves; it only shows when a heap balloons enough to
   crowd it (a near-unanimous pile, a full pre-tally cluster).
+- **A clear ~20px strip at the foot, and nothing below the hand** (v1.23). The
+  decided crowd floats a `BOTTOM_GAP` (20px) above the absolute bottom: a fresh
+  vote then visibly *crosses* that strip up into its pile (especially an abstain,
+  the centre column sitting under the hand), instead of landing flush against the
+  edge where the move is invisible. And directly under the hand the resting floor
+  lifts to the hand's own centre line, so a body there floats up and the ring
+  spreads it sideways — the crowd packs **around and above** the hand, never into
+  the strip directly beneath it. (Non-voters are the exception: they sink past
+  the bottom edge and peep, clipped.)
 
 ## What this touches when we wire it in (later)
 
