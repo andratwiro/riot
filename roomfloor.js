@@ -59,8 +59,18 @@
     const lo = 96 + WAVE_ZONE;
     h.style.height = Math.round(Math.max(lo, Math.min(want, Math.max(lo, avail)))) + "px";
   }
-  function measure(){ const h=host(); if(!h) return; sizeFloor(); const r=h.getBoundingClientRect();
-    W=r.width||W; H=r.height||H; measureHand(); }
+  function measure(){ const h=host(); if(!h) return; const prevH=H; sizeFloor(); const r=h.getBoundingClientRect();
+    W=r.width||W; H=r.height||H; measureHand();
+    // The FLOOR and the wave hand are both at fixed SCREEN positions (the hand is
+    // position:fixed; the floor works out to screenBottom − BOTTOM_GAP − r, H
+    // cancels). A host resize only moves the host's local origin, so the bodies'
+    // local b.y go stale and the crowd appears to drop below the hand (the reveal
+    // grows the card → host shrinks → glitch). Shift every body by ΔH so it stays
+    // at the same SCREEN point — still aligned with the hand, pile shape intact,
+    // and invisible (nothing actually moves on screen).
+    if(Math.abs(H-prevH)>1){ const dH=H-prevH;
+      for(const b of bodies.values()){ b.y+=dH; if(!REDUCE) place(b); } }
+  }
   // the wave hand floats fixed at the screen foot (style.css #waveBtn). Cache its
   // centre in host-local coords; null unless it's actually on screen (only a
   // seated voter mid-sitting gets one). Recomputed on every measure() — i.e. on

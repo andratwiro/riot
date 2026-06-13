@@ -96,6 +96,16 @@ So the animation is fan-out, hold, regroup-on-advance. Not a momentary flourish.
   body straight UP only — never sideways, because a sideways push flips
   direction with the per-frame jitter and makes the body orbit. (Non-voters are
   the exception: they sink past the bottom edge and peep, clipped.)
+- **The reveal must not drop the crowd through the hand** (v1.26). When the
+  approved/rejected stamp lands and the card grows (chamber piles + verdict), the
+  footer host shrinks. The floor and the hand are both at fixed *screen*
+  positions, but the bodies live in the host's *local* coordinates — so on a
+  resize their local `b.y` go stale and the settled crowd briefly appears below
+  the hand, ignoring its clearing. Fix: on any host-height change, shift every
+  body by `ΔH`, which keeps the crowd at the same screen point — aligned with the
+  hand, pile shape intact, and invisible. (Found by capturing the reveal
+  transition frame-by-frame — `/tmp/riot-reveal.js` — and watching the hand's
+  local Y jump while `below-hand` spiked.)
 
 ## What this touches when we wire it in (later)
 
