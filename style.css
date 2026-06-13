@@ -697,8 +697,8 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
    footer now, so the top strip retires in live. The band leaves room beneath it
    for the floating wave hand. */
 #roomfloor{display:none}
-body.live-floor #roomfloor{display:block;position:relative;flex:0 0 auto;
-  height:150px;margin:0 14px calc(74px + env(safe-area-inset-bottom))}  /* height is set live by roomfloor.js (crowd + room to the card) */
+body.live-floor #roomfloor{display:block;position:relative;flex:0 0 auto;overflow:hidden;
+  height:150px;margin:0 14px calc(74px + env(safe-area-inset-bottom))}  /* height set live by roomfloor.js; overflow clips the undecided peeping at the bottom */
 body.live-voter #roomstrip{display:none}
 /* the footer is the SAME paper as the booth — don't let #survey clip the card's
    drop shadow at its edge (that hard line broke the card→crowd transition), and

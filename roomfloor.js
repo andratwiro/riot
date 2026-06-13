@@ -139,8 +139,10 @@
         b.tx=cx+(c-(cnt-1)/2)*spX; b.ty=floorY-r*spY;        // bottom row widest, heap upward
         b.delay=b.me?now:now+rand(80,1100); b.noVote=false; } });
     }
+    // the undecided hang back at the very bottom, mostly clipped — just heads
+    // peeping up below the heaps, never floating on top (Rob, 2026-06-13)
     none.forEach(b=>{ let h=0; for(let i=0;i<b.pid.length;i++) h=(h*31+b.pid.charCodeAt(i))>>>0;
-      b.tx=W*(0.18+0.64*((h%1000)/1000)); b.ty=H*0.12; b.delay=0; b.noVote=true; });
+      b.tx=W*(0.08+0.84*((h%1000)/1000)); b.ty=H+d*0.35; b.delay=0; b.noVote=true; });
   }
 
   /* ---- the loop ---- */
@@ -172,7 +174,8 @@
       b.vx=(b.vx+b._ax)*DAMP; b.vy=(b.vy+b._ay)*DAMP;
       b.vx=Math.max(-MAXV,Math.min(MAXV,b.vx)); b.vy=Math.max(-MAXV,Math.min(MAXV,b.vy));
       b.x+=b.vx; b.y+=b.vy;
-      b.x=Math.max(b.r,Math.min(W-b.r,b.x)); b.y=Math.max(b.r,Math.min(H-b.r,b.y));
+      const yhi=b.noVote?H+b.r*0.6:H-b.r;              // undecided peep from the bottom edge; voters rest on the floor
+      b.x=Math.max(b.r,Math.min(W-b.r,b.x)); b.y=Math.max(b.r,Math.min(yhi,b.y));
       if(b.pop>0.01) b.pop*=0.84; else b.pop=0;
       place(b);
     }
