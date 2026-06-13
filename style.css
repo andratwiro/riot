@@ -44,15 +44,18 @@ header{display:flex;align-items:center;justify-content:space-between;
    header), the FULL institution name in live mode (chrome stripped by the
    body.live-* rules below — the brand owns the whole row) */
 #cityName .cn-f{display:none}
+body.in-room    #cityName .cn-s,
 body.live-voter #cityName .cn-s,
 body.live-lobby #cityName .cn-s,
 body.live-mod   #cityName .cn-s{display:none}
+body.in-room    #cityName .cn-f,
 body.live-voter #cityName .cn-f,
 body.live-lobby #cityName .cn-f,
 body.live-mod   #cityName .cn-f{display:inline}
-/* live mode owns the whole row but a long full name (e.g. Brussels' bilingual)
-   can still pass 390px — wrap to a second line rather than ellipsise, the
-   header has the vertical room here (no §/⚙ to hold it to one line) */
+/* multiplayer owns the whole row but a long full name can still pass 390px —
+   wrap to a second line rather than ellipsise, the header has the vertical
+   room here (no §/⚙ to hold it to one line) */
+body.in-room    .citysel #cityName,
 body.live-voter .citysel #cityName,
 body.live-lobby .citysel #cityName,
 body.live-mod   .citysel #cityName{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.18}
@@ -551,10 +554,13 @@ body.dev #sheet .devonly:not([hidden]){display:flex}
 
 /* voter chrome: no settings, no minutes, no city switch — until the final
    reveal, where ⚙ returns */
+/* multiplayer header = the parliament name only. §/⚙ (and the switcher) are
+   the single-player chrome; settings is the solo experience (Rob, 2026-06-13:
+   strictly solo-only — no options sheet for voters, not even at the reveal). */
+body.in-room #quickLog,body.in-room #menuBtn,
 body.live-voter #quickLog,body.live-voter #menuBtn{display:none}
-body.live-voter.live-final #menuBtn{display:inline-flex}
-body.live-voter .citysel{pointer-events:none}
-body.live-voter .citychev{display:none}
+body.in-room .citysel,body.live-voter .citysel{pointer-events:none}
+body.in-room .citychev,body.live-voter .citychev{display:none}
 body.live-lobby #survey,body.live-lobby #roomstrip{display:none}
 /* the lobby keeps the app's own header (rose · city · version, left-aligned
    as everywhere) — Rob, 2026-06-12: no bespoke letterhead on this screen */

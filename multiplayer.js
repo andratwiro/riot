@@ -101,7 +101,12 @@ function faceHTML(e,nm,me){
 }
 function renderStrip(){
   const strip=$("#roomstrip"); if(!strip) return;
-  if(!roomActive()){strip.hidden=true; return;}
+  // multiplayer = the communal header: name only, no §/⚙/switcher (Rob,
+  // 2026-06-13: settings is the solo experience). live.js carries the same
+  // strip via its own body.live-* classes; this covers async/sim rooms.
+  const active=roomActive();
+  document.body.classList.toggle("in-room",active);
+  if(!active){strip.hidden=true; return;}
   strip.hidden=false;
   const pids=mpVisiblePids();
   const key=[identity&&identity.emoji,identity&&identity.name,...pids.map(p=>p+(PEERS[p].e||"")+(PEERS[p].nm||""))].join("|");
