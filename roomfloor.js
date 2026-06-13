@@ -34,7 +34,9 @@
   function host(){ return el || (el=document.getElementById("roomfloor")); }
   // size by count, mirroring the lobby's step (diameter px) — big when few,
   // tighter as the seats fill so a full house still fits the band
-  function diam(n){ return n<=6?54 : n<=12?46 : n<=20?40 : n<=32?34 : 29; }
+  // a touch smaller than the chamber's party discs deserve the eye — the crowd
+  // is the informal layer, it shouldn't fight the parties up top (Rob, 2026-06-13)
+  function diam(n){ return n<=6?44 : n<=12?38 : n<=20?33 : n<=32?28 : 24; }
   // the footer is a SUBORDINATE strip under the card: pinned at the bottom, its
   // height set from how much room there is to the card and how many people are
   // here — a few sit low, a crowd lifts the towers slightly, never crowding the
