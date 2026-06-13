@@ -99,6 +99,11 @@ body.live-mod   .citysel #cityName{white-space:normal;overflow:visible;text-over
 .face.tick::after{content:"";position:absolute;inset:-5px;border-radius:50%;
   border:2px solid var(--stamp);opacity:0;animation:facetick .7s ease-out}
 @keyframes facetick{0%{transform:scale(.6);opacity:.7}100%{transform:scale(1.15);opacity:0}}
+/* the wave: a person says hello — their avatar hops, on every phone in the room.
+   Compositor-only (transform); raised above its overlapping neighbours mid-hop. */
+.face.wave{animation:facewave .76s cubic-bezier(.3,.7,.3,1);z-index:6}
+@keyframes facewave{0%{transform:translateY(0)}28%{transform:translateY(-10px)}
+  52%{transform:translateY(0)}70%{transform:translateY(-4px)}100%{transform:translateY(0)}}
 .rs-right{display:flex;align-items:center;gap:7px;min-width:0;flex-shrink:1}
 .rs-label{font:400 11px var(--f-mono);color:var(--ink60);letter-spacing:.3px;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis}
@@ -566,6 +571,22 @@ body.live-lobby #survey,body.live-lobby #roomstrip{display:none}
    as everywhere) — Rob, 2026-06-12: no bespoke letterhead on this screen */
 body.live-mod #survey,body.live-mod #roomstrip,body.live-mod #join{display:none}
 body.live-mod .app{max-width:none}
+
+/* the wave button: a quiet paper pill at the foot of the screen, offered only
+   to a seated voter mid-sitting (body.can-wave; lobby → per-card reveal). One
+   tap bounces your avatar on every phone in the room — the hand tips on press. */
+#waveBtn{display:none}
+body.can-wave #waveBtn{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);z-index:40;display:inline-flex;align-items:center;gap:8px;
+  padding:9px 18px 9px 15px;border:1.5px solid var(--rule);border-radius:999px;
+  background:var(--card);color:var(--ink60);font:700 15px var(--f-ui);
+  box-shadow:0 2px 10px rgba(28,27,23,.08);cursor:pointer;
+  transition:transform .12s cubic-bezier(.2,.7,.3,1),border-color .12s,color .12s}
+body.can-wave #waveBtn:hover{border-color:var(--ink60);color:var(--ink80)}
+body.can-wave #waveBtn:active{transform:translateX(-50%) scale(.95)}
+#waveBtn .wv-hand{width:21px;height:21px;flex:0 0 auto;transform-origin:75% 90%}
+#waveBtn:active .wv-hand{animation:wvtip .5s ease}
+@keyframes wvtip{0%,100%{transform:rotate(0)}25%{transform:rotate(-16deg)}75%{transform:rotate(12deg)}}
 
 /* the countdown: a ceiling, not a clock — the bar closes from both edges
    toward the centre; the last five seconds turn stamp-violet */

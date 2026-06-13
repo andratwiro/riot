@@ -204,6 +204,7 @@ function onSnapshot(){
   else if(lvOpening){ /* the formula holds the screen; the timeout lands the card */ }
   else { hideLobby(); syncDeck(()=>applyPhase()); }
   if(typeof renderStrip==="function") renderStrip();
+  updateWaveBtn();         // wave is offered from the lobby through the per-card reveal
   modAuthority();          // no-op unless the sim rig drives the room
   simOnSnapshot();
 }
@@ -213,7 +214,7 @@ function onSessionGone(){
 }
 function liveEnded(){
   stopCountdown();
-  document.body.classList.remove("live-paused");
+  document.body.classList.remove("live-paused","can-wave");
   hideLobby();
   if(typeof gateHide==="function") gateHide();
   if(lvShownState!=="final"){       // never reached the payoff → the URL is no longer an entrance
@@ -516,7 +517,7 @@ function lobbyPresence(){          // through presence-ping re-renders (innerHTM
   const vis=ppl.slice(0,LB_FACES), more=ppl.length-vis.length, now=Date.now();
   $("#lobbyFaces").innerHTML=vis.map(p=>{
     if(!lvFaceBorn.has(p.k)) lvFaceBorn.set(p.k,now);
-    const f=faceHTML(p.e,p.nm,p.me);
+    const f=faceHTML(p.e,p.nm,p.me,p.k);
     return now-lvFaceBorn.get(p.k)<450 ? f.replace('class="face','class="face lb-pop') : f;
   }).join("")+(more>0?`<span class="face init lb-ovf">+${more}</span>`:"");
 }
@@ -579,6 +580,33 @@ function openSitting(){
     if(lvS&&lvS.state!=="lobby"&&lvS.state!=="ended"&&lvS.state!=="final") syncDeck(()=>applyPhase());
   },1600);
 }
+
+/* ---- the wave: a one-tap hello to the room ----
+   Shown only to a seated voter mid-sitting (lobby through the per-card reveal,
+   never on the gate, the final page, or the moderator stage). Tapping bounces
+   my own avatar instantly on this phone and bumps a wave counter on my presence
+   record; every other phone animates the matching face (multiplayer.js
+   bounceFace, driven off the mpPart listener). No direction crosses the wire. */
+let lvWaveAt=0;
+function sendWave(){
+  bounceFace("me");                         // my avatar bounces now, on this phone
+  const t=Date.now();
+  if(t-lvWaveAt<450) return;                // the bounce stays instant; throttle the wire
+  lvWaveAt=t;
+  if(typeof mpSelf!=="undefined" && mpSelf && mpJoined && window.firebase)
+    mpSelf.update({w:firebase.database.ServerValue.increment(1),
+                   ts:firebase.database.ServerValue.TIMESTAMP});
+}
+function updateWaveBtn(){
+  const st=lvS&&lvS.state;
+  const show = LIVE_ROLE!=="mod" && lvSeated && (typeof LIVE!=="undefined") && LIVE.active()
+            && (st==="lobby"||st==="voting"||st==="paused"||st==="reveal");
+  document.body.classList.toggle("can-wave",!!show);
+}
+(function(){
+  const b=document.getElementById("waveBtn"); if(!b) return;
+  b.addEventListener("click",sendWave);
+})();
 
 /* =====================  MODERATOR / STAGE  ===================== */
 let modSel=null, lvArmedEnd=false, lvArmT=0;
@@ -847,7 +875,7 @@ function renderStage(){
   }
   // per-state details on top of the stable skeleton
   if(st==="lobby"){
-    const faces=[]; for(const pid of mpVisiblePids()) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false));
+    const faces=[]; for(const pid of mpVisiblePids()) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false,pid));
     const sf=$("#sgFaces"); if(sf) sf.innerHTML=faces.join("");
     const sh=$("#sgHere"); if(sh) sh.textContent=voterCount();
   }

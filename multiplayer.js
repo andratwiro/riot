@@ -93,11 +93,22 @@ const mapNudge=throttleTrail(()=>{
 /* ---- the room strip: faces + activity pulse + room progress ---- */
 const FACE_MAX=7;
 let stripKey="";                   // membership fingerprint — rebuild faces only when it changes
-function faceHTML(e,nm,me){
-  const inner=e?esc(e):`<span></span>`;
-  if(e) return `<span class="face${me?" me":""}" title="${esc(nm||"")}">${esc(e)}</span>`;
+// pid stamps the face with data-pid so a wave can find every copy of one
+// person's avatar (strip, lobby, stage) and bounce it — see bounceFace.
+function faceHTML(e,nm,me,pid){
+  const pa=pid?` data-pid="${esc(pid)}"`:"";
+  if(e) return `<span class="face${me?" me":""}"${pa} title="${esc(nm||"")}">${esc(e)}</span>`;
   const init=(nm||"·").slice(0,2);
-  return `<span class="face init${me?" me":""}" title="${esc(nm||"")}">${esc(init)}</span>`;
+  return `<span class="face init${me?" me":""}"${pa} title="${esc(nm||"")}">${esc(init)}</span>`;
+}
+/* the wave: a one-tap presence gesture. Every copy of a person's avatar bounces
+   on every phone in the room — mine on tap (sendWave), a peer's when their wave
+   counter ticks up over presence (the mpPart listener). Compositor-only. */
+function bounceFace(pid){
+  document.querySelectorAll(`.face[data-pid="${CSS.escape(pid)}"]`).forEach(f=>{
+    f.classList.remove("wave"); void f.offsetWidth; f.classList.add("wave");
+    setTimeout(()=>{ f.classList.remove("wave"); },760);
+  });
 }
 function renderStrip(){
   const strip=$("#roomstrip"); if(!strip) return;
@@ -112,8 +123,8 @@ function renderStrip(){
   const key=[identity&&identity.emoji,identity&&identity.name,...pids.map(p=>p+(PEERS[p].e||"")+(PEERS[p].nm||""))].join("|");
   if(key!==stripKey){
     stripKey=key;
-    const faces=[faceHTML(identity&&identity.emoji,(identity&&identity.name)||"you",true)];
-    for(const pid of pids.slice(0,FACE_MAX-1)) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false));
+    const faces=[faceHTML(identity&&identity.emoji,(identity&&identity.name)||"you",true,"me")];
+    for(const pid of pids.slice(0,FACE_MAX-1)) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false,pid));
     if(pids.length>FACE_MAX-1) faces.push(`<span class="face more">+${pids.length-(FACE_MAX-1)}</span>`);
     $("#rsFaces").innerHTML=faces.join("");
     $("#rsFaces").dataset.pids=JSON.stringify(["me",...pids.slice(0,FACE_MAX-1)]);
@@ -248,10 +259,13 @@ function mpInit(){
     }
     mpPart.on("value",snap=>{
       const all=snap.val()||{};
-      const prev={}; for(const k in PEERS){prev[k]=PEERS[k].n; delete PEERS[k];}
-      for(const k in all){ if(k!==mpPid) PEERS[k]={e:all[k].e||"",nm:all[k].nm||"",c:all[k].c||null,n:all[k].n||0,t:all[k].t||0,s:all[k].s||null}; }
+      const prev={},prevW={}; for(const k in PEERS){prev[k]=PEERS[k].n; prevW[k]=PEERS[k].w||0; delete PEERS[k];}
+      for(const k in all){ if(k!==mpPid) PEERS[k]={e:all[k].e||"",nm:all[k].nm||"",c:all[k].c||null,n:all[k].n||0,t:all[k].t||0,s:all[k].s||null,w:all[k].w||0}; }
       renderStrip();
-      for(const k in PEERS) if(prev[k]!=null && PEERS[k].n>prev[k]) activityTick(k);
+      for(const k in PEERS){
+        if(prev[k]!=null && PEERS[k].n>prev[k]) activityTick(k);
+        if(prevW[k]!=null && PEERS[k].w>prevW[k]) bounceFace(k);   // they waved
+      }
       // new known ballots are new ROWS — they can tug everyone, so reposition
       // the whole map (it renders peers too), not just the peer dots.
       // Trailing-throttled: at the final reveal every finisher's presence write
