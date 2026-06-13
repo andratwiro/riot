@@ -442,13 +442,15 @@ html.reveal #done{position:static;overflow:visible}
 .pvback:hover{border-color:var(--ink60)}
 .pvback:active{transform:scale(.94)}
 #partyView .lhrow{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:10px;width:100%}
-#pvHead{display:flex;align-items:center;gap:10px;min-width:0;flex:1 1 auto}
+#pvHead{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 auto}
 #pvHead .lg{width:30px;height:30px;margin:0;flex:0 0 auto}
-.pvname{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:17px;font-weight:700}
-/* affinity: fixed to the right, never shrinks, so a long name ellipsizes instead */
-.pvaff{flex:0 0 auto;margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;line-height:1.05}
-.pvaff b{font:700 16px var(--f-mono);color:var(--ink)}
-.pvaff span{font:400 9.5px var(--f-mono);color:var(--ink60);letter-spacing:.03em}
+/* the header is a reveal party row: name over a thin affinity bar, % to the right
+   (reuses .dptrack/.dpfill/.dppct from .dprow) — a long name ellipsizes */
+#pvHead .pvtx{flex:1 1 auto;min-width:0;text-align:left}
+#pvHead .pvname{display:block;font-size:16px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#pvHead .dptrack{display:block;height:4px;border-radius:2px;background:var(--card2);margin-top:5px;overflow:hidden}
+#pvHead .dpfill{display:block;height:100%;border-radius:2px}
+#pvHead .dppct{font:700 16px var(--f-mono);flex:0 0 auto;color:var(--ink)}
 .pvrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
 #partyView #pvIntro{font-size:14.5px}
 #partyView .lcard{padding:16px 18px}

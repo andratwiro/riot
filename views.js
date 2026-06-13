@@ -88,16 +88,16 @@ function openParty(token){
   // deliberate verb split, same number format: a party's number measures
   // REPRESENTATION ("votes with you"), the ghost's measures FIDELITY
   // ("predicts you"). Never homogenize the two.
-  // affinity figure: a fixed, never-shrinking summary so the name can be as
-  // long as it likes and ellipsize while the % stays glanceable. Verb doctrine
-  // holds in the caption: a party "votes with you", the ghost "predicts you".
-  const affLabel = isGhost ? "predicts you" : "votes with you";
-  const affTag = `<div class="pvaff"><b>${pct===null?"—":pct+"%"}</b><span>${affLabel}</span></div>`;
-  // ghost header: the mark + the GHOST stamp (the stamp is large-surface
-  // decoration only — it never appears at list or map scale)
-  $("#pvHead").innerHTML = isGhost
-    ? `<span class="lg ghost">${ghostMark(30,{noCore:!!p.blank})}</span><span class="gstamp">${p.blank?"BLANK":"GHOST"}</span>${affTag}`
-    : `${logoEl(p)}<b class="pvname">${esc(p.name)}</b>${affTag}`;
+  // the compare header mirrors a reveal party row (the ranked list on the done
+  // screen): the name over a thin affinity bar, the % to the right. A long
+  // institution name ellipsizes while the figure stays glanceable. The verb
+  // split ("votes with you" / "predicts you") lives on in the intro line below;
+  // the ghost reads "Ghost"/"Blank" in the normal row face like its reveal row.
+  const affBar = `<span class="dptrack"><span class="dpfill" style="width:${pct||0}%;background:${p.color}"></span></span>`;
+  const pctEl = `<span class="dppct">${pct==null?"—":pct+"%"}</span>`;
+  const mark = isGhost ? `<span class="lg ghost${p.blank?" blank":""}">${ghostMark(30,{noCore:!!p.blank})}</span>` : logoEl(p);
+  const nm = isGhost ? (p.blank?"Blank":"Ghost") : esc(p.name);
+  $("#pvHead").innerHTML = `${mark}<span class="pvtx"><span class="pvname">${nm}</span>${affBar}</span>${pctEl}`;
   $("#pvIntro").textContent=rows.length
     ? (p.blank
         ? `The control: the blank voted the same neutral context as the ghost but with NO profile at all — what the bare AI would do. The ${rows.length} you voted, where it misses first.`
