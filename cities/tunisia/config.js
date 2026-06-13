@@ -7,7 +7,7 @@
 window.CITY_CONFIG = {
   id: "tunisia",
   name: "Tunisia 14–18",          // era-stamped: the deck is 2014–2018 and the chamber is gone — must never read as current
-  masthead: "البرلمان التونسي 2014–2018",   // header label — Arabic, era-stamped (the chamber is gone; must never read as current)
+  masthead: "البرلمان التونسي",   // header — institution only (Arabic); the era lives in the tab title + solo cover
   title: "البرلمان التونسي 2014–2018",   // tab title — Arabic, the instance's own language, era-stamped
   lang: "en",
   srcLang: "fr",                       // source wording (JORT / Marsad) is French

@@ -7,7 +7,7 @@
 window.CITY_CONFIG = {
   id: "weimar",
   name: "Weimar 29–33",
-  masthead: "Reichstag 1929–1933",   // header label — era-stamped (the chamber never sat freely again)
+  masthead: "Reichstag",   // header — institution only; the era lives in the tab title + solo cover, not the masthead
   title: "Reichstag 1929–1933",
   lang: "en",
   srcLang: "de",                       // original wording = the item's official German title
