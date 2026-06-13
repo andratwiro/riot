@@ -242,16 +242,22 @@ dirty ring (CUP, fixed #ffdd00).
   user's stamp; the final reveal's room-v-chamber badges carry the same
   margin format on BOTH sides (room from `LIVE.tally`) — parallel facts;
   beat 2 (+900ms) the **room rains in as emoji piles** (`.piles`,
-  `renderLivePiles`): every cast face drops onto its pile in button order
-  (Against/Abstain/For), abstain quieter, my column violet, counts under the
-  rules, timeouts one muted "n didn't vote" line — no bars. **The chamber
-  lands on the same piles** (Rob, 2026-06, always on): each party's
-  `party_votes_canon` direction drops its `logoEl` disc in a `.pl-chamber`
-  row beneath the faces — the room above, the institution under it; absent
-  tokens (single-chamber measures, the GHOST) don't land; the `.pl-n` count
-  stays room ballots only. Per-decision party positions are reveal-surface
-  data — affinity/map detail is still the final reveal's. Pile directions
-  come from cast markers (see
+  `renderLivePiles`), now **inverted** (Rob, 2026-06-13): the chamber is on
+  TOP, the room is summarised beneath the label. Each column (`.pl-col`) is a
+  three-row **CSS subgrid** (`.piles` owns the row tracks; cols span all three
+  via `grid-template-rows:subgrid`) so the divider rule lines up across columns
+  whatever the pile heights: row 1 **the chamber on the line** — each party's
+  `party_votes_canon` direction drops its `logoEl` disc (`.pl-chamber`,
+  `align-self:end`) piling up to the rule; row 2 the **label** carrying the
+  2px rule (Against/Abstain/For, abstain quieter, my column violet); row 3 the
+  **room summarised** (`.pl-foot`): the cast faces as a wrapped cluster
+  (`.pl-faces`, YOU pushed first and ring-highlighted) followed by the `.pl-n`
+  total count (room ballots only, violet in my column). Absent tokens
+  (single-chamber measures, the GHOST) don't land; the roomless solo/async
+  reveal (`renderChamberInto`) reuses the same columns with only rows 1–2
+  (chamber + label, no faces, no count). No bars. Per-decision party positions
+  are reveal-surface data — affinity/map detail is still the final reveal's.
+  Pile directions come from cast markers (see
   doctrine); the **stage** (`#stage`) scales with `clamp()` for 5-metre
   legibility and reuses the piles enlarged. Voter chrome in live mode is
   stripped (no §, no ⚙ until the final reveal, city switch disabled).
