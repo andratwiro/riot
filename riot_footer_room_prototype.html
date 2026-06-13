@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RIOT — footer room prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;650;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Real RIOT «l'acta» tokens — kept in sync with style.css :root */
+:root{
+  --paper:#F2F0E8; --card:#FBFAF6; --card2:#ECE9DF; --rule:#D9D5C8;
+  --ink:#1C1B17; --ink80:#3F3C33; --ink60:#6C685D;
+  --stamp:#4B3FA0; --stamp-soft:rgba(75,63,160,.08);
+  --moss:#3E6B4F; --brick:#9C3D3D; --amber:#8A6A1F;
+  --f-ui:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --f-mono:"Courier Prime","Courier New",ui-monospace,monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.5 var(--f-ui);
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  padding:24px 16px 40px;gap:18px}
+:focus-visible{outline:2px solid var(--stamp);outline-offset:2px;border-radius:4px}
+
+/* ---------- the phone ---------- */
+.phone{width:340px;height:680px;background:var(--paper);border-radius:30px;
+  border:0.5px solid var(--rule);box-shadow:0 18px 50px rgba(28,27,23,.16);
+  overflow:hidden;position:relative;display:flex;flex-direction:column}
+
+/* header — the brand owns the row in live mode (no §/⚙) */
+.hdr{display:flex;align-items:center;gap:8px;padding:16px 16px 6px;flex:0 0 auto}
+.rose{width:22px;height:22px;border-radius:50%;background:var(--stamp);
+  display:flex;align-items:center;justify-content:center;font-size:12px;flex:0 0 auto}
+.cn{font-weight:800;font-size:15px;letter-spacing:.3px}
+.prog{margin-left:auto;display:flex;align-items:center;gap:8px}
+.ptrack{width:64px;height:3px;background:var(--rule);border-radius:2px;overflow:hidden}
+.pfill{height:100%;background:var(--ink);width:30%}
+.pn{font-family:var(--f-mono);font-size:11px;color:var(--ink60)}
+
+/* card */
+.card{margin:8px 12px 0;background:var(--card);border:1px solid var(--rule);
+  border-radius:14px;padding:16px 14px;flex:0 0 auto}
+.stmt{font-size:14px;font-weight:500;line-height:1.35;margin:0 0 14px}
+.cardbody{min-height:104px}
+
+/* voting: ink-on-paper, Against/For equal weight, Abstain quieter, no valence */
+.acts{display:flex;gap:8px}
+.btn{flex:1;text-align:center;border:1.5px solid var(--ink);border-radius:8px;
+  padding:11px 0;font:600 13px var(--f-ui);background:transparent;color:var(--ink);
+  cursor:pointer;transition:transform .12s,background .12s}
+.btn.ab{border:1px solid var(--rule);color:var(--ink60);font-weight:500}
+.btn:active{transform:scale(.96)}
+.btn:hover{background:var(--stamp-soft)}
+
+/* revealed: the chamber only — stamp + party circles in 3 columns */
+.stamprow{display:flex;justify-content:center;min-height:0;margin-bottom:12px}
+.stamp{border:2px solid var(--moss);color:var(--moss);border-radius:6px;
+  padding:4px 10px;text-align:center;transform:rotate(-3deg);
+  mix-blend-mode:multiply;animation:thunk .2s ease-out}
+.stamp small{display:block;font-family:var(--f-mono);font-size:8px;letter-spacing:2px}
+.stamp b{display:block;font-family:var(--f-mono);font-weight:700;font-size:17px;letter-spacing:3px;line-height:1.1}
+.stamp .m{display:block;font-family:var(--f-mono);font-weight:400;font-size:9px;letter-spacing:.5px}
+@keyframes thunk{0%{transform:rotate(-3deg) scale(1.5);opacity:0}
+  60%{transform:rotate(-3deg) scale(.95);opacity:1}100%{transform:rotate(-3deg) scale(1)}}
+.cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;align-items:end;min-height:40px}
+.col-discs{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-content:flex-end}
+.pdisc{min-width:28px;height:28px;padding:0 5px;border-radius:50px;color:#fff;
+  font:600 8px var(--f-mono);display:inline-flex;align-items:center;justify-content:center}
+.collabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;
+  border-top:1px solid var(--ink);margin-top:6px;padding-top:5px}
+.collab{font-family:var(--f-mono);font-size:9px;letter-spacing:1.5px;color:var(--ink60);text-align:center}
+.collab.q{color:#b5b3a8}
+.cont{text-align:center;font-family:var(--f-mono);font-size:10px;color:var(--ink60);
+  margin:12px 0 0;cursor:pointer;letter-spacing:.5px}
+
+.spacer{flex:1 1 auto;min-height:6px}
+
+/* ---------- the footer room ---------- */
+.foot{position:relative;height:178px;margin:0 8px;flex:0 0 auto}
+.stagebox{position:absolute;inset:0}
+.body{position:absolute;left:0;top:0;border-radius:50%;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  border:0.5px solid var(--rule);will-change:transform;
+  box-shadow:0 1px 2px rgba(28,27,23,.08)}
+.body.me{border:1.5px solid var(--stamp);z-index:5}
+
+/* wave dock */
+.wavedock{display:flex;justify-content:center;padding:4px 0 16px;flex:0 0 auto}
+.wave{border:0.5px solid var(--rule);background:transparent;border-radius:50px;
+  padding:8px 18px;font:500 13px var(--f-ui);color:var(--ink80);cursor:pointer;
+  display:inline-flex;align-items:center;gap:7px;transition:transform .12s}
+.wave:active{transform:scale(.95)}
+.wave .hand{font-size:16px;display:inline-block}
+
+/* ---------- studio controls (not part of the app) ---------- */
+.controls{width:340px;font-family:var(--f-mono);font-size:11px;color:var(--ink60)}
+.controls .row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.controls label{letter-spacing:.5px;text-transform:uppercase;font-size:9px;min-width:74px}
+.controls input[type=range]{flex:1;accent-color:var(--stamp)}
+.controls .val{color:var(--ink);min-width:54px;text-align:right}
+.controls .note{line-height:1.5;color:var(--ink60);font-family:var(--f-ui);font-size:12px;margin-top:6px}
+.controls b{color:var(--ink)}
+
+@media (prefers-reduced-motion: reduce){
+  .stamp{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="hdr">
+    <div class="rose">🌱</div>
+    <span class="cn">Parlement bruxellois</span>
+    <div class="prog"><div class="ptrack"><div class="pfill" id="pfill"></div></div><span class="pn" id="pn">3 / 10</span></div>
+  </div>
+
+  <div class="card" id="card">
+    <p class="stmt" id="stmt"></p>
+    <div class="cardbody" id="cardbody"></div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="foot"><div class="stagebox" id="stage"></div></div>
+
+  <div class="wavedock">
+    <button class="wave" id="waveBtn"><span class="hand" id="waveHand">✋</span> wave</button>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="row"><label>room size</label>
+    <input type="range" id="sizeRange" min="3" max="40" value="22">
+    <span class="val" id="sizeVal">22 here</span></div>
+  <p class="note" id="note"></p>
+</div>
+
+<script>
+/* ---------------- the room (sim crowd) ---------------- */
+const FACES=["🦊","🦉","🐢","🐝","🦋","🐙","🌻","🌿","🍊","🌙","⚡","🔥","💧","⭐","🍀","🎈",
+             "🐱","🐬","🦅","🦜","🐠","🦔","🐳","🦚","🦌","🦕","🦒","🐧","🦩","🐞","🦭",
+             "🌷","🍁","🐡","🦘","🦫","🐨","🦡","🦢","🐌"];
+const VOTES=["for","against","abstain"];
+const COLX={against:1/6, abstain:3/6, for:5/6};   // column centres (fraction of width)
+
+/* per-card chamber layout (the official result up top) */
+const CARDS=[
+  {stmt:"Have the Brussels Parliament call on the federal government to condemn the Iranian regime's repression.",
+   outcome:"APPROVED", margin:"66–0 · 16 abstained",
+   cols:{against:[], abstain:[{n:"PTB",c:"#922B21"},{n:"OVLD",c:"#2471A3"}],
+         for:[{n:"PS",c:"#C0392B"},{n:"MR",c:"#2471A3"},{n:"Ecolo",c:"#639922"}]}},
+  {stmt:"Cap commercial rents in the central districts for the next three years.",
+   outcome:"REJECTED", margin:"41–48 · 3 abstained",
+   cols:{against:[{n:"MR",c:"#2471A3"},{n:"OVLD",c:"#2471A3"}], abstain:[{n:"DéFI",c:"#7D3C98"}],
+         for:[{n:"PS",c:"#C0392B"},{n:"PTB",c:"#922B21"},{n:"Ecolo",c:"#639922"}]}},
+  {stmt:"Make the weekend metro service free for under-25s across the region.",
+   outcome:"APPROVED", margin:"58–22 · 9 abstained",
+   cols:{against:[{n:"MR",c:"#2471A3"}], abstain:[{n:"DéFI",c:"#7D3C98"}],
+         for:[{n:"PS",c:"#C0392B"},{n:"PTB",c:"#922B21"},{n:"Ecolo",c:"#639922"},{n:"OVLD",c:"#2471A3"}]}}
+];
+
+let N=22, cardIdx=0, revealed=false, bodies=[], W=320, H=178, raf=0;
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const stage=document.getElementById("stage");
+const rand=(a,b)=>a+Math.random()*(b-a);
+
+/* size by count — the lobby's step function (diameter px) */
+function diam(n){ return n<=6?60 : n<=12?52 : n<=20?44 : n<=32?37 : 31; }
+
+function buildRoom(){
+  stage.innerHTML="";
+  bodies=[];
+  const d=diam(N), r=d/2;
+  for(let i=0;i<N;i++){
+    const me=i===0;
+    const el=document.createElement("div");
+    el.className="body"+(me?" me":"");
+    const sz=me?d*1.06:d;
+    el.style.width=sz+"px"; el.style.height=sz+"px"; el.style.fontSize=Math.round(sz*0.52)+"px";
+    el.textContent = me ? "🙋" : FACES[i%FACES.length];
+    stage.appendChild(el);
+    bodies.push({el, me, r:sz/2, e:el.textContent,
+      vote: me?null:VOTES[Math.floor(Math.random()*3)],
+      x:rand(r,W-r), y:rand(r,H-r), vx:0, vy:0, tx:W/2, ty:H/2, pop:0, delay:0});
+  }
+  setTargets();
+  if(reduce){ for(const b of bodies){ b.x=b.tx; b.y=b.ty; } placeAll(); }
+}
+
+/* targets: cluster centre while voting, column piles on reveal */
+function setTargets(){
+  const now=performance.now();
+  for(const b of bodies){
+    if(!revealed){
+      b.tx=W/2; b.ty=H*0.5; b.delay=0;
+    } else {
+      const v = b.me ? myVote : b.vote;
+      b.tx = W*COLX[v];
+      b.ty = H - b.r - 4;            // heap up from the floor of the column
+      // others rain in live: stagger when their target switches to the pile
+      b.delay = b.me ? now : now + rand(120, 2200);
+    }
+  }
+}
+
+let myVote=null;
+
+/* ---------------- physics ---------------- */
+function step(){
+  const ATTRACT=0.020, DAMP=0.86, JIT = revealed?0.03:0.10, MAXV=7;
+  const now=performance.now();
+  for(const b of bodies){
+    // hold position until this body's stagger delay elapses (live rain-in)
+    const targeting = !revealed || now>=b.delay;
+    let ax=0, ay=0;
+    if(targeting){
+      ax += (b.tx-b.x)*ATTRACT;
+      ay += (b.ty-b.y)*ATTRACT;
+    }
+    ax += (Math.random()-0.5)*JIT;
+    ay += (Math.random()-0.5)*JIT;
+    b._ax=ax; b._ay=ay;
+  }
+  // pairwise repulsion — slight overlap allowed (busy, colliding)
+  for(let i=0;i<bodies.length;i++){
+    for(let j=i+1;j<bodies.length;j++){
+      const a=bodies[i], c=bodies[j];
+      let dx=c.x-a.x, dy=c.y-a.y;
+      let dist=Math.hypot(dx,dy)||0.01;
+      const min=(a.r+c.r)*0.86;          // 14% overlap tolerated
+      if(dist<min){
+        const push=(min-dist)/min*0.9;
+        const ux=dx/dist, uy=dy/dist;
+        a._ax-=ux*push; a._ay-=uy*push;
+        c._ax+=ux*push; c._ay+=uy*push;
+      }
+    }
+  }
+  for(const b of bodies){
+    b.vx=(b.vx+b._ax)*DAMP; b.vy=(b.vy+b._ay)*DAMP;
+    b.vx=Math.max(-MAXV,Math.min(MAXV,b.vx));
+    b.vy=Math.max(-MAXV,Math.min(MAXV,b.vy));
+    b.x+=b.vx; b.y+=b.vy;
+    // clamp to the footer box
+    b.x=Math.max(b.r,Math.min(W-b.r,b.x));
+    b.y=Math.max(b.r,Math.min(H-b.r,b.y));
+    if(b.pop>0) b.pop*=0.84; if(b.pop<0.01) b.pop=0;
+  }
+  placeAll();
+  raf=requestAnimationFrame(step);
+}
+function placeAll(){
+  for(const b of bodies){
+    const s=1+b.pop;
+    b.el.style.transform=`translate(${(b.x-b.r).toFixed(2)}px,${(b.y-b.r).toFixed(2)}px) scale(${s.toFixed(3)})`;
+  }
+}
+
+/* ---------------- card states ---------------- */
+function renderVoting(){
+  const c=CARDS[cardIdx];
+  document.getElementById("stmt").textContent=c.stmt;
+  document.getElementById("cardbody").innerHTML=
+    `<div class="acts">
+       <button class="btn" data-v="against">Against</button>
+       <button class="btn ab" data-v="abstain">Abstain</button>
+       <button class="btn" data-v="for">For</button>
+     </div>`;
+  document.querySelectorAll(".btn").forEach(b=>b.onclick=()=>vote(b.dataset.v));
+}
+function renderRevealed(){
+  const c=CARDS[cardIdx];
+  const approved=c.outcome==="APPROVED";
+  const disc=p=>`<span class="pdisc" style="background:${p.c}">${p.n}</span>`;
+  const colDiscs=k=>`<div class="col-discs">${(c.cols[k]||[]).map(disc).join("")}</div>`;
+  document.getElementById("cardbody").innerHTML=
+    `<div class="stamprow"><div class="stamp" style="border-color:${approved?'var(--moss)':'var(--brick)'};color:${approved?'var(--moss)':'var(--brick)'}">
+        <small>LE PARLEMENT</small><b>${c.outcome}</b><span class="m">${c.margin}</span></div></div>
+     <div class="cols">${colDiscs("against")}${colDiscs("abstain")}${colDiscs("for")}</div>
+     <div class="collabs"><span class="collab">AGAINST</span><span class="collab q">ABSTAIN</span><span class="collab">FOR</span></div>
+     <p class="cont" id="cont">tap to continue ›</p>`;
+  document.getElementById("cont").onclick=next;
+}
+function vote(v){
+  if(revealed) return;
+  myVote=v; revealed=true;
+  renderRevealed();
+  setTargets();                 // fan out to the piles; others rain in staggered
+}
+function next(){
+  cardIdx=(cardIdx+1)%CARDS.length;
+  revealed=false; myVote=null;
+  // re-deal the room's hidden directions for the new card
+  for(const b of bodies){ if(!b.me) b.vote=VOTES[Math.floor(Math.random()*3)]; }
+  document.getElementById("pn").textContent=((cardIdx+3))+" / 10";
+  document.getElementById("pfill").style.width=Math.min(100,(cardIdx+3)*10)+"%";
+  renderVoting();
+  setTargets();                 // regroup to the centre cluster
+}
+
+/* ---------------- wave: an upward impulse on my body ---------------- */
+document.getElementById("waveBtn").onclick=()=>{
+  const h=document.getElementById("waveHand");
+  h.style.transition="transform .15s"; h.style.transform="rotate(22deg) translateY(-4px)";
+  setTimeout(()=>h.style.transform="rotate(-15deg)",150);
+  setTimeout(()=>h.style.transform="none",330);
+  const me=bodies[0]; if(me){ me.vy-=6.5; me.pop=0.28; }
+};
+
+/* ---------------- controls + boot ---------------- */
+function measure(){
+  const r=stage.getBoundingClientRect();
+  W=r.width||320; H=r.height||178;
+}
+const range=document.getElementById("sizeRange");
+range.oninput=()=>{
+  N=parseInt(range.value,10);
+  document.getElementById("sizeVal").textContent=N+" here";
+  buildRoom();
+};
+document.getElementById("note").innerHTML=
+  "Footer feel-test. The card up top is <b>official</b>; the crowd below is <b>informal</b>. "+
+  "Tap a vote: the cluster fans out into Against / Abstain / For piles under the card's columns, "+
+  "the rest of the room raining in live. <b>Tap to continue</b> regroups them to the centre. "+
+  "Your raised hand wears the violet ring; <b>wave</b> bobs it. Drag the slider to feel size-by-count.";
+
+window.addEventListener("resize",()=>{ measure(); });
+measure();
+renderVoting();
+
+// prototype-only debug hooks for headless capture: ?n=N sets room size, ?reveal=1 auto-votes
+const QS=new URLSearchParams(location.search);
+if(QS.get("n")){ N=Math.max(3,Math.min(40,parseInt(QS.get("n"),10)||22));
+  range.value=N; document.getElementById("sizeVal").textContent=N+" here"; }
+buildRoom();
+if(!reduce) raf=requestAnimationFrame(step);
+if(QS.get("reveal")==="1") setTimeout(()=>vote("for"),1400);
+</script>
+</body>
+</html>

@@ -134,6 +134,7 @@ function bobWaveBtn(){
   clearTimeout(b._bobT); b._bobT=setTimeout(()=>b.classList.remove("bob"),700);
 }
 function bounceFace(pid,big){
+  if(window.RF) RF.wave(pid,big);           // the footer body gets an upward impulse too
   if(pid!=="me") bobWaveBtn();              // someone else waved → the button reacts
   const now=Date.now(), st=waveState.get(pid);
   if(st && now<st.until){                    // a hop is in progress
@@ -186,6 +187,7 @@ function renderStrip(){
 // a ballot landed somewhere (mine or anyone's): one quiet ring — compositor-only
 let pulseT=null;
 function activityTick(pid){
+  if(window.RF) RF.tick(pid);               // a quiet pop on that body in the footer crowd
   const pulse=$("#rsPulse");
   if(pulse){pulse.classList.remove("on"); void pulse.offsetWidth; pulse.classList.add("on");
     clearTimeout(pulseT); pulseT=setTimeout(()=>pulse.classList.remove("on"),750);}

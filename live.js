@@ -186,6 +186,18 @@ function liveInit(){
   if(LIVE_ROLE==="mod") setTimeout(()=>{ if(!lvSid) renderModSetup(); },SIMLIVE?0:600);
 }
 
+/* ---- the footer room (roomfloor.js) rides with the deck ----
+   On only for a seated voter mid-card (voting / paused / reveal); off in the
+   lobby, the gate, the final page, and for the moderator (the stage carries the
+   crowd there). One body class drives the CSS; RF.show is poked only on the
+   actual on/off edge, never per snapshot. */
+let lvFloorOn=false;
+function liveFloor(v){
+  v=!!v;
+  document.body.classList.toggle("live-floor",v);
+  if(v!==lvFloorOn){ lvFloorOn=v; if(window.RF) RF.show(v); }
+}
+
 /* ---- snapshot dispatch ---- */
 function onSnapshot(){
   if(!lvS) return;
@@ -214,6 +226,7 @@ function onSessionGone(){
 }
 function liveEnded(){
   stopCountdown();
+  liveFloor(false);
   document.body.classList.remove("live-paused","can-wave");
   hideLobby();
   if(typeof gateHide==="function") gateHide();
@@ -258,17 +271,20 @@ function syncDeck(done){
 function applyPhase(){
   const st=lvS.state, id=lvCurId(), top=$("#stack").lastChild;
   document.body.classList.toggle("live-paused",st==="paused");
+  liveFloor(true);                          // the footer room is on for the whole card
   if(st==="voting"){
     startCountdown();
+    if(window.RF) RF.cluster();             // a fresh (or re-shown) card: the crowd regroups to the centre
     if(top && (id in answers) && !top.querySelector(".castp") && !top.dataset.revealed){
       top.classList.add("voted"); showCastPanel(top);
     }
     updateCastCounts();
   } else if(st==="paused"){
-    freezeCountdown();
+    freezeCountdown();                       // leave the crowd where it is (cluster or piles)
   } else if(st==="reveal"){
     stopCountdown();
     if(top && !top.dataset.revealed) runRevealBeats(top, byId[id]);
+    else if(window.RF) RF.piles(id);         // re-entry on an already-revealed card: pin the piles
   }
 }
 
@@ -417,16 +433,33 @@ function stampOutcome(card,d){
     +(m?`<small class="st-m">${m}</small>`:"");
   stampRow(card).appendChild(st);   // next to the user's stamp — two imprints, one glance
 }
+/* the voter's per-card reveal is the CHAMBER ONLY now (Rob, 2026-06-13): the
+   official stamp and each party's canonical direction on the Against/Abstain/For
+   columns. The room left the card — it lives in the footer (roomfloor.js) and
+   fans into the same three columns below. Same shape as the roomless solo/async
+   reveal (renderChamberInto) minus the "tap to continue" hint (lockstep: the
+   moderator advances). The moderator STAGE keeps the combined room+chamber piles
+   (renderLivePiles) — the projector wants the crowd on the big screen. */
+function renderVoterChamber(el,id){
+  const d=byId[id], my=answers[id];
+  const pp=(typeof chamberPiles==="function")?chamberPiles(d):{against:[],abstain:[],for:[]};
+  let i=0;
+  const pdisc=p=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${logoEl(p)}</span>`;
+  const col=(k,lab)=>`<div class="pl-col${k==="abstain"?" quiet":""}${my===k?" mine":""}">
+      <div class="pl-stack pl-chamber">${pp[k].map(pdisc).join("")||`<span class="pl-none">—</span>`}</div>
+      <span class="pl-lab">${lab}</span>
+    </div>`;
+  el.innerHTML=`<div class="piles">${col("against","Against")}${col("abstain","Abstain")}${col("for","For")}</div>`;
+}
 function runRevealBeats(top,d){
   top.dataset.revealed="1";
   top.classList.add("voted");
   stampOutcome(top,d);                               // beat 1: the verdict — the chamber's imprint
-  setTimeout(()=>{                                   // beat 2: the room rains in as emoji piles
+  setTimeout(()=>{                                   // beat 2: chamber piles in the card; the room fans out below
     if(!top.isConnected) return;
     const slot=top.querySelector(".castp")||top.querySelector(".acts");
-    if(slot){ slot.className="split"; renderLivePiles(slot,d.id); }
-    const v=top.querySelector(".lv-verdict");
-    if(v){ const c=verdictCopy(d); v.hidden=false; v.classList.add(c.cls); v.textContent=c.tx; }
+    if(slot){ slot.className="split"; renderVoterChamber(slot,d.id); }
+    if(window.RF) RF.piles(d.id);                    // the footer room rains into Against / Abstain / For
   },900);
 }
 
@@ -460,6 +493,7 @@ function buildRoomVerdict(){
 function renderFinal(){
   if(lvShownState==="final") return;
   lvShownState="final";
+  liveFloor(false);                          // the map is the finale; the crowd is in it now
   stopCountdown();
   document.body.classList.remove("live-paused");
   document.body.classList.add("live-final");       // re-opens ⚙ (minutes, import) for voters
@@ -507,6 +541,7 @@ function lvWall(on){
 function showSeatGate(){
   lvWall(false);
   lvHold(false);                     // gated ≠ seated: a refresh re-asks, not re-paints
+  liveFloor(false);                  // no seat, no crowd
   document.body.classList.add("live-voter");
   if(typeof gateShow==="function") gateShow(true);
 }
@@ -539,6 +574,7 @@ function lobbyPresence(){          // through presence-ping re-renders (innerHTM
 }
 function showLobby(){
   lvShownState="lobby"; lvShownIdx=-1;
+  liveFloor(false);                          // the lobby IS the avatar room; the footer is the deck's
   document.body.classList.remove("live-final");
   document.body.classList.add("live-lobby");
   const lb=$("#lobby");
@@ -571,7 +607,9 @@ function showLobby(){
 (function(){
   const prev=window.renderStrip;
   window.renderStrip=function(){ if(prev)prev();
-    if(lvS&&lvS.state==="lobby"){ lobbyPresence(); if(LIVE_ROLE==="mod")renderStage(); } };
+    if(lvS&&lvS.state==="lobby"){ lobbyPresence(); if(LIVE_ROLE==="mod")renderStage(); }
+    if(window.RF && RF.active()) RF.sync();   // peers joined/left → reconcile the footer crowd
+  };
 })();
 function hideLobby(){
   lvHold(false);

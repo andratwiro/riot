@@ -79,6 +79,14 @@ else try{
     </div>
   </div>
 
+  <!-- LIVE SESSION · the footer room: the people, as one organic crowd at the
+       bottom of the booth. A loose physics cluster while a ballot is open; on
+       reveal the same bodies fan into Against / Abstain / For piles under the
+       card's columns, then regroup on the next card. Official up top (the card),
+       informal down here — never mixed. Driven by roomfloor.js (window.RF),
+       shown only on body.live-floor (voting / paused / reveal). -->
+  <div id="roomfloor" hidden></div>
+
   <!-- LIVE SESSION · voter lobby: nobody reads. The seated waiting room (the
        shared URL gates first — app.js #join — and its tap is the join). Two
        zones under the app's own header: hero (live chip / title / one-liner)
@@ -283,7 +291,7 @@ else try{
       <span class="si-ic">↺</span>
       <span class="si-tx"><b id="resetRoomTx">Reset everyone's votes</b><small>Clears the whole room's progress and tallies</small></span>
     </button>
-    <p class="sheet-ver">RIOT · v1.11</p>
+    <p class="sheet-ver">RIOT · v1.12</p>
   </div>
 </div>
 
@@ -329,6 +337,7 @@ else try{
 <script src="views.js"></script>
 <script src="multiplayer.js"></script>
 <script src="live.js"></script>
+<script src="roomfloor.js"></script>
 <script>
 // Boot — startup order: map coords (for the reveal) → room connect → live session → join gate → deal cards.
 applyGhostParty(showGhost);   // builds the reveal-map coords (ghost mode is session cfg — off at boot)

@@ -1,0 +1,168 @@
+/* RIOT viewer — THE FOOTER ROOM (live sessions only). Loads after live.js.
+
+   The reorganisation (Rob, 2026-06-13, docs/FOOTER_ROOM.md): the room's people
+   leave the top strip and the per-card piles, and live at the BOTTOM as one
+   organic crowd. Two states, bound to the current card, mirroring the card body
+   above:
+
+     voting  → a loose physics cluster, everyone milling, centred.
+     reveal  → the SAME bodies fan to the sides into Against / Abstain / For
+               piles under the card's columns; non-voters drift up, out of the
+               piles; the crowd keeps absorbing faces live as the room casts.
+     advance → regroup to the centre cluster.
+
+   Official lives up top (the card: stamp + party circles). Informal lives down
+   here (these emoji). They never mix. No titles, no counts — the heap is the
+   quantity; the exact figures are on the card. Your face wears the violet ring
+   and the wave gives it an upward impulse.
+
+   Scope: LIVE ONLY. async rooms and solo never switch the footer on (RF.active()
+   is false), so this file is inert outside a sitting. The moderator stage keeps
+   its enlarged piles (live.js renderLivePiles) untouched.
+
+   Physics: attraction to a per-body target, neighbour repulsion with a little
+   overlap tolerated (the "slightly colliding, busy" feel), gentle jitter,
+   damping. Transforms and opacity only, so the 60fps presence floor holds.
+   prefers-reduced-motion places bodies at their targets with no loop. */
+(function(){
+  const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const COLX = {against:0.16, abstain:0.5, for:0.84};   // column centres (fraction of width)
+  let el=null, on=false, raf=0, W=320, H=150;
+  const bodies=new Map();                                // pid -> body
+  let curId=null, mode="cluster";                        // mode: cluster | piles
+
+  function host(){ return el || (el=document.getElementById("roomfloor")); }
+  // size by count, mirroring the lobby's step (diameter px) — big when few,
+  // tighter as the seats fill so a full house still fits the band
+  function diam(n){ return n<=6?54 : n<=12?46 : n<=20?40 : n<=32?34 : 29; }
+  function measure(){ const h=host(); if(!h) return; const r=h.getBoundingClientRect();
+    W=r.width||W; H=r.height||H; }
+
+  // the room as the footer sees it: me first (it owns the violet ring), then
+  // every peer seated in this sitting — exactly the lobby's roster.
+  function roster(){
+    const out=[];
+    if(typeof identity!=="undefined") out.push({pid:"me", e:(identity&&identity.emoji)||""});
+    if(typeof mpVisiblePids==="function")
+      for(const pid of mpVisiblePids()) out.push({pid, e:(PEERS[pid]&&PEERS[pid].e)||""});
+    return out;
+  }
+  function rand(a,b){ return a+Math.random()*(b-a); }
+
+  /* reconcile the bodies to the current roster: spawn newcomers near the centre,
+     retire anyone who left, retune every radius for the new headcount. */
+  function sync(){
+    const h=host(); if(!h) return;
+    const list=roster(), N=Math.max(list.length,1);
+    const d=diam(N), seen=new Set();
+    for(const {pid,e} of list){
+      seen.add(pid);
+      let b=bodies.get(pid);
+      if(!b){
+        const node=document.createElement("div");
+        node.className="rf-body"+(pid==="me"?" me":"");
+        node.textContent=e||"·";
+        h.appendChild(node);
+        b={pid, el:node, me:pid==="me",
+           x:rand(W*0.3,W*0.7), y:rand(H*0.3,H*0.7), vx:0, vy:0,
+           tx:W/2, ty:H/2, pop:0, delay:0, born:perfNow()};
+        bodies.set(pid,b);
+      } else if(b.el.textContent!==(e||"·")){ b.el.textContent=e||"·"; }
+      const sz=b.me?Math.round(d*1.06):d;
+      b.r=sz/2;
+      b.el.style.width=sz+"px"; b.el.style.height=sz+"px";
+      b.el.style.fontSize=Math.round(sz*0.52)+"px";
+    }
+    for(const [pid,b] of bodies){
+      if(!seen.has(pid)){ b.el.remove(); bodies.delete(pid); }
+    }
+    setTargets();
+    if(REDUCE) placeStatic();
+  }
+
+  // direction for a body on the current card: mine from `answers`, peers' from
+  // the cast markers (LIVE.peerVotes). No cast = timed out / not yet in.
+  function dirOf(b,id){
+    if(b.me) return (typeof answers!=="undefined") ? answers[id]||null : null;
+    if(window.LIVE && LIVE.peerVotes){ const v=LIVE.peerVotes(b.pid); return (v&&v[id])||null; }
+    return null;
+  }
+  function setTargets(){
+    const now=perfNow();
+    for(const b of bodies.values()){
+      if(mode==="cluster"){
+        b.tx=W/2; b.ty=H*0.52; b.delay=0; b.noVote=false;
+      } else {
+        const dir=dirOf(b,curId);
+        if(dir && COLX[dir]!=null){
+          b.tx=W*COLX[dir]; b.ty=H-b.r-5;             // heap up from the floor of the column
+          b.delay = b.me ? now : now+rand(80,1100);    // peers rain in, staggered but decisive
+          b.noVote=false;
+        } else {
+          // didn't (yet) vote: a loose row along the TOP, clear of the three piles
+          // (abstain sits centre-floor — a non-voter must never read as abstain).
+          let h=0; for(let i=0;i<b.pid.length;i++) h=(h*31+b.pid.charCodeAt(i))>>>0;
+          b.tx=W*(0.18+0.64*((h%1000)/1000)); b.ty=H*0.16; b.delay=0; b.noVote=true;
+        }
+      }
+    }
+  }
+
+  /* ---- the loop ---- */
+  function step(){
+    // piles commit harder than the loose cluster, so the fan-out reads decisive
+    const ATTRACT=(mode==="piles"?0.045:0.020), DAMP=0.86, JIT=(mode==="piles"?0.035:0.10), MAXV=7, now=perfNow();
+    for(const b of bodies.values()){
+      const live = mode==="cluster" || now>=b.delay;     // hold until the rain-in delay
+      let ax=0, ay=0;
+      if(live){ const k=b.noVote?ATTRACT*0.55:ATTRACT;
+        ax+=(b.tx-b.x)*k; ay+=(b.ty-b.y)*k; }
+      ax+=(Math.random()-0.5)*JIT; ay+=(Math.random()-0.5)*JIT;
+      b._ax=ax; b._ay=ay;
+    }
+    const arr=[...bodies.values()];
+    for(let i=0;i<arr.length;i++) for(let j=i+1;j<arr.length;j++){
+      const a=arr[i], c=arr[j];
+      let dx=c.x-a.x, dy=c.y-a.y, dist=Math.hypot(dx,dy)||0.01;
+      const min=(a.r+c.r)*0.86;                          // 14% overlap tolerated → busy, colliding
+      if(dist<min){ const push=(min-dist)/min*0.9, ux=dx/dist, uy=dy/dist;
+        a._ax-=ux*push; a._ay-=uy*push; c._ax+=ux*push; c._ay+=uy*push; }
+    }
+    for(const b of arr){
+      b.vx=(b.vx+b._ax)*DAMP; b.vy=(b.vy+b._ay)*DAMP;
+      b.vx=Math.max(-MAXV,Math.min(MAXV,b.vx)); b.vy=Math.max(-MAXV,Math.min(MAXV,b.vy));
+      b.x+=b.vx; b.y+=b.vy;
+      b.x=Math.max(b.r,Math.min(W-b.r,b.x)); b.y=Math.max(b.r,Math.min(H-b.r,b.y));
+      if(b.pop>0.01) b.pop*=0.84; else b.pop=0;
+      place(b);
+    }
+    raf=requestAnimationFrame(step);
+  }
+  function place(b){ const s=1+b.pop;
+    b.el.style.transform=`translate(${(b.x-b.r).toFixed(2)}px,${(b.y-b.r).toFixed(2)}px) scale(${s.toFixed(3)})`; }
+  function placeStatic(){ for(const b of bodies.values()){ b.x=b.tx; b.y=b.ty; place(b); } }
+  function perfNow(){ return (window.performance&&performance.now)?performance.now():0; }
+
+  function start(){ if(on||REDUCE) return; on=true; raf=requestAnimationFrame(step); }
+  function stop(){ on=false; cancelAnimationFrame(raf); raf=0; }
+
+  /* ---- public surface (live.js + multiplayer.js call these) ---- */
+  window.RF={
+    active(){ return !!(host() && document.body.classList.contains("live-floor")); },
+    // footer becomes visible / hidden with the deck (live.js liveFloor)
+    show(v){
+      if(v){ measure(); sync();
+        if(REDUCE){ placeStatic(); } else start(); }
+      else { stop(); }
+    },
+    sync(){ if(this.active()){ measure(); sync(); if(REDUCE) placeStatic(); } },
+    cluster(){ if(!this.active()) return; mode="cluster"; curId=null; setTargets(); if(REDUCE) placeStatic(); },
+    piles(id){ if(!this.active()) return; mode="piles"; curId=id; measure(); sync(); /* sync calls setTargets */ },
+    regroup(){ this.cluster(); },
+    // the wave (multiplayer.js bounceFace): an upward impulse on the matching body
+    wave(pid,big){ const b=bodies.get(pid); if(!b) return; b.vy-=big?9:6.5; b.pop=big?0.34:0.26; },
+    // a ballot landed (multiplayer.js activityTick): a quiet pop on that body
+    tick(pid){ const b=bodies.get(pid); if(b) b.pop=Math.max(b.pop,0.16); }
+  };
+  window.addEventListener("resize",()=>{ if(window.RF&&RF.active()){ measure(); } });
+})();
