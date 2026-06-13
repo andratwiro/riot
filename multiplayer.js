@@ -176,13 +176,9 @@ function renderStrip(){
     applyWaves();                    // a rebuild dropped any mid-wave hop — re-apply it
   }
   const count=pids.length+1;
-  const ratios=[deck.length?Math.min(idx/deck.length,1):0];
-  for(const pid of pids){const p=PEERS[pid]; if(p.t)ratios.push(Math.min((p.n||0)/p.t,1));}
-  const avg=ratios.reduce((s,r)=>s+r,0)/ratios.length;
   // presence only — the faces carry the ambient signal; the "room %" average
-  // proved illegible in the chip (it still drives the progress bar's violet tick)
+  // proved illegible both in the chip and as the progress bar's violet tick
   $("#rsLabel").textContent = count>1 ? `${count} here` : `waiting for the room`;
-  setRoomProgress(count>1?avg:null);
 }
 // a ballot landed somewhere (mine or anyone's): one quiet ring — compositor-only
 let pulseT=null;

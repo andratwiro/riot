@@ -186,18 +186,12 @@ function logoEl(p){
                 : `<span class="lg fb" style="background:${p.color}">${p.token}</span>`;
 }
 
-/* ---- progress: my thin ink line + a small violet tick where the room is ---- */
+/* ---- progress: one thin ink line, my place in the deck ---- */
 function updateProgress(){
   // during the post-vote beat (voting=true) the current card counts as cast
   const n=Math.min(idx+(voting?1:0),deck.length);
   $("#progress").textContent = `${Math.min(idx+1,deck.length)} / ${deck.length}`;
   $("#progressFill").style.width = (deck.length?100*n/deck.length:0)+"%";
-}
-// called by multiplayer.js with the room's average completion (0..1) or null
-function setRoomProgress(ratio){
-  const t=$("#roomTick"); if(!t)return;
-  if(ratio==null||idx>=deck.length){t.hidden=true;return;}
-  t.hidden=false; t.style.left=`calc(${Math.round(ratio*100)}% - 1px)`;
 }
 
 // Render a rich "brief" (light markdown: blank-line paragraphs, "- " bullets, **bold**).
