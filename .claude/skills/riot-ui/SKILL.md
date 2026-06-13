@@ -209,9 +209,11 @@ dirty ring (CUP, fixed #ffdd00).
   uses, IDENTITY ONLY, never a stance on the deck (the firewall holds pre-vote,
   directions are the reveal's). The sheet reuses the options `#sheet` bones
   (`.sheet-back` scrim + `.sheet-panel` translateY) but rides ABOVE the wave
-  hand (z-50 vs 40) and adds pull-down-to-dismiss (drag the panel from its top;
-  past ~90px it closes — else the `.rs-list` scrolls); scrim-tap and Escape also
-  close. Keeping the roster off the inline flow (an earlier inline `<details>`
+  hand (z-50 vs 40) and genuinely **slides** up/down: `.shown` flips display →
+  reflow → `.open` animates the transform (a single display:none→block+open flip
+  snaps with no frame to transition from — keep the two classes split). Adds
+  pull-down-to-dismiss (drag the panel from its top; past ~90px it closes — else
+  the `.rs-list` scrolls); scrim-tap and Escape also close. Keeping the roster off the inline flow (an earlier inline `<details>`
   squished the avatar hero — Rob, 2026-06-13) leaves the glance a clean centred
   stack. The dry session-metadata (institution / docket-count / disclosure) the
   roster replaced is GONE. The methodology pitch is GONE from the lobby — only

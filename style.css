@@ -643,24 +643,34 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 
 /* the room's reveal: emoji piles in button order — every cast face lands on
    its pile (the fun beat; the chamber's stamp above is the verdict) */
-.piles{display:flex;align-items:flex-end;gap:8px;margin:4px 0 0}
-.pl-col{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+/* three columns share row tracks via subgrid: parties (row 1) pile up to the
+   rule, the label (row 2) carries the rule, the room sums up below (row 3) —
+   so the divider lines up across columns whatever the pile heights. */
+.piles{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;
+  gap:0 8px;margin:4px 0 0}
+.pl-col{display:grid;grid-row:span 3;grid-template-rows:subgrid;justify-items:center;min-width:0}
 .pl-stack{display:flex;flex-wrap:wrap-reverse;justify-content:center;align-items:center;
   gap:2px;min-height:30px;max-width:100%}
 .pl-stack .face{width:26px;height:26px;font-size:14px;margin:0}
 .pl-stack .face.init{font-size:10px}
 .pl-none{font:400 12px var(--f-mono);color:var(--rule)}
-/* the chamber on the same piles: party logo discs, always beneath the faces */
-.pl-chamber{min-height:0;margin-top:1px}
+/* the chamber stays on the line: party logo discs pile up just above the rule */
+.pl-chamber{grid-row:1;align-self:end;min-height:0;margin-top:1px}
 .pl-stack .lg{width:22px;height:22px}
 .pl-stack .lg img{padding:2.5px}
 .pl-stack .lg.fb{font-size:7px;letter-spacing:0}
-.pl-lab{font:700 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink80);
-  border-top:2px solid var(--ink);padding-top:5px;width:100%;text-align:center}
+.pl-lab{grid-row:2;align-self:start;font:700 11px var(--f-mono);text-transform:uppercase;
+  letter-spacing:.06em;color:var(--ink80);border-top:2px solid var(--ink);padding-top:5px;
+  width:100%;text-align:center}
+/* the room, summarised below the line: cast faces (you first) + the count */
+.pl-foot{grid-row:3;align-self:start;display:flex;flex-wrap:wrap;justify-content:center;
+  align-items:center;gap:3px 6px;padding-top:7px}
+.pl-faces{flex-wrap:wrap;min-height:0}
 .pl-n{font:700 13px var(--f-mono);color:var(--ink)}
 .pl-col.quiet .pl-lab{color:var(--ink60);border-top-color:var(--rule)}
 .pl-col.quiet .pl-n{color:var(--ink60)}
 .pl-col.mine .pl-lab{color:var(--stamp);border-top-color:var(--stamp)}
+.pl-col.mine .pl-n{color:var(--stamp)}
 .pl-drop{display:inline-flex;animation:pldrop .3s cubic-bezier(.2,1.4,.4,1) both}
 @keyframes pldrop{0%{transform:translateY(-14px) scale(1.5);opacity:0}
   100%{transform:translateY(0) scale(1);opacity:1}}
@@ -752,8 +762,12 @@ html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
 /* the roster bottom sheet — same bones as the options sheet (#sheet), but rides
    ABOVE the wave hand (z-50 vs 40) and its list scrolls inside a capped panel;
    live.js adds pull-down-to-dismiss. */
+/* .shown = visible in the DOM (panel still off-screen at translateY(110%));
+   .open = slid up. Splitting them lets the slide transition run: display flips
+   on .shown, then a reflow, then .open animates transform + scrim — a single
+   display:none→block+open flip would snap, with no frame to transition from. */
 #rosterSheet{position:fixed;inset:0;z-index:50;display:none}
-#rosterSheet.open{display:block}
+#rosterSheet.shown{display:block}
 #rosterSheet.open .sheet-back{opacity:1}
 #rosterSheet.open .sheet-panel{transform:translateY(0)}
 .rs-panel{max-height:76vh;display:flex;flex-direction:column}

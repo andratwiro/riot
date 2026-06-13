@@ -368,11 +368,15 @@ function renderLivePiles(el,id){
   let i=0;                                       // global stagger across the three piles
   const stack=f=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${faceHTML(f.e,f.nm,f.me)}</span>`;
   const pdisc=p=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${logoEl(p)}</span>`;
+  // the chamber stays on the line (parties on top); the room is summarised
+  // below the rule as a face cluster (you first) + its count (Rob, 2026-06-13).
   const col=(k,lab)=>`<div class="pl-col${k==="abstain"?" quiet":""}${my===k?" mine":""}">
-      <div class="pl-stack">${piles[k].map(stack).join("")||`<span class="pl-none">—</span>`}</div>
       ${pp[k].length?`<div class="pl-stack pl-chamber">${pp[k].map(pdisc).join("")}</div>`:""}
       <span class="pl-lab">${lab}</span>
-      <span class="pl-n">${piles[k].length}</span>
+      <div class="pl-foot">
+        <div class="pl-stack pl-faces">${piles[k].map(stack).join("")||`<span class="pl-none">—</span>`}</div>
+        <span class="pl-n">${piles[k].length}</span>
+      </div>
     </div>`;
   // no kicker, no "didn't vote" line: the faces themselves show who voted and
   // who didn't — the counts were near-redundant chrome (Rob, 2026-06-13).
@@ -570,7 +574,7 @@ function showLobby(){
 })();
 function hideLobby(){
   lvHold(false);
-  closeRoster();                   // the roster never outlives the lobby
+  closeRoster(true);               // the roster never outlives the lobby (gone now, no slide over the deck)
   document.body.classList.remove("live-lobby");
   const lb=$("#lobby"); if(lb) lb.hidden=true;
   lb&&lb.classList.remove("counting");
@@ -578,11 +582,29 @@ function hideLobby(){
   const op=$("#lobbyOpen"); if(op) op.hidden=true;
 }
 /* the who-sits-here roster: a bottom sheet over the lobby, riding ABOVE the
-   wave hand. Same open/translateY bones as the options sheet (views.js) plus
-   pull-down-to-dismiss. Trigger + scrim + Escape all wired once below. */
-function openRoster(){ const s=$("#rosterSheet"); if(!s)return; s.classList.add("open"); s.setAttribute("aria-hidden","false"); }
-function closeRoster(){ const s=$("#rosterSheet"); if(!s)return; s.classList.remove("open"); s.setAttribute("aria-hidden","true");
-  const p=$("#rosterPanel"); if(p){ p.style.transition=""; p.style.transform=""; } }
+   wave hand. Same translateY bones as the options sheet (views.js) plus a real
+   slide: .shown makes it visible (panel still off-screen), a reflow, then .open
+   animates it up — and the reverse on close. Pull-down-to-dismiss + scrim +
+   Escape all wired once below. */
+let lvRosterT=null;
+function openRoster(){
+  const s=$("#rosterSheet"); if(!s)return;
+  clearTimeout(lvRosterT);
+  const p=$("#rosterPanel"); if(p){ p.style.transition=""; p.style.transform=""; }  // clear any leftover drag offset
+  s.classList.add("shown");          // display:block, panel still at translateY(110%)
+  void s.offsetWidth;                // reflow so the next change actually transitions
+  s.classList.add("open");           // slide up + fade the scrim in
+  s.setAttribute("aria-hidden","false");
+}
+function closeRoster(instant){
+  const s=$("#rosterSheet"); if(!s||!s.classList.contains("shown"))return;
+  clearTimeout(lvRosterT);
+  const p=$("#rosterPanel"); if(p){ p.style.transition=""; p.style.transform=""; }  // hand the panel back to CSS so it slides home
+  s.classList.remove("open");        // slide down + fade the scrim out
+  s.setAttribute("aria-hidden","true");
+  if(instant) s.classList.remove("shown");                        // teardown: gone now, no slide
+  else lvRosterT=setTimeout(()=>s.classList.remove("shown"),320); // after the slide-down lands
+}
 (function(){
   const btn=$("#lobbyWhoBtn"); if(btn) btn.addEventListener("click",openRoster);
   const back=$("#rosterBack"); if(back) back.addEventListener("click",closeRoster);
