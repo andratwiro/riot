@@ -520,6 +520,7 @@ function lobbyPresence(){          // through presence-ping re-renders (innerHTM
     const f=faceHTML(p.e,p.nm,p.me,p.k);
     return now-lvFaceBorn.get(p.k)<450 ? f.replace('class="face','class="face lb-pop') : f;
   }).join("")+(more>0?`<span class="face init lb-ovf">+${more}</span>`:"");
+  if(typeof applyWaves==="function") applyWaves();   // the rebuild wiped any mid-wave hop (incl. my own)
 }
 function showLobby(){
   lvShownState="lobby"; lvShownIdx=-1;
@@ -876,7 +877,7 @@ function renderStage(){
   // per-state details on top of the stable skeleton
   if(st==="lobby"){
     const faces=[]; for(const pid of mpVisiblePids()) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false,pid));
-    const sf=$("#sgFaces"); if(sf) sf.innerHTML=faces.join("");
+    const sf=$("#sgFaces"); if(sf){ sf.innerHTML=faces.join(""); if(typeof applyWaves==="function") applyWaves(); }
     const sh=$("#sgHere"); if(sh) sh.textContent=voterCount();
   }
   if(st==="voting") startCountdown();

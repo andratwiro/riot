@@ -103,12 +103,25 @@ function faceHTML(e,nm,me,pid){
 }
 /* the wave: a one-tap presence gesture. Every copy of a person's avatar bounces
    on every phone in the room — mine on tap (sendWave), a peer's when their wave
-   counter ticks up over presence (the mpPart listener). Compositor-only. */
-function bounceFace(pid){
-  document.querySelectorAll(`.face[data-pid="${CSS.escape(pid)}"]`).forEach(f=>{
-    f.classList.remove("wave"); void f.offsetWidth; f.classList.add("wave");
-    setTimeout(()=>{ f.classList.remove("wave"); },760);
-  });
+   counter ticks up over presence (the mpPart listener). Compositor-only.
+   A short registry of who's mid-wave outlives the face re-renders: the lobby
+   rebuilds #lobbyFaces' innerHTML on every presence ping, so the tapper's own
+   hop (applied before the echo of their own write lands) would be wiped without
+   re-applying it after each render — applyWaves() is called at the end of every
+   face render (renderStrip, lobbyPresence, the stage). */
+const wavingUntil=new Map();          // pid -> ms the hop should still show
+function bounceFace(pid){ wavingUntil.set(pid,Date.now()+820); applyWaves(); }
+function applyWaves(){
+  const now=Date.now();
+  for(const [pid,until] of wavingUntil){
+    if(until<now){ wavingUntil.delete(pid); continue; }
+    document.querySelectorAll(`.face[data-pid="${CSS.escape(pid)}"]`).forEach(f=>{
+      if(f.dataset.waving) return;     // already hopping on this element — don't restart
+      f.dataset.waving="1";
+      f.classList.remove("wave"); void f.offsetWidth; f.classList.add("wave");
+      setTimeout(()=>{ f.classList.remove("wave"); delete f.dataset.waving; },780);
+    });
+  }
 }
 function renderStrip(){
   const strip=$("#roomstrip"); if(!strip) return;
@@ -128,6 +141,7 @@ function renderStrip(){
     if(pids.length>FACE_MAX-1) faces.push(`<span class="face more">+${pids.length-(FACE_MAX-1)}</span>`);
     $("#rsFaces").innerHTML=faces.join("");
     $("#rsFaces").dataset.pids=JSON.stringify(["me",...pids.slice(0,FACE_MAX-1)]);
+    applyWaves();                    // a rebuild dropped any mid-wave hop — re-apply it
   }
   const count=pids.length+1;
   const ratios=[deck.length?Math.min(idx/deck.length,1):0];
