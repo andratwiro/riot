@@ -105,21 +105,28 @@
       });
       return;
     }
-    for(const b of bodies.values()){
-      {
-        const dir=dirOf(b,curId);
-        if(dir && COLX[dir]!=null){
-          b.tx=W*COLX[dir]; b.ty=H-b.r-5;             // heap up from the floor of the column
-          b.delay = b.me ? now : now+rand(80,1100);    // peers rain in, staggered but decisive
-          b.noVote=false;
-        } else {
-          // didn't (yet) vote: a loose row along the TOP, clear of the three piles
-          // (abstain sits centre-floor — a non-voter must never read as abstain).
-          let h=0; for(let i=0;i<b.pid.length;i++) h=(h*31+b.pid.charCodeAt(i))>>>0;
-          b.tx=W*(0.18+0.64*((h%1000)/1000)); b.ty=H*0.16; b.delay=0; b.noVote=true;
-        }
-      }
+    // piles: pack each direction into a NARROW, TALL bar growing up from the
+    // floor, so HEIGHT shows support; explicit spaced slots (not a blob) let
+    // them breathe. Stable pid order so slots don't reshuffle as casts rain in.
+    const cols={against:[],abstain:[],for:[]}, none=[];
+    const list=[...bodies.values()].sort((a,b)=>a.pid<b.pid?-1:a.pid>b.pid?1:0);
+    for(const b of list){ const dir=dirOf(b,curId);
+      if(dir && cols[dir]) cols[dir].push(b); else none.push(b); }
+    const d=(list[0]?list[0].r*2:34), gapx=d*1.12, gapy=d*1.08;
+    const floorY=H-d/2-3, maxRows=Math.max(1,Math.floor((H-d)/gapy)+1);
+    const baseRow=Math.max(1,Math.min(2,Math.floor((W*0.30)/gapx)));   // ~2 wide → tall bars
+    for(const k in cols){
+      const arr=cols[k], cx=W*COLX[k];
+      const per=Math.max(baseRow,Math.ceil(arr.length/maxRows));        // widen only if a bar would overflow the top
+      arr.forEach((b,i)=>{
+        const row=Math.floor(i/per), inRow=Math.min(per,arr.length-row*per), col=i%per;
+        b.tx=cx+(col-(inRow-1)/2)*gapx; b.ty=floorY-row*gapy;
+        b.delay=b.me?now:now+rand(80,1100); b.noVote=false;
+      });
     }
+    // didn't (yet) vote: a loose row along the TOP, clear of the bars
+    none.forEach(b=>{ let h=0; for(let i=0;i<b.pid.length;i++) h=(h*31+b.pid.charCodeAt(i))>>>0;
+      b.tx=W*(0.18+0.64*((h%1000)/1000)); b.ty=H*0.12; b.delay=0; b.noVote=true; });
   }
 
   /* ---- the loop ---- */
