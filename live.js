@@ -544,15 +544,18 @@ function showLobby(){
   // pre-snapshot (refresh hold) there is no deck yet — leave the {count} lines
   // blank rather than printing "0 decisions"; the first snapshot fills them
   $("#lobbyCountLine").textContent=L.count_line||"";
-  // who sits here — the groups in this sitting, behind one opt-in tap. Same
-  // identity rows as the solo cover (disc + name + a few words from the party
-  // table's `blurb`); identity ONLY, never a stance — directions are the
-  // reveal's. Label borrows the city's localized parties_label. No blurbs → no
-  // section (the glance stays just avatars + count).
+  // who sits here — the groups in this sitting, behind one opt-in tap that opens
+  // a bottom sheet (above the wave hand; pull-down to dismiss). Same identity
+  // rows as the solo cover (disc + name + a few words from the party table's
+  // `blurb`); identity ONLY, never a stance — directions are the reveal's. Label
+  // borrows the city's localized parties_label. No blurbs → no trigger (the
+  // glance stays just avatars + count).
   const who=(typeof PARTIES!=="undefined"?PARTIES:[]).filter(p=>!p.ghost&&p.blurb);
-  $("#lobbyAbout").hidden=!who.length;
-  $("#lobbyAboutLbl").textContent=(CFG.solo_lobby&&CFG.solo_lobby.parties_label)||L.about_label||"who sits here";
-  $("#lobbyParties").innerHTML=who.map(p=>
+  const label=(CFG.solo_lobby&&CFG.solo_lobby.parties_label)||"who sits here";
+  $("#lobbyWhoBtn").hidden=!who.length;
+  $("#lobbyWhoBtn").textContent=label;
+  $("#rosterTitle").textContent=label;
+  $("#rosterList").innerHTML=who.map(p=>
     `<div class="lb-prow">${logoEl(p)}<span class="lb-ptx"><b>${esc(p.name)}</b>${esc(p.blurb)}</span></div>`).join("");
   lobbyPresence();
   lvHold(true);                    // gate-first: a tab in the lobby is a seated (or held) tab
@@ -567,12 +570,44 @@ function showLobby(){
 })();
 function hideLobby(){
   lvHold(false);
+  closeRoster();                   // the roster never outlives the lobby
   document.body.classList.remove("live-lobby");
   const lb=$("#lobby"); if(lb) lb.hidden=true;
   lb&&lb.classList.remove("counting");
   if(lvCdT){ clearInterval(lvCdT); lvCdT=null; }
   const op=$("#lobbyOpen"); if(op) op.hidden=true;
 }
+/* the who-sits-here roster: a bottom sheet over the lobby, riding ABOVE the
+   wave hand. Same open/translateY bones as the options sheet (views.js) plus
+   pull-down-to-dismiss. Trigger + scrim + Escape all wired once below. */
+function openRoster(){ const s=$("#rosterSheet"); if(!s)return; s.classList.add("open"); s.setAttribute("aria-hidden","false"); }
+function closeRoster(){ const s=$("#rosterSheet"); if(!s)return; s.classList.remove("open"); s.setAttribute("aria-hidden","true");
+  const p=$("#rosterPanel"); if(p){ p.style.transition=""; p.style.transform=""; } }
+(function(){
+  const btn=$("#lobbyWhoBtn"); if(btn) btn.addEventListener("click",openRoster);
+  const back=$("#rosterBack"); if(back) back.addEventListener("click",closeRoster);
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape" && $("#rosterSheet")&&$("#rosterSheet").classList.contains("open")) closeRoster(); });
+  // pull-down to dismiss: a drag that starts with the list at its top follows
+  // the finger and dismisses past a threshold; otherwise the list scrolls.
+  const panel=$("#rosterPanel"), list=()=>$("#rosterList");
+  if(panel){
+    let y0=null, dy=0, dragging=false;
+    panel.addEventListener("touchstart",e=>{
+      if(list()&&list().scrollTop>0) return;        // mid-scroll → let the list move, not the sheet
+      y0=e.touches[0].clientY; dy=0; dragging=true; panel.style.transition="none";
+    },{passive:true});
+    panel.addEventListener("touchmove",e=>{
+      if(!dragging||y0==null) return;
+      dy=Math.max(0,e.touches[0].clientY-y0);        // downward only
+      panel.style.transform=`translateY(${dy}px)`;
+    },{passive:true});
+    panel.addEventListener("touchend",()=>{
+      if(!dragging) return; dragging=false; panel.style.transition="";
+      if(dy>90){ closeRoster(); } else { panel.style.transform=""; }
+      y0=null; dy=0;
+    });
+  }
+})();
 /* the transition (Rob, 2026-06-13): the room dims and a 3·2·1 counts the
    sitting in — the chair's formula sits small above the number, the gathered
    faces still faintly behind it — then the first card lands. Plays only for
@@ -583,6 +618,7 @@ function openSitting(){
   const L=CFG.lobby||{};
   if(!L.sittingOpenedFormula){ hideLobby(); syncDeck(()=>applyPhase()); return; }
   lvOpening=true;
+  closeRoster();                   // the count-in owns the screen, not the roster
   const lb=$("#lobby"), op=$("#lobbyOpen"), cd=$("#lobbyCd");
   $("#lobbyOpenK").textContent=L.sittingOpenedFormula;   // the chair's line, small above the count
   lb.hidden=false;                 // the count's canvas (a tab that seated mid-open has it hidden)

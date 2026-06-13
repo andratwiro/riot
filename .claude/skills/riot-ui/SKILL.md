@@ -202,16 +202,19 @@ dirty ring (CUP, fixed #ffdd00).
   scale-in kept; the big mono count sits beneath with `aria-live="polite"`
   counting peers + me — the room is never empty to the person standing in it;
   the whole stack centres as one unit so the fixed wave hand floats clear at
-  the foot. **Who sits here** (Rob, 2026-06-13) folds into the opt-in
-  `.lb-about` disclosure: the groups in this sitting as identity rows
-  (`.lb-prow`: disc + name + a line from the party table's `blurb`) — the SAME
-  rows + `solo_lobby.parties_label` the solo cover uses, IDENTITY ONLY, never a
-  stance on the deck (the firewall holds pre-vote, directions are the reveal's).
-  The `.lb-doc` is its own auto-margin-centred scroller (NOT
-  `justify-content:center` — same top-clip lesson as the solo cover) so a long
-  roster (13 Brussels groups) scrolls within the glanceable lobby while the
-  glance still centres; the dry session-metadata (institution / docket-count /
-  disclosure) it replaced is GONE. The methodology pitch is GONE from the lobby — only
+  the foot. **Who sits here** (Rob, 2026-06-13) is one quiet `.lb-who` trigger
+  under the count that opens a **bottom sheet** (`#rosterSheet`): the groups in
+  this sitting as identity rows (`.lb-prow`: disc + name + a line from the party
+  table's `blurb`) — the SAME rows + `solo_lobby.parties_label` the solo cover
+  uses, IDENTITY ONLY, never a stance on the deck (the firewall holds pre-vote,
+  directions are the reveal's). The sheet reuses the options `#sheet` bones
+  (`.sheet-back` scrim + `.sheet-panel` translateY) but rides ABOVE the wave
+  hand (z-50 vs 40) and adds pull-down-to-dismiss (drag the panel from its top;
+  past ~90px it closes — else the `.rs-list` scrolls); scrim-tap and Escape also
+  close. Keeping the roster off the inline flow (an earlier inline `<details>`
+  squished the avatar hero — Rob, 2026-06-13) leaves the glance a clean centred
+  stack. The dry session-metadata (institution / docket-count / disclosure) the
+  roster replaced is GONE. The methodology pitch is GONE from the lobby — only
   the privacy line renders on the FIRST vote card (`LIVE.cardNotes` →
   `.acts-priv` micro-type below the vote buttons, dead after the first cast;
   a blind-vote rule line above the buttons was tried and cut by Rob,
