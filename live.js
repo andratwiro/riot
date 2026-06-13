@@ -353,7 +353,7 @@ function renderLivePiles(el,id){
   const my=answers[id];
   const castMap=((lvS&&lvS.cast)||{})[id]||{};
   const piles={against:[],abstain:[],for:[]};
-  if(my && piles[my]) piles[my].push({e:identity&&identity.emoji,nm:(identity&&identity.name)||"you",me:true});
+  if(my && piles[my]) piles[my].push({e:identity&&identity.emoji,nm:"you",me:true});
   for(const pid of Object.keys(castMap)){
     if(pid===lvPid()) continue;                  // mine comes from `answers` (may still be in flight)
     const v=castMap[pid]; if(!piles[v]) continue;
@@ -519,7 +519,7 @@ function lobbyPresence(){          // through presence-ping re-renders (innerHTM
   const lb=$("#lobby"); if(!lb||lb.hidden) return;   // would otherwise cut it at frame one)
   // peers + me: the room is never empty to the person standing in it
   const ppl=[];
-  if(lvSeated) ppl.push({k:"me",e:identity&&identity.emoji,nm:(identity&&identity.name)||"you",me:true});
+  if(lvSeated) ppl.push({k:"me",e:identity&&identity.emoji,nm:"you",me:true});
   for(const pid of mpVisiblePids()) ppl.push({k:pid,e:PEERS[pid].e,nm:PEERS[pid].nm,me:false});
   const N=ppl.length, now=Date.now();
   $("#lobbyCount").textContent=N;

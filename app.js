@@ -580,7 +580,6 @@ function gateShow(live){
       b.classList.add("sel");
     });
     $("#joinGo").addEventListener("click",gateGo);
-    $("#joinName").addEventListener("keydown",e=>{if(e.key==="Enter")gateGo();});
   }
   // preselect the face this tab already wears, else a random one — either way
   // a single tap on the CTA is enough
@@ -588,7 +587,6 @@ function gateShow(live){
   let pre=identity&&identity.emoji ? [...grid.children].find(b=>b.dataset.e===identity.emoji) : null;
   if(!pre) pre=grid.children[Math.floor(Math.random()*grid.children.length)];
   if(pre)pre.classList.add("sel");
-  if(identity&&identity.name) $("#joinName").value=identity.name;
   // live sittings: the button label carries the seat metaphor in the city's
   // own language (CFG.lobby.cta — e.g. Reus "Ocupa el teu seient")
   $("#joinGo").textContent=live?((CFG.lobby&&CFG.lobby.cta)||"Take your seat"):"Enter the booth";
@@ -597,7 +595,7 @@ function gateShow(live){
 function gateHide(){ $("#join").hidden=true; }
 function gateGo(){
   const sel=$("#joinGrid").querySelector(".sel");
-  identity={emoji:sel?sel.dataset.e:"", name:($("#joinName").value||"").trim().slice(0,14)};
+  identity={emoji:sel?sel.dataset.e:""};
   try{sessionStorage.setItem(ID_KEY,JSON.stringify(identity));}catch(e){}
   gateHide();
   updateMeBadge();
@@ -609,7 +607,7 @@ function maybeShowJoin(){
   // boot-time gate: only the backendless sim room (?simroom) still gates here —
   // real rooms gate per-sitting from live.js, and a sitting may not exist yet
   if(window.LIVE_ROLE==="mod") return;       // the moderator runs the room, not a ballot
-  if(identity && (identity.emoji||identity.name)){ updateMeBadge(); return; }
+  if(identity && identity.emoji){ updateMeBadge(); return; }
   if(typeof simOn!=="undefined" && simOn) gateShow(false);
 }
 /* the room "account": your chosen face top-right, for your own eyes — the
@@ -617,11 +615,11 @@ function maybeShowJoin(){
    Only called after the scripts have loaded (faceHTML lives in multiplayer.js). */
 function updateMeBadge(){
   const el=$("#meBadge"); if(!el) return;
-  const has=identity&&(identity.emoji||identity.name);
+  const has=identity&&identity.emoji;
   el.hidden=!has;
   if(has){
-    el.innerHTML=faceHTML(identity.emoji,identity.name||"you",true);
-    el.setAttribute("aria-label",`You joined as ${identity.emoji||identity.name}`);
+    el.innerHTML=faceHTML(identity.emoji,"you",true);
+    el.setAttribute("aria-label",`You joined as ${identity.emoji}`);
   }
 }
 

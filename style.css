@@ -553,11 +553,6 @@ body.dev #sheet .devonly:not([hidden]){display:flex}
 .join-grid button:active{transform:scale(.92)}
 .join-grid button.sel{border:2px solid var(--stamp);background:var(--stamp-soft)}
 .join-grid button{font-size:24px}
-.join-name{display:block;width:100%;max-width:300px;margin:0 auto 20px;background:transparent;
-  border:0;border-bottom:2px solid var(--rule);padding:10px 4px;text-align:center;
-  font:400 16px var(--f-mono);color:var(--ink)}
-.join-name:focus{outline:none;border-bottom-color:var(--stamp)}
-.join-name::placeholder{color:var(--ink60);opacity:.7}
 .join-go{display:block;width:100%;max-width:300px;margin:0 auto;background:var(--ink);color:var(--card);
   border:0;border-radius:10px;padding:16px;font:700 16.5px var(--f-ui);cursor:pointer;min-height:54px}
 .join-go:active{transform:scale(.98)}

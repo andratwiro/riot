@@ -164,10 +164,10 @@ function renderStrip(){
   if(!active){strip.hidden=true; return;}
   strip.hidden=false;
   const pids=mpVisiblePids();
-  const key=[identity&&identity.emoji,identity&&identity.name,...pids.map(p=>p+(PEERS[p].e||"")+(PEERS[p].nm||""))].join("|");
+  const key=[identity&&identity.emoji,...pids.map(p=>p+(PEERS[p].e||"")+(PEERS[p].nm||""))].join("|");
   if(key!==stripKey){
     stripKey=key;
-    const faces=[faceHTML(identity&&identity.emoji,(identity&&identity.name)||"you",true,"me")];
+    const faces=[faceHTML(identity&&identity.emoji,"you",true,"me")];
     for(const pid of pids.slice(0,FACE_MAX-1)) faces.push(faceHTML(PEERS[pid].e,PEERS[pid].nm,false,pid));
     if(pids.length>FACE_MAX-1) faces.push(`<span class="face more">+${pids.length-(FACE_MAX-1)}</span>`);
     $("#rsFaces").innerHTML=faces.join("");
@@ -229,7 +229,7 @@ function publishSelf(){
   renderStrip();
   if(!mpSelf || !mpJoined) return;
   const c=(typeof publishCoord==="function")?publishCoord():null;
-  mpSelf.set({e:(identity&&identity.emoji)||"", nm:(identity&&identity.name)||"",
+  mpSelf.set({e:(identity&&identity.emoji)||"",
               c, n:Object.keys(answers).length, t:deck.length,
               s:(window.LIVE&&LIVE.sid())||null,
               ts:firebase.database.ServerValue.TIMESTAMP});
