@@ -28,7 +28,7 @@
   const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const COLX = {against:0.16, abstain:0.5, for:0.84};   // column centres (fraction of width)
   const WAVE_ZONE = 80;                                  // height budget for the lower band the crowd now SHARES with the wave hand (was a reserved empty band) + where the undecided peep
-  const BOTTOM_GAP = 20;                                 // the decided crowd floats this far above the absolute bottom: a clear strip a vote (esp. an abstain, centre column) visibly CROSSES into the pile, instead of resting flush against the edge where the move is lost
+  const BOTTOM_GAP = 36;                                 // the decided crowd rests this far above the absolute bottom — a FLAT floor set well above the (low-sitting) wave hand, so only the hand's top pokes into the lowest row: the strip below stays clear, a fresh vote visibly crosses up into its pile, and few bodies ever sit in the hand's clearing (which is what keeps the piling calm and the jitter away)
   let el=null, on=false, raf=0, W=320, H=150;
   const bodies=new Map();                                // pid -> body
   let curId=null, mode="cluster";                        // mode: cluster | piles
@@ -37,7 +37,7 @@
   // centre (host-local px) so the one pass is correct below the single heap and
   // in the between-piles gap alike. null = no hand on screen.
   let handX=null, handY=null;
-  const HAND_CLEAR=20;                                   // keep every emoji's CENTRE at least this + its own radius from the hand centre — the hand drawing (~25px) plus a few px of air
+  const HAND_CLEAR=8;                                    // gentle clearing radius (+ a body's radius): the hand sits low so only its top meets the crowd — a small part is all that's needed to keep it legible, not a big hole
 
   function host(){ return el || (el=document.getElementById("roomfloor")); }
   // size by count, mirroring the lobby's step (diameter px) — big when few,
@@ -196,17 +196,14 @@
       b.vx=(b.vx+b._ax)*DAMP; b.vy=(b.vy+b._ay)*DAMP;
       b.vx=Math.max(-MAXV,Math.min(MAXV,b.vx)); b.vy=Math.max(-MAXV,Math.min(MAXV,b.vy));
       b.x+=b.vx; b.y+=b.vy;
-      // undecided sink to the SCREEN bottom and peep ~40% over the edge (clipped);
-      // everyone else rests above the bottom strip, sharing the wave hand's level —
-      // so a fresh vote crosses that strip into its pile and the move is obvious
-      let yhi;
-      if(b.noVote){ yhi=H+b.r*0.2; }
-      else { yhi=H-BOTTOM_GAP-b.r;
-        // directly under the hand: lift the floor to its centre line so a body
-        // there floats up and is then spread sideways by the ring — the crowd
-        // packs AROUND and ABOVE the hand, never into the strip directly below it
-        if(handX!=null && Math.abs(b.x-handX) < HAND_CLEAR+b.r) yhi=Math.min(yhi,handY); }
-      b.x=Math.max(b.r,Math.min(W-b.r,b.x)); b.y=Math.max(b.r,Math.min(yhi,b.y));
+      // the resting floor. Undecided sink past the SCREEN bottom and peep ~40%
+      // over the edge (clipped). Everyone else rests on a FLAT line above the
+      // low-sitting wave hand — nothing below it, no per-column step to jump on.
+      // Soft contact (ease onto the floor + damp), NOT a hard clamp, so a body
+      // drifting down settles instead of being yanked — that yank was the jitter.
+      const floor = b.noVote ? H+b.r*0.2 : H-BOTTOM_GAP-b.r;
+      if(b.y>floor){ b.y+=(floor-b.y)*0.5; if(b.vy>0) b.vy*=0.25; }
+      b.x=Math.max(b.r,Math.min(W-b.r,b.x)); b.y=Math.max(b.r,b.y);
       if(b.pop>0.01) b.pop*=0.84; else b.pop=0;
       place(b);
     }
@@ -214,17 +211,14 @@
   }
   function place(b){ const s=1+b.pop;
     let ox=b.x-b.r, oy=b.y-b.r;
-    // clear the hand's ring: any body whose CENTRE falls inside is pushed
-    // straight out to the ring edge, so nothing piles under the hand and you
-    // never see its background. Keys off the hand's actual centre and this body's
-    // actual position, so it just works whichever state produced that position.
-    // A bounded RENDER offset, not a velocity force: it can't accumulate or fight
-    // the cluster<->pile reorg, and it's 0 outside the ring so it stays continuous
-    // (out->0 as d->clearR). Sparse cards keep the hand clear, so nothing moves.
+    // keep the hand legible: a body near it is lifted straight UP out of its
+    // clearing (never sideways — a horizontal push flips direction with jitter
+    // and makes the body orbit; vertical-only can't). A bounded RENDER offset,
+    // not a velocity force, 0 outside the ring so it stays continuous as d->clearR.
+    // The hand sits low, so this only ever nudges the lowest row a few px.
     if(handX!=null){
       const clearR=HAND_CLEAR+b.r, dx=b.x-handX, dy=b.y-handY, d=Math.hypot(dx,dy);
-      if(d<clearR){ const out=clearR-d;
-        if(d>0.01){ ox+=dx/d*out; oy+=dy/d*out; } else { oy-=out; } }
+      if(d<clearR) oy-=(clearR-d);
     }
     b.el.style.transform=`translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px) scale(${s.toFixed(3)})`; }
   function placeStatic(){ for(const b of bodies.values()){ b.x=b.tx; b.y=b.ty; place(b); } }

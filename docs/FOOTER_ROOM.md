@@ -80,15 +80,22 @@ So the animation is fan-out, hold, regroup-on-advance. Not a momentary flourish.
   position. It's insurance, not a constant effect: on a sparse card nothing is
   near the hand and nothing moves; it only shows when a heap balloons enough to
   crowd it (a near-unanimous pile, a full pre-tally cluster).
-- **A clear ~20px strip at the foot, and nothing below the hand** (v1.23). The
-  decided crowd floats a `BOTTOM_GAP` (20px) above the absolute bottom: a fresh
-  vote then visibly *crosses* that strip up into its pile (especially an abstain,
-  the centre column sitting under the hand), instead of landing flush against the
-  edge where the move is invisible. And directly under the hand the resting floor
-  lifts to the hand's own centre line, so a body there floats up and the ring
-  spreads it sideways — the crowd packs **around and above** the hand, never into
-  the strip directly beneath it. (Non-voters are the exception: they sink past
-  the bottom edge and peep, clipped.)
+- **Hand low, floor high — calm piling, no jitter** (v1.24, superseding the
+  v1.21–1.23 attempts). The wave hand sits LOW (CSS `bottom:11px`) and the
+  decided crowd rests on a FLAT floor a `BOTTOM_GAP` (36px) above the absolute
+  bottom, well above the hand, so only the hand's *top* pokes into the lowest
+  row. Consequences: nothing rests below the hand; a fresh vote still visibly
+  *crosses* the strip up into its pile (especially an abstain, the centre column
+  meeting the hand); and because few bodies are ever at the hand's level, the
+  piling stays calm. Two rules kill the jitter that the earlier exaggerated
+  doming/clamping caused (found by *measuring* per-body frame-to-frame motion,
+  not by eye — see `/tmp/riot-jitter.js`): **(1)** the floor is SOFT contact —
+  a body eases onto it and its downward velocity is damped, never a hard clamp
+  (a hard clamp yanks a body that drifts across it; a per-column floor *step*
+  was yanking bodies 11px). **(2)** the hand's legibility nudge lifts a nearby
+  body straight UP only — never sideways, because a sideways push flips
+  direction with the per-frame jitter and makes the body orbit. (Non-voters are
+  the exception: they sink past the bottom edge and peep, clipped.)
 
 ## What this touches when we wire it in (later)
 
