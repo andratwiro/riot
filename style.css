@@ -417,15 +417,18 @@ html.reveal #done{position:static;overflow:visible}
 /* original wording = verbatim source → the minutes' own typewritten face */
 #log.orig .lcard .lt{font:600 12.5px/1.55 var(--f-mono)}
 .pvback{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--rule);
-  background:var(--card);color:var(--ink);font-size:20px;line-height:1;cursor:pointer;
-  display:inline-flex;align-items:center;justify-content:center}
+  background:var(--card);color:var(--ink);font:400 20px/1 var(--f-ui);cursor:pointer;padding:0;
+  display:inline-flex;align-items:center;justify-content:center;text-align:center}
 .pvback:hover{border-color:var(--ink60)}
 .pvback:active{transform:scale(.94)}
 #partyView .lhrow{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:10px;width:100%}
-#pvHead{display:flex;align-items:center;gap:10px;min-width:0}
-#pvHead .lg{width:30px;height:30px;margin:0}
-#pvHead b{font-size:17px}
-#pvHead .pvpct{font:400 12.5px var(--f-mono);color:var(--ink60)}
+#pvHead{display:flex;align-items:center;gap:10px;min-width:0;flex:1 1 auto}
+#pvHead .lg{width:30px;height:30px;margin:0;flex:0 0 auto}
+.pvname{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:17px;font-weight:700}
+/* affinity: fixed to the right, never shrinks, so a long name ellipsizes instead */
+.pvaff{flex:0 0 auto;margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;line-height:1.05}
+.pvaff b{font:700 16px var(--f-mono);color:var(--ink)}
+.pvaff span{font:400 9.5px var(--f-mono);color:var(--ink60);letter-spacing:.03em}
 .pvrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
 #partyView #pvIntro{font-size:14.5px}
 #partyView .lcard{padding:16px 18px}

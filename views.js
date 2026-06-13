@@ -88,14 +88,16 @@ function openParty(token){
   // deliberate verb split, same number format: a party's number measures
   // REPRESENTATION ("votes with you"), the ghost's measures FIDELITY
   // ("predicts you"). Never homogenize the two.
-  const accord = pct===null ? "no comparison yet"
-    : isGhost ? `predicts you ${pct}% · ${disagrees}${disagrees===1?" miss":" misses"}`
-              : `votes with you ${pct}% · ${disagrees}${disagrees===1?" disagreement":" disagreements"}`;
+  // affinity figure: a fixed, never-shrinking summary so the name can be as
+  // long as it likes and ellipsize while the % stays glanceable. Verb doctrine
+  // holds in the caption: a party "votes with you", the ghost "predicts you".
+  const affLabel = isGhost ? "predicts you" : "votes with you";
+  const affTag = `<div class="pvaff"><b>${pct===null?"—":pct+"%"}</b><span>${affLabel}</span></div>`;
   // ghost header: the mark + the GHOST stamp (the stamp is large-surface
   // decoration only — it never appears at list or map scale)
   $("#pvHead").innerHTML = isGhost
-    ? `<span class="lg ghost">${ghostMark(30,{noCore:!!p.blank})}</span><div><span class="gstamp">${p.blank?"BLANK":"GHOST"}</span> <span class="pvpct">${accord}</span></div>`
-    : `${logoEl(p)}<div><b>${esc(p.name)}</b> <span class="pvpct">${accord}</span></div>`;
+    ? `<span class="lg ghost">${ghostMark(30,{noCore:!!p.blank})}</span><span class="gstamp">${p.blank?"BLANK":"GHOST"}</span>${affTag}`
+    : `${logoEl(p)}<b class="pvname">${esc(p.name)}</b>${affTag}`;
   $("#pvIntro").textContent=rows.length
     ? (p.blank
         ? `The control: the blank voted the same neutral context as the ghost but with NO profile at all — what the bare AI would do. The ${rows.length} you voted, where it misses first.`
