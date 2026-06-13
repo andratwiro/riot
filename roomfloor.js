@@ -27,6 +27,7 @@
 (function(){
   const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const COLX = {against:0.16, abstain:0.5, for:0.84};   // column centres (fraction of width)
+  const WAVE_ZONE = 80;                                  // band reserved at the very bottom (screen edge): the wave hand + where the undecided peep
   let el=null, on=false, raf=0, W=320, H=150;
   const bodies=new Map();                                // pid -> body
   let curId=null, mode="cluster";                        // mode: cluster | piles
@@ -45,10 +46,11 @@
     const h=host(); if(!h) return;
     const stack=document.getElementById("stack");
     const cardBottom = stack ? stack.getBoundingClientRect().bottom : window.innerHeight*0.4;
-    const MB=74, MINGAP=18;                                  // wave clearance + a gap to the card
-    const avail = window.innerHeight - cardBottom - MB - MINGAP;
-    const want = 110 + (bodies.size||1)*4;                   // few stay low; more lift the towers a little
-    h.style.height = Math.round(Math.max(96, Math.min(want, Math.max(96, avail)))) + "px";
+    const MINGAP=18;                                         // a gap to the card; the footer runs to the screen bottom
+    const avail = window.innerHeight - cardBottom - MINGAP;
+    const want = 110 + (bodies.size||1)*4 + WAVE_ZONE;       // crowd region + the bottom wave/peep band
+    const lo = 96 + WAVE_ZONE;
+    h.style.height = Math.round(Math.max(lo, Math.min(want, Math.max(lo, avail)))) + "px";
   }
   function measure(){ const h=host(); if(!h) return; sizeFloor(); const r=h.getBoundingClientRect();
     W=r.width||W; H=r.height||H; }
@@ -127,7 +129,7 @@
     const list=[...bodies.values()].sort((a,b)=>a.pid<b.pid?-1:a.pid>b.pid?1:0);
     for(const b of list){ const dir=dirOf(b,curId);
       if(dir && groups[dir]) groups[dir].push(b); else none.push(b); }
-    const d=(list[0]?list[0].r*2:34), spX=d*0.66, spY=d*0.62, floorY=H-d/2-3;
+    const d=(list[0]?list[0].r*2:34), spX=d*0.66, spY=d*0.62, floorY=H-WAVE_ZONE-d/2-3;  // heaps rest on the floor, above the wave zone
     const maxBase=Math.max(2,Math.floor((W*0.32)/spX));        // keep each heap inside its third
     for(const k in groups){
       const arr=groups[k], cx=W*COLX[k], n=arr.length;
@@ -174,7 +176,9 @@
       b.vx=(b.vx+b._ax)*DAMP; b.vy=(b.vy+b._ay)*DAMP;
       b.vx=Math.max(-MAXV,Math.min(MAXV,b.vx)); b.vy=Math.max(-MAXV,Math.min(MAXV,b.vy));
       b.x+=b.vx; b.y+=b.vy;
-      const yhi=b.noVote?H+b.r*0.6:H-b.r;              // undecided peep from the bottom edge; voters rest on the floor
+      // undecided sink to the SCREEN bottom and peep ~40% over the edge (clipped);
+      // everyone else rests on the floor, held above the wave zone
+      const yhi=b.noVote ? H+b.r*0.2 : H-WAVE_ZONE-b.r;
       b.x=Math.max(b.r,Math.min(W-b.r,b.x)); b.y=Math.max(b.r,Math.min(yhi,b.y));
       if(b.pop>0.01) b.pop*=0.84; else b.pop=0;
       place(b);
