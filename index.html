@@ -90,25 +90,30 @@ else try{
        first card. -->
   <div id="lobby" hidden>
     <div class="lb-doc">
-      <div class="lb-hero">
+      <div class="lb-head">
         <p class="lb-chip"><span class="lb-pulse" aria-hidden="true"></span><span id="lobbyChip"></span></p>
         <h1 class="lb-title" id="lobbyTitle"></h1>
-        <p class="lb-one" id="lobbyOne"></p>
       </div>
-      <div class="lb-presence">
+      <!-- the avatars ARE the lobby: the room you're about to sit with. They
+           grow when few, tighten as the seats fill, and everyone shows (no +N).
+           live.js lobbyPresence() sizes them per render. -->
+      <div class="lb-stage">
         <div class="lb-faces" id="lobbyFaces"></div>
-        <p class="lb-count"><b id="lobbyCount" aria-live="polite">0</b><span id="lobbyCountLine"></span></p>
-        <details class="lb-about" id="lobbyAbout">
-          <summary id="lobbyAboutLbl"></summary>
-          <p class="lb-inst" id="lobbyInst"></p>
-          <p class="lb-dl" id="lobbyDocketLine"></p>
-          <p class="lb-disc" id="lobbyDisc"></p>
-        </details>
       </div>
+      <p class="lb-count"><b id="lobbyCount" aria-live="polite">0</b><span id="lobbyCountLine"></span></p>
+      <details class="lb-about" id="lobbyAbout">
+        <summary id="lobbyAboutLbl"></summary>
+        <p class="lb-inst" id="lobbyInst"></p>
+        <p class="lb-dl" id="lobbyDocketLine"></p>
+        <p class="lb-disc" id="lobbyDisc"></p>
+      </details>
     </div>
+    <!-- on open the room dims and a 3·2·1 counts the sitting in, the chair's
+         formula small above the number, the faces still faintly behind it
+         (live.js openSitting). -->
     <div class="lb-open" id="lobbyOpen" hidden>
       <p class="lb-k" id="lobbyOpenK"></p>
-      <h1 class="lb-formula" id="lobbyFormula"></h1>
+      <div class="lb-cd" id="lobbyCd">3</div>
     </div>
   </div>
 
@@ -172,7 +177,7 @@ else try{
     <img class="join-logo" id="joinLogo" src="assets/logos/reus_rose_color.svg" alt="">
     <p class="join-kicker" id="joinKicker">LIVE SESSION</p>
     <h1 class="join-h">Vote on real council decisions.</h1>
-    <p class="join-sub">Pick how the room sees you. Your choice is never shown while a ballot is open.</p>
+    <p class="join-sub">Pick how the room sees you.</p>
     <div class="join-grid" id="joinGrid"></div>
     <input class="join-name" id="joinName" type="text" maxlength="14" autocomplete="off" placeholder="Name (optional)">
     <button class="join-go" id="joinGo" type="button">Enter the booth</button>
@@ -281,7 +286,7 @@ else try{
       <span class="si-ic">↺</span>
       <span class="si-tx"><b id="resetRoomTx">Reset everyone's votes</b><small>Clears the whole room's progress and tallies</small></span>
     </button>
-    <p class="sheet-ver">RIOT · v1.04</p>
+    <p class="sheet-ver">RIOT · v1.05</p>
   </div>
 </div>
 

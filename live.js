@@ -505,21 +505,31 @@ function showSeatGate(){
   document.body.classList.add("live-voter");
   if(typeof gateShow==="function") gateShow(true);
 }
-const LB_FACES=8;                  // visible lobby avatars; the rest fold into a +N chip
 const lvFaceBorn=new Map();        // face key → first-seen ms: newcomers keep their pop
+/* the avatars ARE the lobby (Rob, 2026-06-13): everyone in the room shows —
+   no 8-face cap, no +N chip — and the cluster scales down as the seats fill so
+   a handful read big and a full house still fits the column. Overlap and the
+   newcomer pop are kept; size/overlap/glyph ride CSS vars set per render. */
 function lobbyPresence(){          // through presence-ping re-renders (innerHTML rebuilds
   const lb=$("#lobby"); if(!lb||lb.hidden) return;   // would otherwise cut it at frame one)
   // peers + me: the room is never empty to the person standing in it
-  $("#lobbyCount").textContent=mpVisiblePids().length+1;
   const ppl=[];
   if(lvSeated) ppl.push({k:"me",e:identity&&identity.emoji,nm:(identity&&identity.name)||"you",me:true});
   for(const pid of mpVisiblePids()) ppl.push({k:pid,e:PEERS[pid].e,nm:PEERS[pid].nm,me:false});
-  const vis=ppl.slice(0,LB_FACES), more=ppl.length-vis.length, now=Date.now();
-  $("#lobbyFaces").innerHTML=vis.map(p=>{
+  const N=ppl.length, now=Date.now();
+  $("#lobbyCount").textContent=N;
+  // big when few, tighter as the room fills — one step function, mirrored into
+  // the overlap and glyph size so the cluster always reads as one body
+  const sz = N<=6?64 : N<=12?54 : N<=20?44 : N<=32?36 : 30;
+  const faces=$("#lobbyFaces");
+  faces.style.setProperty("--av",sz+"px");
+  faces.style.setProperty("--ov",Math.round(sz*0.26)+"px");
+  faces.style.setProperty("--fs",Math.round(sz*0.5)+"px");
+  faces.innerHTML=ppl.map(p=>{
     if(!lvFaceBorn.has(p.k)) lvFaceBorn.set(p.k,now);
     const f=faceHTML(p.e,p.nm,p.me,p.k);
     return now-lvFaceBorn.get(p.k)<450 ? f.replace('class="face','class="face lb-pop') : f;
-  }).join("")+(more>0?`<span class="face init lb-ovf">+${more}</span>`:"");
+  }).join("");
   if(typeof applyWaves==="function") applyWaves();   // the rebuild wiped any mid-wave hop (incl. my own)
 }
 function showLobby(){
@@ -533,8 +543,6 @@ function showLobby(){
   $("#lobbyTitle").textContent=L.title||"";
   // pre-snapshot (refresh hold) there is no deck yet — leave the {count} lines
   // blank rather than printing "0 decisions"; the first snapshot fills them
-  $("#lobbyOne").textContent=lvS ? (L.one_liner||"")
-    .replace("{count}",(lvS.deck||[]).length).replace("{body}",L.body_name||"") : "";
   $("#lobbyCountLine").textContent=L.count_line||"";
   // session metadata, folded away behind one small line
   $("#lobbyAboutLbl").textContent=L.about_label||"";
@@ -558,28 +566,36 @@ function hideLobby(){
   lvHold(false);
   document.body.classList.remove("live-lobby");
   const lb=$("#lobby"); if(lb) lb.hidden=true;
-  lb&&lb.classList.remove("opening");
+  lb&&lb.classList.remove("counting");
+  if(lvCdT){ clearInterval(lvCdT); lvCdT=null; }
   const op=$("#lobbyOpen"); if(op) op.hidden=true;
 }
-/* the transition: the document falls away, one line of the minutes remains —
-   the chair's formula — then the first card lands. Only plays for voters who
-   witnessed the gathering (lobby → voting on card 0). */
-let lvOpening=false;
+/* the transition (Rob, 2026-06-13): the room dims and a 3·2·1 counts the
+   sitting in — the chair's formula sits small above the number, the gathered
+   faces still faintly behind it — then the first card lands. Plays only for
+   voters who witnessed the gathering (lobby → voting on card 0); a city with
+   no formula skips straight to the deck. */
+let lvOpening=false, lvCdT=null;
 function openSitting(){
   const L=CFG.lobby||{};
   if(!L.sittingOpenedFormula){ hideLobby(); syncDeck(()=>applyPhase()); return; }
   lvOpening=true;
-  const lb=$("#lobby"), op=$("#lobbyOpen");
-  $("#lobbyOpenK").textContent=L.live_chip||"";
-  $("#lobbyFormula").textContent=L.sittingOpenedFormula;
-  lb.hidden=false;                 // the formula's canvas (a tab that seated mid-open has it hidden)
+  const lb=$("#lobby"), op=$("#lobbyOpen"), cd=$("#lobbyCd");
+  $("#lobbyOpenK").textContent=L.sittingOpenedFormula;   // the chair's line, small above the count
+  lb.hidden=false;                 // the count's canvas (a tab that seated mid-open has it hidden)
   op.hidden=false;
-  lb.classList.add("opening");
-  setTimeout(()=>{
-    lvOpening=false;
-    hideLobby();
-    if(lvS&&lvS.state!=="lobby"&&lvS.state!=="ended"&&lvS.state!=="final") syncDeck(()=>applyPhase());
-  },1600);
+  lb.classList.add("counting");    // dims the room behind the number
+  let n=3; cd.textContent=n;
+  const beat=()=>{ cd.classList.remove("cd-beat"); void cd.offsetWidth; cd.classList.add("cd-beat"); };
+  beat();
+  lvCdT=setInterval(()=>{
+    n--;
+    if(n<=0){
+      clearInterval(lvCdT); lvCdT=null; lvOpening=false;
+      hideLobby();
+      if(lvS&&lvS.state!=="lobby"&&lvS.state!=="ended"&&lvS.state!=="final") syncDeck(()=>applyPhase());
+    } else { cd.textContent=n; beat(); }
+  },700);
 }
 
 /* ---- the wave: a one-tap hello to the room ----

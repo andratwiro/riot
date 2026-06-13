@@ -191,23 +191,29 @@ dirty ring (CUP, fixed #ffdd00).
   2026-06-12: nobody reads; its only jobs are "something is about to happen /
   people are arriving / wait for it"; the shared URL gates FIRST — see the
   join screen above) — the app's OWN header on top (left-aligned brand,
-  exactly as everywhere; no bespoke letterhead), hero (`.lb-hero`, vertically
-  centred: pulsing live chip in stamp violet ~1.6s opacity cycle with the dot
-  and the mono caps on one visual centre — `line-height:1` on the chip; huge
-  Archivo 800 title; a single muted one-liner whose `{count}` is the live
-  deck's length), presence (`.lb-presence`, bottom: overlapping 38px faces
-  capped at 8 + `+N` chip, newcomers scale in via `.lb-pop`, big mono count
-  with `aria-live="polite"` counting peers + me — the room is never empty to
-  the person standing in it). Session metadata folds into the tiny
+  exactly as everywhere; no bespoke letterhead), then **the avatars ARE the
+  lobby** (Rob, 2026-06-13): a small head (pulsing live chip in stamp violet
+  ~1.6s opacity cycle, dot + mono caps on one visual centre via `line-height:1`;
+  a smaller Archivo 800 title) over the gathered faces filling the centre as
+  the hero — EVERYONE shows (no 8-cap, no `+N` chip) and the cluster scales
+  DOWN as the seats fill: big when few, tight at a full house (`lobbyPresence`
+  sets `--av/--ov/--fs` on `#lobbyFaces` per render, one step function so size,
+  overlap, and glyph move together), the overlap ring + the `.lb-pop` newcomer
+  scale-in kept; the big mono count sits beneath with `aria-live="polite"`
+  counting peers + me — the room is never empty to the person standing in it;
+  the whole stack centres as one unit so the fixed wave hand floats clear at
+  the foot. Session metadata folds into the tiny
   `.lb-about` disclosure; the methodology pitch is GONE from the lobby — only
   the privacy line renders on the FIRST vote card (`LIVE.cardNotes` →
   `.acts-priv` micro-type below the vote buttons, dead after the first cast;
   a blind-vote rule line above the buttons was tried and cut by Rob,
   2026-06-12 — the blind mechanic explains itself when the reveal lands). ALL lobby copy comes from
   `CFG.lobby` (per-city; no copy conditionals in live.js), never hardcoded.
-  On open the screen falls away and one line of the minutes remains — the
-  chair's formula (`CFG.lobby.sittingOpenedFormula`, ~1.6s, voters who
-  witnessed the gathering only) — then the first card lands;
+  On open (`#lobby.counting`) the room dims to a faint backdrop and a big
+  Archivo 800 **3·2·1 counts the sitting in** over the gathered faces — the
+  chair's formula (`CFG.lobby.sittingOpenedFormula`) sits small in stamp violet
+  above the number; ~700ms a beat, voters who witnessed the gathering only —
+  then the first card lands;
   the **countdown** is one ink bar closing from both edges toward the centre
   (`scaleX`, origin centre; stamp-violet under 5s) — a ceiling, not a clock;
   **ballot cast** shows a mono `n/m` count, never the split; the per-card
