@@ -250,9 +250,13 @@ dirty ring (CUP, fixed #ffdd00).
   `party_votes_canon` direction drops its `logoEl` disc (`.pl-chamber`,
   `align-self:end`) piling up to the rule; row 2 the **label** carrying the
   2px rule (Against/Abstain/For, abstain quieter, my column violet); row 3 the
-  **room summarised** (`.pl-foot`): the cast faces as a wrapped cluster
-  (`.pl-faces`, YOU pushed first and ring-highlighted) followed by the `.pl-n`
-  total count (room ballots only, violet in my column). Absent tokens
+  **room summarised** (`.pl-foot`): up to 3 cast faces (`.pl-faces`,
+  `slice(0,3)`) OVERLAPPING like the room strip up top — YOU pushed first and
+  kept on top (z-index 3→1) so the violet ring stays visible, others get a
+  paper ring — followed beside them by the `.pl-n` total count (room ballots
+  only, violet in my column). The count carries the lean; the cluster is a
+  fixed 3-face glance whatever the size (a 12-vote column must not read as a
+  bigger blob than a 3-vote one — Rob, 2026-06-13). Absent tokens
   (single-chamber measures, the GHOST) don't land; the roomless solo/async
   reveal (`renderChamberInto`) reuses the same columns with only rows 1–2
   (chamber + label, no faces, no count). No bars. Per-decision party positions
