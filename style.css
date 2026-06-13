@@ -577,7 +577,9 @@ body.live-mod #survey,body.live-mod #roomstrip,body.live-mod #join{display:none}
 body.live-mod .app{max-width:none}
 
 /* the wave: just the bare hand at the foot of the screen, no disc/border/shadow —
-   it sits on the page (--paper). Offered only to a seated voter mid-sitting
+   transparent background so the footer crowd flows behind it (the roomfloor
+   repulsion clears a breathing ring so nothing actually piles under the hand).
+   Offered only to a seated voter mid-sitting
    (body.can-wave; lobby → per-card reveal). One tap hops your avatar on every
    phone. The icon earns the missing label by being quietly alive: a slow,
    occasional idle wiggle, plus a gentle bob whenever someone ELSE waves — a tiny
@@ -585,7 +587,7 @@ body.live-mod .app{max-width:none}
 #waveBtn{display:none}
 body.can-wave #waveBtn{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));
   transform:translateX(-50%);z-index:40;display:inline-flex;align-items:center;justify-content:center;
-  width:54px;height:54px;border:0;background:var(--paper);color:var(--ink60);
+  width:54px;height:54px;border:0;background:transparent;color:var(--ink60);
   cursor:pointer;transition:transform .12s cubic-bezier(.2,.7,.3,1),color .12s}
 body.can-wave #waveBtn:hover{color:var(--ink80)}
 body.can-wave #waveBtn:active{transform:translateX(-50%) scale(.9)}

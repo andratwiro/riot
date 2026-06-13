@@ -31,11 +31,12 @@
   let el=null, on=false, raf=0, W=320, H=150;
   const bodies=new Map();                                // pid -> body
   let curId=null, mode="cluster";                        // mode: cluster | piles
-  // a soft breath of clear space around the floating wave hand. Read its ACTUAL
-  // rendered centre (host-local px) so the one pass is correct in both states —
-  // below the single heap, and in the between-piles gap. null = no hand on screen.
-  let handX=null, handY=null, curD=38;                   // hand centre + current body diameter (the bubble is 1.5x a body)
-  const HAND_PUSH=7;                                     // max outward nudge (px) at the centre, falling to 0 at the bubble edge
+  // a clean breathing ring around the floating wave hand: NO emoji sits under it
+  // (the hand owns a little clearing, in both states). Read its ACTUAL rendered
+  // centre (host-local px) so the one pass is correct below the single heap and
+  // in the between-piles gap alike. null = no hand on screen.
+  let handX=null, handY=null;
+  const HAND_CLEAR=20;                                   // keep every emoji's CENTRE at least this + its own radius from the hand centre — the hand drawing (~25px) plus a few px of air
 
   function host(){ return el || (el=document.getElementById("roomfloor")); }
   // size by count, mirroring the lobby's step (diameter px) — big when few,
@@ -89,7 +90,7 @@
   function sync(){
     const h=host(); if(!h) return;
     const list=roster(), N=Math.max(list.length,1);
-    const d=diam(N), seen=new Set(); curD=d;
+    const d=diam(N), seen=new Set();
     for(const {pid,e} of list){
       seen.add(pid);
       let b=bodies.get(pid);
@@ -205,15 +206,17 @@
   }
   function place(b){ const s=1+b.pop;
     let ox=b.x-b.r, oy=b.y-b.r;
-    // one repulsion pass off the hand's actual centre and this body's actual
-    // position, so it just works whichever state produced that position. A
-    // bounded RENDER offset, not a velocity force: it can't accumulate or fight
-    // the cluster<->pile reorg, and decays to nothing at the bubble edge. Sparse
-    // cards keep the hand in clear space, so nothing is near it and nothing moves.
+    // clear the hand's ring: any body whose CENTRE falls inside is pushed
+    // straight out to the ring edge, so nothing piles under the hand and you
+    // never see its background. Keys off the hand's actual centre and this body's
+    // actual position, so it just works whichever state produced that position.
+    // A bounded RENDER offset, not a velocity force: it can't accumulate or fight
+    // the cluster<->pile reorg, and it's 0 outside the ring so it stays continuous
+    // (out->0 as d->clearR). Sparse cards keep the hand clear, so nothing moves.
     if(handX!=null){
-      const bub=curD*1.5, dx=b.x-handX, dy=b.y-handY, d=Math.hypot(dx,dy);
-      if(d<bub){ const push=(1-d/bub)*HAND_PUSH;
-        if(d>0.01){ ox+=dx/d*push; oy+=dy/d*push; } else { oy-=push; } }
+      const clearR=HAND_CLEAR+b.r, dx=b.x-handX, dy=b.y-handY, d=Math.hypot(dx,dy);
+      if(d<clearR){ const out=clearR-d;
+        if(d>0.01){ ox+=dx/d*out; oy+=dy/d*out; } else { oy-=out; } }
     }
     b.el.style.transform=`translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px) scale(${s.toFixed(3)})`; }
   function placeStatic(){ for(const b of bodies.values()){ b.x=b.tx; b.y=b.ty; place(b); } }
