@@ -696,12 +696,18 @@ html.lvhold #quickLog,html.lvhold #menuBtn{display:none}
    Reus). visibility keeps layout, so nothing jumps. */
 html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
 /* avatars are the hero: a small chip+title head, the gathered faces filling the
-   centre, the count + folded metadata at the foot. On open (.counting) the room
-   dims and the 3·2·1 lands over it. */
-.lb-doc{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+   centre, the count + opt-in roster at the foot. On open (.counting) the room
+   dims and the 3·2·1 lands over it. The doc is its own scroller so opening the
+   roster (13 Brussels groups) scrolls within the lobby; centring is via
+   auto-margin pseudos NOT justify-content (a centred flex column that overflows
+   clips its top above the scroll reach — same lesson as the solo cover), so the
+   glance centres and a long open roster scrolls from the head down. */
+.lb-doc{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;
   width:100%;max-width:520px;margin:0 auto;min-height:0;text-align:center;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding-bottom:64px;   /* clear the fixed wave hand floating at the foot */
   transition:opacity .45s cubic-bezier(.2,.7,.3,1)}
+.lb-doc::before,.lb-doc::after{content:"";flex:0 0 auto;margin:auto}
 #lobby.counting .lb-doc{opacity:.2;pointer-events:none}   /* the faces stay faintly behind the count */
 .lb-head{flex:0 0 auto;display:flex;flex-direction:column;align-items:center}
 /* chip alignment is OPTICAL, not box math: in a line-height:1 12px Courier
@@ -730,15 +736,23 @@ html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
 .lb-count{display:flex;flex-direction:column;align-items:center;gap:1px;margin:0;
   font:400 12px/1.5 var(--f-mono);color:var(--ink60)}
 .lb-count b{font:700 30px/1.1 var(--f-mono);color:var(--ink)}
-/* session metadata, folded away: the only reading on this screen is opt-in */
-.lb-about{margin:10px 0 0;font:400 11px/1.6 var(--f-mono);color:var(--ink60)}
+/* who sits here — the groups in this sitting, behind one opt-in tap; the only
+   reading on the glance screen is opt-in. Identity rows mirror the solo cover
+   (disc + name + a line of identity), left-aligned in a centred column. */
+.lb-about{margin:14px 0 0;width:100%;max-width:360px;
+  font:400 11.5px/1.6 var(--f-mono);color:var(--ink60)}
 .lb-about[hidden]{display:none}
 .lb-about summary{cursor:pointer;display:inline-block;list-style:none;
   text-decoration:underline;text-underline-offset:2px}
 .lb-about summary::-webkit-details-marker{display:none}
-.lb-inst{margin:9px 0 0;font:700 11px/1.5 var(--f-mono);letter-spacing:.1em;color:var(--ink80)}
-.lb-dl{margin:2px 0 0;letter-spacing:.04em}
-.lb-disc{margin:2px 0 0}
+.lb-parties{margin:14px 0 0;text-align:left}
+.lb-prow{display:flex;align-items:flex-start;gap:11px;margin:0 0 12px}
+.lb-prow:last-child{margin-bottom:0}
+.lb-prow .lg{width:26px;height:26px;margin-top:1px;flex:0 0 auto}
+.lb-prow .lg img{padding:3px}
+.lb-prow .lg.fb{font-size:7.5px;letter-spacing:0}  /* 5-char tokens must fit the 26px disc */
+.lb-ptx{font:400 13px/1.45 var(--f-ui);color:var(--ink60);min-width:0}
+.lb-ptx b{display:block;font:650 13.5px/1.3 var(--f-ui);color:var(--ink)}
 /* the countdown: the chair's line small in stamp violet, then a big 3·2·1 over
    the dimmed room (the gathered faces still faintly behind it) */
 .lb-k{margin:0 0 10px;font:700 11px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--stamp)}

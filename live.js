@@ -544,13 +544,16 @@ function showLobby(){
   // pre-snapshot (refresh hold) there is no deck yet — leave the {count} lines
   // blank rather than printing "0 decisions"; the first snapshot fills them
   $("#lobbyCountLine").textContent=L.count_line||"";
-  // session metadata, folded away behind one small line
-  $("#lobbyAboutLbl").textContent=L.about_label||"";
-  $("#lobbyAbout").hidden=!L.about_label;
-  $("#lobbyInst").textContent=L.docketInstitutionLine||"";
-  $("#lobbyDocketLine").textContent=lvS ? (L.docketCountLine||"")
-    .replace("{period}",deckPeriod()).replace("{n}",(lvS.deck||[]).length) : "";
-  $("#lobbyDisc").textContent=L.disclosure||"";
+  // who sits here — the groups in this sitting, behind one opt-in tap. Same
+  // identity rows as the solo cover (disc + name + a few words from the party
+  // table's `blurb`); identity ONLY, never a stance — directions are the
+  // reveal's. Label borrows the city's localized parties_label. No blurbs → no
+  // section (the glance stays just avatars + count).
+  const who=(typeof PARTIES!=="undefined"?PARTIES:[]).filter(p=>!p.ghost&&p.blurb);
+  $("#lobbyAbout").hidden=!who.length;
+  $("#lobbyAboutLbl").textContent=(CFG.solo_lobby&&CFG.solo_lobby.parties_label)||L.about_label||"who sits here";
+  $("#lobbyParties").innerHTML=who.map(p=>
+    `<div class="lb-prow">${logoEl(p)}<span class="lb-ptx"><b>${esc(p.name)}</b>${esc(p.blurb)}</span></div>`).join("");
   lobbyPresence();
   lvHold(true);                    // gate-first: a tab in the lobby is a seated (or held) tab
 }

@@ -101,11 +101,13 @@ else try{
         <div class="lb-faces" id="lobbyFaces"></div>
       </div>
       <p class="lb-count"><b id="lobbyCount" aria-live="polite">0</b><span id="lobbyCountLine"></span></p>
+      <!-- opt-in tap: introduces the groups in this sitting — disc + name + one
+           line of identity each (live.js fills #lobbyParties from the party
+           table's `blurb`). Identity ONLY, never a stance on the deck: the
+           booth firewall holds pre-vote, directions belong to the reveal. -->
       <details class="lb-about" id="lobbyAbout">
         <summary id="lobbyAboutLbl"></summary>
-        <p class="lb-inst" id="lobbyInst"></p>
-        <p class="lb-dl" id="lobbyDocketLine"></p>
-        <p class="lb-disc" id="lobbyDisc"></p>
+        <div class="lb-parties" id="lobbyParties"></div>
       </details>
     </div>
     <!-- on open the room dims and a 3·2·1 counts the sitting in, the chair's
@@ -286,7 +288,7 @@ else try{
       <span class="si-ic">↺</span>
       <span class="si-tx"><b id="resetRoomTx">Reset everyone's votes</b><small>Clears the whole room's progress and tallies</small></span>
     </button>
-    <p class="sheet-ver">RIOT · v1.05</p>
+    <p class="sheet-ver">RIOT · v1.06</p>
   </div>
 </div>
 
