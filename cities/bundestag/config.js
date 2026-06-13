@@ -23,9 +23,8 @@ window.CITY_CONFIG = {
       "Jede Karte ist eine echte namentliche Abstimmung aus dem Plenum. Du stimmst zuerst ab, blind, als läge die Entscheidung heute auf deinem Tisch. Dann antwortet der Bundestag, Fraktion für Fraktion, genau wie im amtlichen Verzeichnis protokolliert."
     ],
     parties_label: "Wer sitzt im Plenarsaal",
-    meta: "{n} namentliche Abstimmungen · 2025–2026 · Deutscher Bundestag",
-    cta: "Zur Abstimmung",
-    note: "Deine Stimmen bleiben auf diesem Gerät."
+    meta: "",
+    cta: "Zur Abstimmung"
   },
   // LIVE SESSION lobby strings. TODO(rob): provisional wording, confirm.
   lobby: {

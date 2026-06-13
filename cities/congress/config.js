@@ -25,9 +25,8 @@ window.CITY_CONFIG = {
       "Each card is a real roll-call vote from that record. You vote first, blind, as if it were on your desk today. Then the floor answers, caucus by caucus, exactly as recorded."
     ],
     parties_label: "Who votes on these floors",
-    meta: "{n} roll calls · 2021–2025 · official House and Senate record",
-    cta: "Enter the booth",
-    note: "Your votes stay on this phone."
+    meta: "",
+    cta: "Enter the booth"
   },
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and

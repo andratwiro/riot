@@ -24,9 +24,8 @@ window.CITY_CONFIG = {
       "Each card is a real recorded vote of the democratic-era Parliament. You vote first, blind, as if it were on your desk today. Then the House answers, party by party, exactly as recorded."
     ],
     parties_label: "Who sits in this House",
-    meta: "{n} recorded votes · 1996–2025 · Parliament of South Africa",
-    cta: "Enter the booth",
-    note: "Your votes stay on this phone."
+    meta: "",
+    cta: "Enter the booth"
   },
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and

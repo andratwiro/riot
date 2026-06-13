@@ -21,9 +21,8 @@ window.CITY_CONFIG = {
       "Its 89 seats split between two language communities, French-speaking and Dutch-speaking, across thirteen groups. Each card is a real roll-call vote from the plenary record. You vote first, blind, as if it were on your desk today. Then the chamber answers, group by group, exactly as recorded."
     ],
     parties_label: "Who sits in this parliament",
-    meta: "{n} roll-call votes · 2024–2026 · Brussels-Capital Parliament",
-    cta: "Enter the booth",
-    note: "Your votes stay on this phone."
+    meta: "",
+    cta: "Enter the booth"
   },
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and

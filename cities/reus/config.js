@@ -21,9 +21,8 @@ window.CITY_CONFIG = {
       "Cada carta és una votació real del ple municipal, amb les seves pròpies paraules. Tu votes primer, a cegues, com si la decisió fos avui sobre la teva taula. Després respon el ple, grup a grup, exactament com consta a l'acta."
     ],
     parties_label: "Qui seu al ple",
-    meta: "{n} decisions · mandat 2023–2027 · Ple de l'Ajuntament de Reus",
-    cta: "Entra a la cabina",
-    note: "Els teus vots no surten d'aquest telèfon."
+    meta: "",
+    cta: "Entra a la cabina"
   },
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js; Reus is the reference instance).
