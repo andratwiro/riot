@@ -364,8 +364,6 @@ function renderLivePiles(el,id){
   // the chamber row is the institution: the GHOST (seated via cfg.ai) is
   // neither room nor chamber — its predictions belong to the final reveal only
   for(const p of PARTIES){ if(p.ghost) continue; const v=pp[pvc[p.token]]; if(v) v.push(p); }
-  const ball=piles.against.length+piles.abstain.length+piles.for.length;
-  const noBallot=Math.max(voterCount()-castCount(id),0);
   let i=0;                                       // global stagger across the three piles
   const stack=f=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${faceHTML(f.e,f.nm,f.me)}</span>`;
   const pdisc=p=>`<span class="pl-drop" style="animation-delay:${(i++)*70}ms">${logoEl(p)}</span>`;
@@ -375,9 +373,9 @@ function renderLivePiles(el,id){
       <span class="pl-lab">${lab}</span>
       <span class="pl-n">${piles[k].length}</span>
     </div>`;
-  el.innerHTML=`<p class="sp-k">The room · ${ball} ballot${ball===1?"":"s"}</p>
-    <div class="piles">${col("against","Against")}${col("abstain","Abstain")}${col("for","For")}</div>`+
-    (noBallot?`<p class="pl-to">${noBallot} didn't vote</p>`:"")+
+  // no kicker, no "didn't vote" line: the faces themselves show who voted and
+  // who didn't — the counts were near-redundant chrome (Rob, 2026-06-13).
+  el.innerHTML=`<div class="piles">${col("against","Against")}${col("abstain","Abstain")}${col("for","For")}</div>`+
     `<p class="lv-verdict" hidden></p>`;
 }
 /* ---- margins: a verdict without one is half the information ----
