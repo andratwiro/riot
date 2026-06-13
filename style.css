@@ -700,6 +700,11 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
 body.live-floor #roomfloor{display:block;position:relative;flex:0 0 auto;
   height:150px;margin:0 14px calc(74px + env(safe-area-inset-bottom))}  /* height is set live by roomfloor.js (crowd + room to the card) */
 body.live-voter #roomstrip{display:none}
+/* the footer is the SAME paper as the booth — don't let #survey clip the card's
+   drop shadow at its edge (that hard line broke the card→crowd transition), and
+   soften the shadow so the card floats over one continuous surface (Rob) */
+body.live-floor #survey{overflow:visible}
+body.live-floor #stack .card{box-shadow:0 1px 0 rgba(28,27,23,.04),0 8px 20px rgba(28,27,23,.05)}
 .rf-body{position:absolute;left:0;top:0;border-radius:50%;background:var(--card);
   display:flex;align-items:center;justify-content:center;line-height:1;
   border:0.5px solid var(--rule);box-shadow:0 1px 2px rgba(28,27,23,.08);

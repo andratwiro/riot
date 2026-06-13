@@ -118,24 +118,27 @@
       });
       return;
     }
-    // piles: each direction is a CASTELL — bodies penned into a narrow column
-    // band and stacked UP from the floor by gravity (step()), leaning and
-    // slightly overlapping. HEIGHT shows support; it's an organic tower, not a
-    // grid. tx/ty here are only the reduced-motion fallback (live uses gravity).
+    // piles: each direction is a HEAP — a wide base narrowing upward, rising
+    // TALLER with more emojis (a leaf pile, not a tower). Bodies settle into
+    // pyramid slots with overlapping spacing; repulsion + jitter keep it organic.
+    const groups={against:[],abstain:[],for:[]}, none=[];
     const list=[...bodies.values()].sort((a,b)=>a.pid<b.pid?-1:a.pid>b.pid?1:0);
-    const d=(list[0]?list[0].r*2:34), floorY=H-d/2-3, stk={against:0,abstain:0,for:0};
-    for(const b of list){
-      const dir=dirOf(b,curId);
-      if(dir && COLX[dir]!=null){
-        b.colx=W*COLX[dir]; b.band=W*0.155;            // the column pen — keeps the tower narrow
-        b.delay=b.me?now:now+rand(80,1100); b.noVote=false;
-        const s=stk[dir]++; b.tx=b.colx+(s%2?d*0.2:-d*0.2); b.ty=floorY-Math.floor(s/2)*d*0.7;
-      } else {
-        let h=0; for(let i=0;i<b.pid.length;i++) h=(h*31+b.pid.charCodeAt(i))>>>0;
-        b.colx=null; b.band=null; b.delay=0; b.noVote=true;
-        b.tx=W*(0.18+0.64*((h%1000)/1000)); b.ty=H*0.12;
-      }
+    for(const b of list){ const dir=dirOf(b,curId);
+      if(dir && groups[dir]) groups[dir].push(b); else none.push(b); }
+    const d=(list[0]?list[0].r*2:34), spX=d*0.66, spY=d*0.62, floorY=H-d/2-3;
+    const maxBase=Math.max(2,Math.floor((W*0.32)/spX));        // keep each heap inside its third
+    for(const k in groups){
+      const arr=groups[k], cx=W*COLX[k], n=arr.length;
+      const base=Math.min(maxBase, Math.max(1, Math.ceil((Math.sqrt(8*n+1)-1)/2)));
+      const rows=[]; let rem=n, w=base;
+      while(rem>0){ const c=Math.min(w,rem); rows.push(c); rem-=c; if(w>1)w--; }   // base, base-1, … then 1s
+      let i=0;
+      rows.forEach((cnt,r)=>{ for(let c=0;c<cnt;c++){ const b=arr[i++];
+        b.tx=cx+(c-(cnt-1)/2)*spX; b.ty=floorY-r*spY;        // bottom row widest, heap upward
+        b.delay=b.me?now:now+rand(80,1100); b.noVote=false; } });
     }
+    none.forEach(b=>{ let h=0; for(let i=0;i<b.pid.length;i++) h=(h*31+b.pid.charCodeAt(i))>>>0;
+      b.tx=W*(0.18+0.64*((h%1000)/1000)); b.ty=H*0.12; b.delay=0; b.noVote=true; });
   }
 
   /* ---- the loop ---- */
@@ -159,7 +162,7 @@
     for(let i=0;i<arr.length;i++) for(let j=i+1;j<arr.length;j++){
       const a=arr[i], c=arr[j];
       let dx=c.x-a.x, dy=c.y-a.y, dist=Math.hypot(dx,dy)||0.01;
-      const min=(a.r+c.r)*1.0;                           // bodies just touch — no target overlap (Rob: less penetration)
+      const min=(a.r+c.r)*(mode==="piles"?0.9:1.0);      // cluster just touches; heaps keep a little overlap
       if(dist<min){ const push=(min-dist)/min*0.95, ux=dx/dist, uy=dy/dist;
         a._ax-=ux*push; a._ay-=uy*push; c._ax+=ux*push; c._ay+=uy*push; }
     }
