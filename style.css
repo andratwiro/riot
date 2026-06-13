@@ -698,7 +698,7 @@ body.live-paused #stack{opacity:.5;pointer-events:none}
    for the floating wave hand. */
 #roomfloor{display:none}
 body.live-floor #roomfloor{display:block;position:relative;flex:0 0 auto;
-  height:210px;margin:0 14px calc(74px + env(safe-area-inset-bottom))}
+  height:150px;margin:0 14px calc(74px + env(safe-area-inset-bottom))}  /* height is set live by roomfloor.js (crowd + room to the card) */
 body.live-voter #roomstrip{display:none}
 .rf-body{position:absolute;left:0;top:0;border-radius:50%;background:var(--card);
   display:flex;align-items:center;justify-content:center;line-height:1;

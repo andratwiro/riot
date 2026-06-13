@@ -35,7 +35,20 @@
   // size by count, mirroring the lobby's step (diameter px) — big when few,
   // tighter as the seats fill so a full house still fits the band
   function diam(n){ return n<=6?54 : n<=12?46 : n<=20?40 : n<=32?34 : 29; }
-  function measure(){ const h=host(); if(!h) return; const r=h.getBoundingClientRect();
+  // the footer is a SUBORDINATE strip under the card: pinned at the bottom, its
+  // height set from how much room there is to the card and how many people are
+  // here — a few sit low, a crowd lifts the towers slightly, never crowding the
+  // card. (Rob, 2026-06-13: take the vertical space until the card into account.)
+  function sizeFloor(){
+    const h=host(); if(!h) return;
+    const stack=document.getElementById("stack");
+    const cardBottom = stack ? stack.getBoundingClientRect().bottom : window.innerHeight*0.4;
+    const MB=74, MINGAP=18;                                  // wave clearance + a gap to the card
+    const avail = window.innerHeight - cardBottom - MB - MINGAP;
+    const want = 110 + (bodies.size||1)*4;                   // few stay low; more lift the towers a little
+    h.style.height = Math.round(Math.max(96, Math.min(want, Math.max(96, avail)))) + "px";
+  }
+  function measure(){ const h=host(); if(!h) return; sizeFloor(); const r=h.getBoundingClientRect();
     W=r.width||W; H=r.height||H; }
 
   // the room as the footer sees it: me first (it owns the violet ring), then
@@ -105,28 +118,24 @@
       });
       return;
     }
-    // piles: pack each direction into a NARROW, TALL bar growing up from the
-    // floor, so HEIGHT shows support; explicit spaced slots (not a blob) let
-    // them breathe. Stable pid order so slots don't reshuffle as casts rain in.
-    const cols={against:[],abstain:[],for:[]}, none=[];
+    // piles: each direction is a CASTELL — bodies penned into a narrow column
+    // band and stacked UP from the floor by gravity (step()), leaning and
+    // slightly overlapping. HEIGHT shows support; it's an organic tower, not a
+    // grid. tx/ty here are only the reduced-motion fallback (live uses gravity).
     const list=[...bodies.values()].sort((a,b)=>a.pid<b.pid?-1:a.pid>b.pid?1:0);
-    for(const b of list){ const dir=dirOf(b,curId);
-      if(dir && cols[dir]) cols[dir].push(b); else none.push(b); }
-    const d=(list[0]?list[0].r*2:34), gapx=d*1.12, gapy=d*1.08;
-    const floorY=H-d/2-3, maxRows=Math.max(1,Math.floor((H-d)/gapy)+1);
-    const baseRow=Math.max(1,Math.min(2,Math.floor((W*0.30)/gapx)));   // ~2 wide → tall bars
-    for(const k in cols){
-      const arr=cols[k], cx=W*COLX[k];
-      const per=Math.max(baseRow,Math.ceil(arr.length/maxRows));        // widen only if a bar would overflow the top
-      arr.forEach((b,i)=>{
-        const row=Math.floor(i/per), inRow=Math.min(per,arr.length-row*per), col=i%per;
-        b.tx=cx+(col-(inRow-1)/2)*gapx; b.ty=floorY-row*gapy;
+    const d=(list[0]?list[0].r*2:34), floorY=H-d/2-3, stk={against:0,abstain:0,for:0};
+    for(const b of list){
+      const dir=dirOf(b,curId);
+      if(dir && COLX[dir]!=null){
+        b.colx=W*COLX[dir]; b.band=W*0.155;            // the column pen — keeps the tower narrow
         b.delay=b.me?now:now+rand(80,1100); b.noVote=false;
-      });
+        const s=stk[dir]++; b.tx=b.colx+(s%2?d*0.2:-d*0.2); b.ty=floorY-Math.floor(s/2)*d*0.7;
+      } else {
+        let h=0; for(let i=0;i<b.pid.length;i++) h=(h*31+b.pid.charCodeAt(i))>>>0;
+        b.colx=null; b.band=null; b.delay=0; b.noVote=true;
+        b.tx=W*(0.18+0.64*((h%1000)/1000)); b.ty=H*0.12;
+      }
     }
-    // didn't (yet) vote: a loose row along the TOP, clear of the bars
-    none.forEach(b=>{ let h=0; for(let i=0;i<b.pid.length;i++) h=(h*31+b.pid.charCodeAt(i))>>>0;
-      b.tx=W*(0.18+0.64*((h%1000)/1000)); b.ty=H*0.12; b.delay=0; b.noVote=true; });
   }
 
   /* ---- the loop ---- */
@@ -182,7 +191,7 @@
       else { stop(); }
     },
     sync(){ if(this.active()){ measure(); sync(); if(REDUCE) placeStatic(); } },
-    cluster(){ if(!this.active()) return; mode="cluster"; curId=null; setTargets(); if(REDUCE) placeStatic(); },
+    cluster(){ if(!this.active()) return; mode="cluster"; curId=null; measure(); setTargets(); if(REDUCE) placeStatic(); },
     piles(id){ if(!this.active()) return; mode="piles"; curId=id; measure(); sync(); /* sync calls setTargets */ },
     regroup(){ this.cluster(); },
     // the wave (multiplayer.js bounceFace): an upward impulse on the matching body
