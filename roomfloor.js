@@ -143,8 +143,8 @@
     for(let i=0;i<arr.length;i++) for(let j=i+1;j<arr.length;j++){
       const a=arr[i], c=arr[j];
       let dx=c.x-a.x, dy=c.y-a.y, dist=Math.hypot(dx,dy)||0.01;
-      const min=(a.r+c.r)*0.92;                          // ~8% overlap tolerated (eased from 14% — Rob)
-      if(dist<min){ const push=(min-dist)/min*0.9, ux=dx/dist, uy=dy/dist;
+      const min=(a.r+c.r)*1.0;                           // bodies just touch — no target overlap (Rob: less penetration)
+      if(dist<min){ const push=(min-dist)/min*0.95, ux=dx/dist, uy=dy/dist;
         a._ax-=ux*push; a._ay-=uy*push; c._ax+=ux*push; c._ay+=uy*push; }
     }
     for(const b of arr){
