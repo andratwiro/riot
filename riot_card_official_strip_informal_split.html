@@ -1,0 +1,134 @@
+<h2 class="sr-only">RIOT concept: the card holds the official chamber result with party circles, while the bottom strip holds only the room's emoji, which reorganize into piles after voting.</h2>
+
+<div style="padding:0.5rem 0;">
+
+<div style="display:flex; gap:8px; margin-bottom:1rem;">
+  <button id="bRoster" style="flex:1; font-size:13px; border-color:var(--color-border-info); color:var(--color-text-info);">1 · Voting</button>
+  <button id="bReorg" style="flex:1; font-size:13px;">2 · Revealed</button>
+</div>
+
+<div id="phone" style="background:#F2EFE6; border-radius:24px; border:0.5px solid var(--color-border-secondary); width:330px; margin:0 auto; height:600px; overflow:hidden; position:relative; display:flex; flex-direction:column;">
+
+  <div style="display:flex; align-items:center; gap:8px; padding:14px 16px 8px;">
+    <div style="width:22px; height:22px; border-radius:50%; background:#1B4D8F; display:flex; align-items:center; justify-content:center; font-size:12px;">🌱</div>
+    <span style="font-weight:500; font-size:13px; color:#1a1a1a;">Parlement bruxellois</span>
+    <span style="margin-left:auto; font-size:11px; font-family:var(--font-mono); color:#9a9a92;">3 / 10</span>
+  </div>
+
+  <div style="margin:6px 14px 0; background:#FBF9F2; border:1px solid #e2dfd4; border-radius:14px; padding:16px 14px; flex:0 0 auto;">
+    <div style="font-size:14px; font-weight:500; color:#1a1a1a; line-height:1.35; margin-bottom:14px;">Have the Brussels Parliament call on the federal government to condemn the Iranian regime's repression.</div>
+    <div id="cardBody"></div>
+  </div>
+
+  <div style="flex:1;"></div>
+
+  <div id="stripWrap" style="margin:0 10px; transition:all 0.4s;">
+    <div id="bottomLabel" style="text-align:center; font-size:9px; letter-spacing:2px; color:#b5b3a8; margin-bottom:8px;"></div>
+    <div id="strip" style="position:relative; height:120px;"></div>
+  </div>
+
+  <div id="waveDock" style="display:flex; align-items:center; justify-content:center; padding:6px 0 16px;">
+    <button id="waveBtn" style="border:0.5px solid var(--color-border-secondary); background:transparent; border-radius:50px; padding:7px 16px; font-size:13px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><span id="waveHand" style="font-size:16px; display:inline-block;">✋</span> wave</button>
+  </div>
+
+</div>
+
+<div id="caption" style="text-align:center; font-size:12px; color:var(--color-text-secondary); margin-top:12px; line-height:1.5; padding:0 14px;"></div>
+
+</div>
+
+<script>
+const ROOM=[
+  {e:'🦊',v:'for'},{e:'🦉',v:'for'},{e:'🐱',v:'for'},{e:'⚡',v:'against'},{e:'🔥',v:'against'},
+  {e:'💧',v:'for'},{e:'⭐',v:'for'},{e:'🦋',v:'abstain'},{e:'🐢',v:'for'},{e:'🌻',v:'for'},
+  {e:'🍀',v:'against'},{e:'🌙',v:'for'},{e:'🐬',v:'for'},{e:'🦅',v:'abstain'},{e:'🦜',v:'for'},
+  {e:'🐠',v:'against'},{e:'🦔',v:'for'},{e:'🐳',v:'for'},{e:'🦚',v:'for'},{e:'🎈',v:'against'},
+  {e:'🦌',v:'for'},{e:'🌿',v:'abstain'},{e:'🦕',v:'for'},{e:'🐝',v:'against'},{e:'🐙',v:'for'}
+];
+
+const COLS=[
+  {key:'AGAINST', parties:[], x:2},
+  {key:'ABSTAIN', parties:[{n:'PTB',c:'#922B21'},{n:'OVLD',c:'#2471A3'}], x:34.5},
+  {key:'FOR', parties:[{n:'PS',c:'#C0392B'},{n:'MR',c:'#2471A3'},{n:'Ecolo',c:'#639922'}], x:67}
+];
+
+const strip=document.getElementById('strip');
+
+function dot(emoji,size,mine){
+  const ring = mine ? 'border:1.5px solid #534AB7;' : 'border:0.5px solid #ddd;';
+  return `<span style="display:inline-flex;width:${size}px;height:${size}px;border-radius:50%;background:#fff;${ring}align-items:center;justify-content:center;font-size:${Math.round(size*0.52)}px;flex:0 0 auto;">${emoji}</span>`;
+}
+
+function renderRoster(){
+  document.getElementById('bottomLabel').textContent='THE ROOM · 25 HERE';
+  let s='<div style="position:absolute;inset:0;display:flex;flex-wrap:wrap;gap:5px;align-content:center;justify-content:center;">';
+  ROOM.forEach((m,i)=>{ s+=dot(m.e,24,i===0); });
+  s+='</div>';
+  strip.innerHTML=s;
+}
+
+function renderReorg(){
+  document.getElementById('bottomLabel').textContent='THE ROOM · WHAT WE WOULD HAVE DONE';
+  const groups={against:[],abstain:[],for:[]};
+  ROOM.forEach((m,i)=>{ groups[m.v].push({e:m.e,mine:i===0}); });
+  let s='';
+  COLS.forEach(c=>{
+    const members=groups[c.key.toLowerCase()];
+    s+=`<div style="position:absolute;bottom:0;left:${c.x}%;width:31%;display:flex;flex-direction:column;align-items:center;">`;
+    s+='<div style="display:flex;flex-wrap:wrap-reverse;gap:2px;justify-content:center;align-content:flex-end;max-height:80px;overflow:hidden;">';
+    members.forEach(m=>{ s+=dot(m.e,17,m.mine); });
+    s+='</div>';
+    s+=`<div style="margin-top:4px;font-size:15px;font-weight:500;color:#1a1a1a;">${members.length}</div>`;
+    s+='</div>';
+  });
+  strip.innerHTML=s;
+}
+
+function cardVoting(){
+  document.getElementById('cardBody').innerHTML='<div style="display:flex;gap:8px;"><div style="flex:1;text-align:center;border:1.5px solid #1a1a1a;border-radius:8px;padding:10px 0;font-size:13px;font-weight:500;">Against</div><div style="flex:1;text-align:center;border:1px solid #ccc;border-radius:8px;padding:10px 0;font-size:13px;color:#999;">Abstain</div><div style="flex:1;text-align:center;border:1.5px solid #534AB7;border-radius:8px;padding:10px 0;font-size:13px;font-weight:500;color:#534AB7;">For ✓</div></div>';
+}
+
+function cardRevealed(){
+  let h='<div style="border:2px solid #0F6E56;color:#0F6E56;border-radius:6px;padding:4px 9px;text-align:center;width:185px;margin:0 auto 16px;transform:rotate(-2deg);"><div style="font-size:9px;letter-spacing:2px;">THE PARLIAMENT</div><div style="font-size:17px;letter-spacing:3px;font-weight:500;line-height:1.1;">APPROVED</div><div style="font-size:10px;font-family:var(--font-mono);">66–0 · 16 abstained</div></div>';
+  h+='<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;align-items:end;min-height:60px;">';
+  COLS.forEach(c=>{
+    h+='<div style="display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-items:center;align-content:flex-end;">';
+    h+= c.parties.length ? c.parties.map(p=>`<span style="background:${p.c};color:#fff;font-size:8px;font-weight:500;min-width:28px;height:28px;padding:0 4px;border-radius:50px;display:inline-flex;align-items:center;justify-content:center;">${p.n}</span>`).join('') : '';
+    h+='</div>';
+  });
+  h+='</div>';
+  h+='<div style="border-top:1px solid #1a1a1a;margin-top:5px;padding-top:5px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">';
+  COLS.forEach(c=>{ h+=`<div style="font-size:9px;letter-spacing:1.5px;color:#7a7972;text-align:center;">${c.key}</div>`; });
+  h+='</div>';
+  document.getElementById('cardBody').innerHTML=h;
+}
+
+function setRoster(){
+  document.getElementById('bRoster').style.borderColor='var(--color-border-info)';
+  document.getElementById('bRoster').style.color='var(--color-text-info)';
+  document.getElementById('bReorg').style.borderColor=''; document.getElementById('bReorg').style.color='';
+  cardVoting(); renderRoster();
+  document.getElementById('caption').innerHTML='<b>1 · Voting.</b> Card = the ballot. Bottom strip = the room, loose cluster, present and waiting. Two registers: official up top, informal below. Your emoji wears the purple ring; wave acts on it.';
+}
+function setReorg(){
+  document.getElementById('bReorg').style.borderColor='var(--color-border-info)';
+  document.getElementById('bReorg').style.color='var(--color-text-info)';
+  document.getElementById('bRoster').style.borderColor=''; document.getElementById('bRoster').style.color='';
+  cardRevealed(); renderReorg();
+  document.getElementById('caption').innerHTML='<b>2 · Revealed.</b> Card fills with the official result — stamp + party circles in their columns. Below, the SAME emoji slide into against / abstain / for piles. Official vs informal, top vs bottom, no duplication.';
+}
+
+document.getElementById('bRoster').onclick=setRoster;
+document.getElementById('bReorg').onclick=setReorg;
+
+document.getElementById('waveBtn').onclick=()=>{
+  const h=document.getElementById('waveHand');
+  h.style.transition='transform 0.15s'; h.style.transform='rotate(20deg) translateY(-4px)';
+  setTimeout(()=>{h.style.transform='rotate(-15deg)';},150);
+  setTimeout(()=>{h.style.transform='none';},320);
+  const dots=strip.querySelectorAll('span');
+  if(dots[0]){ dots[0].style.transition='transform 0.3s'; dots[0].style.transform='translateY(-8px) scale(1.15)'; setTimeout(()=>{dots[0].style.transform='none';},400); }
+};
+
+setRoster();
+</script>

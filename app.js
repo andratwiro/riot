@@ -669,10 +669,7 @@ function soloEnter(){
     pwrap.innerHTML=`<p class="sl-plabel">${esc(sl.parties_label||"Who sits here")}</p>`+
       who.map(p=>`<div class="sl-prow">${logoEl(p)}<span class="sl-ptx"><b>${esc(p.name)}</b>${esc(p.blurb)}</span></div>`).join("");
   }
-  // meta line above the CTA — fallback only when the key is absent; an
-  // explicit "" hides it (a city can drop the docket line without the default).
-  const meta=$("#soloMeta"), metaTxt=("meta" in sl)?sl.meta:"{n} decisions on the docket";
-  meta.hidden=!metaTxt; if(metaTxt) meta.textContent=fill(metaTxt);
+  $("#soloMeta").textContent=fill(sl.meta||"{n} decisions on the docket");
   $("#soloGo").textContent=sl.cta||"Enter the booth";
   const note=$("#soloNote"); note.hidden=!sl.note;
   if(sl.note) note.textContent=fill(sl.note);

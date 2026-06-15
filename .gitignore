@@ -19,6 +19,8 @@ data/brussels/cri_pdf/
 data/bundestag/xlsx/
 
 # --- junk ---
+# Claude Code throwaway worktrees (embedded git repos; never part of the tree).
+.claude/worktrees/
 .DS_Store
 __pycache__/
 *.pyc

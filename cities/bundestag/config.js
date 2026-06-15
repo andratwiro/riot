@@ -8,6 +8,7 @@
 window.CITY_CONFIG = {
   id: "bundestag",
   name: "Bundestag",
+  masthead: "Deutscher Bundestag",   // header label — the institution's own name (German)
   title: "Deutscher Bundestag",
   lang: "de",
   srcLang: "de",                       // original wording = the official German title
@@ -23,8 +24,9 @@ window.CITY_CONFIG = {
       "Jede Karte ist eine echte namentliche Abstimmung aus dem Plenum. Du stimmst zuerst ab, blind, als läge die Entscheidung heute auf deinem Tisch. Dann antwortet der Bundestag, Fraktion für Fraktion, genau wie im amtlichen Verzeichnis protokolliert."
     ],
     parties_label: "Wer sitzt im Plenarsaal",
-    meta: "",
-    cta: "Zur Abstimmung"
+    meta: "{n} namentliche Abstimmungen · 2025–2026 · Deutscher Bundestag",
+    cta: "Zur Abstimmung",
+    note: "Deine Stimmen bleiben auf diesem Gerät."
   },
   // LIVE SESSION lobby strings. TODO(rob): provisional wording, confirm.
   lobby: {

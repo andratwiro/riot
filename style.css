@@ -881,7 +881,6 @@ html.cover header{position:sticky;top:0;z-index:5;background:var(--paper)}
   padding:14px 0 calc(16px + env(safe-area-inset-bottom))}
 .sl-meta{margin:0 0 14px;font:700 11px/1.6 var(--f-mono);letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink60)}
-.sl-meta[hidden]{display:none}
 .sl-go{display:block;width:100%;max-width:300px;margin:0;background:var(--ink);
   color:var(--card);border:0;border-radius:10px;padding:16px;
   font:700 16.5px var(--f-ui);cursor:pointer;min-height:54px}

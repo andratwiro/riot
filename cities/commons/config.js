@@ -24,8 +24,9 @@ window.CITY_CONFIG = {
       "These are the real divisions of that spring. You vote on each one first, blind. Then the House votes back, party by party, exactly as recorded."
     ],
     parties_label: "Who sits in this House",
-    meta: "",
-    cta: "Open the record"
+    meta: "{n} divisions · Jan–Apr 2019 · official CommonsVotes record",
+    cta: "Open the record",
+    note: "Your votes stay on this phone."
   },
   // LIVE SESSION lobby strings. TODO(rob): provisional wording, confirm.
   lobby: {

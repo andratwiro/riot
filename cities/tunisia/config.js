@@ -26,8 +26,9 @@ window.CITY_CONFIG = {
       "The deck ends in 2018. In July 2021 the president froze this parliament; the next year he dissolved it."
     ],
     parties_label: "Who sits in this assembly",
-    meta: "",
-    cta: "Open the record"
+    meta: "{n} recorded votes · 2014–2018 · the Assembly, Bardo Palace",
+    cta: "Open the record",
+    note: "Your votes stay on this phone."
   },
   // LIVE SESSION lobby — every visible string on the gathering screen comes from
   // here (no copy conditionals in live.js). {count}/{body} in one_liner and

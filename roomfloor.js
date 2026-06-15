@@ -26,6 +26,12 @@
    prefers-reduced-motion places bodies at their targets with no loop. */
 (function(){
   const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Firefox re-rasterizes an emoji glyph every time its sub-pixel offset shifts,
+  // so the per-frame jitter (see step's JIT) reads as a harsh tremble instead of
+  // the smooth GPU-composited breathing Chrome/mobile show. Snap Firefox's render
+  // to whole pixels: a resting body pins to one pixel (no re-raster, no tremble),
+  // motion >1px still animates. Other engines keep the sub-pixel feel untouched.
+  const IS_FF = /firefox/i.test(navigator.userAgent);
   const COLX = {against:0.16, abstain:0.5, for:0.84};   // column centres (fraction of width)
   const WAVE_ZONE = 80;                                  // height budget for the lower band the crowd now SHARES with the wave hand (was a reserved empty band) + where the undecided peep
   const BOTTOM_GAP = 36;                                 // the decided crowd rests this far above the absolute bottom — a FLAT floor set well above the (low-sitting) wave hand, so only the hand's top pokes into the lowest row: the strip below stays clear, a fresh vote visibly crosses up into its pile, and few bodies ever sit in the hand's clearing (which is what keeps the piling calm and the jitter away)
@@ -230,6 +236,7 @@
       const clearR=HAND_CLEAR+b.r, dx=b.x-handX, dy=b.y-handY, d=Math.hypot(dx,dy);
       if(d<clearR) oy-=(clearR-d);
     }
+    if(IS_FF){ ox=Math.round(ox); oy=Math.round(oy); }
     b.el.style.transform=`translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px) scale(${s.toFixed(3)})`; }
   function placeStatic(){ for(const b of bodies.values()){ b.x=b.tx; b.y=b.ty; place(b); } }
   function perfNow(){ return (window.performance&&performance.now)?performance.now():0; }
