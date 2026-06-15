@@ -266,10 +266,7 @@ function mpVote(id,vote){
 }
 function localReset(){            // wipe my own session (mirrors "Start over") — used when the room resets
   try{sessionStorage.removeItem("riot.cov."+CFG.id);}catch(e){}   // re-contribute on the next run
-  for(const k in answers) delete answers[k];
-  deck=buildDeck(); idx=0; voting=false; splitUpdate=null;
-  $("#done").style.display="none";
-  renderStack(); publishSelf();
+  resetSession();                // app.js single writer: clears answers/deck/idx/voting/splitUpdate, hides done, republishes
 }
 function resetEveryone(){
   if(!mpCtrl) return;

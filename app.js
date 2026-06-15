@@ -78,6 +78,26 @@ const $ = s => document.querySelector(s);
 const VLAB = {for:"for", against:"against", abstain:"abstain", split:"split", absent:"absent"};
 const byId = Object.fromEntries(R.decisions.map(d=>[d.id,d]));
 
+/* Dev sanity check on the loaded city bundle — opt-in via ?debug=1, console only,
+   never throws. Catches the silent-failure class no runtime error surfaces: a
+   PARTY token that never appears in any vote (a typo'd token → a dot with no
+   affinity), or a demo_deck/live_deck id that isn't a real decision (filtered
+   away unseen). Extra per-councillor tokens IN the votes are fine — the viewer
+   only reads PARTIES tokens — so the check runs party→votes, not the reverse. */
+function validateBundle(){
+  const issues=[], ids=new Set(R.decisions.map(d=>d.id)), voted=new Set();
+  for(const d of R.decisions) for(const tok in (d.party_votes_canon||{})) voted.add(tok);
+  if(!R.decisions.length) issues.push("bundle has no decisions");
+  if(!PARTIES.length) issues.push("bundle has no parties");
+  for(const p of PARTIES) if(!voted.has(p.token)) issues.push(`party "${p.token}" never appears in any vote (token typo?)`);
+  for(const key of ["demo_deck","live_deck"]) for(const id of (CFG[key]||[]))
+    if(!ids.has(id)) issues.push(`config.${key}: "${id}" is not a decision id`);
+  for(const k of ["id","name"]) if(!CFG[k]) issues.push(`config missing "${k}"`);
+  if(issues.length) console.warn(`[RIOT] city "${CFG.id}": ${issues.length} bundle issue(s)\n`+issues.map(s=>"  · "+s).join("\n"));
+  else console.log(`[RIOT] city "${CFG.id}" bundle OK — ${R.decisions.length} decisions, ${PARTIES.length} parties`);
+  return issues;
+}
+
 /* ---- deck ----
    Full deck for async visitors; ?deck=live = the curated room session (~15–20
    contested cards, same SET for everyone in the room; order is still per-person). */
@@ -465,6 +485,19 @@ function doneVis(on){
   if(!on) window.scrollTo(0,0);
 }
 
+// Single writer for "wipe the ballot and re-deal a fresh full session." Every
+// start-over path (Start over here, async-room reset) routes through this so no
+// caller can forget a line (a stray voting=true or splitUpdate wedges the booth).
+// NOT used by the live seat gate (it lands on the sitting, never re-deals) or
+// import (it applies votes first) — those clear answers their own way.
+function resetSession(){
+  for(const k in answers)delete answers[k];
+  deck=buildDeck(); idx=0; voting=false; splitUpdate=null;
+  doneVis(false);
+  renderStack();
+  if(typeof publishSelf==="function")publishSelf();
+}
+
 function collapseCard(card){
   card.classList.remove("expanded");
   card.style.minHeight="";
@@ -539,13 +572,7 @@ document.addEventListener("keydown",e=>{
   else if(e.key==="ArrowRight"){e.preventDefault();react("for");}    // agree
   else if(e.key==="ArrowDown"){e.preventDefault();react("abstain");} // pass
 });
-$("#restart").addEventListener("click",()=>{
-  for(const k in answers)delete answers[k];
-  deck=buildDeck(); idx=0; voting=false;
-  doneVis(false);
-  renderStack();
-  if(typeof publishSelf==="function")publishSelf();
-});
+$("#restart").addEventListener("click",resetSession);
 
 /* ---- join: room onboarding (name or emoji, <30s). Single-player skips it. ---- */
 /* identity is per-TAB (sessionStorage), like mpPid: a new browser session or

@@ -43,22 +43,19 @@ header{display:flex;align-items:center;justify-content:space-between;
 /* two forms: the SHORT name in single/async mode (§/⚙ + switcher share the
    header), the FULL institution name in live mode (chrome stripped by the
    body.live-* rules below — the brand owns the whole row) */
+/* full institution name shows in ANY room — async (in-room) or any live phase
+   (body.live, the umbrella set at liveInit). live-voter persists across phases,
+   so this is equivalent to the old in-room/live-voter/live-lobby/live-mod quartet. */
 #cityName .cn-f{display:none}
-body.in-room    #cityName .cn-s,
-body.live-voter #cityName .cn-s,
-body.live-lobby #cityName .cn-s,
-body.live-mod   #cityName .cn-s{display:none}
-body.in-room    #cityName .cn-f,
-body.live-voter #cityName .cn-f,
-body.live-lobby #cityName .cn-f,
-body.live-mod   #cityName .cn-f{display:inline}
+body.in-room #cityName .cn-s,
+body.live    #cityName .cn-s{display:none}
+body.in-room #cityName .cn-f,
+body.live    #cityName .cn-f{display:inline}
 /* multiplayer owns the whole row but a long full name can still pass 390px —
    wrap to a second line rather than ellipsise, the header has the vertical
    room here (no §/⚙ to hold it to one line) */
-body.in-room    .citysel #cityName,
-body.live-voter .citysel #cityName,
-body.live-lobby .citysel #cityName,
-body.live-mod   .citysel #cityName{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.18}
+body.in-room .citysel #cityName,
+body.live    .citysel #cityName{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.18}
 .citysel:hover{background:var(--card)}
 .citysel .rose{height:23px;width:23px;flex:0 0 auto;display:block;object-fit:contain}
 .citysel .citychev{color:var(--ink60);font-size:11px;font-weight:600;margin-left:1px}

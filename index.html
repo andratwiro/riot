@@ -291,7 +291,7 @@ else try{
       <span class="si-ic">↺</span>
       <span class="si-tx"><b id="resetRoomTx">Reset everyone's votes</b><small>Clears the whole room's progress and tallies</small></span>
     </button>
-    <p class="sheet-ver">RIOT · v1.28</p>
+    <p class="sheet-ver">RIOT · v1.29</p>
   </div>
 </div>
 
@@ -340,6 +340,7 @@ else try{
 <script src="roomfloor.js"></script>
 <script>
 // Boot — startup order: map coords (for the reveal) → room connect → live session → join gate → deal cards.
+if(QS.get("debug")==="1") validateBundle();   // dev: console-only sanity check on the city bundle
 applyGhostParty(showGhost);   // builds the reveal-map coords (ghost mode is session cfg — off at boot)
 document.body.classList.toggle("dev",devMode);
 if(!location.search){

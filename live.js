@@ -147,6 +147,7 @@ function liveInit(){
   if(SIMLIVE){ lvStore=simStore(); }
   else if(window.mpDb){ lvStore=fbStore(); }
   else { lvHold(false); if(LIVE_ROLE==="mod") modNoBackend(); return; }   // single-player: no live mode
+  document.body.classList.add("live");   // umbrella for ANY live role/phase (never removed); phase classes (live-voter/lobby/mod/final/floor) layer on top
   if(LIVE_ROLE==="mod"){ lvHold(false); document.body.classList.add("live-mod"); }
   else {
     // every voter boot holds the paper (html.lvhold, set before first paint)
