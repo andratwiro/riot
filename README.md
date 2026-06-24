@@ -7,7 +7,7 @@ between citizens and the institutions that act in their name. RIOT is an attempt
 real-time gateway for citizens into the rooms where power concentrates, a step toward a direct,
 representative democracy.
 
-A council or parliament publishes its decisions as dense legal minutes that almost nobody reads. RIOT
+A council or parliament publishes its decisions as dense legal minutes. RIOT
 ingests that record, works out how every party actually voted from the official roll call, and rewrites
 each decision as a plain card you can swipe through and vote on yourself. Every card links straight back
 to the source document, so nothing has to be taken on trust.
@@ -18,7 +18,7 @@ The two easiest places to start are **Brussels** (the Brussels-Capital regional 
 **US Congress**. Pick one, vote the same agenda the politicians voted, and at the end see which party
 you actually line up with.
 
-## The path, on a phone
+## The path
 
 A live Brussels sitting, on a phone: you vote the card, the room gathers as a crowd at the foot of the
 screen, then everyone's votes fan into Against / Abstain / For under the chamber's own verdict. At the end,
@@ -41,16 +41,13 @@ fetch the official record  ─►  extract every member's vote  ─►  aggregat
                                            always linked back to the source
 ```
 
-**The party votes are never guessed.** They come from the official per-member roll call, counted up per
+The party votes come from the official per-member roll call, counted up per
 party. The verdict and the margins are the real ones.
 
 ## How a decision becomes a card
 
-This is the part that does the real work, so it is worth being plain about it.
-
-A card is not a separate document or an essay. It is a short, structured entry: a one-line headline, a
-couple of optional deeper layers, a link to the source, and each party's recorded vote. One real decision
-goes in, one card comes out.
+A card is a short, structured entry: a one-line headline, a
+couple of optional deeper layers, a link to the source, and each party's recorded vote.
 
 Here is what that looks like. The Brussels Parliament publishes this:
 
