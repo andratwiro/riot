@@ -1,7 +1,7 @@
 # RIOT — Phase 0 findings & working knowledge (riot.reus)
 
 > Durable notes so the work survives any single session. The *why*/principles live in
-> `Riot.md`; the plan in `To Do Riot.md`. This file = what we've **learned** building it.
+> `Riot.md`. This file = what we've **learned** building it.
 > Last updated: 2026-06-08 (day 0).
 
 ## Working agreement — we work LIVE
@@ -153,7 +153,7 @@ Three distinct layers, deliberately separated so we never lose the thread back t
 
 ## Repo layout
 ```
-Riot.md, To Do Riot.md     standing context + plan
+Riot.md                    standing context + plan
 docs/FINDINGS.md           this file
 scripts/fetch_sessions.py  enumerate sessions → download+verify actas → data/actas/*.txt
 scripts/taxonomy.py        CANONICAL legal-category taxonomy + votability gate (import everywhere)

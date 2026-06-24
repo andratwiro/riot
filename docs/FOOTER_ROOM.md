@@ -1,7 +1,7 @@
 # The footer room — official card, informal crowd
 
 Status: design agreed (Rob, 2026-06-13), prototype stage. Not yet wired into the
-live app. This note is the source of truth for the idea; `riot_footer_room_prototype.html`
+live app. This note is the source of truth for the idea; `docs/prototypes/riot_footer_room_prototype.html`
 is the standalone feel-test that came before any change to `live.js`/`style.css`.
 
 ## The thesis
