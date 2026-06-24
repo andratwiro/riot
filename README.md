@@ -51,3 +51,15 @@ Every decision links back to its source.
 ## Privacy
 `soul.md` (the GHOST's profile) and Rob's own votes are never committed — the repo is public, the
 private inputs are not.
+
+## License
+Copyright © 2026 Roberto Andrade.
+
+RIOT is free software, licensed under the **GNU Affero General Public License v3.0** (AGPL-3.0).
+You may use, study, share, and modify it under those terms. The AGPL's network clause (§13)
+means that if you run a modified version as a public web service, you must offer your users the
+corresponding source. See [`LICENSE`](LICENSE) for the full text, or
+<https://www.gnu.org/licenses/agpl-3.0.html>.
+
+The vote data is derived from public records (see *Data provenance* above); the source minutes
+remain the public records of their respective parliaments.
