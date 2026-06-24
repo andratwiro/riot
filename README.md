@@ -2,6 +2,11 @@
 
 **An engine that turns what a parliament actually decided into something a normal person can vote on.**
 
+We need the equivalent of nuclear weapons for our democracies: a force big enough to reset the balance
+between citizens and the institutions that act in their name. RIOT is an attempt at one. It opens a
+real-time gateway for citizens into the rooms where power concentrates, a step toward a direct,
+representative democracy.
+
 A council or parliament publishes its decisions as dense legal minutes that almost nobody reads. RIOT
 ingests that record, works out how every party actually voted from the official roll call, and rewrites
 each decision as a plain card you can swipe through and vote on yourself. Every card links straight back
@@ -15,10 +20,11 @@ you actually line up with.
 
 ## The path, on a phone
 
-| | | |
-|:--:|:--:|:--:|
-| ![A reworded ballot card](docs/img/ux-card.png) | ![The chamber's verdict and every party's vote](docs/img/ux-chamber.png) | ![The opinion map and your closest party](docs/img/ux-reveal.png) |
-| **The card.** The decision, reworded into one plain line. Against / Abstain / For. | **The verdict.** What the chamber actually stamped, and where each party stood. | **The map.** Everyone's votes laid out. Who you sit closest to, who you sit furthest from. |
+A live Brussels sitting, on a phone: you vote the card, the room gathers as a crowd at the foot of the
+screen, then everyone's votes fan into Against / Abstain / For under the chamber's own verdict. At the end,
+a map of who you line up with.
+
+![A live RIOT sitting on a phone: the ballot card with the room gathered below, the per-card verdict with the crowd split into Against / Abstain / For, and the final opinion map](docs/img/room-flow.png)
 
 ## What the engine does
 
@@ -31,18 +37,42 @@ fetch the official record  ─►  extract every member's vote  ─►  aggregat
    one row per decision  ◄──────────  rewrite into a layered card  ◄────────┘
    id · title · date · body                plain headline
    source_url · context                    the brief (why it matters)
-   votes { party…, rob, ai } · counts      analyst read (how the room split)
+   votes { party…, rob, ai } · counts      analyst read (how the chamber split)
                                            always linked back to the source
 ```
 
-Two things are worth being precise about:
+**The party votes are never guessed.** They come from the official per-member roll call, counted up per
+party. The verdict and the margins are the real ones.
 
-- **The party votes are never guessed.** They come from the official per-member roll call, counted up
-  per party. The verdict and the margins are the real ones.
-- **The rewriting is the hard part, and it is kept honest.** Each decision becomes a short headline plus
-  a couple of layers (the brief, an analyst read), and the thread back to the source is never cut. On the
-  live councils the rewording is drafted with AI and checked; the historical decks are hand written and
-  fact-checked against the record. A kid should be able to understand any of these topics.
+## How a decision becomes a card
+
+This is the part that does the real work, so it is worth being plain about it.
+
+A card is not a separate document or an essay. It is a short, structured entry: a one-line headline, a
+couple of optional deeper layers, a link to the source, and each party's recorded vote. One real decision
+goes in, one card comes out.
+
+Here is what that looks like. The Brussels Parliament publishes this:
+
+> «&nbsp;L'ordonnance donne l'assentiment de la Région de Bruxelles-Capitale à l'accord de coopération du
+> 4 avril 2024, qui modifie l'accord de 2013 relatif à l'intégration des activités aériennes dans le
+> système communautaire d'échange de quotas d'émission (EU ETS), dans le cadre du paquet «&nbsp;ajustement
+> à l'objectif 55&nbsp;»…&nbsp;»
+
+RIOT turns that same decision into this:
+
+> **Make airlines pay for their CO2:** approve the deal between Belgium's governments that puts flying into
+> the EU carbon market and phases out airlines' free pollution permits.
+
+Tap "see more" and it opens in layers: the plain headline anyone can read, then **the brief** (why it
+matters to you), then an **analyst read** (how the chamber actually split, and why). The source document
+is always one tap away, so you can check the rewrite against the original.
+
+Mechanically: the cards for each city live in an authored `cards.json`, and a build script folds them into
+that city's `data.js` (the `context` field on each decision). On the live councils the first draft of the
+rewrite is written with AI and then checked against the source; on the historical decks a human writes it
+and fact-checks it against the record. The rule, either way: compress the decision so a kid could follow
+it, without ever cutting the thread back to what was really voted.
 
 ## Two ways to use it
 
@@ -52,16 +82,15 @@ Abstain / For, sitting right below the chamber's own verdict. So you read the ro
 the room agrees, or the room would have decided differently. What happened in the chamber, against what
 the people in the room actually wanted.
 
-![The room gathering before a sitting](docs/img/ux-lobby.png)
-
 **Alone.** Swipe through the deck at your own pace, vote each card, and get your affinity with every party
 plus an opinion map at the end. This is also how you re-run history: sit down and cast the votes that a
 parliament once cast, decision by decision.
 
-![The Enabling Act of 1933, as a RIOT ballot](docs/img/ux-weimar.png)
+![The Enabling Act of March 1933 as a RIOT ballot: the Reichstag's APPROVED stamp, 444 to 94, with the SPD alone against and every other party for](docs/img/weimar-enabling-act.png)
 
-> *The Enabling Act of March 1933, in the Weimar deck: the same engine, on the vote that ended a republic.
-> The Reichstag stamped it 444 to 94, the SPD alone against.*
+> *The Enabling Act, 23 March 1933, in the Weimar deck. The Reichstag stamped it 444 to 94, the SPD alone
+> against and every other party for. Cast the vote yourself, decision by decision, and watch a democracy
+> sign away its own power.*
 
 ## The instances
 
