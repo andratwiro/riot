@@ -1,6 +1,6 @@
 # RIOT
 
-**An engine that turns what a parliament actually decided into something a normal person can vote on.**
+**An engine that turns a parliament's real time decisions into something a normal person can vote on.**
 
 The goal is to open a
 real-time gateway for citizens into the rooms where power concentrates, a step toward a direct,
