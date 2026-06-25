@@ -2,8 +2,7 @@
 
 **An engine that turns what a parliament actually decided into something a normal person can vote on.**
 
-We need the equivalent of nuclear weapons for our democracies: a force big enough to reset the balance
-between citizens and the institutions that act in their name. RIOT is an attempt at one. It opens a
+The goal is to open a
 real-time gateway for citizens into the rooms where power concentrates, a step toward a direct,
 representative democracy.
 
