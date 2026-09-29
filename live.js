@@ -90,7 +90,8 @@ window.LIVE={
   },
   tally(id){
     const t=((lvS&&lvS.tallies)||{})[id]||{};
-    return {for:t.for||0, against:t.against||0, abstain:t.abstain||0};
+    const n=v=>{v=+v; return isFinite(v)&&v>0?Math.floor(v):0;};   // open backend: numbers only
+    return {for:n(t.for), against:n(t.against), abstain:n(t.abstain)};
   },
   // a participant's full ballot record {decisionId: dir}, from the cast markers —
   // it places every face (synthetic voters included) on the final reveal's map.
@@ -118,13 +119,25 @@ function fbStore(){
   const db=window.mpDb;
   let off=0; db.ref(".info/serverTimeOffset").on("value",s=>{off=s.val()||0;});
   const base=`rooms/${CFG.id}/live/`;
+  const fail=e=>lvBackendError(e);
   return {
     now:()=>Date.now()+off,
-    on:(p,cb)=>db.ref(base+p).on("value",s=>cb(s.val())),
-    set:(p,v)=>db.ref(base+p).set(v),
-    update:(p,o)=>db.ref(base+p).update(o),
-    inc:(p)=>db.ref(base+p).transaction(v=>(v||0)+1)
+    on:(p,cb)=>db.ref(base+p).on("value",s=>cb(s.val()),fail),
+    set:(p,v)=>db.ref(base+p).set(v).catch(fail),
+    update:(p,o)=>db.ref(base+p).update(o).catch(fail),
+    inc:(p)=>db.ref(base+p).transaction(v=>(+v||0)+1).catch(fail)
   };
+}
+/* the backend refused a read or write (rules, quota, network): say so on
+   screen instead of leaving a blank stage or a silent wall */
+function lvBackendError(e){
+  console.error("RIOT room backend:",e&&e.message);
+  let b=document.getElementById("lvErr");
+  if(!b){ b=document.createElement("div"); b.id="lvErr"; b.setAttribute("role","alert"); document.body.appendChild(b); }
+  b.textContent=LIVE_ROLE==="mod"
+    ? "The room can't be reached right now. Refresh to try again."
+    : "Can't reach the room. Refresh to try again.";
+  b.hidden=false;
 }
 function simStore(){
   const tree={}, subs=[];
@@ -181,7 +194,13 @@ function liveInit(){
       if(lvSeated){ if(typeof mpJoin==="function") mpJoin(); }
       else if(typeof mpLeave==="function") mpLeave();
     }
-    lvStore.on(lvSess(), s=>{ if(lvSid!==sid)return; lvS=s; onSnapshot(); });
+    lvStore.on(lvSess(), s=>{
+      if(lvSid!==sid) return;
+      // `current` names a sitting that isn't there (deleted, or junk written
+      // to the open backend): treat it as no sitting rather than freezing
+      if(!s || typeof s!=="object" || !Array.isArray(s.deck)){ if(lvS||s){ lvS=null; onSessionGone(); } else if(LIVE_ROLE==="mod") renderModSetup(); return; }
+      lvS=s; onSnapshot();
+    });
   });
   if(SIMLIVE) simLiveBoot();
   if(LIVE_ROLE==="mod") setTimeout(()=>{ if(!lvSid) renderModSetup(); },SIMLIVE?0:600);
@@ -202,6 +221,9 @@ function liveFloor(v){
 /* ---- snapshot dispatch ---- */
 function onSnapshot(){
   if(!lvS) return;
+  // the backend answered after the 10 s no-answer wall went up (slow network):
+  // take it down; a sitting that has ended puts it back via liveEnded
+  if(LIVE_ROLE!=="mod" && document.documentElement.classList.contains("hold")) lvWall(false);
   if(LIVE_ROLE==="mod"){ liveSyncGhost(); $("#modSetup").hidden=true; renderStage(); modAuthority(); simOnSnapshot(); return; }
   const st=lvS.state;
   if(st==="ended"){ liveEnded(); modAuthority(); simOnSnapshot(); return; }
@@ -325,7 +347,10 @@ function voterCount(){
 }
 function castCount(id){
   const m=((lvS&&lvS.cast)||{})[id]||{};
-  let n=Object.keys(m).length;
+  // only ballots from people seated in this sitting count toward "all in":
+  // a phone that dropped out mustn't let the card reveal early
+  const seated=new Set(mpVisiblePids()); if(LIVE_ROLE!=="mod") seated.add(lvPid());
+  let n=0; for(const p in m) if(seated.has(p)) n++;
   if(LIVE_ROLE!=="mod" && (id in answers) && !(lvPid() in m)) n++;   // mine may be in flight
   return n;
 }
@@ -793,6 +818,8 @@ function renderModSetup(){
 }
 function startSession(ids,cfg){
   const sid="s"+Math.random().toString(36).slice(2,8);
+  // the room map's anonymous aggregate belongs to one sitting: start clean
+  if(!SIMLIVE && typeof mpCov!=="undefined" && mpCov) mpCov.remove().catch(()=>{});
   lvStore.set("sessions/"+sid,{state:"lobby",deck:ids,idx:0,cfg,startedAt:lvStore.now()});
   lvStore.set("current",sid);
 }
@@ -880,6 +907,16 @@ function botJoin(i){
   if(typeof renderStrip==="function") renderStrip();
   if(LIVE_ROLE==="mod") renderStage();                       // lobby faces update now
   if(lvS.state==="voting") botCastAt(pid, lvCurId());        // latecomer still votes this card
+}
+function botsRepublish(){            // moderator reconnected: the server dropped the bots' records
+  if(SIMLIVE || !lvS || lvS.state==="ended" || typeof mpPart==="undefined" || !mpPart) return;
+  for(const pid of botIds){
+    const i=+pid.slice(3);
+    const ref=mpPart.child(pid);
+    ref.set({e:SIM_FACES[i%SIM_FACES.length], nm:SIM_NAMES[i%SIM_NAMES.length], c:null, n:0,
+             t:(lvS.deck||[]).length, s:lvSid, ts:firebase.database.ServerValue.TIMESTAMP});
+    ref.onDisconnect().remove();
+  }
 }
 function botsSchedule(){              // (re)arm this card's casts — new card or resume
   if(!botsActive()) return;

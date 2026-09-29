@@ -172,7 +172,9 @@ let PLACE = null;
 const SPLIT_ON = QS.get("split")==="0" ? false : (CFG.live_split!==false);
 
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function esc(s){return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+// escapes for text AND attribute values: room data arrives from an open,
+// anonymous backend, so a quote must never close an attribute (title="…")
+function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 // at most one run per `ms`, trailing edge — coalesces backend write bursts
 // (the final reveal: ~room-size near-simultaneous presence/cov events) into
 // a few paints instead of one map re-solve per event

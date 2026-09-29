@@ -211,6 +211,14 @@ function mpContributeCov(){
   mpCov.update(upd).catch(()=>{});
   try{sessionStorage.setItem("riot.cov."+CFG.id,"1");}catch(e){}
 }
+// one presence record off the wire, coerced to the shapes the renderers expect:
+// the backend is open, so a wrong type must never throw inside a listener
+function peerRec(r){
+  const str=(v,max)=>typeof v==="string"?v.slice(0,max):"";
+  const num=v=>{v=+v; return isFinite(v)&&v>0?v:0;};
+  const c=Array.isArray(r.c)&&r.c.length===2&&r.c.every(x=>typeof x==="number"&&isFinite(x))?r.c:null;
+  return {e:str(r.e,16),nm:str(r.nm,40),c,n:num(r.n),t:num(r.t),s:typeof r.s==="string"?r.s:null,w:num(r.w),ws:num(r.ws)};
+}
 function parseCov(raw){
   const s={}, m2={};
   if(raw && raw.s) for(const j in raw.s) s[j]=raw.s[j];
@@ -297,11 +305,19 @@ function mpInit(){
     if(window.LIVE_ROLE!=="mod"){
       mpSelf=mpPart.child(mpPid);
     }
+    // a dropped connection (phone locked, wifi blip) fires the server-side
+    // onDisconnect and deletes the record; on reconnect re-arm it and publish
+    // again, or the phone silently falls out of the room for good
+    db.ref(".info/connected").on("value",snap=>{
+      if(snap.val()!==true) return;
+      if(mpSelf && mpJoined){ mpSelf.onDisconnect().remove(); publishSelf(); }
+      if(window.LIVE_ROLE==="mod" && typeof botsRepublish==="function") botsRepublish();
+    });
     mpPart.on("value",snap=>{
       const all=snap.val()||{};
       const prev={},prevW={},prevWS={};
       for(const k in PEERS){prev[k]=PEERS[k].n; prevW[k]=PEERS[k].w||0; prevWS[k]=PEERS[k].ws||0; delete PEERS[k];}
-      for(const k in all){ if(k!==mpPid) PEERS[k]={e:all[k].e||"",nm:all[k].nm||"",c:all[k].c||null,n:all[k].n||0,t:all[k].t||0,s:all[k].s||null,w:all[k].w||0,ws:all[k].ws||0}; }
+      for(const k in all){ if(k!==mpPid && all[k] && typeof all[k]==="object") PEERS[k]=peerRec(all[k]); }
       renderStrip();
       for(const k in PEERS){
         if(prev[k]!=null && PEERS[k].n>prev[k]) activityTick(k);
@@ -323,8 +339,9 @@ function mpInit(){
       if(typeof jointDataChanged==="function") jointDataChanged(parseCov(snap.val()));
     });
     mpCtrl.child("resetAt").on("value",snap=>{          // someone hit "reset everyone"
-      const t=snap.val()||0;
-      if(mpSeenReset!=null && t>mpSeenReset) localReset();
+      const t=+snap.val()||0;
+      // a live sitting owns its deck: a room reset must never re-deal it
+      if(mpSeenReset!=null && t>mpSeenReset && !(window.LIVE && LIVE.active())) localReset();
       mpSeenReset=t;
     });
     const rb=$("#resetRoom"); if(rb) rb.hidden=false;   // visible only in curator mode (CSS)

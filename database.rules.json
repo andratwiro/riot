@@ -3,7 +3,79 @@
     "rooms": {
       "$city": {
         ".read": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
-        ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)"
+        "participants": {
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          "$pid": {
+            ".validate": "$pid.matches(/^[A-Za-z0-9_-]{1,24}$/) && newData.hasChildren(['e', 'ts'])",
+            "e":  { ".validate": "newData.isString() && newData.val().length <= 16" },
+            "nm": { ".validate": "newData.isString() && newData.val().length <= 40" },
+            "s":  { ".validate": "newData.isString() && newData.val().length <= 16" },
+            "c":  { "$i": { ".validate": "$i.matches(/^[01]$/) && newData.isNumber()" } },
+            "n":  { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 5000" },
+            "t":  { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 5000" },
+            "w":  { ".validate": "newData.isNumber() && newData.val() >= 0" },
+            "ws": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+            "ts": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        },
+        "tallies": {
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          "$id": {
+            ".validate": "$id.length <= 80",
+            "$dir": { ".validate": "$dir.matches(/^(for|against|abstain)$/) && newData.isNumber() && newData.val() >= 0" }
+          }
+        },
+        "cov": {
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          "k":  { ".validate": "newData.isNumber()" },
+          "s":  { "$i":  { ".validate": "$i.matches(/^[0-9]{1,4}$/) && newData.isNumber()" } },
+          "m2": { "$ij": { ".validate": "$ij.matches(/^[0-9]{1,4}_[0-9]{1,4}$/) && newData.isNumber()" } },
+          "$other": { ".validate": false }
+        },
+        "control": {
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          "resetAt": { ".validate": "newData.isNumber() && newData.val() <= now + 60000" },
+          "$other": { ".validate": false }
+        },
+        "live": {
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          "current": { ".validate": "newData.isString() && newData.val().matches(/^[A-Za-z0-9_-]{1,16}$/) && root.child('rooms').child($city).child('live').child('sessions').child(newData.val()).child('state').exists()" },
+          "sessions": {
+            "$sid": {
+              ".validate": "$sid.matches(/^[A-Za-z0-9_-]{1,16}$/) && newData.hasChildren(['state', 'deck', 'idx'])",
+              "state": { ".validate": "newData.isString() && newData.val().matches(/^(lobby|voting|paused|reveal|final|ended)$/)" },
+              "deck": { ".validate": "newData.hasChildren()", "$i": { ".validate": "$i.matches(/^[0-9]{1,3}$/) && newData.isString() && newData.val().length <= 80" } },
+              "idx": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() < 1000" },
+              "cfg": {
+                "timer":  { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 3600" },
+                "reveal": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 3600" },
+                "bots":   { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 24" },
+                "ai":     { ".validate": "newData.isNumber() || newData.isBoolean()" },
+                "$other": { ".validate": false }
+              },
+              "startedAt": { ".validate": "newData.isNumber()" },
+              "deadline":  { ".validate": "newData.isNumber()" },
+              "revealAt":  { ".validate": "newData.isNumber()" },
+              "remaining": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+              "tallies": {
+                "$id": {
+                  ".validate": "$id.length <= 80",
+                  "$dir": { ".validate": "$dir.matches(/^(for|against|abstain)$/) && newData.isNumber() && newData.val() >= 0" }
+                }
+              },
+              "cast": {
+                "$id": {
+                  ".validate": "$id.length <= 80",
+                  "$pid": { ".validate": "$pid.matches(/^[A-Za-z0-9_-]{1,24}$/) && newData.isString() && newData.val().matches(/^(for|against|abstain)$/)" }
+                }
+              },
+              "$other": { ".validate": false }
+            }
+          },
+          "$other": { ".validate": false }
+        },
+        "$other": { ".validate": false }
       }
     }
   }
