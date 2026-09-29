@@ -262,5 +262,6 @@
     // a ballot landed (multiplayer.js activityTick): a quiet pop on that body
     tick(pid){ const b=bodies.get(pid); if(b) b.pop=Math.max(b.pop,0.16); }
   };
-  window.addEventListener("resize",()=>{ if(window.RF&&RF.active()){ measure(); } });
+  // a rotation re-aims the piles too, not just the host size
+  window.addEventListener("resize",()=>{ if(window.RF&&RF.active()){ measure(); setTargets(); } });
 })();

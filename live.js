@@ -379,6 +379,8 @@ function roomVerdict(id){
 }
 const CHAMBER=CFG.chamber||"the parliament";   // per-city: Reus is a council, Brussels a parliament
 function verdictCopy(d){
+  const t=LIVE.tally(d.id);
+  if(!(t.for+t.against+t.abstain)) return {cls:"tie", tx:"No ballots on this one."};
   const rv=roomVerdict(d.id);
   if(!rv) return {cls:"tie", tx:"The room is split down the middle."};
   if(rv===d.outcome) return {cls:"agree", tx:`The room agrees with ${CHAMBER}.`};
@@ -1030,7 +1032,7 @@ function renderStage(){
       main=`<div class="sg-card">
         <p class="sg-k">${esc(CFG.name)} · card ${lvS.idx+1} / ${(lvS.deck||[]).length}</p>
         <p class="sg-topic">${esc(d.topic||"Decision")}</p>
-        <h1 class="sg-h">${esc(d.headline||d.title)}</h1>
+        <h1 class="sg-h${(d.headline||d.title||"").length>140?" long":""}">${esc(d.headline||d.title)}</h1>
         <div class="sg-track"><div class="sg-fill" id="sgFill"></div></div>
         <div class="sg-meta"><span class="sg-in"><b id="sgIn">0/0</b> ballots in</span><span class="sg-secs" id="sgSecs"></span></div>
         <div class="sg-revwrap" id="sgRev"></div>
@@ -1053,11 +1055,13 @@ function renderStage(){
     if(rev && !rev.dataset.done && d){
       rev.dataset.done="1";
       const host=sg.querySelector(".sg-card");
+      if(host) host.classList.add("rv");            // the question steps back so the verdict fits the projector
       stampOutcome(host,d);                          // beat 1: the chamber's verdict
       setTimeout(()=>{ if(!rev.isConnected)return;   // beat 2: the room's piles
         rev.className="sg-revwrap split"; renderLivePiles(rev,d.id);
         const v=rev.querySelector(".lv-verdict");
         if(v){ const c=verdictCopy(d); v.hidden=false; v.classList.add(c.cls); v.textContent=c.tx; }
+        const m=sg.querySelector(".sg-main"); if(m) m.scrollTo({top:m.scrollHeight,behavior:"smooth"});
       },900);
     }
   }

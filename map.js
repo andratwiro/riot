@@ -57,10 +57,19 @@ function topTwo(eig,n){
    for=+1 / against=-1 / abstain=0 / null where there is nothing recorded. */
 const voteNum=v=>v==="for"?1:v==="against"?-1:v==="abstain"?0:null;
 // the deck's decisions in a canonical (device-independent) order = the columns
+let MAP_LIVE_DECK=null;
 function jointCols(){
   let pool=R.decisions.filter(d=>d.headline && !d.curator_drop);
   if(typeof DECK_MODE!=="undefined" && DECK_MODE==="live" && typeof liveDeckIds==="function"){
     const ids=new Set(liveDeckIds()); pool=pool.filter(d=>ids.has(d.id));
+  }
+  // a live sitting's map is the sitting's cards only: parties placed on votes
+  // the room never saw (and ballots stretched by the sparsity correction to
+  // the whole archive) put YOU away from your own closest party
+  else {
+    if(window.LIVE && LIVE.active() && typeof lvS!=="undefined" && lvS && Array.isArray(lvS.deck) && lvS.deck.length)
+      MAP_LIVE_DECK=lvS.deck;        // kept after the sitting closes: the final reveal stays on its cards
+    if(MAP_LIVE_DECK){ const ids=new Set(MAP_LIVE_DECK); pool=pool.filter(d=>ids.has(d.id)); }
   }
   return pool.map(d=>d.id);
 }
@@ -434,8 +443,12 @@ function toPctIn(c,mx,raw){
   // the unclamped percentage — the TRUE position; layoutMap() pixel-clamps at
   // render and marks the dot, so "beyond the edge" never reads as a position.
   const pad=.17, cl=v=>raw?v:Math.max(2,Math.min(98,v));
-  const nx=(c[0]-mx.minx)/((mx.maxx-mx.minx)||1);
-  const ny=(c[1]-mx.miny)/((mx.maxy-mx.miny)||1);
+  // a collapsed axis (everyone identical, parties on one line, a one-card
+  // deck) is a centre line, never float noise stretched to full width
+  const rx=mx.maxx-mx.minx, ry=mx.maxy-mx.miny, big=Math.max(rx,ry);
+  const flat=r=>!(r>1e-6*big) || !(big>1e-12);
+  const nx=flat(rx)?.5:(c[0]-mx.minx)/rx;
+  const ny=flat(ry)?.5:(c[1]-mx.miny)/ry;
   return [cl((pad+nx*(1-2*pad))*100),cl((pad+(1-ny)*(1-2*pad))*100)];
 }
 function toPct(c){ return toPctIn(c,MX,true); }

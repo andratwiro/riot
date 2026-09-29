@@ -201,7 +201,9 @@ function activityTick(pid){
 let mpCov=null;
 function mpContributeCov(){
   if(simOn || !mpCov || typeof jointMyRow!=="function") return;
-  let done=false; try{done=sessionStorage.getItem("riot.cov."+CFG.id)==="1";}catch(e){}
+  // once per tab per sitting (a rehearsal earlier in this tab mustn't mute the demo)
+  const key="riot.cov."+CFG.id+((window.LIVE&&LIVE.sid())?"."+LIVE.sid():"");
+  let done=false; try{done=sessionStorage.getItem(key)==="1";}catch(e){}
   if(done) return;
   const row=jointMyRow(); if(!row.length) return;
   const inc=firebase.database.ServerValue.increment, upd={"k":inc(1)};
@@ -209,7 +211,7 @@ function mpContributeCov(){
   for(let a=0;a<row.length;a++)for(let b=a;b<row.length;b++)
     upd["m2/"+row[a].j+"_"+row[b].j]=inc(row[a].v*row[b].v);
   mpCov.update(upd).catch(()=>{});
-  try{sessionStorage.setItem("riot.cov."+CFG.id,"1");}catch(e){}
+  try{sessionStorage.setItem(key,"1");}catch(e){}
 }
 // one presence record off the wire, coerced to the shapes the renderers expect:
 // the backend is open, so a wrong type must never throw inside a listener
