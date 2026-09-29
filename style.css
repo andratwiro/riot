@@ -97,19 +97,9 @@ body.live    .citysel #cityName{white-space:normal;overflow:visible;text-overflo
   border:2px solid var(--stamp);opacity:0;animation:facetick .7s ease-out}
 @keyframes facetick{0%{transform:scale(.6);opacity:.7}100%{transform:scale(1.15);opacity:0}}
 /* the wave: a person says hello — their avatar hops, on every phone in the room.
-   Compositor-only (transform). No z-index lift: the faces overlap by a few px and
-   a discrete z-change mid-hop reads as the hopping disc snapping over its neighbour
-   and back. Keeping the resting stack order means it just rises and falls in place. */
-.face.wave{animation:facewave .76s cubic-bezier(.3,.7,.3,1)}
-@keyframes facewave{0%{transform:translateY(0)}28%{transform:translateY(-10px)}
-  52%{transform:translateY(0)}70%{transform:translateY(-4px)}100%{transform:translateY(0)}}
-/* the three-tap super wave: a bigger hop and one full turn of the avatar */
-.face.wavebig{animation:facewavebig .94s cubic-bezier(.3,.7,.3,1)}
-@keyframes facewavebig{0%{transform:translateY(0) rotate(0)}
-  28%{transform:translateY(-18px) rotate(200deg)}
-  56%{transform:translateY(0) rotate(360deg)}
-  74%{transform:translateY(-6px) rotate(360deg)}
-  100%{transform:translateY(0) rotate(360deg)}}
+   The hop itself is a Web Animation (multiplayer.js HOP_KF / hopEl). No z-index
+   lift: the faces overlap by a few px and a discrete z-change mid-hop reads as
+   the hopping disc snapping over its neighbour and back. */
 .rs-right{display:flex;align-items:center;gap:7px;min-width:0;flex-shrink:1}
 .rs-label{font:400 11px var(--f-mono);color:var(--ink60);letter-spacing:.3px;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis}
@@ -703,11 +693,13 @@ body.live-voter #roomstrip{display:none}
    soften the shadow so the card floats over one continuous surface (Rob) */
 body.live-floor #survey{overflow:visible}
 body.live-floor #stack .card{box-shadow:0 1px 0 rgba(28,27,23,.04),0 8px 20px rgba(28,27,23,.05)}
-.rf-body{position:absolute;left:0;top:0;border-radius:50%;background:var(--card);
+/* outer = placed by the physics; inner = the disc, hopped by a compositor animation */
+.rf-body{position:absolute;left:0;top:0;will-change:transform;animation:rfin .34s ease both}
+.rf-in{width:100%;height:100%;box-sizing:border-box;border-radius:50%;background:var(--card);
   display:flex;align-items:center;justify-content:center;line-height:1;
-  border:0.5px solid var(--rule);box-shadow:0 1px 2px rgba(28,27,23,.08);
-  will-change:transform;animation:rfin .34s ease both}
-.rf-body.me{border:1.5px solid var(--stamp);z-index:5}
+  border:0.5px solid var(--rule);box-shadow:0 1px 2px rgba(28,27,23,.08)}
+.rf-body.me{z-index:5}
+.rf-body.me .rf-in{border:1.5px solid var(--stamp)}
 @keyframes rfin{from{opacity:0}to{opacity:1}}
 
 /* ---- voter lobby: nobody reads ----

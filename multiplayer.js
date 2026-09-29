@@ -109,19 +109,56 @@ function faceHTML(e,nm,me,pid){
    hop (applied before the echo of their own write lands) would be wiped without
    re-applying it after each render — applyWaves() is called at the end of every
    face render (renderStrip, lobbyPresence, the stage). */
-const waveState=new Map();            // pid -> {until, big, queued}: the hop in flight,
+const waveState=new Map();            // pid -> {start, until, big, queued}: the hop in flight,
                                       // and whether the three-tap flip waits to follow it
-function hopFace(pid,big,force){
-  const cls=big?"wavebig":"wave", ms=big?940:780;
-  document.querySelectorAll(`.face[data-pid="${CSS.escape(pid)}"]`).forEach(f=>{
-    if(f.dataset.waving && !force) return;   // mid-hop & this is just a re-render — leave it
-    f.classList.remove("wave","wavebig"); void f.offsetWidth; f.classList.add(cls);
-    f.dataset.waving="1";
-    clearTimeout(f._waveT);
-    f._waveT=setTimeout(()=>{ f.classList.remove("wave","wavebig"); delete f.dataset.waving; },ms);
-  });
+/* THE HOP — one designed jump shared by every avatar (lobby, strip, stage,
+   footer crowd). Smoothness rules, in order of what they buy:
+   1. Web Animations on `transform` only: the browser hands it to the
+      compositor (Chrome, Safari, Firefox OMTA), so it keeps 60/120 fps even
+      while the main thread chews a Firebase snapshot or re-renders a list.
+   2. One keyframed ballistic curve (crouch, ease-out rise, ease-in fall,
+      landing squash, settle), never a physics impulse: identical on every
+      phone, every refresh rate, every frame drop.
+   3. Heights in % of the avatar's own size, squash compensated so the bottom
+      stays planted: it reads the same at 24px and at 46px, no px rounding.
+   4. A rebuilt element RESUMES the hop at its elapsed time (currentTime),
+      never restarts it: presence pings rebuild the lobby mid-air. */
+const HOP_MS={n:640,big:940};
+const HOP_KF={
+  n:[
+    {offset:0,   transform:"translateY(0%) rotate(0deg) scale(1,1)",       easing:"cubic-bezier(.45,0,.55,1)"},
+    {offset:.13, transform:"translateY(6%) rotate(0deg) scale(1.1,.88)",   easing:"cubic-bezier(.12,.75,.3,1)"},
+    {offset:.5,  transform:"translateY(-62%) rotate(0deg) scale(.95,1.07)",easing:"cubic-bezier(.62,0,.88,.4)"},
+    {offset:.8,  transform:"translateY(5%) rotate(0deg) scale(1.09,.9)",   easing:"cubic-bezier(.3,0,.3,1)"},
+    {offset:.91, transform:"translateY(-2%) rotate(0deg) scale(.98,1.03)", easing:"cubic-bezier(.45,0,.55,1)"},
+    {offset:1,   transform:"translateY(0%) rotate(0deg) scale(1,1)"}],
+  big:[
+    {offset:0,   transform:"translateY(0%) rotate(0deg) scale(1,1)",         easing:"cubic-bezier(.45,0,.55,1)"},
+    {offset:.12, transform:"translateY(8%) rotate(0deg) scale(1.14,.84)",    easing:"cubic-bezier(.12,.75,.3,1)"},
+    {offset:.5,  transform:"translateY(-120%) rotate(180deg) scale(.94,1.08)",easing:"cubic-bezier(.62,0,.88,.4)"},
+    {offset:.8,  transform:"translateY(6%) rotate(360deg) scale(1.12,.88)",  easing:"cubic-bezier(.3,0,.3,1)"},
+    {offset:.91, transform:"translateY(-3%) rotate(360deg) scale(.97,1.04)", easing:"cubic-bezier(.45,0,.55,1)"},
+    {offset:1,   transform:"translateY(0%) rotate(360deg) scale(1,1)"}]
+};
+const HOP_REDUCE=matchMedia("(prefers-reduced-motion: reduce)").matches;
+// play (or resume at `elapsed` ms) the hop on one element; a hop already
+// running on this element is left alone
+function hopEl(el,big,elapsed){
+  if(!el || !el.animate || HOP_REDUCE) return;
+  if(el._hop && el._hop.playState==="running") return;
+  const a=el.animate(big?HOP_KF.big:HOP_KF.n,{duration:big?HOP_MS.big:HOP_MS.n,easing:"linear"});
+  if(elapsed>0) a.currentTime=Math.min(elapsed,a.effect.getTiming().duration);
+  el._hop=a;
 }
-function playHop(pid,big){ waveState.set(pid,{until:Date.now()+(big?940:780),big:!!big,queued:false}); hopFace(pid,!!big,true); }
+function hopFace(pid,big,elapsed){
+  document.querySelectorAll(`.face[data-pid="${CSS.escape(pid)}"]`).forEach(f=>hopEl(f,big,elapsed));
+}
+function playHop(pid,big){
+  const now=Date.now();
+  waveState.set(pid,{start:now,until:now+(big?HOP_MS.big:HOP_MS.n),big:!!big,queued:false});
+  hopFace(pid,!!big,0);
+  if(window.RF) RF.wave(pid,!!big);           // the footer crowd's body, same curve
+}
 /* a new wave gesture. Smoothness rule: while a hop is already playing on this
    avatar a further wave is DROPPED — never restarted, never queued — with one
    exception, the three-tap flip (big), which waits and plays once the current
@@ -134,7 +171,6 @@ function bobWaveBtn(){
   clearTimeout(b._bobT); b._bobT=setTimeout(()=>b.classList.remove("bob"),700);
 }
 function bounceFace(pid,big){
-  if(window.RF) RF.wave(pid,big);           // the footer body gets an upward impulse too
   if(pid!=="me") bobWaveBtn();              // someone else waved → the button reacts
   const now=Date.now(), st=waveState.get(pid);
   if(st && now<st.until){                    // a hop is in progress
@@ -151,7 +187,7 @@ function bounceFace(pid,big){
 function applyWaves(){
   const now=Date.now();
   for(const [pid,st] of waveState){
-    if(now<st.until) hopFace(pid,st.big,false);
+    if(now<st.until) hopFace(pid,st.big,now-st.start);   // resume mid-air, never restart
     else if(!st.queued) waveState.delete(pid);
   }
 }

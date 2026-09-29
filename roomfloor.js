@@ -112,19 +112,25 @@
       seen.add(pid);
       let b=bodies.get(pid);
       if(!b){
+        // two layers: the outer body is placed by the physics (main thread);
+        // the inner disc carries the face and plays the hop as a compositor
+        // animation (multiplayer.js hopEl), so a jump never waits on the loop
         const node=document.createElement("div");
         node.className="rf-body"+(pid==="me"?" me":"");
-        node.textContent=e||"·";
+        const inner=document.createElement("div");
+        inner.className="rf-in";
+        inner.textContent=e||"·";
+        node.appendChild(inner);
         h.appendChild(node);
-        b={pid, el:node, me:pid==="me",
+        b={pid, el:node, inner, me:pid==="me",
            x:rand(W*0.3,W*0.7), y:rand(H*0.3,H*0.7), vx:0, vy:0,
-           tx:W/2, ty:H/2, pop:0, delay:0, born:perfNow()};
+           tx:W/2, ty:H/2, delay:0, born:perfNow()};
         bodies.set(pid,b);
-      } else if(b.el.textContent!==(e||"·")){ b.el.textContent=e||"·"; }
+      } else if(b.inner.textContent!==(e||"·")){ b.inner.textContent=e||"·"; }
       const sz=b.me?Math.round(d*1.06):d;
       b.r=sz/2;
       b.el.style.width=sz+"px"; b.el.style.height=sz+"px";
-      b.el.style.fontSize=Math.round(sz*0.52)+"px";
+      b.inner.style.fontSize=Math.round(sz*0.52)+"px";
     }
     for(const [pid,b] of bodies){
       if(!seen.has(pid)){ b.el.remove(); bodies.delete(pid); }
@@ -184,8 +190,13 @@
   }
 
   /* ---- the loop ---- */
-  function step(){
-    const DAMP=0.86, MAXV=7, now=perfNow();
+  // the sim is tuned per 60 Hz frame; k scales each step to the real elapsed
+  // time, so a 90/120 Hz phone runs at the same speed and a dropped frame is
+  // caught up instead of freezing the crowd (clamped: a background tab resumes calmly)
+  let lastT=0;
+  function step(ts){
+    const k=lastT?Math.max(0.25,Math.min(3,(ts-lastT)/16.667)):1; lastT=ts;
+    const DAMP=Math.pow(0.86,k), MAXV=7, now=perfNow();
     const GRAV=0.30, COHX=0.005;                         // cluster: gravity to the floor + gentle horizontal cohesion
     const PILE_K=0.045, JIT=(mode==="piles"?0.035:0.06);
     for(const b of bodies.values()){
@@ -198,7 +209,7 @@
         ax+=(b.tx-b.x)*k; ay+=(b.ty-b.y)*k;
       }
       ax+=(Math.random()-0.5)*JIT; ay+=(Math.random()-0.5)*JIT;
-      b._ax=ax; b._ay=ay;
+      b._ax=ax*k; b._ay=ay*k;
     }
     const arr=[...bodies.values()];
     for(let i=0;i<arr.length;i++) for(let j=i+1;j<arr.length;j++){
@@ -206,26 +217,25 @@
       let dx=c.x-a.x, dy=c.y-a.y, dist=Math.hypot(dx,dy)||0.01;
       const min=(a.r+c.r)*(mode==="piles"?0.9:1.0);      // cluster just touches; heaps keep a little overlap
       if(dist<min){ const push=(min-dist)/min*0.95, ux=dx/dist, uy=dy/dist;
-        a._ax-=ux*push; a._ay-=uy*push; c._ax+=ux*push; c._ay+=uy*push; }
+        const p=push*k; a._ax-=ux*p; a._ay-=uy*p; c._ax+=ux*p; c._ay+=uy*p; }
     }
     for(const b of arr){
       b.vx=(b.vx+b._ax)*DAMP; b.vy=(b.vy+b._ay)*DAMP;
       b.vx=Math.max(-MAXV,Math.min(MAXV,b.vx)); b.vy=Math.max(-MAXV,Math.min(MAXV,b.vy));
-      b.x+=b.vx; b.y+=b.vy;
+      b.x+=b.vx*k; b.y+=b.vy*k;
       // the resting floor. Undecided sink past the SCREEN bottom and peep ~40%
       // over the edge (clipped). Everyone else rests on a FLAT line above the
       // low-sitting wave hand — nothing below it, no per-column step to jump on.
       // Soft contact (ease onto the floor + damp), NOT a hard clamp, so a body
       // drifting down settles instead of being yanked — that yank was the jitter.
       const floor = b.noVote ? H+b.r*0.2 : H-BOTTOM_GAP-b.r;
-      if(b.y>floor){ b.y+=(floor-b.y)*0.5; if(b.vy>0) b.vy*=0.25; }
+      if(b.y>floor){ b.y+=(floor-b.y)*(1-Math.pow(0.5,k)); if(b.vy>0) b.vy*=Math.pow(0.25,k); }
       b.x=Math.max(b.r,Math.min(W-b.r,b.x)); b.y=Math.max(b.r,b.y);
-      if(b.pop>0.01) b.pop*=0.84; else b.pop=0;
       place(b);
     }
     raf=requestAnimationFrame(step);
   }
-  function place(b){ const s=1+b.pop;
+  function place(b){
     let ox=b.x-b.r, oy=b.y-b.r;
     // keep the hand legible: a body near it is lifted straight UP out of its
     // clearing (never sideways — a horizontal push flips direction with jitter
@@ -237,11 +247,11 @@
       if(d<clearR) oy-=(clearR-d);
     }
     if(IS_FF){ ox=Math.round(ox); oy=Math.round(oy); }
-    b.el.style.transform=`translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px) scale(${s.toFixed(3)})`; }
+    b.el.style.transform=`translate(${ox.toFixed(2)}px,${oy.toFixed(2)}px)`; }
   function placeStatic(){ for(const b of bodies.values()){ b.x=b.tx; b.y=b.ty; place(b); } }
   function perfNow(){ return (window.performance&&performance.now)?performance.now():0; }
 
-  function start(){ if(on||REDUCE) return; on=true; raf=requestAnimationFrame(step); }
+  function start(){ if(on||REDUCE) return; on=true; lastT=0; raf=requestAnimationFrame(step); }
   function stop(){ on=false; cancelAnimationFrame(raf); raf=0; }
 
   /* ---- public surface (live.js + multiplayer.js call these) ---- */
@@ -257,10 +267,12 @@
     cluster(){ if(!this.active()) return; mode="cluster"; curId=null; measure(); setTargets(); if(REDUCE) placeStatic(); },
     piles(id){ if(!this.active()) return; mode="piles"; curId=id; measure(); sync(); /* sync calls setTargets */ },
     regroup(){ this.cluster(); },
-    // the wave (multiplayer.js bounceFace): an upward impulse on the matching body
-    wave(pid,big){ const b=bodies.get(pid); if(!b) return; b.vy-=big?9:6.5; b.pop=big?0.34:0.26; },
-    // a ballot landed (multiplayer.js activityTick): a quiet pop on that body
-    tick(pid){ const b=bodies.get(pid); if(b) b.pop=Math.max(b.pop,0.16); }
+    // the wave (multiplayer.js playHop): the shared designed hop on the inner disc
+    wave(pid,big){ const b=bodies.get(pid); if(b && typeof hopEl==="function") hopEl(b.inner,big,0); },
+    // a ballot landed (multiplayer.js activityTick): a quiet pop on that body,
+    // on the `scale` property so it composes with a hop in flight instead of cutting it
+    tick(pid){ const b=bodies.get(pid); if(b && b.inner.animate && !REDUCE)
+      b.inner.animate([{scale:"1"},{scale:"1.16"},{scale:"1"}],{duration:300,easing:"ease-out"}); }
   };
   // a rotation re-aims the piles too, not just the host size
   window.addEventListener("resize",()=>{ if(window.RF&&RF.active()){ measure(); setTargets(); } });

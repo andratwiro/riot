@@ -594,6 +594,7 @@ function gateShow(live){
   const grid=$("#joinGrid");
   $("#joinLogo").src=(CITIES.find(c=>c.id===CFG.id)||CITIES[0]).logo;
   $("#joinKicker").textContent=`Live session · ${CFG.name}`;
+  $("#joinH").textContent=(CFG.lobby&&CFG.lobby.gate_title)||"Vote on real decisions.";
   if(!grid.dataset.built){
     grid.dataset.built="1";
     grid.innerHTML=JOIN_EMOJI.map(e=>`<button type="button" data-e="${e}">${e}</button>`).join("");
