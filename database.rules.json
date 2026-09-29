@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "rooms": {
+      "$city": {
+        ".read": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+        ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)"
+      }
+    }
+  }
+}
