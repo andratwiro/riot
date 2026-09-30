@@ -742,6 +742,10 @@ html.lvhold .brand,html.lvhold .lb-doc{visibility:hidden}
   transition:opacity .45s cubic-bezier(.2,.7,.3,1)}
 #lobby.counting .lb-doc{opacity:.2;pointer-events:none}   /* the faces stay faintly behind the count */
 .lb-head{flex:0 0 auto;display:flex;flex-direction:column;align-items:center}
+/* the chamber's seating plan above the chip, in the vein of the deck's plans:
+   a quiet pencil drawing of the room you're sitting in, never louder than the faces */
+.lb-plan{display:block;width:min(260px,64vw);height:auto;margin:0 0 22px;opacity:.28}
+.lb-plan[hidden]{display:none}
 /* chip alignment is OPTICAL, not box math: in a line-height:1 12px Courier
    Prime span the caps' visual centre sits ~1px ABOVE the box centre (measured:
    ascent 9 / descent 4 — the box hangs low for descenders the caps never use),

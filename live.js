@@ -611,6 +611,9 @@ function showLobby(){
   const lb=$("#lobby");
   if(lb.hidden){ lb.hidden=false; lvFaceBorn.clear(); }   // fresh gathering: everyone pops once
   const L=CFG.lobby||{};
+  const plan=$("#lobbyPlan");
+  if(L.plan && plan.getAttribute("src")!==L.plan) plan.src=L.plan;
+  plan.hidden=!L.plan;
   $("#lobbyChip").textContent=L.live_chip||"";
   $("#lobbyTitle").textContent=L.title||"";
   // pre-snapshot (refresh hold) there is no deck yet — leave the {count} lines

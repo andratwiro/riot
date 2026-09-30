@@ -32,6 +32,7 @@ window.CITY_CONFIG = {
   lobby: {
     live_chip: "LIVE SESSION",
     title: "The Parliament is in session.",
+    plan: "assets/plans/eu_brussels.svg",   // hemicycle seating plan, from deck/img/eu_brussels.svg
     body_name: "European Parliament",
     one_liner: "{count} real decisions of the {body}. You vote the same agenda as the MEPs, at the room's pace, and at the end you see which country votes like you.",
     count_line: "in the room · waiting for the sitting to open",
