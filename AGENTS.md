@@ -120,7 +120,8 @@ jurisdiction-agnostic and now runs **nine instances** behind one shared viewer:
   predates HowTheyVote and its rollcall was assembled once from the EP RCV XML
   + Parltrack (sums exact). `build_table_eu.py` **computes** directions,
   tallies and outcomes from the rollcalls. `CFG.party_word`/`party_words`
-  ("country"/"countries") swap the word "party" in the reveal copy. English
+  ("country"/"countries") swap the word "party" in the reveal copy. Each country wears a simplified flag disc from `assets/flags/<ISO>.svg`
+  (pre-clipped to a circle; style.css drops the logo padding for them). English
   copy; source of truth `data/europe/cards.json`.
 
 It is a **static site** (`index.html` + per-city `cities/<id>/` bundles) on GitHub

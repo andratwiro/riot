@@ -375,6 +375,8 @@ html.reveal #done{position:static;overflow:visible}
 .lg{width:34px;height:34px;flex:0 0 auto;border-radius:50%;background:#fff;display:flex;
   align-items:center;justify-content:center;overflow:hidden;border:1.5px solid var(--rule)}
 .lg img{width:100%;height:100%;object-fit:contain;padding:4px}
+/* country flags (Europe) are pre-clipped discs: fill the mark edge to edge */
+.lg img[src*="assets/flags/"],.mc img[src*="assets/flags/"]{padding:0!important}
 .lg.fb{color:#fff;font:800 12px var(--f-ui);border:0}
 .exc .lg{width:46px;height:46px}
 .exc .lg img{padding:5px}
