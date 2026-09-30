@@ -25,7 +25,7 @@ else try{
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;650;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=1.38">
+<link rel="stylesheet" href="style.css?v=1.39">
 </head>
 <body>
 <div class="app">
@@ -291,7 +291,7 @@ else try{
       <span class="si-ic">↺</span>
       <span class="si-tx"><b id="resetRoomTx">Reset everyone's votes</b><small>Clears the whole room's progress and tallies</small></span>
     </button>
-    <p class="sheet-ver">RIOT · v1.38</p>
+    <p class="sheet-ver">RIOT · v1.39</p>
   </div>
 </div>
 
@@ -309,7 +309,7 @@ else try{
 </div>
 
 <!-- QR encoder (vendored qrcode-generator, MIT) — the stage lobby's join code -->
-<script src="assets/qrcode.min.js?v=1.38"></script>
+<script src="assets/qrcode.min.js?v=1.39"></script>
 <script>
 // City loader: ?city=reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag|europe selects which bundle to load. The viewer is
 // shared; only data + config differ per city. document.write keeps the bundles
@@ -319,25 +319,25 @@ else try{
   if(!/^[a-z]+$/.test(c)) c="reus";
   window.__CITY__=c;
   var base="cities/"+c+"/";
-  document.write('<scr'+'ipt src="'+base+'config.js?v=1.38"></scr'+'ipt>');
-  document.write('<scr'+'ipt src="'+base+'data.js?v=1.38"></scr'+'ipt>');
-  document.write('<scr'+'ipt src="'+base+'ai_votes.js?v=1.38"></scr'+'ipt>');
-  document.write('<scr'+'ipt src="'+base+'blank_votes.js?v=1.38"></scr'+'ipt>');
+  document.write('<scr'+'ipt src="'+base+'config.js?v=1.39"></scr'+'ipt>');
+  document.write('<scr'+'ipt src="'+base+'data.js?v=1.39"></scr'+'ipt>');
+  document.write('<scr'+'ipt src="'+base+'ai_votes.js?v=1.39"></scr'+'ipt>');
+  document.write('<scr'+'ipt src="'+base+'blank_votes.js?v=1.39"></scr'+'ipt>');
 })();
 </script>
 <!-- Multiplayer backend (optional): Firebase Realtime DB. Degrades to single-player if
      the SDK can't load or firebase-config.js leaves FIREBASE_CONFIG null. -->
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
-<script src="firebase-config.js?v=1.38"></script>
+<script src="firebase-config.js?v=1.39"></script>
 <!-- App code, split so parallel agents don't collide on one file. Plain scripts sharing
      top-level globals — load order matters: core state → map → views → multiplayer. -->
-<script src="app.js?v=1.38"></script>
-<script src="map.js?v=1.38"></script>
-<script src="views.js?v=1.38"></script>
-<script src="multiplayer.js?v=1.38"></script>
-<script src="live.js?v=1.38"></script>
-<script src="roomfloor.js?v=1.38"></script>
+<script src="app.js?v=1.39"></script>
+<script src="map.js?v=1.39"></script>
+<script src="views.js?v=1.39"></script>
+<script src="multiplayer.js?v=1.39"></script>
+<script src="live.js?v=1.39"></script>
+<script src="roomfloor.js?v=1.39"></script>
 <script>
 // Boot — startup order: map coords (for the reveal) → room connect → live session → join gate → deal cards.
 if(QS.get("debug")==="1") validateBundle();   // dev: console-only sanity check on the city bundle

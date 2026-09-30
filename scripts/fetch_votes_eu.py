@@ -55,6 +55,8 @@ VOTES = {
     "EP-2025-veggie-burger-names": 179529,
     "EP-2026-ukraine-90bn-loan": 184699,
     "EP-2026-chat-control-extension": 189270,
+    "EP-2024-abortion-charter": 168054,
+    "EP-2025-gaza-israel-palestine": 179048,
 }
 # texts for the vote HowTheyVote doesn't carry
 EXTRA_TEXTS = {

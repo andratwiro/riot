@@ -43,15 +43,17 @@ window.CITY_CONFIG = {
     privacyLine: "Your votes never leave this phone.",
     sittingOpenedFormula: "The sitting is opened."
   },
-  // The DEMO deck, pinned first in the moderator's session picker: five cards
-  // for a 10-minute slot (Rob after the 30 Sep Open Mic: ten was too long;
-  // at ~30 s a card, five is the ceiling). Light opener, everyday, money,
-  // war, then the finale. The other ten stay in "All plenaries".
+  // The DEMO deck, pinned first in the moderator's session picker: Rob's six
+  // (30 Sep, after the Open Mic), ordered easy to heavy: a wallet card
+  // everyone has a view on, then your phone, then the two wars split by a
+  // sensitive card each side, and the Commission as the finale. The other
+  // cards stay in "All plenaries".
   demo_deck: [
-    "EP-2025-veggie-burger-names",          // what a burger may be called (north v. south)
-    "EP-2026-chat-control-extension",       // scanning your private messages
     "EP-2023-cars-2035",                    // end new petrol and diesel cars
+    "EP-2026-chat-control-extension",       // scanning your private messages
+    "EP-2025-gaza-israel-palestine",        // Gaza: ceasefire, hostages, partial trade suspension
     "EP-2024-ukraine-strikes-inside-russia",// Western weapons on Russian soil
+    "EP-2024-abortion-charter",             // abortion in the EU rights charter
     "EP-2025-censure-von-der-leyen"         // sack the whole Commission
   ]
 };
