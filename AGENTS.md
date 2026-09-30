@@ -103,10 +103,14 @@ jurisdiction-agnostic and now runs **nine instances** behind one shared viewer:
   "de"); built to share with German-speaking colleagues. No era stamp: this
   chamber is sitting. Copy source of truth: `data/bundestag/cards.json`.
 - **Europe** (`?city=europe`) — the European Parliament plenary, built for the
-  Go Vocal Open Mic demo (30 Sep 2026): ten landmark roll calls 2019–2026
-  (copyright/upload filters, gas+nuclear as green, cars 2035, nature
-  restoration, AI Act, migration pact, ReArm Europe, wolves, the censure of
-  von der Leyen's Commission, Mercosur to the Court). The first instance whose
+  Go Vocal Open Mic demo (30 Sep 2026): fifteen landmark roll calls 2019–2026
+  (copyright/upload filters, gas+nuclear as green, cars 2035, the carbon price
+  on heating and fuel, nature restoration, AI Act, migration pact, Ukraine
+  strikes inside Russia, ReArm Europe, wolves, the censure of von der Leyen's
+  Commission, meat names for veggie burgers, Mercosur to the Court, the €90bn
+  Ukraine loan, the chat-control extension). Headlines are capped at 15 words
+  (Rob, after the demo: people read them in a live vote), and the pinned
+  `demo_deck` is five cards, the ceiling for a 10-minute slot. The first instance whose
   compared "parties" are **countries**: the 27 national delegations (Rob,
   2026-09-30: legible at a glance and safe in a mixed work room). A country's
   direction = its MEPs' plurality when it is >= 55% of those voting and untied,

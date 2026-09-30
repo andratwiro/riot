@@ -28,6 +28,7 @@ Run from the repo root (network):
 
     python3 scripts/fetch_votes_eu.py            # all
     python3 scripts/fetch_votes_eu.py --no-text  # roll calls only
+    python3 scripts/fetch_votes_eu.py --only ID[,ID...]   # just these cards
 """
 import glob, html, json, os, pathlib, re, subprocess, sys, urllib.request
 
@@ -48,6 +49,12 @@ VOTES = {
     "EP-2025-wolf-protection": 176241,
     "EP-2025-censure-von-der-leyen": 178149,
     "EP-2026-mercosur-court": 183884,
+    # round 2 (Rob after the 30 Sep demo: harder, everyone-impacting votes)
+    "EP-2023-carbon-price-heating-fuel": 154173,
+    "EP-2024-ukraine-strikes-inside-russia": 169642,
+    "EP-2025-veggie-burger-names": 179529,
+    "EP-2026-ukraine-90bn-loan": 184699,
+    "EP-2026-chat-control-extension": 189270,
 }
 # texts for the vote HowTheyVote doesn't carry
 EXTRA_TEXTS = {
@@ -155,7 +162,10 @@ def main():
     RC.mkdir(parents=True, exist_ok=True)
     TX.mkdir(parents=True, exist_ok=True)
     texts = "--no-text" not in sys.argv
+    only = sys.argv[sys.argv.index("--only") + 1].split(",") if "--only" in sys.argv else None
     for cid, vid in VOTES.items():
+        if only and cid not in only:
+            continue
         rec = fetch_rollcall(cid, vid) if vid else check_committed(cid)
         n = fetch_texts(cid, rec) if texts else 0
         print(f"{cid}: {sum(rec['totals'].values())} MEPs voting, totals {rec['totals']}" + (f", {n} text(s)" if texts else ""))

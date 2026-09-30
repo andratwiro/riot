@@ -21,7 +21,7 @@ window.CITY_CONFIG = {
     kicker: "The record · European Parliament 2019–2026",
     title: "The votes a whole continent argued about.",
     lore: [
-      "Strasbourg, the 2020s. 720 members from 27 countries take up weapons, borders, cars, AI, wolves and trade. On the big questions every member presses a button, and the yes or no goes into the record by name.",
+      "Strasbourg, the 2020s. 720 members from 27 countries decide on war, borders, cars, your private messages, even what a burger may be called. On the big questions every member presses a button, and the yes or no goes into the record by name.",
       "Each card is a real vote from that record. You vote first, blind, as if it were on your desk today. Then the Parliament answers, country by country: how most of each country's members voted, exactly as recorded."
     ],
     parties_label: "Who votes: every country's members",
@@ -43,18 +43,15 @@ window.CITY_CONFIG = {
     privacyLine: "Your votes never leave this phone.",
     sittingOpenedFormula: "The sitting is opened."
   },
-  // The DEMO deck, pinned first in the moderator's session picker: spiciest
-  // first, so a 10-minute slot can trim to the top three or four.
+  // The DEMO deck, pinned first in the moderator's session picker: five cards
+  // for a 10-minute slot (Rob after the 30 Sep Open Mic: ten was too long;
+  // at ~30 s a card, five is the ceiling). Light opener, everyday, money,
+  // war, then the finale. The other ten stay in "All plenaries".
   demo_deck: [
-    "EP-2025-censure-von-der-leyen",     // throw out the whole Commission
-    "EP-2025-rearm-europe",              // rearm Europe now
-    "EP-2024-ai-act",                    // the AI Act
-    "EP-2023-cars-2035",                 // end new petrol and diesel cars
-    "EP-2024-migration-pact-solidarity", // share asylum seekers or pay
-    "EP-2019-copyright-upload-filters",  // upload filters
-    "EP-2025-wolf-protection",           // wolves
-    "EP-2022-taxonomy-gas-nuclear",      // gas and nuclear as green
-    "EP-2024-nature-restoration",        // repair nature
-    "EP-2026-mercosur-court"             // Mercosur to the Court
+    "EP-2025-veggie-burger-names",          // what a burger may be called (north v. south)
+    "EP-2026-chat-control-extension",       // scanning your private messages
+    "EP-2023-cars-2035",                    // end new petrol and diesel cars
+    "EP-2024-ukraine-strikes-inside-russia",// Western weapons on Russian soil
+    "EP-2025-censure-von-der-leyen"         // sack the whole Commission
   ]
 };
