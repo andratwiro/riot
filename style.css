@@ -91,7 +91,9 @@ body.live    .citysel #cityName{white-space:normal;overflow:visible;text-overflo
 .face:first-child{margin-left:0}
 .face.init{font:700 11px var(--f-mono);color:var(--ink80);text-transform:uppercase}
 .face.more{font:700 10px var(--f-mono);color:var(--ink60)}
-.face.me{border-color:var(--stamp)}
+/* me must read at a glance in any crowd (Rob, 30 Sep 2026: the thin ring got
+   lost): a thick violet ring plus a soft violet halo, drawn above the overlap */
+.face.me{border:2.5px solid var(--stamp);box-shadow:0 0 0 3px rgba(75,63,160,.18);z-index:2}
 /* a ballot landed somewhere in the room: one quiet ring, compositor-only */
 .face.tick::after{content:"";position:absolute;inset:-5px;border-radius:50%;
   border:2px solid var(--stamp);opacity:0;animation:facetick .7s ease-out}
@@ -701,7 +703,9 @@ body.live-floor #stack .card{box-shadow:0 1px 0 rgba(28,27,23,.04),0 8px 20px rg
   display:flex;align-items:center;justify-content:center;line-height:1;
   border:0.5px solid var(--rule);box-shadow:0 1px 2px rgba(28,27,23,.08)}
 .rf-body.me{z-index:5}
-.rf-body.me .rf-in{border:1.5px solid var(--stamp)}
+.rf-body.me .rf-in{border:3px solid var(--stamp);box-shadow:0 0 0 4px rgba(75,63,160,.18),0 2px 6px rgba(28,27,23,.12)}
+.rf-body.me::after{content:"you";position:absolute;top:calc(100% + 2px);left:50%;transform:translateX(-50%);
+  font:700 10px/1 var(--f-mono);letter-spacing:.08em;color:var(--stamp);text-transform:uppercase;pointer-events:none}
 @keyframes rfin{from{opacity:0}to{opacity:1}}
 
 /* ---- voter lobby: nobody reads ----

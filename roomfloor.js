@@ -127,7 +127,7 @@
            tx:W/2, ty:H/2, delay:0, born:perfNow()};
         bodies.set(pid,b);
       } else if(b.inner.textContent!==(e||"·")){ b.inner.textContent=e||"·"; }
-      const sz=b.me?Math.round(d*1.06):d;
+      const sz=b.me?Math.round(d*1.3):d;   // me: a size up, so it reads at a glance
       b.r=sz/2;
       b.el.style.width=sz+"px"; b.el.style.height=sz+"px";
       b.inner.style.fontSize=Math.round(sz*0.52)+"px";
