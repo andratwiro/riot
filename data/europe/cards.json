@@ -566,7 +566,7 @@
    "organ": "European Parliament",
    "type": "Regulation",
    "topic": "Privacy",
-   "headline": "Let apps keep scanning private messages for known child abuse images, until April 2028.",
+   "headline": "Let email and chat apps keep scanning everyone's messages for known child abuse images, until 2028.",
    "title": "Proposal for a regulation of the European Parliament and of the Council amending Regulation (EU) 2021/1232 as regards the extension of its period of application",
    "raw_outcome": "Proposal for a regulation of the European Parliament and of the Council amending Regulation (EU) 2021/1232 as regards the extension of its period of application",
    "source_brief": "A temporary EU rule lets apps choose to scan private chats for child abuse.\n\n- **If you vote for:** Apps may keep checking for already-known abuse images until **April 2028**, but not in end-to-end encrypted chats. Scanning stays **voluntary**.\n- **If you vote against:** The rule ends after **3 April 2026**, and apps lose the right to scan.\n- **Why it's hard:** Scanning protects children. But private messages should stay private, and \"temporary\" keeps being renewed.",
@@ -590,7 +590,8 @@
      "The Commission's own proposed end date is not in the stored text; card uses Parliament's amended version (to August 2027) from the press release.",
      "Committee recommendation to reject is included as a fact; curator may drop it if it reads as a hint.",
      "Result deliberately omitted (press release title reveals it; not used in copy).",
-     "30 Sep 2026 readability pass (a 16-year-old, 20 seconds): headline + brief rewritten, fact-checked against the texts, cold-read by a naive reader in 3 rounds. Previous headline: Extend the temporary EU rule letting messaging apps scan private messages for child abuse images."
+     "30 Sep 2026 readability pass (a 16-year-old, 20 seconds): headline + brief rewritten, fact-checked against the texts, cold-read by a naive reader in 3 rounds. Previous headline: Extend the temporary EU rule letting messaging apps scan private messages for child abuse images.",
+     "30 Sep 2026: headline adds 'everyone's' (Rob: opted-in services check all users' messages, not suspects'). Previous: Let apps keep scanning private messages for known child abuse images, until April 2028."
     ]
    }
   }
