@@ -1,0 +1,4390 @@
+{
+ "id": "EP-2024-ai-act",
+ "htv_id": 166051,
+ "htv_url": "https://howtheyvote.eu/votes/166051",
+ "date": "2024-03-13",
+ "title": "Artificial Intelligence Act",
+ "vote_on": "Accord provisoire - Am 808",
+ "reference": "A9-0188/2023",
+ "result": "ADOPTED",
+ "document": {
+  "type": "A",
+  "reference": "A9-0188/2023",
+  "url": "https://www.europarl.europa.eu/doceo/document/A-9-2023-0188_EN.html"
+ },
+ "procedure": {
+  "title": "Artificial Intelligence Act",
+  "type": "COD",
+  "reference": "2021/0106(COD)",
+  "stage": "OLP_FIRST_READING",
+  "url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2021/0106(COD)"
+ },
+ "sources": [
+  "https://www.europarl.europa.eu/doceo/document/PV-9-2024-03-13-RCV_FR.xml",
+  "https://oeil.secure.europarl.europa.eu/oeil/en/procedure-file?reference=2021/0106(COD)",
+  "https://www.europarl.europa.eu/doceo/document/A-9-2023-0188_EN.html",
+  "https://www.europarl.europa.eu/doceo/document/PV-9-2024-03-13-VOT_EN.xml",
+  "https://www.europarl.europa.eu/news/en/press-room/20240308IPR19015",
+  "https://oeil.europarl.europa.eu/oeil/en/document-summary?id=1780523"
+ ],
+ "links": [
+  {
+   "title": "Press release",
+   "url": "https://www.europarl.europa.eu/news/en/press-room/20240308IPR19015"
+  },
+  {
+   "title": "Summary",
+   "url": "https://oeil.europarl.europa.eu/oeil/en/document-summary?id=1780523"
+  },
+  {
+   "title": "Report or resolution",
+   "url": "https://www.europarl.europa.eu/doceo/document/A-9-2023-0188_EN.html"
+  },
+  {
+   "title": "Texts adopted",
+   "url": "https://www.europarl.europa.eu/doceo/document/TA-9-2023-0236_EN.html"
+  },
+  {
+   "title": "Amendment 808",
+   "url": "https://data.europarl.europa.eu/distribution/reds_iPlRp_Amd/A-9-2023-0188-AM-808-808/A-9-2023-0188-AM-808-808_en.pdf"
+  },
+  {
+   "title": "Legislative Observatory",
+   "url": "https://oeil.europarl.europa.eu/oeil/en/procedure-file?reference=2021/0106(COD)"
+  }
+ ],
+ "crosschecked": "per-MEP rows re-summed against the official totals and HowTheyVote's by-country stats at fetch time",
+ "totals": {
+  "for": 523,
+  "against": 46,
+  "abstain": 49
+ },
+ "members": [
+  {
+   "name": "Alexander BERNHUBER",
+   "country": "AT",
+   "group": "EPP",
+   "party": "ÖVP",
+   "vote": "for"
+  },
+  {
+   "name": "Andreas SCHIEDER",
+   "country": "AT",
+   "group": "SD",
+   "party": "SPÖ",
+   "vote": "for"
+  },
+  {
+   "name": "Angelika WINZIG",
+   "country": "AT",
+   "group": "EPP",
+   "party": "ÖVP",
+   "vote": "for"
+  },
+  {
+   "name": "Barbara THALER",
+   "country": "AT",
+   "group": "EPP",
+   "party": "ÖVP",
+   "vote": "for"
+  },
+  {
+   "name": "Christian SAGARTZ",
+   "country": "AT",
+   "group": "EPP",
+   "party": "ÖVP",
+   "vote": "for"
+  },
+  {
+   "name": "Claudia GAMON",
+   "country": "AT",
+   "group": "RENEW",
+   "party": "NEOS",
+   "vote": "for"
+  },
+  {
+   "name": "Evelyn REGNER",
+   "country": "AT",
+   "group": "SD",
+   "party": "SPÖ",
+   "vote": "for"
+  },
+  {
+   "name": "Georg MAYER",
+   "country": "AT",
+   "group": "ID",
+   "party": "FPÖ",
+   "vote": "for"
+  },
+  {
+   "name": "Günther SIDL",
+   "country": "AT",
+   "group": "SD",
+   "party": "SPÖ",
+   "vote": "for"
+  },
+  {
+   "name": "Hannes HEIDE",
+   "country": "AT",
+   "group": "SD",
+   "party": "SPÖ",
+   "vote": "for"
+  },
+  {
+   "name": "Harald VILIMSKY",
+   "country": "AT",
+   "group": "ID",
+   "party": "FPÖ",
+   "vote": "for"
+  },
+  {
+   "name": "Lukas MANDL",
+   "country": "AT",
+   "group": "EPP",
+   "party": "ÖVP",
+   "vote": "for"
+  },
+  {
+   "name": "Monika VANA",
+   "country": "AT",
+   "group": "GREEN_EFA",
+   "party": "Die Grünen",
+   "vote": "for"
+  },
+  {
+   "name": "Othmar KARAS",
+   "country": "AT",
+   "group": "EPP",
+   "party": "ÖVP",
+   "vote": "for"
+  },
+  {
+   "name": "Roman HAIDER",
+   "country": "AT",
+   "group": "ID",
+   "party": "FPÖ",
+   "vote": "for"
+  },
+  {
+   "name": "Theresa BIELOWSKI",
+   "country": "AT",
+   "group": "SD",
+   "party": "SPÖ",
+   "vote": "for"
+  },
+  {
+   "name": "Thomas WAITZ",
+   "country": "AT",
+   "group": "GREEN_EFA",
+   "party": "Die Grünen",
+   "vote": "for"
+  },
+  {
+   "name": "Wolfram PIRCHNER",
+   "country": "AT",
+   "group": "EPP",
+   "party": "ÖVP",
+   "vote": "for"
+  },
+  {
+   "name": "Assita KANKO",
+   "country": "BE",
+   "group": "ECR",
+   "party": "N-VA",
+   "vote": "abstain"
+  },
+  {
+   "name": "Benoît LUTGEN",
+   "country": "BE",
+   "group": "EPP",
+   "party": "LesEng",
+   "vote": "for"
+  },
+  {
+   "name": "Cindy FRANSSEN",
+   "country": "BE",
+   "group": "EPP",
+   "party": "CD&V",
+   "vote": "for"
+  },
+  {
+   "name": "Filip DE MAN",
+   "country": "BE",
+   "group": "ID",
+   "party": "Vlaams Belang",
+   "vote": "for"
+  },
+  {
+   "name": "Geert BOURGEOIS",
+   "country": "BE",
+   "group": "ECR",
+   "party": "N-VA",
+   "vote": "abstain"
+  },
+  {
+   "name": "Gerolf ANNEMANS",
+   "country": "BE",
+   "group": "ID",
+   "party": "Vlaams Belang",
+   "vote": "for"
+  },
+  {
+   "name": "Hilde VAUTMANS",
+   "country": "BE",
+   "group": "RENEW",
+   "party": "Open VLD",
+   "vote": "for"
+  },
+  {
+   "name": "Johan VAN OVERTVELDT",
+   "country": "BE",
+   "group": "ECR",
+   "party": "N-VA",
+   "vote": "abstain"
+  },
+  {
+   "name": "Kathleen VAN BREMPT",
+   "country": "BE",
+   "group": "SD",
+   "party": "Vooruit",
+   "vote": "for"
+  },
+  {
+   "name": "Marc BOTENGA",
+   "country": "BE",
+   "group": "GUE_NGL",
+   "party": "PTB",
+   "vote": "against"
+  },
+  {
+   "name": "Marc TARABELLA",
+   "country": "BE",
+   "group": "NI",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Maria ARENA",
+   "country": "BE",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Olivier CHASTEL",
+   "country": "BE",
+   "group": "RENEW",
+   "party": "MR",
+   "vote": "for"
+  },
+  {
+   "name": "Pascal ARIMONT",
+   "country": "BE",
+   "group": "EPP",
+   "party": "CSP",
+   "vote": "for"
+  },
+  {
+   "name": "Philippe LAMBERTS",
+   "country": "BE",
+   "group": "GREEN_EFA",
+   "party": "ECOLO",
+   "vote": "for"
+  },
+  {
+   "name": "Sara MATTHIEU",
+   "country": "BE",
+   "group": "GREEN_EFA",
+   "party": "GROEN",
+   "vote": "for"
+  },
+  {
+   "name": "Saskia BRICMONT",
+   "country": "BE",
+   "group": "GREEN_EFA",
+   "party": "ECOLO",
+   "vote": "for"
+  },
+  {
+   "name": "Tom VANDENDRIESSCHE",
+   "country": "BE",
+   "group": "ID",
+   "party": "Vlaams Belang",
+   "vote": "for"
+  },
+  {
+   "name": "Tom VANDENKENDELAERE",
+   "country": "BE",
+   "group": "EPP",
+   "party": "CD&V",
+   "vote": "for"
+  },
+  {
+   "name": "Alexander ALEXANDROV YORDANOV",
+   "country": "BG",
+   "group": "EPP",
+   "party": "SDS",
+   "vote": "for"
+  },
+  {
+   "name": "Andrey KOVATCHEV",
+   "country": "BG",
+   "group": "EPP",
+   "party": "GERB",
+   "vote": "for"
+  },
+  {
+   "name": "Andrey NOVAKOV",
+   "country": "BG",
+   "group": "EPP",
+   "party": "GERB",
+   "vote": "for"
+  },
+  {
+   "name": "Andrey SLABAKOV",
+   "country": "BG",
+   "group": "ECR",
+   "party": "VMRO",
+   "vote": "for"
+  },
+  {
+   "name": "Angel DZHAMBAZKI",
+   "country": "BG",
+   "group": "ECR",
+   "party": "VMRO",
+   "vote": "for"
+  },
+  {
+   "name": "Asim ADEMOV",
+   "country": "BG",
+   "group": "EPP",
+   "party": "GERB",
+   "vote": "for"
+  },
+  {
+   "name": "Atidzhe ALIEVA-VELI",
+   "country": "BG",
+   "group": "RENEW",
+   "party": "DPS",
+   "vote": "for"
+  },
+  {
+   "name": "Elena YONCHEVA",
+   "country": "BG",
+   "group": "SD",
+   "party": "BSP",
+   "vote": "for"
+  },
+  {
+   "name": "Emil RADEV",
+   "country": "BG",
+   "group": "EPP",
+   "party": "GERB",
+   "vote": "for"
+  },
+  {
+   "name": "Eva MAYDELL",
+   "country": "BG",
+   "group": "EPP",
+   "party": "GERB",
+   "vote": "for"
+  },
+  {
+   "name": "Ilhan KYUCHYUK",
+   "country": "BG",
+   "group": "RENEW",
+   "party": "DPS",
+   "vote": "for"
+  },
+  {
+   "name": "Iskra MIHAYLOVA",
+   "country": "BG",
+   "group": "RENEW",
+   "party": "DPS",
+   "vote": "for"
+  },
+  {
+   "name": "Ivo HRISTOV",
+   "country": "BG",
+   "group": "SD",
+   "party": "BSP",
+   "vote": "for"
+  },
+  {
+   "name": "Petar VITANOV",
+   "country": "BG",
+   "group": "SD",
+   "party": "BSP",
+   "vote": "for"
+  },
+  {
+   "name": "Radan KANEV",
+   "country": "BG",
+   "group": "EPP",
+   "party": "DSB",
+   "vote": "for"
+  },
+  {
+   "name": "Sergei STANISHEV",
+   "country": "BG",
+   "group": "SD",
+   "party": "BSP",
+   "vote": "for"
+  },
+  {
+   "name": "Tsvetelina PENKOVA",
+   "country": "BG",
+   "group": "SD",
+   "party": "BSP",
+   "vote": "for"
+  },
+  {
+   "name": "Demetris PAPADAKIS",
+   "country": "CY",
+   "group": "SD",
+   "party": "K.S. EDEK",
+   "vote": "for"
+  },
+  {
+   "name": "Alexandr VONDRA",
+   "country": "CZ",
+   "group": "ECR",
+   "party": "ODS",
+   "vote": "abstain"
+  },
+  {
+   "name": "Dita CHARANZOVÁ",
+   "country": "CZ",
+   "group": "RENEW",
+   "party": "Ind.",
+   "vote": "for"
+  },
+  {
+   "name": "Evžen TOŠENOVSKÝ",
+   "country": "CZ",
+   "group": "ECR",
+   "party": "ODS",
+   "vote": "abstain"
+  },
+  {
+   "name": "Hynek BLAŠKO",
+   "country": "CZ",
+   "group": "NI",
+   "party": "ANS",
+   "vote": "for"
+  },
+  {
+   "name": "Ivan DAVID",
+   "country": "CZ",
+   "group": "ID",
+   "party": "SPD",
+   "vote": "against"
+  },
+  {
+   "name": "Jan ZAHRADIL",
+   "country": "CZ",
+   "group": "ECR",
+   "party": "ODS",
+   "vote": "abstain"
+  },
+  {
+   "name": "Jiří POSPÍŠIL",
+   "country": "CZ",
+   "group": "EPP",
+   "party": "TOP09/STAN",
+   "vote": "for"
+  },
+  {
+   "name": "Kateřina KONEČNÁ",
+   "country": "CZ",
+   "group": "GUE_NGL",
+   "party": "KSČM",
+   "vote": "against"
+  },
+  {
+   "name": "Luděk NIEDERMAYER",
+   "country": "CZ",
+   "group": "EPP",
+   "party": "TOP09/STAN",
+   "vote": "for"
+  },
+  {
+   "name": "Marcel KOLAJA",
+   "country": "CZ",
+   "group": "GREEN_EFA",
+   "party": "PIR",
+   "vote": "against"
+  },
+  {
+   "name": "Markéta GREGOROVÁ",
+   "country": "CZ",
+   "group": "GREEN_EFA",
+   "party": "PIR",
+   "vote": "against"
+  },
+  {
+   "name": "Martin HLAVÁČEK",
+   "country": "CZ",
+   "group": "RENEW",
+   "party": "ANO 2011",
+   "vote": "for"
+  },
+  {
+   "name": "Michaela ŠOJDROVÁ",
+   "country": "CZ",
+   "group": "EPP",
+   "party": "KDU-ČSL",
+   "vote": "for"
+  },
+  {
+   "name": "Mikuláš PEKSA",
+   "country": "CZ",
+   "group": "GREEN_EFA",
+   "party": "PIR",
+   "vote": "against"
+  },
+  {
+   "name": "Ondřej KNOTEK",
+   "country": "CZ",
+   "group": "RENEW",
+   "party": "ANO 2011",
+   "vote": "for"
+  },
+  {
+   "name": "Ondřej KOVAŘÍK",
+   "country": "CZ",
+   "group": "RENEW",
+   "party": "ANO 2011",
+   "vote": "for"
+  },
+  {
+   "name": "Radka MAXOVÁ",
+   "country": "CZ",
+   "group": "SD",
+   "party": "Ind.",
+   "vote": "for"
+  },
+  {
+   "name": "Stanislav POLČÁK",
+   "country": "CZ",
+   "group": "EPP",
+   "party": "STAN",
+   "vote": "for"
+  },
+  {
+   "name": "Tomáš ZDECHOVSKÝ",
+   "country": "CZ",
+   "group": "EPP",
+   "party": "KDU-ČSL",
+   "vote": "for"
+  },
+  {
+   "name": "Veronika VRECIONOVÁ",
+   "country": "CZ",
+   "group": "ECR",
+   "party": "ODS",
+   "vote": "abstain"
+  },
+  {
+   "name": "Alexandra GEESE",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Andreas GLÜCK",
+   "country": "DE",
+   "group": "RENEW",
+   "party": "FDP",
+   "vote": "abstain"
+  },
+  {
+   "name": "Andreas SCHWAB",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Angelika NIEBLER",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CSU",
+   "vote": "abstain"
+  },
+  {
+   "name": "Anna CAVAZZINI",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Anna DEPARNAY-GRUNENBERG",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Axel VOSS",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Bernd LANGE",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Bernhard ZIMNIOK",
+   "country": "DE",
+   "group": "ID",
+   "party": "AfD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Birgit SIPPEL",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Christian DOLESCHAL",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CSU",
+   "vote": "for"
+  },
+  {
+   "name": "Christian EHLER",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Christine ANDERSON",
+   "country": "DE",
+   "group": "ID",
+   "party": "AfD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Christine SCHNEIDER",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Cornelia ERNST",
+   "country": "DE",
+   "group": "GUE_NGL",
+   "party": "DIE LINKE.",
+   "vote": "against"
+  },
+  {
+   "name": "Daniel CASPARY",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Daniel FREUND",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "David MCALLISTER",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Delara BURKHARDT",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Dennis RADTKE",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Dietmar KÖSTER",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Engin EROGLU",
+   "country": "DE",
+   "group": "RENEW",
+   "party": "Freie Wähler",
+   "vote": "abstain"
+  },
+  {
+   "name": "Erik MARQUARDT",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Gabriele BISCHOFF",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Guido REIL",
+   "country": "DE",
+   "group": "ID",
+   "party": "AfD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Gunnar BECK",
+   "country": "DE",
+   "group": "ID",
+   "party": "AfD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Hannah NEUMANN",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Helmut SCHOLZ",
+   "country": "DE",
+   "group": "GUE_NGL",
+   "party": "DIE LINKE.",
+   "vote": "abstain"
+  },
+  {
+   "name": "Hildegard BENTELE",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Jan-Christoph OETJEN",
+   "country": "DE",
+   "group": "RENEW",
+   "party": "FDP",
+   "vote": "abstain"
+  },
+  {
+   "name": "Jens GEIER",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Jens GIESEKE",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Joachim KUHS",
+   "country": "DE",
+   "group": "ID",
+   "party": "AfD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Joachim SCHUSTER",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Jutta PAULUS",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Jörg MEUTHEN",
+   "country": "DE",
+   "group": "NI",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Karolin BRAUNSBERGER-REINHOLD",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Katarina BARLEY",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Katrin LANGENSIEPEN",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Lars Patrick BERG",
+   "country": "DE",
+   "group": "ECR",
+   "party": "BD",
+   "vote": "for"
+  },
+  {
+   "name": "Manfred WEBER",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CSU",
+   "vote": "for"
+  },
+  {
+   "name": "Manuela RIPA",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "ÖDP",
+   "vote": "for"
+  },
+  {
+   "name": "Maria NOICHL",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Marion WALSMANN",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Markus BUCHHEIT",
+   "country": "DE",
+   "group": "ID",
+   "party": "AfD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Markus FERBER",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CSU",
+   "vote": "against"
+  },
+  {
+   "name": "Marlene MORTLER",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CSU",
+   "vote": "abstain"
+  },
+  {
+   "name": "Martin HÄUSLING",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Martin SCHIRDEWAN",
+   "country": "DE",
+   "group": "GUE_NGL",
+   "party": "DIE LINKE.",
+   "vote": "against"
+  },
+  {
+   "name": "Martin SONNEBORN",
+   "country": "DE",
+   "group": "NI",
+   "party": "Die PARTEI",
+   "vote": "against"
+  },
+  {
+   "name": "Martina MICHELS",
+   "country": "DE",
+   "group": "GUE_NGL",
+   "party": "DIE LINKE.",
+   "vote": "abstain"
+  },
+  {
+   "name": "Matthias ECKE",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Maximilian KRAH",
+   "country": "DE",
+   "group": "ID",
+   "party": "AfD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Michael BLOSS",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Michael GAHLER",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Michael KAUCH",
+   "country": "DE",
+   "group": "RENEW",
+   "party": "FDP",
+   "vote": "abstain"
+  },
+  {
+   "name": "Monika HOHLMEIER",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CSU",
+   "vote": "for"
+  },
+  {
+   "name": "Moritz KÖRNER",
+   "country": "DE",
+   "group": "RENEW",
+   "party": "FDP",
+   "vote": "abstain"
+  },
+  {
+   "name": "Niclas HERBST",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Nico SEMSROTT",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Nicolaus FEST",
+   "country": "DE",
+   "group": "ID",
+   "party": "AfD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Niels GEUKING",
+   "country": "DE",
+   "group": "EPP",
+   "party": "Familien-Partei DE",
+   "vote": "for"
+  },
+  {
+   "name": "Niklas NIENASS",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Norbert LINS",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Patrick BREYER",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "Piratenpartei DE",
+   "vote": "against"
+  },
+  {
+   "name": "Peter JAHR",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Peter LIESE",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Petra KAMMEREVERT",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Pierrette HERZBERGER-FOFANA",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Rainer WIELAND",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Ralf SEEKATZ",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Rasmus ANDRESEN",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Reinhard BÜTIKOFER",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "René REPASI",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Sabine VERHEYEN",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Sergey LAGODINSKY",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Ska KELLER",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Sven SIMON",
+   "country": "DE",
+   "group": "EPP",
+   "party": "CDU",
+   "vote": "for"
+  },
+  {
+   "name": "Svenja HAHN",
+   "country": "DE",
+   "group": "RENEW",
+   "party": "FDP",
+   "vote": "abstain"
+  },
+  {
+   "name": "Sylvia LIMMER",
+   "country": "DE",
+   "group": "ID",
+   "party": "AfD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Terry REINTKE",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Thomas RUDNER",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Tiemo WÖLKEN",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Udo BULLMANN",
+   "country": "DE",
+   "group": "SD",
+   "party": "SPD",
+   "vote": "for"
+  },
+  {
+   "name": "Viola VON CRAMON-TAUBADEL",
+   "country": "DE",
+   "group": "GREEN_EFA",
+   "party": "GRÜNE.",
+   "vote": "for"
+  },
+  {
+   "name": "Anders VISTISEN",
+   "country": "DK",
+   "group": "ID",
+   "party": "O",
+   "vote": "for"
+  },
+  {
+   "name": "Bergur Løkke RASMUSSEN",
+   "country": "DK",
+   "group": "RENEW",
+   "party": "M",
+   "vote": "for"
+  },
+  {
+   "name": "Christel SCHALDEMOSE",
+   "country": "DK",
+   "group": "SD",
+   "party": "A",
+   "vote": "for"
+  },
+  {
+   "name": "Erik POULSEN",
+   "country": "DK",
+   "group": "RENEW",
+   "party": "V",
+   "vote": "for"
+  },
+  {
+   "name": "Karen MELCHIOR",
+   "country": "DK",
+   "group": "RENEW",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Margrete AUKEN",
+   "country": "DK",
+   "group": "GREEN_EFA",
+   "party": "F",
+   "vote": "for"
+  },
+  {
+   "name": "Marianne VIND",
+   "country": "DK",
+   "group": "SD",
+   "party": "A",
+   "vote": "for"
+  },
+  {
+   "name": "Morten LØKKEGAARD",
+   "country": "DK",
+   "group": "RENEW",
+   "party": "V",
+   "vote": "for"
+  },
+  {
+   "name": "Niels FUGLSANG",
+   "country": "DK",
+   "group": "SD",
+   "party": "A",
+   "vote": "for"
+  },
+  {
+   "name": "Nikolaj VILLUMSEN",
+   "country": "DK",
+   "group": "GUE_NGL",
+   "party": "Enhedslisten",
+   "vote": "for"
+  },
+  {
+   "name": "Pernille WEISS-EHLER",
+   "country": "DK",
+   "group": "EPP",
+   "party": "C",
+   "vote": "for"
+  },
+  {
+   "name": "Andrus ANSIP",
+   "country": "EE",
+   "group": "RENEW",
+   "party": "ER",
+   "vote": "for"
+  },
+  {
+   "name": "Jaak MADISON",
+   "country": "EE",
+   "group": "ID",
+   "party": "EKRE",
+   "vote": "for"
+  },
+  {
+   "name": "Jana TOOM",
+   "country": "EE",
+   "group": "RENEW",
+   "party": "KE",
+   "vote": "abstain"
+  },
+  {
+   "name": "Marina KALJURAND",
+   "country": "EE",
+   "group": "SD",
+   "party": "SDE",
+   "vote": "for"
+  },
+  {
+   "name": "Riho TERRAS",
+   "country": "EE",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Sven MIKSER",
+   "country": "EE",
+   "group": "SD",
+   "party": "SDE",
+   "vote": "for"
+  },
+  {
+   "name": "Urmas PAET",
+   "country": "EE",
+   "group": "RENEW",
+   "party": "ER",
+   "vote": "for"
+  },
+  {
+   "name": "Adrián VÁZQUEZ LÁZARA",
+   "country": "ES",
+   "group": "RENEW",
+   "party": "CS",
+   "vote": "for"
+  },
+  {
+   "name": "Alicia HOMS GINEL",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Ana COLLADO JIMÉNEZ",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Ana MIRANDA PAZ",
+   "country": "ES",
+   "group": "GREEN_EFA",
+   "party": "BNG",
+   "vote": "for"
+  },
+  {
+   "name": "Antoni COMÍN I OLIVERES",
+   "country": "ES",
+   "group": "NI",
+   "party": "JxCat-Junts",
+   "vote": "against"
+  },
+  {
+   "name": "Antonio LÓPEZ-ISTÚRIZ WHITE",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Carles PUIGDEMONT I CASAMAJÓ",
+   "country": "ES",
+   "group": "NI",
+   "party": "JxCat-Junts",
+   "vote": "against"
+  },
+  {
+   "name": "Clara AGUILERA",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Clara PONSATÍ OBIOLS",
+   "country": "ES",
+   "group": "NI",
+   "party": "JxCat-Junts",
+   "vote": "against"
+  },
+  {
+   "name": "Cristina MAESTRE",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "César LUENA",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Diana RIBA I GINER",
+   "country": "ES",
+   "group": "GREEN_EFA",
+   "party": "ERC",
+   "vote": "for"
+  },
+  {
+   "name": "Dolors MONTSERRAT",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Domènec RUIZ DEVESA",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Eider GARDIAZABAL RUBIAL",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Esther SANZ SELVA",
+   "country": "ES",
+   "group": "GUE_NGL",
+   "party": "PODEMOS",
+   "vote": "against"
+  },
+  {
+   "name": "Estrella DURÁ FERRANDIS",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Eugenia RODRÍGUEZ PALOP",
+   "country": "ES",
+   "group": "GUE_NGL",
+   "party": "PODEMOS",
+   "vote": "against"
+  },
+  {
+   "name": "Eva-Maria Alexandrova POPTCHEVA",
+   "country": "ES",
+   "group": "RENEW",
+   "party": "CS",
+   "vote": "for"
+  },
+  {
+   "name": "Francisco José MILLÁN MON",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Gabriel MATO",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Hermann TERTSCH",
+   "country": "ES",
+   "group": "ECR",
+   "party": "VOX",
+   "vote": "abstain"
+  },
+  {
+   "name": "Ibán GARCÍA DEL BLANCO",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Idoia VILLANUEVA RUIZ",
+   "country": "ES",
+   "group": "GUE_NGL",
+   "party": "PODEMOS",
+   "vote": "against"
+  },
+  {
+   "name": "Inma RODRÍGUEZ-PIÑERO",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Iratxe GARCÍA PÉREZ",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Isabel BENJUMEA BENJUMEA",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Isabel GARCÍA MUÑOZ",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Javi LÓPEZ",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSC-PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Javier MORENO SÁNCHEZ",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Javier NART",
+   "country": "ES",
+   "group": "RENEW",
+   "party": "Independiente",
+   "vote": "for"
+  },
+  {
+   "name": "Javier ZARZALEJOS",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Jonás FERNÁNDEZ",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Jordi CAÑAS",
+   "country": "ES",
+   "group": "RENEW",
+   "party": "CS",
+   "vote": "for"
+  },
+  {
+   "name": "Jordi SOLÉ",
+   "country": "ES",
+   "group": "GREEN_EFA",
+   "party": "ERC",
+   "vote": "for"
+  },
+  {
+   "name": "Jorge BUXADÉ VILLALBA",
+   "country": "ES",
+   "group": "ECR",
+   "party": "VOX",
+   "vote": "abstain"
+  },
+  {
+   "name": "José Manuel GARCÍA-MARGALLO Y MARFIL",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "José Ramón BAUZÁ DÍAZ",
+   "country": "ES",
+   "group": "RENEW",
+   "party": "CS",
+   "vote": "for"
+  },
+  {
+   "name": "Juan Fernando LÓPEZ AGUILAR",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Juan Ignacio ZOIDO ÁLVAREZ",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Laura BALLARÍN CEREZA",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Leopoldo LÓPEZ GIL",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Lina GÁLVEZ",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Maite PAGAZAURTUNDÚA",
+   "country": "ES",
+   "group": "RENEW",
+   "party": "DCE",
+   "vote": "for"
+  },
+  {
+   "name": "Marcos ROS SEMPERE",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Margarita DE LA PISA CARRIÓN",
+   "country": "ES",
+   "group": "ECR",
+   "party": "VOX",
+   "vote": "abstain"
+  },
+  {
+   "name": "María Soraya RODRÍGUEZ RAMOS",
+   "country": "ES",
+   "group": "RENEW",
+   "party": "CS",
+   "vote": "for"
+  },
+  {
+   "name": "Mazaly AGUILAR",
+   "country": "ES",
+   "group": "ECR",
+   "party": "VOX",
+   "vote": "abstain"
+  },
+  {
+   "name": "Miguel URBÁN CRESPO",
+   "country": "ES",
+   "group": "GUE_NGL",
+   "party": "ANTICAPITALISTAS",
+   "vote": "against"
+  },
+  {
+   "name": "Mónica Silvana GONZÁLEZ",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Nacho SÁNCHEZ AMOR",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Nicolás GONZÁLEZ CASARES",
+   "country": "ES",
+   "group": "SD",
+   "party": "PSOE",
+   "vote": "for"
+  },
+  {
+   "name": "Pablo ARIAS ECHEVERRÍA",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Patricia CARO MAYA",
+   "country": "ES",
+   "group": "GUE_NGL",
+   "party": "PODEMOS",
+   "vote": "against"
+  },
+  {
+   "name": "Pilar DEL CASTILLO VERA",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Rosa ESTARÀS FERRAGUT",
+   "country": "ES",
+   "group": "EPP",
+   "party": "PP",
+   "vote": "for"
+  },
+  {
+   "name": "Susana SOLÍS PÉREZ",
+   "country": "ES",
+   "group": "RENEW",
+   "party": "CS",
+   "vote": "for"
+  },
+  {
+   "name": "Alviina ALAMETSÄ",
+   "country": "FI",
+   "group": "GREEN_EFA",
+   "party": "VIHR",
+   "vote": "for"
+  },
+  {
+   "name": "Eero HEINÄLUOMA",
+   "country": "FI",
+   "group": "SD",
+   "party": "SDP",
+   "vote": "for"
+  },
+  {
+   "name": "Heidi HAUTALA",
+   "country": "FI",
+   "group": "GREEN_EFA",
+   "party": "VIHR",
+   "vote": "for"
+  },
+  {
+   "name": "Henna VIRKKUNEN",
+   "country": "FI",
+   "group": "EPP",
+   "party": "KOK",
+   "vote": "for"
+  },
+  {
+   "name": "Mauri PEKKARINEN",
+   "country": "FI",
+   "group": "RENEW",
+   "party": "KESK",
+   "vote": "for"
+  },
+  {
+   "name": "Miapetra KUMPULA-NATRI",
+   "country": "FI",
+   "group": "SD",
+   "party": "SDP",
+   "vote": "for"
+  },
+  {
+   "name": "Nils TORVALDS",
+   "country": "FI",
+   "group": "RENEW",
+   "party": "SFP",
+   "vote": "for"
+  },
+  {
+   "name": "Petri SARVAMAA",
+   "country": "FI",
+   "group": "EPP",
+   "party": "KOK",
+   "vote": "for"
+  },
+  {
+   "name": "Pirkko RUOHONEN-LERNER",
+   "country": "FI",
+   "group": "ECR",
+   "party": "Perus",
+   "vote": "for"
+  },
+  {
+   "name": "Sirpa PIETIKÄINEN",
+   "country": "FI",
+   "group": "EPP",
+   "party": "KOK",
+   "vote": "for"
+  },
+  {
+   "name": "Ville NIINISTÖ",
+   "country": "FI",
+   "group": "GREEN_EFA",
+   "party": "VIHR",
+   "vote": "for"
+  },
+  {
+   "name": "André ROUGÉ",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Anne SANDER",
+   "country": "FR",
+   "group": "EPP",
+   "party": "Les Républicains",
+   "vote": "for"
+  },
+  {
+   "name": "Anne-Sophie PELLETIER",
+   "country": "FR",
+   "group": "GUE_NGL",
+   "party": "Indépendant",
+   "vote": "against"
+  },
+  {
+   "name": "Annika BRUNA",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Arnaud DANJEAN",
+   "country": "FR",
+   "group": "EPP",
+   "party": "Les Républicains",
+   "vote": "for"
+  },
+  {
+   "name": "Aurore LALUCQ",
+   "country": "FR",
+   "group": "SD",
+   "party": "Place publique",
+   "vote": "for"
+  },
+  {
+   "name": "Aurélia BEIGNEUX",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Benoît BITEAU",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "against"
+  },
+  {
+   "name": "Bernard GUETTA",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "LaREM/MoDEM",
+   "vote": "for"
+  },
+  {
+   "name": "Brice HORTEFEUX",
+   "country": "FR",
+   "group": "EPP",
+   "party": "Les Républicains",
+   "vote": "for"
+  },
+  {
+   "name": "Caroline ROOSE",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "for"
+  },
+  {
+   "name": "Catherine AMALRIC",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "Parti Radical",
+   "vote": "for"
+  },
+  {
+   "name": "Catherine CHABAUD",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "MoDem",
+   "vote": "for"
+  },
+  {
+   "name": "Catherine GRISET",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Christophe CLERGEAU",
+   "country": "FR",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Christophe GRUDLER",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "MoDem",
+   "vote": "for"
+  },
+  {
+   "name": "Claude GRUFFAT",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "for"
+  },
+  {
+   "name": "Damien CARÊME",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "against"
+  },
+  {
+   "name": "David CORMAND",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "for"
+  },
+  {
+   "name": "Dominique BILDE",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Dominique RIQUET",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "MRSL",
+   "vote": "for"
+  },
+  {
+   "name": "Emmanuel MAUREL",
+   "country": "FR",
+   "group": "GUE_NGL",
+   "party": "GRS",
+   "vote": "for"
+  },
+  {
+   "name": "Eric MINARDI",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Fabienne KELLER",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "Agir",
+   "vote": "for"
+  },
+  {
+   "name": "France JAMET",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "François ALFONSI",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "RPS",
+   "vote": "for"
+  },
+  {
+   "name": "François THIOLLET",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "for"
+  },
+  {
+   "name": "François-Xavier BELLAMY",
+   "country": "FR",
+   "group": "EPP",
+   "party": "Les Républicains",
+   "vote": "for"
+  },
+  {
+   "name": "Geoffroy DIDIER",
+   "country": "FR",
+   "group": "EPP",
+   "party": "Les Républicains",
+   "vote": "for"
+  },
+  {
+   "name": "Gilles BOYER",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "Hor",
+   "vote": "for"
+  },
+  {
+   "name": "Gilles LEBRETON",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Gwendoline DELBOS-CORFIELD",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "for"
+  },
+  {
+   "name": "Hervé JUVIN",
+   "country": "FR",
+   "group": "NI",
+   "party": "Indépendant",
+   "vote": "for"
+  },
+  {
+   "name": "Ilana CICUREL",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "LaREM/MoDEM",
+   "vote": "for"
+  },
+  {
+   "name": "Irène TOLLERET",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "LaREM/MoDEM",
+   "vote": "for"
+  },
+  {
+   "name": "Jean-Lin LACAPELLE",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Jean-Paul GARRAUD",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Jordan BARDELLA",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Jérémy DECERLE",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "LEE",
+   "vote": "for"
+  },
+  {
+   "name": "Karima DELLI",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "for"
+  },
+  {
+   "name": "Laurence FARRENG",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "MoDem",
+   "vote": "for"
+  },
+  {
+   "name": "Laurence SAILLIET",
+   "country": "FR",
+   "group": "EPP",
+   "party": "Les Républicains",
+   "vote": "for"
+  },
+  {
+   "name": "Leila CHAIBI",
+   "country": "FR",
+   "group": "GUE_NGL",
+   "party": "LFI",
+   "vote": "against"
+  },
+  {
+   "name": "Lydie MASSARD",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "RPS",
+   "vote": "for"
+  },
+  {
+   "name": "Manon AUBRY",
+   "country": "FR",
+   "group": "GUE_NGL",
+   "party": "LFI",
+   "vote": "against"
+  },
+  {
+   "name": "Marie DAUCHY",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Marie TOUSSAINT",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "for"
+  },
+  {
+   "name": "Marie-Pierre VEDRENNE",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "MoDem",
+   "vote": "for"
+  },
+  {
+   "name": "Marina MESURE",
+   "country": "FR",
+   "group": "GUE_NGL",
+   "party": "LFI",
+   "vote": "against"
+  },
+  {
+   "name": "Mathilde ANDROUËT",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Max ORVILLE",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "MoDem",
+   "vote": "for"
+  },
+  {
+   "name": "Mounir SATOURI",
+   "country": "FR",
+   "group": "GREEN_EFA",
+   "party": "Europe Écologie",
+   "vote": "for"
+  },
+  {
+   "name": "Nadine MORANO",
+   "country": "FR",
+   "group": "EPP",
+   "party": "Les Républicains",
+   "vote": "for"
+  },
+  {
+   "name": "Nathalie COLIN-OESTERLÉ",
+   "country": "FR",
+   "group": "EPP",
+   "party": "Les centristes",
+   "vote": "for"
+  },
+  {
+   "name": "Nicolas BAY",
+   "country": "FR",
+   "group": "ECR",
+   "party": "R",
+   "vote": "abstain"
+  },
+  {
+   "name": "Nora MEBAREK",
+   "country": "FR",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Pascal CANFIN",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "LaREM/MoDEM",
+   "vote": "for"
+  },
+  {
+   "name": "Pascal DURAND",
+   "country": "FR",
+   "group": "SD",
+   "party": "LaREM/MoDEM",
+   "vote": "for"
+  },
+  {
+   "name": "Patricia CHAGNON",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Philippe OLIVIER",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Pierre KARLESKIND",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "EM",
+   "vote": "for"
+  },
+  {
+   "name": "Pierre LARROUTUROU",
+   "country": "FR",
+   "group": "SD",
+   "party": "ND",
+   "vote": "for"
+  },
+  {
+   "name": "Raphaël GLUCKSMANN",
+   "country": "FR",
+   "group": "SD",
+   "party": "Place publique",
+   "vote": "for"
+  },
+  {
+   "name": "Salima YENBOU",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "Ren",
+   "vote": "for"
+  },
+  {
+   "name": "Sandro GOZI",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "LaREM/MoDEM",
+   "vote": "for"
+  },
+  {
+   "name": "Stéphane BIJOUX",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "EM",
+   "vote": "for"
+  },
+  {
+   "name": "Stéphanie YON-COURTIN",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "LaREM/MoDEM",
+   "vote": "for"
+  },
+  {
+   "name": "Sylvie BRUNET",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "MoDem",
+   "vote": "for"
+  },
+  {
+   "name": "Sylvie GUILLAUME",
+   "country": "FR",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Thierry MARIANI",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Valérie HAYER",
+   "country": "FR",
+   "group": "RENEW",
+   "party": "Ren",
+   "vote": "for"
+  },
+  {
+   "name": "Virginie JORON",
+   "country": "FR",
+   "group": "ID",
+   "party": "RN",
+   "vote": "for"
+  },
+  {
+   "name": "Younous OMARJEE",
+   "country": "FR",
+   "group": "GUE_NGL",
+   "party": "LFI",
+   "vote": "against"
+  },
+  {
+   "name": "Anna-Michelle ASIMAKOPOULOU",
+   "country": "GR",
+   "group": "EPP",
+   "party": "N.D.",
+   "vote": "for"
+  },
+  {
+   "name": "Athanasios KONSTANTINOU",
+   "country": "GR",
+   "group": "NI",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Dimitrios PAPADIMOULIS",
+   "country": "GR",
+   "group": "GUE_NGL",
+   "party": "New Left",
+   "vote": "abstain"
+  },
+  {
+   "name": "Elissavet VOZEMBERG-VRIONIDI",
+   "country": "GR",
+   "group": "EPP",
+   "party": "N.D.",
+   "vote": "for"
+  },
+  {
+   "name": "Emmanouil FRAGKOS",
+   "country": "GR",
+   "group": "ECR",
+   "party": "EL",
+   "vote": "for"
+  },
+  {
+   "name": "Emmanouil KEFALOGIANNIS",
+   "country": "GR",
+   "group": "EPP",
+   "party": "N.D.",
+   "vote": "for"
+  },
+  {
+   "name": "Eva KAILI",
+   "country": "GR",
+   "group": "NI",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Georgios KYRTSOS",
+   "country": "GR",
+   "group": "RENEW",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Kostas PAPADAKIS",
+   "country": "GR",
+   "group": "NI",
+   "party": "KKE",
+   "vote": "against"
+  },
+  {
+   "name": "Lefteris NIKOLAOU-ALAVANOS",
+   "country": "GR",
+   "group": "NI",
+   "party": "KKE",
+   "vote": "against"
+  },
+  {
+   "name": "Nikos PAPANDREOU",
+   "country": "GR",
+   "group": "SD",
+   "party": "KINAL",
+   "vote": "for"
+  },
+  {
+   "name": "Petros KOKKALIS",
+   "country": "GR",
+   "group": "GREEN_EFA",
+   "party": "KOSMOS",
+   "vote": "for"
+  },
+  {
+   "name": "Theodoros ZAGORAKIS",
+   "country": "GR",
+   "group": "EPP",
+   "party": "N.D.",
+   "vote": "for"
+  },
+  {
+   "name": "Vangelis MEIMARAKIS",
+   "country": "GR",
+   "group": "EPP",
+   "party": "N.D.",
+   "vote": "for"
+  },
+  {
+   "name": "Biljana BORZAN",
+   "country": "HR",
+   "group": "SD",
+   "party": "SDP",
+   "vote": "for"
+  },
+  {
+   "name": "Ivan Vilibor SINČIĆ",
+   "country": "HR",
+   "group": "NI",
+   "party": "PRAVO I PRAVDA",
+   "vote": "abstain"
+  },
+  {
+   "name": "Karlo RESSLER",
+   "country": "HR",
+   "group": "EPP",
+   "party": "HDZ",
+   "vote": "for"
+  },
+  {
+   "name": "Ladislav ILČIĆ",
+   "country": "HR",
+   "group": "ECR",
+   "party": "HS",
+   "vote": "against"
+  },
+  {
+   "name": "Mislav KOLAKUŠIĆ",
+   "country": "HR",
+   "group": "NI",
+   "party": "PRAVO I PRAVDA",
+   "vote": "for"
+  },
+  {
+   "name": "Predrag Fred MATIĆ",
+   "country": "HR",
+   "group": "SD",
+   "party": "SDP",
+   "vote": "for"
+  },
+  {
+   "name": "Romana JERKOVIĆ",
+   "country": "HR",
+   "group": "SD",
+   "party": "SDP",
+   "vote": "for"
+  },
+  {
+   "name": "Sunčana GLAVAK",
+   "country": "HR",
+   "group": "EPP",
+   "party": "HDZ",
+   "vote": "for"
+  },
+  {
+   "name": "Tomislav SOKOL",
+   "country": "HR",
+   "group": "EPP",
+   "party": "HDZ",
+   "vote": "for"
+  },
+  {
+   "name": "Tonino PICULA",
+   "country": "HR",
+   "group": "SD",
+   "party": "SDP",
+   "vote": "for"
+  },
+  {
+   "name": "Valter FLEGO",
+   "country": "HR",
+   "group": "RENEW",
+   "party": "IDS-DDI",
+   "vote": "for"
+  },
+  {
+   "name": "Željana ZOVKO",
+   "country": "HR",
+   "group": "EPP",
+   "party": "HDZ",
+   "vote": "for"
+  },
+  {
+   "name": "Andor DELI",
+   "country": "HU",
+   "group": "NI",
+   "party": "Fidesz-KDNP",
+   "vote": "for"
+  },
+  {
+   "name": "Andrea BOCSKOR",
+   "country": "HU",
+   "group": "NI",
+   "party": "Fidesz-KDNP",
+   "vote": "for"
+  },
+  {
+   "name": "Anna Júlia DONÁTH",
+   "country": "HU",
+   "group": "RENEW",
+   "party": "MOM",
+   "vote": "for"
+  },
+  {
+   "name": "Attila ARA-KOVÁCS",
+   "country": "HU",
+   "group": "SD",
+   "party": "DK",
+   "vote": "for"
+  },
+  {
+   "name": "Balázs HIDVÉGHI",
+   "country": "HU",
+   "group": "NI",
+   "party": "Fidesz-KDNP",
+   "vote": "for"
+  },
+  {
+   "name": "Csaba MOLNÁR",
+   "country": "HU",
+   "group": "SD",
+   "party": "DK",
+   "vote": "for"
+  },
+  {
+   "name": "Edina TÓTH",
+   "country": "HU",
+   "group": "NI",
+   "party": "Fidesz-KDNP",
+   "vote": "for"
+  },
+  {
+   "name": "Enikő GYŐRI",
+   "country": "HU",
+   "group": "NI",
+   "party": "Fidesz-KDNP",
+   "vote": "for"
+  },
+  {
+   "name": "Ernő SCHALLER-BAROSS",
+   "country": "HU",
+   "group": "NI",
+   "party": "Fidesz-KDNP",
+   "vote": "for"
+  },
+  {
+   "name": "György HÖLVÉNYI",
+   "country": "HU",
+   "group": "EPP",
+   "party": "KDNP",
+   "vote": "for"
+  },
+  {
+   "name": "Katalin CSEH",
+   "country": "HU",
+   "group": "RENEW",
+   "party": "MOM",
+   "vote": "for"
+  },
+  {
+   "name": "Klára DOBREV",
+   "country": "HU",
+   "group": "SD",
+   "party": "DK",
+   "vote": "for"
+  },
+  {
+   "name": "László TRÓCSÁNYI",
+   "country": "HU",
+   "group": "NI",
+   "party": "Fidesz-KDNP",
+   "vote": "for"
+  },
+  {
+   "name": "Márton GYÖNGYÖSI",
+   "country": "HU",
+   "group": "NI",
+   "party": "JK",
+   "vote": "for"
+  },
+  {
+   "name": "Sándor RÓNAI",
+   "country": "HU",
+   "group": "SD",
+   "party": "DK",
+   "vote": "for"
+  },
+  {
+   "name": "Barry ANDREWS",
+   "country": "IE",
+   "group": "RENEW",
+   "party": "FF",
+   "vote": "for"
+  },
+  {
+   "name": "Billy KELLEHER",
+   "country": "IE",
+   "group": "RENEW",
+   "party": "FF",
+   "vote": "for"
+  },
+  {
+   "name": "Chris MACMANUS",
+   "country": "IE",
+   "group": "GUE_NGL",
+   "party": "SF",
+   "vote": "abstain"
+  },
+  {
+   "name": "Ciarán CUFFE",
+   "country": "IE",
+   "group": "GREEN_EFA",
+   "party": "GP",
+   "vote": "for"
+  },
+  {
+   "name": "Clare DALY",
+   "country": "IE",
+   "group": "GUE_NGL",
+   "party": "IFC",
+   "vote": "against"
+  },
+  {
+   "name": "Colm MARKEY",
+   "country": "IE",
+   "group": "EPP",
+   "party": "FG",
+   "vote": "for"
+  },
+  {
+   "name": "Deirdre CLUNE",
+   "country": "IE",
+   "group": "EPP",
+   "party": "FG",
+   "vote": "for"
+  },
+  {
+   "name": "Frances FITZGERALD",
+   "country": "IE",
+   "group": "EPP",
+   "party": "FG",
+   "vote": "for"
+  },
+  {
+   "name": "Grace O'SULLIVAN",
+   "country": "IE",
+   "group": "GREEN_EFA",
+   "party": "GP",
+   "vote": "for"
+  },
+  {
+   "name": "Luke Ming FLANAGAN",
+   "country": "IE",
+   "group": "GUE_NGL",
+   "party": "Ind.",
+   "vote": "against"
+  },
+  {
+   "name": "Maria WALSH",
+   "country": "IE",
+   "group": "EPP",
+   "party": "FG",
+   "vote": "for"
+  },
+  {
+   "name": "Mick WALLACE",
+   "country": "IE",
+   "group": "GUE_NGL",
+   "party": "IFC",
+   "vote": "against"
+  },
+  {
+   "name": "Seán KELLY",
+   "country": "IE",
+   "group": "EPP",
+   "party": "FG",
+   "vote": "for"
+  },
+  {
+   "name": "Achille VARIATI",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Alessandra BASSO",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Alessandra MORETTI",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Alessandra MUSSOLINI",
+   "country": "IT",
+   "group": "EPP",
+   "party": "FI",
+   "vote": "for"
+  },
+  {
+   "name": "Alessandro PANZA",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Andrea COZZOLINO",
+   "country": "IT",
+   "group": "NI",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Angelo CIOCCA",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Anna BONFRISCO",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Annalisa TARDINO",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Antonio Maria RINALDI",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Beatrice COVASSI",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Brando BENIFEI",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Camilla LAURETI",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Caterina CHINNICI",
+   "country": "IT",
+   "group": "EPP",
+   "party": "FI",
+   "vote": "for"
+  },
+  {
+   "name": "Chiara GEMMA",
+   "country": "IT",
+   "group": "ECR",
+   "party": "FdL",
+   "vote": "for"
+  },
+  {
+   "name": "Daniela RONDINELLI",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Denis NESCI",
+   "country": "IT",
+   "group": "ECR",
+   "party": "FdL",
+   "vote": "for"
+  },
+  {
+   "name": "Dino GIARRUSSO",
+   "country": "IT",
+   "group": "NI",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Elena LIZZI",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Elisabetta DE BLASIS",
+   "country": "IT",
+   "group": "ECR",
+   "party": "FdL",
+   "vote": "for"
+  },
+  {
+   "name": "Elisabetta GUALMINI",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Fabio Massimo CASTALDO",
+   "country": "IT",
+   "group": "RENEW",
+   "party": "AZ",
+   "vote": "for"
+  },
+  {
+   "name": "Francesca PEPPUCCI",
+   "country": "IT",
+   "group": "EPP",
+   "party": "FI",
+   "vote": "for"
+  },
+  {
+   "name": "Franco ROBERTI",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Gianantonio DA RE",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Gianna GANCIA",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Giuseppe FERRANDINO",
+   "country": "IT",
+   "group": "RENEW",
+   "party": "AZ",
+   "vote": "for"
+  },
+  {
+   "name": "Giuseppe MILAZZO",
+   "country": "IT",
+   "group": "ECR",
+   "party": "FdL",
+   "vote": "for"
+  },
+  {
+   "name": "Herbert DORFMANN",
+   "country": "IT",
+   "group": "EPP",
+   "party": "SVP",
+   "vote": "for"
+  },
+  {
+   "name": "Ignazio CORRAO",
+   "country": "IT",
+   "group": "GREEN_EFA",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Irene TINAGLI",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Isabella ADINOLFI",
+   "country": "IT",
+   "group": "EPP",
+   "party": "FI",
+   "vote": "for"
+  },
+  {
+   "name": "Isabella TOVAGLIERI",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Lara COMI",
+   "country": "IT",
+   "group": "EPP",
+   "party": "FI",
+   "vote": "for"
+  },
+  {
+   "name": "Laura FERRARA",
+   "country": "IT",
+   "group": "NI",
+   "party": "M5S",
+   "vote": "abstain"
+  },
+  {
+   "name": "Lucia VUOLO",
+   "country": "IT",
+   "group": "EPP",
+   "party": "FI",
+   "vote": "for"
+  },
+  {
+   "name": "Marco CAMPOMENOSI",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Marco ZANNI",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "abstain"
+  },
+  {
+   "name": "Marco ZULLO",
+   "country": "IT",
+   "group": "RENEW",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Maria Angela DANZÌ",
+   "country": "IT",
+   "group": "NI",
+   "party": "M5S",
+   "vote": "abstain"
+  },
+  {
+   "name": "Maria Veronica ROSSI",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Mario FURORE",
+   "country": "IT",
+   "group": "NI",
+   "party": "M5S",
+   "vote": "abstain"
+  },
+  {
+   "name": "Massimiliano SALINI",
+   "country": "IT",
+   "group": "EPP",
+   "party": "FI",
+   "vote": "for"
+  },
+  {
+   "name": "Massimiliano SMERIGLIO",
+   "country": "IT",
+   "group": "SD",
+   "party": "AVS",
+   "vote": "for"
+  },
+  {
+   "name": "Matteo ADINOLFI",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Matteo GAZZINI",
+   "country": "IT",
+   "group": "EPP",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Mercedes BRESSO",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Nicola DANTI",
+   "country": "IT",
+   "group": "RENEW",
+   "party": "IV - Centro",
+   "vote": "for"
+  },
+  {
+   "name": "Nicola PROCACCINI",
+   "country": "IT",
+   "group": "ECR",
+   "party": "FdL",
+   "vote": "for"
+  },
+  {
+   "name": "Paola GHIDONI",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Paolo DE CASTRO",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Patrizia TOIA",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Piernicola PEDICINI",
+   "country": "IT",
+   "group": "GREEN_EFA",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Pietro BARTOLO",
+   "country": "IT",
+   "group": "SD",
+   "party": "PD",
+   "vote": "for"
+  },
+  {
+   "name": "Pietro FIOCCHI",
+   "country": "IT",
+   "group": "ECR",
+   "party": "FdL",
+   "vote": "for"
+  },
+  {
+   "name": "Rosa D'AMATO",
+   "country": "IT",
+   "group": "GREEN_EFA",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Rosanna CONTE",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Sabrina PIGNEDOLI",
+   "country": "IT",
+   "group": "NI",
+   "party": "M5S",
+   "vote": "abstain"
+  },
+  {
+   "name": "Salvatore DE MEO",
+   "country": "IT",
+   "group": "EPP",
+   "party": "FI",
+   "vote": "for"
+  },
+  {
+   "name": "Sergio BERLATO",
+   "country": "IT",
+   "group": "ECR",
+   "party": "FdL",
+   "vote": "for"
+  },
+  {
+   "name": "Silvia SARDONE",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "for"
+  },
+  {
+   "name": "Stefania ZAMBELLI",
+   "country": "IT",
+   "group": "EPP",
+   "party": "FI",
+   "vote": "for"
+  },
+  {
+   "name": "Susanna CECCARDI",
+   "country": "IT",
+   "group": "ID",
+   "party": "L",
+   "vote": "abstain"
+  },
+  {
+   "name": "Tiziana BEGHIN",
+   "country": "IT",
+   "group": "NI",
+   "party": "M5S",
+   "vote": "abstain"
+  },
+  {
+   "name": "Vincenzo SOFO",
+   "country": "IT",
+   "group": "ECR",
+   "party": "FdL",
+   "vote": "for"
+  },
+  {
+   "name": "Andrius KUBILIUS",
+   "country": "LT",
+   "group": "EPP",
+   "party": "TS-LKD",
+   "vote": "for"
+  },
+  {
+   "name": "Aušra SEIBUTYTĖ",
+   "country": "LT",
+   "group": "EPP",
+   "party": "TS-LKD",
+   "vote": "for"
+  },
+  {
+   "name": "Bronis ROPĖ",
+   "country": "LT",
+   "group": "GREEN_EFA",
+   "party": "LVZS",
+   "vote": "for"
+  },
+  {
+   "name": "Juozas OLEKAS",
+   "country": "LT",
+   "group": "SD",
+   "party": "LSDP",
+   "vote": "for"
+  },
+  {
+   "name": "Liudas MAŽYLIS",
+   "country": "LT",
+   "group": "EPP",
+   "party": "TS-LKD",
+   "vote": "for"
+  },
+  {
+   "name": "Petras AUŠTREVIČIUS",
+   "country": "LT",
+   "group": "RENEW",
+   "party": "LRLS",
+   "vote": "for"
+  },
+  {
+   "name": "Rasa JUKNEVIČIENĖ",
+   "country": "LT",
+   "group": "EPP",
+   "party": "TS-LKD",
+   "vote": "for"
+  },
+  {
+   "name": "Stasys JAKELIŪNAS",
+   "country": "LT",
+   "group": "GREEN_EFA",
+   "party": "Ind.",
+   "vote": "for"
+  },
+  {
+   "name": "Vilija BLINKEVIČIŪTĖ",
+   "country": "LT",
+   "group": "SD",
+   "party": "LSDP",
+   "vote": "for"
+  },
+  {
+   "name": "Charles GOERENS",
+   "country": "LU",
+   "group": "RENEW",
+   "party": "DP",
+   "vote": "for"
+  },
+  {
+   "name": "Marc ANGEL",
+   "country": "LU",
+   "group": "SD",
+   "party": "LSAP",
+   "vote": "for"
+  },
+  {
+   "name": "Martine KEMP",
+   "country": "LU",
+   "group": "EPP",
+   "party": "CSV",
+   "vote": "for"
+  },
+  {
+   "name": "Monica SEMEDO",
+   "country": "LU",
+   "group": "RENEW",
+   "party": "FOKUS",
+   "vote": "for"
+  },
+  {
+   "name": "Tilly METZ",
+   "country": "LU",
+   "group": "GREEN_EFA",
+   "party": "Déi Gréng",
+   "vote": "for"
+  },
+  {
+   "name": "Andris AMERIKS",
+   "country": "LV",
+   "group": "SD",
+   "party": "Gods",
+   "vote": "for"
+  },
+  {
+   "name": "Dace MELBĀRDE",
+   "country": "LV",
+   "group": "EPP",
+   "party": "V",
+   "vote": "for"
+  },
+  {
+   "name": "Inese VAIDERE",
+   "country": "LV",
+   "group": "EPP",
+   "party": "V",
+   "vote": "for"
+  },
+  {
+   "name": "Ivars IJABS",
+   "country": "LV",
+   "group": "RENEW",
+   "party": "AP!",
+   "vote": "for"
+  },
+  {
+   "name": "Nils UŠAKOVS",
+   "country": "LV",
+   "group": "SD",
+   "party": "Saskaņa SDP",
+   "vote": "for"
+  },
+  {
+   "name": "Tatjana ŽDANOKA",
+   "country": "LV",
+   "group": "NI",
+   "party": "LKS",
+   "vote": "abstain"
+  },
+  {
+   "name": "Alex AGIUS SALIBA",
+   "country": "MT",
+   "group": "SD",
+   "party": "PL",
+   "vote": "for"
+  },
+  {
+   "name": "Alfred SANT",
+   "country": "MT",
+   "group": "SD",
+   "party": "PL",
+   "vote": "for"
+  },
+  {
+   "name": "Cyrus ENGERER",
+   "country": "MT",
+   "group": "SD",
+   "party": "PL",
+   "vote": "for"
+  },
+  {
+   "name": "David CASA",
+   "country": "MT",
+   "group": "EPP",
+   "party": "PN",
+   "vote": "for"
+  },
+  {
+   "name": "Agnes JONGERIUS",
+   "country": "NL",
+   "group": "SD",
+   "party": "PvdA",
+   "vote": "for"
+  },
+  {
+   "name": "Anja HAGA",
+   "country": "NL",
+   "group": "EPP",
+   "party": "ChristenUnie",
+   "vote": "for"
+  },
+  {
+   "name": "Anja HAZEKAMP",
+   "country": "NL",
+   "group": "GUE_NGL",
+   "party": "PvdD",
+   "vote": "for"
+  },
+  {
+   "name": "Bart GROOTHUIS",
+   "country": "NL",
+   "group": "RENEW",
+   "party": "VVD",
+   "vote": "for"
+  },
+  {
+   "name": "Bas EICKHOUT",
+   "country": "NL",
+   "group": "GREEN_EFA",
+   "party": "GroenLinks",
+   "vote": "for"
+  },
+  {
+   "name": "Bert-Jan RUISSEN",
+   "country": "NL",
+   "group": "ECR",
+   "party": "SGP",
+   "vote": "for"
+  },
+  {
+   "name": "Caroline NAGTEGAAL",
+   "country": "NL",
+   "group": "RENEW",
+   "party": "VVD",
+   "vote": "for"
+  },
+  {
+   "name": "Catharina RINZEMA",
+   "country": "NL",
+   "group": "RENEW",
+   "party": "VVD",
+   "vote": "for"
+  },
+  {
+   "name": "Dorien ROOKMAKER",
+   "country": "NL",
+   "group": "ECR",
+   "party": "MDD",
+   "vote": "for"
+  },
+  {
+   "name": "Henk Jan ORMEL",
+   "country": "NL",
+   "group": "EPP",
+   "party": "CDA",
+   "vote": "for"
+  },
+  {
+   "name": "Jan HUITEMA",
+   "country": "NL",
+   "group": "RENEW",
+   "party": "VVD",
+   "vote": "for"
+  },
+  {
+   "name": "Jeroen LENAERS",
+   "country": "NL",
+   "group": "EPP",
+   "party": "CDA",
+   "vote": "for"
+  },
+  {
+   "name": "Kim VAN SPARRENTAK",
+   "country": "NL",
+   "group": "GREEN_EFA",
+   "party": "GroenLinks",
+   "vote": "for"
+  },
+  {
+   "name": "Lara WOLTERS",
+   "country": "NL",
+   "group": "SD",
+   "party": "PvdA",
+   "vote": "for"
+  },
+  {
+   "name": "Malik AZMANI",
+   "country": "NL",
+   "group": "RENEW",
+   "party": "VVD",
+   "vote": "for"
+  },
+  {
+   "name": "Marcel de GRAAFF",
+   "country": "NL",
+   "group": "NI",
+   "party": "FVD",
+   "vote": "against"
+  },
+  {
+   "name": "Michiel HOOGEVEEN",
+   "country": "NL",
+   "group": "ECR",
+   "party": "JA21",
+   "vote": "against"
+  },
+  {
+   "name": "Mohammed CHAHIM",
+   "country": "NL",
+   "group": "SD",
+   "party": "PvdA",
+   "vote": "for"
+  },
+  {
+   "name": "Paul TANG",
+   "country": "NL",
+   "group": "SD",
+   "party": "PvdA",
+   "vote": "for"
+  },
+  {
+   "name": "Rob ROOKEN",
+   "country": "NL",
+   "group": "ECR",
+   "party": "Independent",
+   "vote": "against"
+  },
+  {
+   "name": "Robert ROOS",
+   "country": "NL",
+   "group": "ECR",
+   "party": "Independent",
+   "vote": "against"
+  },
+  {
+   "name": "Sophia IN 'T VELD",
+   "country": "NL",
+   "group": "RENEW",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Thijs REUTEN",
+   "country": "NL",
+   "group": "SD",
+   "party": "PvdA",
+   "vote": "for"
+  },
+  {
+   "name": "Tineke STRIK",
+   "country": "NL",
+   "group": "GREEN_EFA",
+   "party": "GroenLinks",
+   "vote": "for"
+  },
+  {
+   "name": "Tom BERENDSEN",
+   "country": "NL",
+   "group": "EPP",
+   "party": "CDA",
+   "vote": "for"
+  },
+  {
+   "name": "Vera TAX",
+   "country": "NL",
+   "group": "SD",
+   "party": "PvdA",
+   "vote": "for"
+  },
+  {
+   "name": "Adam BIELAN",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Adam JARUBAS",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PSL",
+   "vote": "for"
+  },
+  {
+   "name": "Andrzej HALICKI",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Andżelika Anna MOŻDŻANOWSKA",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Anna FOTYGA",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Anna ZALEWSKA",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Beata KEMPA",
+   "country": "PL",
+   "group": "ECR",
+   "party": "SP",
+   "vote": "for"
+  },
+  {
+   "name": "Beata MAZUREK",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Beata SZYDŁO",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Bogdan RZOŃCA",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Bogusław LIBERADZKI",
+   "country": "PL",
+   "group": "SD",
+   "party": "NL",
+   "vote": "for"
+  },
+  {
+   "name": "Danuta Maria HÜBNER",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Dominik TARCZYŃSKI",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Elżbieta Katarzyna ŁUKACIJEWSKA",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Elżbieta RAFALSKA",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Ewa KOPACZ",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Grzegorz TOBISZOWSKI",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Izabela-Helena KLOC",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Jacek SARYUSZ-WOLSKI",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Jadwiga WIŚNIEWSKA",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Jan OLBRYCHT",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Janusz LEWANDOWSKI",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Jarosław DUDA-LATOSZEWSKI",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Jarosław KALINOWSKI",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PSL",
+   "vote": "for"
+  },
+  {
+   "name": "Jerzy BUZEK",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Joachim Stanisław BRUDZIŃSKI",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Joanna KOPCIŃSKA",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Kosma ZŁOTOWSKI",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Krzysztof JURGIEL",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Leszek MILLER",
+   "country": "PL",
+   "group": "SD",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Marek Paweł BALT",
+   "country": "PL",
+   "group": "SD",
+   "party": "NL",
+   "vote": "for"
+  },
+  {
+   "name": "Patryk JAKI",
+   "country": "PL",
+   "group": "ECR",
+   "party": "SPZZ",
+   "vote": "abstain"
+  },
+  {
+   "name": "Rafał ROMANOWSKI",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Robert BIEDROŃ",
+   "country": "PL",
+   "group": "SD",
+   "party": "NL",
+   "vote": "for"
+  },
+  {
+   "name": "Ryszard Antoni LEGUTKO",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Róża THUN UND HOHENSTEIN",
+   "country": "PL",
+   "group": "RENEW",
+   "party": "PL2050",
+   "vote": "for"
+  },
+  {
+   "name": "Sylwia SPUREK",
+   "country": "PL",
+   "group": "GREEN_EFA",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Tomasz FRANKOWSKI",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Witold Jan WASZCZYKOWSKI",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Witold PAHL",
+   "country": "PL",
+   "group": "EPP",
+   "party": "PO",
+   "vote": "for"
+  },
+  {
+   "name": "Włodzimierz CIMOSZEWICZ",
+   "country": "PL",
+   "group": "SD",
+   "party": "SLD-UP",
+   "vote": "for"
+  },
+  {
+   "name": "Włodzimierz KARPIŃSKI",
+   "country": "PL",
+   "group": "EPP",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Zdzisław KRASNODĘBSKI",
+   "country": "PL",
+   "group": "ECR",
+   "party": "PiS",
+   "vote": "for"
+  },
+  {
+   "name": "Łukasz KOHUT",
+   "country": "PL",
+   "group": "SD",
+   "party": "NL",
+   "vote": "for"
+  },
+  {
+   "name": "Carlos COELHO",
+   "country": "PT",
+   "group": "EPP",
+   "party": "PSD",
+   "vote": "for"
+  },
+  {
+   "name": "Carlos ZORRINHO",
+   "country": "PT",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Cláudia MONTEIRO DE AGUIAR",
+   "country": "PT",
+   "group": "EPP",
+   "party": "PSD",
+   "vote": "for"
+  },
+  {
+   "name": "Francisco GUERREIRO",
+   "country": "PT",
+   "group": "GREEN_EFA",
+   "party": "Ind.",
+   "vote": "for"
+  },
+  {
+   "name": "Isabel CARVALHAIS",
+   "country": "PT",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Isabel SANTOS",
+   "country": "PT",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "José GUSMÃO",
+   "country": "PT",
+   "group": "GUE_NGL",
+   "party": "BE",
+   "vote": "against"
+  },
+  {
+   "name": "José Manuel FERNANDES",
+   "country": "PT",
+   "group": "EPP",
+   "party": "PSD",
+   "vote": "for"
+  },
+  {
+   "name": "João ALBUQUERQUE",
+   "country": "PT",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "João PIMENTA LOPES",
+   "country": "PT",
+   "group": "GUE_NGL",
+   "party": "PCP",
+   "vote": "against"
+  },
+  {
+   "name": "Lídia PEREIRA",
+   "country": "PT",
+   "group": "EPP",
+   "party": "PSD",
+   "vote": "for"
+  },
+  {
+   "name": "Margarida MARQUES",
+   "country": "PT",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Maria da Graça CARVALHO",
+   "country": "PT",
+   "group": "EPP",
+   "party": "PSD",
+   "vote": "for"
+  },
+  {
+   "name": "Maria-Manuel LEITÃO-MARQUES",
+   "country": "PT",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Marisa MATIAS",
+   "country": "PT",
+   "group": "GUE_NGL",
+   "party": "BE",
+   "vote": "against"
+  },
+  {
+   "name": "Nuno MELO",
+   "country": "PT",
+   "group": "EPP",
+   "party": "CDS-PP",
+   "vote": "for"
+  },
+  {
+   "name": "Pedro MARQUES",
+   "country": "PT",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Pedro SILVA PEREIRA",
+   "country": "PT",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Sandra PEREIRA",
+   "country": "PT",
+   "group": "GUE_NGL",
+   "party": "PCP",
+   "vote": "against"
+  },
+  {
+   "name": "Sara CERDAS",
+   "country": "PT",
+   "group": "SD",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Alin MITUȚA",
+   "country": "RO",
+   "group": "RENEW",
+   "party": "REPER",
+   "vote": "for"
+  },
+  {
+   "name": "Corina CREȚU",
+   "country": "RO",
+   "group": "SD",
+   "party": "PROR",
+   "vote": "for"
+  },
+  {
+   "name": "Cristian TERHEŞ",
+   "country": "RO",
+   "group": "ECR",
+   "party": "PNCR",
+   "vote": "against"
+  },
+  {
+   "name": "Cristian-Silviu BUŞOI",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PNL",
+   "vote": "for"
+  },
+  {
+   "name": "Dacian CIOLOŞ",
+   "country": "RO",
+   "group": "RENEW",
+   "party": "REPER",
+   "vote": "for"
+  },
+  {
+   "name": "Dan-Ştefan MOTREANU",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PNL",
+   "vote": "for"
+  },
+  {
+   "name": "Daniel BUDA",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PNL",
+   "vote": "for"
+  },
+  {
+   "name": "Dragoş BENEA",
+   "country": "RO",
+   "group": "SD",
+   "party": "PSD",
+   "vote": "for"
+  },
+  {
+   "name": "Dragoş PÎSLARU",
+   "country": "RO",
+   "group": "RENEW",
+   "party": "REPER",
+   "vote": "for"
+  },
+  {
+   "name": "Dragoş TUDORACHE",
+   "country": "RO",
+   "group": "RENEW",
+   "party": "REPER",
+   "vote": "for"
+  },
+  {
+   "name": "Eugen TOMAC",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PMP",
+   "vote": "for"
+  },
+  {
+   "name": "Gheorghe-Vlad NISTOR",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PNL",
+   "vote": "for"
+  },
+  {
+   "name": "Ioan-Rareş BOGDAN",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PNL",
+   "vote": "for"
+  },
+  {
+   "name": "Iuliu WINKLER",
+   "country": "RO",
+   "group": "EPP",
+   "party": "UDMR",
+   "vote": "for"
+  },
+  {
+   "name": "Loránt VINCZE",
+   "country": "RO",
+   "group": "EPP",
+   "party": "UDMR",
+   "vote": "for"
+  },
+  {
+   "name": "Maria GRAPINI",
+   "country": "RO",
+   "group": "SD",
+   "party": "PSD",
+   "vote": "abstain"
+  },
+  {
+   "name": "Marian-Jean MARINESCU",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PNL",
+   "vote": "for"
+  },
+  {
+   "name": "Mihai TUDOSE",
+   "country": "RO",
+   "group": "SD",
+   "party": "PSD",
+   "vote": "for"
+  },
+  {
+   "name": "Mircea-Gheorghe HAVA",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PNL",
+   "vote": "for"
+  },
+  {
+   "name": "Rovana PLUMB",
+   "country": "RO",
+   "group": "SD",
+   "party": "PSD",
+   "vote": "for"
+  },
+  {
+   "name": "Siegfried MUREŞAN",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PNL",
+   "vote": "for"
+  },
+  {
+   "name": "Traian BĂSESCU",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PMP",
+   "vote": "for"
+  },
+  {
+   "name": "Tudor CIUHODARU",
+   "country": "RO",
+   "group": "NI",
+   "party": "AUR",
+   "vote": "for"
+  },
+  {
+   "name": "Vasile BLAGA",
+   "country": "RO",
+   "group": "EPP",
+   "party": "PNL",
+   "vote": "for"
+  },
+  {
+   "name": "Victor NEGRESCU",
+   "country": "RO",
+   "group": "SD",
+   "party": "PSD",
+   "vote": "for"
+  },
+  {
+   "name": "Vlad GHEORGHE",
+   "country": "RO",
+   "group": "RENEW",
+   "party": "Independent",
+   "vote": "for"
+  },
+  {
+   "name": "Vlad-Marius BOTOŞ",
+   "country": "RO",
+   "group": "RENEW",
+   "party": "USR",
+   "vote": "for"
+  },
+  {
+   "name": "Abir AL-SAHLANI",
+   "country": "SE",
+   "group": "RENEW",
+   "party": "C",
+   "vote": "against"
+  },
+  {
+   "name": "Alice KUHNKE",
+   "country": "SE",
+   "group": "GREEN_EFA",
+   "party": "MP",
+   "vote": "for"
+  },
+  {
+   "name": "Arba KOKALARI",
+   "country": "SE",
+   "group": "EPP",
+   "party": "M",
+   "vote": "for"
+  },
+  {
+   "name": "Carina OHLSSON",
+   "country": "SE",
+   "group": "SD",
+   "party": "S",
+   "vote": "for"
+  },
+  {
+   "name": "Charlie WEIMERS",
+   "country": "SE",
+   "group": "ECR",
+   "party": "SD",
+   "vote": "against"
+  },
+  {
+   "name": "Emma WIESNER",
+   "country": "SE",
+   "group": "RENEW",
+   "party": "C",
+   "vote": "against"
+  },
+  {
+   "name": "Evin INCIR",
+   "country": "SE",
+   "group": "SD",
+   "party": "S",
+   "vote": "for"
+  },
+  {
+   "name": "Heléne FRITZON",
+   "country": "SE",
+   "group": "SD",
+   "party": "S",
+   "vote": "for"
+  },
+  {
+   "name": "Ilan DE BASSO",
+   "country": "SE",
+   "group": "SD",
+   "party": "S",
+   "vote": "for"
+  },
+  {
+   "name": "Jessica POLFJÄRD",
+   "country": "SE",
+   "group": "EPP",
+   "party": "M",
+   "vote": "for"
+  },
+  {
+   "name": "Johan NISSINEN",
+   "country": "SE",
+   "group": "ECR",
+   "party": "SD",
+   "vote": "against"
+  },
+  {
+   "name": "Jörgen WARBORN",
+   "country": "SE",
+   "group": "EPP",
+   "party": "M",
+   "vote": "abstain"
+  },
+  {
+   "name": "Karin KARLSBRO",
+   "country": "SE",
+   "group": "RENEW",
+   "party": "FP",
+   "vote": "for"
+  },
+  {
+   "name": "Linus GLANZELIUS",
+   "country": "SE",
+   "group": "SD",
+   "party": "S",
+   "vote": "for"
+  },
+  {
+   "name": "Malin BJÖRK",
+   "country": "SE",
+   "group": "GUE_NGL",
+   "party": "V",
+   "vote": "for"
+  },
+  {
+   "name": "Peter LUNDGREN",
+   "country": "SE",
+   "group": "ECR",
+   "party": "SD",
+   "vote": "for"
+  },
+  {
+   "name": "Pär HOLMGREN",
+   "country": "SE",
+   "group": "GREEN_EFA",
+   "party": "MP",
+   "vote": "for"
+  },
+  {
+   "name": "Sara SKYTTEDAL",
+   "country": "SE",
+   "group": "EPP",
+   "party": "Independent",
+   "vote": "abstain"
+  },
+  {
+   "name": "Tomas TOBÉ",
+   "country": "SE",
+   "group": "EPP",
+   "party": "M",
+   "vote": "for"
+  },
+  {
+   "name": "Franc BOGOVIČ",
+   "country": "SI",
+   "group": "EPP",
+   "party": "SLS",
+   "vote": "for"
+  },
+  {
+   "name": "Irena JOVEVA",
+   "country": "SI",
+   "group": "RENEW",
+   "party": "GS",
+   "vote": "for"
+  },
+  {
+   "name": "Klemen GROŠELJ",
+   "country": "SI",
+   "group": "RENEW",
+   "party": "GS",
+   "vote": "for"
+  },
+  {
+   "name": "Ljudmila NOVAK",
+   "country": "SI",
+   "group": "EPP",
+   "party": "NSi-KD",
+   "vote": "for"
+  },
+  {
+   "name": "Matjaž NEMEC",
+   "country": "SI",
+   "group": "SD",
+   "party": "SD",
+   "vote": "for"
+  },
+  {
+   "name": "Milan BRGLEZ",
+   "country": "SI",
+   "group": "SD",
+   "party": "SD",
+   "vote": "for"
+  },
+  {
+   "name": "Milan ZVER",
+   "country": "SI",
+   "group": "EPP",
+   "party": "SDS",
+   "vote": "for"
+  },
+  {
+   "name": "Romana TOMC",
+   "country": "SI",
+   "group": "EPP",
+   "party": "SDS",
+   "vote": "for"
+  },
+  {
+   "name": "Eugen JURZYCA",
+   "country": "SK",
+   "group": "ECR",
+   "party": "SaS",
+   "vote": "against"
+  },
+  {
+   "name": "Ivan ŠTEFANEC",
+   "country": "SK",
+   "group": "EPP",
+   "party": "KDH",
+   "vote": "for"
+  },
+  {
+   "name": "Jozef MIHÁL",
+   "country": "SK",
+   "group": "RENEW",
+   "party": "Ind.",
+   "vote": "for"
+  },
+  {
+   "name": "Katarína ROTH NEVEĎALOVÁ",
+   "country": "SK",
+   "group": "NI",
+   "party": "SMER-SD",
+   "vote": "for"
+  },
+  {
+   "name": "Martin HOJSÍK",
+   "country": "SK",
+   "group": "RENEW",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Michal WIEZIK",
+   "country": "SK",
+   "group": "RENEW",
+   "party": "PS",
+   "vote": "for"
+  },
+  {
+   "name": "Milan UHRÍK",
+   "country": "SK",
+   "group": "NI",
+   "party": "HREP",
+   "vote": "abstain"
+  },
+  {
+   "name": "Miriam LEXMANN",
+   "country": "SK",
+   "group": "EPP",
+   "party": "KDH",
+   "vote": "for"
+  },
+  {
+   "name": "Miroslav RADAČOVSKÝ",
+   "country": "SK",
+   "group": "NI",
+   "party": "Patriot",
+   "vote": "abstain"
+  },
+  {
+   "name": "Monika BEŇOVÁ",
+   "country": "SK",
+   "group": "NI",
+   "party": "SMER-SD",
+   "vote": "for"
+  },
+  {
+   "name": "Robert HAJŠEL",
+   "country": "SK",
+   "group": "SD",
+   "party": "Ind.",
+   "vote": "for"
+  },
+  {
+   "name": "Vladimír BILČÍK",
+   "country": "SK",
+   "group": "EPP",
+   "party": "Ind.",
+   "vote": "for"
+  }
+ ]
+}

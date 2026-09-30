@@ -1081,7 +1081,7 @@ function buildStageFinal(){
         <span class="rv-chips"><span class="badge ${rv==="approved"?"b-app":"b-rej"}">room: ${rv} ${rm}</span>
         <span class="badge ${d.outcome==="approved"?"b-app":"b-rej"}">${esc(CHAMBER.replace(/^the /,""))}: ${d.outcome}${cm?" "+cm:""}</span></span>
       </div>`;}).join("")+`</div>`:"")+
-    `<p class="sg-sub">each phone now shows its own reveal: closest party, the map, the ghost.</p>`;
+    `<p class="sg-sub">each phone now shows its own reveal: closest ${PW}, the map${AI?", the ghost":""}.</p>`;
 }
 function renderStageCtl(st){
   const c=$("#sgCtl"); if(!c) return;

@@ -15,9 +15,12 @@ const CITIES=[
   {id:"tunisia",name:"Tunisia 14–18",logo:"assets/logos/tn_crescent.svg"},
   {id:"commons",name:"Commons 2019",logo:"assets/logos/uk_portcullis.svg"},
   {id:"weimar",name:"Weimar 29–33",logo:"assets/logos/de_eagle.svg"},
-  {id:"bundestag",name:"Bundestag",logo:"assets/logos/de_dome.svg"}
+  {id:"bundestag",name:"Bundestag",logo:"assets/logos/de_dome.svg"},
+  {id:"europe",name:"Europe",logo:"assets/logos/eu_stars.svg"}
 ];
 const CFG=window.CITY_CONFIG||{id:"reus",name:"Reus",title:"REUS",lang:"ca",logo:"assets/logos/reus_rose_color.svg"};
+// what the compared "parties" are called in copy (Europe compares countries)
+const PW=CFG.party_word||"party", PWS=CFG.party_words||"parties";
 document.title=CFG.title||"RIOT";
 // In-city tabs wear the city's icon; the bare-URL holding page keeps the
 // default GHOST soul-anchor favicon (assets/favicon.svg).
@@ -421,7 +424,7 @@ function renderDoneParties(ranked,a){
   const el=$("#doneParties");
   if(!ranked.length){el.innerHTML="";el.style.display="none";return;}
   el.style.display="";
-  el.innerHTML=`<span class="dplabel">Every party · tap to compare your votes</span>`+
+  el.innerHTML=`<span class="dplabel">Every ${PW} · tap to compare your votes</span>`+
     ranked.map(p=>{const pct=a[p.token].pct;
       // the ghost's row reads like any party row ("Ghost", same face); only its
       // mark and the verb in its compare view say what it is
@@ -448,15 +451,15 @@ function revealCopy(ranked,a){
   const sub=$("#doneSub");
   if(!ranked.length){
     $("#doneHead").textContent="All done.";
-    sub.hidden=false; sub.textContent="No comparable party votes on the decisions you drew.";
+    sub.hidden=false; sub.textContent=`No comparable ${PW} votes on the decisions you drew.`;
     return;
   }
   sub.hidden=true; sub.textContent="";
   const top=ranked[0], pct=a[top.token].pct;
   $("#doneHead").textContent =
     pct>=85 ? `${top.name} votes like you ${pct}% of the time.` :
-    pct>=60 ? `Even your closest party only votes with you ${pct}% of the time.` :
-    `No party votes the way you do. ${top.name} comes closest, at ${pct}%.`;
+    pct>=60 ? `Even your closest ${PW} only votes with you ${pct}% of the time.` :
+    `No ${PW} votes the way you do. ${top.name} comes closest, at ${pct}%.`;
 }
 // the headline measures REPRESENTATION — a party verb ("votes with you"). The
 // ghost measures fidelity ("predicts you") and never claims the finding.

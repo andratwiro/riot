@@ -54,6 +54,7 @@ function findChromium() {
         'chrome-mac/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing',
         'chrome-mac-arm64/Chromium.app/Contents/MacOS/Chromium',
         'chrome-mac/Chromium.app/Contents/MacOS/Chromium',
+        'chrome-linux64/chrome',
         'chrome-linux/chrome',
       ].map(p => path.join(r, d, p))) if (fs.existsSync(c)) return c;
     }

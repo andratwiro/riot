@@ -347,13 +347,13 @@ function jointDataChanged(cov){
    the note's trailing "(technically: …)" tag. */
 const PROJECTIONS=[
   {k:"joint", n:"Room", cap:"Closer = votes more alike",
-   note:"built from everyone's votes — you, the parties, the whole room. dots that sit close voted alike. (technically: PCA)"},
+   note:`built from everyone's votes — you, the ${PWS}, the whole room. dots that sit close voted alike. (technically: PCA)`},
   {k:"smacof", n:"Gaps", cap:"Closer = votes more alike",
    note:"the gaps are the point here: the further apart two dots, the more differently they voted. (technically: metric MDS)"},
   {k:"you", n:"You", cap:"Distance from you = how differently you vote",
    note:"this one is built around you: you sit at the centre, and the closer a dot, the more it voted like you. (technically: an egocentric distance map)"},
   {k:"ca", n:"Quiet votes", cap:"Closer = votes more alike",
-   note:"abstaining counts as its own kind of vote here, not half a yes. parties that abstain together pull together. (technically: correspondence analysis)"},
+   note:`abstaining counts as its own kind of vote here, not half a yes. ${PWS} that abstain together pull together. (technically: correspondence analysis)`},
   {k:"tsne", n:"Camps", cap:"Groups mean something — the space between them doesn't", min:30,
    note:"this view hunts for camps: dots that vote alike pull into tight groups. the space between groups doesn't mean much. (technically: t-SNE)"},
 ];

@@ -2,9 +2,9 @@
   "rules": {
     "rooms": {
       "$city": {
-        ".read": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+        ".read": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag|europe)$/)",
         "participants": {
-          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag|europe)$/)",
           "$pid": {
             ".validate": "$pid.matches(/^[A-Za-z0-9_-]{1,24}$/) && newData.hasChildren(['e', 'ts'])",
             "e":  { ".validate": "newData.isString() && newData.val().length <= 16" },
@@ -20,26 +20,26 @@
           }
         },
         "tallies": {
-          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag|europe)$/)",
           "$id": {
             ".validate": "$id.length <= 80",
             "$dir": { ".validate": "$dir.matches(/^(for|against|abstain)$/) && newData.isNumber() && newData.val() >= 0" }
           }
         },
         "cov": {
-          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag|europe)$/)",
           "k":  { ".validate": "newData.isNumber()" },
           "s":  { "$i":  { ".validate": "$i.matches(/^[0-9]{1,4}$/) && newData.isNumber()" } },
           "m2": { "$ij": { ".validate": "$ij.matches(/^[0-9]{1,4}_[0-9]{1,4}$/) && newData.isNumber()" } },
           "$other": { ".validate": false }
         },
         "control": {
-          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag|europe)$/)",
           "resetAt": { ".validate": "newData.isNumber() && newData.val() <= now + 60000" },
           "$other": { ".validate": false }
         },
         "live": {
-          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag)$/)",
+          ".write": "$city.matches(/^(reus|brussels|congress|southafrica|tunisia|commons|weimar|bundestag|europe)$/)",
           "current": { ".validate": "newData.isString() && newData.val().matches(/^[A-Za-z0-9_-]{1,16}$/) && root.child('rooms').child($city).child('live').child('sessions').child(newData.val()).child('state').exists()" },
           "sessions": {
             "$sid": {
